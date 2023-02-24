@@ -12,4 +12,14 @@ public class AccountController {
     public String loginPage(){
         return "account/login";
     }
+
+    @GetMapping("/registIntro")
+    public String registIntroPage(){
+        return "account/regist_intro";
+    }
+
+    @GetMapping("/registComplete")
+    public String registCompletePage(){
+        return "account/regist_complete";
+    }
 }
