@@ -36,3 +36,6 @@ build/
 mvnw
 mvnw.cmd
 *.properties
+
+.DS_Store
+README.md
