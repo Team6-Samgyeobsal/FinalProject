@@ -301,6 +301,7 @@
                   <div class="EmailAuthField_inputFieldContainer__1BgHY">
                     <div class="EmailAuthField_inputField__y3EHZ">
                       <input
+                        id="emailInput"
                         name="email"
                         placeholder="이메일 계정"
                         type="email"
@@ -308,6 +309,7 @@
                         aria-invalid="false" />
                     </div>
                     <button
+                      id="dupcheckBtn"
                       class="Button_button__2_6-I Button_primary__3fUP6 Button_contained__1T9Np Button_md__3Z8Cw Button_disabled__3zWNw EmailAuthField_cta__1K3Hz"
                       type="submit"
                       disabled="">
@@ -336,6 +338,7 @@
                 <label>이름</label>
                 <div class="TextField_field__1B2AH">
                   <input
+                    id="nameInput"
                     name="nickName"
                     placeholder="이름 입력"
                     type="text"
@@ -348,6 +351,7 @@
                 <label>비밀번호</label>
                 <div class="TextField_field__1B2AH">
                   <input
+                    id="passwordInput"
                     name="password"
                     disabled=""
                     placeholder="비밀번호 입력"
@@ -376,6 +380,7 @@
                 <label></label>
                 <div class="TextField_field__1B2AH">
                   <input
+                    id="passwordCheckInput"
                     name="verifyPassword"
                     disabled=""
                     placeholder="비밀번호 확인"
@@ -401,6 +406,7 @@
               </div>
 
               <button
+                id="registBtn"
                 class="Button_button__2_6-I Button_primary__3fUP6 Button_contained__1T9Np Button_lg__2Kv4b Button_block__39TGk Button_disabled__3zWNw EmailSignUpFormContainer_signUpSubmitButton__3cZeI"
                 type="submit"
                 disabled="">
@@ -457,6 +463,78 @@
       }
     </style>
 
-    <div class="WadizModal_portal__JMa0C"></div>
+    <div id="wadiz-waffle-toast-container-component">
+      <div class="ToastContainer_container__p_SnS">
+        <div id="toastBody" style="display: none" class="Toast_container__3wFZ1 Toast_show__1hB86 Toast_warning__3tC0i">
+          <div class="Toast_content__2jYtA Toast_warning__3tC0i" id="toastText"></div>
+        </div>
+      </div>
+    </div>
+
+  <script>
+    let dupcheck = false;
+    $(document).ready(function(e){
+
+      // 이메일을 입력하면
+      $('#emailInput').keyup(function(e){
+        dupcheck = false;
+        $('#dupcheckBtn').prop("disabled", false);
+        $('#dupcheckBtn').removeClass('Button_disabled__3zWNw');
+
+        $('#passwordInput').prop('disabled',true);
+        $('#passwordCheckInput').prop('disabled',true);
+
+        $('#registBtn').prop('disabled',true);
+        $('#registBtn').addClass('Button_disabled__3zWNw');
+      })
+
+      // dupcheck를 눌렀을 때
+      $('#dupcheckBtn').click(function(e){
+        e.preventDefault();
+        let emailVal = $('#emailInput').val();
+        $.ajax({
+          url : '/api/account/dupCheck?email='+emailVal,
+          method : 'get',
+          success: function(data){
+            // 이메일 사용 가능 시, 버튼 disabled
+            if(data === false){
+              dupcheck = true;
+              $('#dupcheckBtn').prop("disabled", true);
+              $('#dupcheckBtn').addClass('Button_disabled__3zWNw');
+
+              $('#passwordInput').prop('disabled',false);
+              $('#passwordCheckInput').prop('disabled',false);
+
+              $('#registBtn').prop('disabled',false);
+              $('#registBtn').removeClass('Button_disabled__3zWNw');
+            // 이메일 사용 불가능 시 toast, 1.5초 후 사라짐
+            }else{
+              $('#toastBody').css('display','flex');
+              $('#toastText').text('이미 존재하는 이메일 입니다.');
+
+
+              $('#passwordInput').prop('disabled',true);
+              $('#passwordCheckInput').prop('disabled',true);
+
+              $('#registBtn').prop('disabled',true);
+              $('#registBtn').addClass('Button_disabled__3zWNw');
+
+              setTimeout(function (){
+                $('#toastBody').css('display','none');
+              },1500)
+            }
+          }
+        })
+      })
+
+      $('#registBtn').click(function(e){
+        e.preventDefault();
+        // TODO : 이름 확인, 비밀번호, 비밀번호 체크 확인
+        console.log('click registBtn')
+      })
+
+
+    })
+  </script>
   </body>
 </html>
