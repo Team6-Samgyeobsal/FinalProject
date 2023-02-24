@@ -1,0 +1,475 @@
+<html lang="ko" class="" translate="no">
+  <head>
+    <style>
+      .async-hide {
+        opacity: 0 !important;
+      }
+    </style>
+
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta
+      name="viewport"
+      content="width=device-width,initial-scale=1,shrink-to-fit=no,user-scalable=no,viewport-fit=cover" />
+    <meta
+      name="description"
+      content="테크, 패션, 푸드, 뷰티, 홈리빙까지. 와디즈 펀딩으로 매일 새로운 일상을 발견하고, 와디즈 스토어에서 새로운 쇼핑을 만나보세요." />
+    <title>와디즈 로그인</title>
+    <link href="/css/account/login.css" />
+    <link
+      rel="shortcut icon"
+      href="https://static.wadiz.kr/assets/icon/favicon.ico" />
+    <link
+      rel="icon"
+      href="https://static.wadiz.kr/assets/icon/favicon-16x16.png"
+      sizes="16x16"
+      type="image/png" />
+    <link
+      rel="icon"
+      href="https://static.wadiz.kr/assets/icon/favicon-32x32.png"
+      sizes="32x32"
+      type="image/png" />
+    <script>
+      wadiz = {};
+      wadiz.sessionUser = '';
+      wadiz.globals = {
+        isLogged: JSON.parse('false'),
+        userId: '',
+        encUserId: '',
+        hashedUserName: '',
+        staticHost: 'https://static.wadiz.kr',
+        publicApiHost: 'https://public-api.wadiz.kr',
+        embedApiHost: 'https://embed-api.wadiz.kr',
+        serviceApiHost: 'https://service.wadiz.kr',
+        analyticsHost: 'https://analytics.wadiz.kr',
+        platformApiHost: 'https://platform.wadiz.kr',
+      };
+    </script>
+
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.weglot.com/weglot.min.css?v=4" />
+
+    <link
+      rel="stylesheet"
+      href="https://static.wadiz.kr/static/web/wui.css?cb9a5d5c" />
+    <link
+      rel="stylesheet"
+      href="https://static.wadiz.kr/static/web/css/vendor.6b6b0127.chunk.css" />
+    <link
+      rel="stylesheet"
+      href="https://static.wadiz.kr/static/web/common.css?d165b488" />
+    <link
+      rel="stylesheet"
+      href="https://static.wadiz.kr/static/web/layout.css?0b839e26" />
+    <script
+      type="text/javascript"
+      src="https://static.wadiz.kr/static/web/polyfill.js?77e7221d"></script>
+    <script
+      type="text/javascript"
+      src="https://static.wadiz.kr/static/web/wui.js?4163c47c"></script>
+    <script
+      type="text/javascript"
+      src="https://static.wadiz.kr/static/web/vendor.js?e91df577"></script>
+
+    <script
+      type="text/javascript"
+      src="https://static.wadiz.kr/static/web/common.js?87db9043"></script>
+    <script
+      type="text/javascript"
+      src="https://static.wadiz.kr/static/web/layout.js?8a28804b"></script>
+
+    <script src="https://www.wadiz.kr/resources/equity/js/common.js"></script>
+    <script src="https://www.wadiz.kr/resources/equity/common/common.js"></script>
+    <script
+      type="text/javascript"
+      src="https://www.wadiz.kr/resources/static/js/wCommon.js"></script>
+
+    <link
+      href="https://cdn.wadiz.kr/resources/static/css/wlayout.css?v=201803151400"
+      rel="stylesheet" />
+
+    <link
+      rel="stylesheet"
+      href="https://static.wadiz.kr/account/main.d8e939d6.css" />
+
+    <link
+      rel="stylesheet"
+      href="https://static.wadiz.kr/static/iam/main.b3728ebd.css" />
+
+    <script
+      type="text/javascript"
+      src="https://cdn.wadiz.kr/resources/static/js/wMotion.js?v=20190222"></script>
+
+    <script src="https://www.wadiz.kr/resources/equity/js/common.js"></script>
+    <script src="https://www.wadiz.kr/resources/equity/common/common.js"></script>
+    <script
+      type="text/javascript"
+      src="https://www.wadiz.kr/resources/static/js/wCommon.js"></script>
+
+    <link
+      rel="stylesheet"
+      href="https://static.wadiz.kr/static/floating-buttons/main.5e88b41b.css" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://static.wadiz.kr/static/iam/css/7.e895ad47.chunk.css" />
+    <script
+      charset="utf-8"
+      src="https://static.wadiz.kr/static/iam/js/7.09486445.chunk.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/7f85a56ba4.css" />
+  </head>
+  <body>
+    <div id="page-container">
+      <div class="black-bg-wrap" style="display: none"></div>
+
+      <div id="wz-header">
+        <div class="web-header">
+          <div class="web-header-large">
+            <header class="header-wrapper web-header-simple">
+              <div class="header-container">
+                <h1 class="wadiz-logo">
+                  <a href="/"
+                    ><span class="label">와디즈</span
+                    ><svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="85"
+                      height="25"
+                      viewBox="0 0 85 25">
+                      <path
+                        fill="#1D2129"
+                        fill-rule="nonzero"
+                        d="M58.49 2.23h2.11v21.29H59a1.73 1.73 0 0 1-1.62-1.16 9 9 0 0 1-10.93-.28 7.48 7.48 0 0 1-2.75-6.29 7.65 7.65 0 0 1 12.79-5.07V4.23a2 2 0 0 1 2-2zm-6.3 18.62a4.36 4.36 0 0 0 4.16-4.52 4.19 4.19 0 1 0-8.35 0 4.36 4.36 0 0 0 4.19 4.52zM42 23.52h-1.52a1.73 1.73 0 0 1-1.64-1.16 9 9 0 0 1-10.93-.28 7.48 7.48 0 0 1-2.75-6.29A7.65 7.65 0 0 1 38 10.72a2 2 0 0 1 1.9-1.79H42v14.59zm-8.41-2.67h.02a4.35 4.35 0 0 0 4.15-4.52 4.35 4.35 0 0 0-4.17-4.51 4.35 4.35 0 0 0-4.17 4.51 4.36 4.36 0 0 0 4.17 4.52zM83.47 8.94v2.11l-7.07 9.06h7.06v3.47h-13v-2.1l7.08-9.07h-6.62v-1.47a2 2 0 0 1 2-2h10.55zM65.86 7.3a2.48 2.48 0 1 1 0-4.96 2.48 2.48 0 0 1 0 4.96zM21.21 8.94h4.14l-4.86 14.59h-4.15l-3.21-9.36-3.21 9.36H5.77L.92 8.94h4.13L8 18l2.5-7.74a2 2 0 0 1 1.86-1.34h2.9l3 9.08 2.95-9.06zm42.65 14.59l-.04-12.59a2 2 0 0 1 2-2h2.11v14.59h-4.07z"></path></svg
+                  ></a>
+                </h1>
+                <ul class="gnb-large">
+                  <li class="login">
+                    <a href="/web/waccount/wAccountLogin" class="item"
+                      ><span>로그인</span></a
+                    >
+                  </li>
+                  <li class="signup">
+                    <a href="/web/waccount/wAccountRegistIntro" class="item"
+                      ><span>회원가입</span></a
+                    >
+                  </li>
+                </ul>
+                <div class="PreviewOverlay_container__3Q3h2">
+                  <svg
+                    viewBox="0 0 40 40"
+                    focusable="false"
+                    role="presentation"
+                    class="withIcon_icon__1ao4d"
+                    aria-hidden="true"
+                    style="width: 24px; height: 24px">
+                    <path fill="none" d="M0 0h40v40H0z"></path>
+                    <path
+                      d="M38 6.06H2V31h11.8v3.88h12.4V31H38zm-2.12 22.85H4.12V8.14h31.76z"></path>
+                  </svg>
+                  <p class="PreviewOverlay_title__21y5H">미리보기 모드</p>
+                  <p class="PreviewOverlay_description__2ihG6">
+                    저장한 내용을 미리 볼 수 있어요.
+                  </p>
+                </div>
+              </div>
+            </header>
+          </div>
+        </div>
+      </div>
+
+      <script>
+        window.dispatchEvent(
+          new CustomEvent('WadizHeaderLoaded', {
+            detail: {
+              element: document.getElementById('wz-header'),
+            },
+          })
+        );
+      </script>
+
+      <form id="forwardForm" method="get">
+        <input type="hidden" id="returnURL" name="returnURL" />
+      </form>
+      <input type="hidden" id="sessionLoginCheck" value="false" />
+
+      <main class="account-intro-login">
+        <div class="user-sign-container">
+          <div class="wz container form-container form-login">
+            <h2 class="wz text display2">로그인</h2>
+            <form name="frm_login" id="frm_login"  class="wz form" method="post">
+              <div class="field">
+                <div class="wz input">
+                  <input
+                    type="email"
+                    id="userName"
+                    name="username"
+                    class="input-text"
+                    placeholder="이메일 입력"
+                    title="이메일 입력" />
+                </div>
+                <em id="emailError" class="error-text helper error"
+                  >이메일 형식이 올바르지 않습니다.</em
+                >
+              </div>
+              <div class="field">
+                <div class="wz input">
+                  <input
+                    type="password"
+                    id="password"
+                    name="password"
+                    class="input-text"
+                    maxlength="20"
+                    placeholder="비밀번호 입력"
+                    title="비밀번호 입력" />
+                </div>
+                <p id="loginError" class="error-text helper error">
+                  와디즈에 등록되지 않은 아이디거나, 아이디 또는 비밀번호가
+                  회원정보와 일치하지 않습니다.
+                </p>
+              </div>
+              <div class="recaptcha">
+                <p id="recaptchaMessage" class="error-text">
+                  잘못된 아이디 또는 비밀번호로 여러번 로그인 시도하였습니다.
+                  <br />계정 보안 조치를 위해 아래 사항을 체크하신 뒤 다시
+                  진행하세요.
+                </p>
+                <p id="recaptchaComplete" class="complete-text">
+                  <span>계정 보안 조치가 완료되었습니다!</span>협조해주셔서
+                  감사합니다. 로그인을 다시 시도하세요
+                </p>
+                <div
+                  class="g-recaptcha"
+                  data-sitekey="6Lcr70MUAAAAAHfmxpaHaXPDlgLIwiS6gRO5YCcB"
+                  data-size="600"
+                  id="recaptcha"
+                  data-callback="recaptchaComplete"
+                  style="display: none">
+                  <div style="width: 304px; height: 78px">
+                    <textarea
+                      id="g-recaptcha-response"
+                      name="g-recaptcha-response"
+                      class="g-recaptcha-response"
+                      style="
+                        width: 250px;
+                        height: 40px;
+                        border: 1px solid rgb(193, 193, 193);
+                        margin: 10px 25px;
+                        padding: 0px;
+                        resize: none;
+                        display: none;
+                      "></textarea>
+                  </div>
+                  <iframe style="display: none"></iframe>
+                </div>
+              </div>
+              <div class="login-action">
+                <p class="forgot">
+                  <a
+                    class="wz text"
+                    href="/web/waccount/find/pwd"
+                    data-event="iam.signin.goto.forgot"
+                    >로그인 정보를 잊으셨나요?</a
+                  >
+                </p>
+              </div>
+              <button
+                type="button"
+                id="btnLogin"
+                class="wz button primary block submit-button"
+                >
+                로그인
+              </button>
+              <input
+                type="hidden"
+                name="returnURL"
+                value="https://www.wadiz.kr/web/wreward/main" />
+            </form>
+            <div id="iam-account-app">
+              <div>
+                <div>
+                  <button
+                    class="Button_button__2_6-I Button_lg__2Kv4b Button_block__39TGk SNSButtonList_kakaoButton__2lTDs SNSButtonList_spacer__38ac5"
+                    type="button">
+                    <span
+                      ><span class="Button_children__weH0H"
+                        ><svg
+                          viewBox="0 0 32 32"
+                          focusable="false"
+                          role="presentation"
+                          class="withIcon_icon__1YH1P SNSButtonList_kakaoIcon__1s6gw"
+                          aria-hidden="true">
+                          <path
+                            d="M16 4.64c-6.96 0-12.64 4.48-12.64 10.08 0 3.52 2.32 6.64 5.76 8.48l-.96 4.96 5.44-3.6 2.4.16c6.96 0 12.64-4.48 12.64-10.08S22.96 4.56 16 4.64z"></path></svg
+                        >카카오로 시작하기</span
+                      ></span
+                    ></button
+                  ><button
+                    class="Button_button__2_6-I Button_lg__2Kv4b Button_block__39TGk SNSButtonList_naverButton__1rzZ_ SNSButtonList_spacer__38ac5"
+                    type="button">
+                    <span
+                      ><span class="Button_children__weH0H"
+                        ><svg
+                          viewBox="0 0 32 32"
+                          focusable="false"
+                          role="presentation"
+                          class="withIcon_icon__1YH1P SNSButtonList_naverIcon__3TjPM"
+                          aria-hidden="true">
+                          <path
+                            d="M19.52 5.76v10.32L12.48 5.76H4.8v20.48h7.68V15.92l7.12 10.32h7.6V5.76z"></path></svg
+                        >네이버로 시작하기</span
+                      ></span
+                    >
+                  </button>
+                  <div class="SNSButtonList_circularButtonWrapper__hZCKN">
+                    <button
+                      class="Button_button__2_6-I Button_circular__vl0m4 SNSButtonList_googleButton__1u6eV SNSButtonList_circularButton__2WsLD"
+                      type="button">
+                      <span
+                        ><span class="Button_children__weH0H"
+                          ><svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="20"
+                            height="20"
+                            viewBox="0 0 20 20">
+                            <defs><path id="a" d="M0 0h348v46H0z"></path></defs>
+                            <g fill="none" fill-rule="evenodd">
+                              <g transform="translate(-16 -13)">
+                                <use></use>
+                                <path
+                                  stroke="#DADCE0"
+                                  d="M-.5-.5h349v47H-.5z"></path>
+                              </g>
+                              <path
+                                fill="#4285F4"
+                                d="M18.64 10.205c0-.639-.057-1.252-.164-1.841H10v3.481h4.844a4.14 4.14 0 0 1-1.796 2.716v2.259h2.908c1.702-1.567 2.684-3.875 2.684-6.615z"></path>
+                              <path
+                                fill="#34A853"
+                                d="M10 19c2.43 0 4.467-.806 5.956-2.18l-2.908-2.259c-.806.54-1.837.86-3.048.86-2.344 0-4.328-1.584-5.036-3.711H1.957v2.332A8.997 8.997 0 0 0 10 19z"></path>
+                              <path
+                                fill="#FBBC05"
+                                d="M4.964 11.71A5.41 5.41 0 0 1 4.682 10c0-.593.102-1.17.282-1.71V5.958H1.957A8.996 8.996 0 0 0 1 10c0 1.452.348 2.827.957 4.042l3.007-2.332z"></path>
+                              <path
+                                fill="#EA4335"
+                                d="M10 4.58c1.321 0 2.508.454 3.44 1.345l2.582-2.58C14.463 1.891 12.426 1 10 1a8.997 8.997 0 0 0-8.043 4.958L4.964 8.29C5.672 6.163 7.656 4.58 10 4.58z"></path>
+                              <path d="M0 0h20v20H0z"></path>
+                            </g></svg></span
+                      ></span></button
+                    ><button
+                      class="Button_button__2_6-I Button_circular__vl0m4 SNSButtonList_facebookButton__2el51 SNSButtonList_circularButton__2WsLD"
+                      type="button">
+                      <span
+                        ><span class="Button_children__weH0H"
+                          ><svg
+                            viewBox="0 0 48 48"
+                            focusable="false"
+                            role="presentation"
+                            class="withIcon_icon__1YH1P"
+                            aria-hidden="true">
+                            <path
+                              d="M14.4 19.547h5.673v-5.256a8.559 8.559 0 0 1 2.4-6.132c2.618-2.628 6.109-2.3 11.127-1.861v5.913h-3.71a3.374 3.374 0 0 0-2.29.766 3.514 3.514 0 0 0-.655 2.3v4.27h6.437l-.873 6.57h-5.564V43.2h-6.872V26.118H14.4v-6.57z"></path></svg></span
+                      ></span></button
+                    ><button
+                      class="Button_button__2_6-I Button_circular__vl0m4 SNSButtonList_appleButton__1rA1b SNSButtonList_circularButton__2WsLD"
+                      type="button">
+                      <span
+                        ><span class="Button_children__weH0H"
+                          ><svg
+                            viewBox="0 0 32 32"
+                            focusable="false"
+                            role="presentation"
+                            class="withIcon_icon__1YH1P"
+                            aria-hidden="true">
+                            <path
+                              d="M24.96 26c-1.12 1.68-2.32 3.28-4.08 3.28s-2.32-1.04-4.4-1.04-2.64 1.04-4.4 1.12S9.04 27.6 7.92 26c-2.32-3.28-4-9.36-1.68-13.44 1.098-1.973 3.148-3.299 5.512-3.36 1.688 0 3.368 1.12 4.408 1.12s3.04-1.44 5.12-1.2a6.157 6.157 0 0 1 4.867 2.62c-1.691 1.087-2.82 2.936-2.867 5.053a5.926 5.926 0 0 0 3.562 5.352 13.472 13.472 0 0 1-1.913 3.901zm-7.6-21.36a6.072 6.072 0 0 1 3.894-1.998c.038.139.045.303.045.469 0 1.44-.521 2.759-1.386 3.777A4.871 4.871 0 0 1 16.04 8.8h-.042a6.886 6.886 0 0 1-.016-.451 5.66 5.66 0 0 1 1.384-3.716z"></path></svg></span
+                      ></span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="bottom-message">
+              <p>
+                아직 와디즈 계정이 없나요?<a
+                  href="/web/account/registIntro"
+                  data-return-url=""
+                  data-event="iam.signin.goto.signup"
+                  >회원가입</a
+                >
+              </p>
+            </div>
+          </div>
+        </div>
+      </main>
+
+      <!-- S : 페이지별 스크립트 -->
+    </div>
+    <div id="wadiz-app-banner"></div>
+
+
+    <style>
+      .ab-iam-root.v3 {
+        z-index: 9999;
+      }
+    </style>
+
+    <div
+      style="
+        background-color: rgb(255, 255, 255);
+        border: 1px solid rgb(204, 204, 204);
+        box-shadow: rgba(0, 0, 0, 0.2) 2px 2px 3px;
+        position: absolute;
+        transition: visibility 0s linear 0.3s, opacity 0.3s linear 0s;
+        opacity: 0;
+        visibility: hidden;
+        z-index: 2000000000;
+        left: 0px;
+        top: -10000px;
+      ">
+      <div
+        style="
+          width: 100%;
+          height: 100%;
+          position: fixed;
+          top: 0px;
+          left: 0px;
+          z-index: 2000000000;
+          background-color: rgb(255, 255, 255);
+          opacity: 0.05;
+        "></div>
+      <div
+        class="g-recaptcha-bubble-arrow"
+        style="
+          border: 11px solid transparent;
+          width: 0px;
+          height: 0px;
+          position: absolute;
+          pointer-events: none;
+          margin-top: -11px;
+          z-index: 2000000000;
+        "></div>
+      <div
+        class="g-recaptcha-bubble-arrow"
+        style="
+          border: 10px solid transparent;
+          width: 0px;
+          height: 0px;
+          position: absolute;
+          pointer-events: none;
+          margin-top: -10px;
+          z-index: 2000000000;
+        "></div>
+    </div>
+
+  <script>
+    $(document).ready(function(){
+      $('#btnLogin').click(function(e){
+        e.preventDefault();
+        console.log('tttt')
+        $('#frm_login').submit();
+      })
+    })
+
+  </script>
+  </body>
+</html>
