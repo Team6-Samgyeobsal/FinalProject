@@ -509,8 +509,6 @@
               $('#registBtn').removeClass('Button_disabled__3zWNw');
             // 이메일 사용 불가능 시 toast, 1.5초 후 사라짐
             }else{
-              $('#toastBody').css('display','flex');
-              $('#toastText').text('이미 존재하는 이메일 입니다.');
 
 
               $('#passwordInput').prop('disabled',true);
@@ -519,9 +517,7 @@
               $('#registBtn').prop('disabled',true);
               $('#registBtn').addClass('Button_disabled__3zWNw');
 
-              setTimeout(function (){
-                $('#toastBody').css('display','none');
-              },1500)
+              showToast('이미 가입된 이메일 입니다.')
             }
           }
         })
@@ -529,12 +525,41 @@
 
       $('#registBtn').click(function(e){
         e.preventDefault();
-        // TODO : 이름 확인, 비밀번호, 비밀번호 체크 확인
+        let emailVal = $('#emailInput').val();
+        let nameVal = $('#nameInput').val();
+
+        let passwordVal = $('#passwordInput').val();
+        let passwordCheckVal = $('#passwordCheckInput').val();
+
+        if(nameVal === ''){
+          showToast('이름을 입력해주세요.');
+          return;
+        }
+
+        if(passwordVal.length < 4){
+          showToast('비밀번호를 4자이상 입력해주세요.');
+          return;
+        }
+
+        if(passwordVal !== passwordCheckVal){
+          showToast('비밀번호가 일치하지 않습니다.');
+          return;
+        }
+
         console.log('click registBtn')
       })
 
 
     })
+
+    function showToast(msg){
+      $('#toastBody').css('display','flex');
+      $('#toastText').text(msg);
+
+      setTimeout(function (){
+        $('#toastBody').css('display','none');
+      },1500)
+    }
   </script>
   </body>
 </html>
