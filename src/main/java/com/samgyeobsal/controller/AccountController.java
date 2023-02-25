@@ -1,37 +1,48 @@
 package com.samgyeobsal.controller;
 
-import com.samgyeobsal.domain.member.InsertMemberDTO;
+import com.samgyeobsal.domain.member.InsertFormMemberDTO;
+import com.samgyeobsal.service.MemberService;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequestMapping("/web/account")
+@RequiredArgsConstructor
 @Slf4j
 public class AccountController {
+    private final MemberService memberService;
 
     @GetMapping("/login")
-    public String loginPage(){
+    public String loginPage(@RequestParam(required = false, name = "error") String error,
+                            Model model){
+        model.addAttribute("error", error);
         return "account/login";
     }
 
     @GetMapping("/registIntro")
     public String registIntroPage(Model model){
 
-        model.addAttribute("member",new InsertMemberDTO());
+        model.addAttribute("member",new InsertFormMemberDTO());
         return "account/regist_intro";
     }
 
     @PostMapping("/registIntro")
-    public String registIntro(@ModelAttribute("member") InsertMemberDTO member){
-        log.info("member = {}", member);
+    public String registIntro(
+            @Validated @ModelAttribute("member") InsertFormMemberDTO member,
+            BindingResult bindingResult, RedirectAttributes redirect){
+        if(bindingResult.hasErrors()){
+            return "account/regist_intro";
+        }
 
-
-        return "redirect:/registComplete";
+        memberService.insertMember(member);
+        redirect.addFlashAttribute("name", member.getName());
+        return "redirect:/web/account/registComplete";
     }
 
     @GetMapping("/registComplete")

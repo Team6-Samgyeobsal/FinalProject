@@ -1,4 +1,6 @@
 <html
+  xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:th="http://www.thymeleaf.org"
   lang="ko"
   class="scroll-top scroll-apex"
   translate="no"
@@ -167,11 +169,6 @@
         </div>
       </div>
 
-      <form id="forwardForm" method="get">
-        <input type="hidden" id="returnURL" name="returnURL" />
-      </form>
-      <input type="hidden" id="sessionLoginCheck" value="false" />
-
       <main id="iam-account-app">
         <main class="SignUpIntroApp_signUpIntro__2v2wv">
           <div class="AccountContainer_container__PwFiE">
@@ -294,14 +291,19 @@
             <h3 class="SignUpIntroApp_simpleSignUpTitle__3aC7M">
               이메일 간편가입
             </h3>
+            <form id="registForm" th:action th:object="${member}" method="post">
+              <th:block th:if="${#fields.hasErrors()}">
+                <input id="errorInput" type="hidden" th:value="${#fields.errors().get(0)}">
+              </th:block>
             <div class="EmailSignUpFormContainer_formField__1vy9Q">
-              <form>
+
                 <div class="EmailAuthField_emailAuthField__2E9P2">
                   <label class="EmailAuthField_fieldLabel__1jS_Z">이메일</label>
                   <div class="EmailAuthField_inputFieldContainer__1BgHY">
                     <div class="EmailAuthField_inputField__y3EHZ">
                       <input
                         id="emailInput"
+                        th:field="*{email}"
                         name="email"
                         placeholder="이메일 계정"
                         type="email"
@@ -321,11 +323,8 @@
                     </button>
                   </div>
                 </div>
-              </form>
             </div>
-            <form>
               <input type="hidden" name="userName" /><input
-                type="hidden"
                 name="loginIdType" /><input
                 type="hidden"
                 name="secureStateBagKey"
@@ -338,6 +337,7 @@
                 <label>이름</label>
                 <div class="TextField_field__1B2AH">
                   <input
+                    th:field="*{name}"
                     id="nameInput"
                     name="nickName"
                     placeholder="이름 입력"
@@ -351,6 +351,7 @@
                 <label>비밀번호</label>
                 <div class="TextField_field__1B2AH">
                   <input
+                    th:field="*{password}"
                     id="passwordInput"
                     name="password"
                     disabled=""
@@ -470,12 +471,17 @@
         </div>
       </div>
     </div>
-
+    <script src="/js/toast.js"></script>
   <script>
     let dupcheck = false;
     $(document).ready(function(e){
 
-      // 이메일을 입력하면
+      let errorMsg = $('#errorInput').val();
+      if(errorMsg !== undefined && errorMsg !== ''){
+        showToast(errorMsg);
+      }
+
+        // 이메일을 입력하면
       $('#emailInput').keyup(function(e){
         dupcheck = false;
         $('#dupcheckBtn').prop("disabled", false);
@@ -509,8 +515,6 @@
               $('#registBtn').removeClass('Button_disabled__3zWNw');
             // 이메일 사용 불가능 시 toast, 1.5초 후 사라짐
             }else{
-
-
               $('#passwordInput').prop('disabled',true);
               $('#passwordCheckInput').prop('disabled',true);
 
@@ -546,20 +550,12 @@
           return;
         }
 
-        console.log('click registBtn')
+        $('#registForm').submit();
+
       })
 
 
     })
-
-    function showToast(msg){
-      $('#toastBody').css('display','flex');
-      $('#toastText').text(msg);
-
-      setTimeout(function (){
-        $('#toastBody').css('display','none');
-      },1500)
-    }
   </script>
   </body>
 </html>

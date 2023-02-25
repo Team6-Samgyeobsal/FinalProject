@@ -9,4 +9,6 @@ import org.apache.ibatis.annotations.Param;
 public interface MemberMapper {
 
     MemberVO findMemberByEmail(@Param("email") String email, @Param("loginType") LoginType type);
+
+    void insertMember(MemberVO member);
 }

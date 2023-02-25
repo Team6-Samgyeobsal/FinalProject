@@ -39,7 +39,7 @@ public class LoggingAop {
 
     private String getRequestParams() {
 
-        String params = "없음";
+        String params = "";
 
         RequestAttributes requestAttributes = RequestContextHolder
                 .getRequestAttributes();

@@ -1,4 +1,7 @@
-<html lang="ko" class="" translate="no">
+<html lang="ko" class="" translate="no"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+>
   <head>
     <style>
       .async-hide {
@@ -461,11 +464,27 @@
         "></div>
     </div>
 
+    <div id="wadiz-waffle-toast-container-component">
+      <div class="ToastContainer_container__p_SnS">
+        <div id="toastBody" style="display: none" class="Toast_container__3wFZ1 Toast_show__1hB86 Toast_warning__3tC0i">
+          <div class="Toast_content__2jYtA Toast_warning__3tC0i" id="toastText"></div>
+        </div>
+      </div>
+    </div>
+
+    <th:block th:if="${error}">
+      <input type="hidden" th:value="${error}" th:id="errorMsg">
+    </th:block>
+    <script src="/js/toast.js"></script>
   <script>
     $(document).ready(function(){
+      let errorMsg = $('#errorMsg').val();
+      if(errorMsg !== undefined && errorMsg !== ''){
+        showToast(errorMsg)
+      }
+
       $('#btnLogin').click(function(e){
         e.preventDefault();
-        console.log('tttt')
         $('#frm_login').submit();
       })
     })

@@ -8,4 +8,9 @@
         from member
         where email = #{email} and loginType= #{loginType}
     </select>
+
+    <insert id="insertMember">
+        insert into member (email, name, password, role, logintype)
+        values (#{email}, #{name}, #{password}, #{role}, #{type})
+    </insert>
 </mapper>
