@@ -3,6 +3,7 @@ package com.samgyeobsal.security.config;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.access.hierarchicalroles.RoleHierarchyImpl;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
@@ -15,6 +16,14 @@ public class SecurityConfig {
 
     @Autowired
     private AuthenticationFailureHandler authenticationFailureHandler;
+
+    @Bean
+    public RoleHierarchyImpl roleHierarchyImpl() {
+        RoleHierarchyImpl roleHierarchyImpl = new RoleHierarchyImpl();
+        roleHierarchyImpl
+                .setHierarchy("ROLE_ADMIN > ROLE_MANAGER > ROLE_USER");
+        return roleHierarchyImpl;
+    }
 
     @Bean
     public PasswordEncoder passwordEncoder() {
@@ -33,8 +42,14 @@ public class SecurityConfig {
                 .defaultSuccessUrl("/web")
                 .failureHandler(authenticationFailureHandler)
         .and()
+                .oauth2Login()
+                .loginPage("/web/account/login")
+                .defaultSuccessUrl("/web")
+        .and()
                 .logout()
-                .logoutSuccessUrl("/web");
+                .logoutUrl("/web/account/logout")
+                .logoutSuccessUrl("/web")
+                .deleteCookies("JSESSIONID" , "remember-me");
 
 
         return http.build();
