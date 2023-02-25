@@ -32,9 +32,7 @@ build/
 ### VS Code ###
 .vscode/
 
-.mvn/
-mvnw
-mvnw.cmd
+
 *.properties
 
 .DS_Store
