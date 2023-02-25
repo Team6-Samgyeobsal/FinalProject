@@ -1,0 +1,3748 @@
+<html lang="ko" class="scroll-top scroll-apex" translate="no">
+  <head>
+    <style>
+      .async-hide {
+        opacity: 0 !important;
+      }
+    </style>
+
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta
+      name="viewport"
+      content="width=device-width,initial-scale=1,shrink-to-fit=no,user-scalable=no,viewport-fit=cover" />
+    <meta
+      name="description"
+      content="테크, 패션, 푸드, 뷰티, 홈리빙까지. 와디즈 펀딩으로 매일 새로운 일상을 발견하고, 와디즈 스토어에서 새로운 쇼핑을 만나보세요." />
+    <title>결제 예약</title>
+
+    <link
+      rel="manifest"
+      href="https://www.wadiz.kr/resources/static/manifest.json" />
+    <link
+      rel="shortcut icon"
+      href="https://static.wadiz.kr/assets/icon/favicon.ico" />
+    <link
+      rel="icon"
+      href="https://static.wadiz.kr/assets/icon/favicon-16x16.png"
+      sizes="16x16"
+      type="image/png" />
+    <link
+      rel="icon"
+      href="https://static.wadiz.kr/assets/icon/favicon-32x32.png"
+      sizes="32x32"
+      type="image/png" />
+    <script type="application/ld+json">
+      {
+        "@context": "http://schema.org/",
+        "@type": "Organization",
+        "name": "와디즈",
+        "url": "https://www.wadiz.kr",
+        "sameAs": [
+          "https://www.facebook.com/wadiz.funding",
+          "https://www.instagram.com/wadiz_official",
+          "https://www.youtube.com/channel/UCRF2YAxV9vnzo2khhGCGlZg/featured",
+          "https://itunes.apple.com/kr/app/wadijeu/id1107828621",
+          "https://play.google.com/store/apps/details?id=com.markmount.wadiz"
+        ]
+      }
+    </script>
+    <script>
+      wadiz = {};
+      wadiz.sessionUser = '10907091018';
+      wadiz.globals = {
+        isLogged: JSON.parse('true'),
+        userId: '6059495',
+        encUserId: '10907091018',
+        hashedUserName: 'fd7c846e9116d3becb0fb40c8cee3f6cd31f4145',
+        staticHost: 'https://static.wadiz.kr',
+        embedApiHost: 'https://embed-api.wadiz.kr',
+        serviceApiHost: 'https://service.wadiz.kr',
+        analyticsHost: 'https://analytics.wadiz.kr',
+        platformApiHost: 'https://platform.wadiz.kr',
+      };
+    </script>
+
+    <link
+      rel="stylesheet"
+      href="https://static.wadiz.kr/static/web/wui.css?cb9a5d5c" />
+    <link
+      rel="stylesheet"
+      href="https://static.wadiz.kr/static/web/css/vendor.6b6b0127.chunk.css" />
+    <link
+      rel="stylesheet"
+      href="https://static.wadiz.kr/static/web/common.css?d165b488" />
+    <link
+      rel="stylesheet"
+      href="https://static.wadiz.kr/static/web/layout.css?0b839e26" />
+    <script
+      type="text/javascript"
+      src="https://static.wadiz.kr/static/web/polyfill.js?77e7221d"></script>
+    <script
+      type="text/javascript"
+      src="https://static.wadiz.kr/static/web/wui.js?4163c47c"></script>
+    <script
+      type="text/javascript"
+      src="https://static.wadiz.kr/static/web/vendor.js?e91df577"></script>
+    <script
+      type="text/javascript"
+      src="https://static.wadiz.kr/static/web/common.js?87db9043"></script>
+    <script
+      type="text/javascript"
+      src="https://static.wadiz.kr/static/web/layout.js?8a28804b"></script>
+
+    <script
+      type="text/javascript"
+      src="https://www.wadiz.kr/resources/static/js/wCommon.js?ver=20201111"></script>
+    <script
+      type="text/javascript"
+      src="https://www.wadiz.kr/resources/static/js/countdown.js"></script>
+    <script
+      type="text/javascript"
+      src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+
+    <link
+      href="https://cdn.wadiz.kr/resources/static/css/wlayout.css?v=201803151400"
+      rel="stylesheet" />
+
+    <link
+      rel="stylesheet"
+      href="https://static.wadiz.kr/reward/payments.562cdee9.css" />
+
+    <link
+      rel="stylesheet"
+      href="https://www.wadiz.kr/resources/static/css/common.css?v=20201105" />
+    <link
+      rel="stylesheet"
+      href="https://www.wadiz.kr/resources/static/css/wpurchase_reward.css?v=20220901" />
+    <!-- 리워드결제페이지 -->
+    <style>
+      .inner-terms .bold {
+        font-weight: bold;
+      }
+      .terms-table {
+        width: 100%;
+        table-layout: fixed;
+        border-spacing: 0;
+        border-collapse: collaspse;
+        border: 1px solid #ddd;
+      }
+      .terms-table td {
+        padding: 10px;
+        border: 1px solid #ddd;
+        font-size: 12px;
+      }
+      .no-border {
+        border-bottom: 0;
+      }
+    </style>
+
+    <script
+      type="text/javascript"
+      src="https://cdn.wadiz.kr/resources/static/js/wMotion.js?v=20190222"></script>
+
+    <script
+      type="text/javascript"
+      src="https://www.wadiz.kr/resources/static/js/wCommon.js?ver=20201111"></script>
+    <script
+      type="text/javascript"
+      src="https://www.wadiz.kr/resources/static/js/countdown.js"></script>
+    <script
+      type="text/javascript"
+      src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://static.wadiz.kr/static/floating-buttons/main.5e88b41b.css" />
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/7f85a56ba4.css" />
+  </head>
+  <body>
+    <div id="page-container">
+      <div class="black-bg-wrap" style="display: none"></div>
+
+      <div id="wz-header">
+        <div class="web-header">
+          <div class="web-header-large">
+            <header class="header-wrapper">
+              <div class="header-container">
+                <h1 class="wadiz-logo">
+                  <a href="/"
+                    ><span class="label">와디즈</span
+                    ><svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="85"
+                      height="25"
+                      viewBox="0 0 85 25">
+                      <path
+                        fill="#1D2129"
+                        fill-rule="nonzero"
+                        d="M58.49 2.23h2.11v21.29H59a1.73 1.73 0 0 1-1.62-1.16 9 9 0 0 1-10.93-.28 7.48 7.48 0 0 1-2.75-6.29 7.65 7.65 0 0 1 12.79-5.07V4.23a2 2 0 0 1 2-2zm-6.3 18.62a4.36 4.36 0 0 0 4.16-4.52 4.19 4.19 0 1 0-8.35 0 4.36 4.36 0 0 0 4.19 4.52zM42 23.52h-1.52a1.73 1.73 0 0 1-1.64-1.16 9 9 0 0 1-10.93-.28 7.48 7.48 0 0 1-2.75-6.29A7.65 7.65 0 0 1 38 10.72a2 2 0 0 1 1.9-1.79H42v14.59zm-8.41-2.67h.02a4.35 4.35 0 0 0 4.15-4.52 4.35 4.35 0 0 0-4.17-4.51 4.35 4.35 0 0 0-4.17 4.51 4.36 4.36 0 0 0 4.17 4.52zM83.47 8.94v2.11l-7.07 9.06h7.06v3.47h-13v-2.1l7.08-9.07h-6.62v-1.47a2 2 0 0 1 2-2h10.55zM65.86 7.3a2.48 2.48 0 1 1 0-4.96 2.48 2.48 0 0 1 0 4.96zM21.21 8.94h4.14l-4.86 14.59h-4.15l-3.21-9.36-3.21 9.36H5.77L.92 8.94h4.13L8 18l2.5-7.74a2 2 0 0 1 1.86-1.34h2.9l3 9.08 2.95-9.06zm42.65 14.59l-.04-12.59a2 2 0 0 1 2-2h2.11v14.59h-4.07z"></path></svg
+                  ></a>
+                </h1>
+                <ul class="GNBDesktop_container__1TR2D">
+                  <li class="GNBDesktop_item__1zjYG">
+                    <a
+                      href="/web/wreward/comingsoon"
+                      class="GNBDesktop_link__3ObNR"
+                      ><span>오픈예정</span></a
+                    >
+                  </li>
+                  <li class="GNBDesktop_item__1zjYG">
+                    <a href="/web/wreward/main" class="GNBDesktop_link__3ObNR"
+                      ><span>펀딩 +</span></a
+                    >
+                  </li>
+                  <li class="GNBDesktop_item__1zjYG">
+                    <a href="/web/preorder/main" class="GNBDesktop_link__3ObNR"
+                      ><span>프리오더</span></a
+                    >
+                  </li>
+                  <li class="GNBDesktop_item__1zjYG">
+                    <a href="/web/store/main" class="GNBDesktop_link__3ObNR"
+                      ><span>스토어</span></a
+                    >
+                  </li>
+                  <li class="GNBDesktop_item__1zjYG">
+                    <div>
+                      <button
+                        class="GNBDesktop_link__3ObNR GNBDesktop_more__3IpSI">
+                        더보기<svg
+                          viewBox="0 0 40 40"
+                          focusable="false"
+                          role="presentation"
+                          class="withIcon_icon__1ao4d GNBDesktop_icon__3MDWk"
+                          aria-hidden="true">
+                          <path
+                            d="M28 20L15 33l-1.4-1.4L25.2 20 13.6 8.4 15 7l13 13z"></path>
+                        </svg>
+                      </button>
+                      <div
+                        class="MoreMenuDesktop_container__104wM"
+                        role="navigation">
+                        <div class="MoreMenuDesktop_innerContainer__2RwMO">
+                          <div class="MoreMenuDesktop_bannerContainer__vK2Lc">
+                            <div
+                              class="MoreMenuBanner_container__3n_2m"
+                              style="background-color: rgb(255, 248, 231)">
+                              <div class="MoreMenuBanner_inner__4fzC7">
+                                <div class="MoreMenuBanner_icon__1HFSa">
+                                  <svg
+                                    viewBox="0 0 23 20"
+                                    fill="none"
+                                    focusable="false"
+                                    role="presentation"
+                                    class="withIcon_icon__1ao4d"
+                                    aria-hidden="true">
+                                    <path
+                                      fill-rule="evenodd"
+                                      clip-rule="evenodd"
+                                      d="M1.7 1.7h19.6v16.6H1.7V1.7zM.5 19.5V.5h22v19H.5zm3.5-7h15v-1.2H4v1.2zm8 3H4v-1.2h8v1.2zM7.5 7.05a1.75 1.75 0 1 1-3.5 0 1.75 1.75 0 0 1 3.5 0z"></path>
+                                  </svg>
+                                </div>
+                                <div class="MoreMenuBanner_label__2dyLV">
+                                  피드
+                                </div>
+                              </div>
+                            </div>
+                            <a
+                              href="http://makercenter.wadiz.kr/"
+                              target="_blank"
+                              rel="noreferer noopener"
+                              class="MoreMenuBanner_container__3n_2m"
+                              style="background-color: rgb(233, 236, 239)"
+                              ><div class="MoreMenuBanner_inner__4fzC7">
+                                <div class="MoreMenuBanner_icon__1HFSa">
+                                  <svg
+                                    viewBox="0 0 18 18"
+                                    fill="none"
+                                    focusable="false"
+                                    role="presentation"
+                                    class="withIcon_icon__1ao4d"
+                                    aria-hidden="true">
+                                    <path
+                                      d="M0 0v18h18V0H0zm17.02 17.02H.98V3.91h16.04v13.11zm0-14.09H.98V.98h16.04v1.95z"></path>
+                                    <path
+                                      d="M6.82 12.64c.31.31.5.67.5.94v2.19h3.36v-2.19c0-.26.19-.63.49-.94.58-.58.9-1.35.9-2.18 0-.83-.32-1.59-.9-2.18-1.2-1.2-3.15-1.2-4.35 0-.58.58-.9 1.35-.9 2.18 0 .83.32 1.59.9 2.17v.01zm2.88 2.14H8.3v-.49h1.4v.49zm-2.18-5.8c.82-.82 2.15-.82 2.96 0 .4.4.61.92.61 1.48 0 .56-.22 1.09-.62 1.48-.21.21-.65.73-.76 1.36H8.27c-.1-.61-.5-1.1-.76-1.36-.4-.4-.61-.92-.61-1.48 0-.56.22-1.09.61-1.48h.01zM14.37 10.03H13v.98h1.37v-.98zM5.01 10.03H3.64v.98h1.37v-.98zM12.672 6.407l-.97.97.694.692.969-.968-.693-.694zM9.49 5.12h-.98v1.37h.98V5.12zM5.326 6.413l-.693.693.968.969.693-.693-.968-.97z"></path>
+                                  </svg>
+                                </div>
+                                <div class="MoreMenuBanner_label__2dyLV">
+                                  메이커센터
+                                </div>
+                              </div></a
+                            >
+                            <div
+                              class="MoreMenuBanner_container__3n_2m"
+                              style="background-color: rgb(239, 243, 253)">
+                              <div class="MoreMenuBanner_inner__4fzC7">
+                                <div class="MoreMenuBanner_icon__1HFSa">
+                                  <svg
+                                    viewBox="0 0 40 40"
+                                    focusable="false"
+                                    role="presentation"
+                                    class="withIcon_icon__1ao4d"
+                                    aria-hidden="true">
+                                    <path fill="none" d="M0 0h40v40H0z"></path>
+                                    <path
+                                      d="M38 24.64l-.01-16.26-15.6.01v2.4l11.74-.01L21.37 24.4l-6.53-6.75-12.9 13.2 1.72 1.67 11.17-11.43 6.57 6.79 14.19-15.15.01 11.91H38z"></path>
+                                  </svg>
+                                </div>
+                                <div class="MoreMenuBanner_label__2dyLV">
+                                  투자하기
+                                </div>
+                              </div>
+                            </div>
+                            <div
+                              class="MoreMenuBanner_container__3n_2m"
+                              style="background-color: rgb(230, 246, 255)">
+                              <div class="MoreMenuBanner_inner__4fzC7">
+                                <div class="MoreMenuBanner_icon__1HFSa">
+                                  <svg
+                                    viewBox="0 0 24 24"
+                                    focusable="false"
+                                    role="presentation"
+                                    class="withIcon_icon__1ao4d"
+                                    aria-hidden="true">
+                                    <path
+                                      d="M14.559 13.587a3.972 3.972 0 0 1 6.747 2.931 3.792 3.792 0 0 1-.768 2.28l2.808 2.736-.84.858-2.82-2.748a4.014 4.014 0 0 1-2.352.756 3.972 3.972 0 0 1-2.775-6.813zM20.562 2.64v7.926h-1.2V3.84H8.838v17.628h-1.2V9.708H1.674v11.76h-1.2V8.508h7.164V2.64h12.924zm-1.294 11.798a2.772 2.772 0 0 0-4.7 2.08 2.724 2.724 0 0 0 2.766 2.682 2.772 2.772 0 0 0 1.934-4.762zm-13.4.256v1.2H3.492v-1.2h2.376zm0-3.12v1.2H3.492v-1.2h2.376zm7.95-2.52v1.2h-2.652v-1.2h2.652zm3.12-3.12v1.2h-5.772v-1.2h5.772z"></path>
+                                  </svg>
+                                </div>
+                                <div class="MoreMenuBanner_label__2dyLV">
+                                  스타트업 찾기
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div
+                            class="MenuList_container__7uw7A MoreMenuDesktop_moreMenuList__suowN">
+                            <h4 class="MenuList_label__2ap5Z">바로 가기</h4>
+                            <ul>
+                              <li>
+                                <a
+                                  href="/web/wsub/openfunding"
+                                  class="MenuListItem_button__aQOTa"
+                                  >와디즈 서비스 알아보기<i
+                                    class="icon chevron-right"
+                                    aria-hidden="true"></i
+                                ></a>
+                              </li>
+                              <li>
+                                <a
+                                  href="/web/wadiznext"
+                                  class="MenuListItem_button__aQOTa"
+                                  >wadiz NEXT BRAND<i
+                                    class="icon chevron-right"
+                                    aria-hidden="true"></i
+                                ></a>
+                              </li>
+                              <li>
+                                <a
+                                  href="https://www.partnerzone.wadiz.kr"
+                                  class="MenuListItem_button__aQOTa"
+                                  >와디즈 파트너 서비스<i
+                                    class="icon chevron-right"
+                                    aria-hidden="true"></i
+                                ></a>
+                              </li>
+                              <li>
+                                <a
+                                  href="/web/iplicense/"
+                                  class="MenuListItem_button__aQOTa"
+                                  >IP 라이선스 사업 신청<i
+                                    class="icon chevron-right"
+                                    aria-hidden="true"></i
+                                ></a>
+                              </li>
+                              <li>
+                                <a
+                                  href="/web/school/main"
+                                  class="MenuListItem_button__aQOTa"
+                                  >와디즈 스쿨<i
+                                    class="icon chevron-right"
+                                    aria-hidden="true"></i
+                                ></a>
+                              </li>
+                              <li>
+                                <a
+                                  href="https://helpcenter.wadiz.kr/hc/ko"
+                                  class="MenuListItem_button__aQOTa"
+                                  >도움말센터<i
+                                    class="icon chevron-right"
+                                    aria-hidden="true"></i
+                                ></a>
+                              </li>
+                              <li>
+                                <a
+                                  href="/web/supporter-club/intro"
+                                  class="MenuListItem_button__aQOTa"
+                                  >서포터클럽 멤버십<i
+                                    class="icon chevron-right"
+                                    aria-hidden="true"></i
+                                ></a>
+                              </li>
+                            </ul>
+                          </div>
+                          <div
+                            class="MenuList_container__7uw7A MoreMenuDesktop_moreMenuList__suowN">
+                            <h4 class="MenuList_label__2ap5Z">와디즈 소개</h4>
+                            <ul>
+                              <li>
+                                <a
+                                  href="https://blog.wadiz.kr"
+                                  class="MenuListItem_button__aQOTa"
+                                  >와디즈 블로그<i
+                                    class="icon chevron-right"
+                                    aria-hidden="true"></i
+                                ></a>
+                              </li>
+                              <li>
+                                <a
+                                  href="/web/wsub/wadizstory"
+                                  class="MenuListItem_button__aQOTa"
+                                  >와디즈 이야기<i
+                                    class="icon chevron-right"
+                                    aria-hidden="true"></i
+                                ></a>
+                              </li>
+                              <li>
+                                <a
+                                  href="https://spacewadiz.com"
+                                  class="MenuListItem_button__aQOTa"
+                                  >공간 와디즈<i
+                                    class="icon chevron-right"
+                                    aria-hidden="true"></i
+                                ></a>
+                              </li>
+                              <li>
+                                <a
+                                  href="/web/wpartner/main"
+                                  class="MenuListItem_button__aQOTa"
+                                  >협력 프로그램<i
+                                    class="icon chevron-right"
+                                    aria-hidden="true"></i
+                                ></a>
+                              </li>
+                              <li>
+                                <a
+                                  href="/web/wpage/makerAwards"
+                                  class="MenuListItem_button__aQOTa"
+                                  >와디즈 어워즈<i
+                                    class="icon chevron-right"
+                                    aria-hidden="true"></i
+                                ></a>
+                              </li>
+                              <li>
+                                <a
+                                  href="https://makercenter.wadiz.kr/menu/30"
+                                  class="MenuListItem_button__aQOTa"
+                                  >성공 프로젝트<i
+                                    class="icon chevron-right"
+                                    aria-hidden="true"></i
+                                ></a>
+                              </li>
+                            </ul>
+                          </div>
+                          <div
+                            class="MenuList_container__7uw7A MoreMenuDesktop_moreMenuList__suowN">
+                            <h4 class="MenuList_label__2ap5Z">공지</h4>
+                            <ul>
+                              <li>
+                                <a
+                                  href="/web/wboard/newsBoardList"
+                                  class="MenuListItem_button__aQOTa"
+                                  >공지 사항<i
+                                    class="icon chevron-right"
+                                    aria-hidden="true"></i
+                                ></a>
+                              </li>
+                              <li>
+                                <a
+                                  href="/web/wboard/newsBoardList/2"
+                                  class="MenuListItem_button__aQOTa"
+                                  >이벤트<span class="NewBadge_badge__Z74aM"
+                                    >New</span
+                                  ><i
+                                    class="icon chevron-right"
+                                    aria-hidden="true"></i
+                                ></a>
+                              </li>
+                              <li>
+                                <a
+                                  href="https://www.wadiz.kr/link/wadiznews"
+                                  class="MenuListItem_button__aQOTa"
+                                  >보도 자료<i
+                                    class="icon chevron-right"
+                                    aria-hidden="true"></i
+                                ></a>
+                              </li>
+                              <li>
+                                <a
+                                  href="https://job.wadiz.kr/"
+                                  class="MenuListItem_button__aQOTa"
+                                  >채용<i
+                                    class="icon chevron-right"
+                                    aria-hidden="true"></i
+                                ></a>
+                              </li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                      <div
+                        class="Backdrop_backDrop__2cxxQ Backdrop_dimmed__L5zbD GNBDesktop_backdrop__3shzy"></div>
+                    </div>
+                  </li>
+                </ul>
+                <div class="web-header-utils">
+                  <div class="DesktopSearchApp_container__VEGeP">
+                    <form>
+                      <div
+                        class="SearchController_container__3KkCv"
+                        tabindex="-1">
+                        <div class="SearchTag_emptyTag__3OE1B"></div>
+                        <div class="SearchController_keyword__2Q-9Q">
+                          <input
+                            type="search"
+                            placeholder="새로운 것을 찾으시나요?"
+                            aria-label="검색"
+                            value="" />
+                        </div>
+                        <button
+                          type="submit"
+                          class="SearchController_searchIcon__3IHRt"
+                          aria-label="검색">
+                          <svg
+                            viewBox="0 0 40 40"
+                            focusable="false"
+                            role="presentation"
+                            class="withIcon_icon__1ao4d"
+                            aria-hidden="true"
+                            style="width: 24px; height: 24px">
+                            <path fill="none" d="M0 0h40v40H0z"></path>
+                            <path
+                              d="M29.2 27.91a14.38 14.38 0 1 0-1.42 1.4l7.16 7.15.07.08 1.41-1.41zM18.45 6a12.36 12.36 0 0 1 8.35 3.23 12.24 12.24 0 0 1 4 8.59A12.39 12.39 0 1 1 17.88 6z"></path>
+                          </svg>
+                        </button>
+                      </div>
+                    </form>
+                    <div
+                      class="DesktopSearchApp_wideConditionContainer__ikiQ0"
+                      style="display: none">
+                      <div
+                        class="DesktopSearchCondition_container__6jXWH"
+                        style="display: block">
+                        <div class="CurateList_container__3kc0N">
+                          <div
+                            class="CurateTag_container__1H-dO"
+                            tabindex="-1"
+                            data-ga-category="검색_기본_운영태그"
+                            data-ga-action="클릭"
+                            data-ga-label="마감임박">
+                            <div class="CurateTag_emoji___g5vb">⏰</div>
+                            <div class="CurateTag_title__3_F6W">마감임박</div>
+                          </div>
+                          <div
+                            class="CurateTag_container__1H-dO"
+                            tabindex="-1"
+                            data-ga-category="검색_기본_운영태그"
+                            data-ga-action="클릭"
+                            data-ga-label="오늘출발">
+                            <div class="CurateTag_emoji___g5vb">⚡️</div>
+                            <div class="CurateTag_title__3_F6W">오늘출발</div>
+                          </div>
+                          <div
+                            class="CurateTag_container__1H-dO"
+                            tabindex="-1"
+                            data-ga-category="검색_기본_운영태그"
+                            data-ga-action="클릭"
+                            data-ga-label="스토어BEST">
+                            <div class="CurateTag_emoji___g5vb">🏆</div>
+                            <div class="CurateTag_title__3_F6W">스토어BEST</div>
+                          </div>
+                          <div
+                            class="CurateTag_container__1H-dO"
+                            tabindex="-1"
+                            data-ga-category="검색_기본_운영태그"
+                            data-ga-action="클릭"
+                            data-ga-label="오픈예정">
+                            <div class="CurateTag_emoji___g5vb">🔥</div>
+                            <div class="CurateTag_title__3_F6W">오픈예정</div>
+                          </div>
+                          <div
+                            class="CurateTag_container__1H-dO"
+                            tabindex="-1"
+                            data-ga-category="검색_기본_운영태그"
+                            data-ga-action="클릭"
+                            data-ga-label="신규오픈">
+                            <div class="CurateTag_emoji___g5vb">💎</div>
+                            <div class="CurateTag_title__3_F6W">신규오픈</div>
+                          </div>
+                          <div
+                            class="CurateTag_container__1H-dO"
+                            tabindex="-1"
+                            data-ga-category="검색_기본_인기태그"
+                            data-ga-action="클릭"
+                            data-ga-label="화장품">
+                            <div class="CurateTag_emoji___g5vb">#</div>
+                            <div class="CurateTag_title__3_F6W">화장품</div>
+                          </div>
+                          <div
+                            class="CurateTag_container__1H-dO"
+                            tabindex="-1"
+                            data-ga-category="검색_기본_인기태그"
+                            data-ga-action="클릭"
+                            data-ga-label="신발">
+                            <div class="CurateTag_emoji___g5vb">#</div>
+                            <div class="CurateTag_title__3_F6W">신발</div>
+                          </div>
+                          <div
+                            class="CurateTag_container__1H-dO"
+                            tabindex="-1"
+                            data-ga-category="검색_기본_인기태그"
+                            data-ga-action="클릭"
+                            data-ga-label="비건">
+                            <div class="CurateTag_emoji___g5vb">#</div>
+                            <div class="CurateTag_title__3_F6W">비건</div>
+                          </div>
+                        </div>
+                        <div
+                          class="DesktopSearchCondition_bottomSection__IzNXl">
+                          <div class="SimpleRecentKeywordList_container__3iL6E">
+                            <div class="SimpleRecentKeywordList_header__aJmxF">
+                              <h4>최근 검색어</h4>
+                            </div>
+                            <div
+                              class="SimpleRecentKeywordList_keywordContainer__3udUj"></div>
+                            <div
+                              class="SimpleRecentKeywordList_emptyList__6HqDv">
+                              <p>최근 검색어가 없어요</p>
+                            </div>
+                          </div>
+                          <div class="SimpleCategoryList_container__3dCnP">
+                            <div class="SimpleCategoryList_header__T_0S4">
+                              <h4>카테고리</h4>
+                            </div>
+                            <div>
+                              <div
+                                class="SimpleCategoryList_categoryItem__12adh"
+                                tabindex="-1">
+                                <div class="SimpleCategoryList_title__211f8">
+                                  패션·잡화
+                                </div>
+                              </div>
+                              <div
+                                class="SimpleCategoryList_categoryItem__12adh"
+                                tabindex="-1">
+                                <div class="SimpleCategoryList_title__211f8">
+                                  테크·가전
+                                </div>
+                              </div>
+                              <div
+                                class="SimpleCategoryList_categoryItem__12adh"
+                                tabindex="-1">
+                                <div class="SimpleCategoryList_title__211f8">
+                                  홈·리빙
+                                </div>
+                              </div>
+                              <div
+                                class="SimpleCategoryList_categoryItem__12adh"
+                                tabindex="-1">
+                                <div class="SimpleCategoryList_title__211f8">
+                                  여행·스포츠
+                                </div>
+                              </div>
+                              <div
+                                class="SimpleCategoryList_categoryItem__12adh"
+                                tabindex="-1">
+                                <div class="SimpleCategoryList_title__211f8">
+                                  푸드
+                                </div>
+                              </div>
+                              <div
+                                class="SimpleCategoryList_categoryItem__12adh"
+                                tabindex="-1">
+                                <div class="SimpleCategoryList_title__211f8">
+                                  뷰티
+                                </div>
+                              </div>
+                              <div
+                                class="SimpleCategoryList_categoryItem__12adh"
+                                tabindex="-1">
+                                <div class="SimpleCategoryList_title__211f8">
+                                  출판
+                                </div>
+                              </div>
+                              <div
+                                class="SimpleCategoryList_categoryItem__12adh"
+                                tabindex="-1">
+                                <div class="SimpleCategoryList_title__211f8">
+                                  취미·클래스
+                                </div>
+                              </div>
+                              <div
+                                class="SimpleCategoryList_categoryItem__12adh"
+                                tabindex="-1">
+                                <div class="SimpleCategoryList_title__211f8">
+                                  반려동물
+                                </div>
+                              </div>
+                              <div
+                                class="SimpleCategoryList_categoryItem__12adh"
+                                tabindex="-1">
+                                <div class="SimpleCategoryList_title__211f8">
+                                  캐릭터·굿즈
+                                </div>
+                              </div>
+                              <div
+                                class="SimpleCategoryList_categoryItem__12adh"
+                                tabindex="-1">
+                                <div class="SimpleCategoryList_title__211f8">
+                                  컬쳐·아티스트
+                                </div>
+                              </div>
+                              <div
+                                class="SimpleCategoryList_categoryItem__12adh"
+                                tabindex="-1">
+                                <div class="SimpleCategoryList_title__211f8">
+                                  후원
+                                </div>
+                              </div>
+                              <div
+                                class="SimpleCategoryList_categoryItem__12adh"
+                                tabindex="-1">
+                                <div class="SimpleCategoryList_title__211f8">
+                                  기부∙캠페인
+                                </div>
+                              </div>
+                              <div
+                                class="SimpleCategoryList_categoryItem__12adh"
+                                tabindex="-1">
+                                <div class="SimpleCategoryList_title__211f8">
+                                  모임
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="DesktopSearchApp_footer__5pLDo">
+                        <button type="button">닫기</button>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="HeaderDesktop_notificationContainer__10sFU">
+                    <div>
+                      <div class="NotificationButton_container__25R5P">
+                        <button
+                          class="NotificationButton_btnNotification__LNPY3"
+                          aria-label="알림">
+                          <i
+                            class="icon notifications-o NotificationButton_icon__2_baf"
+                            aria-hidden="true"></i>
+                        </button>
+                      </div>
+                      <div class="NotificationPopover_container__VBFqT">
+                        <div class="NotificationPopover_content__29iXz">
+                          <div class="NotificationList_container__Yrmqb">
+                            <span class="NotificationList_titleLabel__2Ga9x"
+                              >알림</span
+                            >
+                            <div class="NotificationList_listContainer__c6Nxr">
+                              <p class="NotificationList_emptyText__Um5f-">
+                                알림 내역이 없습니다.
+                              </p>
+                            </div>
+                            <button
+                              rel="noreferrer noopener"
+                              class="Button_button__5oeoO Button_tertiaryGrey__P0pBf Button_contained__3_8qC Button_md__3GjME Button_block__22dLI NotificationList_btnLink__1mrMu"
+                              type="button">
+                              <span
+                                ><span class="Button_children__1tP8u"
+                                  ><div
+                                    class="NotificationList_buttonText__2VJ_H">
+                                    <span>알림 전체보기</span
+                                    ><svg
+                                      viewBox="0 0 40 40"
+                                      focusable="false"
+                                      role="presentation"
+                                      class="withIcon_icon__1ao4d"
+                                      aria-hidden="true"
+                                      style="width: 16px; height: 16px">
+                                      <path
+                                        d="M28 20L15 33l-1.4-1.4L25.2 20 13.6 8.4 15 7l13 13z"></path>
+                                    </svg></div></span
+                              ></span>
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="HeaderDesktop_user__dYJMc">
+                    <div class="User_container__1a7yg">
+                      <button
+                        type="button"
+                        class="User_btnAvatar__1jxl7"
+                        aria-label="마이 와디즈">
+                        <div>
+                          <div
+                            class="Avatar_avatar__2nEUu"
+                            style="width: 32px; height: 32px">
+                            <span
+                              class="Avatar_hasImage__sjUWZ"
+                              style="
+                                background-image: url('https://static.wadiz.kr/assets/icon/profile-icon-6.png');
+                              "></span>
+                          </div>
+                        </div>
+                      </button>
+                    </div>
+                  </div>
+                  <div class="web-header-funding-open funding-open">
+                    <div>
+                      <div>
+                        <button
+                          aria-label="프로젝트 만들기"
+                          class="Button_button__5oeoO Button_primary__3lu_z Button_md__3GjME funding-open-button"
+                          type="button">
+                          <span
+                            ><span class="Button_children__1tP8u"
+                              >프로젝트 만들기</span
+                            ></span
+                          >
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="PreviewOverlay_container__3Q3h2">
+                  <svg
+                    viewBox="0 0 40 40"
+                    focusable="false"
+                    role="presentation"
+                    class="withIcon_icon__1ao4d"
+                    aria-hidden="true"
+                    style="width: 24px; height: 24px">
+                    <path fill="none" d="M0 0h40v40H0z"></path>
+                    <path
+                      d="M38 6.06H2V31h11.8v3.88h12.4V31H38zm-2.12 22.85H4.12V8.14h31.76z"></path>
+                  </svg>
+                  <p class="PreviewOverlay_title__21y5H">미리보기 모드</p>
+                  <p class="PreviewOverlay_description__2ihG6">
+                    저장한 내용을 미리 볼 수 있어요.
+                  </p>
+                </div>
+              </div>
+            </header>
+          </div>
+        </div>
+      </div>
+
+      <script>
+        window.dispatchEvent(
+          new CustomEvent('WadizHeaderLoaded', {
+            detail: {
+              element: document.getElementById('wz-header'),
+            },
+          })
+        );
+      </script>
+
+      <form id="forwardForm" method="get">
+        <input type="hidden" id="returnURL" name="returnURL" />
+      </form>
+      <input type="hidden" id="sessionLoginCheck" value="true" />
+
+      <div id="newContainer">
+        <div id="wPurchaseWrap" class="funding-purchase">
+          <div class="wpurchase-title">
+            <a class="btn-move-to-story" href="/web/campaign/detail/158604"
+              ><i class="wadizicon wa-chevron-left"></i
+              ><span>스토리로 돌아가기</span></a
+            >
+            <h2>
+              개발비 1.5억ㅣ현대리바트 기술력 담아낸 3만원대 발 받침대
+              Comfy<span class="name"
+                ><em
+                  style="
+                    background-image: url(https://cdn.wadiz.kr/wwwwadiz/green001/2023/0208/20230208171549898_158604.png/wadiz/resize/600/format/jpg/quality/80/optimize);
+                  "></em
+                >현대리바트</span
+              >
+            </h2>
+          </div>
+          <div class="wpurchase-wrap">
+            <div class="wpurchase-step">
+              <ol>
+                <li>
+                  <em>리워드<br />선택</em>
+                </li>
+                <li class="active"><em>결제 예약</em></li>
+                <li><em>소문내기</em></li>
+              </ol>
+            </div>
+            <form name="purchaseForm" id="purchaseForm" method="post">
+              <input
+                type="hidden"
+                id="campaignId"
+                name="campaignId"
+                value="158604" />
+              <input type="hidden" id="presenteeName" name="presenteeName" />
+              <input type="hidden" id="contactNumber" name="contactNumber" />
+              <input type="hidden" id="zipCode" name="zipCode" />
+              <input type="hidden" id="address" name="address" />
+              <input type="hidden" id="addressDetails" name="addressDetails" />
+              <input
+                type="hidden"
+                id="applyPoint"
+                name="applyPoint"
+                value="0" />
+              <input
+                type="hidden"
+                id="email"
+                name="email"
+                value="wangjh789@gmail.com" />
+              <input
+                type="hidden"
+                id="addDonation"
+                name="addDonation"
+                value="0" />
+              <input
+                type="hidden"
+                id="dontShowNameYn"
+                name="dontShowNameYn"
+                value="Y" />
+              <input
+                type="hidden"
+                id="dontShowAmountYn"
+                name="dontShowAmountYn"
+                value="Y" />
+              <input
+                type="hidden"
+                name="secureStateBagKey"
+                value="OWZkOTcyMTYtYTJkYi00MWI3LWI5YTktZjdmZDA3NzdiZGVkWmpFNVl6SXlZakF0TjJOaFlTMDBOVEEwTFdFME5UZ3RaV1k0TXpFd1l6WTBNell5" />
+              <input
+                type="hidden"
+                id="inputCouponKey"
+                name="couponKey"
+                value="" />
+              <input
+                type="hidden"
+                id="inputCouponDiscountAmount"
+                name="couponDiscountAmount"
+                value="0" />
+              <input type="hidden" name="fundingPrice" value="42000" />
+
+              <div class="wpurchase-order">
+                <div class="order-list" data-choiced-legnth="1">
+                  <ul>
+                    <li>
+                      <p class="title">
+                        [얼리버드] COMFY 2단 쿠션 발받침대 1개
+                      </p>
+                      <p class="text">
+                        ★ 얼리버드 한정수량 혜택 ★ 정가 대비 39% 혜택 + 무료
+                        배송 COMFY 2단 쿠션 발받침대 그레이-그레이, 그레이-그린,
+                        화이트-베이지 中 택1
+                      </p>
+                      <div class="info">
+                        <div class="option">
+                          <span class="option-section-header">옵션-</span>
+                          <span>
+                            <!-- 이전 SELECT 타입, N옵션 타입 일경우(SELECT, OPTION) -->
+                            다크그레이-다크그레이 (1개)
+                          </span>
+                        </div>
+
+                        <p class="sum"><em>수량 : 1개</em>42,000원</p>
+                      </div>
+                    </li>
+                    <input
+                      type="hidden"
+                      name="choiceRewards[0].rewardId"
+                      value="411146" />
+                    <input
+                      type="hidden"
+                      name="choiceRewards[0].rewardName"
+                      value="★ 얼리버드 한정수량 혜택 ★
+  정가 대비 39% 혜택 + 무료 배송
+  
+  COMFY  2단 쿠션 발받침대
+  그레이-그레이, 그레이-그린, 화이트-베이지 中  택1" />
+                    <input
+                      type="hidden"
+                      name="choiceRewards[0].qty"
+                      value="1" />
+                    <input
+                      type="hidden"
+                      name="choiceRewards[0].sumAmount"
+                      value="42000" />
+                    <input
+                      type="hidden"
+                      name="choiceRewards[0].memo"
+                      value="" />
+
+                    <input
+                      type="hidden"
+                      name="choiceRewards[0].choiceRewardOptions[0].rewardOptionId"
+                      value="127464" />
+                    <input
+                      type="hidden"
+                      name="choiceRewards[0].choiceRewardOptions[0].qty"
+                      value="1" />
+                  </ul>
+                </div>
+                <div class="order-addinfo">
+                  <dl>
+                    <dt>추가 후원금</dt>
+                    <dd>0원</dd>
+                  </dl>
+                  <dl>
+                    <dt>배송비</dt>
+                    <dd>0원</dd>
+                  </dl>
+                  <div class="point">
+                    <dl id="coupon-field" class="disabled">
+                      <dt>
+                        쿠폰 사용
+                        <button class="wz tooltip mini" type="button">
+                          <span class="tooltip-message" role="tooltip">
+                            쿠폰은 추가 후원금, 배송비가 제외된 리워드 금액을
+                            기준으로 사용 가능 여부가 결정됩니다.
+                            <a
+                              class="link"
+                              href="http://bit.ly/2HpqtWW"
+                              target="_blank">
+                              자세히 보기
+                            </a>
+                          </span>
+                        </button>
+                      </dt>
+                      <dd>
+                        <p class="text">사용가능한 쿠폰이 없습니다.</p>
+                        <label class="wz dense outline dropdown"
+                          ><span></span>
+                          <select id="couponSelect"></select>
+                        </label>
+                      </dd>
+                    </dl>
+                    <dl>
+                      <dt>포인트 사용</dt>
+                      <dd>
+                        <label class="wz checkbox">
+                          <input type="checkbox" id="ckptAll" /><span
+                            >모두 사용 (보유 포인트
+                            <span id="usablePoint">0</span>P)</span
+                          >
+                        </label>
+                        <input
+                          type="text"
+                          id="pointInput"
+                          class="numOnly pointInput"
+                          maxlength="8"
+                          disabled="disabled" />
+                      </dd>
+                    </dl>
+                    <input type="hidden" id="limitPoint" value="0" />
+                  </div>
+                </div>
+                <div
+                  id="reward-funding-price-app"
+                  data-discount-shipping-charge="0"
+                  data-funding-price="42000"
+                  data-add-donation="0"
+                  data-shipping-charge="0">
+                  <h4 class="BasePrice_title__24p94">결제 예약 금액</h4>
+                  <div class="DefaultPrice_container__4dYox">
+                    <div class="DefaultPrice_title__3Qs3N">
+                      <label
+                        class="Radio_radio__1S1J3 Radio_md__36Y-U DefaultPrice_radioButton__2HF50"
+                        ><input
+                          type="radio"
+                          name="price"
+                          readonly=""
+                          value="DEFAULT"
+                          checked="" /><span class="Radio_icon__gDAhN"></span
+                        ><span class="Radio_label__3LIYq"></span></label
+                      >일반 금액
+                    </div>
+                    <div class="TitleValuePrice_container__2tb72">
+                      <dl class="">
+                        <dt>리워드 금액</dt>
+                        <dd>
+                          <span
+                            ><em class="TitleValuePrice_money__2q48W">42,000</em
+                            >원</span
+                          >
+                        </dd>
+                      </dl>
+                    </div>
+                    <div class="TitleValuePrice_container__2tb72">
+                      <dl class="">
+                        <dt>쿠폰 차감금액</dt>
+                        <dd>
+                          <span class="TitleValuePrice_danger__3Sy33"
+                            >0 원</span
+                          >
+                        </dd>
+                      </dl>
+                    </div>
+                    <div class="TitleValuePrice_container__2tb72">
+                      <dl class="">
+                        <dt>포인트 차감금액</dt>
+                        <dd>
+                          <span class="TitleValuePrice_danger__3Sy33"
+                            >0 원</span
+                          >
+                        </dd>
+                      </dl>
+                    </div>
+                    <div class="TitleValuePrice_container__2tb72">
+                      <dl class="">
+                        <dt>추가 후원금</dt>
+                        <dd>
+                          <span
+                            ><em class="TitleValuePrice_money__2q48W">0</em
+                            >원</span
+                          >
+                        </dd>
+                      </dl>
+                    </div>
+                    <div class="TitleValuePrice_container__2tb72">
+                      <dl class="">
+                        <dt>배송비</dt>
+                        <dd>
+                          <span
+                            ><em class="TitleValuePrice_money__2q48W">0</em
+                            >원</span
+                          >
+                        </dd>
+                      </dl>
+                    </div>
+                    <div class="TitleValuePrice_container__2tb72">
+                      <hr class="TitleValuePrice_divide__-8plx" />
+                      <dl class="TitleValuePrice_total__2cGge">
+                        <dt>최종 결제 금액</dt>
+                        <dd>
+                          <span><em class="">42,000 원</em></span>
+                        </dd>
+                      </dl>
+                    </div>
+                  </div>
+                  <div class="SupporterClubPrice_containerWrapper__3ooRN">
+                    <div class="SupporterClubPrice_container__1RZFe">
+                      <div class="SupporterClubPrice_title__NwKg8">
+                        <label
+                          class="Radio_radio__1S1J3 Radio_md__36Y-U SupporterClubPrice_radioButton__2vny7"
+                          ><input
+                            type="radio"
+                            name="price"
+                            readonly=""
+                            value="SUPPORTER_CLUB" /><span
+                            class="Radio_icon__gDAhN"></span
+                          ><span class="Radio_label__3LIYq"></span></label
+                        ><span class="SupporterClubPrice_text__3tPq8"
+                          ><span>서포터클럽 특별 금액</span></span
+                        >
+                      </div>
+                      <div class="TitleValuePrice_container__2tb72">
+                        <dl class="TitleValuePrice_total__2cGge">
+                          <dt>최종 결제 금액</dt>
+                          <dd>
+                            <span
+                              class="Badge_container__16KN_ Badge_visible__2jFR_ BasePrice_badge__7avU4"
+                              ><span
+                                class="Badge_badge__23sNq Badge_label__1ER2E Badge_sm__1R6P4 Badge_primary__2cRAc Badge_tertiary__34CN6"
+                                >3,000원 할인</span
+                              ></span
+                            ><span
+                              ><em class="TitleValuePrice_money__2q48W"
+                                >39,000</em
+                              >원</span
+                            >
+                          </dd>
+                        </dl>
+                      </div>
+                    </div>
+                    <div class="BasePrice_promotion__2OH5G">
+                      <em>모든 배송비 할인 + 쿠폰,</em
+                      ><span>얼리버드 부럽지 않은 할인 혜택!</span
+                      ><svg
+                        viewBox="0 0 40 40"
+                        focusable="false"
+                        role="presentation"
+                        class="withIcon_icon__2cPeY"
+                        aria-hidden="true">
+                        <path
+                          d="M28 20L15 33l-1.4-1.4L25.2 20 13.6 8.4 15 7l13 13z"></path>
+                      </svg>
+                    </div>
+                  </div>
+                  <input type="hidden" id="totalPrice" value="42000" />
+                </div>
+              </div>
+              <div class="wpurchase-delivery-wrap">
+                <div class="wpurchase-supporter-info">
+                  <h3><em>서포터</em></h3>
+                  <div class="wpurchase-input-box">
+                    <dl>
+                      <dt>이름</dt>
+                      <dd>woowang789</dd>
+                    </dl>
+                    <dl>
+                      <dt>이메일</dt>
+                      <dd>wangjh789@gmail.com</dd>
+                    </dl>
+                    <dl class="supporter-phone-number">
+                      <dt>휴대폰 번호</dt>
+
+                      <dd id="certPhone" class="phone">
+                        <input
+                          type="text"
+                          placeholder="숫자만 입력"
+                          class="numOnly"
+                          id="supporterMobileNumber"
+                          value="" />
+                        <button
+                          type="button"
+                          id="sendSmsBtn"
+                          onclick="sendSms()">
+                          인증
+                        </button>
+                        <button
+                          type="button"
+                          id="resendSmsBtn"
+                          onclick="resendSms()">
+                          재전송
+                        </button>
+                        <div id="supporterCertArea" class="cert">
+                          <input
+                            type="text"
+                            placeholder="인증번호 6자리 입력"
+                            class="numOnly"
+                            id="authCode"
+                            maxlength="6" /><em id="ms_timer"></em>
+                        </div>
+                      </dd>
+                    </dl>
+                    <div class="wpurchase-terms">
+                      <p class="check-area">
+                        <label class="wz checkbox">
+                          <input
+                            type="checkbox"
+                            id="cktm04"
+                            class="checkcbox"
+                            checked="checked" />
+                          <span
+                            >(필수) 프로젝트 진행에 대한 새소식 및 결제 관련
+                            안내를 받습니다.</span
+                          >
+                        </label>
+                      </p>
+                    </div>
+                    <p id="timeError" class="error-text">
+                      시간이 종료되었습니다.<br />다시 요청해주세요.
+                    </p>
+                    <p id="phoneNumError" class="error-text">
+                      유효한 전화번호를 입력해주세요.
+                    </p>
+                    <p id="confirmError" class="error-text">
+                      인증번호가 맞지 않습니다.<br />다시 요청해주세요.
+                    </p>
+                    <input type="hidden" id="confirmId" value="" />
+                    <div id="supporterCertBtn" class="btn-wrap">
+                      <button type="button" onclick="confirmSmsCode()">
+                        확인
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <div class="wpurchase-delivery">
+                  <h3><em>리워드 배송지</em></h3>
+                  <button type="button" class="show-list">
+                    <i class="wadizicon wa-expand-more" aria-hidden="true"></i
+                    >최근 배송지 보기
+                  </button>
+                  <div class="delivery-list"></div>
+                  <div class="deliver-new active">
+                    <dl>
+                      <dt>
+                        <label class="wz radio">
+                          <input
+                            type="radio"
+                            id="rddvNew"
+                            name="delivery"
+                            checked="checked" />
+                          <span></span>
+                        </label>
+                      </dt>
+                      <dd>
+                        <label for="rddvNew">
+                          <p><strong>새로입력</strong></p>
+                        </label>
+                      </dd>
+                    </dl>
+                    <div class="input-area">
+                      <p class="title">이름</p>
+                      <input type="text" id="newPresenteeName" />
+                      <p class="title">휴대폰 번호</p>
+                      <input type="tel" id="newContactNumber" maxlength="13" />
+                      <em class="error-message" id="errorPhoneNum"
+                        >휴대폰 번호를 정확히 입력해주세요.</em
+                      >
+                      <p class="title">주소</p>
+                      <button type="button" onclick="findPostCode()">
+                        우편번호 검색
+                      </button>
+                      <p class="text" id="newAddress"></p>
+                      <input
+                        type="text"
+                        maxlength="96"
+                        id="newAddressDetails"
+                        placeholder="상세주소" />
+                      <input type="hidden" id="newZipCode" />
+                    </div>
+                  </div>
+                  <div class="delivery-shippingMemo">
+                    <div class="input-area">
+                      <p class="title">배송 시 요청사항 (선택)</p>
+                      <input
+                        type="text"
+                        id="shippingMemo"
+                        name="shippingMemo"
+                        maxlength="50"
+                        placeholder="ex) 부재시 경비실에 보관해주세요." />
+                      <p class="subtext">
+                        해당 요청사항은 배송에 관련된 내용만 적어주세요.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="payment-info-container">
+                <!-- 결제 정보 (간편결제 / 직접입력) 앱 -->
+                <div
+                  id="reward-simplepay-app"
+                  data-type="purchase"
+                  data-is-donation-category="false"
+                  data-recent-payment-type="sbcredit"
+                  data-is-preorder-type="false"
+                  data-is-available-installment="false"
+                  style="margin-bottom: 0px">
+                  <h3 class="SimplePayContainer_title__1AD2x">결제 정보</h3>
+                  <div
+                    class="SimplePayPurchase_simplePayPurchase__3IMEe"
+                    data-selected-pay-type="sbcredit">
+                    <div class="SimplePayPurchase_payType__277Y0">
+                      <div class="SimplePayPurchase_radioContainer__3LKI_">
+                        <label
+                          class="Radio_radio__1S1J3 Radio_md__36Y-U Radio_labeled__1V1EY SimplePayPurchase_radio__3vJtq"
+                          ><input
+                            type="radio"
+                            value="sbcredit"
+                            checked="" /><span class="Radio_icon__gDAhN"></span
+                          ><span class="Radio_label__3LIYq"
+                            ><div class="SimplePayPurchase_radioLabel__2-EE1">
+                              <svg
+                                viewBox="0 0 40 40"
+                                focusable="false"
+                                role="presentation"
+                                class="withIcon_icon__2cPeY SimplePayPurchase_icon__2f9jv"
+                                aria-hidden="true">
+                                <path
+                                  d="M38.32 26.87v-13h-1.88a1.73 1.73 0 0 0-1.73 1.59A6.82 6.82 0 0 0 23.26 20a6.67 6.67 0 0 0 2.45 5.61 8 8 0 0 0 9.74.25 1.56 1.56 0 0 0 1.47 1l1.4.01zm-7.49-2.39a3.88 3.88 0 0 1-3.72-4 3.88 3.88 0 0 1 3.72-4 3.88 3.88 0 0 1 3.72 4 3.88 3.88 0 0 1-3.72 4zM19.77 13.86L17.14 22l-2.65-8.1H11.9a1.73 1.73 0 0 0-1.65 1.2L8 22l-2.63-8.1H1.68L6 26.87h3.7l2.87-8.35 2.86 8.35h3.7l4.33-13-3.69-.01z"></path></svg
+                              ><span>와디즈 간편결제</span>
+                            </div></span
+                          ></label
+                        ><span
+                          class="SimplePayPurchase_badge__3NIVz SimplePayPurchase_simplePayBadge__1Px25"
+                          >가장 빠른 결제 예약</span
+                        >
+                      </div>
+                      <div
+                        class="SimplePayCard_simplecard__1bVno SimplePayCard_purchase__2GiS0 SimplePayCard_noInfo__UZVmq">
+                        <div class="SimplePayCard_unregisted___0bUq">
+                          <div class="SimplePayCard_addCard__yGCMH">
+                            <svg
+                              viewBox="0 0 32 32"
+                              focusable="false"
+                              role="presentation"
+                              class="withIcon_icon__2cPeY SimplePayCard_addIcon__2u85G"
+                              aria-hidden="true">
+                              <path
+                                d="M30.4 15.2H16.8V1.6h-1.6v13.6H1.6v1.6h13.6v13.6h1.6V16.8h13.6v-1.6z"></path></svg
+                            ><span class="SimplePayCard_title__2wkPB"
+                              >간편 결제 카드 등록</span
+                            ><span class="SimplePayCard_description__13HJh"
+                              >카드 등록하고, 빠르게 결제 예약하세요!</span
+                            >
+                          </div>
+                          <div class="SimplePayCard_notice__gpsgQ">
+                            <i class="icon error-o"></i
+                            ><em>와디즈에서 카드번호를 저장하지 않습니다!</em>
+                            <p>
+                              카드사에서 제공하는 암호화된 정보만을 저장하기
+                              때문에 안심하셔도 됩니다.
+                            </p>
+                          </div>
+                        </div>
+                        <div class="SimplePayCard_registed__EtapQ">
+                          <div class="SimplePayCard_creditCard__ytBmr">
+                            <span class="SimplePayCard_cardName__1d4sO"
+                              >카드</span
+                            ><button
+                              type="button"
+                              class="SimplePayCard_editButton__2PlF7">
+                              변경
+                            </button>
+                            <div class="SimplePayCard_cardNumber__b42bv"></div>
+                            <span class="SimplePayCard_createdAt__1NOc7"
+                              >간편 결제 등록일<span>YYYY. MM. DD</span></span
+                            >
+                          </div>
+                          <div class="SimplePayCard_notice__gpsgQ">
+                            <em>할부는 직접 입력으로만 이용 가능합니다.</em>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="SimplePayPurchase_payType__277Y0">
+                      <div class="SimplePayPurchase_radioContainer__3LKI_">
+                        <label
+                          class="Radio_radio__1S1J3 Radio_md__36Y-U Radio_labeled__1V1EY SimplePayPurchase_radio__3vJtq"
+                          ><input
+                            type="radio"
+                            name="radio"
+                            value="dbcredit" /><span
+                            class="Radio_icon__gDAhN"></span
+                          ><span class="Radio_label__3LIYq"
+                            >직접입력</span
+                          ></label
+                        ><span
+                          class="Badge_container__16KN_ Badge_visible__2jFR_ SimplePayPurchase_badge__3NIVz"
+                          ><span
+                            class="Badge_badge__23sNq Badge_label__1ER2E Badge_md__1aw8X Badge_secondary__4v3LL Badge_circular__2WqPQ Badge_tertiary__34CN6"
+                            >할부 가능</span
+                          ></span
+                        >
+                      </div>
+                    </div>
+                    <div class="SimplePayPurchase_payType__277Y0">
+                      <div class="SimplePayPurchase_radioContainer__3LKI_">
+                        <label
+                          class="Radio_radio__1S1J3 Radio_md__36Y-U Radio_labeled__1V1EY SimplePayPurchase_radio__3vJtq"
+                          ><input type="radio" name="radio" value="npay" /><span
+                            class="Radio_icon__gDAhN"></span
+                          ><span class="Radio_label__3LIYq"
+                            >네이버페이</span
+                          ></label
+                        ><span
+                          class="Badge_container__16KN_ Badge_visible__2jFR_ SimplePayPurchase_badge__3NIVz"
+                          ><span
+                            class="Badge_badge__23sNq Badge_label__1ER2E Badge_md__1aw8X Badge_primary__2cRAc Badge_circular__2WqPQ Badge_tertiary__34CN6"
+                            >1% 적립</span
+                          ></span
+                        >
+                      </div>
+                    </div>
+                  </div>
+                  <input
+                    type="hidden"
+                    name="has-simplepay-info"
+                    value="false" />
+                </div>
+                <!-- 결제 예약시 유의사항 -->
+                <div id="wpurchaseReserveNotice" class="wpurchase-notice">
+                  <p class="title">결제 예약시 유의사항</p>
+                  <ul>
+                    <li>
+                      결제실행일에 결제자 귀책사유(한도초과, 이용정지 등)로
+                      인하여 결제가 실패할 수 있으니, 결제수단이 유효한지 한번
+                      확인하세요.
+                    </li>
+                    <li>
+                      1차 결제 실패 시 실패일로부터 3 영업일 동안 재 결제를
+                      실행합니다.
+                    </li>
+                    <li>
+                      결제 예약 이후, 결제 정보를 변경하려면 마이페이지 &gt;
+                      참여 내역 상세에서 결제 정보를 변경해주세요.
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </form>
+
+            <div class="wpurchase-terms wpurchase-terms-section">
+              <h3><em>약관 동의</em></h3>
+              <div class="terms-notice-box">
+                <label class="wz checkbox circular doing-all-agree">
+                  <input
+                    id="acceptAllCheckBox"
+                    class="notice-confirm-checkbox"
+                    type="checkbox"
+                    name="check1"
+                    value="Y"
+                    autocomplete="off"
+                    onchange="acceptAllChanged(this)" />
+                  <span>전체 동의하기</span>
+                </label>
+                <div id="eachTermsNoticeWrap">
+                  <div class="term-checkbox-wrap">
+                    <label class="wz checkbox circular">
+                      <input
+                        id="personalInfoAgreementForThirdPartiesCheckBox"
+                        class="notice-confirm-checkbox"
+                        type="checkbox"
+                        name="check1"
+                        value="Y"
+                        autocomplete="off"
+                        onchange="eachTermsChanged()" />
+                      <span>개인정보 제3자 제공 동의</span>
+                    </label>
+                    <span
+                      class="show-term"
+                      onclick="showLyPop('personalInfoAgreementForThirdParties');"
+                      >보기</span
+                    >
+                    <div
+                      id="personalInfoAgreementForThirdPartiesLypop"
+                      class="agree-popup"
+                      style="display: none">
+                      <div class="agree-popup-header">
+                        <h4>개인정보 제3자 제공 동의</h4>
+                      </div>
+                      <div class="agree-popup-body">
+                        <p>
+                          '펀딩하기・구매예약하기'를 통한 결제 및 리워드 전달
+                          서비스를 제공하기 위해, 이용자의 사전 동의 아래
+                          제3자(프로젝트 메이커)에게 제공합니다.<br />
+                          메이커에게 전달되는 개인 정보는 기재된 목적 달성 후
+                          파기에 대한 책임이 메이커에게 있으며, 파기하지 않아
+                          생기는 문제에 대한 법적 책임은 메이커에게 있습니다.<br />
+                          아래 내용에 대하여 동의를 거부하실 수 있으며, 거부 시
+                          서비스 이용이 제한됩니다. <br /><br />
+                        </p>
+                        <p class="bold">개인정보 제3자 제공 내역</p>
+                        <table class="">
+                          <colgroup>
+                            <col width="30%" />
+                            <col width="70%" />
+                          </colgroup>
+                          <tbody>
+                            <tr>
+                              <th>제공받는자</th>
+                              <td class="bold">(주)현대리바트</td>
+                            </tr>
+                            <tr>
+                              <th>목적</th>
+                              <td class="bold">
+                                프로젝트 참여 정보 확인 및 발송, 리워드 발송과
+                                관련된 공지 및 민원처리
+                              </td>
+                            </tr>
+                            <tr>
+                              <th>항목</th>
+                              <td>
+                                서포터 정보(이름, 이메일, 휴대폰 번호), 수취인
+                                정보(이름, 휴대폰 번호, 주소, 배송 시 요청사항)
+                              </td>
+                            </tr>
+                            <tr>
+                              <th>제공받는 자의 보유 및 이용 기간</th>
+                              <td class="bold">프로젝트 종료 후 1년</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="agree-popup-footer">
+                        <button
+                          type="button"
+                          class="wz button less primary"
+                          onclick="closeAgreePopup('personalInfoAgreementForThirdParties');">
+                          확인
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="term-checkbox-wrap">
+                    <label class="wz checkbox circular">
+                      <input
+                        id="AcceptanceOfLiabilityCheckBox"
+                        class="notice-confirm-checkbox"
+                        type="checkbox"
+                        name="check1"
+                        value="Y"
+                        autocomplete="off"
+                        onchange="eachTermsChanged()" />
+                      <span>책임 규정에 대한 동의</span>
+                    </label>
+                    <span
+                      class="show-term"
+                      onclick="showLyPop('AcceptanceOfLiability');"
+                      >보기</span
+                    >
+                    <div
+                      id="AcceptanceOfLiabilityLypop"
+                      class="agree-popup"
+                      style="display: none">
+                      <div class="agree-popup-header">
+                        <h4>책임 규정에 대한 동의</h4>
+                      </div>
+                      <div class="agree-popup-body">
+                        <p>
+                          와디즈는 플랫폼을 제공하는 중개자로
+                          펀딩하기・예약구매하기를 받는 당사자가 아닙니다.
+                          보상품 제공 등에 관한 지연, 제품의 하자 등으로 인한
+                          일체의 법적책임은 펀딩하기・예약구매하기를 받는
+                          프로젝트 개설자가 부담합니다. 하지만, 와디즈는
+                          프로젝트 진행자와 후원자간의 원활한 의사소통을 위해
+                          최선의 노력을 다하고 있습니다.
+                        </p>
+                      </div>
+                      <div class="agree-popup-footer">
+                        <button
+                          type="button"
+                          class="wz button less primary"
+                          onclick="closeAgreePopup('AcceptanceOfLiability');">
+                          확인
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    class="term-checkbox-wrap electronicFinancialTransactionWrap"
+                    style="display: none">
+                    <label class="wz checkbox circular"></label>
+                    <span
+                      class="show-term"
+                      onclick="showLyPop('electronicFinancialTransaction');"
+                      >보기</span
+                    >
+                    <div
+                      id="electronicFinancialTransactionLypop"
+                      class="agree-popup"
+                      style="display: none">
+                      <div class="agree-popup-header">
+                        <h4>전자금융거래 이용약관</h4>
+                      </div>
+                      <div class="agree-popup-body">
+                        <article>
+                          <h1>전자금융거래 이용약관</h1>
+                          <p>
+                            와디즈(주)가 제공하는 전자금융거래서비스의 이용에
+                            필요한 사항을 규정합니다.
+                          </p>
+                          <div class="update">
+                            <h5>업데이트 노트</h5>
+                            <ul>
+                              <li>
+                                본 이용약관은 2021년 1월 12일부터 시행됩니다.
+                              </li>
+                              <li>시행 2021. 7. 1</li>
+                            </ul>
+                          </div>
+                          <ol class="table">
+                            <li><a href="#제1장-총칙">제1장 총칙</a></li>
+                            <li>
+                              <a href="#제2장-전자지급결제대행-서비스"
+                                >제2장 전자지급결제대행 서비스</a
+                              >
+                            </li>
+                            <li>
+                              <a href="#제3장-결제대금예치서비스"
+                                >제3장 결제대금예치서비스</a
+                              >
+                            </li>
+                            <li>
+                              <a href="#제4장-선불전자지급수단의-발행-및-관리"
+                                >제4장 선불전자지급수단의 발행 및 관리</a
+                              >
+                            </li>
+                          </ol>
+                          <hr />
+                          <h2 id="제1장-총칙">제1장 총칙</h2>
+                          <h3>제1조 (목적)</h3>
+                          <p>
+                            본 약관은 와디즈 주식회사(이하 "회사"라 합니다)가
+                            제공하는 전자지급결제대행서비스, 결제대금예치서비스
+                            및 선불전자지급수단의 발행 및 관리서비스(이하
+                            "전자금융거래서비스"라 합니다)를 "회원"이 이용함에
+                            있어, "회사"와 "회원" 간 권리, 의무 및 "회원"의
+                            서비스 이용절차 등에 관한 사항을 규정하는 것을 그
+                            목적으로 합니다.
+                          </p>
+                          <h3>제2조 (정의)</h3>
+                          <ol>
+                            <li>
+                              본 약관에서 정한 용어의 정의는 아래와 같습니다.
+                              <ol>
+                                <li>
+                                  "전자금융거래"라 함은 "회사"가 "전자적 장치"를
+                                  통하여 전자금융업무를 제공하고, "회원"이
+                                  "회사"의 종사자와 직접 대면하거나 의사소통을
+                                  하지 아니하고 자동화된 방식으로 이를 이용하는
+                                  거래를 말합니다.
+                                </li>
+                                <li>
+                                  "전자지급거래"라 함은 자금을 주는 자가
+                                  "회사"로 하여금 전자지급수단을 이용하여 자금을
+                                  받는 자에게 자금을 이동하게 하는
+                                  "전자금융거래"를 말합니다.
+                                </li>
+                                <li>
+                                  "전자적 장치"라 함은 "전자금융거래"정보를
+                                  전자적 방법으로 전송하거나 처리하는 데
+                                  이용되는 장치로서 현금자동지급기,
+                                  자동입출금기, 지급용단말기, 컴퓨터, 전화기 그
+                                  밖에 전자적 방법으로 정보를 전송하거나
+                                  처리하는 장치를 말합니다.
+                                </li>
+                                <li>
+                                  "접근매체"라 함은 "전자금융거래"에 있어서
+                                  "거래지시"를 하거나 이용자 및 거래내용의
+                                  진실성과 정확성을 확보하기 위하여 사용되는
+                                  수단 또는 정보로서 "전자금융거래서비스"를
+                                  이용하기 위하여 "회사"에 등록된 아이디 및
+                                  비밀번호, 기타 "회사"가 지정한 수단을
+                                  말합니다.
+                                </li>
+                                <li>
+                                  "아이디"란 "회원"의 식별과 서비스 이용을
+                                  위하여 "회원"이 설정하고 "회사"가 승인한
+                                  숫자와 문자의 조합을 말합니다.
+                                </li>
+                                <li>
+                                  "비밀번호"라 함은 "회원"의 동일성 식별과
+                                  "회원" 정보의 보호를 위하여 "회원"이 설정하고
+                                  "회사"가 승인한 숫자와 문자의 조합을 말합니다.
+                                </li>
+                                <li>
+                                  "회원"이라 함은 본 약관에 동의하고 본 약관에
+                                  따라 "회사"가 제공하는 "전자금융거래서비스"를
+                                  이용하는 자를 말합니다.
+                                </li>
+                                <li>
+                                  "거래지시"라 함은 "회원"이 본 약관에 따라
+                                  "회사"에게 "전자금융거래"의 처리를 지시하는
+                                  것을 말합니다.
+                                </li>
+                                <li>
+                                  "오류"라 함은 "회원"의 고의 또는 과실 없이
+                                  "전자금융거래"가 본 약관 또는 "회원"의
+                                  "거래지시"에 따라 이행되지 아니한 경우를
+                                  말합니다.
+                                </li>
+                                <li>
+                                  “사이트”라 함은 회사가 운영하는 와디즈
+                                  사이트(www.wadiz.kr)를 의미합니다.
+                                </li>
+                              </ol>
+                            </li>
+                            <li>
+                              본 조 및 본 약관의 다른 조항에서 정의한 것을
+                              제외하고는 전자금융거래법 등 관련 법령에 정한 바에
+                              따릅니다.
+                            </li>
+                          </ol>
+                          <h3>제3조 (약관의 명시 및 변경)</h3>
+                          <ol>
+                            <li>
+                              "회사"는 "회원"이 "전자금융거래"를 하기 전에 본
+                              약관을 사이트에 게시하고 본 약관의 중요한 내용을
+                              확인할 수 있도록 합니다.
+                            </li>
+                            <li>
+                              "회사"는 "회원"의 요청이 있는 경우 전자문서의
+                              전송(전자우편을 이용한 전송을 포함합니다)의 방식에
+                              의하여 본 약관의 사본을 "회원"에게 교부합니다.
+                            </li>
+                            <li>
+                              "회사"가 본 약관을 변경하는 때에는 그 시행일 1월
+                              전에 변경되는 약관을 금융거래정보 입력화면 또는
+                              회사가 운영하는 사이트에 게시함으로써 "회사"에게
+                              공지합니다. 다만, 법령의 개정으로 인하여 긴급하게
+                              약관을 변경한 때에는 변경된 약관을 서비스 이용
+                              초기화면 등에 1개월 이상 게시하고 "회사"에게 사후
+                              통지합니다.
+                            </li>
+                            <li>
+                              이용자는 변경에 동의하지 아니한 경우 제3항의
+                              고지나 통지를 받은 날로부터 30일 이내에 계약을
+                              해지할 수 있으며, 계약해지의 의사표시를 하지
+                              아니한 경우에는 변경에 동의한 것으로 봅니다.
+                            </li>
+                          </ol>
+                          <h3>제4조 (거래내용의 확인)</h3>
+                          <ol>
+                            <li>
+                              "회사"는 인터넷사이트 등에 조회 화면을 통하여
+                              "회원"의 거래내용("회원"의 "오류정정 요구사실 및
+                              처리결과에 관한 사항"을 포함합니다)을 확인할 수
+                              있도록 합니다. 단, 전자적 장치의 운영 장애 또는 그
+                              밖의 사유로 거래내용을 확인하게 할 수 없는 때에는
+                              즉시 회사의 인터넷사이트에 그 사유를 알리고, 그
+                              사유가 종료된 때부터 이용자가 거래내용을 확인할 수
+                              있도록 합니다.
+                            </li>
+                            <li>
+                              “회원”은 “회사”에게 거래내용에 관한 서면의 교부를
+                              요청할 수 있습니다.
+                            </li>
+                            <li>
+                              "회사"는 제2항에 따른 "회원"의 거래내용 서면교부
+                              요청을 받은 경우 2주 이내에 전자문서의
+                              전송(전자우편을 이용한 전송을 포함합니다),
+                              모사전송, 우편 또는 직접 교부의 방법으로
+                              거래내용에 관한 서면을 해당 이용자에게 교부합니다.
+                              단, 회사가 전자적 장치의 운영장애, 그 밖의 이유로
+                              거래내용에 관한 서면을 교부할 수 없는 때에는 즉시
+                              "회원"에게 전자문서 전송(전자우편을 이용한 전송을
+                              포함합니다)의 방법으로 그러한 사유를 알려야 하며,
+                              전자적 장치의 운영장애 등의 사유로 거래내용을
+                              제공할 수 없는 기간은 본항의 거래내용에 관한
+                              서면의 교부기간에 산입하지 아니합니다.
+                            </li>
+                            <li>
+                              제1항의 대상이 되는 거래내용 중 대상기간이 5년인
+                              것은 다음 각호와 같습니다.
+                              <ol>
+                                <li>거래계좌의 명칭 또는 번호</li>
+                                <li>전자금융거래의 종류 및 금액</li>
+                                <li>전자금융거래상대방을 나타내는 정보</li>
+                                <li>전자금융거래일시</li>
+                                <li>
+                                  "전자적 장치"의 종류 및 "전자적 장치"를 식별할
+                                  수 있는 정보
+                                </li>
+                                <li>
+                                  "회사"가 "전자금융거래"의 대가로 받은 수수료
+                                </li>
+                                <li>"회원"의 출금 동의에 관한 사항</li>
+                                <li>
+                                  해당 "전자금융거래"와 관련한 "전자적 장치"의
+                                  접속기록
+                                </li>
+                                <li>
+                                  "전자금융거래"의 신청 및 조건의 변경에 관한
+                                  사항
+                                </li>
+                                <li>
+                                  건당 거래금액이 1만원을 초과하는
+                                  전자금융거래에 관한 기록
+                                </li>
+                              </ol>
+                            </li>
+                            <li>
+                              제1항의 대상이 되는 거래내용 중 대상기간이 1년인
+                              것은 다음 각호와 같습니다.
+                              <ol>
+                                <li>
+                                  전자지급수단 이용과 관련된 거래승인에 관한
+                                  기록
+                                </li>
+                                <li>
+                                  "회원"의 오류정정 요구사실 및 처리결과에 관한
+                                  사항
+                                </li>
+                                <li>기타 금융위원회가 고시로 정한 사항</li>
+                                <li>
+                                  건당 거래금액이 1만원 이하인 소액
+                                  전자금융거래에 관한 기록
+                                </li>
+                              </ol>
+                            </li>
+                            <li>
+                              “회원”이 제2항에서 정한 서면교부를 요청하고자 할
+                              경우 다음의 주소 및 전화번호로 요청할 수 있습니다.
+                              <ul>
+                                <li>
+                                  주소 : 경기도 성남시 분당구 판교로 242 A동 4층
+                                </li>
+                                <li>이메일주소 : info@wadiz.kr</li>
+                                <li>전화번호 : 1661 - 9056</li>
+                              </ul>
+                            </li>
+                          </ol>
+                          <h3>제5조 ("거래지시"의 철회 등)</h3>
+                          <p>
+                            "회원"이 "회사"의 "전자금융거래서비스"를 이용하여
+                            전자지급거래를 한 경우, "회원"은 지급의 효력이
+                            발생하기 전까지 본 약관에서 정한 바에 따라 제4조
+                            제5항에 기재된 연락처로 전자문서의 전송(전자우편을
+                            이용한 전송을 포함합니다) 또는 사이트 내 철회에 의한
+                            방법으로 "거래지시"를 철회할 수 있습니다. 단, 각
+                            서비스 별 "거래지시" 철회의 효력 발생시기는 본 약관
+                            제15조, 제20조 및 제25조에서 정한 바에 따릅니다.
+                          </p>
+                          <h3>제6조 ("오류"의 정정 등 )</h3>
+                          <ol>
+                            <li>
+                              "회원"은 "전자금융거래서비스"를 이용함에 있어
+                              "오류"가 있음을 안 때에는 "회사"에 대해 그 정정을
+                              요구할 수 있으며, "회사"는 "회원"의 정정 신청이
+                              있는 경우 이를 조사하여 "오류"가 있는 경우 정정
+                              절차를 진행하고 정정요구를 받은 날로부터 2주
+                              이내에 그 결과를 "회원"에게 알려 드립니다.
+                            </li>
+                            <li>
+                              "회사"는 스스로 "전자금융거래"에 "오류"가 있음을
+                              안 때에도 이를 즉시 조사하여 처리한 후 그 결과를
+                              2주 이내에 문서, 전화 또는 전자우편으로 "회원"에게
+                              알려 드립니다.
+                            </li>
+                          </ol>
+                          <h3>제7조 ("전자금융거래" 기록의 생성 및 보존)</h3>
+                          <ol>
+                            <li>
+                              "회사"는 "회원" 이용한 전자금융거래의 내용을 추적,
+                              검색하거나 그 내용에 오류가 발생한 경우에 이를
+                              확인하거나 정정할 수 있는 기록을 생성하여
+                              보존합니다.
+                            </li>
+                            <li>
+                              제1항의 규정에 따라 회사가 보존하여야 하는 기록의
+                              종류 및 보존방법은 제4조 제3항 및 제4항에서 정한
+                              바에 따릅니다.
+                            </li>
+                          </ol>
+                          <h3>제8조 ("전자금융거래"정보의 제공금지)</h3>
+                          <ol>
+                            <li>
+                              "회사"는 "전자금융거래서비스"를 제공함에 있어서
+                              취득한 "회원"의 인적 사항, "회원"의 계좌,
+                              "접근매체" 및 "전자금융거래"의 내용과 실적에 관한
+                              정보 또는 자료를 법령에 의하거나 "회원"의 동의를
+                              얻지 아니하고 제3자에게 제공, 누설하거나 업무 상
+                              목적 외에 사용하지 아니합니다.
+                            </li>
+                            <li>
+                              "회사"는 "회원"이 안전하게 "전자금융거래서비스"를
+                              이용할 수 있도록 "회원"의 개인정보보호를 위하여
+                              개인정보취급방침을 운용합니다. "회사"의
+                              개인정보취급방침은 "회사"가 운영하는 사이트에서
+                              확인할 수 있습니다.
+                            </li>
+                          </ol>
+                          <h3>제9조 ("회사"의 책임)</h3>
+                          <ol>
+                            <li>
+                              "회사"는 "접근매체"의 위조나 변조로 발생한
+                              사고(단, "회사"가 "접근매체"의 발급 주체이거나
+                              사용, 관리 주체인 경우), 계약체결 또는
+                              "거래지시"의 전자적 전송이나 처리과정에서 발생한
+                              사고로 인하여 "회원"에게 손해가 발생한 경우에는 그
+                              손해를 배상할 책임을 부담합니다.
+                            </li>
+                            <li>
+                              "회사"는 제1항에도 불구하고 다음 각호의 경우에는
+                              그 책임의 전부 또는 일부를 "회원"이 부담하게 할 수
+                              있습니다.
+                              <ol>
+                                <li>
+                                  "회원"이 "접근매체"를 제3자에게 대여하거나 그
+                                  사용을 위임한 경우 또는 양도나 담보의 목적으로
+                                  제공한 경우
+                                </li>
+                                <li>
+                                  제3자가 권한 없이 "회원"의 "접근매체"를
+                                  이용하여 "전자금융거래"를 할 수 있음을
+                                  알았거나 쉽게 알 수 있었음에도 불구하고
+                                  "접근매체"를 누설하거나 노출 또는 방치한 경우
+                                </li>
+                                <li>
+                                  법인("중소기업기본법" 제2조 제2항에 의한
+                                  소기업을 제외합니다)인 "회원"에게 손해가
+                                  발생한 경우로서 "회사"가 사고를 방지하기
+                                  위하여 보안절차를 수립하고 이를 철저히
+                                  준수하는 등 합리적으로 요구되는 충분한
+                                  주의의무를 다한 경우
+                                </li>
+                              </ol>
+                            </li>
+                            <li>
+                              "회사"는 전자금융거래를 위한 전자적 장치 또는
+                              '정보통신망 이용촉진 및 정보보호 등에 관한 법률'
+                              제 2조 제 1항 제 1호에 따른 정보통신망에 침입하여
+                              거짓이나 그 밖의 부정한 방법으로 획득한 접근매체의
+                              이용으로 발생한 사고로 인하여 이용자에게 그 손해가
+                              발생한 경우에는 그 손해를 배상할 책임이 있습니다.
+                            </li>
+                            <li>
+                              "회사"는 컴퓨터 등 정보통신설비의 보수점검, 교체의
+                              사유가 발생하여 전자금융서비스의 제공을 일시적으로
+                              중단할 경우에는 "회사"의 사이트를 통하여
+                              이용자에게 중단 일정 및 중단 사유를 사전에
+                              공지합니다.
+                            </li>
+                          </ol>
+                          <h3>제10조 (분쟁처리 및 분쟁조정)</h3>
+                          <ol>
+                            <li>
+                              "회원"은 "회사"의 사이트 하단에 게시된 분쟁처리
+                              담당자에 대하여 "전자금융거래"와 관련한 의견 및
+                              불만의 제기, 손해배상의 청구 등의 분쟁처리를
+                              요구할 수 있습니다.
+                            </li>
+                            <li>
+                              "회원"이 "회사"에 대하여 분쟁처리를 신청한
+                              경우에는 "회사"는 15일 이내에 이에 대한 조사 또는
+                              처리 결과를 "회원"에게 안내 합니다.
+                            </li>
+                            <li>
+                              "회원"은 "회사"의 분쟁처리결과에 대하여 이의가
+                              있을 경우 "금융위원회의 설치 등에 관한 법률"
+                              제51조의 규정에 따른 금융감독원의
+                              금융분쟁조정위원회나 "소비자기본법" 제60조 제1항의
+                              규정에 따른 한국소비자원의 소비자분쟁조정위원회에
+                              "회사"의 "전자금융거래서비스"의 이용과 관련한
+                              분쟁조정을 신청할 수 있습니다.
+                            </li>
+                          </ol>
+                          <h3>제11조 ("회사"의 안정성 확보 의무)</h3>
+                          <p>
+                            "회사"는 전자금융거래가 안전하게 처리될 수 있도록
+                            선량한 관리자로서의 주의를 다하며, "전자금융거래"의
+                            안정성과 신뢰성을 확보할 수 있도록 "전자금융거래"의
+                            종류 별로 전자적 전송이나 처리를 위한 인력, 시설,
+                            "전자적 장치" 등의 정보기술부문 및 전자금융업무에
+                            관하여 금융위원회가 정하는 기준을 준수합니다.
+                          </p>
+                          <h3>제12조 (약관 외 준칙)</h3>
+                          <p>
+                            "회사"와 "회원" 사이에 개별적으로 합의한 사항이 이
+                            약관에 정한 사항과 다를 때에는 그 합의사항을 이
+                            약관에 우선하여 적용합니다. 본 약관에서 정하지
+                            아니한 사항(용어의 정의 포함)에 대하여는
+                            전자금융거래법, 여신전문금융업법 등 소비자보호에
+                            관한 법령 및 개별 약관에서 정한 바에 따릅니다.
+                          </p>
+                          <h3>제13조 (관할)</h3>
+                          <p>
+                            "회사"와 "회원" 간에 발생한 분쟁에 관한 관할은
+                            민사소송법에서 정한 바에 따릅니다.
+                          </p>
+
+                          <h2 id="제2장-전자지급결제대행-서비스">
+                            제2장 전자지급결제대행 서비스
+                          </h2>
+                          <h3>제14조 (정의)</h3>
+                          <p>본 장에서 정하는 용어의 정의는 아래와 같습니다.</p>
+                          <ol>
+                            <li>
+                              "전자지급결제대행 서비스"라 함은 전자적 방법으로
+                              재화 또는 용역(이하 이 약관에서 "재화 등"이라고
+                              합니다)의 구매에 있어서 지급결제 정보를 송신하거나
+                              수신하는 것 또는 그 대가의 정산을 대행하거나
+                              매개하는 서비스를 말합니다.
+                            </li>
+                            <li>
+                              "회원"이라 함은 본 약관에 동의하고 "회사"가
+                              제공하는 "전자지급결제대행 서비스"를 이용하는 자를
+                              말합니다.
+                            </li>
+                          </ol>
+                          <h3>제15조 ("거래지시"의 철회)</h3>
+                          <ol>
+                            <li>
+                              "회원"이 "전자지급결제대행서비스"를 이용한 경우,
+                              이용자는 "거래지시"된 금액의 정보에 대하여
+                              수취인의 계좌가 개설되어 있는 금융기관 또는
+                              "회사"의 계좌의 원장에의 입금기록 또는 "전자적
+                              장치"에의 입력이 끝나기 전까지 "거래지시"를 철회할
+                              수 있습니다.
+                            </li>
+                            <li>
+                              "회사"는 "회원"의 "거래지시"의 철회에 따라
+                              지급거래가 이루어지지 않은 경우 수령한 자금을
+                              "회원"에게 반환하여야 합니다.
+                            </li>
+                          </ol>
+                          <h3>제16조 ("한도" 등)</h3>
+                          <p>
+                            "회사"의 정책 및 결제업체(이동통신사, 카드사 등)의
+                            기준에 따라 "회원"의 결제수단 별 월 누적 결제액 및
+                            결제한도가 제한될 수 있습니다.
+                          </p>
+                          <h3>제17조 ("접근매체"의 관리)</h3>
+                          <ol>
+                            <li>
+                              "회사"는 "전자지급결제대행 서비스" 제공 시
+                              "접근매체"를 선정하여 "회원"의 신원, 권한 및
+                              "거래지시"의 내용 등을 확인합니다.
+                            </li>
+                            <li>
+                              "회원"은 "접근매체"를 사용함에 있어서 다른 법률에
+                              특별한 규정이 없는 한 다음 각 호의 행위를 하여서는
+                              아니 됩니다.
+                              <ol>
+                                <li>"접근매체"를 양도하거나 양수하는 행위</li>
+                                <li>
+                                  "접근매체"를 대여하거나 사용을 위임하는 행위
+                                </li>
+                                <li>
+                                  "접근매체"를 질권 기타 담보 목적으로 하는 행위
+                                </li>
+                                <li>1호부터 3호까지의 행위를 알선하는 행위</li>
+                              </ol>
+                            </li>
+                            <li>
+                              "회원"은 자신의 "접근매체"를 제3자에게 누설 또는
+                              노출하거나 방치하여서는 안되며, "접근매체"의
+                              도용이나 위조 또는 변조를 방지하기 위하여 충분한
+                              주의를 기울여야 합니다.
+                            </li>
+                            <li>
+                              "회사"는 "회원"으로부터 "접근매체"의 분실이나 도난
+                              등의 통지를 받은 때에는 그 때부터 제3자가 그
+                              "접근매체"를 사용함으로 인하여 "회원"에게 발생한
+                              손해를 배상할 책임이 있습니다.
+                            </li>
+                          </ol>
+
+                          <h2 id="제3장-결제대금예치서비스">
+                            제3장 결제대금예치서비스
+                          </h2>
+                          <h3>제18조 (정의)</h3>
+                          <p>
+                            본 장에서 사용하는 용어의 정의는 다음과 같습니다.
+                          </p>
+                          <ol>
+                            <li>
+                              "결제대금예치서비스"라 함은 회사의 사이트에서
+                              연결되는 와디즈 스토어 페이지에서 이루어지는
+                              선불식 통신판매에 있어서, "회사"가 "소비자"가
+                              지급하는 결제 대금을 예치하고 배송이 완료되는 등
+                              구매가 확정된 후 "재화 등"의 대금을 "판매자"에게
+                              지급하는 서비스를 말합니다.
+                            </li>
+                            <li>
+                              "선불식 통신판매"라 함은 "소비자"가 "재화 등"을
+                              공급받기 전에 미리 대금의 전부 또는 일부를
+                              지급하는 방식의 통신판매를 말합니다.
+                            </li>
+                            <li>
+                              "판매자"라 함은 본 약관에 동의하고 "회사"가
+                              운영하는 서비스에 입점하여 통신판매를 하는 자를
+                              말합니다.
+                            </li>
+                            <li>
+                              "소비자"라 함은 본 약관에 동의하고 "회사"의
+                              서비스에 입점한 "판매자"로부터 "재화 등"을
+                              구매하는 자로서 전자상거래 등에 서의 소비자보호에
+                              관한 법률 제2조 제5호의 요건에 해당하는 자를
+                              말합니다.
+                            </li>
+                            <li>
+                              "이용자"라 함은 본 조 제3호 및 제4호의 "판매자"와
+                              "소비자"를 말합니다.
+                            </li>
+                          </ol>
+                          <h3>제19조 (예치된 결제대금의 지급방법)</h3>
+                          <ol>
+                            <li>
+                              "소비자"(그 "소비자"의 동의를 얻은 경우에는 "재화
+                              등"을 공급받을 자를 포함한다. 이하 제2항 및
+                              제3항에서 같습니다)는 "재화 등"을 공급받은 사실을
+                              "재화 등"을 공급받은 날부터 3영업일 이내에
+                              "회사"에 통보하여야 합니다.
+                            </li>
+                            <li>
+                              "회사"는 "소비자"로부터 "재화 등"을 공급받은
+                              사실을 통보 받을 경우 "회사"가 정한 기일 내에
+                              판매자에게 결제대금을 지급합니다.
+                            </li>
+                            <li>
+                              "회사"는 "소비자"가 "재화 등"을 공급받은 날부터
+                              3영업일이 지나도록 정당한 사유의 제시 없이 그
+                              공급받은 사실을 "회사"에 통보하지 아니하는 경우에
+                              "소비자"의 동의 없이 "판매자"에게 결제대금을
+                              지급할 수 있습니다.
+                            </li>
+                            <li>
+                              "회사"가 "판매자"에게 결제대금을 지급하기 전에
+                              "소비자"가 그 결제대금을 환급 받을 정당한 사유가
+                              발생한 경우에는 그 결제대금을 "소비자"에게
+                              환급합니다.
+                            </li>
+                          </ol>
+                          <h3>제20조 (거래지시의 철회)</h3>
+                          <ol>
+                            <li>
+                              "이용자"가 "결제대금예치서비스"를 이용한 경우,
+                              "이용자"는 거래 지시된 금액의 정보가 수취인이
+                              지정한 전자적 장치에 도달한 때까지 거래지시를
+                              철회할 수 있습니다.
+                            </li>
+                            <li>
+                              "회사"는 "소비자"로부터 "재화 등"을 공급받은
+                              사실을 통보 받을 경우 "회사"가 정한 기일 내에
+                              판매자에게 결제대금을 지급합니다.
+                            </li>
+                            <li>
+                              "회사"는 "이용자"의 거래지시의 철회에 따라
+                              지급거래가 이루어지지 않은 경우 수령한 자금을
+                              "이용자"에게 반환하여야 합니다.
+                            </li>
+                          </ol>
+                          <h3>제21조 (준용규정)</h3>
+                          <p>제17조는 본 장에 준용합니다.</p>
+
+                          <h2 id="제4장-선불전자지급수단의-발행-및-관리">
+                            제4장 선불전자지급수단의 발행 및 관리
+                          </h2>
+                          <h3>제22조 (정의)</h3>
+                          <ol>
+                            <li>
+                              본 장에서 사용하는 용어의 정의는 다음과 같습니다.
+                              <ol>
+                                <li>
+                                  "선불전자지급수단"이라 함은 포인트, 쿠폰 등
+                                  "회사"가 미리 "회원"에게 회원가입약관을 통해
+                                  고지한 전자금융거래법 상 선불전자지급수단을
+                                  말합니다.
+                                </li>
+                                <li>
+                                  "회원"이라 함은 본 약관에 동의하고 메이커,
+                                  판매자로부터 "재화 등"을 펀딩 또는 구매하고
+                                  선불전자지급수단을 결제수단으로 하여 그 대가를
+                                  지급하는 자를 말합니다.
+                                </li>
+                              </ol>
+                            </li>
+                            <li>
+                              본 장에서 정하지 않은 용어는 회원가입약관에서 정한
+                              바에 따릅니다.
+                            </li>
+                          </ol>
+                          <h3>제23조 ("접근매체"의 관리)</h3>
+                          <p>제17조는 본 장에 준용합니다.</p>
+                          <h3>제24조 ("거래지시"의 철회)</h3>
+                          <p>
+                            "회원"이 "선불전자지급수단"을 이용하여 자금을
+                            지급하는 경우, "회원"은 거래 지시된 금액의 정보가
+                            수취인이 지정한 "전자적 장치"에 도달하기 전까지
+                            "거래지시"를 철회할 수 있습니다.
+                          </p>
+                          <h3>제25조 (소멸시효)</h3>
+                          <p>
+                            "선불전자지급수단" 중 포인트의 소멸시효는
+                            적립일로부터 5년이며, 쿠폰의 소멸시효는 개별
+                            안내되는 기간에 따릅니다. "회원"은 "회사"가 정한
+                            소멸시효 내에서만 "선불전자지급수단"을 사용할 수
+                            있습니다.
+                          </p>
+                          <h3>제26조 (기타)</h3>
+                          <p>
+                            "회사"는 선불전자지급수단의 보증보험 상품에
+                            가입하였습니다.
+                          </p>
+                        </article>
+                      </div>
+                      <div class="agree-popup-footer">
+                        <button
+                          type="button"
+                          class="wz button less primary"
+                          onclick="closeAgreePopup('electronicFinancialTransaction');">
+                          확인
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="btn-wrap">
+              <button type="button" id="btn-submit" class="wz primary button">
+                결제 예약하기
+              </button>
+            </div>
+            <!-- 간편결제 예약 앱 -->
+            <div id="reward-reservation-app" data-reservation-info="null"></div>
+          </div>
+        </div>
+      </div>
+
+      <div id="daumAddressLypop" class="lypop-fixed" style="display: none">
+        <div class="daum-address-wrap">
+          <div id="daumAddressCon"></div>
+          <div class="btn-wrap">
+            <button
+              type="button"
+              onclick="closeLyPop('daumAddress')"
+              class="btn-pd-brown">
+              닫기
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div id="footer">
+        <footer id="footer" class="web-footer">
+          <div class="FooterMenu_container__15kue">
+            <div class="FooterMenu_bar__22KhW">
+              <div class="FooterMenu_left__3rQKu">
+                <div class="FooterMenu_menu__3nRbk Linker_btnMore__1PEzz">
+                  정책 · 약관<i
+                    class="icon chevron-right Linker_linkerIcon__1QJpf"
+                    aria-hidden="true"></i>
+                </div>
+                <div
+                  class="FooterMenu_menu__3nRbk FooterMenu_bold__2zNg0 Linker_btnMore__1PEzz">
+                  개인정보처리방침<i
+                    class="icon chevron-right Linker_linkerIcon__1QJpf"
+                    aria-hidden="true"></i>
+                </div>
+              </div>
+              <div class="FooterMenu_right__28Tuu">
+                <div class="FooterMenu_menu__3nRbk Linker_btnMore__1PEzz">
+                  제휴문의<i
+                    class="icon chevron-right Linker_linkerIcon__1QJpf"
+                    aria-hidden="true"></i>
+                </div>
+                <a
+                  href="/web/wboard/newsBoardList"
+                  class="FooterMenu_menu__3nRbk"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >공지사항<svg
+                    viewBox="0 0 40 40"
+                    focusable="false"
+                    role="presentation"
+                    class="withIcon_icon__1ao4d FooterMenu_openLinkIcon__3YMFQ"
+                    aria-hidden="true">
+                    <path
+                      d="M31.42 35.84h-27V8.4h14.76v-2H2.42v31.44h31V22.55h-2v13.29z"></path>
+                    <path
+                      d="M37.32 15.41l-.01-13-12.99.01v2l9.72-.01-18.19 19.42 1.46 1.37 18-19.22.01 9.43h2z"></path></svg></a
+                ><a
+                  href="https://www.job.wadiz.kr/"
+                  class="FooterMenu_menu__3nRbk"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >인재채용<svg
+                    viewBox="0 0 40 40"
+                    focusable="false"
+                    role="presentation"
+                    class="withIcon_icon__1ao4d FooterMenu_openLinkIcon__3YMFQ"
+                    aria-hidden="true">
+                    <path
+                      d="M31.42 35.84h-27V8.4h14.76v-2H2.42v31.44h31V22.55h-2v13.29z"></path>
+                    <path
+                      d="M37.32 15.41l-.01-13-12.99.01v2l9.72-.01-18.19 19.42 1.46 1.37 18-19.22.01 9.43h2z"></path></svg
+                ></a>
+                <div class="FooterMenu_menu__3nRbk Linker_btnMore__1PEzz">
+                  SNS<i
+                    class="icon chevron-right Linker_linkerIcon__1QJpf"
+                    aria-hidden="true"></i>
+                </div>
+                <div class="FooterMenu_menu__3nRbk Linker_btnMore__1PEzz">
+                  <img
+                    src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjEiIGhlaWdodD0iMTMiIHZpZXdCb3g9IjAgMCA2MSAxMyIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxnIGZpbGw9IiM0OTUwNTciIGZpbGwtcnVsZT0ibm9uemVybyI+CiAgICAgICAgPHBhdGggZD0iTTEuOTA0IDguNjJoNC41MTlWMTBILjE3NVYuMDQ3aDEuNzN6TTEyLjAwOCAxMGMtLjA3My0uMTQxLS4xMzctLjM3MS0uMTkyLS42OWEyLjU4NiAyLjU4NiAwIDAgMS0xLjk0MS44MjdjLS43NDMgMC0xLjM0OS0uMjEyLTEuODE4LS42MzZhMi4wMzQgMi4wMzQgMCAwIDEtLjcwNC0xLjU3MmMwLS43ODkuMjkyLTEuMzk0Ljg3OC0xLjgxNS41ODYtLjQyMiAxLjQyMy0uNjMzIDIuNTEyLS42MzNoMS4wMTl2LS40ODVjMC0uMzgzLS4xMDctLjY5LS4zMjItLjkyLS4yMTQtLjIzLS41NC0uMzQ1LS45NzctLjM0NS0uMzc4IDAtLjY4OC4wOTUtLjkzLjI4NGEuODc4Ljg3OCAwIDAgMC0uMzYyLjcyMUg3LjUxYzAtLjQwNS4xMzQtLjc4NS40MDMtMS4xMzguMjY5LS4zNTMuNjM1LS42MyAxLjA5Ny0uODMuNDYzLS4yLjk3OS0uMzAxIDEuNTQ5LS4zMDEuODY1IDAgMS41NTYuMjE3IDIuMDcuNjUzLjUxNi40MzUuNzggMS4wNDcuNzk0IDEuODM1djMuMzM2YzAgLjY2NS4wOTMgMS4xOTYuMjggMS41OTNWMTBoLTEuNjk1em0tMS44MjUtMS4xOTZjLjMyOCAwIC42MzYtLjA4LjkyNi0uMjQuMjktLjE2LjUwNy0uMzczLjY1My0uNjQyVjYuNTI3aC0uODk2Yy0uNjE1IDAtMS4wNzguMTA3LTEuMzg3LjMyMi0uMzEuMjE0LS40NjUuNTE3LS40NjUuOTA5IDAgLjMxOS4xMDYuNTczLjMxOC43NjIuMjExLjE5LjQ5NS4yODQuODUuMjg0ek0xNi43MDQgMi42MDRsLjA0OC44NTRjLjU0Ny0uNjYgMS4yNjUtLjk5MSAyLjE1My0uOTkxIDEuNTQgMCAyLjMyNC44ODIgMi4zNTIgMi42NDVWMTBoLTEuNjYxVjUuMjA4YzAtLjQ3LS4xMDItLjgxNy0uMzA0LTEuMDQyLS4yMDMtLjIyNi0uNTM1LS4zMzktLjk5NS0uMzM5LS42NyAwLTEuMTcuMzAzLTEuNDk3LjkxVjEwaC0xLjY2MVYyLjYwNGgxLjU2NXpNMjIuNjU4IDYuMjQ3YzAtMS4xNDguMjctMi4wNjYuODEtMi43NTEuNTQtLjY4NiAxLjI1Ny0xLjAzIDIuMTUtMS4wMy44NDMgMCAxLjUwNi4yOTUgMS45OS44ODNsLjA3NS0uNzQ1aDEuNDk3djcuMTdjMCAuOTcxLS4zMDIgMS43MzctLjkwNiAyLjI5Ny0uNjA0LjU2LTEuNDE5Ljg0MS0yLjQ0NC44NDFhMy45MzkgMy45MzkgMCAwIDEtMS41OS0uMzM4Yy0uNTE3LS4yMjYtLjkxLS41Mi0xLjE3OC0uODg2bC43ODYtLjk5OGMuNTEuNjA3IDEuMTM5LjkxIDEuODg2LjkxLjU1MiAwIC45ODctLjE1IDEuMzA2LS40NDguMzE5LS4yOTkuNDc5LS43MzcuNDc5LTEuMzE2di0uNWMtLjQ3OS41MzQtMS4xMTcuOC0xLjkxNS44LS44NjUgMC0xLjU3My0uMzQzLTIuMTIyLTEuMDMyLS41NS0uNjg4LS44MjQtMS42NC0uODI0LTIuODU3em0xLjY1NS4xNDRjMCAuNzQyLjE1MSAxLjMyNy40NTQgMS43NTMuMzAzLjQyNi43MjQuNjQgMS4yNjEuNjQuNjcgMCAxLjE2Ny0uMjg4IDEuNDktLjg2MlY0LjY2OGMtLjMxNC0uNTYtLjgwNi0uODQtMS40NzYtLjg0LS41NDcgMC0uOTcyLjIxNi0xLjI3NS42NDktLjMwMy40MzMtLjQ1NCAxLjA3LS40NTQgMS45MTR6TTM1LjM2NiA5LjI3NWMtLjQ4Ny41NzUtMS4xOC44NjItMi4wNzguODYyLS44MDIgMC0xLjQxLS4yMzUtMS44MjItLjcwNC0uNDEyLS40Ny0uNjE4LTEuMTQ5LS42MTgtMi4wMzdWMi42MDRoMS42NnY0Ljc3MWMwIC45MzkuMzkgMS40MDggMS4xNyAxLjQwOC44MDYgMCAxLjM1MS0uMjkgMS42MzQtLjg2OFYyLjYwNGgxLjY2VjEwaC0xLjU2NWwtLjA0LS43MjV6TTQzLjA4NCAxMGMtLjA3My0uMTQxLS4xMzctLjM3MS0uMTkxLS42OWEyLjU4NiAyLjU4NiAwIDAgMS0xLjk0Mi44MjdjLS43NDMgMC0xLjM0OS0uMjEyLTEuODE4LS42MzZhMi4wMzQgMi4wMzQgMCAwIDEtLjcwNC0xLjU3MmMwLS43ODkuMjkzLTEuMzk0Ljg3OC0xLjgxNS41ODYtLjQyMiAxLjQyMy0uNjMzIDIuNTEyLS42MzNoMS4wMTl2LS40ODVjMC0uMzgzLS4xMDctLjY5LS4zMjEtLjkyLS4yMTUtLjIzLS41NC0uMzQ1LS45NzgtLjM0NS0uMzc4IDAtLjY4OC4wOTUtLjkzLjI4NGEuODc4Ljg3OCAwIDAgMC0uMzYyLjcyMWgtMS42NjFjMC0uNDA1LjEzNC0uNzg1LjQwMy0xLjEzOC4yNy0uMzUzLjYzNS0uNjMgMS4wOTctLjgzLjQ2My0uMi45OC0uMzAxIDEuNTQ5LS4zMDEuODY2IDAgMS41NTYuMjE3IDIuMDcxLjY1My41MTUuNDM1Ljc4IDEuMDQ3Ljc5MyAxLjgzNXYzLjMzNmMwIC42NjUuMDkzIDEuMTk2LjI4IDEuNTkzVjEwaC0xLjY5NXptLTEuODI1LTEuMTk2Yy4zMjggMCAuNjM3LS4wOC45MjYtLjI0LjI5LS4xNi41MDctLjM3My42NTMtLjY0MlY2LjUyN2gtLjg5NmMtLjYxNSAwLTEuMDc3LjEwNy0xLjM4Ny4zMjItLjMxLjIxNC0uNDY1LjUxNy0uNDY1LjkwOSAwIC4zMTkuMTA2LjU3My4zMTguNzYyLjIxMi4xOS40OTUuMjg0Ljg1LjI4NHpNNDUuOTQ4IDYuMjQ3YzAtMS4xNDguMjctMi4wNjYuODEtMi43NTEuNTQtLjY4NiAxLjI1Ny0xLjAzIDIuMTUtMS4wMy44NDMgMCAxLjUwNi4yOTUgMS45OS44ODNsLjA3NS0uNzQ1aDEuNDk3djcuMTdjMCAuOTcxLS4zMDIgMS43MzctLjkwNiAyLjI5Ny0uNjA0LjU2LTEuNDE4Ljg0MS0yLjQ0NC44NDFhMy45MzkgMy45MzkgMCAwIDEtMS41OS0uMzM4Yy0uNTE2LS4yMjYtLjkxLS41Mi0xLjE3OC0uODg2bC43ODYtLjk5OGMuNTEuNjA3IDEuMTM5LjkxIDEuODg2LjkxLjU1MiAwIC45ODctLjE1IDEuMzA2LS40NDguMzItLjI5OS40NzktLjczNy40NzktMS4zMTZ2LS41Yy0uNDc5LjUzNC0xLjExNy44LTEuOTE0LjgtLjg2NiAwLTEuNTc0LS4zNDMtMi4xMjMtMS4wMzItLjU1LS42ODgtLjgyNC0xLjY0LS44MjQtMi44NTd6bTEuNjU1LjE0NGMwIC43NDIuMTUxIDEuMzI3LjQ1NCAxLjc1My4zMDMuNDI2LjcyNC42NCAxLjI2MS42NC42NyAwIDEuMTY3LS4yODggMS40OS0uODYyVjQuNjY4Yy0uMzE0LS41Ni0uODA2LS44NC0xLjQ3Ni0uODQtLjU0NyAwLS45NzIuMjE2LTEuMjc1LjY0OS0uMzAzLjQzMy0uNDU0IDEuMDctLjQ1NCAxLjkxNHpNNTcuNDMzIDEwLjEzN2MtMS4wNTMgMC0xLjkwNi0uMzMyLTIuNTYtLjk5NS0uNjU0LS42NjMtLjk4MS0xLjU0Ni0uOTgxLTIuNjQ5di0uMjA1YzAtLjczOC4xNDItMS4zOTguNDI3LTEuOTc5YTMuMjUyIDMuMjUyIDAgMCAxIDEuMi0xLjM1NyAzLjE3MiAzLjE3MiAwIDAgMSAxLjcyMi0uNDg1YzEuMDA3IDAgMS43ODYuMzIxIDIuMzM1Ljk2NC41NDkuNjQyLjgyMyAxLjU1MS44MjMgMi43Mjd2LjY3aC00LjgzM2MuMDUuNjEuMjU0IDEuMDk0LjYxMiAxLjQ1LjM1OC4zNTUuODA4LjUzMyAxLjM1LjUzMy43NjEgMCAxLjM4MS0uMzA4IDEuODYtLjkyM2wuODk1Ljg1NGEyLjk5IDIuOTkgMCAwIDEtMS4xODYgMS4wMjkgMy43MTMgMy43MTMgMCAwIDEtMS42NjQuMzY2ek01Ny4yMzQgMy44Yy0uNDU1IDAtLjgyMy4xNi0xLjEwNC40NzgtLjI4LjMyLS40NTkuNzY0LS41MzYgMS4zMzNoMy4xNjV2LS4xMjNjLS4wMzctLjU1Ni0uMTg1LS45NzYtLjQ0NS0xLjI2LS4yNi0uMjg2LS42Mi0uNDI4LTEuMDgtLjQyOHoiLz4KICAgIDwvZz4KPC9zdmc+Cg=="
+                    alt="번역 아이콘" /><i
+                    class="icon chevron-right Linker_linkerIcon__1QJpf"
+                    aria-hidden="true"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="FooterContainer_container__3LibG">
+            <div class="FooterContainer_inner__3Nket">
+              <section class="FooterContainer_leftSection__2BtHF">
+                <strong class="FooterContainer_title__1mcxQ"
+                  >와디즈 고객센터</strong
+                >
+                <div class="FooterContainer_buttonBlock__FQR2E">
+                  <button
+                    type="button"
+                    class="FooterContainer_directBtn__2ICcT">
+                    채팅 상담하기<i
+                      class="icon chevron-right"
+                      aria-hidden="true"></i></button
+                  ><a
+                    href="https://helpcenter.wadiz.kr/hc/ko/requests/new"
+                    class="FooterContainer_directBtn__2ICcT"
+                    target="_blank"
+                    rel="noreferrer"
+                    >문의 등록하기<i
+                      class="icon chevron-right"
+                      aria-hidden="true"></i></a
+                  ><a
+                    href="https://helpcenter.wadiz.kr/hc/ko"
+                    class="FooterContainer_directBtn__2ICcT FooterContainer_customcenterBtn__4TIQa"
+                    target="_blank"
+                    rel="noreferrer"
+                    >도움말 센터 바로가기<i
+                      class="icon chevron-right"
+                      aria-hidden="true"></i
+                  ></a>
+                </div>
+                <dl class="FooterContainer_enableTime__B19o3">
+                  <dt>상담 가능 시간</dt>
+                  <dd>평일 오전 9시 ~ 오후 6시 (주말, 공휴일 제외)</dd>
+                </dl>
+              </section>
+              <section class="FooterContainer_rightSection__2uaQk">
+                <address>
+                  <ul class="FooterInfo_info__1aB0e">
+                    <li>와디즈㈜</li>
+                    <li>대표이사 신혜성</li>
+                    <li>사업자등록번호 258-87-01370</li>
+                    <li>통신판매업신고번호 2021-성남분당C-1153</li>
+                    <li>경기 성남시 분당구 판교로 242 PDC A동 402호</li>
+                  </ul>
+                  <div class="FooterInfo_contactInfoWrap__2u2vv">
+                    <ul
+                      class="FooterInfo_info__1aB0e FooterInfo_contactInfo__sPvNn">
+                      <li>
+                        <a
+                          href="https://helpcenter.wadiz.kr/hc/ko/requests/new"
+                          target="_blank"
+                          rel="noreferrer"
+                          >이메일 상담 info@wadiz.kr</a
+                        >
+                      </li>
+                      <li>유선 상담 <a href="tel:1661-9056">1661-9056</a></li>
+                    </ul>
+                    <span class="FooterInfo_copyright__802qi"
+                      >© wadiz Co., Ltd.</span
+                    >
+                  </div>
+                </address>
+                <div class="FooterContainer_infoNotice__3m1oJ">
+                  <p>
+                    일부 상품의 경우 와디즈는 통신판매중개자이며 통신판매
+                    당사자가 아닙니다.
+                  </p>
+                  <p>
+                    해당되는 상품의 경우 상품, 상품정보, 거래에 관한 의무와
+                    책임은 판매자에게 있으므로, 각 상품 페이지에서 구체적인
+                    내용을 확인하시기 바랍니다.
+                  </p>
+                </div>
+                <div class="FooterContainer_appStoreSection__2zpAZ">
+                  <a
+                    href="https://play.google.com/store/apps/details?id=com.markmount.wadiz"
+                    target="_blank"
+                    class="icon-google-play"
+                    rel="noopener noreferrer"
+                    >Android앱</a
+                  ><a
+                    href="https://itunes.apple.com/kr/app/wadijeu/id1107828621"
+                    target="_blank"
+                    class="icon-apple"
+                    rel="noopener noreferrer"
+                    >iOS앱</a
+                  >
+                </div>
+              </section>
+            </div>
+          </div>
+          <div class="externals">
+            <div class="externals-wrap">
+              <ul>
+                <li>
+                  <span title="카카오톡 옐로아이디"
+                    ><i class="icon-kakao" aria-hidden="true"></i
+                  ></span>
+                  <ul>
+                    <li>
+                      <a
+                        href="http://pf.kakao.com/_MGxgmxl"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        >투자</a
+                      >
+                    </li>
+                    <li>
+                      <a
+                        href="http://pf.kakao.com/_pEeEl"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        >펀딩</a
+                      >
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  <span title="페이스북"
+                    ><i class="icon-facebook" aria-hidden="true"></i
+                  ></span>
+                  <ul>
+                    <li>
+                      <a
+                        href="https://www.wadiz.kr/link/fb_invest"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        >투자</a
+                      >
+                    </li>
+                    <li>
+                      <a
+                        href="https://www.wadiz.kr/link/fb_reward"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        >펀딩</a
+                      >
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+              <ul>
+                <li>
+                  <a
+                    href="https://brunch.co.kr/@wadiz"
+                    target="_blank"
+                    title="브런치"
+                    rel="noopener noreferrer"
+                    ><i class="icon-brunch" aria-hidden="true"></i
+                  ></a>
+                </li>
+                <li>
+                  <a
+                    href="https://www.instagram.com/wadiz_official/"
+                    target="_blank"
+                    title="인스타그램"
+                    rel="noopener noreferrer"
+                    ><i class="icon-instagram" aria-hidden="true"></i
+                  ></a>
+                </li>
+                <li>
+                  <a
+                    href="http://blog.naver.com/wadiz_crowdfunding"
+                    target="_blank"
+                    title="네이버 블로그"
+                    rel="noopener noreferrer"
+                    ><i class="icon-naver-blog" aria-hidden="true"></i
+                  ></a>
+                </li>
+                <li>
+                  <a
+                    href="https://www.youtube.com/channel/UCF1_fHSt6Efemgy5wToafNw/featured"
+                    target="_blank"
+                    title="유튜브"
+                    rel="noopener noreferrer"
+                    ><i class="icon-youtube-play" aria-hidden="true"></i
+                  ></a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </footer>
+      </div>
+
+      <script>
+        window.dispatchEvent(
+          new CustomEvent('WadizFooterLoaded', {
+            detail: {
+              element: document.getElementById('footer'),
+            },
+          })
+        );
+      </script>
+    </div>
+    <div id="wadiz-app-banner"></div>
+
+    <script src="https://nsp.pay.naver.com/sdk/js/naverpay.min.js"></script>
+    <script type="text/javascript">
+      var supporterCert = false; /*서포터인증여부*/
+      var usablePoint = 0;
+      var newTotalPrice = $('#totalPrice').val();
+      var validMobileNumberYn = '';
+      var limitPoint = $('#limitPoint').val();
+      var fundingPrice = '42000';
+
+      // 쿠폰 관련 변수
+      var $couponField = $('#coupon-field');
+      var $couponPrice = $('#couponPrice');
+      var $couponDiscountAmount = $('#inputCouponDiscountAmount');
+      var $couponSelect = $('#couponSelect');
+      var $pointInput = $('#pointInput');
+      var $ckptAll = $('#ckptAll');
+      var couponDiscountPrice = '';
+      var couponDiscountType = '';
+      var paymentModel = {
+        fundingPrice: parseInt(fundingPrice),
+        totalPrice: parseInt($('#totalPrice').val()), // 펀딩금액 + 추가후원금 + 배송비
+        pointPrice: 0, // 적용된 포인트 할인 금액
+        couponPrice: 0, // 적용된 쿠폰 할인 금액
+        newTotalPrice: 0, // 실제 카드 결제 금액
+        limitPointPrice: 0, // 가용포인트 제한
+        isAllPointUse: false,
+        state: 'INIT',
+        // INIT
+        // POINT_ALL_USE
+        // POINT_NOT_ALL_USE
+        // COUPON_CHANGED
+        // POINT_CHANGED
+      };
+
+      if (validMobileNumberYn == 'Y') {
+        supporterCert = true;
+      }
+      alertify.set({
+        labels: {
+          ok: '확인',
+          cancel: '취소',
+        },
+      });
+
+      $(document).ready(function () {
+        var campaignId = $('#campaignId').val();
+        var $purchaseForm = $('#purchaseForm');
+        var $wpurchaseDeliveryWrap = $(
+          '.wpurchase-delivery-wrap',
+          $purchaseForm
+        );
+        var $paymentInfoContainer = $('.payment-info-container', $purchaseForm);
+        var $paymentSystemNotice = $('#payment-system-notice', $purchaseForm);
+
+        numOnly();
+        /*배송지 관련 Motion*/
+        $('input[name=delivery]').change(function () {
+          if ($('#rddvNew').is(':checked')) {
+            $('.show-list').css('display', 'block');
+            $('.delivery-list').hide();
+            $('.deliver-new').addClass('active');
+          } else {
+            $('.show-list').hide();
+            $('.delivery-list').show();
+            $('.deliver-new').removeClass('active');
+          }
+        });
+        $('.show-list').click(function () {
+          $('.delivery-list').toggle();
+        });
+
+        function resetCouponSelector() {
+          paymentModel.couponPrice = 0;
+          $('#couponSelect').val('').trigger('change');
+        }
+
+        // 포인트 / 쿠폰 화면 반영
+        function renderSumInfo() {
+          var $pointInput = $('#pointInput');
+          var $pricePoint = $('#pointPrice');
+          var $priceCoupon = $('#couponPrice');
+          var $totalPrice = $('#totalPriceView');
+          var $applyPoint = $('#applyPoint');
+          var $inputCouponDiscountAmount = $('#inputCouponDiscountAmount');
+
+          var point = paymentModel.pointPrice.format();
+          var coupon = paymentModel.couponPrice.format();
+          var total = paymentModel.newTotalPrice.format();
+
+          if (paymentModel.newTotalPrice === 0) {
+            $paymentInfoContainer.hide();
+          } else {
+            $paymentInfoContainer.show();
+          }
+
+          $inputCouponDiscountAmount.val(paymentModel.couponPrice || 0);
+          $ckptAll.prop('checked', paymentModel.isAllPointUse);
+          $applyPoint.val(paymentModel.pointPrice);
+          $pointInput.val(paymentModel.pointPrice);
+          $pricePoint.text(point === 0 ? '-' : '-' + point + '원');
+          $priceCoupon.text(coupon === 0 ? '-' : '-' + coupon + '원');
+          $totalPrice.text(total);
+          newTotalPrice = paymentModel.newTotalPrice;
+
+          // 금액 변경 시 결제 정보 영역 업데이트 하기위해 이벤트 발생
+          var rewardSimplePayApp = document.getElementById(
+            'reward-simplepay-app'
+          );
+          rewardSimplePayApp.dataset.isAvailableInstallment =
+            paymentModel.newTotalPrice >= 50000;
+          rewardSimplePayApp.dispatchEvent(new CustomEvent('datachange'));
+
+          var rewardFundingPriceApp = document.getElementById(
+            'reward-funding-price-app'
+          );
+          rewardFundingPriceApp.dataset.couponPrice = paymentModel.couponPrice;
+          if (
+            $couponSelect[0].selectedOptions[0] &&
+            $couponSelect[0].selectedOptions[0].dataset.issueTarget
+          ) {
+            rewardFundingPriceApp.dataset.couponTarget =
+              $couponSelect[0].selectedOptions[0].dataset.issueTarget;
+          }
+          rewardFundingPriceApp.dataset.pointPrice = paymentModel.pointPrice;
+          rewardFundingPriceApp.dispatchEvent(new CustomEvent('datachange'));
+        }
+
+        // Model 업데이트
+        function calcModel(event) {
+          var vm = paymentModel;
+          vm.totalPrice = $('#totalPrice').val();
+
+          if (vm.totalPrice < vm.couponPrice && !vm.isAllPointUse) {
+            wadiz.alert('쿠폰 할인 금액이 결제 금액을 초과할 수 없습니다.');
+            resetCouponSelector();
+          }
+
+          if (vm.state === 'POINT_NOT_ALL_USE') {
+            vm.pointPrice = 0;
+            vm.state = 'INIT';
+          }
+
+          if (vm.state === 'POINT_ALL_USE') {
+            if (vm.limitPointPrice > vm.totalPrice - vm.couponPrice) {
+              // 가용포인트 > (전체 - 쿠폰)
+              // => 적용 포인트  = (전체 - 쿠폰);
+              vm.pointPrice = vm.totalPrice - vm.couponPrice;
+            } else {
+              if (vm.totalPrice - vm.limitPointPrice > 1000) {
+                vm.pointPrice = vm.limitPointPrice;
+              } else {
+                vm.pointPrice = vm.limitPointPrice;
+              }
+            }
+            vm.state = 'INIT';
+          }
+
+          if (vm.state === 'COUPON_CHANGED' || vm.state === 'POINT_CHANGED') {
+            var pointPrice = parseInt(vm.pointPrice);
+            var totalWithoutCoupon = vm.totalPrice - vm.couponPrice;
+            if (vm.pointPrice) {
+              if (vm.couponPrice) {
+                if (pointPrice > totalWithoutCoupon) {
+                  // 포인트 > (전체 - 쿠폰)
+                  // => 적용 포인트 = (전체 - 쿠폰);
+                  vm.pointPrice = totalWithoutCoupon;
+                }
+              } else {
+                if (pointPrice > vm.totalPrice) {
+                  vm.pointPrice = vm.totalPrice;
+                }
+              }
+            }
+            vm.state = 'INIT';
+          }
+
+          // 최종 결제금액
+          vm.newTotalPrice = vm.totalPrice - vm.pointPrice - vm.couponPrice;
+
+          if (vm.newTotalPrice === vm.pointPrice + vm.couponPrice) {
+            renderSumInfo();
+            return;
+          }
+
+          // 총 결제금액이 1000원 미만인 경우
+          // 가용포인트 >= 총 결제금액 + 적용된 포인트 => 적용포인트 = 총 결제금액 + 적용된 포인트
+          var isBetweenThousand =
+            0 < vm.newTotalPrice && vm.newTotalPrice < 1000;
+          var isMinusPrice = vm.newTotalPrice < 0;
+
+          if ((isBetweenThousand || isMinusPrice) && event) {
+            if (event.type === 'blur' || event.type === 'change') {
+              if (!!parseInt(vm.pointPrice)) {
+                var lackOfTotalPrice = 1000 - parseInt(vm.newTotalPrice);
+
+                if (
+                  vm.limitPointPrice >=
+                  parseInt(vm.pointPrice) - lackOfTotalPrice
+                ) {
+                  vm.pointPrice = parseInt(vm.pointPrice) - lackOfTotalPrice;
+                } else {
+                  vm.pointPrice = 0;
+                }
+                vm.newTotalPrice =
+                  vm.totalPrice - vm.pointPrice - vm.couponPrice;
+              }
+              wadiz.alert('최종 결제금액이 1,000원 미만으로 결제할 수 없어요.');
+            }
+          }
+          vm.state = 'INIT';
+          renderSumInfo();
+        }
+
+        // 포인트
+        function getPointPrcie() {
+          var limitPoint = parseInt($('#limitPoint').val());
+          var pointValue =
+            parseInt($pointInput.val().replace(/[^0-9]/g, '')) || 0;
+          if (limitPoint < pointValue) {
+            pointValue = limitPoint;
+          }
+
+          return pointValue;
+        }
+
+        // 쿠폰 초기화
+        function initCouponList(campaignId) {
+          $.ajax({
+            type: 'get',
+            url: '/web/reward/api/coupons/owners/my',
+            data: {
+              fundingAmount: paymentModel.fundingPrice,
+              campaignId: campaignId,
+              checkDeviceCondition: true,
+            },
+          })
+            .then(function (response) {
+              if (!response.length) {
+                $couponField.addClass('disabled');
+                $couponField.find('.text').text('사용가능한 쿠폰이 없습니다.');
+                return;
+              }
+              window.couponsData = {};
+              var options = $.map(response, function (coupon) {
+                var couponTemp = coupon.template;
+                if (!couponTemp.isUsed) {
+                  couponsData[coupon.couponKey] = couponTemp.templateNo;
+                  var discount =
+                    couponTemp.discountType === 'FIXED_AMOUNT'
+                      ? couponTemp.discountAmount.format() + '원'
+                      : couponTemp.discountRate + '%';
+                  var option =
+                    '<option value="' +
+                    coupon.couponKey +
+                    '" data-type="' +
+                    couponTemp.discountType +
+                    '" data-issue-target="' +
+                    couponTemp.issueTargetType +
+                    '">' +
+                    discount +
+                    ' | ' +
+                    couponTemp.couponName +
+                    '</option>';
+
+                  return option;
+                }
+              });
+              options.unshift('<option value="">쿠폰을 선택하세요</option>');
+              options.join('');
+
+              $couponSelect.html(options).trigger('change');
+            })
+            .fail(function (error) {
+              $couponField.addClass('disabled');
+              $couponField
+                .find('.text')
+                .text('일시적으로 쿠폰을 사용하실 수 없습니다.');
+            });
+        }
+
+        // 쿠폰 할인금액 조회
+        function getCouponDiscountAmount(param) {
+          var couponKey = param.couponKey;
+          $('#inputCouponKey').val(couponKey || '');
+
+          if (!couponKey) {
+            paymentModel.couponPrice = 0;
+            paymentModel.isAllPointUse = false;
+            paymentModel.state = 'COUPON_CHANGED';
+            calcModel(param.event);
+            return;
+          }
+
+          $.ajax({
+            type: 'get',
+            url:
+              '/web/reward/api/coupons/' + param.couponKey + '/discount-amount',
+            data: {
+              fundingAmount: param.fundingAmount || 0,
+            },
+          })
+            .then(function (response) {
+              var discountValue = response;
+              paymentModel.couponPrice = response;
+              calcModel(param.event);
+              StorageInBrazeDataController.add('fundingDetail', {
+                couponTemplateNo: couponsData[param.couponKey],
+              });
+            })
+            .fail(function (error) {
+              $couponField.addClass('disabled');
+              $couponField
+                .find('.text')
+                .text('일시적으로 쿠폰을 사용하실 수 없습니다.');
+            });
+        }
+
+        // 포인트 필드 처리
+        $ckptAll.on({
+          change: function (event) {
+            var target = event.target;
+            paymentModel.isAllPointUse = target.checked;
+
+            if (!paymentModel.isAllPointUse) {
+              paymentModel.state = 'POINT_NOT_ALL_USE';
+              paymentModel.pointPrice = 0;
+            } else {
+              paymentModel.state = 'POINT_ALL_USE';
+            }
+
+            calcModel(event);
+          },
+        });
+
+        $pointInput.on({
+          keyup: function (event) {
+            var target = event.target;
+            var value =
+              target.value === '' || isNaN(target.value)
+                ? 0
+                : parseInt(target.value);
+
+            if (value > paymentModel.limitPointPrice) {
+              wadiz.alert('보유 포인트를 초과하여 사용하실 수 없습니다.');
+              paymentModel.pointPrice = 0;
+              target.value = 0;
+            } else if (!paymentModel.limitPointPrice) {
+              wadiz.alert('사용가능한 포인트가 없습니다.');
+            } else if (paymentModel.pointPrice !== value) {
+              paymentModel.pointPrice = value;
+              paymentModel.state = 'POINT_CHANGED';
+              paymentModel.isAllPointUse = false;
+            }
+            calcModel();
+          },
+          blur: function (event) {
+            var value = event.target.value || 0;
+
+            paymentModel.pointPrice = value;
+            paymentModel.state = 'POINT_CHANGED';
+            calcModel(event);
+          },
+        });
+
+        $couponSelect.on('change', function (event) {
+          var target = event.target;
+          var param = {
+            event: event,
+            couponKey: target.value,
+            fundingAmount: paymentModel.fundingPrice,
+            pointAmount: getPointPrcie(),
+          };
+          paymentModel.state = 'COUPON_CHANGED';
+          getCouponDiscountAmount(param);
+        });
+
+        //펀딩 결제 예약
+        var reservationButton = document.getElementById('btn-submit');
+        reservationButton.addEventListener('click', function () {
+          calcModel(); // 서포터 클럽 배송비 계산 시점 차이 때문에 예약 요청 전 금액 재 계산
+          purchaseReservation();
+        });
+
+        setUsablePointInfo();
+        autoFocusPaymentInputs();
+        initCouponList(campaignId); // 쿠폰 초기화
+
+        // 유저 전자금융거래 이용 동의 조회
+        // $.ajax({
+        //   url: "/web/v2/terms/accepter",
+        //   success: function(response) {
+        //     if (response.code === "SUSS000") {
+        //       var agreedFundingTermsList = response.data.funding;
+        //
+        //       if (agreedFundingTermsList && agreedFundingTermsList.length > 0) {
+        //         var isAgreedElectronicFinancialTransaction = agreedFundingTermsList.filter(function (termsItem) {
+        //           return termsItem.termsType === "electronic_financial_transaction";
+        //         }).length > 0;
+        //
+        //         if (!isAgreedElectronicFinancialTransaction) {
+        //           $(".electronicFinancialTransactionWrap > label").append(
+        //             "<input id=\"electronicFinancialTransactionCheckBox\" class=\"notice-confirm-checkbox\" type=\"checkbox\" name=\"check1\" value=\"Y\" autocomplete=\"off\" onchange=\"eachTermsChanged()\">" +
+        //             "<span>전자금융거래 이용약관</span>"
+        //           );
+        //           $(".electronicFinancialTransactionWrap").css("display", "block");
+        //         }
+        //       }
+        //     }
+        //   }
+        // });
+
+        // 네이버페이 결제 결과 알림창
+        var naverPayResult = '';
+        if (naverPayResult === 'false') {
+          var naverPayResultMessage = ''.replace(/<br\s*\/?>/gi, '\n');
+          if (naverPayResultMessage === 'userCancel') {
+            wadiz.alert(
+              '결제 정보 등록을 취소하셨습니다. 결제 정보를 다시 등록해 주세요.'
+            );
+          } else {
+            wadiz.alert(naverPayResultMessage);
+          }
+        }
+
+        function responseUpdateUI() {
+          var isMobileSize = window.innerWidth < 960;
+          var rewardSimplePayApp = document.getElementById(
+            'reward-simplepay-app'
+          );
+
+          if (rewardSimplePayApp) {
+            if (isMobileSize) {
+              // mobile
+              rewardSimplePayApp.style.marginBottom = '32px';
+            } else {
+              rewardSimplePayApp.style.marginBottom = '0';
+            }
+          }
+        }
+
+        responseUpdateUI();
+        window.addEventListener('resize', responseUpdateUI);
+      });
+      window.onpageshow = function (event) {
+        // Safari, Firefox 뒤로가기 시 새로고침
+        if (event.persisted) {
+          document.location.reload();
+        }
+      };
+
+      /* 결제 정보 자동포커스 */
+      function autoFocusPaymentInputs() {
+        var $paymentInputs = $('#wpurchasePaymentInfo input');
+        $paymentInputs.map(function (idx, input) {
+          $(input).attr('data-idx', idx);
+        });
+
+        $paymentInputs.on('keyup', function () {
+          var $thisInput = $(this);
+          var nextInputIndex = parseInt($thisInput.attr('data-idx')) + 1;
+          var maxlength = $thisInput.attr('maxlength');
+
+          if ($thisInput.val().length >= maxlength) {
+            $paymentInputs.eq(nextInputIndex).focus();
+          }
+        });
+      }
+
+      /*휴대전화인증하기*/
+      function sendSms() {
+        if ($('#supporterMobileNumber').val() !== '') {
+          $('#phoneNumError').hide();
+          var supporterMobileNumber = $('#supporterMobileNumber').val();
+          var param = {
+            mobileNumber: supporterMobileNumber,
+          };
+          $.ajax({
+            url: '/web/waccount/ajaxRequestSendUserAuthSmsCorpManager',
+            data: param,
+            type: 'POST',
+            success: function (result) {
+              if ('SUSS000' == result.code) {
+                $('#confirmId').val(result.confirmId);
+                $('#sendSmsBtn').hide();
+                $('#resendSmsBtn').css('display', 'inline-block');
+                $('#supporterCertArea').show();
+                $('#supporterCertBtn').show();
+                $('#authCode').focus();
+                setTimer();
+              }
+            },
+          });
+        } else {
+          $('#phoneNumError').show();
+        }
+      }
+
+      /*3분 타이머 시작*/
+      function setTimer() {
+        $('#ms_timer').countdown({
+          date: new Date().getTime() + 180 * 1000,
+          end: function () {
+            $('#timeError').show();
+            $('#supporterCertArea').hide();
+            $('#supporterCertBtn').hide();
+            $('#authCode').val('');
+          },
+        });
+      }
+
+      /*인증번호 인증*/
+      function confirmSmsCode() {
+        $('#ms_timer').countdown('destroy');
+        var supporterMobileNumber = $('#supporterMobileNumber').val();
+        var param = {
+          confirmId: $('#confirmId').val(),
+          authCode: $('#authCode').val(),
+          mobileNumber: supporterMobileNumber,
+        };
+
+        $.ajax({
+          url: '/web/waccount/ajaxRequestUserSmsCorpManagerConfirm',
+          data: param,
+          type: 'POST',
+          async: false,
+          success: function (result) {
+            if ('SUSS000' == result.code) {
+              $('#timeError').hide();
+              $('#confirmError').hide();
+              $('#phoneNumError').hide();
+              $('#supporterCertBtn').hide();
+              $('#certPhone').html(supporterMobileNumber);
+              supporterCert = true;
+
+              setTimer();
+              //updateUserMobileNumber();
+            } else {
+              $('#confirmError').show();
+            }
+          },
+        });
+      }
+
+      /*재전송클릭시 기존타이머죽임*/
+      function resendSms() {
+        $('#timeError').hide();
+        $('#confirmError').hide();
+        $('#phoneNumError').hide();
+        $('#ms_timer').countdown('destroy');
+
+        sendSms();
+      }
+
+      /*DAUM 우편번호검색*/
+      function findPostCode() {
+        var element = document.getElementById('daumAddressCon');
+        new daum.Postcode({
+          oncomplete: function (data) {
+            // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+
+            // 각 주소의 노출 규칙에 따라 주소를 조합한다.
+            // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+            var fullAddr = ''; // 최종 주소 변수
+            var extraAddr = ''; // 조합형 주소 변수
+
+            // 사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+            if (data.userSelectedType === 'R') {
+              // 사용자가 도로명 주소를 선택했을 경우
+              fullAddr = data.roadAddress;
+            } else {
+              // 사용자가 지번 주소를 선택했을 경우(J)
+              fullAddr = data.jibunAddress;
+            }
+
+            // 사용자가 선택한 주소가 도로명 타입일때 조합한다.
+            if (data.userSelectedType === 'R') {
+              //법정동명이 있을 경우 추가한다.
+              if (data.bname !== '') {
+                extraAddr += data.bname;
+              }
+              // 건물명이 있을 경우 추가한다.
+              if (data.buildingName !== '') {
+                extraAddr +=
+                  extraAddr !== ''
+                    ? ', ' + data.buildingName
+                    : data.buildingName;
+              }
+              // 조합형주소의 유무에 따라 양쪽에 괄호를 추가하여 최종 주소를 만든다.
+              fullAddr += extraAddr !== '' ? ' (' + extraAddr + ')' : '';
+            }
+
+            // 우편번호와 주소 정보를 해당 필드에 넣는다.
+            $('#newZipCode').val(data.zonecode);
+            $('#newAddress').html('[' + data.zonecode + '] ' + fullAddr);
+
+            // 커서를 상세주소 필드로 이동한다.
+            $('#newAddressDetails').val('');
+            $('#newAddressDetails').focus();
+            closeLyPop('daumAddress');
+          },
+        }).embed(element);
+        showLyPop('daumAddress');
+      }
+
+      function initReservationInfo() {
+        var choiceRewardLength = $('.order-list').attr('data-choiced-legnth');
+        var couponKey = $('#inputCouponKey').val();
+        var reservationInfo = {
+          campaignId: $('#campaignId').val(),
+          presenteeName: $('#presenteeName').val(),
+          contactNumber: $('#contactNumber').val(),
+          zipCode: $('#zipCode').val(),
+          address: $('#address').val(),
+          addressDetails: $('#addressDetails').val(),
+          shippingMemo: $('#shippingMemo').val(),
+          apid: $('#apid').val(),
+          applyPoint: $('#applyPoint').val(),
+          addDonation: $('#addDonation').val(),
+          dontShowNameYn: $('#dontShowNameYn').val(),
+          dontShowAmountYn: $('#dontShowAmountYn').val(),
+          secureStateBagKey: $('[name="secureStateBagKey"]').val(),
+        };
+
+        if (couponKey) {
+          reservationInfo.couponKey = couponKey;
+          reservationInfo.couponDiscountAmount = $(
+            '#inputCouponDiscountAmount'
+          ).val();
+        }
+
+        for (var i = 0; i <= choiceRewardLength - 1; i++) {
+          var rewardId = 'choiceRewards[' + i + '].rewardId';
+          var qty = 'choiceRewards[' + i + '].qty';
+          var sumAmount = 'choiceRewards[' + i + '].sumAmount';
+          var memo = 'choiceRewards[' + i + '].memo';
+
+          reservationInfo[rewardId] = $('[name="' + rewardId + '"]').val();
+          reservationInfo[qty] = $('[name="' + qty + '"]').val();
+          reservationInfo[sumAmount] = $('[name="' + sumAmount + '"]').val();
+          reservationInfo[memo] = $('[name="' + memo + '"]').val();
+
+          var choiceRewardOptions = document.querySelectorAll(
+            '[name*="choiceRewards[' + i + '].choiceRewardOption"]'
+          );
+          for (var j = 0; j < choiceRewardOptions.length; ++j) {
+            reservationInfo[choiceRewardOptions[j].name] =
+              choiceRewardOptions[j].value;
+          }
+        }
+
+        return reservationInfo;
+      }
+
+      /*결제예약하기*/
+      function purchaseReservation() {
+        try {
+          dataLayer = window.dataLayer || [];
+
+          var fundingDetail = StorageInBrazeDataController.get('fundingDetail');
+          const choiceRewardPrices = [42000];
+          const choiceRewardQtys = [1];
+          const choiceRewardIds = [411146];
+          const paymentType = $('[data-selected-pay-type]').attr(
+            'data-selected-pay-type'
+          );
+          let paymentTypeName = '간편결제';
+          if (paymentType === 'npay') {
+            paymentTypeName = '네이버페이';
+          }
+          if (paymentType === 'dbcredit') {
+            paymentTypeName = '직접입력';
+          }
+
+          dataLayer.push({
+            event: 'funding-ecommerce-checkout3',
+            ecommerce: {
+              checkout: {
+                actionField: {
+                  step: 3,
+                  option: paymentTypeName,
+                },
+                products: choiceRewardIds.map(function (item, index) {
+                  return {
+                    id: '158604',
+                    name: '\uAC1C\uBC1C\uBE44 1.5\uC5B5\u3163\uD604\uB300\uB9AC\uBC14\uD2B8 \uAE30\uC220\uB825  \uB2F4\uC544\uB0B8 3\uB9CC\uC6D0\uB300 \uBC1C \uBC1B\uCE68\uB300 Comfy',
+                    price: choiceRewardPrices[index],
+                    quantity: choiceRewardQtys[index],
+                    variant: item,
+                    brand: '\uD604\uB300\uB9AC\uBC14\uD2B8',
+                    category: fundingDetail.category,
+                    coupon: fundingDetail.couponTemplateNo || undefined,
+                  };
+                }),
+              },
+            },
+          });
+        } catch (e) {
+          console.log(e);
+          if (e && window.Sentry) {
+            Sentry.captureException(e);
+          }
+        }
+
+        var isAllTermsChecked = false;
+
+        Wmask.on({ spinner: true });
+
+        var cktm04 = $('#cktm04').is(':checked');
+        if (cktm04 == false) {
+          alertify.alert(
+            '프로젝트 진행에 대한 새소식 및 결제 관련 안내에<br>동의하셔야 결제예약이 가능합니다.',
+            function () {
+              $('#cktm04').focus();
+            }
+          );
+          Wmask.off();
+          return;
+        }
+
+        $('#eachTermsNoticeWrap')
+          .find('input')
+          .each(function (index, el) {
+            if (!$(el).is(':checked')) {
+              wadiz.alert(
+                el.nextElementSibling.textContent +
+                  '를 하셔야 결제예약이 가능합니다.',
+                function () {
+                  $(el).focus();
+                }
+              );
+              Wmask.off();
+              isAllTermsChecked = false;
+              return false;
+            }
+            isAllTermsChecked = true;
+          });
+
+        if (isAllTermsChecked) {
+          if (supporterCert == false) {
+            wadiz.alert('휴대폰 번호를 인증해 주세요.', function () {
+              $('#supporterMobileNumber').focus();
+            });
+            Wmask.off();
+          } else {
+            if (checkDelivery()) {
+              if (
+                isContainsEmojiFromNodeList(
+                  '#presenteeName, #addressDetails, #shippingMemo'
+                )
+              ) {
+                wadiz.alert('배송지 정보는 한글, 영문, 숫자만 입력해주세요.');
+                Wmask.off();
+                return false;
+              }
+
+              if (newTotalPrice == 0) {
+                ajaxRequestNiceCreditPurchaseReservation();
+              } else if (0 < newTotalPrice && newTotalPrice < 1000) {
+                wadiz.alert('1,000원 미만은 결제가 불가능합니다.');
+                Wmask.off();
+              } else {
+                // 결제 진행
+                var selectedPayType = $('[data-selected-pay-type]').attr(
+                  'data-selected-pay-type'
+                );
+
+                if (selectedPayType === 'npay') {
+                  // 네이버페이 결제 취소 시 결제 데이터 유지하기 위해 form 데이터 전송
+                  var form = $('#purchaseForm');
+                  var fundingPrice = '42000';
+                  form.append(
+                    '<input type="hidden" name="totalPrice" value="' +
+                      newTotalPrice +
+                      '">'
+                  );
+                  $.ajax({
+                    url: '/web/wpurchase/reward/naverpay/welcome',
+                    data: $('#purchaseForm').serialize(),
+                    type: 'POST',
+                    success: function (result) {
+                      var data = result.data;
+                      var oPay = Naver.Pay.create({
+                        payType: 'recurrent',
+                        openType: 'page',
+                        clientId: data.clientId,
+                        chainId: data.chainId,
+                        mode: data.mode,
+                      });
+
+                      oPay.open({
+                        actionType: data.actionType,
+                        productName: data.productName,
+                        productCode: data.productCode,
+                        totalPayAmount: data.totalPayAmount,
+                        returnUrl: data.returnUrl,
+                      });
+                    },
+                  });
+                } else if (selectedPayType === 'sbcredit') {
+                  Wmask.off();
+                  validSimplePayInfo(
+                    function () {
+                      // isInfoCallback
+                      var reservationInfo = initReservationInfo();
+                      window.simplepay.initSimpleReservationDialog(
+                        reservationInfo
+                      );
+                    },
+                    function () {
+                      // isEmptyCallback
+                      wadiz.alert({
+                        title:
+                          '간편결제를 이용하시려면 우선 결제 정보 등록이 필요합니다.',
+                        message:
+                          '간편결제 등록하기 버튼을 눌러 정보등록을 진행해보세요!',
+                      });
+                    }
+                  );
+                } else {
+                  // 직접 입력. selectedPayMode === 'DIRECT'
+                  if (checkCardInfo()) {
+                    ajaxRequestNiceCreditPurchaseReservation();
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+
+      // Simplepay 정보 유무 확인
+      function validSimplePayInfo(isInfoCallback, isEmptyCallback) {
+        $.ajax({
+          method: 'post',
+          url: '/web/wpurchase/cardManager/get',
+        }).then(function (response) {
+          if (response.data && response.data.registered) {
+            isInfoCallback();
+            return;
+          }
+          isEmptyCallback();
+        });
+      }
+
+      var isSubmitted = false;
+
+      /* 직접입력 */
+
+      function failPayment(result) {
+        var message =
+          'message' in result ? result.message : '결제예약에 실패하였습니다.';
+        wadiz.alert(message);
+        Wmask.off();
+        isSubmitted = false;
+      }
+
+      function rewardFundingSuccess(backingPaymentId) {
+        try {
+          trackingEventInJsp('reward.campaign.purchase.success', {
+            transactionId: backingPaymentId,
+            transactionAffiliation: 'wadiz.kr',
+            transactionTotal: '42000',
+            transactionShipping: '0',
+            transactionProducts: [
+              {
+                id: backingPaymentId,
+                name: '158604',
+                category: 'RWD',
+                price: '42000',
+                quantity: '1',
+              },
+            ],
+            eventCallback: function () {
+              location.href =
+                '/web/wpurchase/reward/result10/' + backingPaymentId;
+            },
+            eventTimeout: 500,
+          });
+        } catch (e) {
+          console.log(e);
+          if (e && window.Sentry) {
+            Sentry.captureException(e);
+          }
+        }
+      }
+
+      function ajaxRequestNiceCreditPurchaseReservation() {
+        if (isSubmitted) {
+          wadiz.alert('처리중입니다.');
+          return;
+        }
+        isSubmitted = true;
+
+        $.ajax({
+          url: '/web/wpurchase/reward/ajaxRequestNiceCreditPurchaseReservation',
+          data: $('#purchaseForm').serialize(),
+          type: 'POST',
+          success: function (result) {
+            if ('true' == result.success) {
+              // fetch api 성공
+              if (result.backingPaymentId && result.code == 'ER1102') {
+                wadiz.alert(result.message).then(function () {
+                  location.href =
+                    '/web/wpurchase/reward/result10/' + result.backingPaymentId;
+                });
+                Wmask.off();
+              } else if (result.backingPaymentId != 0) {
+                rewardFundingSuccess(result.backingPaymentId);
+              } else if (result.code == 'ER1101') {
+                var campaignId = '158604';
+                wadiz.alert(result.message).then(function () {
+                  location.href = '/web/wpurchase/reward/step10/' + campaignId;
+                });
+                Wmask.off();
+              } else {
+                if (
+                  'real' === 'local' ||
+                  'real' === 'dev' ||
+                  'real' === 'stg'
+                ) {
+                  wadiz.alert({
+                    basic: true,
+                    title: '카드 인증에 실패했습니다.',
+                    message:
+                      '실패 사유 확인 후 다시 시도해주세요.\n 참고로 DEV, STG 환경에서 국민은행 인증불가\n실패사유: ' +
+                      result.message,
+                    labelApprove: '확인',
+                  });
+                } else {
+                  wadiz.alert({
+                    basic: true,
+                    title: '카드 인증에 실패했습니다.',
+                    message:
+                      '실패 사유 확인 후 다시 시도해주세요.\n실패사유: ' +
+                      result.message,
+                    labelApprove: '확인',
+                  });
+                }
+                isSubmitted = false;
+                Wmask.off();
+              }
+            } else {
+              // fetch api 실패
+              failPayment(result);
+            }
+          },
+          error: function (error) {
+            failPayment(error);
+          },
+        });
+      }
+
+      /*결제정보체크*/
+      function checkCardInfo() {
+        var cardNum1 = $('input[name=cardNum1]').val();
+        var cardNum2 = $('input[name=cardNum2]').val();
+        var cardNum3 = $('input[name=cardNum3]').val();
+        var cardNum4 = $('input[name=cardNum4]').val();
+        var cardExpMM = $('input[name=cardExpMM]').val();
+        var cardExpYY = $('input[name=cardExpYY]').val();
+        var cardPwd = $('input[name=cardPwd]').val();
+        var buyerAuthNum = $('input[name=buyerAuthNum]').val();
+        if (
+          cardNum1.length < 4 ||
+          (cardNum2 && cardNum2.length < 4) ||
+          (cardNum3 && cardNum3.length < 4) ||
+          cardNum4.length < 2
+        ) {
+          wadiz.alert(
+            '신용(체크)카드 번호를 정확히 입력해주세요.',
+            function () {
+              $('input[name=cardNum1]').focus();
+            }
+          );
+          $('#ckptAll').removeAttr('checked');
+          Wmask.off();
+          return false;
+        } else if (cardExpMM.length < 2 || cardExpYY.length < 2) {
+          wadiz.alert('유효기간을 정확히 입력해주세요.', function () {
+            $('input[name=cardExpMM]').focus();
+          });
+          $('#ckptAll').removeAttr('checked');
+          Wmask.off();
+          return false;
+        } else if (cardPwd && cardPwd.length < 2) {
+          wadiz.alert('비밀번호 앞 두자리를 정확히 입력해주세요.', function () {
+            $('input[name=cardPwd]').focus();
+          });
+          $('#ckptAll').removeAttr('checked');
+          Wmask.off();
+          return false;
+        } else if (buyerAuthNum.length != 6 && buyerAuthNum.length != 10) {
+          wadiz.alert(
+            '생년월일을 정확히 입력해주세요.\n(법인카드의 경우, 사업자등록번호)',
+            function () {
+              $('input[name=buyerAuthNum]').focus();
+            }
+          );
+          $('#ckptAll').removeAttr('checked');
+          Wmask.off();
+          return false;
+        }
+        return JSON.parse(
+          $('#reward-simplepay-app [name="isValidForm"]').val()
+        );
+      }
+
+      /*배송지정보 체크*/
+      function checkDelivery() {
+        var delivery = $('input[name=delivery]').is(':checked');
+        if (delivery == false) {
+          wadiz.alert('배송지를 선택해주세요.', function () {
+            $('input[name=delivery]').focus();
+          });
+          Wmask.off();
+          return false;
+        } else if ($('#rddvNew').is(':checked')) {
+          var newPresenteeName = $('#newPresenteeName').val();
+          var newContactNumber = $('#newContactNumber').val();
+          var newZipCode = $('#newZipCode').val();
+          var newAddress = $('#newAddress').html();
+          var newAddressDetails = $('#newAddressDetails').val();
+
+          if (newPresenteeName == '') {
+            wadiz.alert('신규 배송지에 받을사람을 입력하세요.', function () {
+              $('#newPresenteeName').focus();
+            });
+            Wmask.off();
+            return false;
+          } else if (newContactNumber == '') {
+            wadiz.alert('신규 배송지에 휴대폰 번호를 입력하세요.', function () {
+              $('#newContactNumber').focus();
+            });
+            Wmask.off();
+            return false;
+          } else if (newAddress == '') {
+            wadiz.alert('우편번호를 검색해서 주소를 입력하세요.', function () {
+              $('#newAddressDetails').focus();
+            });
+            Wmask.off();
+            return false;
+          } else {
+            $('#presenteeName').val(newPresenteeName);
+            $('#contactNumber').val(newContactNumber);
+            $('#zipCode').val(newZipCode);
+            $('#address').val(newAddress);
+            $('#addressDetails').val(newAddressDetails);
+            return true;
+          }
+        } else {
+          var shippingNo = $('input[name=delivery]:checked').val();
+          var presenteeName = $('#presenteeName' + shippingNo).val();
+          var contactNumber = $('#contactNumber' + shippingNo).val();
+          var zipCode = $('#zipCode' + shippingNo).val();
+          var address = $('#address' + shippingNo).val();
+          var addressDetails = $('#addressDetails' + shippingNo).val();
+          $('#presenteeName').val(presenteeName);
+          $('#contactNumber').val(contactNumber);
+          $('#zipCode').val(zipCode);
+          $('#address').val(address);
+          $('#addressDetails').val(addressDetails);
+          return true;
+        }
+      }
+
+      /*현재 보유 포인트 확인*/
+      function setUsablePointInfo() {
+        var sessionUser = '10907091018';
+
+        if (sessionUser.length > 0) {
+          $.ajax({
+            url: '/web/wpoint/pointInquiry/ajaxGetMyPointInquirySummary',
+            type: 'POST',
+            data: { isExact: true },
+            success: function (result) {
+              if ('true' == result.success) {
+                usablePoint = result.possessionPoint * 1;
+                $('#usablePoint').html(result.possessionPoint.format()); // 보유 포인트
+                $('#limitPoint').val(result.possessionPoint);
+                paymentModel.limitPointPrice = usablePoint;
+
+                if (result.possessionPoint < 100) {
+                  $pointInput.attr('disabled', 'disabled');
+                }
+              } else {
+                $('#usablePoint').html('- ');
+              }
+            },
+          });
+        }
+      }
+
+      /* 배송지 새로입력시 휴대폰 번호 유효성 추가  */
+      var $contactNumber = $('#newContactNumber');
+      $contactNumber.inputTelFormat(); // 전화번호 포맷 적용
+      $contactNumber.on('blur', function (e) {
+        var $thisInput = $(this); // 새로운 배송지 휴대폰번호 입력창
+        var value = $thisInput.val(); // 입력값
+
+        // 휴대폰 번호가 아닐 경우, 에러 표시
+        var isValid = /^01([0|1|6|7|8|9]?)-?([0-9]{3,4})-?([0-9]{4})$/.test(
+          value
+        ); // 휴대폰번호 패턴(숫자만)
+        isValid
+          ? $thisInput.removeClass('error')
+          : $thisInput.addClass('error');
+      });
+
+      /*숫자 타입에서 쓸 수 있도록 format() 함수 추가*/
+      Number.prototype.format = function () {
+        if (this == 0) return 0;
+        var reg = /(^[+-]?\d+)(\d{3})/;
+        var n = this + '';
+        while (reg.test(n)) n = n.replace(reg, '$1' + ',' + '$2');
+        return n;
+      };
+
+      /* 문자열 타입에서 쓸 수 있도록 format() 함수 추가*/
+      String.prototype.format = function () {
+        var num = parseFloat(this);
+        if (isNaN(num)) return '0';
+        return num.format();
+      };
+
+      /* 제 3자에 대한 개인정보 제공 동의 팝업, 책임 규정에 대한 동의 팝업 닫기 함수 */
+      function closeAgreePopup(popupId) {
+        var popupElId = '#' + popupId + 'CheckBox';
+        closeLyPop(popupId);
+        if (!$(popupElId).is(':checked')) {
+          $(popupElId).prop('checked', true);
+        }
+        eachTermsChanged();
+      }
+
+      function acceptAllChanged(el) {
+        var childInputs = $('#eachTermsNoticeWrap').find('input');
+        if ($(el).is(':checked')) {
+          childInputs.prop('checked', true);
+        } else {
+          childInputs.prop('checked', false);
+        }
+      }
+
+      function eachTermsChanged() {
+        var childInputs = $('#eachTermsNoticeWrap').find('input');
+        var values = $(childInputs)
+          .map(function () {
+            return $(this).is(':checked');
+          })
+          .get();
+        var result = values.every(function (bool) {
+          return bool;
+        });
+        if (result) {
+          $('#acceptAllCheckBox').prop('checked', true);
+        } else {
+          $('#acceptAllCheckBox').prop('checked', false);
+        }
+      }
+    </script>
+    <input type="hidden" id="gaUserId" value="6059495" />
+
+    <div id="floating-buttons-app">
+      <div class="FloatingButtons_container__2VDUa">
+        <button
+          type="button"
+          class="FloatingTopButton_pageTop__2vt6t FloatingTopButton_visible__3h8Ak"
+          title="위로 이동">
+          <svg
+            viewBox="0 0 40 40"
+            focusable="false"
+            role="presentation"
+            class="withIcon_icon__24D_5"
+            aria-hidden="true">
+            <path
+              d="M33 30l-1.4 1.4L20 19.8 8.4 31.4 7 30l13-13zm1-21H6v2h28z"></path>
+          </svg></button
+        ><button
+          type="button"
+          data-ga-category="공통_최근본_UI"
+          data-ga-action="클릭"
+          data-ga-label=""
+          class="RecentView_container__5Nxua"
+          aria-label="최근본"
+          style="display: none">
+          <div
+            aria-hidden="true"
+            class="RecentView_thumbnail__107ZW CardThumbnail_thumbnail__sw2ym CardThumbnail_visible__1ZiAB CardThumbnail_noanimation__3qJay"
+            style="
+              background-image: url('https://cdn.wadiz.kr/wwwwadiz/green001/2023/0215/20230215095501924_158604.jpg/wadiz/resize/180/format/jpg/quality/85/');
+            "></div>
+        </button>
+      </div>
+    </div>
+
+    <style>
+      .ab-iam-root.v3 {
+        z-index: 9999;
+      }
+    </style>
+
+    <div id="adn_container" style="display: none"></div>
+  </body>
+</html>
