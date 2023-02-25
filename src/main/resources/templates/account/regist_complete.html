@@ -1,4 +1,7 @@
-<html lang="ko" class="" translate="no">
+<html
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:th="http://www.thymeleaf.org"
+        lang="ko" class="" translate="no">
   <head>
     <style>
       .async-hide {
@@ -151,7 +154,7 @@
       <main id="iam-account-app">
         <div class="AccountContainer_container__PwFiE">
           <h2 class="SignUpFinishApp_title__1sY8B">
-            <span>woowang789 서포터 님<br />가입을 축하드려요</span>
+            <span><span th:text="${name}">name</span> 서포터 님<br />가입을 축하드려요</span>
           </h2>
           <div
             class="banner_eventBanner__3MhKw SignUpFinishApp_eventBanner__2hrYY banner_fullEventBanner__3qbO0"
@@ -202,15 +205,16 @@
           </div>
           <div class="SignUpFinishApp_nextStepGuide__3Ibvh">
             <button
+              id="loginPageBtn"
               class="Button_button__2_6-I Button_primary__3fUP6 Button_contained__1T9Np Button_lg__2Kv4b Button_block__39TGk"
               type="button">
               <span
                 ><span class="Button_children__weH0H"
-                  >이전 화면으로 돌아가기</span
+                  >로그인 페이지로 이동하기</span
                 ></span
               ></button
             ><a
-              href="/web/main"
+              href="/web"
               class="Button_button__2_6-I Button_primary__3fUP6 Button_lg__2Kv4b Button_block__39TGk SignUpFinishApp_spacing__1va1t"
               ><span
                 ><span class="Button_children__weH0H"
@@ -276,5 +280,12 @@
     <div id="adn_container" style="display: none"></div>
 
     <div class="ReactModalPortal"></div>
+  <script>
+    $(document).ready(function(){
+      $('#loginPageBtn').click(function(){
+        location.href="/web/account/login";
+      })
+    })
+  </script>
   </body>
 </html>
