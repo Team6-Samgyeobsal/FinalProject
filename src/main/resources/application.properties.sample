@@ -1,0 +1,23 @@
+#oracle
+spring.datasource.driver-class-name=oracle.jdbc.OracleDriver
+spring.datasource.url=
+spring.datasource.username=
+spring.datasource.password=
+
+#thymeleaf
+spring.thymeleaf.cache=false
+spring.devtools.livereload.enabled=true
+
+server.port=80
+
+#MyBatis
+mybatis.config-location=classpath:mybatis/mapper-config.xml
+mybatis.mapper-locations=classpath:mybatis/mapper/*.xml
+
+# Security
+logging.level.org.springframework.security.web=info
+
+#Google OAuth2
+spring.security.oauth2.client.registration.google.client-id=
+spring.security.oauth2.client.registration.google.client-secret=
+spring.security.oauth2.client.registration.google.scope=email
