@@ -1,4 +1,5 @@
 <html lang="ko" class="scroll-top scroll-apex" translate="no">
+<meta charset="utf-8">
   <head>
     <style>
       .async-hide {
@@ -959,7 +960,7 @@
                             </div>
                           </div></label
                         >
-                        <div class="RewardProductItem_option__3BtOP">
+                        <div class="RewardProductItem_option__3BtOP" style="display: none">
                           <div class="SelectMenu_container__vXzGW">
                             <button
                               type="button"
@@ -978,60 +979,41 @@
                                   d="M16 22.4L5.6 12l1.12-1.12L16 20.16l9.28-9.28L26.4 12 16 22.4z"></path>
                               </svg>
                             </button>
+                            <div class="SelectMenu_content__2rDch" style="display: none">
+                              <div class="SelectMenu_children__WyY4w">
+                                <ul>
+                                  <li class="RewardProductOption_list__3yoqJ">
+                                    <div class="RewardProductOptionItem_container__1yGSJ">
+                                      <span class="RewardProductOptionItem_title__ZuGtV">토마토레드 4</span>
+                                    </div>
+                                  </li>
+                                  <li class="RewardProductOption_list__3yoqJ">
+                                    <div class="RewardProductOptionItem_container__1yGSJ">
+                                      <span class="RewardProductOptionItem_title__ZuGtV">올리브그린 4</span>
+                                    </div>
+                                  </li>
+                                  <li class="RewardProductOption_list__3yoqJ">
+                                    <div class="RewardProductOptionItem_container__1yGSJ">
+                                      <span class="RewardProductOptionItem_title__ZuGtV">토마토레드 3 + 올리브그린 1</span>
+                                    </div>
+                                  </li>
+                                  <li class="RewardProductOption_list__3yoqJ">
+                                    <div class="RewardProductOptionItem_container__1yGSJ">
+                                      <span class="RewardProductOptionItem_title__ZuGtV">토마토레드 2 + 올리브그린 2</span>
+                                    </div>
+                                  </li>
+                                  <li class="RewardProductOption_list__3yoqJ">
+                                    <div class="RewardProductOptionItem_container__1yGSJ">
+                                      <span class="RewardProductOptionItem_title__ZuGtV">토마토레드 1 + 올리브그린 3</span>
+                                    </div>
+                                  </li>
+                                </ul>
+                              </div>
+                            </div>
                           </div>
                         </div>
                         <ul>
-                          <li class="RewardProductItem_item__3va6f">
-                            <section
-                              aria-label="[얼리버드] COMFY 2단 쿠션 발받침대  1개 상품 카드"
-                              class="RewardProductCard_container__3N2S2">
-                              <div>
-                                <div class="RewardProductCard_title__32DP6">
-                                  <div class="RewardProductCard_name__1Mz6S">
-                                    <div>
-                                      <span>다크그레이-다크그레이</span>
-                                    </div>
-                                  </div>
-                                  <button
-                                    type="button"
-                                    class="RewardProductCard_cancel__3PE3x"
-                                    aria-label="삭제 버튼">
-                                    <svg
-                                      viewBox="0 0 48 48"
-                                      focusable="false"
-                                      role="presentation"
-                                      class="withIcon_icon__2cPeY"
-                                      aria-hidden="true">
-                                      <path
-                                        d="M24 3.6C12.733 3.6 3.6 12.733 3.6 24S12.733 44.4 24 44.4 44.4 35.267 44.4 24 35.267 3.6 24 3.6zm9.252 27.948l-1.704 1.704L24 25.692l-7.548 7.56-1.704-1.704L22.308 24l-7.56-7.548 1.704-1.704L24 22.308l7.548-7.56 1.704 1.704L25.692 24l7.56 7.548z"></path>
-                                    </svg>
-                                  </button>
-                                </div>
-                              </div>
-                              <div class="RewardProductCard_content__2wx8s">
-                                <div class="RewardProductCard_quantity__2CSmq">
-                                  <div class="ProductQuantity_container__1_106">
-                                    <button
-                                      type="button"
-                                      aria-label="감소 버튼"
-                                      class="ProductQuantity_minusButton__22tR8"
-                                      disabled=""></button
-                                    ><input
-                                      type="text"
-                                      aria-label="수량 입력"
-                                      data-testid="quantity"
-                                      value="1" /><button
-                                      type="button"
-                                      aria-label="증가 버튼"
-                                      class="ProductQuantity_plusButton__2TJ7g"></button>
-                                  </div>
-                                  <p class="RewardProductCard_price__3t1PE">
-                                    42,000원
-                                  </p>
-                                </div>
-                              </div>
-                            </section>
-                          </li>
+
                         </ul>
                         <hr
                           class="Divider_divider__2FemR Divider_horizontal__3HbEu Divider_lightBG__HS5Rl Divider_spacing1__Jn7xQ Divider_caption2__1wUp- RewardProductItem_divider__1MITY" />
@@ -1143,7 +1125,7 @@
                             </div>
                           </div></label
                         >
-                        <div class="RewardProductItem_option__3BtOP">
+                        <div class="RewardProductItem_option__3BtOP" style="display: none">
                           <div class="SelectMenu_container__vXzGW">
                             <button
                               type="button"
@@ -2730,6 +2712,46 @@
         </button>
       </div>
     </div>
+    <script>
+
+      $(document).ready(function (){
+
+        $('.RewardProductItem_label__2t2Wd').click(function (){
+          console.log("체크박스 클릭");
+          if($(this).find('.Checkbox_input__YDTIS').is(':checked')){
+            console.log("체크 확인");
+            $('.RewardProductItem_option__3BtOP').show();
+          }else{
+            $('.RewardProductItem_option__3BtOP').hide();
+          }
+          $('.SelectMenu_title__2__qX').on('click', function (event) {
+            event.stopImmediatePropagation(); // 이벤트 버블링을 막기 위해 추가
+            console.log('리스트 클릭');
+            if ($(this).hasClass('SelectMenu_expand__3_pBj')) {
+              $(this).removeClass('SelectMenu_expand__3_pBj');
+              $(this).siblings('.SelectMenu_content__2rDch').hide();
+            } else {
+              $(this).addClass('SelectMenu_expand__3_pBj');
+              $(this).siblings('.SelectMenu_content__2rDch').show();
+            }
+          });
+          $('.RewardProductOption_list__3yoqJ').click(function (event){
+            event.stopImmediatePropagation();
+            $(this).closest('.SelectMenu_content__2rDch').siblings('.SelectMenu_title__2__qX').find('.SelectMenu_placeholder__3X3SL').text($(this).find('.RewardProductOptionItem_title__ZuGtV').text());
+            $(this).closest('.SelectMenu_content__2rDch').siblings('.SelectMenu_title__2__qX').removeClass('SelectMenu_expand__3_pBj');
+            $(this).closest('.SelectMenu_content__2rDch').hide();
+
+            var card = '<li class="RewardProductItem_item__3va6f"><section aria-label="[선착순 4P] 아쿠아웨이브 4개 상품 카드" class="RewardProductCard_container__3N2S2"><div><div class="RewardProductCard_title__32DP6"><div class="RewardProductCard_name__1Mz6S"><div><span>토마토레드 4</span></div></div><button type="button" class="RewardProductCard_cancel__3PE3x" aria-label="삭제 버튼"><svg viewBox="0 0 48 48" focusable="false" role="presentation" class="withIcon_icon__2cPeY" aria-hidden="true"><path d="M24 3.6C12.733 3.6 3.6 12.733 3.6 24S12.733 44.4 24 44.4 44.4 35.267 44.4 24 35.267 3.6 24 3.6zm9.252 27.948l-1.704 1.704L24 25.692l-7.548 7.56-1.704-1.704L22.308 24l-7.56-7.548 1.704-1.704L24 22.308l7.548-7.56 1.704 1.704L25.692 24l7.56 7.548z"></path></svg></button></div></div><div class="RewardProductCard_content__2wx8s"><div class="RewardProductCard_quantity__2CSmq"><div class="ProductQuantity_container__1_106"><button type="button" aria-label="감소 버튼" disabled="" class="ProductQuantity_minusButton__22tR8"></button><input type="text" aria-label="수량 입력" data-testid="quantity" value="1"><button type="button" aria-label="증가 버튼" class="ProductQuantity_plusButton__2TJ7g"></button></div><p class="RewardProductCard_price__3t1PE">68,400원</p></div></div></section></li>';
+            $(this).closest('.RewardProductItem_option__3BtOP').siblings('ul').append(card);
+
+          })
+        });
+
+
+
+      })
+
+    </script>
 
   </body>
 </html>
