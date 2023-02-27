@@ -2,7 +2,6 @@ package com.samgyeobsal.controller;
 
 import com.samgyeobsal.service.OrderService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,7 +28,7 @@ public class OrderController {
 
     private final OrderService service;
 
-    private String memberName = "isshosng";
+    private String mId = "isshosng";
 
     @RequestMapping(value="", method = RequestMethod.GET)
     public String orderForm(Model model){

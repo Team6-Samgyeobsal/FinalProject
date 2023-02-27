@@ -49,7 +49,7 @@ public class OrderApi {
      *     "oAfterPrice" : 90,000,
      *     "mMileage" : 5,000,
      *     "pmMethod" : 1,
-     *     "pmCompany" : "KAKAO COMP.",
+     *     "pmCompany" : "KAKAO COMP.",-=[]
      *     "mId" : "isshosng"
      * }
      */

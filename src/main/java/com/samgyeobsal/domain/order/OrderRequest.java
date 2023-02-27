@@ -26,6 +26,7 @@ public class OrderRequest {
     private int oCount; // 주문 상품 수량
     private String oConsumer; // 소비자
     private String oPhone; // 주문자 전화번호
+    private String oMemo; // 주문 메모
     private String oMail; // 이메일
     private String cPid; // 쿠폰 아이디
     private int oOriginPrice; // 원래 가격
