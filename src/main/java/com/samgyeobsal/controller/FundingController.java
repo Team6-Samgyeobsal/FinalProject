@@ -29,4 +29,9 @@ public class FundingController {
     public String productDetail(){
         return "funding/funding_detail";
     }
+
+    @GetMapping("/100/select")
+    public String select(){
+        return "funding/select";
+    }
 }
