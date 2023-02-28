@@ -9,7 +9,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.client.userinfo.DefaultOAuth2UserService;
 import org.springframework.security.oauth2.client.userinfo.OAuth2UserRequest;
 import org.springframework.security.oauth2.core.OAuth2AuthenticationException;
@@ -42,7 +41,7 @@ public class OAuth2DetailsService extends DefaultOAuth2UserService {
             MemberVO member = saveOAuth2Member(oAuth2User.getAttributes());
 
             List<GrantedAuthority> authorities = new ArrayList<>();
-            authorities.add(new SimpleGrantedAuthority(member.getRole().toString()));
+            authorities.add(new SimpleGrantedAuthority(member.getMrole().toString()));
             Account account = new Account(member, authorities, oAuth2User.getAttributes());
             return account;
         }catch (Exception e){
@@ -63,11 +62,11 @@ public class OAuth2DetailsService extends DefaultOAuth2UserService {
         if(member != null)
             return member;
         member = new MemberVO();
-        member.setEmail(email);
-        member.setName(name);
-        member.setType(LoginType.LOGIN_GOOGLE);
-        member.setRole(Role.ROLE_USER);
-        member.setPassword("{noop}1111");
+        member.setMemail(email);
+        member.setMname(name);
+        member.setMloginType(LoginType.LOGIN_GOOGLE);
+        member.setMrole(Role.ROLE_USER);
+        member.setMpassword("{noop}1111");
 
         memberMapper.insertMember(member);
         return memberMapper.findMemberByEmail(email, LoginType.LOGIN_GOOGLE);

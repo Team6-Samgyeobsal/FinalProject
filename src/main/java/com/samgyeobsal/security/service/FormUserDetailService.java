@@ -31,7 +31,7 @@ public class FormUserDetailService implements UserDetailsService {
         if(member == null) return null;
 
         List<GrantedAuthority> authorities = new ArrayList<>();
-        authorities.add(new SimpleGrantedAuthority(member.getRole().toString()));
+        authorities.add(new SimpleGrantedAuthority(member.getMrole().toString()));
         Account account = new Account(member,authorities);
         return account;
     }
