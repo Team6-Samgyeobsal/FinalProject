@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.samgyeobsal.mapper.FundingMapper">
+
+    <select id="getFundingList" resultType="com.samgyeobsal.domain.funding.FundingVO">
+        select fstore_name,
+               ftitle,
+               nvl(totalprice,0) totalprice,
+               fimg1 from funding f
+               left join (select f.fid,sum(oitotalprice) totalprice
+                                from order_item oi
+                                join product_option po on oi.poid=po.poid
+                                join funding_product fp on po.fpid=fp.fpid
+                                join funding f on f.fid=fp.fid
+                                group by f.fid) total on total.fid= f.fid
+        where fstatus = 'funding'and cid='session1'
+        --and tid='1' and ctid = '2'
+        order by fdate;
+    </select>
+
+</mapper>
