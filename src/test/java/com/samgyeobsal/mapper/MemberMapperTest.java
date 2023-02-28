@@ -1,5 +1,6 @@
 package com.samgyeobsal.mapper;
 
+import com.samgyeobsal.domain.member.InsertFormMemberDTO;
 import com.samgyeobsal.domain.member.MemberVO;
 import com.samgyeobsal.type.LoginType;
 import com.samgyeobsal.type.Role;
@@ -19,11 +20,11 @@ public class MemberMapperTest {
 
     @Test
     void findMemberByEmail(){
-        String email = "user1@email.com";
+        String email = "user@gmail.com";
         MemberVO member = memberMapper.findMemberByEmail(email, LoginType.LOGIN_FORM);
         log.info(member.toString());
-        Assertions.assertEquals(member.getEmail(),email);
-        Assertions.assertEquals(member.getName(),"왕종휘");
+        Assertions.assertEquals(member.getMemail(),email);
+        Assertions.assertEquals(member.getMname(),"user1");
     }
 
     @Transactional
@@ -31,17 +32,18 @@ public class MemberMapperTest {
     void insertMember(){
         String email = "test@email.com";
 
-        MemberVO insertMember = new MemberVO();
-        insertMember.setRole(Role.ROLE_USER);
-        insertMember.setType(LoginType.LOGIN_FORM);
-        insertMember.setName("name");
+        InsertFormMemberDTO insertMember = new InsertFormMemberDTO();
         insertMember.setEmail(email);
-        insertMember.setPassword("11111111");
-        memberMapper.insertMember(insertMember);
+        insertMember.setName("name");
+        insertMember.setPassword("1111111");
+        insertMember.setPhone("1011111111");
+
+        MemberVO member = insertMember.toMember();
+        memberMapper.insertMember(member);
 
         MemberVO findMember = memberMapper.findMemberByEmail(email, LoginType.LOGIN_FORM);
 
-        Assertions.assertEquals(insertMember.getName(), findMember.getName());
+        Assertions.assertEquals(member.getMname(), findMember.getMname());
 
     }
 }

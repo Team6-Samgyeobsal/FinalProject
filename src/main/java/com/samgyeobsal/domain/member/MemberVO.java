@@ -8,9 +8,12 @@ import lombok.*;
 @Setter
 @ToString
 public class MemberVO {
-    private String email;
-    private String password;
-    private String name;
-    private Role role;
-    private LoginType type;
+    private String memail;
+    private String mpassword;
+    private String mname;
+    private Role mrole;
+    private LoginType mloginType;
+
+    private String mphone;
+    private int mmileage;
 }

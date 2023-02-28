@@ -17,13 +17,16 @@ public class InsertFormMemberDTO {
     @NotBlank(message = "비밀번호를 입력해주세요")
     private String password;
 
+    private String phone;
+
     public MemberVO toMember(){
         MemberVO member = new MemberVO();
-        member.setName(name);
-        member.setEmail(email);
-        member.setPassword(password);
-        member.setType(LoginType.LOGIN_FORM);
-        member.setRole(Role.ROLE_USER);
+        member.setMname(name);
+        member.setMemail(email);
+        member.setMpassword(password);
+        member.setMloginType(LoginType.LOGIN_FORM);
+        member.setMrole(Role.ROLE_USER);
+        member.setMphone(phone);
         return member;
     }
 }

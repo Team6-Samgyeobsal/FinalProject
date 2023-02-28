@@ -4,13 +4,15 @@
 <mapper namespace="com.samgyeobsal.mapper.MemberMapper">
 
     <select id="findMemberByEmail" resultType="member">
-        select name, password, email, role, loginType
+        select mname, mpassword, memail, mrole, mloginType,
+               mphone, mmileage
         from member
-        where email = #{email} and loginType= #{loginType}
+        where memail = #{email} and mloginType= #{loginType}
+            and menabled = 1
     </select>
 
     <insert id="insertMember">
-        insert into member (email, name, password, role, logintype)
-        values (#{email}, #{name}, #{password}, #{role}, #{type})
+        insert into member (memail, mname, mpassword, mrole, mlogintype, mphone,menabled, mmileage)
+        values (#{memail}, #{mname}, #{mpassword}, #{mrole}, #{mloginType}, #{mphone}, 1, #{mmileage})
     </insert>
 </mapper>
