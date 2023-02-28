@@ -3,7 +3,6 @@ package com.samgyeobsal.controller;
 import com.samgyeobsal.service.OrderService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -31,7 +30,7 @@ public class OrderController {
 
     private final OrderService orderService;
 
-    private String memberName = "isshosng";
+    private String mId = "isshosng";
 
 
     // 편딩 id로 펀딩 찾아서 해당 리워드들 모델에 넣어줌
