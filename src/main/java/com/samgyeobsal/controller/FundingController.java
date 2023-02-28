@@ -27,6 +27,11 @@ public class FundingController {
 
     @GetMapping("/100")
     public String productDetail(){
-        return "funding/funding_detail";
+        return "funding/product_detail";
+    }
+
+    @GetMapping("/100/select")
+    public String select(){
+        return "funding/select";
     }
 }
