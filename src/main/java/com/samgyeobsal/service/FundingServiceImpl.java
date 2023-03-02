@@ -1,18 +1,21 @@
 package com.samgyeobsal.service;
 
+import com.samgyeobsal.domain.funding.FundingCriteria;
 import com.samgyeobsal.domain.funding.FundingVO;
 import com.samgyeobsal.mapper.FundingMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
-public class FundingServiceImpl {
+public class FundingServiceImpl implements FundingService{
 
     @Autowired
-    FundingMapper fundingMapper;
+    private FundingMapper fundingMapper;
 
-    FundingVO getFundingList(){
-        return fundingMapper.getFundingList();
+    public List<FundingVO> getFundingList(FundingCriteria criteria){
+        return fundingMapper.getFundingList(criteria);
     }
 
 }

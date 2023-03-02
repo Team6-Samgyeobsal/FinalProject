@@ -10,6 +10,7 @@ import lombok.ToString;
 public class FundingVO {
     private String fstore_name;
     private String ftitle;
-    private int totalprice;
+    private long totalprice;
     private String fimg1;
+    private int expire;
 }
