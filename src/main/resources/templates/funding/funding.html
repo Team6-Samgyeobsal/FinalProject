@@ -1959,11 +1959,11 @@
             <div class="Main_categoryMargin__1RWGF"></div>
             <div class="Main_container__2oIVn">
                 <div class="Main_category__3sabq">
-                    <p class="Main_categoryName__3YilF">전체</p>
+                    <p class="Main_categoryName__3YilF">더현대 전체</p>
                     <div class="Main_filterWrap__2l__0">
                         <div class="OrderSelect_sortContainer__3F7LQ">
                             <div class="OrderSelect_content__1RjYa">
-                    <span>전체</span
+                    <span>더현대 전체</span
                     >
                                 <svg
                                         viewBox="0 0 32 32"
@@ -1978,19 +1978,19 @@
                                 </svg>
                             </div>
                             <select class="OrderSelect_selectBox__2hBjk">
-                                <option value="">전체</option>
-                                <option value="1">더현대 서울</option>
-                                <option value="2">더현대 대구</option>
-                                <option value="3">더현대 광주</option>
+                                <option value="더현대 전체">더현대 전체</option>
+                                <option value="더현대 서울">더현대 서울</option>
+                                <option value="더현대 대구">더현대 대구</option>
+                                <option value="더현대 광주">더현대 광주</option>
                             </select>
                         </div>
                         <ul class="OrderSelectDesktop_sortContainer__1YLsr">
                             <li
                                     class="OrderSelectDesktop_sortItem__12TKi OrderSelectDesktop_active__YTP2K"
                             >
-                                펀딩한 사람순
+                                모집금액순
                             </li>
-                            <li class="OrderSelectDesktop_sortItem__12TKi">모집금액순</li>
+                            <li class="OrderSelectDesktop_sortItem__12TKi">펀딩한 사람순</li>
                             <li class="OrderSelectDesktop_sortItem__12TKi">최신순</li>
                             <li class="OrderSelectDesktop_sortItem__12TKi">
                                 응원댓글순
@@ -2052,8 +2052,10 @@
                 </div>
                 <script>
                     $(document).ready(function () {
-                        let type;
-                        getList(type);
+                        let type=0;
+                        let place=0;
+                        let sort=0;
+                        getList(type,place,sort);
 
 
                             $('.ImageTab_tab__3siCY').click(function () {
@@ -2061,7 +2063,7 @@
                             if (!$(this).hasClass('ImageTab_active__BGdXu')) {
                                 type = $(this).closest('li').data('index');
                                 console.log(type);
-                                getList(type);
+                                getList(type,place,sort);
                                 $('.ImageTab_tab__3siCY').removeClass('ImageTab_active__BGdXu');
                                 $(this).addClass('ImageTab_active__BGdXu');
                             }
@@ -2070,12 +2072,21 @@
                             if (!$(this).hasClass('OrderSelectDesktop_active__YTP2K')) {
                                 $('.OrderSelectDesktop_sortItem__12TKi').removeClass('OrderSelectDesktop_active__YTP2K');
                                 $(this).addClass('OrderSelectDesktop_active__YTP2K');
+                                sort=$(this).text();
+                                console.log(sort);
+                                getList(type,place,sort);
                             }
 
                         })
+                        $('.OrderSelect_sortContainer__3F7LQ .OrderSelect_selectBox__2hBjk').change(function (){
+                            place=$(this).val();
+                            $('.OrderSelect_content__1RjYa').find('span').text(place);
+                            $('.Main_categoryName__3YilF').text(place);
+                            getList(type,place,sort);
+                        })
 
 
-                        function getList(type){
+                        function getList(type,place,sort){
                             $('.TableLayout_container__1_Ap4').html('');
                             let url = '/api/funding/list';
                             $.ajax({
@@ -2084,13 +2095,12 @@
                                 contentType: "application/json; charset=utf-8",
                                 data:{
                                     type:type,
-                                    sort:1,
-                                    place:1
+                                    place:place,
+                                    sort:sort
                                 },
 
                                 success: function (data, status) {
                                     data.forEach(function (funding) {
-                                        console.log(funding.ftitle);
                                         let k = ` <div
                             class="PreorderMainCard_root__1-vcs"
                             style="height: 100%; position: relative"
@@ -2213,8 +2223,11 @@
                         }
 
 
+
+
                     })
                 </script>
+
     </main>
 
 </body>
