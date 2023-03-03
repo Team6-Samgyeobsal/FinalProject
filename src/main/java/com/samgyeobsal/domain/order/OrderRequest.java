@@ -4,6 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Date;
+
 /**
  * @filename OrderRequest
  * @author 최태승
@@ -35,4 +37,5 @@ public class OrderRequest {
     private int pmMethod; // 결제방식
     private String pmCompany; // 지불회사
     private String mId; // 회원 아이디
+    private Date oDate; // 주문 날짜
 }

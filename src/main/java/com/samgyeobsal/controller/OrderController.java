@@ -30,7 +30,7 @@ public class OrderController {
 
     private final OrderService orderService;
 
-    private String mId = "isshosng";
+    private String mId = "testuser";
 
 
     // 편딩 id로 펀딩 찾아서 해당 리워드들 모델에 넣어줌
