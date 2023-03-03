@@ -3,7 +3,6 @@ package com.samgyeobsal.controller;
 import com.samgyeobsal.service.OrderService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -31,21 +30,17 @@ public class OrderController {
 
     private final OrderService orderService;
 
-    private String memberName = "isshosng";
+    private String mId = "testuser";
 
-    @RequestMapping(value="", method = RequestMethod.GET)
-    public String orderForm(Model model){
-        return "order/orderDetail";
-    }
 
     // 편딩 id로 펀딩 찾아서 해당 리워드들 모델에 넣어줌
-    @GetMapping("/step1/{fundingId}")
+    @GetMapping("/{fundingId}/step1")
     public String orderStep1Page(@PathVariable("fundingId") String fundingId){
         return "order/order_step1";
     }
 
     // step2 페이지로 리다이렉트 하게끔
-    @PostMapping("/step1/{fundingId}")
+    @PostMapping("/{fundingId}/step1")
     public String orderStep1(
             @PathVariable("fundingId") String fundingId,
             RedirectAttributes redirect){
@@ -54,7 +49,7 @@ public class OrderController {
         return "redirect:/web/order/step2";
     }
 
-    @GetMapping("/step2")
+    @GetMapping("/{fundingId}/step2")
     public String orderStep2Page(){
         return "order/order_step2";
     }

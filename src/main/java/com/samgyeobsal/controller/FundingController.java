@@ -34,6 +34,4 @@ public class FundingController {
         //model.addAttribute("product",);
         return "funding/product_detail";
     }
-
-
 }

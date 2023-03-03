@@ -4,6 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Date;
+
 /**
  * @filename OrderRequest
  * @author 최태승
@@ -26,6 +28,7 @@ public class OrderRequest {
     private int oCount; // 주문 상품 수량
     private String oConsumer; // 소비자
     private String oPhone; // 주문자 전화번호
+    private String oMemo; // 주문 메모
     private String oMail; // 이메일
     private String cPid; // 쿠폰 아이디
     private int oOriginPrice; // 원래 가격
@@ -34,4 +37,5 @@ public class OrderRequest {
     private int pmMethod; // 결제방식
     private String pmCompany; // 지불회사
     private String mId; // 회원 아이디
+    private Date oDate; // 주문 날짜
 }

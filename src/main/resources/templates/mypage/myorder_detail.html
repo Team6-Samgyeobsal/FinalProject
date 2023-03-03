@@ -1,0 +1,647 @@
+<html lang="ko" class="scroll-top scroll-apex">
+  <head>
+    <style>
+      .async-hide {
+        opacity: 0 !important;
+      }
+    </style>
+
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta
+      name="viewport"
+      content="width=device-width,initial-scale=1,shrink-to-fit=no,user-scalable=no,viewport-fit=cover" />
+    <meta
+      name="description"
+      content="테크, 패션, 푸드, 뷰티, 홈리빙까지. 와디즈 펀딩으로 매일 새로운 일상을 발견하고, 와디즈 스토어에서 새로운 쇼핑을 만나보세요." />
+    <title>와디즈 - 나의 펀딩현황</title>
+
+    <link
+      rel="shortcut icon"
+      href="https://static.wadiz.kr/assets/icon/favicon.ico" />
+    <link
+      rel="icon"
+      href="https://static.wadiz.kr/assets/icon/favicon-16x16.png"
+      sizes="16x16"
+      type="image/png" />
+    <link
+      rel="icon"
+      href="https://static.wadiz.kr/assets/icon/favicon-32x32.png"
+      sizes="32x32"
+      type="image/png" />
+
+    <script>
+      wadiz = {};
+      wadiz.sessionUser = '605949501';
+      wadiz.globals = {
+        isLogged: JSON.parse('true'),
+        userId: '6059495',
+        encUserId: '605949501',
+        hashedUserName: 'fd7c846e9116d3becb0fb40c8cee3f6cd31f4145',
+        staticHost: 'https://static.wadiz.kr',
+        publicApiHost: 'https://public-api.wadiz.kr',
+        embedApiHost: 'https://embed-api.wadiz.kr',
+        serviceApiHost: 'https://service.wadiz.kr',
+        analyticsHost: 'https://analytics.wadiz.kr',
+        platformApiHost: 'https://platform.wadiz.kr',
+      };
+    </script>
+
+    <link
+      rel="stylesheet"
+      href="https://static.wadiz.kr/static/web/wui.css?cb9a5d5c" />
+    <link
+      rel="stylesheet"
+      href="https://static.wadiz.kr/static/web/css/vendor.6b6b0127.chunk.css" />
+    <link
+      rel="stylesheet"
+      href="https://static.wadiz.kr/static/web/common.css?f19ec0c0" />
+    <link
+      rel="stylesheet"
+      href="https://static.wadiz.kr/static/web/layout.css?cf366e90" />
+    <script
+      type="text/javascript"
+      src="https://static.wadiz.kr/static/web/polyfill.js?efeedaed"></script>
+    <script
+      type="text/javascript"
+      src="https://static.wadiz.kr/static/web/wui.js?ecf1279f"></script>
+    <script
+      type="text/javascript"
+      src="https://static.wadiz.kr/static/web/vendor.js?3f2fd166"></script>
+    <script
+      type="text/javascript"
+      src="https://static.wadiz.kr/static/web/common.js?d4ee3c82"></script>
+    <script
+      type="text/javascript"
+      src="https://static.wadiz.kr/static/web/layout.js?70697b0a"></script>
+
+    <link
+      href="https://cdn.wadiz.kr/resources/static/css/wlayout.css?v=201803151400"
+      rel="stylesheet" />
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/7f85a56ba4.css" />
+  </head>
+  <link href="../../static/css/mypage/myorder_detail.css" />
+  <body cz-shortcut-listen="true">
+    <style>
+      .mypage-project.bg {
+        background: #f5f7fa;
+        padding-bottom: 160px;
+      }
+      @media screen and (min-width: 960px) {
+        .mypage-project .project-detail {
+          max-width: 960px;
+          margin: 0 auto;
+          padding: 32px 24px 48px;
+        }
+      }
+    </style>
+    <link
+      href="https://www.wadiz.kr/resources/static/css/wmypage.css?v=20220915"
+      rel="stylesheet" />
+    <link
+      href="https://www.wadiz.kr/resources/static/css/util.css"
+      rel="stylesheet" />
+    <link
+      href="https://www.wadiz.kr/resources/static/css/wprojectcard.css"
+      rel="stylesheet" />
+
+    <link
+      rel="stylesheet"
+      href="https://static.wadiz.kr/account/reward-payments.2f8399ae.css" />
+
+    <link
+      rel="stylesheet"
+      href="https://static.wadiz.kr/static/my/main.0f0d4897.css" />
+
+    <style type="text/css">
+      /* 모바일화면에서 공통 Header 가림 */
+      #wadizHeader {
+        display: none;
+      }
+      @media screen and (min-width: 960px) {
+        #wadizHeader {
+          display: block;
+        }
+      }
+    </style>
+
+    <script
+      type="text/javascript"
+      src="https://cdn.wadiz.kr/resources/static/js/wMotion.js?v=20190222"></script>
+
+    <link
+      rel="stylesheet"
+      href="https://static.wadiz.kr/static/floating-buttons/main.8785363b.css" />
+
+    <div id="page-container">
+      <div class="black-bg-wrap" style="display: none"></div>
+
+      <div id="wz-header">
+        <div th:replace="/fragment/header__3X3Cg.html :: header"></div>
+      </div>
+
+      <script>
+        window.dispatchEvent(
+          new CustomEvent('WadizHeaderLoaded', {
+            detail: {
+              element: document.getElementById('wz-header'),
+            },
+          })
+        );
+      </script>
+
+      <form id="forwardForm" method="get">
+        <input type="hidden" id="returnURL" name="returnURL" />
+      </form>
+      <input type="hidden" id="sessionLoginCheck" value="true" />
+
+      <div id="wadizContainer">
+        <div id="mypageWrap">
+          <div class="myfunding-wrap myRewardPurchase">
+            <div class="mypage-project bg short">
+              <div
+                class="project-detail form-wrap"
+                id="landing-myreward-purchase">
+                <div
+                  id="myreward-purchase-detail"
+                  data-campaign-id="190459"
+                  data-backing-payment-id="9851346"
+                  data-maker-name="제이앤와이푸드"
+                  data-maker-id="4145999207"
+                  data-referer="https://www.wadiz.kr/web/mywadiz/participation"
+                  data-param-referer="">
+                  <div>
+                    <div class="PurchaseInfoContainer_container__1uMSh">
+                      <p class="PurchaseInfoContainer_cate__1QTet">
+                        프리오더 / 푸드
+                      </p>
+                      <p class="PurchaseInfoContainer_status__205il">
+                        <i class="PurchaseInfoContainer_icon__3cTu1"></i>진행중
+                      </p>
+                      <a
+                        href="/web/campaign/detail/190459"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        ><p class="PurchaseInfoContainer_title__3Z6oW">
+                          어묵국물까지 주는 꾸덕한 옛날 떡볶이! 조리도구도
+                          필요없다는데?
+                        </p></a
+                      >
+                      <p class="PurchaseInfoContainer_maker__2k4e3">
+                        by <button>제이앤와이푸드</button>
+                      </p>
+                      <div class="PurchaseInfoContainer_summary__lg8v7">
+                        <div class="PurchaseInfoContainer_list__vACqm">
+                          <p class="PurchaseInfoContainer_listTitle__eA-QW">
+                            결제 번호
+                          </p>
+                          <p>9851346</p>
+                        </div>
+                        <div class="PurchaseInfoContainer_list__vACqm">
+                          <p class="PurchaseInfoContainer_listTitle__eA-QW">
+                            참여일
+                          </p>
+                          <p>2023.02.28 09:53</p>
+                        </div>
+                        <div class="PurchaseInfoContainer_list__vACqm">
+                          <p class="PurchaseInfoContainer_listTitle__eA-QW">
+                            종료일
+                          </p>
+                          <p>2023.03.17</p>
+                        </div>
+                        <div class="FundingRewardInfo_container__2Bvhc">
+                          <div class="FundingRewardInfo_list__ETyrt">
+                            <p class="FundingRewardInfo_listTitle__8G48Y">
+                              결제 상태
+                            </p>
+                            <p class="FundingRewardInfo_status__1lR2q">
+                              결제 예약
+                            </p>
+                          </div>
+                          <div class="FundingRewardInfo_subText__GPFx3">
+                            프로젝트 종료 후 2023.03.20 17시에 결제가 진행되며,
+                            결제 실패건에 한하여 다음 영업일 17시에 재결제가
+                            진행됩니다. (최대 4차 결제 진행)
+                          </div>
+                          <div class="FundingRewardInfo_cancelBtn__1y1oz">
+                            <button class="wz button" color="gray">
+                              결제 예약 취소
+                            </button>
+                          </div>
+                          <div class="FundingRewardInfo_info__ja3-c">
+                            결제 예약 취소는 프로젝트 종료일인 2023.03.17 까지
+                            가능합니다.<br />리워드 종류 및 수량 변경은
+                            불가하며, 취소 후 재 펀딩해야 합니다.
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="PurchaseStatus_container__ux-k0">
+                      <h2 class="PurchaseStatus_rewardInfo__2N7jO">
+                        리워드 정보
+                      </h2>
+                      <div class="PurchaseStatusItemContainer_container__3Zv4D">
+                        <h3 class="PurchaseStatusItemContainer_title__2sTw5">
+                          [얼리버드] 1997 떡볶이 캠핑패키지
+                        </h3>
+                        <div
+                          class="PurchaseStatusItemContainer_description__33DNm">
+                          <p class="PurchaseStatusItemContainer_desc__3zaXY">
+                            떡볶이 밀키트는 기본! 조리할 때/드실 때 필요한
+                            제품들도 함께 구성되어 있어, 언제 어디서든 간편하게
+                            떡볶이를 즐기실 수 있습니다 :) 구성품 :
+                            1997떡볶이(+어묵국물소스) , 알류미늄 냄비,
+                            숟가락/젓가락/물티슈 SET 2개, 500ML 생수 2개, 종이컵
+                            (10온스) 2개
+                          </p>
+                          <button
+                            class="PurchaseStatusItemContainer_iconBtn__14gHQ">
+                            접어두기<i
+                              class="icon chevron-right PurchaseStatusItemContainer_icon__2PWfg PurchaseStatusItemContainer_open__2PZ_I"
+                              aria-hidden="true"></i>
+                          </button>
+                          <hr
+                            class="Divider_divider__1CIPR Divider_horizontal__29Gjw Divider_lightBG__1vKyf Divider_caption2__3jCC2" />
+                        </div>
+                        <div class="PurchaseStatusItemContainer_detail__2q2l_">
+                          <p>9,900원 / 1개</p>
+                          <p
+                            class="PurchaseStatusItemContainer_deliveryStart__davkF">
+                            발송 시작일: 2023년 03월 말 (21~말일) 예정
+                          </p>
+                        </div>
+                      </div>
+                      <div class="PurchaseStatus_info__2uLpV">
+                        <p>
+                          ※ 프로젝트 교환・환불・A/S 정책은 환불・정책을
+                          확인하세요.
+                        </p>
+                        <a
+                          href="/web/campaign/detail/fundingInfo/190459"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          >프로젝트 환불・정책 바로가기</a
+                        >
+                      </div>
+                    </div>
+                    <div class="FundingPayment_container__1cP6O">
+                      <div>
+                        <div class="FundingPayment_title__2qp8l">결제 내역</div>
+                        <ul>
+                          <li class="FundingPayment_list__1ayI4">
+                            <p>리워드 금액</p>
+                            <p>9,900원</p>
+                          </li>
+                          <li class="FundingPayment_list__1ayI4">
+                            <p>쿠폰 차감금액</p>
+                            <p>- 0원</p>
+                          </li>
+                          <li class="FundingPayment_list__1ayI4">
+                            <p>포인트 차감금액</p>
+                            <p>- 0원</p>
+                          </li>
+                          <li class="FundingPayment_list__1ayI4">
+                            <p>추가 후원금</p>
+                            <p>0원</p>
+                          </li>
+                          <li class="FundingPayment_list__1ayI4">
+                            <p>배송비</p>
+                            <p>3,000원</p>
+                          </li>
+                          <hr
+                            class="Divider_divider__1CIPR Divider_horizontal__29Gjw Divider_lightBG__1vKyf Divider_spacing5__37PiC Divider_caption2__3jCC2" />
+                          <li
+                            class="FundingPayment_list__1ayI4 FundingPayment_bold__BfCej">
+                            <p>최종 결제 금액</p>
+                            <p>12,900원</p>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                    <div class="Toast_toast__RW3fu">
+                      <div class="Toast_content__2Xl1R">
+                        처리 도중 문제가 발생하였습니다.
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="inner-section">
+                  <!-- 결제 정보 -->
+                  <div id="fundingDetail" class="funding-detail">
+                    <div class="inner-detail" style="padding: 24px 16px">
+                      <h4
+                        style="
+                          font-size: 14px;
+                          font-weight: normal;
+                          line-height: 20px;
+                          color: #212529;
+                        ">
+                        결제 정보
+                      </h4>
+                      <div>
+                        <div
+                          id="modify-pay-app"
+                          data-type="edit"
+                          data-backing-payment-id="9851346"
+                          data-campaign-title="어묵국물까지 주는 꾸덕한 옛날 떡볶이! 조리도구도 필요없다는데?"
+                          data-is-modifiable="true"
+                          data-card-no="************7081"
+                          data-card-quota="0"
+                          data-pay-by="dbcredit"
+                          data-is-available-installment="false"
+                          data-is-donation-category="false"
+                          data-is-preorder-type="true">
+                          <div>
+                            <dl>
+                              <dt>결제방법</dt>
+                              <dd>신용(체크)카드</dd>
+                            </dl>
+                            <dl>
+                              <dt>카드번호</dt>
+                              <dd>************7081</dd>
+                            </dl>
+                            <dl>
+                              <dt>할부기간</dt>
+                              <dd>일시불</dd>
+                            </dl>
+                          </div>
+                          <div class="SimplePayEdit_simplePayEdit__ZPmN-">
+                            <button class="wz primary-outline block button">
+                              결제 정보 변경하기
+                            </button>
+                          </div>
+                          <input
+                            type="hidden"
+                            name="has-simplepay-info"
+                            value="false" />
+                        </div>
+                      </div>
+                      <div class="modify">
+                        <form id="creditPaymentInfoForm">
+                          <input
+                            type="hidden"
+                            id="backingPaymentId"
+                            name="backingPaymentId"
+                            value="9851346" />
+                          <p>신용(체크)카드 번호</p>
+                          <div class="input-wrap divide">
+                            <span class="div4"
+                              ><input
+                                type="tel"
+                                name="cardNum1"
+                                maxlength="4"
+                                class="input-text numOnly"
+                            /></span>
+                            <span class="div4"
+                              ><input
+                                type="tel"
+                                name="cardNum2"
+                                maxlength="4"
+                                class="input-text numOnly"
+                            /></span>
+                            <span class="div4"
+                              ><input
+                                type="password"
+                                name="cardNum3"
+                                maxlength="4"
+                                class="input-text numOnly"
+                            /></span>
+                            <span class="div4"
+                              ><input
+                                type="tel"
+                                name="cardNum4"
+                                maxlength="4"
+                                class="input-text numOnly"
+                            /></span>
+                          </div>
+                          <p>유효기간</p>
+                          <div class="input-wrap divide">
+                            <input
+                              type="tel"
+                              name="cardExpMM"
+                              maxlength="2"
+                              class="input-text div1 numOnly"
+                              placeholder="월" />
+                            <input
+                              type="tel"
+                              name="cardExpYY"
+                              maxlength="2"
+                              class="input-text div2 numOnly"
+                              placeholder="년" />
+                          </div>
+                          <p>비밀번호 앞 두자리</p>
+                          <input
+                            type="password"
+                            name="cardPwd"
+                            maxlength="2"
+                            class="input-text inline numOnly" /><span
+                            ><i class="dot"></i><i class="dot"></i
+                          ></span>
+                          <p>생년월일 (주민등록번호 앞 6자리)</p>
+                          <input
+                            type="tel"
+                            name="buyerAuthNum"
+                            maxlength="11"
+                            class="input-text mb5 numOnly" />
+                          <p class="comment">
+                            법인카드의 경우 사업자등록번호 10자리 입력
+                          </p>
+                        </form>
+                        <div class="btn-wrap divide">
+                          <button
+                            type="button"
+                            class="btn-line div1"
+                            onclick="cancelModifyPaydetail()">
+                            취소
+                          </button>
+                          <button
+                            type="button"
+                            class="btn-green-line div2"
+                            onclick="ajaxModifyBCreditPaymentInfoMultiple()">
+                            저장
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="box-info">
+                      <p>
+                        결제 정보 및 할부 변경은 펀딩 결제 예정일
+                        <strong>2023.03.20 16시 30분</strong> 까지 가능합니다.
+                      </p>
+                    </div>
+                  </div>
+                  <!--// 결제 정보 -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- // #wadizContainer -->
+
+        <div id="daumAddressLypop" class="lypop-fixed" style="display: none">
+          <div class="daum-address-wrap">
+            <div id="daumAddressCon"></div>
+            <button
+              type="button"
+              onclick="closeLyPop('daumAddress')"
+              class="wz blue block button">
+              닫기
+            </button>
+          </div>
+        </div>
+        <!-- 다음 주소검색 -->
+        <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+        <script type="text/javascript">
+          var element = document.getElementById('daumAddressCon');
+          var Wpost = function (cb) {
+            if (cb) {
+              // callback 이 있을경우는 callback 의 action
+              daum.postcode.load(function () {
+                new daum.Postcode({
+                  oncomplete: function (data) {
+                    cb(data);
+                  },
+                }).open();
+              });
+            } else {
+              // callback 이 없을 경우 wadiz 일반 action
+              daum.postcode.load(function () {
+                new daum.Postcode({
+                  width: '100%',
+                  height: '100%',
+                  oncomplete: function (data) {
+                    // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+
+                    // 각 주소의 노출 규칙에 따라 주소를 조합한다.
+                    // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+                    var fullAddr = ''; // 최종 주소 변수
+                    var extraAddr = ''; // 조합형 주소 변수
+
+                    // 사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+                    if (data.userSelectedType === 'R') {
+                      // 사용자가 도로명 주소를 선택했을 경우
+                      fullAddr = data.roadAddress;
+                    } else {
+                      // 사용자가 지번 주소를 선택했을 경우(J)
+                      fullAddr = data.jibunAddress;
+                    }
+
+                    // 사용자가 선택한 주소가 도로명 타입일때 조합한다.
+                    if (data.userSelectedType === 'R') {
+                      //법정동명이 있을 경우 추가한다.
+                      if (data.bname !== '') {
+                        extraAddr += data.bname;
+                      }
+                      // 건물명이 있을 경우 추가한다.
+                      if (data.buildingName !== '') {
+                        extraAddr +=
+                          extraAddr !== ''
+                            ? ', ' + data.buildingName
+                            : data.buildingName;
+                      }
+                      // 조합형주소의 유무에 따라 양쪽에 괄호를 추가하여 최종 주소를 만든다.
+                      fullAddr +=
+                        extraAddr !== '' ? ' (' + extraAddr + ')' : '';
+                    }
+
+                    // 우편번호와 주소 정보를 해당 필드에 넣는다.
+                    var $zipCode = $('#zipCode');
+                    var $location1 = $('#location1');
+                    var $location2 = $('#location2');
+                    if ($zipCode.length) {
+                      $zipCode.val(data.zonecode);
+                    }
+                    if ($location1.length) {
+                      $location1.val('[' + data.zonecode + '] ' + fullAddr);
+                      $location1.attr(
+                        'title',
+                        '[' + data.zonecode + '] ' + fullAddr
+                      );
+                    }
+                    if ($location2.length) {
+                      $location2.prop('disabled', false).val('');
+                      // 커서를 상세주소 필드로 이동한다.
+                      $location2.focus();
+                    }
+                    closeLyPop('daumAddress');
+                  },
+                }).embed(element, { autoClose: false });
+                showLyPop('daumAddress');
+              });
+            }
+          };
+        </script>
+
+        <style>
+          #holidayNoticeLypop .risk-popup-main-wrap li {
+            list-style: disc;
+            margin-left: 20px;
+          }
+          #holidayNoticeLypop div.risk-popup-text {
+            font-size: 14px;
+            line-height: 150%;
+          }
+        </style>
+
+        <div id="footer">
+          <div th:replace="/fragment/footer__15kue.html :: footer"></div>
+        </div>
+
+        <script>
+          window.dispatchEvent(
+            new CustomEvent('WadizFooterLoaded', {
+              detail: {
+                element: document.getElementById('footer'),
+              },
+            })
+          );
+        </script>
+      </div>
+
+      <div id="floating-buttons-app">
+        <div class="FloatingButtons_container__2VDUa">
+          <button
+            type="button"
+            class="FloatingTopButton_pageTop__2vt6t FloatingTopButton_visible__3h8Ak"
+            title="위로 이동">
+            <svg
+              viewBox="0 0 40 40"
+              focusable="false"
+              role="presentation"
+              class="withIcon_icon__24D_5"
+              aria-hidden="true">
+              <path
+                d="M33 30l-1.4 1.4L20 19.8 8.4 31.4 7 30l13-13zm1-21H6v2h28z"></path>
+            </svg></button
+          ><button
+            type="button"
+            data-ga-category="공통_최근본_UI"
+            data-ga-action="클릭"
+            data-ga-label=""
+            class="RecentView_container__5Nxua"
+            aria-label="최근본"
+            style="display: none">
+            <div
+              aria-hidden="true"
+              class="RecentView_thumbnail__107ZW CardThumbnail_thumbnail__sw2ym CardThumbnail_visible__1ZiAB CardThumbnail_noanimation__3qJay"
+              style="
+                background-image: url('https://cdn.wadiz.kr/wwwwadiz/green001/2023/0220/20230220164239986_190459.jpg/wadiz/resize/400.00001192092896/format/jpg/quality/85/');
+              "></div>
+          </button>
+          <div class="ChannelTalk_container__3tYAO">
+            <button
+              type="button"
+              aria-label="채널톡 와디즈 고객센터 문의"></button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <style>
+      .ab-iam-root.v3 {
+        z-index: 9999;
+      }
+    </style>
+  </body>
+</html>
