@@ -3,11 +3,6 @@
       xmlns:th="http://www.thymeleaf.org"
 >
   <head>
-    <style>
-      .async-hide {
-        opacity: 0 !important;
-      }
-    </style>
 
     <meta charset="utf-8" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
@@ -32,113 +27,35 @@
       href="https://static.wadiz.kr/assets/icon/favicon-32x32.png"
       sizes="32x32"
       type="image/png" />
-    <script>
-      wadiz = {};
-      wadiz.sessionUser = '';
-      wadiz.globals = {
-        isLogged: JSON.parse('false'),
-        userId: '',
-        encUserId: '',
-        hashedUserName: '',
-        staticHost: 'https://static.wadiz.kr',
-        publicApiHost: 'https://public-api.wadiz.kr',
-        embedApiHost: 'https://embed-api.wadiz.kr',
-        serviceApiHost: 'https://service.wadiz.kr',
-        analyticsHost: 'https://analytics.wadiz.kr',
-        platformApiHost: 'https://platform.wadiz.kr',
-      };
-    </script>
+
+    <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
 
     <link
+      rel="stylesheet"
+      href="/import/css/wui.css" />
+      <link
+      rel="stylesheet"
+      href="/import/css/layout.css" />
+
+    <link
+      rel="stylesheet"
+      href="/import/css/main.d8e939d6.css" />
+
+    <link
+      rel="stylesheet"
+      href="/import/css/main.b3728ebd.css" />
+
+       <link
       rel="stylesheet"
       type="text/css"
-      href="https://cdn.weglot.com/weglot.min.css?v=4" />
-
-    <link
-      rel="stylesheet"
-      href="https://static.wadiz.kr/static/web/wui.css?cb9a5d5c" />
-    <link
-      rel="stylesheet"
-      href="https://static.wadiz.kr/static/web/css/vendor.6b6b0127.chunk.css" />
-    <link
-      rel="stylesheet"
-      href="https://static.wadiz.kr/static/web/common.css?d165b488" />
-    <link
-      rel="stylesheet"
-      href="https://static.wadiz.kr/static/web/layout.css?0b839e26" />
-    <script
-      type="text/javascript"
-      src="https://static.wadiz.kr/static/web/polyfill.js?77e7221d"></script>
-    <script
-      type="text/javascript"
-      src="https://static.wadiz.kr/static/web/wui.js?4163c47c"></script>
-    <script
-      type="text/javascript"
-      src="https://static.wadiz.kr/static/web/vendor.js?e91df577"></script>
-
-    <script
-      type="text/javascript"
-      src="https://static.wadiz.kr/static/web/common.js?87db9043"></script>
-    <script
-      type="text/javascript"
-      src="https://static.wadiz.kr/static/web/layout.js?8a28804b"></script>
-
-    <script src="https://www.wadiz.kr/resources/equity/js/common.js"></script>
-    <script src="https://www.wadiz.kr/resources/equity/common/common.js"></script>
-    <script
-      type="text/javascript"
-      src="https://www.wadiz.kr/resources/static/js/wCommon.js"></script>
-
-    <link
-      href="https://cdn.wadiz.kr/resources/static/css/wlayout.css?v=201803151400"
-      rel="stylesheet" />
-
-    <link
-      rel="stylesheet"
-      href="https://static.wadiz.kr/account/main.d8e939d6.css" />
-
-    <link
-      rel="stylesheet"
-      href="https://static.wadiz.kr/static/iam/main.b3728ebd.css" />
-
-    <script
-      type="text/javascript"
-      src="https://cdn.wadiz.kr/resources/static/js/wMotion.js?v=20190222"></script>
-
-    <script src="https://www.wadiz.kr/resources/equity/js/common.js"></script>
-    <script src="https://www.wadiz.kr/resources/equity/common/common.js"></script>
-    <script
-      type="text/javascript"
-      src="https://www.wadiz.kr/resources/static/js/wCommon.js"></script>
-
-    <link
-      rel="stylesheet"
-      href="https://static.wadiz.kr/static/floating-buttons/main.5e88b41b.css" />
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="https://static.wadiz.kr/static/iam/css/7.e895ad47.chunk.css" />
-    <script
-      charset="utf-8"
-      src="https://static.wadiz.kr/static/iam/js/7.09486445.chunk.js"></script>
-    <link rel="stylesheet" href="https://use.fontawesome.com/7f85a56ba4.css" />
-  </head>
+      href="/import/css/7.e895ad47.chunk.css" />
+    </head>
   <body>
     <div id="page-container">
       <div class="black-bg-wrap" style="display: none"></div>
       
       <div th:replace="/fragment/header_simple.html :: header_simple"></div>
 
-
-      <script>
-        window.dispatchEvent(
-          new CustomEvent('WadizHeaderLoaded', {
-            detail: {
-              element: document.getElementById('wz-header'),
-            },
-          })
-        );
-      </script>
 
       <form id="forwardForm" method="get">
         <input type="hidden" id="returnURL" name="returnURL" />
@@ -232,10 +149,6 @@
                 >
                 로그인
               </button>
-              <input
-                type="hidden"
-                name="returnURL"
-                value="https://www.wadiz.kr/web/wreward/main" />
             </form>
             <div id="iam-account-app">
               <div>
