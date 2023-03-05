@@ -1,17 +1,10 @@
 <html lang="ko" class="scroll-top scroll-apex" translate="no">
 <meta charset="utf-8">
   <head>
-    <style>
-      .async-hide {
-        opacity: 0 !important;
-      }
-    </style>
 
     <title>리워드 선택</title>
-    <link href="/css/order/order_step1.css" />
-    <link
-      rel="manifest"
-      href="https://www.wadiz.kr/resources/static/manifest.json" />
+    <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
+
     <link
       rel="shortcut icon"
       href="https://static.wadiz.kr/assets/icon/favicon.ico" />
@@ -26,78 +19,41 @@
       sizes="32x32"
       type="image/png" />
 
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="https://cdn.weglot.com/weglot.min.css?v=4" />
 
     <link
       rel="stylesheet"
-      href="https://static.wadiz.kr/static/web/wui.css?cb9a5d5c" />
-    <link
-      rel="stylesheet"
-      href="https://static.wadiz.kr/static/web/css/vendor.6b6b0127.chunk.css" />
-    <link
-      rel="stylesheet"
-      href="https://static.wadiz.kr/static/web/common.css?d165b488" />
-    <link
-      rel="stylesheet"
-      href="https://static.wadiz.kr/static/web/layout.css?0b839e26" />
-    <script
-      type="text/javascript"
-      src="https://static.wadiz.kr/static/web/polyfill.js?77e7221d"></script>
-    <script
-      type="text/javascript"
-      src="https://static.wadiz.kr/static/web/wui.js?4163c47c"></script>
-    <script
-      type="text/javascript"
-      src="https://static.wadiz.kr/static/web/vendor.js?e91df577"></script>
-    <script
-      type="text/javascript"
-      src="https://static.wadiz.kr/static/web/common.js?87db9043"></script>
-    <script
-      type="text/javascript"
-      src="https://static.wadiz.kr/static/web/layout.js?8a28804b"></script>
+      href="/import/css/wui.css" />
 
+    <link
+      rel="stylesheet"
+      href="/import/css/layout.css" />
     <script
       type="text/javascript"
-      src="https://www.wadiz.kr/resources/static/js/wCommon.js?ver=20201111"></script>
+      src="/import/js/vendor.js"></script>
+    <script
+      type="text/javascript"
+      src="/import/js/layout.js"></script>
+
 
     <meta name="wadiz-app-hidden-header" content="yes" />
     <!-- E: Common Meta -->
 
     <link
-      href="https://cdn.wadiz.kr/resources/static/css/wlayout.css?v=201803151400"
-      rel="stylesheet" />
-
+      rel="stylesheet"
+      href="/import/css/common.css" />
     <link
       rel="stylesheet"
-      href="https://www.wadiz.kr/resources/static/css/common.css?v=20201105" />
-    <link
-      rel="stylesheet"
-      href="https://www.wadiz.kr/resources/static/css/wpurchase_reward.css?v=20220901" />
+      href="/import/css/wpurchase_reward.css" />
     <!-- 리워드결제페이지 -->
 
     <link
       rel="stylesheet"
-      href="https://static.wadiz.kr/reward/payments.562cdee9.css" />
-
-    <link
-      rel="stylesheet"
-      href="https://static.wadiz.kr/reward/reward-product.cfd21a1c.css" />
+      href="/import/css/reward-product.cfd21a1c.css" />
 
     <script
       type="text/javascript"
-      src="https://cdn.wadiz.kr/resources/static/js/wMotion.js?v=20190222"></script>
+      src="/import/js/wCommon.js"></script>
 
-    <script
-      type="text/javascript"
-      src="https://www.wadiz.kr/resources/static/js/wCommon.js?ver=20201111"></script>
-    <link
-      rel="stylesheet"
-      href="https://static.wadiz.kr/static/floating-buttons/main.5e88b41b.css" />
-
-    <link rel="stylesheet" href="https://use.fontawesome.com/7f85a56ba4.css" />
   </head>
   <body>
     <div id="page-container">
@@ -108,15 +64,6 @@
 
       </div>
 
-      <script>
-        window.dispatchEvent(
-          new CustomEvent('WadizHeaderLoaded', {
-            detail: {
-              element: document.getElementById('wz-header'),
-            },
-          })
-        );
-      </script>
 
       <form id="forwardForm" method="get">
         <input type="hidden" id="returnURL" name="returnURL" />
@@ -158,24 +105,6 @@
               <div class="wpurchase-reward">
                 <div class="top-area">
                   <h3><em>리워드 선택</em></h3>
-                </div>
-                <!-- S : 서포터클럽 가입 -->
-                <div
-                  id="supporter-club-subscribe-app"
-                  data-is-all-free-shipping-cost="true">
-                  <div
-                    role="button"
-                    class="FundingSupporterClubSubscriptionContainer_subscriptionButton__2HTma">
-                    5초 가입, 매달 쿠폰받고 참여하세요.<svg
-                      viewBox="0 0 40 40"
-                      focusable="false"
-                      role="presentation"
-                      class="withIcon_icon__2cPeY FundingSupporterClubSubscriptionContainer_chevron__1mWFS"
-                      aria-hidden="true">
-                      <path
-                        d="M28 20L15 33l-1.4-1.4L25.2 20 13.6 8.4 15 7l13 13z"></path>
-                    </svg>
-                  </div>
                 </div>
                 <div
                   id="reward-product-app"
@@ -860,17 +789,7 @@
 
       </div>
 
-      <script>
-        window.dispatchEvent(
-          new CustomEvent('WadizFooterLoaded', {
-            detail: {
-              element: document.getElementById('footer'),
-            },
-          })
-        );
-      </script>
     </div>
-    <div id="wadiz-app-banner"></div>
     <script>
       function sendWebMessage(eventName, options) {
         let localOptioins = options;
@@ -1194,12 +1113,7 @@
         $rewardNoticeForm
       );
       var $btnDetailPolicy = $('#wz-funding-info-as', $rewardNoticeForm);
-      alertify.set({
-        labels: {
-          ok: '확인',
-          cancel: '취소',
-        },
-      });
+
 
       <!-- 지지서명 정률 포인트 지급을 위한 queryParam 추출-->
       const getApid = () => {
@@ -1728,38 +1642,6 @@
       }
     </style>
 
-    <div id="floating-buttons-app">
-      <div class="FloatingButtons_container__2VDUa">
-        <button
-          type="button"
-          class="FloatingTopButton_pageTop__2vt6t FloatingTopButton_visible__3h8Ak"
-          title="위로 이동">
-          <svg
-            viewBox="0 0 40 40"
-            focusable="false"
-            role="presentation"
-            class="withIcon_icon__24D_5"
-            aria-hidden="true">
-            <path
-              d="M33 30l-1.4 1.4L20 19.8 8.4 31.4 7 30l13-13zm1-21H6v2h28z"></path>
-          </svg></button
-        ><button
-          type="button"
-          data-ga-category="공통_최근본_UI"
-          data-ga-action="클릭"
-          data-ga-label=""
-          class="RecentView_container__5Nxua"
-          aria-label="최근본"
-          style="display: none">
-          <div
-            aria-hidden="true"
-            class="RecentView_thumbnail__107ZW CardThumbnail_thumbnail__sw2ym CardThumbnail_visible__1ZiAB CardThumbnail_noanimation__3qJay"
-            style="
-              background-image: url('https://cdn.wadiz.kr/wwwwadiz/green001/2023/0215/20230215095501924_158604.jpg/wadiz/resize/180/format/jpg/quality/85/');
-            "></div>
-        </button>
-      </div>
-    </div>
     <script>
 
       $(document).ready(function (){
