@@ -11,12 +11,29 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
+
 @Controller
 @RequestMapping("/web/account")
 @RequiredArgsConstructor
 @Slf4j
 public class AccountController {
     private final MemberService memberService;
+
+    @GetMapping("/oauth2/success")
+    public String oauth2Success(@RequestParam("accessToken") String accessToken,
+                                @RequestParam("refreshToken") String refreshToken,
+                                HttpServletResponse response){
+        Cookie acsCookie = new Cookie("accessToken", accessToken);
+        acsCookie.setPath("/");
+        response.addCookie(acsCookie);
+
+        Cookie refCookie = new Cookie("refreshToken", refreshToken);
+        acsCookie.setPath("/");
+        response.addCookie(refCookie);
+        return "redirect:/web";
+    }
 
     @GetMapping("/login")
     public String loginPage(@RequestParam(required = false, name = "error") String error,

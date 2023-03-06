@@ -1,12 +1,17 @@
 package com.samgyeobsal.service;
 
 import com.samgyeobsal.domain.member.InsertFormMemberDTO;
+import com.samgyeobsal.domain.member.LoginDTO;
 import com.samgyeobsal.domain.member.MemberVO;
 import com.samgyeobsal.mapper.MemberMapper;
+import com.samgyeobsal.security.domain.Account;
 import com.samgyeobsal.type.LoginType;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -19,6 +24,9 @@ public class MemberServiceImpl implements MemberService {
 
     @Autowired
     private PasswordEncoder passwordEncoder;
+
+    @Autowired
+    private UserDetailsService userDetailsService;
 
     @Override
     public void insertMember(InsertFormMemberDTO member) {
@@ -39,5 +47,14 @@ public class MemberServiceImpl implements MemberService {
             }
         }
         return memberVO != null;
+    }
+
+    @Override
+    public void login(LoginDTO loginDTO) {
+        Account account = (Account) userDetailsService.loadUserByUsername(loginDTO.getEmail());
+        MemberVO memberVO = account.getMember();
+        if (!passwordEncoder.matches(loginDTO.getPassword(), memberVO.getMpassword())) {
+            throw new RuntimeException("비밀번호 다름");
+        }
     }
 }
