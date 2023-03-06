@@ -1,0 +1,669 @@
+@charset "utf-8";
+/*
+ * 2017.03.22 최초생성
+ * 마이페이지
+ */
+
+
+/*Toast 팝업*/
+.alertify, .alertify *{box-sizing: content-box}
+.alertify-logs{bottom:80px;right:0;width:100%;}
+.alertify-log-custom{width:300px;margin:10px auto;background:#111;padding:10px 0;font-size:15px;line-height:20px;color:#fff;border-radius:20px;text-align:center;font-family:Roboto, 'Noto Sans KR', sans-serif;-webkit-font-smoothing:antialiased}
+.alertify-log {right: 0;bottom:0;}
+.alertify-log-show {bottom: 0;}
+.alertify-log-hide {-webkit-transform: translate(0, 0); -moz-transform: translate(0, 0);-ms-transform: translate(0, 0); -o-transform: translate(0, 0);transform: translate(0, 0);}
+
+
+/* MY Profile */
+#mypageWrap{width:100%;}
+#mypageWrap, #mypageWrap *{font-family:Roboto,"Noto Sans KR",sans-serif;-webkit-font-smoothing:antialiased}
+#mypageWrap.viewnone{opacity:0;height:100%;height:70vh;overflow:hidden}
+#MowTopNav{position:relative;display:block;width:100%;height: 48px;background:#fff;}
+#MowTopNav .btn-back{position:absolute;left:0;top:0;display:block;padding: 0 12px 0 8px;height: 48px;margin:0;background:none;border:none;}
+#MowTopNav .btn-back i{display:block;font-size: 28px;line-height: 48px;color: #60656A;}
+#MowTopNav .btn-right{position:absolute;display:block;right:0;top:0;padding:0 16px;height:56px;font-size:15px;line-height:56px;color:#00c4c4}
+#MowTopNav .btn-home{position:absolute;display:block;right:0;top:0;padding: 0 14px 0 10px;height: 48px;font-size: 24px;line-height: 48px;color: #60656A;}
+#MowTopNav h3{padding:0 50px;text-align:center;font-weight:500;font-size:16px;line-height: 48px;box-sizing:border-box !important;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;}
+@media screen and (min-width: 960px) {
+    #MowTopNav{display:none}
+}
+/* MY Profile - 상단 User 정보 */
+.myinfo-wrap{width:100%;}
+.myinfo-wrap > .inner-section{padding: 40px 16px 32px;}
+.myinfo-content {max-width: 960px; margin: 0 auto;}
+.myinfo-content dl{width:100%;display:table;table-layout:fixed;margin-bottom:16px;}
+.myinfo-content dd{display:table-cell;width:auto;padding-right:16px;vertical-align:top;}
+.myinfo-content dt{display:table-cell;width:96px;vertical-align:top;}
+.myinfo-content .nickname{word-break: break-all;white-space: normal; display: inline-block; margin-bottom: 6px;font-size: 32px;line-height: 40px;letter-spacing: -.02em;font-weight: 500;color: #44484b;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;}
+.myinfo-content .badge-w9 {display: inline-block;position: relative;top: -2px;margin-right: 8px;border-radius: 4px;background-color: #9f8673;padding: 0 6px;line-height: 19px;color: #fff;font-size: 10px;font-weight: 500;}
+.myinfo-content .accnttype{font-size: 13px;font-weight:400;line-height:18px;color:#90949c;}
+.myinfo-content .otherinfo{font-size: 13px;font-weight:400;line-height:18px;color:#90949c;}
+.myinfo-content .profile-img,
+.myinfo-content .profile-img:after{width:96px;height:96px;box-sizing:border-box;border-radius:100%}
+.myinfo-content .profile-img{position:relative;display:block;background:no-repeat center;background-size:cover}
+.myinfo-content .profile-img:after{position:absolute;left:0;top:0;border:1px solid rgba(0,0,0,.06);display:block;clear:both;content:''}
+.myinfo-content .introduce{max-width: 700px;margin-bottom:16px;font-size: 13px;font-weight:400;line-height: 20px;max-height:40px;letter-spacing: -.02em;color:#44484b;overflow:hidden;text-overflow:ellipsis;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;word-wrap:break-word;}
+.myinfo-content .interest-list{max-width: 700px;width:100%;}
+.myinfo-content .interest-list li{display:inline-block;padding-bottom: 4px;}
+.myinfo-content .interest-list li em{display:inline-block;padding: 0 6px;margin-right: -1px;height: 24px;line-height: 24px;letter-spacing: -.02em;font-size: 12px;color: #7C8288;background:#f0f2f5;}
+.myinfo-content .interest-list li .btn-more{display:inline-block;padding:0;font-size: 12px;line-height: 22px;font-weight:300;color: #00c4c4;background:none;border:none;}
+.myinfo-content .btn-wrap{display:block;padding-top:16px;font-size: 0;}
+.myinfo-content .btn-wrap a,
+.myinfo-content .btn-wrap button {margin-right: 8px; margin-bottom: 4px;}
+.myinfo-content .btn-wrap .btn-edit{display:inline-block;padding: 0 12px;font-size: 15px;color: #60656A;letter-spacing: -.02em;border: 1px solid #babdc0;}
+.myinfo-content .activity-list {font-size: 0; margin-bottom: 40px;justify-content:space-between;}
+.myinfo-content .activity-list li {margin-right: 8px; display: inline-block; text-align: center;}
+.myinfo-content .activity-list .count {display: block; width: 60px;  color: #557cf2; font-size: 24px; font-weight: 500; line-height: 1.17; margin-bottom: 4px;}
+.myinfo-content .activity-list span,
+.myinfo-content .activity-list em {color: #90949c; font-size: 13px; }
+.myinfo-content .activity-list em {color: #557cf2;}
+.myinfo-content .btn-wrap a,
+.myinfo-content .btn-wrap button {max-width: 105px; width: 100%; text-align: center;}
+.myinfo-content .btn-follow {display:inline-block; font-size: 15px;color: #60656A;border: 1px solid #babdc0;}
+.myinfo-content .btn-follow .icon-check {font-weight: bold; color: #babdc0;}
+
+@media screen and (max-width: 768px) {
+    .myinfo-content {width: 100%; padding-right: 0;}
+    .myinfo-content .activity-list {display: flex; align-items: stretch}
+    .myinfo-content .activity-list .count {width: 66px;}
+}
+@media screen and (min-width: 960px) {
+    .myinfo-wrap > .inner-section{width: 960px;margin:0 auto;padding: 56px 24px 40px;}
+    .myinfo-content {padding-right: 160px;}
+    .myinfo-content .nickname{font-size: 36px;line-height:44px;}
+}
+
+/*.payback-info {position:relative; padding:24px;background:#fafbfc; border:1px solid #e4e4e4;margin-bottom: 8px;}*/
+.payback-info h5 {font-size: 17px; color: #44484b; margin-bottom: 16px}
+.payback-info li div p{text-align:left;font-weight:normal;font-size:12px;line-height:16px;}
+.payback-info .name {font-size:13px;color:#44484b;font-weight:500;line-height:18px;}
+.payback-info .detail {font-size:13px;color:#44484b;max-height: 72px; text-overflow:ellipsis; overflow: hidden;line-height:18px; margin-bottom:8px;}
+.payback-info .summary {font-size:13px;color:#44484b;margin-bottom: 8px; line-height: 18px;}
+.payback-info li div p strong{display:inline-block;width:10px;font-size:13px;font-weight:500;}
+
+/* MY Page - 프로젝트리스트 */
+h2.mypage-top-title{padding: 32px 16px 16px;font-size: 24px;line-height: 32px;letter-spacing: -0.3px;color:rgba(0, 0, 0, .84);text-align:center;font-weight:bold;}
+h2.mypage-top-title.short{max-width: 1032px; box-sizing: border-box; font-weight: 700; padding: 56px 0 24px; font-size: 24px;}
+h2.mypage-top-title .link {color: #00c4c4}
+.mypage-project{width:100%;min-height:50vh;}
+.mypage-project.webview{min-height:90vh}
+.mypage-project.bg{background: #F5F7FA;padding-bottom:160px;}
+.mypage-project .tab-list{position:relative;top:0;left:0;width:100%;background:#fff;box-shadow: 0 1px 0 0 rgba(0,0,0,.08);z-index:100;transition-property:background-color,-webkit-backdrop-filter,backdrop-filter;transition-duration:.5s}
+.mypage-project.fixed .tab-list{background-color:rgba(255,255,255,.95)}
+@supports ((-webkit-backdrop-filter: initial) or (backdrop-filter: initial)) {
+    .mypage-project.fixed .tab-list{
+        -webkit-backdrop-filter: saturate(180%) blur(20px);
+        backdrop-filter: saturate(180%) blur(20px);
+        background-color: rgba(255, 255, 255, 0.85);
+    }
+}
+.mypage-project.bg .tab-list{border-top:none}
+.mypage-project .tab-list ul{width:100%;}
+.mypage-project .tab-list ul:after{content:"";clear:both;display:block;}
+.mypage-project .tab-list ul li{float:left;width:33.33333%}
+.mypage-project .tab-list ul li a{display:block;width:100%;height:47px;font-size:15px;line-height:48px;color:#90949c;text-align:center;border-bottom:1px solid #fff;text-decoration:none}
+.mypage-project .tab-list ul li.active a{color: #00c4c4;height: 47px;border-bottom: 2px solid #00c4c4;}
+.mypage-project .tab-list ul li.disabled a{pointer-events: all; color: #babdc0;height: 47px;}
+.mypage-project .tab-list.coupon ul li{width:50%}
+.mypage-project .tab-list.coupon ul li.active a{color: #44484B;border-color: #557CF2;}
+.mypage-project .tab-list.coupon ul li a em{font-weight:500;color: #4167D9;padding-left: 4px;font-size: 16px;}
+.mypage-project .project-list{width:100%;padding:0;background: #F5F7FA;}
+.mypage-project .top-area{position:relative;padding:16px 16px 24px;}
+.mypage-project .top-area .status-text{font-size:12px;font-weight:400;line-height:16px;color:#44484b;}
+.mypage-project .top-area .select-box{position:absolute;right: 16px;top:3px;height: 40px;}
+.mypage-project .top-area .select-box:before{position:absolute;right:0;top:0;font-size: 20px;line-height:46px;color:#60656A;vertical-align:middle}
+.mypage-project .top-area .select-box select{position:relative;padding: 0 24px 0 0;font-size: 13px;font-weight:400;height:40px;line-height: 40px;color:#44484b;background:none;border:none;text-align-last: right;-webkit-appearance:none;-moz-appearance:none;appearance:none;z-index:10;}
+.mypage-project .top-area .select-box select::-ms-expand{display:none}
+.mypage-project .top-area .select-box select option{display:inline-block}
+.mypage-project.fixed .tab-list{position:fixed;}
+.mypage-project.fixed .project-list{padding-top:51px;}
+.mypage-project.fixed .coupon-list{padding-top:51px}
+@media screen and (min-width: 960px) {
+    h2.mypage-top-title{width:960px;margin:0 auto;padding: 56px 24px 24px;font-size: 36px;line-height: 44px;text-align:left;}
+    h2.mypage-top-title.short{font-size:32px;padding: 56px 16px 24px; display: none;}
+    .mypage-project .tab-list ul{width:960px;margin:0 auto;padding: 0 24px;}
+    .mypage-project .tab-list ul li{width:auto;margin-right: 24px;}
+    .mypage-project .tab-list.coupon ul li{width:auto}
+    .mypage-project .top-area{width:960px;margin:0 auto;padding:16px 24px 35px;}
+    .mypage-project .top-area .status-text{font-size:13px;line-height:18px;}
+    .mypage-project .tab-list ul li.active a{font-weight: 700;}
+}
+@media screen and (min-width: 1096px) {
+    h2.mypage-top-title.short{display: block;}
+}
+.mypage-project .card-list{width:100%;}
+.mypage-project .card-list ul{padding:0 16px;margin:0;}
+.mypage-project .card-list ul li{position:relative;margin-bottom:16px;}
+.mypage-project .card-list ul li > a{display:block;background:#000}
+.mypage-project .card-list ul li.btn-on .project-card,
+.mypage-project .card-list ul li.hide .project-card{opacity:0.3;}
+.mypage-project .card-list ul li .project-card-wrap{background:#000}
+.mypage-project .card-list ul li .visibility-control .btn-control {display: none;}
+.mypage-project .card-list ul li.btn-on .visibility-control .btn-control {display: block;}
+.mypage-project .visibility-control{position:absolute;right:10px;top:10px;z-index:100}
+.mypage-project .visibility-control .btn-more{padding:0;color:#fff;font-size:20px;background:none;border:none;cursor:pointer;text-shadow:0px 1px #ddd;}
+.mypage-project .visibility-control .btn-control{display:none;position:absolute;right:0;top:20px;width:100px;height:32px;line-height:32px;padding:0;color:#44484B;font-size:13px;font-weight:400;background:#fff;border:none;cursor:pointer;box-shadow:1px 1px 1px 0 rgba(0, 0, 0, 0.08);}
+.mypage-project .visibility-control .btn-control.show{width:130px;}
+#emptyProjectText{display:none;padding: 80px 0;text-align:center;line-height: 24px;letter-spacing:-0.5em ;font-size: 17px;color:#44484B;}/* 수정 */
+#emptyProjectText strong{color:#00a2a2; font-weight:400}
+@media screen and (min-width: 960px) {
+    .mypage-project .card-list ul{width:960px;margin: -2px auto 0;padding: 0 9px;}
+    .mypage-project .card-list ul:after{content:"";clear:both;display:block;}
+    .mypage-project .card-list ul li{float:left;width:300px;padding:0 15px;}
+    .mypage-project .visibility-control{right:25px;}
+    .mybenefit-wrap #emptyProjectText{width:960px;margin:0 auto;text-align:left;}
+    .myprofile-wrap .mypage-project .card-list ul, .myprofile-wrap .mypage-project .tab-list ul, .myprofile-wrap .mypage-project .top-area {width: 918px;}
+    .myprofile-wrap .mypage-project .top-area .select-box {right: 24px !important;}
+}
+
+.mypage-project .top-notice{padding: 24px 24px 16px;text-align:center;}
+.mypage-project .top-notice i{display:block;font-size: 13px;line-height:18px;color: #44484B;letter-spacing: -.02em;}
+.mypage-project .funding-list{width:100%;background: #F5F7FA;}
+.mypage-project .funding-list ul li{margin-bottom: 16px;}
+@media screen and (min-width: 960px) {
+    .mypage-project .top-notice{width:960px;margin:0 auto;text-align:left;}
+    .mypage-project.short .top-notice{padding: 48px 24px 16px;}
+    .mypage-project.short .top-area .select-box {right: 24px !important;}
+    .mypage-project .top-area .select-box {right: 66px !important;}
+    .mypage-project .top-notice i{display:inline;}
+    .mypage-project .funding-list ul{width: 1032px;margin:0 auto; padding-left: 16px; padding-right: 16px;}
+}
+.project-card .card-info-section.making-project{overflow:hidden;height:195px!important}
+.project-card .card-info-section p.status{font-size: 13px;line-height:24px;color:#90949c;letter-spacing:-.02em;}
+.project-card .card-info-section a p.status {text-decoration:underline}
+.project-card .card-info-section p.status i{display:inline-block;padding:0;margin-right: 6px;width: 8px;height: 8px;background: #00c4c4;border-radius:50%;}
+.project-card .card-info-section p.status.confirm i{background-color: #FFB500;}
+.project-card .card-info-section p.status.end i{background-color:#90949c}
+.project-card .card-info-section p.status.rejected i{background-color:#f25555}
+.project-card .card-info-section p.status.project_end i{background-color:#44484b}
+.project-card .card-info-section .coming{position:relative}
+.project-card .card-info-section .coming .wz-btn{position:absolute;top:-1px;right:0}
+.project-card .card-info-section .coming .status em,
+.project-card .card-info-section .coming .status.rejected {color:#f25555}
+.project-card .card-info-section .coming .status a + a::before{display:inline-block;content:'∙';line-height:18px;margin:0 2px 0 0;}
+.project-card .card-info-section .coming .status.ing .info{color:#557cf2}
+.project-card .card-info-section .coming .status a{text-decoration:none}
+.project-card .card-info-section .coming .status a:hover,
+.project-card .card-info-section .coming .status a:focus{text-decoration:underline}
+.project-card .btn-wrap{width:100%;}
+.project-card .btn-line{display:block;width:100%;height:48px;padding: 0;text-align:center;font-size: 15px;color: #44484B;background:#fff;border: 1px solid #DADCE0;border-top: none;letter-spacing: -.02em;box-sizing:border-box !important;cursor:pointer;border-radius:0}
+.project-card .btn-green{display:block;width:100%;height:48px;padding: 0;text-align:center;font-size: 15px;color:#fff;background: #00c4c4;letter-spacing: -.02em;box-sizing:border-box !important;border:none;cursor:pointer;border-radius:0}
+.project-card .btn-gray{display:block;width:100%;height:48px;padding: 0;text-align:center;font-size: 15px;color:#fff;background: #DADCE0;letter-spacing: -.02em;box-sizing:border-box !important;border:none;cursor:pointer;border-radius:0}
+.project-card .disabled{display: block; cursor: default; pointer-events: none}
+.project-card .divide{width:100%;clear:both}
+.project-card .divide .div1{float:left;display:block;width:50%;box-sizing:border-box !important;border-right: none;}
+.project-card .divide .div2{float:right;display:block;width:50%;box-sizing:border-box !important;}
+
+.project-card .card-info-section .coming,
+.project-card .divide:after{content:"";clear:both;display:block}
+
+/* 찜한 페이지 */
+.likes-page .mypage-project .tab-list ul li.active a {border-bottom: 3px solid #00b2b2;font-weight: bold;color: #00b2b2;}
+.likes-page .new-mark {display: inline-block;vertical-align: text-top;line-height: 1;border-radius: 8px;padding: 3px;color: #fff;font-size: 10px;font-weight: 500;background-color: #ff8080;}
+
+/* 나의 리워드 & 나의 투자 */
+.myequity .mypage-top-title,
+.myreward .mypage-top-title {max-width: 1032px; width: 100%; box-sizing: border-box; font-weight: 900; padding-left: 16px; padding-right: 16px; line-height: 32px; font-size: 32px;}
+.myequity .tab-list ul,
+.myreward .tab-list ul {max-width: 1032px; width: 100%; box-sizing: border-box;}
+.myequity .tab-list ul li {width: 33.33%;}
+.myreward .tab-list ul li {width: 50%;}
+.myequity .tab-list ul li a,
+.myreward .tab-list ul li a {color: rgba(0,0,0,.84);}
+.myequity .project-list,
+.myequity .funding-list,
+.myequity .mypage-project.bg,
+.myreward .project-list,
+.myreward .funding-list,
+.myreward .mypage-project.bg {background: #fff;}
+.myequity .mypage-project .top-area,
+.myreward .mypage-project .top-area {box-sizing: border-box; margin-top: 24px; width: 100%;}
+.myequity .top-area,
+.myreward .top-area #selectPayStatus {font-size: 15px;}
+.myequity .top-area .select-box::before,
+.myreward .top-area .select-box::before {font-size: 12px;}
+.mypage-project.short .top-area .select-box.sort-category {right: 140px !important;}
+
+@media screen and (min-width: 960px) {
+    .myreward .tab-list ul {padding-left: 16px; padding-right: 16px;}
+    .myequity .tab-list ul li {width: auto;}
+    .myreward .tab-list ul li {width: auto;}
+    .myreward .mypage-project .top-area,
+    .myequity .mypage-project .top-area {max-width: 1032px; padding-left: 16px; padding-right: 16px;}
+    .mypage-project .funding-list ul {width: 100%; max-width: 1032px; padding-left: 16px; padding-right: 16px;}
+}
+
+/* 펀딩 프로젝트 리스트 */
+.funding-card{display:block;background:#fff;box-shadow: 0 0 1px 0 rgba(0,0,0,.2);}
+.funding-card dt{position:relative;padding: 20px 20px 0;font-size: 12px;letter-spacing: -.02em;line-height: 16px;}
+.funding-card dt .category{padding-right: 6px;color: #90949c;}
+.funding-card dt .category.invest{color: #90949c;}
+.funding-card dt .coupon{color: #557CF2;}
+.funding-card dt .date{position:absolute;right: 20px;color: #90949c;}
+.funding-card dd{padding: 16px 20px;}
+.funding-card dd .status{padding-bottom: 4px;font-size: 12px;line-height: 18px;letter-spacing: -.02em;color: #90949c;}
+.funding-card dd .status i{display:inline-block;padding:0;margin: -1px 4px 0 0;width: 4px;height: 4px;background:#00c4c4;vertical-align:middle;border-radius:50%;}
+.funding-card dd .status.end i{background-color:#90949c}
+.funding-card dd .title{padding-bottom: 4px;font-size: 19px;font-weight: 500;line-height: 24px;letter-spacing: -.02em;color: #44484b;}
+.funding-card dd .maker{padding-bottom: 20px;font-size: 12px;line-height: 18px;letter-spacing: -.02em;color: #90949c;}
+.funding-card dd .funding-info{position:relative;padding: 12px 0 0;}
+.funding-card dd .funding-info .fund-status{font-size: 15px;line-height:20px;color: #557CF2;font-weight: 500;}
+.funding-card dd .funding-info .comment{position:absolute;right: 0;top:15px;font-size: 13px;line-height: 18px;letter-spacing: -.02em;color: #FF6666;text-align:right;}
+.funding-card dd .funding-info .failMessage{display: block; margin-top: 4px; font-size: 13px; color: #e54545;}
+.funding-card dd .funding-info .failMessage i{margin-right: 4px; color: #e54545;}
+.funding-card dd .funding-info .fund-status.failed {color: #e54545;}
+
+/* 나의 팔로잉 */
+.myfollowing-wrap h2 {padding-bottom: 12px;}
+.myfollowing-wrap .desc {text-align: center; padding: 12px 16px; font-size: 15px; color: #90949c;}
+.myfollowing-wrap .desc label {position: relative; background-color:#fff; font-size: 14px; border: none; cursor: pointer; -webkit-tap-highlight-color: transparent;}
+.myfollowing-wrap .desc label.active {color: #343a40;}
+.myfollowing-wrap .desc label .popover {display: none; transition: all 0.25s;}
+.myfollowing-wrap .desc label.active .popover {display: block; position: absolute; width: 160px; padding: 12px; line-height: 1.5; font-size: 12px; background: #343a40; color: #fff; z-index: 1000; text-align: left; right: 0; border-radius: 3px;}
+.myfollowing-wrap .mypage-social-container {box-sizing: border-box; width: 100%; max-width: 960px; margin: 0 auto; padding: 48px 16px 54px;}
+.myfollowing-wrap .mypage-social-container .empty-text {color: #90949c; text-align: center;}
+.myfollowing-wrap .social-message-box {position: relative; margin-bottom: 24px; border: solid 1px rgba(0, 204, 163, 0.3); background-color: rgba(0, 204, 163, 0.05); padding: 15px; letter-spacing: -0.3px; color: #00c4c4; }
+.myfollowing-wrap .social-message-box p { font-size: 15px;}
+.myfollowing-wrap .social-message-box p + button { margin-top: 16px; font-size: 15px; }
+.myfollowing-wrap .social-message-box button.wz.block {width: 100%; margin-top: 8px;}
+.myfollowing-wrap .social-message-box.unconnected {border: solid 1px rgba(85, 124, 242, 0.3); background: rgba(85, 124, 242, 0.05); color: #557cf2; }
+.myfollowing-wrap .social-message-box.unconnected h3 { margin-bottom: 8px; line-height: 1.33; font-size: 15px; font-weight: 500;  }
+.myfollowing-wrap .social-message-box.unconnected .desc { margin-bottom: 16px; font-size: 13px; color: #557cf2; text-align: left; padding: 0; }
+
+@media screen and (min-width: 960px) {
+    .myfollowing-wrap .mypage-social-container {padding: 48px 0; padding-left: 24px; padding-right: 24px;}
+    .myfollowing-wrap .desc {width: 100%; max-width: 960px; margin: 0 auto 24px; padding: 0 24px; text-align: left;}
+    .myfollowing-wrap .desc button .popover {margin-left: 0;}
+    .myfollowing-wrap .social-message-box button {width: auto; position: absolute; top: 50%; right: 15px; transform: translateY(-50%); text-align: right;}
+    .myfollowing-wrap .social-message-box button.wz.block {width: auto; margin-top: 0;}
+    .myfollowing-wrap .social-message-box p {margin-bottom: 0 !important;}
+    .myfollowing-wrap .social-message-box.unconnected button {width: 176px;}
+    #divConnected p {padding-top: 8px; padding-bottom: 8px}
+}
+/* Form Wrap */
+.form-wrap p.radio-inline{margin-bottom:10px;}
+.form-wrap p.radio-inline input[type=radio]{display:none}
+.form-wrap p.radio-inline span{margin-right:10px;}
+.form-wrap p.radio-inline .input-radio:before{margin-right:5px;content:"\e9a6";font-family:'wadizicon';color:#00c4c4}
+.form-wrap p.radio-inline input[type=radio]:checked ~ .input-radio:before{content:"\e9a5"}
+.form-wrap p.radio-inline input[type=radio]:disabled,
+.form-wrap p.radio-inline input[type=radio]:disabled + label {opacity: 0.5;}
+.form-wrap p.radio-inline input[type=radio]:disabled,
+.form-wrap p.radio-inline input[type=radio]:disabled + label {opacity: 0.5;}
+.form-wrap dl{margin-bottom: 8px;width:100%;display:table;}
+.form-wrap dl dt{width:auto;display:table-cell;vertical-align:top;font-size: 14px;line-height: 20px;letter-spacing: -.02em;color: #44484B;white-space:nowrap;}
+.form-wrap dl dd{width:auto;display:table-cell;vertical-align:top;font-size: 14px;line-height: 20px;color:#4a4a4a;text-align:right;font-weight:500;}
+.form-wrap dl dd em.green{color: #557CF2;}
+.form-wrap dl dd.green{color: #557CF2;}
+.form-wrap dl.radio{margin-bottom:10px;width:100%;display:table;table-layout:fixed;}
+.form-wrap dl.radio dt{width:30px;}
+.form-wrap dl.radio dt input[type=radio]{display:none}
+.form-wrap dl.radio label{display:block;cursor:pointer}
+.form-wrap dl.radio dt .input-radio{display:block;padding:0;margin:0;}
+.form-wrap dl.radio dt .input-radio:before{content:"\e9a6";font-family:'wadizicon';color:#00c4c4}
+.form-wrap dl.radio dt input[type=radio]:checked ~ .input-radio:before{content:"\e9a5"}
+.form-wrap dl.radio dd{font-weight:300;text-align:left;}
+.form-wrap .btn-wrap{width:100%;}
+.form-wrap .btn-line{display:block;width:100%;height: 48px;padding: 0;line-height: 48px;text-align:center;font-size: 15px;font-weight: 500;color:#4a4a4a;background:none;border: 1px solid #BABDC0;box-sizing:border-box !important;cursor:pointer;}
+.form-wrap .btn-line:hover{background:#7C8288;color:#fff;border-color: #7C8288;}
+.form-wrap .btn-green-line{display:block;width:100%;height: 48px;padding: 0;line-height: 48px;text-align:center;font-size: 15px;font-weight: 500;color: #00c4c4;background:none;border: 1px solid #00c4c4;box-sizing:border-box !important;cursor:pointer;}
+.form-wrap .btn-green-line:hover{background:#00c4c4; color:#fff;}
+.form-wrap .btn-green{display:block;width:100%;height: 48px;padding: 0;line-height: 48px;text-align:center;font-size: 15px;font-weight: 500;color:#fff;background:#00c4c4;box-sizing:border-box !important;border:none;cursor:pointer;}
+.form-wrap .input-wrap{width:100%;}
+.form-wrap .input-text{margin-bottom: 16px;display:block;width:100%;height: 48px;font-size: 15px;line-height: 48px;padding: 0 12px;border: 1px solid #DADCE0;box-sizing:border-box !important;}
+.form-wrap .input-text.sm{margin-bottom:0;display:inline-block;width:auto;height:30px;line-height:30px;padding:0 10px;border:1px solid #ddd;box-sizing:border-box !important;}
+.form-wrap .select-box{position:relative;margin-bottom: 16px;}
+.form-wrap .select-box select{display:block;width:100%;height: 48px;font-size: 15px;line-height: 48px;padding: 0 12px;border: 1px solid #DADCE0;border-radius: 0;background: #F5F7FA;box-sizing:border-box !important;-webkit-appearance:none;-moz-appearance:none;appearance:none;}
+.form-wrap .select-box select::-ms-expand{display:none}
+.form-wrap .select-box i{position:absolute;right: 12px;top:0;line-height: 48px;}
+.form-wrap .input-text:disabled{background: #DADCE0;opacity: .4;}
+.form-wrap .input-text.inline{display:inline-block;width:30%;margin-right:10px;}
+.form-wrap .divide{width:100%;}
+.form-wrap .divide:after{content:"";clear:both;display:block}
+.form-wrap .divide .div1{float:left;display:block;width:49%;box-sizing:border-box !important;}
+.form-wrap .divide .div2{float:right;display:block;width:49%;box-sizing:border-box !important;}
+.form-wrap .divide .div4{float:left;display:block;width:25%;padding-right:5px;box-sizing:border-box !important;}
+.form-wrap .divide .div4:last-child{padding-right:0;}
+/* 인풋폼의 유효성 스타일 */
+.form-wrap input + em.error-message {display: none; font-size: 12px; margin-bottom: 12px;}
+.form-wrap input.error {border-color: #f66 !important}
+.form-wrap input.error + em.error-message {display: block; color: #f66}
+
+
+/*프로젝트 상세정보*/
+.project-detail{width:100%;}
+.project-detail > .inner-section{padding: 16px 0px 24px;}
+.project-detail .inner-detail{padding: 16px 20px 12px;}
+.project-detail h4{margin-bottom: 20px;font-size: 13px;color: #90949c;font-weight: 600;line-height: 20px;letter-spacing: -.02em;}
+.project-detail h4.line{padding-top:20px;margin-top:30px;border-top:1px solid #ddd}
+.project-detail p{margin-bottom: 8px;font-size: 14px;line-height: 20px;color: #44484B;}
+.project-detail p a{text-decoration:underline;}
+.project-detail p.comment{font-size:12px;line-height:18px;color:#90949c}
+.project-detail p.help-text{padding: 4px 0 16px 16px;text-indent: -16px;font-size: 12px;line-height: 20px;color:#4a4a4a;vertical-align: middle;}
+.project-detail p.help-text i{margin-right: 6px;font-size: 16px;color: #7C8288;}
+.project-detail .box-info{padding: 16px 20px 8px;border-top: 1px solid #E6EAED;background: #F0F2F5;}
+.project-detail .box-info p{margin-bottom: 6px;font-size: 12px;line-height: 18px;color: #44484B;}
+.project-detail .box-info p button{margin-top:12px;}
+.project-detail .box-info p button::before{line-height:1;}
+.project-detail .btn-backlist{padding:10px 0;width:165px;margin:0 auto}
+@media screen and (min-width: 960px) {
+    .mypage-project .project-detail{max-width: 960px;margin: 0 auto;padding: 32px 24px 48px;}
+    .project-detail > .inner-section{padding: 24px 0 48px;}
+}
+.project-detail .funding-info{padding: 24px 20px 12px;background:#fff;box-shadow: 0 0 1px 0 rgba(0,0,0,.2);}
+.project-detail .funding-info .category{margin-bottom: 8px;font-size: 13px;line-height: 16px;letter-spacing: -.02em;color: #90949c;}
+.project-detail .funding-info .category.invest{color:#90949c;}
+.project-detail .funding-info .status{margin-bottom: 8px;font-size: 13px;line-height: 18px;letter-spacing: -.02em;color: #90949c;}
+.project-detail .funding-info .status i{display: inline-block;padding: 0;margin: -1px 4px 0 0;width: 4px;height: 4px;background: #00c4c4;vertical-align: middle;border-radius: 50%;}
+.project-detail .funding-info .status.end i{background-color:#9b9b9b}
+.project-detail .funding-info .title{margin-bottom: 4px;font-size: 24px;font-weight: 500;line-height: 32px;letter-spacing: -.02em;}
+.project-detail .funding-info .title a{color: #4a4a4a;}
+.project-detail .funding-info .maker{margin-bottom: 20px;font-size: 13px;line-height: 18px;letter-spacing: -.02em;color: #90949c;}
+.project-detail .funding-info .maker a{text-decoration:underline}
+.project-detail .funding-info .summary{padding-top:15px;border-top:1px solid #e1e1e1}
+.project-detail .funding-info .summary dt{font-size: 13px;color: #7C8288;line-height: 16px;}
+.project-detail .funding-info .summary dd{font-size:13px;line-height: 16px;}
+
+.project-detail .funding-status{margin-bottom: 16px;background:#fff;box-shadow: 0 0 1px 0 rgba(0,0,0,.2);}
+.project-detail .funding-status .status{margin-bottom:8px;font-size: 19px;line-height: 24px;letter-spacing: -.02em;color: #557CF2;font-weight: 500;}
+.project-detail .funding-status .point{font-size:13px;line-height:20px;color:#557CF2;font-weight:500}
+.project-detail .funding-status .sub-text{margin-bottom: 16px;font-size: 13px;color: #44484B;line-height: 20px;letter-spacing: -.02em;}
+.project-detail .funding-status .not-available {display: none;}
+
+/* .project-detail .funding-status.virtual-account {} */
+.project-detail .funding-status.virtual-account .status {font-weight: bold; font-size: 18px; color: #4a4a4a; }
+.project-detail .funding-status.virtual-account .inner-detail {padding-bottom: 0;}
+.project-detail .funding-status.virtual-account .sub-text {display: block; padding-bottom: 24px;}
+.project-detail .funding-status.virtual-account .sub-text strong {display: block; margin-top: 6px; color: #e54545}
+.project-detail .funding-status.virtual-account .sub-text em {font-weight: bold;}
+.project-detail .funding-status.virtual-account .sub-text .btn-line {margin-top: 16px;}
+
+.project-detail .funding-history{margin-bottom: 16px;background: #fff;box-shadow: 0 0 1px 0 rgba(0,0,0,.2);}
+.project-detail .funding-history .reward .title{position:relative;padding-right: 24px;margin-bottom:8px;}
+.project-detail .funding-history .reward .title button{display:block;width:100%;padding:0;font-size: 19px;text-align:left;line-height: 40px;font-weight:500;background:none;border:none;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;color: #44484B;letter-spacing: -.02em;}
+.project-detail .funding-history .reward .title i{position:absolute;right:0;top:0;font-size: 24px;color: #60656A;line-height: 40px;-webkit-transition-property: all;transition-property: all;-webkit-transition-duration: .25s;transition-duration: .25s;-webkit-transition-delay: 0s;transition-delay: 0s;transition-timing:ease-in;}
+.project-detail .funding-history .reward .title.active i{transform:rotate(180deg);}
+.project-detail .funding-history .reward .comment{display:none}
+.project-detail .funding-history .reward dl dt{font-size: 15px;color: #7C8288;}
+.project-detail .funding-history .reward dl dd{font-size: 15px;color: #44484B;}
+.project-detail .funding-history .reward .option{position:relative;width:100%;padding-right:60px;font-size: 13px;letter-spacing: -.02em;line-height: 24px;box-sizing:border-box !important;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;}
+.project-detail .funding-history .reward .tobe-option{display:none;}
+.project-detail .funding-history .reward .option button{position:absolute;right:0;top:0;font-size: 13px;padding: 0;line-height: 24px;color: #00c4c4;text-decoration:underline;background:none;border:none;}
+.project-detail .funding-history .invest{padding: 16px 20px 12px;border-top: 1px solid #E6EAED;background: #E5F9F5;}
+.project-detail .funding-history .total-detail{padding: 16px 20px 12px;border-top: 1px solid #E6EAED;background: #E7F9F9;}
+.project-detail .funding-history .assign-detail{padding:16px 20px 12px;border-top: 1px solid #E6EAED;background: #F7F3EC;}
+.project-detail .funding-history dl.total{padding-top:10px}
+.project-detail .funding-history dl.total.line{padding-top:15px;border-top: 1px solid #DADCE0;}
+.project-detail .funding-history dl.total dt{font-weight:500}
+.project-detail .funding-history dl.total dd{font-size: 19px;}
+.project-detail .funding-history dl.total dd p{margin:0;padding:5px 0;font-size:12px;line-height:12px;}
+
+.project-detail .funding-detail{margin-bottom: 16px;background: #fff;box-shadow: 0 0 1px 0 rgba(0,0,0,.2);}
+.project-detail .funding-detail .modify{display:none;padding-top:20px}
+.project-detail .funding-detail .dot{display:inline-block;margin:0 10px;width:8px;height:8px;background:#9b9b9b;border-radius:50%}
+.project-detail .funding-detail .status{margin-bottom:15px;font-size:12px;line-height:12px;color:#44484b}
+.project-detail .funding-detail .status i{display:inline-block;padding:0;margin-right:5px;width:6px;height:6px;background:#23dbab;vertical-align:middle;border-radius:50%;}
+.project-detail .funding-detail .status.confirm i{background-color:#e3cb50}
+.project-detail .funding-detail .status.fail i{background-color:#f98f9b}
+.project-detail .funding-detail .status.end i{background-color:#90949c}
+.project-detail .funding-detail .btn-my-wadiz-account {margin-bottom: 15px; font-weight: bold; font-size: 15px; color: #44484b; }
+.project-detail .funding-detail .account-info {text-align: center; background-color: #f5f7fa; padding: 14px 50px 20px; font-size: 15px;}
+.project-detail .funding-detail .account-info span {display: inline-block;}
+.project-detail .funding-detail .account-info.wz-loader span {display: none}
+.project-detail .funding-detail .account-info .username {display: block; margin-top: 4px;}
+.project-detail .funding-detail .notice {font-size: 12px; color: rgba(0,0,0, 0.54); border-top: 0; background: none;}
+.project-detail .shipping-detail{margin-bottom: 16px;background: #fff;box-shadow: 0 0 1px 0 rgba(0,0,0,.2);}
+.project-detail .shipping-detail .modify{display:none}
+.project-detail .coupon-detail{margin-bottom:20px;background:#fff;box-shadow: 0 0 1px 0 rgba(0,0,0,.2);}
+.project-detail .coupon-detail .modify{display:none}
+.project-detail .coupon-detail .status{margin-bottom:15px;font-size:12px;line-height:12px;color:#44484b}
+.project-detail .coupon-detail .status i{display:inline-block;padding:0;margin-right:5px;width:6px;height:6px;background:#23dbab;vertical-align:middle;border-radius:50%;}
+.project-detail .coupon-detail .status.confirm i{background-color:#e3cb50}
+.project-detail .coupon-detail .status.fail i{background-color:#f98f9b}
+
+.project-detail .notice {border-top: 1px solid #E6EAED; background-color: rgba(221, 221, 221, 0.38); margin-left: -20px; margin-right: -20px; padding-left: 10px; padding-right: 10px; color: #4a4a4a; font-size: 12px; line-height: 1.6; padding-top: 12px; padding-bottom: 12px; }
+.project-detail .notice li {position: relative; margin-left: 16px;}
+.project-detail .notice li::before {display: block; position: absolute; top: 8px; left: -8px;  content: ''; width: 2px; height: 2px; background: #000;}
+
+.project-detail .account-type-area{display:none}
+.project-detail #accountTypeArea1{display:block}
+
+/* 포인트 */
+.wcoupon-content {background:#fff}
+.mybenefit-wrap .empty-text{max-width: 960px;margin: 0 auto;padding: 32px 0;font-size: 21px;font-weight: 500;line-height: 24px;}
+.mypage-project .point-guide{color:#44484b;text-align:center;margin:24px 0;padding:0 16px;}
+.mypage-project .point-guide a{color:#395bbf;text-decoration:underline;}
+.mypage-project .usable-point{position:relative;margin: 0 auto;padding: 0 16px;background:#fff;}
+.mypage-project .usable-point p{height: 48px;font-size: 19px;font-weight: 500;line-height: 48px;letter-spacing: -.02em;text-align:center;color:#4a4a4a;}
+.mypage-project .usable-point p em{padding-left: 4px;color:#557CF2;font-weight:500;}
+.mypage-project .expiration-point{margin: 20px 0; padding:0 16px;}
+.mypage-project .expiration-point .message-box{margin:0; max-width: 768px;}
+.mypage-project .expiration-point p em{padding-left: 4px;font-weight:500; float:right}
+.point-list{padding: 24px 16px;background: #fff;}
+.point-list ul{padding-bottom: 24px;}
+.point-list li{max-width: 800px;margin-bottom: -1px;border-top: 1px solid #E6EAED;border-bottom: 1px solid #E6EAED;}
+.point-card{padding: 24px 0;background:#fff;}
+.point-card dl{width:100%;display:table;}
+.point-card dl dt{width: 50%;display:table-cell;vertical-align:top;}
+.point-card dl dt .title{margin-bottom:8px;font-size: 19px;font-weight: 500;letter-spacing: -.02em;line-height: 24px;color: #44484B;}
+.point-card dl dt .sub-title{font-size: 13px;line-height: 18px;letter-spacing: -.02em;color: #90949C;}
+.point-card dl dd{width: 50%;display:table-cell;vertical-align:top;text-align:right;}
+.point-card dl dd .point{margin-bottom:8px;font-size: 19px;line-height: 24px;font-weight:500;}
+.point-card dl dd .point.plus{color: #557CF2;}
+.point-card dl dd .point.minus{color: #FF7373;}
+.point-card dl dd .date{font-size: 13px;line-height: 18px;color: #90949C;}
+
+.coupon-list{padding: 24px 16px;}
+.coupon-list ul li{margin-bottom: 16px;}
+.coupon-list p{margin-bottom: 8px;font-size: 13px;color: #44484B;line-height: 18px;letter-spacing: -.02em;}
+.coupon-list .title{margin-bottom: 8px;font-size: 15px;color: #44484B;font-weight:500;line-height: 24px;letter-spacing: -.02em;}
+.coupon-list .sub-text{margin-bottom: 8px;font-size: 13px;font-weight: 400;line-height: 18px;color: #7C8288;}
+.coupon-list h4{margin-bottom: 6px;font-size: 13px;font-weight: 400;color: #44484B;line-height: 16px;letter-spacing: -.02em;}
+.coupon-list .notice{padding: 16px 0 16px;}
+.coupon-list .notice p{margin-bottom: 8px;font-size:12px;line-height: 18px;color: #44484B;}
+.coupon-list .notice p.point{color: #FF7373;}
+.regist-coupon{padding: 32px 0 24px;border-bottom: 1px solid #E6EAED;}
+.regist-coupon .title{font-size: 21px;margin-bottom: 16px;}
+.regist-coupon dl.input-coupon dd{width: 64px;}
+.regist-coupon dl.input-coupon .btn-add-coupon{display:block;width: 115px;height: 48px;padding:0;line-height: 48px;text-align:center;font-size: 17px;font-weight: 200;color:#fff;background: #557CF2;border:none;cursor:pointer;}
+.regist-form{margin-top: 32px;}
+.regist-form .title{margin-bottom: 12px !important;font-size: 15px;color: #44484B;font-weight: 500;line-height: 20px;letter-spacing: -.02em;}
+.regist-form .sub-text{margin-bottom:12px;font-size:12px;color:#4a4a4a}
+
+.coupon-card{position:relative;padding: 32px 0;border-bottom: 1px solid #E6EAED;}
+.coupon-card .status{position:absolute;right: 0px;top: 40px;font-size:13px;color: #557CF2;}
+.coupon-card .status.done{color:#9b9b9b}
+.coupon-card .name{margin-bottom: 16px;padding-right:80px;font-size: 21px;color: #44484B;font-weight: 500;line-height: 24px;letter-spacing: -.02em;}
+.coupon-card .code{margin-bottom: 8px;font-size: 15px;font-weight: 500;color: #4167D9;line-height: 20px;}
+.coupon-card .info{margin-bottom:0;font-size: 13px;color: #44484B;line-height: 20px;letter-spacing: -.02em;}
+.coupon-card .info strong{padding-right: 8px;font-weight: 500;}
+.coupon-card .green{color: #00c4c4;}
+.coupon-card .payback-info{margin-top: 32px;}
+.coupon-card .payback-info .account{position:relative;font-size: 13px;color: #44484B;line-height: 20px;letter-spacing: -.02em;}
+.coupon-card .payback-info .account button{position:absolute;right:0;top:0;padding:0;text-decoration:underline;font-size: 13px;line-height: 20px;background:none;border:none;}
+.coupon-card .payback-info .apply-date{font-size:12px;color:#23dbab;line-height:18px;}
+.coupon-card .payback-info .apply-date a{text-decoration:underline}
+.coupon-card .payback-info .regist-form{padding-top:20px;}
+
+.bottom-notice{padding: 24px 0;}
+.bottom-notice h4{margin-bottom: 8px;font-size: 17px;font-weight: 500;letter-spacing: -.02em;line-height: 28px;color: #44484B;}
+.bottom-notice p{max-width: 700px;font-size: 13px;color: #7C8288;line-height: 20px;letter-spacing: -.02em;}
+.bottom-notice p a{text-decoration:underline}
+
+.recentlist{display:block;}
+.recentlist li{display:block;margin-bottom:20px;}
+.recentlist .btn-recentlist{display:block;padding: 12px;width:100%;text-align:left;background: #F5F7FA;border: 1px solid #E6EAED;box-sizing:border-box !important;}
+.recentlist .btn-recentlist:hover{background: #E6EAED;border-color: #E6EAED;}
+.recentlist .btn-recentlist p{font-size: 15px;line-height: 24px;margin:0;}
+
+br.mobile-br {display: block}
+
+@media screen and (min-width: 960px) {
+    br.mobile-br {display: none}
+    .mypage-project .point-guide{width: 960px;margin: 24px auto;text-align: left;}
+    .mypage-project .usable-point{padding: 0 24px;}
+    .mypage-project.short .usable-point p{width: 960px;margin: 0 auto;text-align: left; border-bottom: 1px;}
+    .mypage-project .expiration-point{max-width: 960px;margin: 20px auto;padding:0;}
+    .mypage-project .expiration-point .message-box{margin:0; max-width: 768px;}
+    .mypage-project.short .point-list{/* width: 960px; */margin:0 auto;padding: 24px 24px 64px;background: #fff;}
+    .point-list ul{max-width: 960px;margin: 0 auto;}
+    .mypage-project.short .coupon-list{width: 960px;margin:0 auto;padding: 24px;}
+    .regist-coupon{max-width: 700px;padding: 32px 0 24px;}
+    .coupon-card{max-width: 700px;padding: 48px 0;}
+    .coupon-card .status{right: 0;top: 56px;}
+    .bottom-notice{width: 960px;margin: 0 auto;}
+}
+
+@media screen and (min-width: 1096px) {
+    .mypage-project .point-guide{margin-top: 0}
+}
+
+/* 펀딩 내역 상세 - 리워드 배송 상태 변경  */
+h4.delivered-status-title {margin-top: 28px; margin-bottom: 8px;}
+h4.delivered-check {margin-top: 14px; margin-bottom: 8px; color: rgba(0, 0, 0, 0.68)}
+p.delivered-status {color: rgba(0, 0, 0, 0.54); font-size: 13px;}
+.done.shippingInfo p {margin-bottom: 16px;}
+.done.shippingInfo p > span {display: block; margin-bottom:4px;}
+.myRewardPurchase h4 {color: #60656a;}
+
+/* 계좌변경/취소 버튼 */
+#btn-change-account:disabled,
+#btn-cancel-equity:disabled {opacity:0.5}
+#btn-change-account:disabled,
+#btn-cancel-equity:disabled:hover {opacity:0.5;color: #4a4a4a;background: none;border: 1px solid #BABDC0;}
+
+/* 배정 불가 미검증 계좌안내 다이얼로그 */
+#btn-no-verification-info {margin: 4px 20px 24px; font-size: 12px; color: rgba(0, 0, 0, 0.54); line-height: 24px; height: auto;}
+#noVerificationInfoLypop p.headline2 {margin-bottom: 15px;}
+#noVerificationInfoLypop p,
+#noVerificationInfoLypop li {color: rgba(0, 0, 0, 0.85);}
+#noVerificationInfoLypop li {position: relative; margin-left: 12px;color: rgba(0, 0, 0, 0.85); margin-bottom: 24px;}
+#noVerificationInfoLypop li::before {content: ''; width: 4px; height: 4px; background: #000; position: absolute; left: -12px; top: 8px;}
+
+/* 투자 신청 취소 다이얼로그 */
+#cancelEquityLypop .wz.radio {margin-top: 18px; margin-bottom: 30px;}
+#cancelEquityLypop .wz.radio li {position: relative;}
+#cancelEquityLypop .wz.radio .text {display: block; margin-left: 30px;}
+#cancelEquityLypop .wz.radio label {padding-top: 12px; padding-bottom: 12px; font-size: 15px;}
+#cancelEquityLypop .wz.radio input {position: absolute; top: 16px; border-color: #00c4c4; }
+#cancelEquityLypop .wz.radio input::after {background: transparent; margin: -1px 0 0 -1px; width: 22px; height: 22px;}
+#cancelEquityLypop .wz.radio input ~ i.icon {position: absolute; left: 5px; top: 25px; transform: translateY(-50%); color: #00c4c4; font-size: 14px;}
+#cancelEquityLypop .wz.radio input:checked::after {background: #00c4c4;}
+#cancelEquityLypop .wz.radio input:checked ~ i.icon {display: block;}
+#cancelEquityLypop .wz.radio input:checked ~ i.icon {color: #fff; }
+#cancelEquityLypop .wz.radio #etc-cause ~ #cancel-equity-cause {display: none;}
+#cancelEquityLypop .wz.radio #etc-cause:checked ~ #cancel-equity-cause {display: block; margin-top: 8px; border: 1px solid rgba(0, 0, 0, 0.15); padding: 12px 16px;}
+#cancelEquityLypop .wz.radio #cancel-equity-cause {width: 100%; padding: 12px 15px; height: 44px;}
+#cancelEquityLypop .action {text-align: right}
+
+/*다음 주소검색*/
+.daum-address-wrap{width:100%;background:#fff;}
+.daum-address-wrap .btn-wrap{padding:10px 0;text-align:center;}
+#daumAddressCon{width:100%;height: 450px;}
+#daumAddressCon [id*="__daum__layer_"] {width: 100% !important;}
+@media screen and (min-width: 960px) {
+    .daum-address-wrap{width:500px;margin:50px auto;background:#fff}
+}
+
+
+/*W9 툴팁*/
+.btn-tab-w9 {position: relative;}
+.btn-tab-w9 .w9-tooltip {display: none !important;}
+.btn-tab-w9 a.disabled + .w9-tooltip {
+    display: none;
+    position: absolute;
+    right: 12px;
+    z-index: 100;
+    border-radius: 8px;
+    box-shadow: 0 0 30px 0 rgba(0, 0, 0, .15), 2px 2px 8px 0 rgba(0, 0, 0, .15);
+    background-color: #fff;
+    padding: 12px 36px 12px 49px;
+    min-width: 253px;
+    text-align: left;
+    line-height: 14px;
+    font-size: 12px;
+    box-sizing: border-box;
+}
+
+.btn-tab-w9 a.disabled + .w9-tooltip:hover .wz.icon,
+.btn-tab-w9 a.disabled + .w9-tooltip:focus .wz.icon {
+    right: 6px;
+}
+
+
+.btn-tab-w9 a.disabled + .w9-tooltip::before {
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 12px;
+    transform: translateY(-50%);
+    background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDIyLjAuMSwgU1ZHIEV4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPgo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IuugiOydtOyWtF8xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB4PSIwcHgiCgkgeT0iMHB4IiB2aWV3Qm94PSIwIDAgMTE1IDUyIiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCAxMTUgNTI7IiB4bWw6c3BhY2U9InByZXNlcnZlIj4KPHN0eWxlIHR5cGU9InRleHQvY3NzIj4KCS5zdDB7ZmlsdGVyOnVybCgjQWRvYmVfT3BhY2l0eU1hc2tGaWx0ZXIpO30KCS5zdDF7ZmlsbDojRkZGRkZGO30KCS5zdDJ7bWFzazp1cmwoI2JfMV8pO2ZpbGw6I0EwODc3Mzt9Cgkuc3Qze2ZpbHRlcjp1cmwoI0Fkb2JlX09wYWNpdHlNYXNrRmlsdGVyXzFfKTt9Cgkuc3Q0e21hc2s6dXJsKCNkXzFfKTtmaWxsOiNBMDg3NzM7fQo8L3N0eWxlPgo8Zz4KCTxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDAgMSkiPgoJCTxkZWZzPgoJCQk8ZmlsdGVyIGlkPSJBZG9iZV9PcGFjaXR5TWFza0ZpbHRlciIgZmlsdGVyVW5pdHM9InVzZXJTcGFjZU9uVXNlIiB4PSIwIiB5PSIwLjIiIHdpZHRoPSI3Ny44IiBoZWlnaHQ9IjQ5LjYiPgoJCQkJPGZlQ29sb3JNYXRyaXggIHR5cGU9Im1hdHJpeCIgdmFsdWVzPSIxIDAgMCAwIDAgIDAgMSAwIDAgMCAgMCAwIDEgMCAwICAwIDAgMCAxIDAiLz4KCQkJPC9maWx0ZXI+CgkJPC9kZWZzPgoJCTxtYXNrIG1hc2tVbml0cz0idXNlclNwYWNlT25Vc2UiIHg9IjAiIHk9IjAuMiIgd2lkdGg9Ijc3LjgiIGhlaWdodD0iNDkuNiIgaWQ9ImJfMV8iPgoJCQk8ZyBjbGFzcz0ic3QwIj4KCQkJCTxwYXRoIGlkPSJhXzFfIiBjbGFzcz0ic3QxIiBkPSJNMCwwLjJoNzcuOHY0OS42SDBWMC4yeiIvPgoJCQk8L2c+CgkJPC9tYXNrPgoJCTxwYXRoIGNsYXNzPSJzdDIiIGQ9Ik03Ny44LDAuMkg2Mi42YzAsMCw1LjksNCw1LjksNi4xYzAsMi4zLTEuMiw0LjctMi42LDcuOWwtNy4xLDE2LjlMNDcuNiwxLjdoLTEuMUwzNi4xLDMyLjJsLTgtMTkuNQoJCQljLTAuOS0yLTEuOS00LjYtMS45LTYuNmMwLTIuMSw2LTUuOSw2LTUuOUgwYzAsMCw2LjgsNC41LDguNyw4LjRsMTguNCw0MS4yaDQuNmw4LjQtMjQuNGw4LjUsMjQuNEg1M0w3MCw4LjYKCQkJQzcxLjksNC41LDc3LjgsMC4yLDc3LjgsMC4yIi8+Cgk8L2c+Cgk8ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSg4NSkiPgoJCTxkZWZzPgoJCQk8ZmlsdGVyIGlkPSJBZG9iZV9PcGFjaXR5TWFza0ZpbHRlcl8xXyIgZmlsdGVyVW5pdHM9InVzZXJTcGFjZU9uVXNlIiB4PSIwIiB5PSIwIiB3aWR0aD0iMjkuOSIgaGVpZ2h0PSI1MS4xIj4KCQkJCTxmZUNvbG9yTWF0cml4ICB0eXBlPSJtYXRyaXgiIHZhbHVlcz0iMSAwIDAgMCAwICAwIDEgMCAwIDAgIDAgMCAxIDAgMCAgMCAwIDAgMSAwIi8+CgkJCTwvZmlsdGVyPgoJCTwvZGVmcz4KCQk8bWFzayBtYXNrVW5pdHM9InVzZXJTcGFjZU9uVXNlIiB4PSIwIiB5PSIwIiB3aWR0aD0iMjkuOSIgaGVpZ2h0PSI1MS4xIiBpZD0iZF8xXyI+CgkJCTxnIGNsYXNzPSJzdDMiPgoJCQkJPHBhdGggaWQ9ImNfMV8iIGNsYXNzPSJzdDEiIGQ9Ik0wLDBoMjkuOXY1MS4xSDBMMCwweiIvPgoJCQk8L2c+CgkJPC9tYXNrPgoJCTxwYXRoIGNsYXNzPSJzdDQiIGQ9Ik0xNSwyNy43TDE1LDI3LjdjLTcsMC0xMi43LTUuNi0xMi43LTEyLjZjMC0zLjQsMS4zLTYuNiwzLjYtOWMyLjMtMi40LDUuNS0zLjgsOC45LTMuOEgxNQoJCQljMy4zLDAsNi41LDEuMyw4LjksMy43YzIuNCwyLjQsMy44LDUuNiwzLjgsOWMwLDMuNC0xLjMsNi42LTMuNiw5QzIxLjYsMjYuNCwxOC40LDI3LjcsMTUsMjcuNyBNMjkuOSwxNC45YzAtNC0xLjYtNy44LTQuNS0xMC42CgkJCUMyMi42LDEuNSwxOC44LDAsMTQuOCwwYy00LDAtNy44LDEuNi0xMC41LDQuNUMxLjUsNy4zLDAsMTEuMiwwLDE1LjFDMC4xLDIzLjQsNi44LDMwLjEsMTUsMzAuMWwwLjEsMGMxLjksMCwzLjktMC40LDUuNy0xLjIKCQkJTDYuMiw0OS44bDEuOSwxLjNsMTkuMS0yNy41bDAsMEMyOSwyMS4xLDI5LjksMTgsMjkuOSwxNC45Ii8+Cgk8L2c+CjwvZz4KPC9zdmc+Cg==);
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 26px;
+    height: 12px;
+    content: '';
+}
+
+.btn-tab-w9 a.disabled + .w9-tooltip::after {
+    position: absolute;
+    right: 10px;
+    bottom: 100%;
+    transform: rotate(180deg);
+    border-top: 10px solid #fff;
+    border-right: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    border-left: 10px solid transparent;
+    content: '';
+}
+
+.btn-tab-w9 a.disabled {
+    cursor: none;
+    pointer-events: none;
+    color: #babdc0 !important;
+}
+
+.btn-tab-w9 a.disabled + .w9-tooltip strong {
+    display: block;
+    font-weight: bold;
+}
+
+.btn-tab-w9 a.disabled + .w9-tooltip .wz.icon {
+    position: absolute;
+    top: 50%;
+    right: 12px;
+    transform: translateY(-50%);
+    transition: right .25s;
+    color: rgba(0, 0, 0, .3);
+    font-size: 20px;
+}
+
+@media screen and (min-width: 768px) {
+    .btn-tab-w9 a.disabled + .w9-tooltip::after {
+        top: 100%;
+        right: initial;
+        bottom: initial;
+        left: 10px;
+        transform: none;
+    }
+
+    a.disabled + .w9-tooltip {
+        display: block !important;
+        bottom: 100%;
+        left: 12px;
+    }
+}
+
+/* 프로젝트 오픈 모달 notice 스타일 */
+#projectOpenLypop .wz-modal .notice {margin-top: 24px; padding-top: 32px; padding-bottom: 12px; border-top: 1px solid rgba(0, 0, 0, 0.06);}
+#projectOpenLypop .wz-modal .notice em {margin: 0 0 4px 0; font-size: 13px; line-height: 18px; font-weight: 500; color: #1e1e1e;}
+#projectOpenLypop .wz-modal .notice p {font-size: 13px; line-height: 18px; color: #60656a; font-weight: 400;}
+#projectOpenLypop .wz-modal .notice ul {line-height: 18px; font-size: 13px;}
+#projectOpenLypop .wz-modal .notice ul li {position: relative; color: #60656a; margin-left: 6px;}
+#projectOpenLypop .wz-modal .notice ul li::before {position: absolute; top: 7px; left: -6px; display: block; width: 2px; height: 2px; background: #60656a; content: '';}
+
+/* 나의 펀딩 스타일 따로 지정 */
+#mypageWrap .myfunding-wrap.myRewardPurchase .mypage-project p {color: #60656a;}
+#mypageWrap .myfunding-wrap.myRewardPurchase .project-detail > .inner-section {padding: 12px 0;}
+#mypageWrap .myfunding-wrap.myRewardPurchase .project-detail .funding-detail {margin-bottom: 12px;}
+#mypageWrap .myfunding-wrap.myRewardPurchase .mypage-project .funding-detail .inner-detail p {color: rgba(0, 0, 0, 0.3);}

@@ -1,10 +1,5 @@
 <html lang="ko" class="scroll-top scroll-apex" translate="no">
   <head>
-    <style>
-      .async-hide {
-        opacity: 0 !important;
-      }
-    </style>
 
     <meta charset="utf-8" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
@@ -15,11 +10,8 @@
       name="description"
       content="테크, 패션, 푸드, 뷰티, 홈리빙까지. 와디즈 펀딩으로 매일 새로운 일상을 발견하고, 와디즈 스토어에서 새로운 쇼핑을 만나보세요." />
     <title>결제 예약</title>
+    <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
 
-    <link href="/css/order/order_step2.css"/>
-    <link
-      rel="manifest"
-      href="https://www.wadiz.kr/resources/static/manifest.json" />
     <link
       rel="shortcut icon"
       href="https://static.wadiz.kr/assets/icon/favicon.ico" />
@@ -33,74 +25,42 @@
       href="https://static.wadiz.kr/assets/icon/favicon-32x32.png"
       sizes="32x32"
       type="image/png" />
-    <script>
-      wadiz = {};
-      wadiz.sessionUser = '10907091018';
-      wadiz.globals = {
-        isLogged: JSON.parse('true'),
-        userId: '6059495',
-        encUserId: '10907091018',
-        hashedUserName: 'fd7c846e9116d3becb0fb40c8cee3f6cd31f4145',
-        staticHost: 'https://static.wadiz.kr',
-        embedApiHost: 'https://embed-api.wadiz.kr',
-        serviceApiHost: 'https://service.wadiz.kr',
-        analyticsHost: 'https://analytics.wadiz.kr',
-        platformApiHost: 'https://platform.wadiz.kr',
-      };
-    </script>
 
     <link
       rel="stylesheet"
-      href="https://static.wadiz.kr/static/web/wui.css?cb9a5d5c" />
+      href="/import/css/wui.css" />
     <link
       rel="stylesheet"
-      href="https://static.wadiz.kr/static/web/css/vendor.6b6b0127.chunk.css" />
+      href="/import/css/common.css" />
     <link
       rel="stylesheet"
-      href="https://static.wadiz.kr/static/web/common.css?d165b488" />
-    <link
-      rel="stylesheet"
-      href="https://static.wadiz.kr/static/web/layout.css?0b839e26" />
+      href="/import/css/layout.css" />
     <script
       type="text/javascript"
-      src="https://static.wadiz.kr/static/web/polyfill.js?77e7221d"></script>
+      src="/import/js/vendor.js"></script>
     <script
       type="text/javascript"
-      src="https://static.wadiz.kr/static/web/wui.js?4163c47c"></script>
-    <script
-      type="text/javascript"
-      src="https://static.wadiz.kr/static/web/vendor.js?e91df577"></script>
-    <script
-      type="text/javascript"
-      src="https://static.wadiz.kr/static/web/common.js?87db9043"></script>
-    <script
-      type="text/javascript"
-      src="https://static.wadiz.kr/static/web/layout.js?8a28804b"></script>
+      src="/import/js/layout.js"></script>
 
     <script
       type="text/javascript"
-      src="https://www.wadiz.kr/resources/static/js/wCommon.js?ver=20201111"></script>
-    <script
-      type="text/javascript"
-      src="https://www.wadiz.kr/resources/static/js/countdown.js"></script>
+      src="/import/js/wCommon.js"></script>
+
     <script
       type="text/javascript"
       src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 
-    <link
-      href="https://cdn.wadiz.kr/resources/static/css/wlayout.css?v=201803151400"
-      rel="stylesheet" />
 
     <link
       rel="stylesheet"
-      href="https://static.wadiz.kr/reward/payments.562cdee9.css" />
+      href="/import/css/payments.562cdee9.css" />
 
     <link
       rel="stylesheet"
-      href="https://www.wadiz.kr/resources/static/css/common.css?v=20201105" />
+      href="/import/css/common.css" />
     <link
       rel="stylesheet"
-      href="https://www.wadiz.kr/resources/static/css/wpurchase_reward.css?v=20220901" />
+      href="/import/css/wpurchase_reward.css" />
     <!-- 리워드결제페이지 -->
     <style>
       .inner-terms .bold {
@@ -123,24 +83,14 @@
       }
     </style>
 
-    <script
-      type="text/javascript"
-      src="https://cdn.wadiz.kr/resources/static/js/wMotion.js?v=20190222"></script>
 
     <script
       type="text/javascript"
-      src="https://www.wadiz.kr/resources/static/js/wCommon.js?ver=20201111"></script>
-    <script
-      type="text/javascript"
-      src="https://www.wadiz.kr/resources/static/js/countdown.js"></script>
+      src="/import/js/wCommon.js"></script>
     <script
       type="text/javascript"
       src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-    <link
-      rel="stylesheet"
-      href="https://static.wadiz.kr/static/floating-buttons/main.5e88b41b.css" />
 
-    <link rel="stylesheet" href="https://use.fontawesome.com/7f85a56ba4.css" />
   </head>
   <body>
     <div id="page-container">
@@ -151,15 +101,6 @@
 
       </div>
 
-      <script>
-        window.dispatchEvent(
-          new CustomEvent('WadizHeaderLoaded', {
-            detail: {
-              element: document.getElementById('wz-header'),
-            },
-          })
-        );
-      </script>
 
       <form id="forwardForm" method="get">
         <input type="hidden" id="returnURL" name="returnURL" />
@@ -2766,46 +2707,7 @@
         }
       }
     </script>
-    <input type="hidden" id="gaUserId" value="6059495" />
 
-    <div id="floating-buttons-app">
-      <div class="FloatingButtons_container__2VDUa">
-        <button
-          type="button"
-          class="FloatingTopButton_pageTop__2vt6t FloatingTopButton_visible__3h8Ak"
-          title="위로 이동">
-          <svg
-            viewBox="0 0 40 40"
-            focusable="false"
-            role="presentation"
-            class="withIcon_icon__24D_5"
-            aria-hidden="true">
-            <path
-              d="M33 30l-1.4 1.4L20 19.8 8.4 31.4 7 30l13-13zm1-21H6v2h28z"></path>
-          </svg></button
-        ><button
-          type="button"
-          data-ga-category="공통_최근본_UI"
-          data-ga-action="클릭"
-          data-ga-label=""
-          class="RecentView_container__5Nxua"
-          aria-label="최근본"
-          style="display: none">
-          <div
-            aria-hidden="true"
-            class="RecentView_thumbnail__107ZW CardThumbnail_thumbnail__sw2ym CardThumbnail_visible__1ZiAB CardThumbnail_noanimation__3qJay"
-            style="
-              background-image: url('https://cdn.wadiz.kr/wwwwadiz/green001/2023/0215/20230215095501924_158604.jpg/wadiz/resize/180/format/jpg/quality/85/');
-            "></div>
-        </button>
-      </div>
-    </div>
-
-    <style>
-      .ab-iam-root.v3 {
-        z-index: 9999;
-      }
-    </style>
 
     <div id="adn_container" style="display: none"></div>
   </body>
