@@ -1,5 +1,6 @@
 package com.samgyeobsal.controller;
 
+import com.samgyeobsal.service.FundingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,6 +24,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/web/funding")
 public class FundingController {
     @Autowired
+    FundingService fundingService;
 
     @GetMapping
     public String Funding(){
@@ -31,7 +33,7 @@ public class FundingController {
 
     @GetMapping("/{fid}")
     public String productDetail(@PathVariable String fid, Model model){
-        //model.addAttribute("product",);
+        model.addAttribute("funding",fundingService.getFundingDetail(fid));
         return "funding/product_detail";
     }
 }

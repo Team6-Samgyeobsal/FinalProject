@@ -6,13 +6,13 @@ drop table notice cascade constraint purge;
 drop table order_item cascade constraint purge;
 drop table orders cascade constraint purge;
 drop table payment_method cascade constraint purge;
-drop table reply cascade constraint purge;
+drop table review cascade constraint purge;
 drop table the_hyundai cascade constraint purge;
 drop table competition cascade constraint purge;
 drop table product_option cascade constraint purge;
 drop table event cascade constraint purge;
 drop table coupon_detail cascade constraint purge;
-
+drop table qr_code cascade constraint purge;
 -- 생성자 Oracle SQL Developer Data Modeler 21.2.0.183.1957
 --   위치:        2023-02-28 15:20:16 KST
 --   사이트:      Oracle Database 21c
@@ -154,8 +154,9 @@ CREATE TABLE orders (
                         oprice                NUMBER(8) NOT NULL,
                         ostatus               VARCHAR2(15 BYTE) NOT NULL,
                         odate                 DATE,
-                        memail         VARCHAR2(60 BYTE) NOT NULL,
-                        pmcode VARCHAR2(30 BYTE) NOT NULL,
+                        memail                VARCHAR2(60 BYTE) NOT NULL,
+                        pmcode                VARCHAR2(30 BYTE) NOT NULL,
+                        qrcode                VACHAR2(200 BTYE) NOT NULL,
                         qrused_date           DATE,
                         cpid    VARCHAR2(30 BYTE)
 );
@@ -188,21 +189,22 @@ CREATE TABLE product_option (
 
 ALTER TABLE product_option ADD CONSTRAINT product_option_pk PRIMARY KEY ( poid );
 
-CREATE TABLE reply (
+CREATE TABLE review (
                        rscore        NUMBER NOT NULL,
                        rtype         VARCHAR2(20) NOT NULL,
-                       rimg_url      VARCHAR2(100 BYTE),
+                       rimg_url      VARCHAR2(200 BYTE),
                        memail VARCHAR2(60 BYTE) NOT NULL,
                        fid   VARCHAR2(100 BYTE) NOT NULL,
-                       rdate         DATE NOT NULL
+                       rdate         DATE NOT NULL,
+                       rcontent  VARCHAR2(300 BYTE) NOT NULL
 );
 
-COMMENT ON COLUMN reply.rtype IS
+COMMENT ON COLUMN review.rtype IS
     'FUNDING
 STORE';
 
-ALTER TABLE reply
-    ADD CONSTRAINT reply_pk PRIMARY KEY ( rtype,
+ALTER TABLE review
+    ADD CONSTRAINT review_pk PRIMARY KEY ( rtype,
                                           memail,
                                           fid );
 
@@ -266,14 +268,48 @@ ALTER TABLE product_option
     ADD CONSTRAINT po_fp_fk FOREIGN KEY ( fpid )
         REFERENCES funding_product ( fpid );
 
-ALTER TABLE reply
-    ADD CONSTRAINT reply_funding_fk FOREIGN KEY ( fid )
+ALTER TABLE review
+    ADD CONSTRAINT review_funding_fk FOREIGN KEY ( fid )
         REFERENCES funding ( fid );
 
-ALTER TABLE reply
-    ADD CONSTRAINT reply_member_fk FOREIGN KEY ( memail )
+ALTER TABLE review
+    ADD CONSTRAINT review_member_fk FOREIGN KEY ( memail )
         REFERENCES member ( memail );
 
+
+
+CREATE TABLE funding_img (
+                             fiid         VARCHAR2(30) NOT NULL,
+                             fid VARCHAR2(100 BYTE) NOT NULL,
+                             fiurl        VARCHAR2(100 BYTE) NOT NULL
+);
+
+ALTER TABLE funding_img ADD CONSTRAINT funding_img_pk PRIMARY KEY ( fiid,
+                                                                    fid );
+ALTER TABLE funding_img
+    ADD CONSTRAINT funding_img_funding_fk FOREIGN KEY ( fid )
+        REFERENCES funding ( fid );
+
+
+CREATE TABLE qr_code (
+                         qid        VARCHAR2(30 BYTE) NOT NULL,
+                         link       VARCHAR2(100 BYTE) NOT NULL,
+                         qr_code    VARCHAR2(200 BYTE) NOT NULL,
+                         oid VARCHAR2(40 BYTE) NOT NULL
+);
+CREATE UNIQUE INDEX qr_code__idx ON
+    qr_code (
+             oid
+             ASC );
+
+
+
+ALTER TABLE qr_code ADD CONSTRAINT qr_code_pk PRIMARY KEY ( qid );
+
+ALTER TABLE qr_code
+    ADD CONSTRAINT qr_code_orders_fk FOREIGN KEY ( oid )
+        REFERENCES orders ( oid );
+select * from qr_code;
 
 
 -- Oracle SQL Developer Data Modeler 요약 보고서:

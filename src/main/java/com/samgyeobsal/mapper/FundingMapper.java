@@ -1,7 +1,6 @@
 package com.samgyeobsal.mapper;
 
-import com.samgyeobsal.domain.funding.FundingCriteria;
-import com.samgyeobsal.domain.funding.FundingVO;
+import com.samgyeobsal.domain.funding.*;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -13,4 +12,7 @@ public interface FundingMapper {
 
     List<FundingVO> getFundingList(@Param("criteria") FundingCriteria criteria);
 
+    FundingDetailVO getFundingDetail(@Param("fid") String fid);
+
+    List<ReviewVO> getReviewList(@Param("criteria") ReviewCriteria criteria);
 }

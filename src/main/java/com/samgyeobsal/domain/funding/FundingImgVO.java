@@ -7,12 +7,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class FundingVO {
+public class FundingImgVO {
 
-    private String fid;
-    private String fstore_name;
-    private String ftitle;
-    private long totalprice;
     private String fiurl;
-    private int expire;
 }

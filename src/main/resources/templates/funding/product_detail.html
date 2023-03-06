@@ -23,79 +23,15 @@
             type="text/css"
             href="https://static.wadiz.kr/main/css/67.f2f565ca.chunk.css"
     />
-    <script
-            type="text/javascript"
-            async=""
-            src="https://www.google-analytics.com/plugins/ua/ec.js"
-    ></script>
-    <script
-            type="text/javascript"
-            async=""
-            src="https://static.wadiz.kr/analytics/client.js"
-    ></script>
-    <script
-            type="text/javascript"
-            async=""
-            src="https://www.google-analytics.com/analytics.js"
-    ></script>
-    <script
-            async=""
-            charset="utf-8"
-            src="//static.dable.io/dist/dablena.min.js"
-    ></script>
-    <script
-            src="https://connect.facebook.net/ko_KR/sdk.js?hash=5d75996a98ff8b316b29dc5076180a5b"
-            async=""
-            crossorigin="anonymous"
-    ></script>
-    <script
-            async=""
-            src="https://connect.facebook.net/en_US/fbevents.js"
-    ></script>
-    <script
-            type="text/javascript"
-            async=""
-            src="https://cdn.channel.io/plugin/ch-plugin-web.js"
-    ></script>
-    <script
-            type="text/javascript"
-            async=""
-            src="https://static.ads-twitter.com/uwt.js"
-    ></script>
+
+
     <script
             type="text/javascript"
             async=""
             src="https://www.googletagmanager.com/gtag/js?id=G-7SJRXGV8D7&amp;l=dataLayer&amp;cx=c"
     ></script>
-    <script
-            type="text/javascript"
-            async=""
-            src="https://www.googletagmanager.com/gtm.js?id=GTM-PT3XHNG&amp;l=dataLayer"
-    ></script>
-    <script
-            gtm="GTM-NDMQ9N4"
-            type="text/javascript"
-            async=""
-            src="https://www.google-analytics.com/gtm/optimize.js?id=GTM-NFLN3S4"
-    ></script>
-    <script
-            id="facebook-jssdk"
-            src="//connect.facebook.net/ko_KR/sdk.js"
-    ></script>
-    <script async="" src="//www.google-analytics.com/analytics.js"></script>
-    <script
-            async=""
-            src="https://www.datadoghq-browser-agent.com/datadog-logs-v4.js"
-    ></script>
-    <script
-            type="text/javascript"
-            src="https://js.appboycdn.com/web-sdk/3.2/appboy.min.js"
-            async=""
-    ></script>
-    <script
-            async=""
-            src="https://www.googletagmanager.com/gtm.js?id=GTM-NDMQ9N4"
-    ></script>
+
+
     <meta charset="utf-8"/>
     <meta http-equiv="x-ua-compatible" content="ie=edge"/>
     <meta
@@ -246,399 +182,34 @@
     />
     <link rel="mask-icon" href="/resources/static/svg/wa.svg" color="#1d2129"/>
 
-    <script
-            type="text/javascript"
-            src="https://cdn.weglot.com/weglot.min.js"
-    ></script>
-    <script>
-        if (!sessionStorage.getItem("preserveTranslationInfo")) {
-            localStorage.removeItem("wglang");
-        }
-        Weglot.initialize({
-            api_key: "wg_0164c0cfcca002bbcf3c6c7a0c0433fd5",
-            hide_switcher: true,
-        });
-    </script>
-    <meta name="google" content="notranslate"/>
-    <script src="https://www.googleoptimize.com/optimize.js?id=OPT-PH33MCR"></script>
-    <script>
-        (function () {
-            var registrationDate =
-                "2023-02-23 16:50:34.0" !== "" ? "2023-02-23" : "";
-
-            dataLayer.push({
-                event: "user.info",
-                "user.encUserId": "3029167005",
-                "user.hashedUserName": "e9450c3db0d1676dd69b9f44e338ea85c1cd31ab",
-                "user.userId": "6058334",
-                "user.accntType": "N1000",
-                "user.memberequity": "false",
-                "user.membertype": "false" === "false" ? "일반 회원" : "투자 회원",
-                "user.nickname": "익명의 서포터 937",
-                "user.email": "thrbtjr@gmail.com",
-                "user.registrationDate": registrationDate,
-            });
-        })();
-    </script>
-    <script>
-        (function (w, d, s, l, i) {
-            w[l] = w[l] || [];
-            w[l].push({"gtm.start": new Date().getTime(), event: "gtm.js"});
-            var f = d.getElementsByTagName(s)[0],
-                j = d.createElement(s),
-                dl = l != "dataLayer" ? "&l=" + l : "";
-            j.async = true;
-            j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl + "";
-            f.parentNode.insertBefore(j, f);
-        })(window, document, "script", "dataLayer", "GTM-NDMQ9N4");
-    </script>
-    <script>
-        /**
-         * JSP에서 사용가능한 GTM 이벤트 전송 함수
-         *
-         * data.eventCallback 주의사항 - 현재 페이지에 로드된 모든 컨테이너들에게 이벤트를 전송하고, 컨테이너 별로 data.eventCallback이 호출되기때문에 콜백이 중복 호출되므로 메인 컨테이너(GTM-NDMQ9N4)인 경우에만 콜백이 호출되도록 합니다.
-         *
-         * @param eventName {string} 이벤트 이름
-         * @param [data] {object}
-         */
-        function trackingEventInJsp(eventName, data) {
-            if (
-                !window.google_tag_manager &&
-                data.eventCallback instanceof Function
-            ) {
-                // 광고 차단한 경우에 GTM에 전달하지 않고 eventCallback 호출
-                data.eventCallback();
-                return;
-            }
-
-            var eventData = Object.assign({event: eventName}, data);
-
-            if (data.eventCallback instanceof Function) {
-                eventData.eventCallback = function (containerID) {
-                    if (containerID === "GTM-NDMQ9N4") {
-                        data.eventCallback.apply(null, arguments);
-                    }
-                };
-            }
-
-            window.dataLayer = window.dataLayer || [];
-            window.dataLayer.push(eventData);
-        }
-    </script>
-    <script type="text/javascript">
-        +(function (a, p, P, b, y) {
-            a.appboy = {};
-            a.appboyQueue = [];
-            for (
-                var s =
-                        "DeviceProperties Card Card.prototype.dismissCard Card.prototype.removeAllSubscriptions Card.prototype.removeSubscription Card.prototype.subscribeToClickedEvent Card.prototype.subscribeToDismissedEvent Banner CaptionedImage ClassicCard ControlCard ContentCards ContentCards.prototype.getUnviewedCardCount Feed Feed.prototype.getUnreadCardCount ControlMessage InAppMessage InAppMessage.SlideFrom InAppMessage.ClickAction InAppMessage.DismissType InAppMessage.OpenTarget InAppMessage.ImageStyle InAppMessage.Orientation InAppMessage.TextAlignment InAppMessage.CropType InAppMessage.prototype.closeMessage InAppMessage.prototype.removeAllSubscriptions InAppMessage.prototype.removeSubscription InAppMessage.prototype.subscribeToClickedEvent InAppMessage.prototype.subscribeToDismissedEvent FullScreenMessage ModalMessage HtmlMessage SlideUpMessage User User.Genders User.NotificationSubscriptionTypes User.prototype.addAlias User.prototype.addToCustomAttributeArray User.prototype.getUserId User.prototype.incrementCustomUserAttribute User.prototype.removeFromCustomAttributeArray User.prototype.setAvatarImageUrl User.prototype.setCountry User.prototype.setCustomLocationAttribute User.prototype.setCustomUserAttribute User.prototype.setDateOfBirth User.prototype.setEmail User.prototype.setEmailNotificationSubscriptionType User.prototype.setFirstName User.prototype.setGender User.prototype.setHomeCity User.prototype.setLanguage User.prototype.setLastKnownLocation User.prototype.setLastName User.prototype.setPhoneNumber User.prototype.setPushNotificationSubscriptionType InAppMessageButton InAppMessageButton.prototype.removeAllSubscriptions InAppMessageButton.prototype.removeSubscription InAppMessageButton.prototype.subscribeToClickedEvent display display.automaticallyShowNewInAppMessages display.destroyFeed display.hideContentCards display.showContentCards display.showFeed display.showInAppMessage display.toggleContentCards display.toggleFeed changeUser destroy getDeviceId initialize isPushBlocked isPushGranted isPushPermissionGranted isPushSupported logCardClick logCardDismissal logCardImpressions logContentCardsDisplayed logCustomEvent logFeedDisplayed logInAppMessageButtonClick logInAppMessageClick logInAppMessageHtmlClick logInAppMessageImpression logPurchase openSession registerAppboyPushMessages removeAllSubscriptions removeSubscription requestContentCardsRefresh requestFeedRefresh requestImmediateDataFlush resumeWebTracking setLogger stopWebTracking subscribeToContentCardsUpdates subscribeToFeedUpdates subscribeToInAppMessage subscribeToNewInAppMessages toggleAppboyLogging trackLocation unregisterAppboyPushMessages wipeData".split(
-                            " "
-                        ),
-                    i = 0;
-                i < s.length;
-                i++
-            ) {
-                for (
-                    var m = s[i], k = a.appboy, l = m.split("."), j = 0;
-                    j < l.length - 1;
-                    j++
-                )
-                    k = k[l[j]];
-                k[l[j]] = new Function(
-                    "return function " +
-                    m.replace(/\./g, "_") +
-                    "(){window.appboyQueue.push(arguments); return true}"
-                )();
-            }
-            window.appboy.getCachedContentCards = function () {
-                return new window.appboy.ContentCards();
-            };
-            window.appboy.getCachedFeed = function () {
-                return new window.appboy.Feed();
-            };
-            window.appboy.getUser = function () {
-                return new window.appboy.User();
-            };
-            (y = p.createElement(P)).type = "text/javascript";
-            y.src = "https://js.appboycdn.com/web-sdk/3.2/appboy.min.js";
-            y.async = 1;
-            (b = p.getElementsByTagName(P)[0]).parentNode.insertBefore(y, b);
-        })(window, document, "script");
-
-        function trackingBrazeInJsp(type, name, value) {
-            if (window.appboy) {
-                if (
-                    type === "event" &&
-                    typeof window.appboy.logCustomEvent === "function"
-                ) {
-                    window.appboy.logCustomEvent(name, value);
-                }
-                if (type === "attr" && typeof window.appboy.getUser === "function") {
-                    window.appboy.getUser().setCustomUserAttribute(name, value);
-                }
-            }
-            return null;
-        }
-
-        if (sessionStorage) {
-            // 펀딩 결제 동선에서 특정 페이지의 데이터를 유지하기 위해서 사용되는 객체
-            // ex: 펀딩 상세페이지에 있는 카테고리 오픈날짜/종료날짜를 결제 완료페이지에서 필요로 한 경우
-
-            function storageInBrazeDataContoller() {
-                this.key = "WADIZ_BRAZE_DATA";
-                this.getStorageData = function () {
-                    if (!sessionStorage.getItem(this.key)) {
-                        return {};
-                    }
-                    return JSON.parse(sessionStorage.getItem(this.key));
-                };
-
-                this.get = function (key) {
-                    var brazeData = this.getStorageData();
-                    return brazeData[key];
-                };
-
-                this.set = function (key, value) {
-                    var brazeData = this.getStorageData();
-                    brazeData[key] = value;
-                    sessionStorage.setItem(this.key, JSON.stringify(brazeData));
-                    return brazeData;
-                };
-
-                this.add = function (key, value) {
-                    var brazeData = this.getStorageData();
-                    brazeData[key] = Object.assign(brazeData[key], value);
-                    sessionStorage.setItem(this.key, JSON.stringify(brazeData));
-                    return brazeData;
-                };
-
-                this.remove = function (key) {
-                    var brazeData = this.getStorageData();
-                    brazeData[key] = null;
-                    sessionStorage.setItem(this.key, JSON.stringify(brazeData));
-                };
-            }
-
-            var StorageInBrazeDataController = new storageInBrazeDataContoller();
-        }
-
-        (function brazeInit() {
-            if (window.appboy) {
-                var BRAZE_API_KEYS = {
-                    local: "09c8971b-8c79-497a-a8f9-429b9163fa1a",
-                    dev: "09c8971b-8c79-497a-a8f9-429b9163fa1a",
-                    rc: "2a16a131-0038-4448-9967-7e78ade318e1",
-                    rc2: "a30b578e-38c4-4cbd-aeb4-ae34ac9dd148",
-                    rc3: "e17a4487-bb58-4be7-b77c-cdddd90b9bd4",
-                    stage: "67ccab67-5d9f-4bba-980c-2d4a045c857e",
-                    real: "0c308381-846f-4726-ad61-23ea6add9f4e",
-                };
-                var BRAZE_SDK_KEYS = "https://sdk.iad-06.braze.com";
-                var userId = window.wadiz.globals.userId;
-
-                appboy.initialize(BRAZE_API_KEYS["real"], {
-                    baseUrl: BRAZE_SDK_KEYS,
-                    allowUserSuppliedJavascript: true,
-                    enableLogging: "real" === "real" ? false : true,
-                });
-
-                if (userId) {
-                    appboy.changeUser(userId);
-                }
-
-                appboy.display.automaticallyShowNewInAppMessages();
-
-                appboy.openSession();
-            }
-            return null;
-        })();
-    </script>
 
     <link
             rel="stylesheet"
-            href="https://static.wadiz.kr/static/web/wui.css?cb9a5d5c"
+            href="/import/css/wui.css"
     />
     <link
             rel="stylesheet"
-            href="https://static.wadiz.kr/static/web/css/vendor.6b6b0127.chunk.css"
+            href="/import/css/vendor.6b6b0127.chunk.css"
     />
     <link
             rel="stylesheet"
-            href="https://static.wadiz.kr/static/web/common.css?d165b488"
+            href="/import/css/common.css"
     />
     <link
             rel="stylesheet"
-            href="https://static.wadiz.kr/static/web/layout.css?0b839e26"
+            href="/import/css/layout.css"
     />
-    <script
-            type="text/javascript"
-            src="https://static.wadiz.kr/static/web/polyfill.js?77e7221d"
-    ></script>
-    <script
-            type="text/javascript"
-            src="https://static.wadiz.kr/static/web/wui.js?4163c47c"
-    ></script>
-    <!-- <script type="text/javascript" src="https://static.wadiz.kr/static/web/vendor.js?e91df577"></script>
- -->
-    <script
-            type="text/javascript"
-            src="https://static.wadiz.kr/static/web/sentry.3990fb1a.js"
-    ></script>
+
+
     <script
             type="text/javascript"
             src="https://static.wadiz.kr/static/web/common.js?87db9043"
     ></script>
-    <!-- <script type="text/javascript" src="https://static.wadiz.kr/static/web/layout.js?8a28804b"></script>
- -->
-
-    <link
-            rel="stylesheet"
-            href="https://static.wadiz.kr/main/main.ab4e33bf.css"
-    />
-
-    <link
-            rel="stylesheet"
-            type="text/css"
-            href="https://cdn.wadiz.kr/resources/static/editor/4.0.15/froala_editor.pkgd.min.css?20221122"
-    />
-    <link
-            rel="stylesheet"
-            type="text/css"
-            href="https://cdn.wadiz.kr/resources/static/editor/4.0.15/froala_custom.css?v=20221122"
-    />
-    <link
-            rel="stylesheet"
-            type="text/css"
-            href="https://cdn.weglot.com/weglot.min.css?v=4"
-    />
-    <link rel="stylesheet" href="./css/funding/product_detail.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/7f85a56ba4.css"/>
 
 
-    <link
-            rel="stylesheet"
-            type="text/css"
-            href="https://static.wadiz.kr/main/css/0.51bf1ff8.chunk.css"
-    />
-    <script
-            charset="utf-8"
-            src="https://static.wadiz.kr/main/js/0.ca78b2f1.chunk.js"
-    ></script>
-    <script
-            charset="utf-8"
-            src="https://static.wadiz.kr/main/js/comingsoon-main~earlybird-app~feed~main-page~planned-app~preorder-main~reward-main~store~trend-app.df5558ba.chunk.js"
-    ></script>
-    <link
-            rel="stylesheet"
-            type="text/css"
-            href="https://static.wadiz.kr/main/css/main-page~preorder-main~reward-main~store~wishes.e6385302.chunk.css"
-    />
-    <script
-            charset="utf-8"
-            src="https://static.wadiz.kr/main/js/main-page~preorder-main~reward-main~store~wishes.b96d035b.chunk.js"
-    ></script>
-    <link
-            rel="stylesheet"
-            type="text/css"
-            href="https://static.wadiz.kr/main/css/main-page~trend-app.0a025efa.chunk.css"
-    />
-    <script
-            charset="utf-8"
-            src="https://static.wadiz.kr/main/js/main-page~trend-app.4bc918fb.chunk.js"
-    ></script>
-    <link
-            rel="stylesheet"
-            type="text/css"
-            href="https://static.wadiz.kr/main/css/main-page.19ca2771.chunk.css"
-    />
-    <script
-            charset="utf-8"
-            src="https://static.wadiz.kr/main/js/main-page.b0fbb32d.chunk.js"
-    ></script>
-    <link
-            rel="stylesheet"
-            type="text/css"
-            href="https://static.wadiz.kr/main/css/9.7e52d369.chunk.css"
-    />
-    <script
-            charset="utf-8"
-            src="https://static.wadiz.kr/main/js/9.9077add2.chunk.js"
-    ></script>
-    <link
-            rel="stylesheet"
-            type="text/css"
-            href="https://static.wadiz.kr/main/css/reward-main.44308e85.chunk.css"
-    />
-    <script
-            charset="utf-8"
-            src="https://static.wadiz.kr/main/js/reward-main.c70190cd.chunk.js"
-    ></script>
-    <script
-            charset="utf-8"
-            src="https://static.wadiz.kr/main/js/vendors~feed~reward-community~reward-news~reward-refund-policy~reward-story~reward-supporter~store.8264b4d6.chunk.js"
-    ></script>
-    <script
-            charset="utf-8"
-            src="https://static.wadiz.kr/main/js/5.6af90f2b.chunk.js"
-    ></script>
-    <link
-            rel="stylesheet"
-            type="text/css"
-            href="https://static.wadiz.kr/main/css/vendors~feed.c8634b6f.chunk.css"
-    />
-    <script
-            charset="utf-8"
-            src="https://static.wadiz.kr/main/js/vendors~feed.ec6f5206.chunk.js"
-    ></script>
-    <link
-            rel="stylesheet"
-            type="text/css"
-            href="https://static.wadiz.kr/main/css/feed.8fe27d88.chunk.css"
-    />
-    <script
-            charset="utf-8"
-            src="https://static.wadiz.kr/main/js/feed.5cee3623.chunk.js"
-    ></script>
-    <link
-            rel="stylesheet"
-            type="text/css"
-            href="https://static.wadiz.kr/main/css/wishes.aed54e21.chunk.css"
-    />
-    <script
-            charset="utf-8"
-            src="https://static.wadiz.kr/main/js/wishes.8c0d3c4b.chunk.js"
-    ></script>
-    <script
-            charset="utf-8"
-            src="https://static.wadiz.kr/main/js/1.6f398c7c.chunk.js"
-    ></script>
-    <link
-            rel="stylesheet"
-            type="text/css"
-            href="https://static.wadiz.kr/main/css/vendors~my-wadiz~startup-main.ad21a59e.chunk.css"
-    />
-    <script
-            charset="utf-8"
-            src="https://static.wadiz.kr/main/js/vendors~my-wadiz~startup-main.ed6457f8.chunk.js"
-    ></script>
-    <link
-            rel="stylesheet"
-            type="text/css"
-            href="https://static.wadiz.kr/main/css/vendors~my-wadiz.8c58ec5e.chunk.css"
-    />
-    <script
-            charset="utf-8"
-            src="https://static.wadiz.kr/main/js/vendors~my-wadiz.47145dfa.chunk.js"
-    ></script>
-    <link
-            rel="stylesheet"
-            type="text/css"
-            href="https://static.wadiz.kr/main/css/my-wadiz.af1d46fd.chunk.css"
-    />
-    <script
-            charset="utf-8"
-            src="https://static.wadiz.kr/main/js/my-wadiz.0c558c94.chunk.js"
-    ></script>
+    <link rel="stylesheet" href="/css/funding/product_detail.css">
+
+
     <meta
             http-equiv="origin-trial"
             content="A751Xsk4ZW3DVQ8WZng2Dk5s3YzAyqncTzgv+VaE6wavgTY0QHkDvUTET1o7HanhuJO8lgv1Vvc88Ij78W1FIAAAAAB7eyJvcmlnaW4iOiJodHRwczovL3d3dy5nb29nbGV0YWdtYW5hZ2VyLmNvbTo0NDMiLCJmZWF0dXJlIjoiUHJpdmFjeVNhbmRib3hBZHNBUElzIiwiZXhwaXJ5IjoxNjgwNjUyNzk5LCJpc1RoaXJkUGFydHkiOnRydWV9"
@@ -706,89 +277,25 @@
             src="https://kn.acrosspf.com/adn_check_1.0.2.ad?rb_adn_uid=rb-adn-1-04e25067198b0c18baaa96a0c178df17"
     ></script>
 
-    <script
-            charset="utf-8"
-            src="https://static.wadiz.kr/main/js/vendors~reward-community~reward-news~reward-refund-policy~reward-story~reward-supporter~signature.0b4039f5.chunk.js"
-    ></script>
-    <script
-            charset="utf-8"
-            src="https://static.wadiz.kr/main/js/vendors~reward-community~reward-news~reward-refund-policy~reward-story~reward-supporter.54700a37.chunk.js"
-    ></script>
+
     <link
             rel="stylesheet"
             type="text/css"
-            href="https://static.wadiz.kr/main/css/reward-story.255eba09.chunk.css"
+            href="/import/css/reward-story.255eba09.chunk.css"
     />
-    <script
-            charset="utf-8"
-            src="https://static.wadiz.kr/main/js/reward-story.931afb0e.chunk.js"
-    ></script>
-    <script
-            charset="utf-8"
-            src="https://static.wadiz.kr/main/js/79.174d4d4d.chunk.js"
-    ></script>
+
     <link
             rel="stylesheet"
             type="text/css"
-            href="https://static.wadiz.kr/main/css/63.da97e396.chunk.css"
+            href="/import/css/froala_editor.pkgd.min.css?20221122"
     />
-    <script
-            charset="utf-8"
-            src="https://static.wadiz.kr/main/js/63.24694de0.chunk.js"
-    ></script>
-    <script
-            charset="utf-8"
-            src="https://static.wadiz.kr/main/js/13.c5c749e6.chunk.js"
-    ></script>
     <link
             rel="stylesheet"
             type="text/css"
-            href="https://static.wadiz.kr/main/css/56.73b015dd.chunk.css"
+            href="/import/css/froala_custom.css?v=20221122"
     />
-    <script
-            charset="utf-8"
-            src="https://static.wadiz.kr/main/js/56.31a6d182.chunk.js"
-    ></script>
-    <link
-            rel="stylesheet"
-            type="text/css"
-            href="https://static.wadiz.kr/main/css/15.6d6c5a14.chunk.css"
-    />
-    <script
-            charset="utf-8"
-            src="https://static.wadiz.kr/main/js/15.d8b89aad.chunk.js"
-    ></script>
-    <link
-            rel="stylesheet"
-            type="text/css"
-            href="https://static.wadiz.kr/main/css/61.4b314a03.chunk.css"
-    />
-    <script
-            charset="utf-8"
-            src="https://static.wadiz.kr/main/js/61.db78f3a5.chunk.js"
-    ></script>
-    <link
-            rel="stylesheet"
-            type="text/css"
-            href="https://static.wadiz.kr/main/css/72.c27a3346.chunk.css"
-    />
-    <script
-            charset="utf-8"
-            src="https://static.wadiz.kr/main/js/72.d3f6e025.chunk.js"
-    ></script>
-    <script
-            charset="utf-8"
-            src="https://static.wadiz.kr/main/js/70.fa1f376f.chunk.js"
-    ></script>
-    <link
-            rel="stylesheet"
-            type="text/css"
-            href="https://static.wadiz.kr/main/css/58.1b6ab1d4.chunk.css"
-    />
-    <script
-            charset="utf-8"
-            src="https://static.wadiz.kr/main/js/58.519ea379.chunk.js"
-    ></script>
+
+
 </head>
 <body class="" style="overflow: auto">
 <div id="page-container">
@@ -865,15 +372,16 @@
                                                     style="
                               width: 3355px;
                               opacity: 1;
-                              transform: translate3d(-1342px, 0px, 0px);
+                              transform: translate3d(0px, 0px, 0px);
                             "
                                             >
-                                                <div
-                                                        data-index="-1"
-                                                        tabindex="-1"
-                                                        class="slick-slide slick-cloned"
-                                                        aria-hidden="true"
-                                                        style="width: 671px"
+
+                                                <div th:each="img : ${funding.imgs}"
+                                                     th:data-index="${imgStat.index}"
+                                                     class="slick-slide"
+                                                     tabindex="-1"
+                                                     aria-hidden="true"
+                                                     style="outline: none; width: 671px"
                                                 >
                                                     <div>
                                                         <div
@@ -882,97 +390,12 @@
                                                         >
                                                             <div
                                                                     class="RewardImageSlider_slickBackgroundImage__gyIH3"
-                                                                    style="
-                                      background-image: url('https://cdn.wadiz.kr/wwwwadiz/green001/2023/0207/20230207163555718_181985.jpg/wadiz/quality/80/');
-                                    "
+                                                                    th:style=" 'background-image: url('+${img.fiurl}+');'"
                                                             ></div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div
-                                                        data-index="0"
-                                                        class="slick-slide"
-                                                        tabindex="-1"
-                                                        aria-hidden="true"
-                                                        style="outline: none; width: 671px"
-                                                >
-                                                    <div>
-                                                        <div
-                                                                tabindex="-1"
-                                                                style="width: 100%; display: inline-block"
-                                                        >
-                                                            <div
-                                                                    class="RewardImageSlider_slickBackgroundImage__gyIH3"
-                                                                    style="
-                                      background-image: url('https://cdn.wadiz.kr/wwwwadiz/green001/2023/0207/20230207163550884_181985.jpg/wadiz/quality/80/');
-                                    "
-                                                            ></div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div
-                                                        data-index="1"
-                                                        class="slick-slide slick-active slick-current"
-                                                        tabindex="-1"
-                                                        aria-hidden="false"
-                                                        style="outline: none; width: 671px"
-                                                >
-                                                    <div>
-                                                        <div
-                                                                tabindex="-1"
-                                                                style="width: 100%; display: inline-block"
-                                                        >
-                                                            <div
-                                                                    class="RewardImageSlider_slickBackgroundImage__gyIH3"
-                                                                    style="
-                                      background-image: url('https://cdn.wadiz.kr/wwwwadiz/green001/2023/0207/20230207163555718_181985.jpg/wadiz/quality/80/');
-                                    "
-                                                            ></div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div
-                                                        data-index="2"
-                                                        tabindex="-1"
-                                                        class="slick-slide slick-cloned"
-                                                        aria-hidden="true"
-                                                        style="width: 671px"
-                                                >
-                                                    <div>
-                                                        <div
-                                                                tabindex="-1"
-                                                                style="width: 100%; display: inline-block"
-                                                        >
-                                                            <div
-                                                                    class="RewardImageSlider_slickBackgroundImage__gyIH3"
-                                                                    style="
-                                      background-image: url('https://cdn.wadiz.kr/wwwwadiz/green001/2023/0207/20230207163550884_181985.jpg/wadiz/quality/80/');
-                                    "
-                                                            ></div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div
-                                                        data-index="3"
-                                                        tabindex="-1"
-                                                        class="slick-slide slick-cloned"
-                                                        aria-hidden="true"
-                                                        style="width: 671px"
-                                                >
-                                                    <div>
-                                                        <div
-                                                                tabindex="-1"
-                                                                style="width: 100%; display: inline-block"
-                                                        >
-                                                            <div
-                                                                    class="RewardImageSlider_slickBackgroundImage__gyIH3"
-                                                                    style="
-                                      background-image: url('https://cdn.wadiz.kr/wwwwadiz/green001/2023/0207/20230207163555718_181985.jpg/wadiz/quality/80/');
-                                    "
-                                                            ></div>
-                                                        </div>
-                                                    </div>
-                                                </div>
+
                                             </div>
                                         </div>
                                         <button
@@ -983,7 +406,7 @@
                                         </button>
                                     </div>
                                 </div>
-                                <span class="RewardImageSlider_slickIndex__2hJn5">2/2</span>
+                                <span class="RewardImageSlider_slickIndex__2hJn5" id="slider-index">1/[[${#lists.size(funding.imgs)}]]</span>
                             </div>
 
                             <div class="Story_container__wZtYc">
@@ -993,158 +416,7 @@
                                 <div class="Story_expandable__3C3Y7">
                                     <div>
                                         <div class="inner-contents fr-view">
-                                            <h1 style="text-align: center">클렌징폼의 혁신!</h1>
-
-                                            <p>
-                                                <img
-                                                        style="width: 670.771px; height: 227.342px"
-                                                        class="fr-fic fr-dib"
-                                                        data-width="298"
-                                                        data-height="101"
-                                                        data-src="https://www.wadiz.kr/ft/images/green001/2022/1202/20221202150543086_15.gif"
-                                                /><img
-                                                    style="width: 670.771px; height: 855.345px"
-                                                    class="fr-fic fr-dib"
-                                                    data-width="298"
-                                                    data-height="380"
-                                                    data-src="https://www.wadiz.kr/ft/images/green001/2022/1202/20221202150609805_69.jpg"
-                                            /><img
-                                                    style="width: 670.771px; height: 855.345px"
-                                                    class="fr-fic fr-dib"
-                                                    data-width="298"
-                                                    data-height="380"
-                                                    data-src="https://www.wadiz.kr/ft/images/green001/2022/1202/20221202150609805_69.jpg"
-                                            /><img
-                                                    style="width: 670.771px; height: 855.345px"
-                                                    class="fr-fic fr-dib"
-                                                    data-width="298"
-                                                    data-height="380"
-                                                    data-src="https://www.wadiz.kr/ft/images/green001/2022/1202/20221202150609805_69.jpg"
-                                            /><img
-                                                    style="width: 670.771px; height: 855.345px"
-                                                    class="fr-fic fr-dib"
-                                                    data-width="298"
-                                                    data-height="380"
-                                                    data-src="https://www.wadiz.kr/ft/images/green001/2022/1202/20221202150609805_69.jpg"
-                                            /><img
-                                                    style="width: 670.771px; height: 855.345px"
-                                                    class="fr-fic fr-dib"
-                                                    data-width="298"
-                                                    data-height="380"
-                                                    data-src="https://www.wadiz.kr/ft/images/green001/2022/1202/20221202150609805_69.jpg"
-                                            /><img
-                                                    style="width: 670.771px; height: 855.345px"
-                                                    class="fr-fic fr-dib"
-                                                    data-width="298"
-                                                    data-height="380"
-                                                    data-src="https://www.wadiz.kr/ft/images/green001/2022/1202/20221202150609805_69.jpg"
-                                            /><img
-                                                    style="width: 670.771px; height: 855.345px"
-                                                    class="fr-fic fr-dib"
-                                                    data-width="298"
-                                                    data-height="380"
-                                                    data-src="https://www.wadiz.kr/ft/images/green001/2022/1202/20221202150609805_69.jpg"
-                                            /><img
-                                                    style="width: 670.771px; height: 855.345px"
-                                                    class="fr-fic fr-dib"
-                                                    data-width="298"
-                                                    data-height="380"
-                                                    data-src="https://www.wadiz.kr/ft/images/green001/2022/1202/20221202150609805_69.jpg"
-                                            /><img
-                                                    style="width: 670.771px; height: 855.345px"
-                                                    class="fr-fic fr-dib"
-                                                    data-width="298"
-                                                    data-height="380"
-                                                    data-src="https://www.wadiz.kr/ft/images/green001/2022/1202/20221202150609805_69.jpg"
-                                            />
-                                            </p>
-                                            <h2 style="text-align: center">
-                                                와디즈에서만 가능한
-                                                <mark class="color-mint">51% 할인 혜택</mark>
-                                            </h2>
-                                            <p style="text-align: center">
-                                                프롬리에 어성초 곤약 약산성 클렌징폼은 클렌징폼의
-                                                혁신을 이루고자<br/>1가지 제품에 정말 많은 기능들이
-                                                들어있습니다.
-                                            </p>
-
-                                            <h4 style="text-align: center">
-                                                <mark class="color-yellow"
-                                                >클렌징폼 원가를 보고 모두가 말렸어요.
-                                                </mark
-                                                >
-                                            </h4>
-                                            <p style="text-align: center">
-                            <span
-                                    style="
-                                letter-spacing: -0.3px;
-                                background-color: transparent;
-                                font-family: roboto, 'Noto Sans KR',
-                                  -apple-system, dotum, sans-serif;
-                              "
-                            >정말 저렴한 클렌징폼의 판매가와 비슷한 수준의
-                              원가였으니까요.</span
-                            >
-                                            </p>
-                                            <p style="text-align: center">
-                                                <br/>와디즈는 많은 분들에게 한꺼번에 주문을 받는
-                                                구조이기 때문에<br/>그리고 이윤을 조금
-                                                포기하더라도<br/>더 많은 분들에게 좋은 제품을
-                                                알려야겠다는<br/><strong
-                                            >저희 팀의 간절한 마음으로 가능해진
-                                                가격입니다.</strong
-                                            ><br/><br/>
-                                            </p>
-                                            <p>
-                                                <img
-                                                        class="fr-fic fr-dib"
-                                                        data-width="800"
-                                                        data-height="218"
-                                                        data-src="https://www.wadiz.kr/ft/images/green001/2022/1206/20221206185613992_60.jpg"
-                                                        data-img-width="1006"
-                                                        style="width: 670.771px; height: 182.785px"
-                                                />
-                                            </p>
-                                            <h4 style="text-align: center">
-                                                <strong><u>"진짜 민감성을 위한</u></strong
-                                                ><br/><strong
-                                                    style="
-                                letter-spacing: -0.51px;
-                                background-color: transparent;
-                              "
-                                            ><u>점자 거품용기 증정!"</u></strong
-                                            >
-                                            </h4>
-
-                                            <p><br/></p>
-                                            <blockquote class="type-line">
-                                                <h3><u>메이커 소개</u></h3>
-                                            </blockquote>
-                                            <p>
-                                                <img
-                                                        style="width: 670.771px; height: 360.145px"
-                                                        class="fr-fic fr-dib"
-                                                        data-width="298"
-                                                        data-height="160"
-                                                        data-src="https://www.wadiz.kr/ft/images/green001/2022/1202/20221202151948455_3.jpg"
-                                                />
-                                            </p>
-
-                                            <p><br/></p>
-                                            <blockquote class="type-line">
-                                                <h3>
-                                                    <strong><u>자주하는 질문</u></strong>
-                                                </h3>
-                                            </blockquote>
-
-                                            <p><br/></p>
-                                            <blockquote class="type-line">
-                                                <h3>
-                                                    <strong><u>자주하는 질문</u></strong>
-                                                </h3>
-                                            </blockquote>
-
-                                            <p><br/></p>
+                                            [(${funding.fstory})]
 
                                         </div>
                                     </div>
@@ -1178,17 +450,20 @@
                         <div class="RewardDetailDesktop_right__cgJ4-">
                             <div class="RewardVerticalInfo_container__1SxW5">
                                 <div class="BaseInfo_container__1SXpL">
+                                    <div class="BaseInfo_category__noYA2"><span>[[${funding.tname}]]</span>
 
+                                    </div>
                                     <div class="BaseInfo_bannerWrapper__2jmjf">
                                         <div class="FundingTypeBadge_container__1UZDH"><span
-                                                class="FundingTypeBadge_funding__4BhpK">펀딩</span></div>
+                                                class="FundingTypeBadge_funding__4BhpK">[[${funding.ctname}]]</span>
+                                        </div>
                                         <a
                                                 class="PartnerBanner_container__2m0Mo"
                                                 href="/crowd/cosmax"
                                         ><span class="PartnerBanner_terms__2-kMz"
                                         >협력기관</span
                                         ><span class="PartnerBanner_desc__2mN1_"
-                                        >넥스트 뷰티 브랜드</span
+                                        >[[${funding.fstore_name}]]</span
                                         >
                                             <svg
                                                     viewBox="0 0 40 40"
@@ -1204,20 +479,16 @@
                                         </a>
                                     </div>
                                     <p class="BaseInfo_title__3qvLN">
-                                        [46.85%개선] 클렌징폼 혁신! 1번의 세수로 모공,요철,각질
-                                        삭제!
+                                        [[${funding.ftitle}]]
                                     </p>
                                     <p class="BaseInfo_description__1M3_1">
-                                        한번 사용으로 모공 면적 개선! 1%성분 변화에도 뒤집어지는
-                                        초민감성 메이커가 작정하고 직접 만든 여드름피부 완화
-                                        기능성 비건 클렌저! 어성초와 곤약으로 순하게 모공과 각질
-                                        케어!
+                                        [[${funding.fsummary}]]
                                     </p>
                                     <div class="BaseInfo_rateWrapper__1C69h">
                                         <div class="BaseInfo_rate__vZ7aw">
                                             <div class="BaseInfo_infoWrapper__1GKex">
                             <span class="BaseInfo_achivementRate__hcznC"
-                            >665</span
+                            >[[${funding.totalemail}]]</span
                             ><span class="BaseInfo_successInfo__2Rmqm"
                                             >명 참여</span
                                             >
@@ -1226,19 +497,20 @@
                                                     class="Badge_container__3ioDw Badge_visible__n2Hg1 BaseInfo_remainingDay__3wD-k"
                                             ><span
                                                     class="Badge_badge__2h6cT Badge_label__VC3QR Badge_md__nBr2- Badge_primary__2x__i Badge_tertiary__1ERKE"
-                                            >15일 남음</span
+                                            >[[${funding.expire}]]일 남음</span
                                             ></span
                                             >
                                         </div>
                                         <div class="BaseInfo_rate__vZ7aw">
                                             <p class="BaseInfo_totalBackedAmount__1R7OU">
-                                                14,287,600<span>원</span>
+                                                [[${#numbers.formatInteger(funding.totalprice, 3,
+                                                'COMMA')}]]<span>원</span>
                                             </p>
                                             <span
                                                     class="Badge_container__3ioDw Badge_visible__n2Hg1 BaseInfo_remainingDay__3wD-k"
                                             ><span
                                                     class="Badge_badge__2h6cT Badge_label__VC3QR Badge_md__nBr2- Badge_secondary__1o9ka Badge_tertiary__1ERKE"
-                                            >2,857% 달성</span
+                                            >[[${funding.totalprice/100000}]]% 달성</span
                                             ></span
                                             >
                                         </div>
@@ -1404,63 +676,38 @@
                                             <p>리워드 선택</p>
                                             <div class="Rewards_period__3XgCS">
                                                 <p>진행기간</p>
-                                                <p>2.23 ~ 3.10</p>
+                                                <p>[[${#dates.format(funding.fdate, 'yyyy.MM.dd')}]] ~
+                                                    [[${#dates.format(funding.cfunding_end_date, 'yyyy.MM.dd')}]]</p>
                                             </div>
                                         </div>
                                         <div class="Rewards_list__X7K46">
-                                            <div
-                                                    class="Reward_container__qyq1y Reward_disabled__1jxB-"
-                                            >
-                                                <div class="Reward_header__166NH">
-                                                    <div class="Reward_headerLeft__C4mAW">
-                                                        <div class="Reward_amount__1EXUE">
-                                                            6,900원<span
-                                                                class="Badge_container__3ioDw Badge_visible__n2Hg1 Reward_remainQty__3sU0Z"
-                                                        ><span
-                                                                class="Badge_badge__2h6cT Badge_label__VC3QR Badge_md__nBr2- Badge_danger__1ztRW Badge_tertiary__1ERKE"
-                                                        >제한 수량이 모두 소진되었어요!</span
-                                                        ></span
-                                                        >
-                                                        </div>
-                                                        <p class="Reward_name__21dvW">
-                                                            [울트라얼리버드] 6,900원 특가 - 62%할인
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                                <div class="Reward_content__2ZZEa">
-                                                    <div class="Reward_innerContent__3J75P">
-                                                        초특가 한정 수량 - 6900원 특가 클렌징폼 1ea
-                                                        18,000 → 6,900원(62%할인)
-
-                                                    </div>
-                                                </div>
-                                            </div>
 
                                             <div
+                                                    th:each="product:${funding.products}"
                                                     class="Reward_container__qyq1y Reward_expand__17Y0G"
                                             >
                                                 <div class="Reward_header__166NH">
                                                     <div class="Reward_headerLeft__C4mAW">
                                                         <div class="Reward_amount__1EXUE">
-                                                            106,000원<span
+                                                            [[${#numbers.formatInteger(product.fpprice, 3,
+                                                            'COMMA')}]]원<span
                                                                 class="Badge_container__3ioDw Badge_visible__n2Hg1 Reward_remainQty__3sU0Z"
                                                         ><span
                                                                 class="Badge_badge__2h6cT Badge_label__VC3QR Badge_md__nBr2- Badge_primary__2x__i Badge_tertiary__1ERKE"
-                                                        >현재 87개 남음!</span
+                                                        >[[${#numbers.formatInteger(product.fporigin_price-product.fpprice, 3, 'COMMA')}]]원 할인</span
                                                         ></span
                                                         >
                                                         </div>
                                                         <p class="Reward_name__21dvW">
-                                                            슈퍼혜택팩 - 51%할인
+                                                            -[[(100-${product.fpprice*100/product.fporigin_price})]]%
+                                                            할인중! 문구 변경 요망!
                                                         </p>
                                                     </div>
                                                 </div>
                                                 <div class="Reward_divider__1vIOJ"></div>
                                                 <div class="Reward_content__2ZZEa">
                                                     <div class="Reward_innerContent__3J75P">
-                                                        클렌징폼 8ea, 어성초 앰플 2ea, 거품용기 1ea
-                                                        217,000 → 106,000(51% 할인) 클렌저 4,750원!
-                                                        거품용기 증정! (앰플 정가 34,000원)
+                                                        [[${product.fpcontent}]]
 
                                                     </div>
                                                 </div>
@@ -1493,651 +740,50 @@
                                     class="CommentTitle_title__2RXrf">만족도</span></div>
                             <div class="DetailSatisfaction_summaryWrap__1ieLY">
                                 <div class="SatisfactionSummary_container__3szWc"><h4
-                                        class="SatisfactionSummary_title__27vSu">스토어</h4>
+                                        class="SatisfactionSummary_title__27vSu">응원 댓글</h4>
                                     <div class="RatingScore_container__AeQ_I RatingScore_lgFull__2tY1J SatisfactionSummary_summary__18JyH">
                                         <div class="RatingScore_icon__rIS_k"></div>
-                                        <span class="RatingScore_score__2a-SN">4.8</span><span
+                                        <span class="RatingScore_score__2a-SN">[[${funding.fstore_score}]]</span><span
                                             class="RatingScore_maxScore__2hkAT">/5.0</span></div>
-                                    <div class="SatisfactionSummary_detail__asZRS">
-                                        <div class="SatisfactionSummary_item__12Mm_">
-                                            <div class="SatisfactionScore_container__3J8eY"><span
-                                                    class="SatisfactionScore_label__38YDt">상품</span>
-                                                <div class="RatingScore_container__AeQ_I RatingScore_smCard01__3kkGh">
-                                                    <div class="RatingScore_icon__rIS_k"></div>
-                                                    <span class="RatingScore_score__2a-SN">4.8</span></div>
-                                            </div>
-                                        </div>
-                                        <div class="SatisfactionSummary_item__12Mm_">
-                                            <div class="SatisfactionScore_container__3J8eY"><span
-                                                    class="SatisfactionScore_label__38YDt">배송</span>
-                                                <div class="RatingScore_container__AeQ_I RatingScore_smCard01__3kkGh">
-                                                    <div class="RatingScore_icon__rIS_k"></div>
-                                                    <span class="RatingScore_score__2a-SN">4.8</span></div>
-                                            </div>
-                                        </div>
-                                    </div>
+
                                 </div>
                                 <div class="DetailSatisfaction_summarySplitter__2oiTx"></div>
                                 <div class="SatisfactionSummary_container__3szWc"><h4
-                                        class="SatisfactionSummary_title__27vSu">펀딩</h4>
+                                        class="SatisfactionSummary_title__27vSu">스토어</h4>
                                     <div class="RatingScore_container__AeQ_I RatingScore_lgFull__2tY1J SatisfactionSummary_summary__18JyH">
                                         <div class="RatingScore_icon__rIS_k"></div>
-                                        <span class="RatingScore_score__2a-SN">4.3</span><span
+                                        <span class="RatingScore_score__2a-SN">[[${funding.ffunding_score}]]</span><span
                                             class="RatingScore_maxScore__2hkAT">/5.0</span></div>
-                                    <div class="SatisfactionSummary_detail__asZRS">
-                                        <div class="SatisfactionSummary_item__12Mm_">
-                                            <div class="SatisfactionScore_container__3J8eY"><span
-                                                    class="SatisfactionScore_label__38YDt">리워드</span>
-                                                <div class="RatingScore_container__AeQ_I RatingScore_smCard01__3kkGh">
-                                                    <div class="RatingScore_icon__rIS_k"></div>
-                                                    <span class="RatingScore_score__2a-SN">4.2</span></div>
-                                            </div>
-                                        </div>
-                                        <div class="SatisfactionSummary_item__12Mm_">
-                                            <div class="SatisfactionScore_container__3J8eY"><span
-                                                    class="SatisfactionScore_label__38YDt">메이커</span>
-                                                <div class="RatingScore_container__AeQ_I RatingScore_smCard01__3kkGh">
-                                                    <div class="RatingScore_icon__rIS_k"></div>
-                                                    <span class="RatingScore_score__2a-SN">4.5</span></div>
-                                            </div>
-                                        </div>
-                                    </div>
                                 </div>
                             </div>
                             <div class="DetailSatisfaction_tabsWrap__1YI1J">
                                 <div class="SatisfactionTabs_container__28MSj">
-                                    <div class="SatisfactionTabs_item__2jVmh SatisfactionTabs_active__1PFX2">
-                                        <span>응원 댓글</span><span class="SatisfactionTabs_count__2zWkx">1,748</span></div>
-                                    <div class="SatisfactionTabs_item__2jVmh"><span>스토어</span><span
-                                            class="SatisfactionTabs_count__2zWkx">416</span></div>
+                                    <div class="SatisfactionTabs_item__2jVmh SatisfactionTabs_active__1PFX2"
+                                         data-rtype="funding">
+                                        <span>응원 댓글</span><span class="SatisfactionTabs_count__2zWkx">[[${#numbers.formatInteger(funding.rfcount, 3, 'COMMA')}]]</span>
+                                    </div>
+                                    <div class="SatisfactionTabs_item__2jVmh" data-rtype="store"><span>스토어</span><span
+                                            class="SatisfactionTabs_count__2zWkx">[[${#numbers.formatInteger(funding.rscount, 3, 'COMMA')}]]</span>
+                                    </div>
                                 </div>
                             </div>
                             <div>
                                 <div class="StoreSatisfactionList_container__9dez2 DetailSatisfaction_satisfactionList__3XBBJ">
                                     <div class="RatingCommentFilter_container__2t3wf">
-                                        <div class="RatingCommentFilter_imageFilter__1vJng"><label
-                                                class="Checkbox_checkbox__pamoY Checkbox_sm__KgIAv Checkbox_labeled__zQ0mF"><input
-                                                name="" type="checkbox" class="Checkbox_input__3UBmW"
-                                                value="false"><span class="Checkbox_icon___4ktl" aria-hidden="true"><svg
-                                                viewBox="0 0 16 2" focusable="false" role="presentation"
-                                                class="withIcon_icon__20lDO Checkbox_removeIcon__2VWZr"
-                                                aria-hidden="true"><path fill-rule="evenodd"
-                                                                         d="M0 0h16v2H0z"></path></svg><svg
-                                                viewBox="0 0 48 48" focusable="false" role="presentation"
-                                                class="withIcon_icon__20lDO Checkbox_checkIcon__1uUVj"
-                                                aria-hidden="true"><path
-                                                d="M18 39.6L4.8 26.4l3.36-3.36L18 32.76l21.84-21.72 3.36 3.36z"></path></svg></span><span
-                                                class="Checkbox_content__2Ze7x"><span><span
-                                                class="RatingCommentFilter_imageFilterText__CBz5r">사진 만족도만</span></span></span></label>
-                                        </div>
+
                                         <div>
                                             <div class="SortingSelect_sortingSelect__2zf4r RatingCommentFilter_selectBox__2Gt7m">
-                                                최신순<i class="icon expand-more SortingSelect_icon__28ocK"
-                                                      aria-hidden="true"></i><select name="sortBy"
-                                                                                     class="SortingSelect_select__21qNT">
-                                                <option value="REGISTERED_AT,DESC">최신순</option>
-                                                <option value="SCORE,DESC">높은 평점순</option>
-                                                <option value="SCORE,ASC">낮은 평점순</option>
+                                                <span id="sorted">최신순</span><i
+                                                    class="icon expand-more SortingSelect_icon__28ocK"
+                                                    aria-hidden="true"></i><select name="sortBy"
+                                                                                   class="SortingSelect_select__21qNT">
+                                                <option value="최신순">최신순</option>
+                                                <option value="높은 평점순">높은 평점순</option>
+                                                <option value="낮은 평점순">낮은 평점순</option>
                                             </select></div>
                                         </div>
                                     </div>
-                                    <div>
-                                        <div class="StoreSatisfactionCard_container__3TDTr">
-                                            <div class="StoreSatisfactionCard_divider__Zh8Se"></div>
-                                            <div class="StoreSatisfactionCard_header__156AH">
-                                                <div>
-                                                    <div class="Avatar_avatar__2HQiR Avatar_xs__RZzkx"><span
-                                                            class="Avatar_hasImage__31hv2"
-                                                            style="background-image: url(&quot;https://cdn.wadiz.kr/wwwwadiz/green001/sns_profile_pics/20220523134723785_2253758442.jpg/wadiz/resize/600/format/jpg/quality/80/optimize&quot;); border: 1px solid rgb(221, 226, 230);"></span>
-                                                    </div>
-                                                </div>
-                                                <div class="StoreSatisfactionCard_rightPanel__XCjpV">
-                                                    <div class="StoreSatisfactionCard_titleArea__1S3zk"><span
-                                                            class="StoreSatisfactionCard_nickName__16JEX">무사22</span>
-                                                        <div class="StoreSatisfactionCard_sideArea__jGJma">
-                                                            <div class="StoreSatisfactionCard_dateArea__2nNep"><span
-                                                                    class="StoreSatisfactionCard_updatedDate__1PmK7">2023.02.26</span>
-                                                            </div>
-                                                            <div class="StoreSatisfactionCard_moreWrap__3zYcp">
-                                                                <svg viewBox="0 0 40 40" focusable="false"
-                                                                     role="presentation" class="withIcon_icon__20lDO"
-                                                                     aria-hidden="true">
-                                                                    <path d="M24.52 5A4.52 4.52 0 1 0 20 9.57 4.53 4.53 0 0 0 24.52 5zm0 30A4.52 4.52 0 1 0 20 39.48 4.53 4.53 0 0 0 24.52 35zm0-15A4.52 4.52 0 1 0 20 24.52 4.53 4.53 0 0 0 24.52 20z"></path>
-                                                                </svg>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="StoreSatisfactionCard_ratingArea__2RBSe">
-                                                        <div class="RatingScore_container__AeQ_I RatingScore_smTitle__1OhOH">
-                                                            <div class="RatingScore_icon__rIS_k"></div>
-                                                            <span class="RatingScore_score__2a-SN">5.0</span></div>
-                                                        <div class="StoreSatisfactionCard_badges__2Q8Zp"><span
-                                                                class="StoreSatisfactionCard_badge__35nf6">1회 구매</span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="StoreSatisfactionCard_content__2izM4">
-                                                <div class="StoreSatisfactionCard_comment__2d9RM">좋아요~~~~~^^</div>
-                                                <div class="StoreSatisfactionCard_options__P2kzd"><span
-                                                        class="StoreSatisfactionCard_option__2pjHI">진로 소주 디스펜서 (27일 순차발송)</span><span
-                                                        class="StoreSatisfactionCard_option__2pjHI">8'C 진로 쿨러</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="StoreSatisfactionCard_container__3TDTr">
-                                            <div class="StoreSatisfactionCard_divider__Zh8Se"></div>
-                                            <div class="StoreSatisfactionCard_header__156AH">
-                                                <div>
-                                                    <div class="Avatar_avatar__2HQiR Avatar_xs__RZzkx"><span
-                                                            class="Avatar_hasImage__31hv2"
-                                                            style="background-image: url(&quot;https://cdn.wadiz.kr/wwwwadiz/green001/sns_profile_pics/20230205154248719_2651892294.jpg/wadiz/resize/600/format/jpg/quality/80/optimize&quot;); border: 1px solid rgb(221, 226, 230);"></span>
-                                                    </div>
-                                                </div>
-                                                <div class="StoreSatisfactionCard_rightPanel__XCjpV">
-                                                    <div class="StoreSatisfactionCard_titleArea__1S3zk"><span
-                                                            class="StoreSatisfactionCard_nickName__16JEX">10lhw17</span>
-                                                        <div class="StoreSatisfactionCard_sideArea__jGJma">
-                                                            <div class="StoreSatisfactionCard_dateArea__2nNep"><span
-                                                                    class="StoreSatisfactionCard_updatedDate__1PmK7">2023.02.25</span>
-                                                            </div>
-                                                            <div class="StoreSatisfactionCard_moreWrap__3zYcp">
-                                                                <svg viewBox="0 0 40 40" focusable="false"
-                                                                     role="presentation" class="withIcon_icon__20lDO"
-                                                                     aria-hidden="true">
-                                                                    <path d="M24.52 5A4.52 4.52 0 1 0 20 9.57 4.53 4.53 0 0 0 24.52 5zm0 30A4.52 4.52 0 1 0 20 39.48 4.53 4.53 0 0 0 24.52 35zm0-15A4.52 4.52 0 1 0 20 24.52 4.53 4.53 0 0 0 24.52 20z"></path>
-                                                                </svg>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="StoreSatisfactionCard_ratingArea__2RBSe">
-                                                        <div class="RatingScore_container__AeQ_I RatingScore_smTitle__1OhOH">
-                                                            <div class="RatingScore_icon__rIS_k"></div>
-                                                            <span class="RatingScore_score__2a-SN">5.0</span></div>
-                                                        <div class="StoreSatisfactionCard_badges__2Q8Zp"><span
-                                                                class="StoreSatisfactionCard_badge__35nf6">2회 구매</span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="StoreSatisfactionCard_content__2izM4">
-                                                <div class="ThumbnailViewer_container__1JD2g StoreSatisfactionCard_thumbnails__3fwAc"
-                                                     style="height: 117.75px;">
-                                                    <div class="ThumbnailViewer_thumbnailWrap__2Ocsq ThumbnailViewer_imageView__3WXK_"
-                                                         style="width: 157px;"><img loading="lazy"
-                                                                                    class="ThumbnailViewer_thumbnail__240ql"
-                                                                                    srcset="https://cdn2.wadiz.kr/2023/02/25/9cc1f021-b9e8-4b94-a753-92a5f240e584.jpeg/wadiz/resize/157/quality/85/ 1x, https://cdn2.wadiz.kr/2023/02/25/9cc1f021-b9e8-4b94-a753-92a5f240e584.jpeg/wadiz/resize/314/quality/85/ 2x"
-                                                                                    alt=""></div>
-                                                </div>
-                                                <div class="StoreSatisfactionCard_comment__2d9RM">술은 두꺼비가 따라줘야 맛있죠!
-                                                </div>
-                                                <div class="StoreSatisfactionCard_options__P2kzd"><span
-                                                        class="StoreSatisfactionCard_option__2pjHI">[홈술포차][wadiz only] 진로 소주 디스펜서 1개</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="StoreSatisfactionCard_container__3TDTr">
-                                            <div class="StoreSatisfactionCard_divider__Zh8Se"></div>
-                                            <div class="StoreSatisfactionCard_header__156AH">
-                                                <div>
-                                                    <div class="Avatar_avatar__2HQiR Avatar_xs__RZzkx"><span
-                                                            class="Avatar_hasImage__31hv2"
-                                                            style="background-image: url(&quot;https://cdn.wadiz.kr/wwwwadiz/green001/sns_profile_pics/20230219104027635_767712420.jpg/wadiz/resize/600/format/jpg/quality/80/optimize&quot;); border: 1px solid rgb(221, 226, 230);"></span>
-                                                    </div>
-                                                </div>
-                                                <div class="StoreSatisfactionCard_rightPanel__XCjpV">
-                                                    <div class="StoreSatisfactionCard_titleArea__1S3zk"><span
-                                                            class="StoreSatisfactionCard_nickName__16JEX">김동윤</span>
-                                                        <div class="StoreSatisfactionCard_sideArea__jGJma">
-                                                            <div class="StoreSatisfactionCard_dateArea__2nNep"><span
-                                                                    class="StoreSatisfactionCard_updatedDate__1PmK7">2023.02.24</span>
-                                                            </div>
-                                                            <div class="StoreSatisfactionCard_moreWrap__3zYcp">
-                                                                <svg viewBox="0 0 40 40" focusable="false"
-                                                                     role="presentation" class="withIcon_icon__20lDO"
-                                                                     aria-hidden="true">
-                                                                    <path d="M24.52 5A4.52 4.52 0 1 0 20 9.57 4.53 4.53 0 0 0 24.52 5zm0 30A4.52 4.52 0 1 0 20 39.48 4.53 4.53 0 0 0 24.52 35zm0-15A4.52 4.52 0 1 0 20 24.52 4.53 4.53 0 0 0 24.52 20z"></path>
-                                                                </svg>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="StoreSatisfactionCard_ratingArea__2RBSe">
-                                                        <div class="RatingScore_container__AeQ_I RatingScore_smTitle__1OhOH">
-                                                            <div class="RatingScore_icon__rIS_k"></div>
-                                                            <span class="RatingScore_score__2a-SN">5.0</span></div>
-                                                        <div class="StoreSatisfactionCard_badges__2Q8Zp"><span
-                                                                class="StoreSatisfactionCard_badge__35nf6">1회 구매</span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="StoreSatisfactionCard_content__2izM4">
-                                                <div class="ThumbnailViewer_container__1JD2g StoreSatisfactionCard_thumbnails__3fwAc"
-                                                     style="height: 117.75px;">
-                                                    <div class="ThumbnailViewer_thumbnailWrap__2Ocsq ThumbnailViewer_imageView__3WXK_"
-                                                         style="width: 157px;"><img loading="lazy"
-                                                                                    class="ThumbnailViewer_thumbnail__240ql"
-                                                                                    srcset="https://cdn2.wadiz.kr/2023/02/24/a1f2d2ac-fe8d-4db7-b743-ff27c3cf84f9.jpeg/wadiz/resize/157/quality/85/ 1x, https://cdn2.wadiz.kr/2023/02/24/a1f2d2ac-fe8d-4db7-b743-ff27c3cf84f9.jpeg/wadiz/resize/314/quality/85/ 2x"
-                                                                                    alt=""></div>
-                                                </div>
-                                                <div class="StoreSatisfactionCard_comment__2d9RM">디자인도 이쁘고, 배송도 생각보다 빠르고
-                                                    ~~~
-                                                    넘 좋아요.
-                                                    잘 쓸께요. ^^
-                                                </div>
-                                                <div class="StoreSatisfactionCard_options__P2kzd"><span
-                                                        class="StoreSatisfactionCard_option__2pjHI">[베스트][wadiz only] 진로 소주 디스펜서 1개</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="StoreSatisfactionCard_container__3TDTr">
-                                            <div class="StoreSatisfactionCard_divider__Zh8Se"></div>
-                                            <div class="StoreSatisfactionCard_header__156AH">
-                                                <div>
-                                                    <div class="Avatar_avatar__2HQiR Avatar_xs__RZzkx"><span></span>
-                                                    </div>
-                                                </div>
-                                                <div class="StoreSatisfactionCard_rightPanel__XCjpV">
-                                                    <div class="StoreSatisfactionCard_titleArea__1S3zk"><span
-                                                            class="StoreSatisfactionCard_nickName__16JEX">지명훈</span>
-                                                        <div class="StoreSatisfactionCard_sideArea__jGJma">
-                                                            <div class="StoreSatisfactionCard_dateArea__2nNep"><span
-                                                                    class="StoreSatisfactionCard_updatedDate__1PmK7">2023.02.23</span>
-                                                            </div>
-                                                            <div class="StoreSatisfactionCard_moreWrap__3zYcp">
-                                                                <svg viewBox="0 0 40 40" focusable="false"
-                                                                     role="presentation" class="withIcon_icon__20lDO"
-                                                                     aria-hidden="true">
-                                                                    <path d="M24.52 5A4.52 4.52 0 1 0 20 9.57 4.53 4.53 0 0 0 24.52 5zm0 30A4.52 4.52 0 1 0 20 39.48 4.53 4.53 0 0 0 24.52 35zm0-15A4.52 4.52 0 1 0 20 24.52 4.53 4.53 0 0 0 24.52 20z"></path>
-                                                                </svg>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="StoreSatisfactionCard_ratingArea__2RBSe">
-                                                        <div class="RatingScore_container__AeQ_I RatingScore_smTitle__1OhOH">
-                                                            <div class="RatingScore_icon__rIS_k"></div>
-                                                            <span class="RatingScore_score__2a-SN">5.0</span></div>
-                                                        <div class="StoreSatisfactionCard_badges__2Q8Zp"><span
-                                                                class="StoreSatisfactionCard_badge__35nf6">1회 구매</span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="StoreSatisfactionCard_content__2izM4">
-                                                <div class="StoreSatisfactionCard_comment__2d9RM">아주 좋아요 귀엽구요 ㅎㅎ</div>
-                                                <div class="StoreSatisfactionCard_options__P2kzd"><span
-                                                        class="StoreSatisfactionCard_option__2pjHI">[베스트][wadiz only] 진로 소주 디스펜서 1개</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="StoreSatisfactionCard_container__3TDTr">
-                                            <div class="StoreSatisfactionCard_divider__Zh8Se"></div>
-                                            <div class="StoreSatisfactionCard_header__156AH">
-                                                <div>
-                                                    <div class="Avatar_avatar__2HQiR Avatar_xs__RZzkx"><span
-                                                            class="Avatar_hasImage__31hv2"
-                                                            style="background-image: url(&quot;https://cdn.wadiz.kr/wwwwadiz/green001/sns_profile_pics/20191115000336971_34765836.jpg/wadiz/resize/600/format/jpg/quality/80/optimize&quot;); border: 1px solid rgb(221, 226, 230);"></span>
-                                                    </div>
-                                                </div>
-                                                <div class="StoreSatisfactionCard_rightPanel__XCjpV">
-                                                    <div class="StoreSatisfactionCard_titleArea__1S3zk"><span
-                                                            class="StoreSatisfactionCard_nickName__16JEX">이미경</span>
-                                                        <div class="StoreSatisfactionCard_sideArea__jGJma">
-                                                            <div class="StoreSatisfactionCard_dateArea__2nNep"><span
-                                                                    class="StoreSatisfactionCard_updatedDate__1PmK7">2023.02.22</span>
-                                                            </div>
-                                                            <div class="StoreSatisfactionCard_moreWrap__3zYcp">
-                                                                <svg viewBox="0 0 40 40" focusable="false"
-                                                                     role="presentation" class="withIcon_icon__20lDO"
-                                                                     aria-hidden="true">
-                                                                    <path d="M24.52 5A4.52 4.52 0 1 0 20 9.57 4.53 4.53 0 0 0 24.52 5zm0 30A4.52 4.52 0 1 0 20 39.48 4.53 4.53 0 0 0 24.52 35zm0-15A4.52 4.52 0 1 0 20 24.52 4.53 4.53 0 0 0 24.52 20z"></path>
-                                                                </svg>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="StoreSatisfactionCard_ratingArea__2RBSe">
-                                                        <div class="RatingScore_container__AeQ_I RatingScore_smTitle__1OhOH">
-                                                            <div class="RatingScore_icon__rIS_k"></div>
-                                                            <span class="RatingScore_score__2a-SN">5.0</span></div>
-                                                        <div class="StoreSatisfactionCard_badges__2Q8Zp"><span
-                                                                class="StoreSatisfactionCard_badge__35nf6">1회 구매</span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="StoreSatisfactionCard_content__2izM4">
-                                                <div class="ThumbnailViewer_container__1JD2g StoreSatisfactionCard_thumbnails__3fwAc"
-                                                     style="height: 117.75px;">
-                                                    <div class="ThumbnailViewer_thumbnailWrap__2Ocsq ThumbnailViewer_imageView__3WXK_"
-                                                         style="width: 157px;"><img loading="lazy"
-                                                                                    class="ThumbnailViewer_thumbnail__240ql"
-                                                                                    srcset="https://cdn2.wadiz.kr/2023/02/22/ebfd1d10-b59c-4266-bdd5-26637fcea255.png/wadiz/resize/157/quality/85/ 1x, https://cdn2.wadiz.kr/2023/02/22/ebfd1d10-b59c-4266-bdd5-26637fcea255.png/wadiz/resize/314/quality/85/ 2x"
-                                                                                    alt=""></div>
-                                                </div>
-                                                <div class="StoreSatisfactionCard_comment__2d9RM">한참 너무 잘썼어요
-                                                    소음이 조금 있긴하나 신경 막 쓰이지는 않아요
-                                                    여름에 쿨러 없으면 이제 안될거 같아요
-                                                </div>
-                                                <div class="StoreSatisfactionCard_options__P2kzd"><span
-                                                        class="StoreSatisfactionCard_option__2pjHI">8'C 진로 쿨러</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="StoreSatisfactionCard_container__3TDTr">
-                                            <div class="StoreSatisfactionCard_divider__Zh8Se"></div>
-                                            <div class="StoreSatisfactionCard_header__156AH">
-                                                <div>
-                                                    <div class="Avatar_avatar__2HQiR Avatar_xs__RZzkx"><span></span>
-                                                    </div>
-                                                </div>
-                                                <div class="StoreSatisfactionCard_rightPanel__XCjpV">
-                                                    <div class="StoreSatisfactionCard_titleArea__1S3zk"><span
-                                                            class="StoreSatisfactionCard_nickName__16JEX">익명의 서포터 634</span>
-                                                        <div class="StoreSatisfactionCard_sideArea__jGJma">
-                                                            <div class="StoreSatisfactionCard_dateArea__2nNep"><span
-                                                                    class="StoreSatisfactionCard_updatedDate__1PmK7">2023.02.21</span>
-                                                            </div>
-                                                            <div class="StoreSatisfactionCard_moreWrap__3zYcp">
-                                                                <svg viewBox="0 0 40 40" focusable="false"
-                                                                     role="presentation" class="withIcon_icon__20lDO"
-                                                                     aria-hidden="true">
-                                                                    <path d="M24.52 5A4.52 4.52 0 1 0 20 9.57 4.53 4.53 0 0 0 24.52 5zm0 30A4.52 4.52 0 1 0 20 39.48 4.53 4.53 0 0 0 24.52 35zm0-15A4.52 4.52 0 1 0 20 24.52 4.53 4.53 0 0 0 24.52 20z"></path>
-                                                                </svg>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="StoreSatisfactionCard_ratingArea__2RBSe">
-                                                        <div class="RatingScore_container__AeQ_I RatingScore_smTitle__1OhOH">
-                                                            <div class="RatingScore_icon__rIS_k"></div>
-                                                            <span class="RatingScore_score__2a-SN">5.0</span></div>
-                                                        <div class="StoreSatisfactionCard_badges__2Q8Zp"><span
-                                                                class="StoreSatisfactionCard_badge__35nf6">1회 구매</span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="StoreSatisfactionCard_content__2izM4">
-                                                <div class="StoreSatisfactionCard_comment__2d9RM">아주 맘에들고 좋아요 배송도 빠르고
-                                                    👍👍
-                                                </div>
-                                                <div class="StoreSatisfactionCard_options__P2kzd"><span
-                                                        class="StoreSatisfactionCard_option__2pjHI">[베스트][wadiz only] 진로 소주 디스펜서 1개</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="StoreSatisfactionCard_container__3TDTr">
-                                            <div class="StoreSatisfactionCard_divider__Zh8Se"></div>
-                                            <div class="StoreSatisfactionCard_header__156AH">
-                                                <div>
-                                                    <div class="Avatar_avatar__2HQiR Avatar_xs__RZzkx"><span></span>
-                                                    </div>
-                                                </div>
-                                                <div class="StoreSatisfactionCard_rightPanel__XCjpV">
-                                                    <div class="StoreSatisfactionCard_titleArea__1S3zk"><span
-                                                            class="StoreSatisfactionCard_nickName__16JEX">익명의 서포터 230</span>
-                                                        <div class="StoreSatisfactionCard_sideArea__jGJma">
-                                                            <div class="StoreSatisfactionCard_dateArea__2nNep"><span
-                                                                    class="StoreSatisfactionCard_updatedDate__1PmK7">2023.02.20</span>
-                                                            </div>
-                                                            <div class="StoreSatisfactionCard_moreWrap__3zYcp">
-                                                                <svg viewBox="0 0 40 40" focusable="false"
-                                                                     role="presentation" class="withIcon_icon__20lDO"
-                                                                     aria-hidden="true">
-                                                                    <path d="M24.52 5A4.52 4.52 0 1 0 20 9.57 4.53 4.53 0 0 0 24.52 5zm0 30A4.52 4.52 0 1 0 20 39.48 4.53 4.53 0 0 0 24.52 35zm0-15A4.52 4.52 0 1 0 20 24.52 4.53 4.53 0 0 0 24.52 20z"></path>
-                                                                </svg>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="StoreSatisfactionCard_ratingArea__2RBSe">
-                                                        <div class="RatingScore_container__AeQ_I RatingScore_smTitle__1OhOH">
-                                                            <div class="RatingScore_icon__rIS_k"></div>
-                                                            <span class="RatingScore_score__2a-SN">5.0</span></div>
-                                                        <div class="StoreSatisfactionCard_badges__2Q8Zp"><span
-                                                                class="StoreSatisfactionCard_badge__35nf6">1회 구매</span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="StoreSatisfactionCard_content__2izM4">
-                                                <div class="ThumbnailViewer_container__1JD2g StoreSatisfactionCard_thumbnails__3fwAc"
-                                                     style="height: 117.75px;">
-                                                    <div class="ThumbnailViewer_thumbnailWrap__2Ocsq ThumbnailViewer_imageView__3WXK_"
-                                                         style="width: 157px;"><img loading="lazy"
-                                                                                    class="ThumbnailViewer_thumbnail__240ql"
-                                                                                    srcset="https://cdn2.wadiz.kr/2023/02/20/0400db9d-5dfc-4a99-a910-4acd93f4c9b7.jpeg/wadiz/resize/157/quality/85/ 1x, https://cdn2.wadiz.kr/2023/02/20/0400db9d-5dfc-4a99-a910-4acd93f4c9b7.jpeg/wadiz/resize/314/quality/85/ 2x"
-                                                                                    alt=""></div>
-                                                </div>
-                                                <div class="StoreSatisfactionCard_comment__2d9RM">진짜 너무 이뻐요 ㅋㅋㅋㅋ
-                                                    선물로 샀는데 너무 잘 쓰고 있어요
-                                                </div>
-                                                <div class="StoreSatisfactionCard_options__P2kzd"><span
-                                                        class="StoreSatisfactionCard_option__2pjHI">[베스트][wadiz only] 진로 소주 디스펜서 1개</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="StoreSatisfactionCard_container__3TDTr">
-                                            <div class="StoreSatisfactionCard_divider__Zh8Se"></div>
-                                            <div class="StoreSatisfactionCard_header__156AH">
-                                                <div>
-                                                    <div class="Avatar_avatar__2HQiR Avatar_xs__RZzkx"><span></span>
-                                                    </div>
-                                                </div>
-                                                <div class="StoreSatisfactionCard_rightPanel__XCjpV">
-                                                    <div class="StoreSatisfactionCard_titleArea__1S3zk"><span
-                                                            class="StoreSatisfactionCard_nickName__16JEX">luna</span>
-                                                        <div class="StoreSatisfactionCard_sideArea__jGJma">
-                                                            <div class="StoreSatisfactionCard_dateArea__2nNep"><span
-                                                                    class="StoreSatisfactionCard_updatedDate__1PmK7">2023.02.18</span>
-                                                            </div>
-                                                            <div class="StoreSatisfactionCard_moreWrap__3zYcp">
-                                                                <svg viewBox="0 0 40 40" focusable="false"
-                                                                     role="presentation" class="withIcon_icon__20lDO"
-                                                                     aria-hidden="true">
-                                                                    <path d="M24.52 5A4.52 4.52 0 1 0 20 9.57 4.53 4.53 0 0 0 24.52 5zm0 30A4.52 4.52 0 1 0 20 39.48 4.53 4.53 0 0 0 24.52 35zm0-15A4.52 4.52 0 1 0 20 24.52 4.53 4.53 0 0 0 24.52 20z"></path>
-                                                                </svg>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="StoreSatisfactionCard_ratingArea__2RBSe">
-                                                        <div class="RatingScore_container__AeQ_I RatingScore_smTitle__1OhOH">
-                                                            <div class="RatingScore_icon__rIS_k"></div>
-                                                            <span class="RatingScore_score__2a-SN">5.0</span></div>
-                                                        <div class="StoreSatisfactionCard_badges__2Q8Zp"><span
-                                                                class="StoreSatisfactionCard_badge__35nf6">2회 구매</span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="StoreSatisfactionCard_content__2izM4">
-                                                <div class="ThumbnailViewer_container__1JD2g StoreSatisfactionCard_thumbnails__3fwAc"
-                                                     style="height: 117.75px;">
-                                                    <div class="ThumbnailViewer_thumbnailWrap__2Ocsq ThumbnailViewer_imageView__3WXK_"
-                                                         style="width: 157px;"><img loading="lazy"
-                                                                                    class="ThumbnailViewer_thumbnail__240ql"
-                                                                                    srcset="https://cdn2.wadiz.kr/2023/02/18/03e15ecc-d9b3-4bc8-8438-0237358d460a.jpeg/wadiz/resize/157/quality/85/ 1x, https://cdn2.wadiz.kr/2023/02/18/03e15ecc-d9b3-4bc8-8438-0237358d460a.jpeg/wadiz/resize/314/quality/85/ 2x"
-                                                                                    alt=""></div>
-                                                </div>
-                                                <div class="StoreSatisfactionCard_comment__2d9RM">혼술 때 없으면 허전해요~</div>
-                                                <div class="StoreSatisfactionCard_options__P2kzd"><span
-                                                        class="StoreSatisfactionCard_option__2pjHI">[홈술포차][wadiz only] 진로 소주 디스펜서</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="StoreSatisfactionCard_container__3TDTr">
-                                            <div class="StoreSatisfactionCard_divider__Zh8Se"></div>
-                                            <div class="StoreSatisfactionCard_header__156AH">
-                                                <div>
-                                                    <div class="Avatar_avatar__2HQiR Avatar_xs__RZzkx"><span></span>
-                                                    </div>
-                                                </div>
-                                                <div class="StoreSatisfactionCard_rightPanel__XCjpV">
-                                                    <div class="StoreSatisfactionCard_titleArea__1S3zk"><span
-                                                            class="StoreSatisfactionCard_nickName__16JEX">luna</span>
-                                                        <div class="StoreSatisfactionCard_sideArea__jGJma">
-                                                            <div class="StoreSatisfactionCard_dateArea__2nNep"><span
-                                                                    class="StoreSatisfactionCard_updatedDate__1PmK7">2023.02.18</span>
-                                                            </div>
-                                                            <div class="StoreSatisfactionCard_moreWrap__3zYcp">
-                                                                <svg viewBox="0 0 40 40" focusable="false"
-                                                                     role="presentation" class="withIcon_icon__20lDO"
-                                                                     aria-hidden="true">
-                                                                    <path d="M24.52 5A4.52 4.52 0 1 0 20 9.57 4.53 4.53 0 0 0 24.52 5zm0 30A4.52 4.52 0 1 0 20 39.48 4.53 4.53 0 0 0 24.52 35zm0-15A4.52 4.52 0 1 0 20 24.52 4.53 4.53 0 0 0 24.52 20z"></path>
-                                                                </svg>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="StoreSatisfactionCard_ratingArea__2RBSe">
-                                                        <div class="RatingScore_container__AeQ_I RatingScore_smTitle__1OhOH">
-                                                            <div class="RatingScore_icon__rIS_k"></div>
-                                                            <span class="RatingScore_score__2a-SN">5.0</span></div>
-                                                        <div class="StoreSatisfactionCard_badges__2Q8Zp"><span
-                                                                class="StoreSatisfactionCard_badge__35nf6">2회 구매</span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="StoreSatisfactionCard_content__2izM4">
-                                                <div class="ThumbnailViewer_container__1JD2g StoreSatisfactionCard_thumbnails__3fwAc"
-                                                     style="height: 117.75px;">
-                                                    <div class="ThumbnailViewer_thumbnailWrap__2Ocsq ThumbnailViewer_imageView__3WXK_"
-                                                         style="width: 157px;"><img loading="lazy"
-                                                                                    class="ThumbnailViewer_thumbnail__240ql"
-                                                                                    srcset="https://cdn2.wadiz.kr/2023/02/18/b8ad7ff7-6af8-4fa3-8b83-d0868484faa2.jpeg/wadiz/resize/157/quality/85/ 1x, https://cdn2.wadiz.kr/2023/02/18/b8ad7ff7-6af8-4fa3-8b83-d0868484faa2.jpeg/wadiz/resize/314/quality/85/ 2x"
-                                                                                    alt=""></div>
-                                                </div>
-                                                <div class="StoreSatisfactionCard_comment__2d9RM">아직도 없는 사람 있나요?</div>
-                                                <div class="StoreSatisfactionCard_options__P2kzd"><span
-                                                        class="StoreSatisfactionCard_option__2pjHI">[wadiz only] NEW 8'C 진로 쿨러</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="StoreSatisfactionCard_container__3TDTr">
-                                            <div class="StoreSatisfactionCard_divider__Zh8Se"></div>
-                                            <div class="StoreSatisfactionCard_header__156AH">
-                                                <div>
-                                                    <div class="Avatar_avatar__2HQiR Avatar_xs__RZzkx"><span></span>
-                                                    </div>
-                                                </div>
-                                                <div class="StoreSatisfactionCard_rightPanel__XCjpV">
-                                                    <div class="StoreSatisfactionCard_titleArea__1S3zk"><span
-                                                            class="StoreSatisfactionCard_nickName__16JEX">김소라</span>
-                                                        <div class="StoreSatisfactionCard_sideArea__jGJma">
-                                                            <div class="StoreSatisfactionCard_dateArea__2nNep"><span
-                                                                    class="StoreSatisfactionCard_updatedDate__1PmK7">2023.02.18</span>
-                                                            </div>
-                                                            <div class="StoreSatisfactionCard_moreWrap__3zYcp">
-                                                                <svg viewBox="0 0 40 40" focusable="false"
-                                                                     role="presentation" class="withIcon_icon__20lDO"
-                                                                     aria-hidden="true">
-                                                                    <path d="M24.52 5A4.52 4.52 0 1 0 20 9.57 4.53 4.53 0 0 0 24.52 5zm0 30A4.52 4.52 0 1 0 20 39.48 4.53 4.53 0 0 0 24.52 35zm0-15A4.52 4.52 0 1 0 20 24.52 4.53 4.53 0 0 0 24.52 20z"></path>
-                                                                </svg>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="StoreSatisfactionCard_ratingArea__2RBSe">
-                                                        <div class="RatingScore_container__AeQ_I RatingScore_smTitle__1OhOH">
-                                                            <div class="RatingScore_icon__rIS_k"></div>
-                                                            <span class="RatingScore_score__2a-SN">5.0</span></div>
-                                                        <div class="StoreSatisfactionCard_badges__2Q8Zp"><span
-                                                                class="StoreSatisfactionCard_badge__35nf6">2회 구매</span><span
-                                                                class="StoreSatisfactionCard_badge__35nf6">펀딩도 했어요</span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="StoreSatisfactionCard_content__2izM4">
-                                                <div class="StoreSatisfactionCard_comment__2d9RM">더 이상의 평가는 필요하지 않을 정도로
-                                                    귀엽습니다. 60세 이상 나이드신 분들에게 선물해 드려도 좋아하는 제품이에요. 선물로 강추 드려요.
-                                                </div>
-                                                <div class="StoreSatisfactionCard_options__P2kzd"><span
-                                                        class="StoreSatisfactionCard_option__2pjHI">[홈술포차][wadiz only] 진로 소주 디스펜서</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="StoreSatisfactionCard_container__3TDTr">
-                                            <div class="StoreSatisfactionCard_divider__Zh8Se"></div>
-                                            <div class="StoreSatisfactionCard_header__156AH">
-                                                <div>
-                                                    <div class="Avatar_avatar__2HQiR Avatar_xs__RZzkx"><span
-                                                            class="Avatar_hasImage__31hv2"></span></div>
-                                                </div>
-                                                <div class="StoreSatisfactionCard_rightPanel__XCjpV">
-                                                    <div class="StoreSatisfactionCard_titleArea__1S3zk"><span
-                                                            class="StoreSatisfactionCard_nickName__16JEX">럽쭈니</span>
-                                                        <div class="StoreSatisfactionCard_sideArea__jGJma">
-                                                            <div class="StoreSatisfactionCard_dateArea__2nNep"><span
-                                                                    class="StoreSatisfactionCard_updatedDate__1PmK7">2023.02.17</span>
-                                                            </div>
-                                                            <div class="StoreSatisfactionCard_moreWrap__3zYcp">
-                                                                <svg viewBox="0 0 40 40" focusable="false"
-                                                                     role="presentation" class="withIcon_icon__20lDO"
-                                                                     aria-hidden="true">
-                                                                    <path d="M24.52 5A4.52 4.52 0 1 0 20 9.57 4.53 4.53 0 0 0 24.52 5zm0 30A4.52 4.52 0 1 0 20 39.48 4.53 4.53 0 0 0 24.52 35zm0-15A4.52 4.52 0 1 0 20 24.52 4.53 4.53 0 0 0 24.52 20z"></path>
-                                                                </svg>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="StoreSatisfactionCard_ratingArea__2RBSe">
-                                                        <div class="RatingScore_container__AeQ_I RatingScore_smTitle__1OhOH">
-                                                            <div class="RatingScore_icon__rIS_k"></div>
-                                                            <span class="RatingScore_score__2a-SN">5.0</span></div>
-                                                        <div class="StoreSatisfactionCard_badges__2Q8Zp"><span
-                                                                class="StoreSatisfactionCard_badge__35nf6">1회 구매</span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="StoreSatisfactionCard_content__2izM4">
-                                                <div class="StoreSatisfactionCard_comment__2d9RM">완전 만족인네요…
-                                                    그새 가격이 다운되서 맴찢… ㅜㅜ
-                                                </div>
-                                                <div class="StoreSatisfactionCard_options__P2kzd"><span
-                                                        class="StoreSatisfactionCard_option__2pjHI">[홈술포차][wadiz only] 진로 소주 디스펜서 1개</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="StoreSatisfactionCard_container__3TDTr">
-                                            <div class="StoreSatisfactionCard_divider__Zh8Se"></div>
-                                            <div class="StoreSatisfactionCard_header__156AH">
-                                                <div>
-                                                    <div class="Avatar_avatar__2HQiR Avatar_xs__RZzkx"><span></span>
-                                                    </div>
-                                                </div>
-                                                <div class="StoreSatisfactionCard_rightPanel__XCjpV">
-                                                    <div class="StoreSatisfactionCard_titleArea__1S3zk"><span
-                                                            class="StoreSatisfactionCard_nickName__16JEX">배상희</span>
-                                                        <div class="StoreSatisfactionCard_sideArea__jGJma">
-                                                            <div class="StoreSatisfactionCard_dateArea__2nNep"><span
-                                                                    class="StoreSatisfactionCard_updatedDate__1PmK7">2023.02.16</span>
-                                                            </div>
-                                                            <div class="StoreSatisfactionCard_moreWrap__3zYcp">
-                                                                <svg viewBox="0 0 40 40" focusable="false"
-                                                                     role="presentation" class="withIcon_icon__20lDO"
-                                                                     aria-hidden="true">
-                                                                    <path d="M24.52 5A4.52 4.52 0 1 0 20 9.57 4.53 4.53 0 0 0 24.52 5zm0 30A4.52 4.52 0 1 0 20 39.48 4.53 4.53 0 0 0 24.52 35zm0-15A4.52 4.52 0 1 0 20 24.52 4.53 4.53 0 0 0 24.52 20z"></path>
-                                                                </svg>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="StoreSatisfactionCard_ratingArea__2RBSe">
-                                                        <div class="RatingScore_container__AeQ_I RatingScore_smTitle__1OhOH">
-                                                            <div class="RatingScore_icon__rIS_k"></div>
-                                                            <span class="RatingScore_score__2a-SN">5.0</span></div>
-                                                        <div class="StoreSatisfactionCard_badges__2Q8Zp"><span
-                                                                class="StoreSatisfactionCard_badge__35nf6">2회 구매</span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="StoreSatisfactionCard_content__2izM4">
-                                                <div class="StoreSatisfactionCard_comment__2d9RM">혼술로도 좋고 파티때는 더 좋고~
-                                                    인싸되는 아이템입니다!
-                                                </div>
-                                                <div class="StoreSatisfactionCard_options__P2kzd"><span
-                                                        class="StoreSatisfactionCard_option__2pjHI">[홈술포차][wadiz only] 진로 소주 디스펜서</span>
-                                                </div>
-                                            </div>
-                                        </div>
+                                    <div id="reviewList">
                                     </div>
                                     <div></div>
                                 </div>
@@ -2160,74 +806,28 @@
                                     </div>
                                     <ul class="ProductSelectMenu_content__39QFr" style="display: none">
                                         <div>
-                                            <li>
+                                            <li th:each="product:${funding.products}">
                                                 <div class="ProductSelectMenuItem_container__2ubAS"
                                                      style="border-bottom-left-radius: 0px; border-bottom-right-radius: 0px;">
                                                     <div class="ProductSelectMenuItem_titleWrapper__3A4A8">
                                                         <div class="ProductSelectMenuItem_title__3v1Qt">
-                                                            <div class="ProductSelectMenuItem_name__qDMQi">더퍼퓸 솝 컬렉션
-                                                                35mL 베이비 누드
+                                                            <div class="ProductSelectMenuItem_name__qDMQi">
+                                                                [[${product.fptitle}]]
+                                                            </div>
+                                                            <div class="ProductSelectMenuItem_description__Kroxl">
+                                                                [[${product.fpcontent}]]
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="ProductSelectMenuItem_shippingCharge__309uz"><span>배송비 3,000원</span>
-                                                    </div>
+
                                                     <div class="ProductSelectMenuItem_bottom__3SuP_">
-                                                        <div>23,000원</div>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="ProductSelectMenuItem_container__2ubAS"
-                                                     style="border-bottom-left-radius: 0px; border-bottom-right-radius: 0px;">
-                                                    <div class="ProductSelectMenuItem_titleWrapper__3A4A8">
-                                                        <div class="ProductSelectMenuItem_title__3v1Qt">
-                                                            <div class="ProductSelectMenuItem_name__qDMQi">더퍼퓸 솝 컬렉션
-                                                                35mL 플라워 무드
-                                                            </div>
+                                                        <div>[[${#numbers.formatInteger(product.fpprice, 3,
+                                                            'COMMA')}]]원
                                                         </div>
                                                     </div>
-                                                    <div class="ProductSelectMenuItem_shippingCharge__309uz"><span>배송비 3,000원</span>
-                                                    </div>
-                                                    <div class="ProductSelectMenuItem_bottom__3SuP_">
-                                                        <div>23,000원</div>
-                                                    </div>
                                                 </div>
                                             </li>
-                                            <li>
-                                                <div class="ProductSelectMenuItem_container__2ubAS"
-                                                     style="border-bottom-left-radius: 0px; border-bottom-right-radius: 0px;">
-                                                    <div class="ProductSelectMenuItem_titleWrapper__3A4A8">
-                                                        <div class="ProductSelectMenuItem_title__3v1Qt">
-                                                            <div class="ProductSelectMenuItem_name__qDMQi">더퍼퓸 솝 컬렉션
-                                                                35mL 릴렉스 베드
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="ProductSelectMenuItem_shippingCharge__309uz"><span>배송비 3,000원</span>
-                                                    </div>
-                                                    <div class="ProductSelectMenuItem_bottom__3SuP_">
-                                                        <div>23,000원</div>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="ProductSelectMenuItem_container__2ubAS"
-                                                     style="border-bottom-left-radius: 8px; border-bottom-right-radius: 8px;">
-                                                    <div class="ProductSelectMenuItem_titleWrapper__3A4A8">
-                                                        <div class="ProductSelectMenuItem_title__3v1Qt">
-                                                            <div class="ProductSelectMenuItem_name__qDMQi">더퍼퓸 솝 컬렉션
-                                                                35mL 슬로우 템포
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="ProductSelectMenuItem_shippingCharge__309uz"><span>배송비 3,000원</span>
-                                                    </div>
-                                                    <div class="ProductSelectMenuItem_bottom__3SuP_">
-                                                        <div>23,000원</div>
-                                                    </div>
-                                                </div>
-                                            </li>
+
                                         </div>
                                     </ul>
                                 </div>
@@ -2300,16 +900,7 @@
             src="https://static.wadiz.kr/static/web/vendor.js?e91df577"
     ></script>
 
-    <script
-            type="text/javascript"
-            src="https://static.wadiz.kr/static/web/layout.js?8a28804b"
-    ></script>
 
-    <script
-            type="text/javascript"
-            async=""
-            src="https://static.wadiz.kr/main/main.581bf414.js"
-    ></script>
 </div>
 <script>
     $(document).ready(function () {
@@ -2328,28 +919,161 @@
                 $('#story1').text('스토리 접기');
             }
         })
-        $('.ProductSelect_title__3FqMO').click(function (){
-            if($('.ProductSelectMenu_container__18idj').hasClass('ProductSelectMenu_unfold__95PrK')){
+        $('.ProductSelect_title__3FqMO').click(function () {
+            if ($('.ProductSelectMenu_container__18idj').hasClass('ProductSelectMenu_unfold__95PrK')) {
                 $('.ProductSelectMenu_container__18idj').removeClass('ProductSelectMenu_unfold__95PrK');
-                $('.ProductSelect_moreButton__2P_Sz').removeClass('ProductSelect_isOpenMoreInfo__201IV');
-                $('.ProductSelectMenu_content__39QFr').hide();
-            }else{
-                $('.ProductSelectMenu_container__18idj').addClass('ProductSelectMenu_unfold__95PrK');
                 $('.ProductSelect_moreButton__2P_Sz').addClass('ProductSelect_isOpenMoreInfo__201IV');
+                $('.ProductSelectMenu_content__39QFr').hide();
+            } else {
+                $('.ProductSelectMenu_container__18idj').addClass('ProductSelectMenu_unfold__95PrK');
+                $('.ProductSelect_moreButton__2P_Sz').removeClass('ProductSelect_isOpenMoreInfo__201IV');
                 $('.ProductSelectMenu_content__39QFr').show();
             }
         })
-        $('.SatisfactionTabs_item__2jVmh').click(function (){
-            if(!$(this).hasClass('SatisfactionTabs_active__1PFX2')){
-            $(this).addClass('SatisfactionTabs_active__1PFX2');
-                $(this).siblings('.SatisfactionTabs_item__2jVmh').removeClass('SatisfactionTabs_active__1PFX2');
-            }else{
-                $(this).removeClass('SatisfactionTabs_active__1PFX2');
-                $(this).siblings('.SatisfactionTabs_item__2jVmh').addClass('SatisfactionTabs_active__1PFX2');
 
+
+    })
+</script>
+<script th:inline="javascript">
+    var currentPosition = 0;
+    var slideWidth = 671;
+    var totalSlides = [[${#lists.size(funding.imgs)}]];
+    var transitionDuration = 300;
+    console.log(totalSlides);
+
+    $('.RewardImageSlider_slickNext__3fjhE').click(function () {
+        console.log('next');
+        currentPosition -= slideWidth;
+        if (currentPosition <= -(slideWidth * totalSlides)) {
+            currentPosition = 0;
+        }
+        $('.slick-track').css({
+            'transform': 'translate3d(' + currentPosition + 'px, 0px, 0px)',
+            'transition-duration': transitionDuration + 'ms'
+        });
+        updateSliderIndex(); // Call the function to update the slider index
+    });
+
+    $('.RewardImageSlider_slickPrev__2iYfc').click(function () {
+        console.log('prev');
+        currentPosition += slideWidth;
+        if (currentPosition >= slideWidth) {
+            currentPosition = -(slideWidth * (totalSlides - 1));
+        }
+        $('.slick-track').css({
+            'transform': 'translate3d(' + currentPosition + 'px, 0px, 0px)',
+            'transition-duration': transitionDuration + 'ms'
+        });
+        updateSliderIndex(); // Call the function to update the slider index
+    });
+
+
+    function updateSliderIndex() {
+        var currentSlideIndex = (-currentPosition / slideWidth) + 1;
+        $('#slider-index').text(currentSlideIndex + '/' + totalSlides);
+    }
+
+
+</script>
+<script th:inline="javascript">
+    $(document).ready(function () {
+        let fid = [[${funding.fid}]];
+        let sort = 1;
+        let type = "funding";
+        getReview(fid, sort, type);
+
+        $('.SatisfactionTabs_item__2jVmh').click(function () {
+            if (!$(this).hasClass('SatisfactionTabs_active__1PFX2')) {
+                console.log("댓글 반응")
+                $(this).addClass('SatisfactionTabs_active__1PFX2');
+                $(this).siblings('.SatisfactionTabs_item__2jVmh').removeClass('SatisfactionTabs_active__1PFX2');
+                type = $(this).data('rtype');
+                console.log(type);
+                getReview(fid, sort, type);
             }
         })
+        $('.SortingSelect_select__21qNT').change(function () {
+            console.log('바뀜');
+            $('#sorted').text($('.SortingSelect_select__21qNT').val());
+            sort = $('#sorted').text();
+            getReview(fid, sort, type);
+        })
+
+
+        function getReview(fid, sort, type) {
+            $('#reviewList').html('');
+            $.ajax({
+                url: '/api/funding/review',
+                type: "get",
+                contentType: "application/json; charset=utf-8",
+                data: {
+                    fid: fid,
+                    sort: sort,
+                    type: type
+                },
+                success: function (data, status) {
+                    let k = "";
+                    if (data.length == 0) {
+                        k = `<div class="SatisfactionNoReview_container__1xzoJ"><span class="SatisfactionNoReview_icon__1sDe_"></span><p class="SatisfactionNoReview_text__N24Pm">아직 작성된 만족도 평가가 없어요</p></div><div></div>`
+
+                    } else {
+
+                        data.forEach(function (review) {
+                            k += `<div class="StoreSatisfactionCard_container__3TDTr">
+                            <div class="StoreSatisfactionCard_divider__Zh8Se"></div>
+                            <div class="StoreSatisfactionCard_header__156AH">
+                                <div><div class="Avatar_avatar__2HQiR Avatar_xs__RZzkx"><span class="Avatar_hasImage__31hv2" style="background-image: url(&quot;https://cdn.wadiz.kr/wwwwadiz/green001/sns_profile_pics/20200306132458432_39645569.jpg/wadiz/resize/600/format/jpg/quality/80/optimize&quot;); border: 1px solid rgb(221, 226, 230);"></span></div></div>
+                                <div class="StoreSatisfactionCard_rightPanel__XCjpV">
+                                    <div class="StoreSatisfactionCard_titleArea__1S3zk"><span
+                                        class="StoreSatisfactionCard_nickName__16JEX">${review.memail}</span>
+                                        <div class="StoreSatisfactionCard_sideArea__jGJma">
+                                            <div class="StoreSatisfactionCard_dateArea__2nNep"><span
+                                                class="StoreSatisfactionCard_updatedDate__1PmK7">${review.rdate}</span>
+                                            </div>
+                                            <div class="StoreSatisfactionCard_moreWrap__3zYcp">
+                                                <svg viewBox="0 0 40 40" focusable="false"
+                                                     role="presentation" class="withIcon_icon__20lDO"
+                                                     aria-hidden="true">
+                                                    <path d="M24.52 5A4.52 4.52 0 1 0 20 9.57 4.53 4.53 0 0 0 24.52 5zm0 30A4.52 4.52 0 1 0 20 39.48 4.53 4.53 0 0 0 24.52 35zm0-15A4.52 4.52 0 1 0 20 24.52 4.53 4.53 0 0 0 24.52 20z"></path>
+                                                </svg>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="StoreSatisfactionCard_ratingArea__2RBSe">
+                                        <div class="RatingScore_container__AeQ_I RatingScore_smTitle__1OhOH">
+                                            <div class="RatingScore_icon__rIS_k"></div>
+                                            <span class="RatingScore_score__2a-SN">${review.rscore}</span></div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="StoreSatisfactionCard_content__2izM4">`;
+                            if (review.rimg_url != null && review.rimg_url.length != 0) {
+                                k += `<div class="ThumbnailViewer_container__1JD2g StoreSatisfactionCard_thumbnails__3fwAc" style="height: 97.5px;"><div class="ThumbnailViewer_thumbnailWrap__2Ocsq ThumbnailViewer_imageView__3WXK_" style="width: 130px;"><img loading="lazy" class="ThumbnailViewer_thumbnail__240ql" srcset="${review.rimg_url} 1x, "${review.rimg_url} 2x" alt=""></div></div>`;
+
+                            }
+
+
+                            k += `
+                                <div class="StoreSatisfactionCard_comment__2d9RM">${review.rcontent}
+                                </div>
+                            </div>
+                        </div>`;
+
+                        });
+                    }
+                    $('#reviewList').append(k);
+
+
+                },
+                error: function (status, error) {
+                    alert("실패");
+                }
+            })
+
+        }
     })
+
 </script>
 </body>
 </html>
