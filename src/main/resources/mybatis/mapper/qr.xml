@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.samgyeobsal.mapper.QrCodeMapper">
+    <insert id="insertQrCode" parameterType="map">
+        INSERT INTO QR_CODE (QID, LINK, QR_CODE, OID)
+        VALUES ('QRCODE2', #{link}, #{qrCode,jdbcType=BLOB},'e2b73f8a-49ce-4877-8887-c896de118abc')
+    </insert>
+</mapper>

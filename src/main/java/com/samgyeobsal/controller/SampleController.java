@@ -13,4 +13,11 @@ public class SampleController {
         return "intro/intro_main";
     }
 
+    @GetMapping("/test")
+    public String test() {return "sample/test.html"; }
+
+    @GetMapping("/testSuccess")
+    public String testSuccess() {return "sample/testSuccess.html"; }
+
+
 }

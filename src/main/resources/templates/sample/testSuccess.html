@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>testSuccess</title>
+</head>
+<body>
+    <div>
+        성공하면 인증 결제 승인 이후에 정보를 저장하고 마이페이지로 이동.
+    </div>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script>
+        const params = new URLSearchParams(window.location.search);
+
+        document.addEventListener("DOMContentLoaded", function(){
+            console.log({
+                paymentKey: params.get('paymentKey'),
+                    orderId: params.get('orderId'),
+                    amount: params.get('amount')
+            });
+            $.ajax({
+                url: 'https://api.tosspayments.com/v1/payments/confirm',
+                type:'post',
+                contentType: "application/json",
+                async: true,
+                headers: {
+                    Authorization: `Basic ${window.btoa('test_sk_O6BYq7GWPVvmJwa2RBn3NE5vbo1d:')}` //헤더에 토큰 변환해서 보내줌 (토큰은 토스에서준 시크릿키로 만듬)
+                },
+                data: JSON.stringify({
+                    paymentKey: params.get('paymentKey'),
+                    orderId: params.get('orderId'),
+                    amount: params.get('amount')
+                }),
+                success: ( result ) => {
+
+                    console.log(result);
+
+
+                    const req = {
+                        osId: result.orderId.toString(),
+                        osCount: 1,
+                        osConsumer: "소규석",
+                        osPhone: "01095592602",
+                        osMemo: "가상계좌",
+                        osMail: "user@gmail.com",
+                        csPid: null,
+                        osState: 'WAITING',
+                        osOriginPrice: 20000,
+                        osAfterPrice: result.balanceAmount,
+                        msMileage: 0,
+                        pmMethod: 1,
+                        pmCompany: "Toss",
+                        msId: "isshosng",
+                        osDate: result.requestedAt
+                        /*
+                        oId : result.orderId,
+                        oCount : 1,
+                        oConsumer : "최태승",
+                        oPhone : "01012345678",
+                        oMemo: "가상계좌",
+                        oMail : "id@email.com",
+                        cPid : "가입축하쿠폰",
+                        oState: "입금대기",
+                        oOriginPrice : 100000,
+                        oAfterPrice : result.balanceAmount.toString(),
+                        mMileage : 5000,
+                        pmMethod : 3,
+                        pmCompany : "TOSS",
+                        mId : "isshosng",
+                        oDate: result.requestedAt.toString()
+
+                         */
+                    };
+
+                    console.log(req);
+
+                    $.ajax({
+                        url: '/test/order/toss',
+                        type:'post',
+                        contentType: "application/json; charset=UTF-8",
+                        dataType: "json",
+                        data: JSON.stringify(req),
+                        success: (res) => {
+                            console.log(res);
+                        }
+                    })
+                }
+            });
+        });
+    </script>
+</body>
+</html>
