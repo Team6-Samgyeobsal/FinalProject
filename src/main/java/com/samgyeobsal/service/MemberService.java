@@ -2,6 +2,7 @@ package com.samgyeobsal.service;
 
 import com.samgyeobsal.domain.member.InsertFormMemberDTO;
 import com.samgyeobsal.domain.member.LoginDTO;
+import com.samgyeobsal.domain.member.MemberVO;
 
 public interface MemberService {
 
@@ -9,5 +10,5 @@ public interface MemberService {
 
     void insertMember(InsertFormMemberDTO member);
 
-    void login(LoginDTO loginDTO);
+    MemberVO login(LoginDTO loginDTO);
 }

@@ -1,8 +1,6 @@
 package com.samgyeobsal.security.provider;
 
 import com.samgyeobsal.security.service.FormUserDetailService;
-import com.samgyeobsal.security.service.OAuth2DetailsService;
-import com.samgyeobsal.service.MemberService;
 import com.samgyeobsal.type.JwtStatus;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.Keys;
@@ -12,7 +10,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Component;
 
 import java.security.Key;
@@ -70,7 +67,7 @@ public class JwtTokenProvider implements InitializingBean {
                 .signWith(key, SignatureAlgorithm.HS512)
                 .compact();
     }
-    public Authentication getUserEmail(String jwt){
+    public Authentication getAuthentication(String jwt){
         Claims claims = Jwts.parserBuilder()
                 .setSigningKey(key)
                 .build()
@@ -78,6 +75,14 @@ public class JwtTokenProvider implements InitializingBean {
                 .getBody();
         UserDetails userDetails = userDetailService.loadUserByUsername(claims.getSubject());
         return new UsernamePasswordAuthenticationToken(userDetails, jwt, userDetails.getAuthorities());
+    }
+    public String getUserEmail(String jwt){
+        Claims claims = Jwts.parserBuilder()
+                .setSigningKey(key)
+                .build()
+                .parseClaimsJws(jwt)
+                .getBody();
+        return claims.getSubject();
     }
 
     public JwtStatus validateToken(String token){

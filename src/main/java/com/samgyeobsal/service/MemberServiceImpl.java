@@ -50,11 +50,17 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
-    public void login(LoginDTO loginDTO) {
+    public MemberVO login(LoginDTO loginDTO) {
         Account account = (Account) userDetailsService.loadUserByUsername(loginDTO.getEmail());
+        if(account == null){
+            throw new RuntimeException("회원 존재 X");
+        }
+        log.info("account = {}", account);
         MemberVO memberVO = account.getMember();
+        log.info("member = {}", memberVO);
         if (!passwordEncoder.matches(loginDTO.getPassword(), memberVO.getMpassword())) {
             throw new RuntimeException("비밀번호 다름");
         }
+        return memberVO;
     }
 }

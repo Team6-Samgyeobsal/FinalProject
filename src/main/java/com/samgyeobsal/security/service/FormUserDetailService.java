@@ -26,7 +26,6 @@ public class FormUserDetailService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         MemberVO member = memberMapper.findMemberByEmail(username,null);
-        log.info("loadUserByUsername member = {}", member);
 
         if(member == null) return null;
 
