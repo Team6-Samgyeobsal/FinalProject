@@ -30,12 +30,8 @@ public class OAuth2DetailsService extends DefaultOAuth2UserService {
 
     @Override
     public OAuth2User loadUser(OAuth2UserRequest userRequest) throws OAuth2AuthenticationException {
-        log.info("OAuth2DetailsService loadUser 시작");
 
         OAuth2User oAuth2User = super.loadUser(userRequest);
-        oAuth2User.getAttributes().forEach((k, v) -> {
-            log.info(k + " : " + v);
-        });
 
         try{
             MemberVO member = saveOAuth2Member(oAuth2User.getAttributes());

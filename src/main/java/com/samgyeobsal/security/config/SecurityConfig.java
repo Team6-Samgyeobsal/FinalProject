@@ -1,11 +1,11 @@
 package com.samgyeobsal.security.config;
 
+import com.samgyeobsal.mapper.RefreshTokenMapper;
 import com.samgyeobsal.security.filter.JwtTokenFilter;
-import com.samgyeobsal.security.handler.CustomAccessDeniedHandler;
-import com.samgyeobsal.security.handler.CustomAuthenticationEntryPoint;
 import com.samgyeobsal.security.handler.OAuth2SuccessHandler;
 import com.samgyeobsal.security.provider.JwtTokenProvider;
 import com.samgyeobsal.security.service.OAuth2DetailsService;
+import com.samgyeobsal.service.RefreshTokenService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -23,9 +23,9 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 public class SecurityConfig {
 
     @Autowired
-    private AuthenticationFailureHandler authenticationFailureHandler;
-    @Autowired
     private JwtTokenProvider jwtTokenProvider;
+    @Autowired
+    private RefreshTokenService refreshTokenService;
     @Autowired
     private OAuth2DetailsService oAuth2DetailsService;
 
@@ -48,10 +48,6 @@ public class SecurityConfig {
                 .formLogin().disable()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
-                .exceptionHandling()
-                .authenticationEntryPoint(new CustomAuthenticationEntryPoint())
-                .accessDeniedHandler(new CustomAccessDeniedHandler())
-                .and()
                 .authorizeHttpRequests((authz) ->
                         authz
                                 .antMatchers("/web/mypage/**").hasRole("USER")
@@ -60,9 +56,9 @@ public class SecurityConfig {
                 .oauth2Login()
                 .userInfoEndpoint().userService(oAuth2DetailsService)
                 .and()
-                .successHandler(new OAuth2SuccessHandler(jwtTokenProvider))
-        .and()
-                .addFilterBefore(new JwtTokenFilter(jwtTokenProvider), UsernamePasswordAuthenticationFilter.class);
+                .successHandler(new OAuth2SuccessHandler(jwtTokenProvider, refreshTokenService))
+                .and()
+                .addFilterBefore(new JwtTokenFilter(jwtTokenProvider,refreshTokenService), UsernamePasswordAuthenticationFilter.class);
 
 
         return http.build();

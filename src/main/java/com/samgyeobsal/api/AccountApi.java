@@ -1,9 +1,12 @@
 package com.samgyeobsal.api;
 
 import com.samgyeobsal.domain.member.LoginDTO;
+import com.samgyeobsal.domain.member.MemberVO;
+import com.samgyeobsal.domain.member.RefreshTokenVO;
 import com.samgyeobsal.security.provider.JwtTokenProvider;
 import com.samgyeobsal.security.service.FormUserDetailService;
 import com.samgyeobsal.service.MemberService;
+import com.samgyeobsal.service.RefreshTokenService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +27,7 @@ import java.util.Map;
 public class AccountApi {
 
     private final MemberService memberService;
+    private final RefreshTokenService refreshTokenService;
     @Autowired
     private JwtTokenProvider jwtTokenProvider;
 
@@ -38,16 +42,24 @@ public class AccountApi {
     public ResponseEntity<?> login(
             @Validated  @RequestBody LoginDTO loginDTO,
             BindingResult bindingResult) {
-        memberService.login(loginDTO);
-        if(bindingResult.hasErrors()){
+        MemberVO member = memberService.login(loginDTO);
+        if(bindingResult.hasErrors())
             return new ResponseEntity<>(bindingResult.getAllErrors(), HttpStatus.BAD_REQUEST);
-        }
 
         HashMap<String, Object> res = new HashMap<>();
         String accessToken = jwtTokenProvider.createAccessToken(loginDTO.getEmail());
         String refreshToken = jwtTokenProvider.createRefreshToken(loginDTO.getEmail());
+        member.setMpassword(null);
+
+        res.put("member", member);
         res.put("accessToken", accessToken);
         res.put("refreshToken", refreshToken);
+
+        RefreshTokenVO refreshTokenVO = new RefreshTokenVO();
+        refreshTokenVO.setMemail(loginDTO.getEmail());
+        refreshTokenVO.setRef_token(refreshToken);
+        refreshTokenService.insertRefreshToken(refreshTokenVO);
+
         return new ResponseEntity<>(res, HttpStatus.OK);
     }
 }
