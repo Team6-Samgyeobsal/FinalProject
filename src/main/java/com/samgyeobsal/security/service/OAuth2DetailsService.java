@@ -39,7 +39,6 @@ public class OAuth2DetailsService extends DefaultOAuth2UserService {
 
         try{
             MemberVO member = saveOAuth2Member(oAuth2User.getAttributes());
-
             List<GrantedAuthority> authorities = new ArrayList<>();
             authorities.add(new SimpleGrantedAuthority(member.getMrole().toString()));
             Account account = new Account(member, authorities, oAuth2User.getAttributes());
@@ -55,12 +54,12 @@ public class OAuth2DetailsService extends DefaultOAuth2UserService {
         String name = "USER_"+UUID.randomUUID().toString().substring(7);
 
         MemberVO member = memberMapper.findMemberByEmail(email, LoginType.LOGIN_FORM);
+
         if(member != null)
             throw new RuntimeException("already joined by form login");
 
         member = memberMapper.findMemberByEmail(email, LoginType.LOGIN_GOOGLE);
-        if(member != null)
-            return member;
+        if(member != null) return member;
         member = new MemberVO();
         member.setMemail(email);
         member.setMname(name);
