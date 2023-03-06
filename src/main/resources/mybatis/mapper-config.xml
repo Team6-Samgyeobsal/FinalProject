@@ -9,5 +9,6 @@
     <typeAliases>
         <typeAlias type="com.samgyeobsal.domain.sample.SampleVO" alias="sample"/>
         <typeAlias type="com.samgyeobsal.domain.member.MemberVO" alias="member"/>
+        <typeAlias type="com.samgyeobsal.domain.member.RefreshTokenVO" alias="refToken"/>
     </typeAliases>
 </configuration>

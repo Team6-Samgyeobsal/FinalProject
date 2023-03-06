@@ -27,6 +27,26 @@ public class MemberMapperTest {
         Assertions.assertEquals(member.getMname(),"user1");
     }
 
+    @Test
+    void findMemberByEmail2(){
+        String email = "wangjh789@gmail.com";
+        MemberVO memberVO = memberMapper.findMemberByEmail(email, LoginType.LOGIN_FORM);
+        Assertions.assertNull(memberVO);
+    }
+    @Test
+    void findMemberByEmail3(){
+        String email = "wangjh789@gmail.com";
+        MemberVO memberVO = memberMapper.findMemberByEmail(email, LoginType.LOGIN_GOOGLE);
+        Assertions.assertEquals(email, memberVO.getMemail());
+    }
+
+    @Test
+    void findMemberByEmail4(){
+        String email = "wangjh789@gmail.com";
+        MemberVO memberVO = memberMapper.findMemberByEmail(email, null);
+        Assertions.assertEquals(email, memberVO.getMemail());
+    }
+
     @Transactional
     @Test
     void insertMember(){
