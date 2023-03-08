@@ -41,7 +41,7 @@ public class MyPageController {
     }
 
     @GetMapping("/maker/funding/{fundingId}/story")
-    public String fundingStroy(@PathVariable("fundingId") String fundingId){
+    public String fundingStory(@PathVariable("fundingId") String fundingId){
         return "mypage/funding_story";
     }
 
