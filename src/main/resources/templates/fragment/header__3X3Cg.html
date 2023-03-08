@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://thymeleaf.org/extras/spring-security">
   <div class="web-header" th:fragment="header">
     <div class="web-header-large">
       <header class="header-wrapper">
@@ -72,7 +73,7 @@
               </form>
 
             </div>
-            <div class="HeaderDesktop_user__3zGmM">
+            <div sec:authorize="isAnonymous()" class="HeaderDesktop_user__3zGmM">
               <div class="User_container__bqVd2">
                 <button type="button" class="User_btnSign__1URTs">로그인</button
                 ><button data-event="iam.signup" class="User_btnSign__1URTs">
@@ -80,24 +81,28 @@
                 </button>
               </div>
             </div>
-
-          </div>
-          <div class="PreviewOverlay_container__W6b-E">
-            <svg
-              viewBox="0 0 40 40"
-              focusable="false"
-              role="presentation"
-              class="withIcon_icon__20lDO"
-              aria-hidden="true"
-              style="width: 24px; height: 24px">
-              <path fill="none" d="M0 0h40v40H0z"></path>
-              <path
-                d="M38 6.06H2V31h11.8v3.88h12.4V31H38zm-2.12 22.85H4.12V8.14h31.76z"></path>
-            </svg>
-            <p class="PreviewOverlay_title__1p_pc">미리보기 모드</p>
-            <p class="PreviewOverlay_description__3Cqx5">
-              저장한 내용을 미리 볼 수 있어요.
-            </p>
+            <div sec:authorize="isAuthenticated()" class="HeaderDesktop_user__3zGmM">
+              <div class="User_container__bqVd2">
+                <button type="button" class="User_btnAvatar__2Mui-" aria-label="마이 와디즈">
+                  <div>
+                    <div class="Avatar_avatar__3xsDJ" style="width: 32px; height: 32px;">
+                      <span class="Avatar_hasImage__1wiBh" style="background-image: url(&quot;https://static.wadiz.kr/assets/icon/profile-icon-6.png&quot;);"></span>
+                    </div>
+                  </div>
+                </button>
+              </div>
+            </div>
+            <div sec:authorize="isAuthenticated()" class="web-header-funding-open funding-open">
+              <div>
+                <div>
+                  <button aria-label="프로젝트 만들기" class="Button_button__3J1Nv Button_primary__1EZQV Button_md__2iTxL funding-open-button" type="button">
+                    <span>
+                      <span class="Button_children__1ZhTo">프로젝트 만들기</span>
+                    </span>
+                  </button>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </header>

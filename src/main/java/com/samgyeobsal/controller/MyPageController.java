@@ -14,11 +14,6 @@ public class MyPageController {
         return "mypage/mypage";
     }
 
-    @GetMapping("/maker")
-    public String mypageMaker(){
-        return "mypage/mypage_maker";
-    }
-
     @GetMapping("/order")
     public String myorderPage(){
         return "mypage/myorder";
@@ -26,7 +21,32 @@ public class MyPageController {
 
     @GetMapping("/order/{orderId}")
     public String myorderDetailPage(@PathVariable("orderId") String orderId){
-
         return "mypage/myorder_detail";
+    }
+
+    @GetMapping("/maker")
+    public String mypageMaker(){
+        return "mypage/mypage_maker";
+    }
+
+    @GetMapping("/maker/funding/{fundingId}")
+    public String fundingPage(@PathVariable("fundingId") String fundingId) {
+
+        return "mypage/funding_maker";
+    }
+
+    @GetMapping("/maker/funding/{fundingId}/baseInfo")
+    public String fundingBaseInfo(@PathVariable("fundingId") String fundingId){
+        return "mypage/funding_baseinfo";
+    }
+
+    @GetMapping("/maker/funding/{fundingId}/story")
+    public String fundingStroy(@PathVariable("fundingId") String fundingId){
+        return "mypage/funding_story";
+    }
+
+    @GetMapping("/maker/funding/{fundingId}/reward")
+    public String fundingReward(@PathVariable("fundingId") String fundingId){
+        return "mypage/funding_reward";
     }
 }
