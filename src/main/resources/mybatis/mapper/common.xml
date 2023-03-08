@@ -4,7 +4,7 @@
 
 <mapper  namespace="common">
 
-    <resultMap id="fundingDetailMap"  type="com.samgyeobsal.domain.funding.FundingDetailVO">
+    <resultMap id="fundingDetailMap"  type="fundingDetail">
         <result property="fstore_name" column="fstore_name" />
         <result property="fsummary" column="fsummary" />
         <result property="fid" column="fid" />
@@ -22,6 +22,24 @@
         <result property="expire" column="expire" />
         <result property="rfcount" column="rfcount" />
         <result property="rscount" column="rscount" />
+        <collection property="products"
+                    resultMap="productMap" />
+        <collection property="imgs"
+                    resultMap="imgMap" />
+    </resultMap>
+
+    <resultMap id="productMap"
+               type="product">
+        <result property="fporigin_price" column="fporigin_price" />
+        <result property="fpprice" column="fpprice" />
+        <result property="fptitle" column="fptitle" />
+        <result property="fpcontent" column="fpcontent" />
+        <result property="pcchipimg" column="pcchipimg" />
+    </resultMap>
+
+    <resultMap id="imgMap"
+               type="fundingImg">
+        <result property="fiurl" column="fiurl" />
 
     </resultMap>
 </mapper>

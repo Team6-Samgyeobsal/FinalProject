@@ -11,6 +11,10 @@
         <typeAlias type="com.samgyeobsal.domain.member.MemberVO" alias="member"/>
         <typeAlias type="com.samgyeobsal.domain.member.RefreshTokenVO" alias="refToken"/>
         <typeAlias type="com.samgyeobsal.domain.funding.FundingVO" alias="funding"/>
+        <typeAlias type="com.samgyeobsal.domain.funding.FundingDetailVO" alias="fundingDetail"/>
+        <typeAlias type="com.samgyeobsal.domain.funding.ProductVO" alias="product"/>
+        <typeAlias type="com.samgyeobsal.domain.funding.FundingImgVO" alias="fundingImg"/>
+        <typeAlias type="com.samgyeobsal.domain.funding.ReviewVO" alias="review"/>
     </typeAliases>
 
 </configuration>

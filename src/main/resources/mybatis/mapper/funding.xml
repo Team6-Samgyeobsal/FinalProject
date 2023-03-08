@@ -3,7 +3,7 @@
 
 <mapper namespace="com.samgyeobsal.mapper.FundingMapper">
 
-    <select id="getFundingList" resultType="com.samgyeobsal.domain.funding.FundingVO">
+    <select id="getFundingList" resultType="funding">
         select f.fid,
                fstore_name,
                ftitle,
@@ -38,38 +38,38 @@
         where fstatus = 'FUNDING' and sysdate between cfunding_start_date  and cfunding_end_date
         <choose>
             <when test="criteria.type =='1'.toString()">
-                and ctid='1'
+                and f.ctid='1'
             </when>
             <when test="criteria.type =='2'.toString()">
-                and ctid='2'
+                and f.ctid='2'
             </when>
             <when test="criteria.type =='3'.toString()">
-                and  ctid='3'
+                and  f.ctid='3'
             </when>
             <when test="criteria.type =='4'.toString()">
-                and  ctid='4'
+                and  f.ctid='4'
             </when>
             <when test="criteria.type =='5'.toString()">
-                and ctid='5'
+                and f.ctid='5'
             </when>
             <when test="criteria.type =='6'.toString()">
-                and ctid='6'
+                and f.ctid='6'
             </when>
             <when test="criteria.type =='7'.toString()">
-                and ctid='7'
+                and f.ctid='7'
             </when>
             <otherwise>
             </otherwise>
         </choose>
         <choose>
             <when test="criteria.place =='더현대 서울'.toString()">
-                and tid='1'
+                and c.tid='1'
             </when>
             <when test="criteria.place =='더현대 대구'.toString()">
-                and tid='2'
+                and c.tid='2'
             </when>
             <when test="criteria.place =='더현대 광주'.toString()">
-                and  tid='3'
+                and  c.tid='3'
             </when>
             <otherwise>
             </otherwise>
@@ -96,43 +96,7 @@
         ,f.fid
     </select>
 
-    <resultMap id="fundingDetailMap" type="com.samgyeobsal.domain.funding.FundingDetailVO">
-        <result property="fstore_name" column="fstore_name" />
-        <result property="fsummary" column="fsummary" />
-        <result property="fid" column="fid" />
-        <result property="ftitle" column="ftitle" />
-        <result property="totalprice" column="totalprice" />
-        <result property="totalemail" column="totalemail" />
-        <result property="tname" column="tname" />
-        <result property="ctname" column="ctname" />
-        <result property="fstory" column="fstory" />
-        <result property="fdate" column="fdate" />
-        <result property="cfunding_end_date" column="cfunding_end_date" />
-        <result property="fstatus" column="fstatus" />
-        <result property="fstore_score" column="fstore_score" />
-        <result property="ffunding_score" column="ffunding_score" />
-        <result property="expire" column="expire" />
-        <result property="rfcount" column="rfcount" />
-        <result property="rscount" column="rscount" />
-        <collection property="products"
-                    resultMap="productMap" />
-        <collection property="imgs"
-                    resultMap="imgMap" />
-    </resultMap>
-    <resultMap id="productMap"
-               type="com.samgyeobsal.domain.funding.ProductVO">
-        <result property="fporigin_price" column="fporigin_price" />
-        <result property="fpprice" column="fpprice" />
-        <result property="fptitle" column="fptitle" />
-        <result property="fpcontent" column="fpcontent" />
-        <result property="pcchipimg" column="pcchipimg" />
-    </resultMap>
-    <resultMap id="imgMap"
-               type="com.samgyeobsal.domain.funding.FundingImgVO">
-        <result property="fiurl" column="fiurl" />
-
-    </resultMap>
-    <select id ="getFundingDetail" resultMap="fundingDetailMap" >
+    <select id ="getFundingDetail" resultMap="common.fundingDetailMap" >
         select fstore_name,
                fsummary,
                f.fid,
@@ -181,7 +145,7 @@
         where fstatus = 'FUNDING' and sysdate between cfunding_start_date and cfunding_end_date and f.fid=#{fid}
     </select>
 
-    <select id="getReviewList" resultType="com.samgyeobsal.domain.funding.ReviewVO">
+    <select id="getReviewList" resultType="review">
         select rscore,
                rtype,
                rimg_url,
