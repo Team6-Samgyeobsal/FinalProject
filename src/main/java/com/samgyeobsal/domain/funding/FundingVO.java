@@ -15,4 +15,5 @@ public class FundingVO {
     private long totalprice;
     private String fthumb;
     private int expire;
+    private String fstatus;
 }

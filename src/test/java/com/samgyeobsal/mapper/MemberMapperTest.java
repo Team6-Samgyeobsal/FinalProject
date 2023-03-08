@@ -1,5 +1,6 @@
 package com.samgyeobsal.mapper;
 
+import com.samgyeobsal.domain.funding.FundingDetailVO;
 import com.samgyeobsal.domain.member.InsertFormMemberDTO;
 import com.samgyeobsal.domain.member.MemberVO;
 import com.samgyeobsal.type.LoginType;
@@ -65,5 +66,12 @@ public class MemberMapperTest {
 
         Assertions.assertEquals(member.getMname(), findMember.getMname());
 
+    }
+
+    @Test
+    void findFundingDetailByFundingId(){
+        String fid = "1";
+        FundingDetailVO fundingDetail = memberMapper.findFundingDetailByFundingId(fid);
+        log.info("fundingDetail = {}", fundingDetail);
     }
 }

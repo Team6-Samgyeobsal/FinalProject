@@ -1,5 +1,6 @@
 package com.samgyeobsal.service;
 
+import com.samgyeobsal.domain.funding.FundingVO;
 import com.samgyeobsal.domain.member.InsertFormMemberDTO;
 import com.samgyeobsal.domain.member.LoginDTO;
 import com.samgyeobsal.domain.member.MemberVO;
@@ -9,11 +10,11 @@ import com.samgyeobsal.type.LoginType;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -62,5 +63,11 @@ public class MemberServiceImpl implements MemberService {
             throw new RuntimeException("비밀번호 다름");
         }
         return memberVO;
+    }
+
+    @Override
+    public List<FundingVO> findFindingListByEmail(String email) {
+        List<FundingVO> fundingList = memberMapper.findFundingListByEmail(email);
+        return fundingList;
     }
 }

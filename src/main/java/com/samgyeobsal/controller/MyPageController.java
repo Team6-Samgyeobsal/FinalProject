@@ -1,13 +1,19 @@
 package com.samgyeobsal.controller;
 
+import com.samgyeobsal.service.MemberService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping("/web/mypage")
+@RequiredArgsConstructor
 public class MyPageController {
+
+    private final MemberService memberService;
 
     @GetMapping
     public String mypage(){
@@ -36,7 +42,8 @@ public class MyPageController {
     }
 
     @GetMapping("/maker/funding/{fundingId}/baseInfo")
-    public String fundingBaseInfo(@PathVariable("fundingId") String fundingId){
+    public String fundingBaseInfo(@PathVariable("fundingId") String fundingId, Model model){
+
         return "mypage/funding_baseinfo";
     }
 
