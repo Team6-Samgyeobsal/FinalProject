@@ -43,7 +43,7 @@
     <div id="root">
       <div id="AppLayout_Container" class="AppLayout_container__3zbzb">
         <div class="AppLayout_main__14bCi">
-          <div th:replace="/fragment/funding_sidebar.html :: sidebar"></div>
+          <div th:replace="/fragment/funding_sidebar.html :: sidebar(${fundingMaker.getFid()})"></div>
           <div id="AppLayout_Contents" class="AppLayout_contents__wv3DF">
             <nav class="ProjectNavbar_container__3ybm3">
               <div

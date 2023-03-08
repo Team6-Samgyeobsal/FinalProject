@@ -40,6 +40,5 @@
     <resultMap id="imgMap"
                type="fundingImg">
         <result property="fiurl" column="fiurl" />
-
     </resultMap>
 </mapper>

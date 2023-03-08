@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.samgyeobsal.mapper.MakerMapper">
+
+    <select id="findFundingMakerByFundingId" resultType="fundingMaker">
+        select
+            f.fid, f.fstore_name, f.ftitle, f.fsummary,f.fstory,f.fdate, f.fstatus,
+            f.memail, f.ctid, ct.ctname, f.fthumb, tmp.hasProduct, tmp2.hasImg
+        from funding f
+        left join category ct on (ct.ctid = f.ctid)
+        inner join (
+            select funding.fid, decode(count(*),0,0,1) hasProduct
+            from funding
+                 inner join funding_product on (funding.fid = funding_product.fid)
+            group by funding.fid
+        ) tmp on (f.fid = tmp.fid)
+        inner join (
+            select funding.fid, decode(count(*),0,0,1) hasImg
+            from funding
+                     inner join funding_img on (funding.fid = funding_img.fid)
+            group by funding.fid
+        ) tmp2 on (f.fid = tmp2.fid)
+        where f.fid = #{fundingId}
+    </select>
+</mapper>

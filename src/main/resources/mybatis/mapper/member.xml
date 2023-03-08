@@ -28,9 +28,4 @@
         where memail = #{email}
     </select>
 
-    <select id="findFundingDetailByFundingId" resultMap="common.fundingDetailMap">
-        select fid, fstore_name, ftitle, fsummary, fstory, fdate, fstatus
-        from funding
-        where fid = #{fundingId}
-    </select>
 </mapper>

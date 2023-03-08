@@ -1,5 +1,7 @@
 package com.samgyeobsal.controller;
 
+import com.samgyeobsal.domain.maker.FundingMakerVO;
+import com.samgyeobsal.service.MakerService;
 import com.samgyeobsal.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class MyPageController {
 
     private final MemberService memberService;
+    private final MakerService makerService;
 
     @GetMapping
     public String mypage(){
@@ -36,24 +39,30 @@ public class MyPageController {
     }
 
     @GetMapping("/maker/funding/{fundingId}")
-    public String fundingPage(@PathVariable("fundingId") String fundingId) {
-
+    public String fundingPage(@PathVariable("fundingId") String fundingId, Model model) {
+        FundingMakerVO fundingMaker = makerService.getFundingMakerByFundingId(fundingId);
+        model.addAttribute("fundingMaker", fundingMaker);
         return "mypage/funding_maker";
     }
 
     @GetMapping("/maker/funding/{fundingId}/baseInfo")
     public String fundingBaseInfo(@PathVariable("fundingId") String fundingId, Model model){
-
+        FundingMakerVO fundingMaker = makerService.getFundingMakerByFundingId(fundingId);
+        model.addAttribute("fundingMaker", fundingMaker);
         return "mypage/funding_baseinfo";
     }
 
     @GetMapping("/maker/funding/{fundingId}/story")
-    public String fundingStory(@PathVariable("fundingId") String fundingId){
+    public String fundingStory(@PathVariable("fundingId") String fundingId, Model model){
+        FundingMakerVO fundingMaker = makerService.getFundingMakerByFundingId(fundingId);
+        model.addAttribute("fundingMaker", fundingMaker);
         return "mypage/funding_story";
     }
 
     @GetMapping("/maker/funding/{fundingId}/reward")
-    public String fundingReward(@PathVariable("fundingId") String fundingId){
+    public String fundingReward(@PathVariable("fundingId") String fundingId, Model model){
+        FundingMakerVO fundingMaker = makerService.getFundingMakerByFundingId(fundingId);
+        model.addAttribute("fundingMaker", fundingMaker);
         return "mypage/funding_reward";
     }
 }

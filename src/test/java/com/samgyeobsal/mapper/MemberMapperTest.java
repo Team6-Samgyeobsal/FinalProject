@@ -68,10 +68,4 @@ public class MemberMapperTest {
 
     }
 
-    @Test
-    void findFundingDetailByFundingId(){
-        String fid = "1";
-        FundingDetailVO fundingDetail = memberMapper.findFundingDetailByFundingId(fid);
-        log.info("fundingDetail = {}", fundingDetail);
-    }
 }
