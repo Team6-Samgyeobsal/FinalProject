@@ -11,4 +11,6 @@ public interface MemberService {
     void insertMember(InsertFormMemberDTO member);
 
     MemberVO login(LoginDTO loginDTO);
+
+
 }
