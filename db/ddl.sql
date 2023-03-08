@@ -17,7 +17,7 @@ drop table JWT_REFRESH cascade constraint purge;
 drop table FUNDING_IMG cascade constraint purge;
 
 -- 생성자 Oracle SQL Developer Data Modeler 21.2.0.183.1957
---   위치:        2023-03-08 14:11:02 KST
+--   위치:        2023-03-08 17:05:33 KST
 --   사이트:      Oracle Database 21c
 --   유형:      Oracle Database 21c
 
@@ -86,11 +86,12 @@ CREATE TABLE funding (
                          fdate          DATE,
                          fstatus        VARCHAR2(20 BYTE),
                          memail         VARCHAR2(60 BYTE) NOT NULL,
-                         tid            VARCHAR2(100 BYTE),
                          fstore_score   NUMBER,
                          ffunding_score NUMBER,
                          ctid           VARCHAR2(30 BYTE),
-                         fthumb         VARCHAR2(200 BYTE)
+                         fthumb         VARCHAR2(200 BYTE),
+                         cid            VARCHAR2(100 BYTE),
+                         tid            VARCHAR2(100 BYTE)
 );
 
 COMMENT ON COLUMN funding.fstatus IS
@@ -195,10 +196,8 @@ CREATE TABLE payment_method (
 
 ALTER TABLE payment_method ADD CONSTRAINT payment_method_pk PRIMARY KEY ( pmcode );
 
-
---  ERROR: UK name length exceeds maximum allowed length(30)
-ALTER TABLE payment_method ADD CONSTRAINT payment_un UNIQUE ( pmmethod,
-                                                              pmcompany );
+ALTER TABLE payment_method ADD CONSTRAINT payment_method_un UNIQUE ( pmmethod,
+                                                                     pmcompany );
 
 CREATE TABLE product_option (
                                 poid     VARCHAR2(30 BYTE) NOT NULL,
@@ -229,8 +228,9 @@ CREATE TABLE review (
                         memail   VARCHAR2(60 BYTE) NOT NULL,
                         fid      VARCHAR2(100 BYTE) NOT NULL,
                         rdate    DATE NOT NULL,
-                        rcontent    VARCHAR2(400 BYTE) NOT NULL
+                        rcontent VARCHAR2(400 BYTE) NOT NULL
 );
+
 COMMENT ON COLUMN review.rtype IS
     'FUNDING
 STORE';
@@ -263,6 +263,12 @@ ALTER TABLE funding
     ADD CONSTRAINT funding_category_fk FOREIGN KEY ( ctid )
         REFERENCES category ( ctid );
 
+ALTER TABLE funding
+    ADD CONSTRAINT funding_competition_fk FOREIGN KEY ( cid,
+                                                        tid )
+        REFERENCES competition ( cid,
+                                 tid );
+
 ALTER TABLE funding_img
     ADD CONSTRAINT funding_img_funding_fk FOREIGN KEY ( fid )
         REFERENCES funding ( fid );
@@ -274,10 +280,6 @@ ALTER TABLE funding
 ALTER TABLE funding_product
     ADD CONSTRAINT funding_product_funding_fk FOREIGN KEY ( fid )
         REFERENCES funding ( fid );
-
-ALTER TABLE funding
-    ADD CONSTRAINT funding_the_hyundai_fk FOREIGN KEY ( tid )
-        REFERENCES the_hyundai ( tid );
 
 ALTER TABLE jwt_refresh
     ADD CONSTRAINT jwt_refresh_member_fk FOREIGN KEY ( memail )
@@ -303,9 +305,8 @@ ALTER TABLE orders
     ADD CONSTRAINT orders_payment_method_fk FOREIGN KEY ( pmcode )
         REFERENCES payment_method ( pmcode );
 
---  ERROR: FK name length exceeds maximum allowed length(30)
 ALTER TABLE product_option
-    ADD CONSTRAINT product_fk FOREIGN KEY ( fpid )
+    ADD CONSTRAINT product_option_fk FOREIGN KEY ( fpid )
         REFERENCES funding_product ( fpid );
 
 ALTER TABLE qr_code
@@ -352,15 +353,15 @@ ALTER TABLE review
 -- CREATE SYNONYM                           0
 -- CREATE TABLESPACE                        0
 -- CREATE USER                              0
--- 
+--
 -- DROP TABLESPACE                          0
 -- DROP DATABASE                            0
--- 
+--
 -- REDACTION POLICY                         0
--- 
+--
 -- ORDS DROP SCHEMA                         0
 -- ORDS ENABLE SCHEMA                       0
 -- ORDS ENABLE OBJECT                       0
--- 
--- ERRORS                                   2
+--
+-- ERRORS                                   0
 -- WARNINGS                                 0
