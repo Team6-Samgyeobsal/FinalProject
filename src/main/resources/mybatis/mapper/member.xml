@@ -18,4 +18,10 @@
         insert into member (memail, mname, mpassword, mrole, mlogintype, mphone,menabled, mmileage)
         values (#{memail}, #{mname}, #{mpassword}, #{mrole}, #{mloginType}, #{mphone}, 1, #{mmileage})
     </insert>
+
+    <select id="findFindingListByEmail" resultType="funding">
+        select fid, fstore_name, ftitle, fthumb fiurl, fstatus
+        from funding
+        where memail = #{email}
+    </select>
 </mapper>

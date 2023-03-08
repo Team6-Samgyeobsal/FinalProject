@@ -15,4 +15,5 @@ public class FundingVO {
     private long totalprice;
     private String fiurl; // 섬네일 이미지
     private int expire;
+    private String fstatus;
 }
