@@ -1,0 +1,21 @@
+@forward "strip-unit"; @forward "color"; @forward "em"; @forward "max"; @forward "min"; .CardSpinner_container__1cKRs {
+                                                                                            position: absolute;
+                                                                                            left: 0;
+                                                                                            right: 0;
+                                                                                            top: 0;
+                                                                                            bottom: 0;
+                                                                                            border-radius: 8px;
+                                                                                            z-index: 5;
+                                                                                            display: none;
+                                                                                            align-items: center;
+                                                                                            justify-content: center
+                                                                                        }
+
+.CardSpinner_container__1cKRs.CardSpinner_visible__zjG1B {
+    display: flex
+}
+
+.CardSpinner_container__1cKRs .CardSpinner_loader__2-LrZ {
+    width: 32px;
+    height: 32px
+}
