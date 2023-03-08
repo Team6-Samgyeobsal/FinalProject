@@ -12,4 +12,5 @@
         <typeAlias type="com.samgyeobsal.domain.member.RefreshTokenVO" alias="refToken"/>
         <typeAlias type="com.samgyeobsal.domain.funding.FundingVO" alias="funding"/>
     </typeAliases>
+
 </configuration>

@@ -1,5 +1,6 @@
 package com.samgyeobsal.mapper;
 
+import com.samgyeobsal.domain.funding.FundingDetailVO;
 import com.samgyeobsal.domain.funding.FundingVO;
 import com.samgyeobsal.domain.member.MemberVO;
 import com.samgyeobsal.type.LoginType;
@@ -15,5 +16,7 @@ public interface MemberMapper {
 
     void insertMember(MemberVO member);
 
-    List<FundingVO> findFindingListByEmail(@Param("email") String email);
+    List<FundingVO> findFundingListByEmail(@Param("email") String email);
+
+    FundingDetailVO findFundingDetailByFundingId(@Param("fundingId") String fundingId);
 }
