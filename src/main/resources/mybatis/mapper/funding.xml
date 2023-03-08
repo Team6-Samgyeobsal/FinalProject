@@ -10,8 +10,9 @@
                nvl(totalprice,0) as totalprice,
                nvl(totalemail,0) as totalemail,
                nvl(totalreview,0) as totalreview,
-               fiurl,
-               trunc(cfunding_end_date-sysdate,0) expire
+               fthumb,
+               trunc(cfunding_end_date-sysdate,0) expire,
+               c.cid
         from funding f
         left join (select f.fid,
                           sum(oitotalprice) as totalprice
@@ -28,14 +29,13 @@
                     join funding f on f.fid=fp.fid
                     join orders o on oi.oid=o.oid
                     group by f.fid) cnt on cnt.fid=f.fid
-        join competition c on c.cid=f.cid
+        join competition c on c.cid=f.cid and c.tid=f.tid
         left join (select f.fid,
                           count(r.memail) as totalreview
-                    from review r
-                    join funding f on r.fid=f.fid
-                    group by f.fid) r on r.fid = f.fid
-        left join funding_img fi on f.fid=fi.fid
-        where fstatus = 'funding' and sysdate between cfunding_start_date  and cfunding_end_date and fiid='1'
+                   from review r
+                   join funding f on r.fid=f.fid
+                   group by f.fid) r on r.fid = f.fid
+        where fstatus = 'FUNDING' and sysdate between cfunding_start_date  and cfunding_end_date
         <choose>
             <when test="criteria.type =='1'.toString()">
                 and ctid='1'
@@ -139,7 +139,6 @@
                ftitle,
                nvl(totalprice,0) as totalprice,
                nvl(totalemail,0) as totalemail,
-               fimg1,
                tname,
                ctname,
                fstory,
@@ -172,14 +171,14 @@
                                       join funding f on f.fid=fp.fid
                                       join orders o on oi.oid=o.oid
                              group by f.fid) cnt on cnt.fid=f.fid
-                 join competition c on c.cid=f.cid
-                 join the_hyundai t on t.tid=f.tid
+                 join competition c on c.cid=f.cid and c.tid=f.tid
+                 join the_hyundai t on t.tid = c.tid
                  join category ct on ct.ctid=f.ctid
                  left join funding_product fp on fp.fid=f.fid
                  left join funding_img fi on f.fid=fi.fid
                  left join (select fid,count(*) rfcount from review where fid=#{fid} and rtype='funding' group by fid) rf on rf.fid=f.fid
                  left join (select fid,count(*) rscount from review where fid=#{fid} and rtype='store' group by fid) rs on rs.fid=f.fid
-        where fstatus = 'funding' and sysdate between cfunding_start_date and cfunding_end_date and f.fid=#{fid}
+        where fstatus = 'FUNDING' and sysdate between cfunding_start_date and cfunding_end_date and f.fid=#{fid}
     </select>
 
     <select id="getReviewList" resultType="com.samgyeobsal.domain.funding.ReviewVO">
@@ -193,10 +192,10 @@
         where fid=#{criteria.fid}
         <choose>
             <when test="criteria.type =='funding'.toString()">
-                and rtype='funding'
+                and rtype='FUNDING'
             </when>
             <when test="criteria.type =='store'.toString()">
-                and rtype='store'
+                and rtype='STORE'
             </when>
             <otherwise>
             </otherwise>

@@ -13,7 +13,7 @@ public class FundingVO {
     private String fstore_name;
     private String ftitle;
     private long totalprice;
-    private String fiurl; // 섬네일 이미지
+    private String fthumb;
     private int expire;
     private String fstatus;
 }
