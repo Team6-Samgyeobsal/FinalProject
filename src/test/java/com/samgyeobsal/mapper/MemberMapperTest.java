@@ -1,5 +1,6 @@
 package com.samgyeobsal.mapper;
 
+import com.samgyeobsal.domain.funding.FundingDetailVO;
 import com.samgyeobsal.domain.member.InsertFormMemberDTO;
 import com.samgyeobsal.domain.member.MemberVO;
 import com.samgyeobsal.type.LoginType;
@@ -27,6 +28,26 @@ public class MemberMapperTest {
         Assertions.assertEquals(member.getMname(),"user1");
     }
 
+    @Test
+    void findMemberByEmail2(){
+        String email = "wangjh789@gmail.com";
+        MemberVO memberVO = memberMapper.findMemberByEmail(email, LoginType.LOGIN_FORM);
+        Assertions.assertNull(memberVO);
+    }
+    @Test
+    void findMemberByEmail3(){
+        String email = "wangjh789@gmail.com";
+        MemberVO memberVO = memberMapper.findMemberByEmail(email, LoginType.LOGIN_GOOGLE);
+        Assertions.assertEquals(email, memberVO.getMemail());
+    }
+
+    @Test
+    void findMemberByEmail4(){
+        String email = "wangjh789@gmail.com";
+        MemberVO memberVO = memberMapper.findMemberByEmail(email, null);
+        Assertions.assertEquals(email, memberVO.getMemail());
+    }
+
     @Transactional
     @Test
     void insertMember(){
@@ -45,5 +66,12 @@ public class MemberMapperTest {
 
         Assertions.assertEquals(member.getMname(), findMember.getMname());
 
+    }
+
+    @Test
+    void findFundingDetailByFundingId(){
+        String fid = "1";
+        FundingDetailVO fundingDetail = memberMapper.findFundingDetailByFundingId(fid);
+        log.info("fundingDetail = {}", fundingDetail);
     }
 }

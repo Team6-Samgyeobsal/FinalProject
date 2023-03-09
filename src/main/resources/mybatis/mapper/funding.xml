@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.samgyeobsal.mapper.FundingMapper">
+
+    <select id="getFundingList" resultType="funding">
+        select f.fid,
+               fstore_name,
+               ftitle,
+               nvl(totalprice,0) as totalprice,
+               nvl(totalemail,0) as totalemail,
+               nvl(totalreview,0) as totalreview,
+               fthumb,
+               trunc(cfunding_end_date-sysdate,0) expire,
+               c.cid
+        from funding f
+        left join (select f.fid,
+                          sum(oitotalprice) as totalprice
+                   from order_item oi
+                   join product_option po on oi.poid=po.poid
+                   join funding_product fp on po.fpid=fp.fpid
+                   join funding f on f.fid=fp.fid
+                   group by f.fid) total on total.fid= f.fid
+        left join ( select f.fid,
+                           count(distinct o.memail) as totalemail
+                    from order_item oi
+                    join product_option po on oi.poid=po.poid
+                    join funding_product fp on po.fpid=fp.fpid
+                    join funding f on f.fid=fp.fid
+                    join orders o on oi.oid=o.oid
+                    group by f.fid) cnt on cnt.fid=f.fid
+        join competition c on c.cid=f.cid and c.tid=f.tid
+        left join (select f.fid,
+                          count(r.memail) as totalreview
+                   from review r
+                   join funding f on r.fid=f.fid
+                   group by f.fid) r on r.fid = f.fid
+        where fstatus = 'FUNDING' and sysdate between cfunding_start_date  and cfunding_end_date
+        <choose>
+            <when test="criteria.type =='1'.toString()">
+                and f.ctid='1'
+            </when>
+            <when test="criteria.type =='2'.toString()">
+                and f.ctid='2'
+            </when>
+            <when test="criteria.type =='3'.toString()">
+                and  f.ctid='3'
+            </when>
+            <when test="criteria.type =='4'.toString()">
+                and  f.ctid='4'
+            </when>
+            <when test="criteria.type =='5'.toString()">
+                and f.ctid='5'
+            </when>
+            <when test="criteria.type =='6'.toString()">
+                and f.ctid='6'
+            </when>
+            <when test="criteria.type =='7'.toString()">
+                and f.ctid='7'
+            </when>
+            <otherwise>
+            </otherwise>
+        </choose>
+        <choose>
+            <when test="criteria.place =='더현대 서울'.toString()">
+                and c.tid='1'
+            </when>
+            <when test="criteria.place =='더현대 대구'.toString()">
+                and c.tid='2'
+            </when>
+            <when test="criteria.place =='더현대 광주'.toString()">
+                and  c.tid='3'
+            </when>
+            <otherwise>
+            </otherwise>
+        </choose>
+
+        order by
+        <choose>
+            <when test="criteria.sort =='모집금액순'.toString()">
+                totalprice desc
+            </when>
+            <when test="criteria.sort =='펀딩한 사람순'.toString()">
+                totalemail desc
+            </when>
+            <when test="criteria.sort =='최신순'.toString()">
+                fdate
+            </when>
+            <when test="criteria.sort =='응원댓글순'.toString()">
+                 totalreview desc
+            </when>
+            <otherwise>
+                totalprice desc
+            </otherwise>
+        </choose>
+        ,f.fid
+    </select>
+
+    <select id ="getFundingDetail" resultMap="common.fundingDetailMap" >
+        select fstore_name,
+               fsummary,
+               f.fid,
+               ftitle,
+               nvl(totalprice,0) as totalprice,
+               nvl(totalemail,0) as totalemail,
+               tname,
+               ctname,
+               fstory,
+               fdate,
+               cfunding_end_date,
+               fstatus,
+               fstore_score,
+               ffunding_score,
+               trunc(cfunding_end_date-sysdate,0) expire,
+               fporigin_price,
+               fpprice,
+               fptitle,
+               fpcontent,
+               fiurl,
+               nvl(rfcount,0) rfcount,
+               nvl(rscount,0) rscount
+        from funding f
+                 left join (select f.fid,
+                                   sum(oitotalprice) as totalprice
+                            from order_item oi
+                                     join product_option po on oi.poid=po.poid
+                                     join funding_product fp on po.fpid=fp.fpid
+                                     join funding f on f.fid=fp.fid
+                            group by f.fid) total on total.fid= f.fid
+                 left join ( select f.fid,
+                                    count(distinct o.memail) as totalemail
+                             from order_item oi
+                                      join product_option po on oi.poid=po.poid
+                                      join funding_product fp on po.fpid=fp.fpid
+                                      join funding f on f.fid=fp.fid
+                                      join orders o on oi.oid=o.oid
+                             group by f.fid) cnt on cnt.fid=f.fid
+                 join competition c on c.cid=f.cid and c.tid=f.tid
+                 join the_hyundai t on t.tid = c.tid
+                 join category ct on ct.ctid=f.ctid
+                 left join funding_product fp on fp.fid=f.fid
+                 left join funding_img fi on f.fid=fi.fid
+                 left join (select fid,count(*) rfcount from review where fid=#{fid} and rtype='funding' group by fid) rf on rf.fid=f.fid
+                 left join (select fid,count(*) rscount from review where fid=#{fid} and rtype='store' group by fid) rs on rs.fid=f.fid
+        where fstatus = 'FUNDING' and sysdate between cfunding_start_date and cfunding_end_date and f.fid=#{fid}
+    </select>
+
+    <select id="getReviewList" resultType="review">
+        select rscore,
+               rtype,
+               rimg_url,
+               memail,
+               to_char(rdate,'YYYY.MM.DD') rdate,
+               rcontent
+        from review
+        where fid=#{criteria.fid}
+        <choose>
+            <when test="criteria.type =='funding'.toString()">
+                and rtype='FUNDING'
+            </when>
+            <when test="criteria.type =='store'.toString()">
+                and rtype='STORE'
+            </when>
+            <otherwise>
+            </otherwise>
+        </choose>
+    order by
+        <choose>
+            <when test="criteria.sort =='최신순'.toString()">
+                rdate
+            </when>
+            <when test="criteria.sort =='높은 평점순'.toString()">
+                rscore desc
+            </when>
+            <when test="criteria.sort =='낮은 평점순'.toString()">
+                rscore
+            </when>
+            <otherwise>
+                rdate
+            </otherwise>
+        </choose>
+
+    </select>
+
+</mapper>

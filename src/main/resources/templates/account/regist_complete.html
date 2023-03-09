@@ -3,11 +3,6 @@
         xmlns:th="http://www.thymeleaf.org"
         lang="ko" class="" translate="no">
   <head>
-    <style>
-      .async-hide {
-        opacity: 0 !important;
-      }
-    </style>
 
     <meta charset="utf-8" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
@@ -18,7 +13,6 @@
       name="description"
       content="테크, 패션, 푸드, 뷰티, 홈리빙까지. 와디즈 펀딩으로 매일 새로운 일상을 발견하고, 와디즈 스토어에서 새로운 쇼핑을 만나보세요." />
       <title>와디즈 회원가입</title>
-    <link href="/css/account/regist_complete.css"/>
     <link
       rel="shortcut icon"
       href="https://static.wadiz.kr/assets/icon/favicon.ico" />
@@ -32,74 +26,24 @@
       href="https://static.wadiz.kr/assets/icon/favicon-32x32.png"
       sizes="32x32"
       type="image/png" />
+
+    <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
+
+    <link
+      rel="stylesheet"
+      href="/import/css/wui.css" />
+    <link
+      rel="stylesheet"
+      href="/import/css/layout.css" />
+    <link
+      rel="stylesheet"
+      href="/import/css/main.b3728ebd.css" />
+
     <link
       rel="stylesheet"
       type="text/css"
-      href="https://cdn.weglot.com/weglot.min.css?v=4" />
-
-    <link
-      rel="stylesheet"
-      href="https://static.wadiz.kr/static/web/wui.css?cb9a5d5c" />
-    <link
-      rel="stylesheet"
-      href="https://static.wadiz.kr/static/web/css/vendor.6b6b0127.chunk.css" />
-    <link
-      rel="stylesheet"
-      href="https://static.wadiz.kr/static/web/common.css?d165b488" />
-    <link
-      rel="stylesheet"
-      href="https://static.wadiz.kr/static/web/layout.css?0b839e26" />
-    <script
-      type="text/javascript"
-      src="https://static.wadiz.kr/static/web/polyfill.js?77e7221d"></script>
-    <script
-      type="text/javascript"
-      src="https://static.wadiz.kr/static/web/wui.js?4163c47c"></script>
-    <script
-      type="text/javascript"
-      src="https://static.wadiz.kr/static/web/vendor.js?e91df577"></script>
-
-    <script
-      type="text/javascript"
-      src="https://static.wadiz.kr/static/web/common.js?87db9043"></script>
-    <script
-      type="text/javascript"
-      src="https://static.wadiz.kr/static/web/layout.js?8a28804b"></script>
-
-    <link
-      href="https://cdn.wadiz.kr/resources/static/css/wlayout.css?v=201803151400"
-      rel="stylesheet" />
-
-    <link
-      rel="stylesheet"
-      href="https://static.wadiz.kr/account/main.d8e939d6.css" />
-
-    <link
-      rel="stylesheet"
-      href="https://static.wadiz.kr/static/iam/main.b3728ebd.css" />
-
-    <script
-      type="text/javascript"
-      src="https://cdn.wadiz.kr/resources/static/js/wMotion.js?v=20190222"></script>
-    <link
-      rel="stylesheet"
-      href="https://static.wadiz.kr/static/floating-buttons/main.5e88b41b.css" />
-    <link rel="stylesheet" href="https://use.fontawesome.com/7f85a56ba4.css" />
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="https://static.wadiz.kr/static/iam/css/3.9a387464.chunk.css" />
-    <script
-      charset="utf-8"
-      src="https://static.wadiz.kr/static/iam/js/3.b4ad76c2.chunk.js"></script>
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="https://static.wadiz.kr/static/iam/css/4.f1b1f583.chunk.css" />
-    <script
-      charset="utf-8"
-      src="https://static.wadiz.kr/static/iam/js/4.23b79d87.chunk.js"></script>
-  </head>
+      href="/import/css/4.f1b1f583.chunk.css" />
+      </head>
   <body>
     <div id="page-container">
       <div class="black-bg-wrap" style="display: none"></div>
@@ -177,32 +121,6 @@
                 </div></div
             ></a>
           </div>
-          <div
-            class="SignUpPromotionApplication_signUpPromotionContainer__2K_22">
-            <h3 class="SignUpPromotionApplication_fieldTitle__2wkni">
-              프로모션 코드 입력 <span>(선택)</span>
-            </h3>
-            <p class="SignUpPromotionApplication_fieldDescription__BEhs9">
-              참여하실 프로모션에 안내된 코드를 입력해 주세요<br />(프로모션은
-              하나만 참여 가능합니다)
-            </p>
-            <div class="SignUpPromotionApplication_inputField__1PdZ1">
-              <input
-                name="promotionCode"
-                placeholder="신규가입 프로모션 코드"
-                type="text"
-                class="Input_input__2J70Z Input_lg__3xgjy"
-                aria-invalid="false"
-                value="" /><button
-                class="Button_button__2_6-I Button_primary__3fUP6 Button_contained__1T9Np Button_lg__2Kv4b Button_disabled__3zWNw"
-                type="button"
-                disabled="">
-                <span
-                  ><span class="Button_children__weH0H">참여하기</span></span
-                >
-              </button>
-            </div>
-          </div>
           <div class="SignUpFinishApp_nextStepGuide__3Ibvh">
             <button
               id="loginPageBtn"
@@ -228,56 +146,6 @@
     </div>
     <div id="wadiz-app-banner"></div>
 
-    <script
-      type="text/javascript"
-      src="https://static.wadiz.kr/account/vendor.c434a9c8.js"></script>
-
-    <div id="floating-buttons-app">
-      <div class="FloatingButtons_container__2VDUa">
-        <button
-          type="button"
-          class="FloatingTopButton_pageTop__2vt6t"
-          title="위로 이동">
-          <svg
-            viewBox="0 0 40 40"
-            focusable="false"
-            role="presentation"
-            class="withIcon_icon__24D_5"
-            aria-hidden="true">
-            <path
-              d="M33 30l-1.4 1.4L20 19.8 8.4 31.4 7 30l13-13zm1-21H6v2h28z"></path>
-          </svg></button
-        ><button
-          type="button"
-          data-ga-category="공통_최근본_UI"
-          data-ga-action="클릭"
-          data-ga-label=""
-          class="RecentView_container__5Nxua"
-          aria-label="최근본"
-          style="display: none">
-          <div
-            aria-hidden="true"
-            class="RecentView_thumbnail__107ZW CardThumbnail_thumbnail__sw2ym CardThumbnail_noanimation__3qJay"></div>
-        </button>
-      </div>
-    </div>
-    <script
-      type="text/javascript"
-      async=""
-      src="https://static.wadiz.kr/static/floating-buttons/main.fabf866c.js"></script>
-
-    <div id="wp_tg_cts" style="display: none">
-      <script
-        id="wp_tag_script_1677161382709"
-        charset="UTF-8"
-        src="https://astg.widerplanet.com/delivery/wpc.php?v=1&amp;ver=4.0&amp;r=1&amp;md=bs&amp;ga=1hveoin-efl057-2-1&amp;wp_uid=2-d6ea226554f78a59a502a9de442e30a7-s1675383217.534000%7Cmac_osx%7Cchrome-bbrpyn&amp;ty=Home&amp;ti=31167&amp;device=web&amp;charset=UTF-8&amp;tc=1677161382709&amp;ref=https%3A%2F%2Fwww.wadiz.kr%2Fweb%2Fwaccount%2FwAccountRegistIntro&amp;loc=https%3A%2F%2Fwww.wadiz.kr%2Fweb%2Fwaccount%2FwAccountRegistFinish"></script>
-      <script
-        id="wp_onsite_script"
-        charset="UTF-8"
-        src="https://cdn-aitg.widerplanet.com/onsite/onsite.js"></script>
-    </div>
-
-    <div id="adn_container" style="display: none"></div>
 
     <div class="ReactModalPortal"></div>
   <script>

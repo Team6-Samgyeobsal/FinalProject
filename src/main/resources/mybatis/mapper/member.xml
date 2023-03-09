@@ -1,13 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.samgyeobsal.mapper.MemberMapper">
+
 
     <select id="findMemberByEmail" resultType="member">
         select mname, mpassword, memail, mrole, mloginType,
                mphone, mmileage
         from member
-        where memail = #{email} and mloginType= #{loginType}
+        where memail = #{email}
+          <if test="loginType != null">
+              and mloginType= #{loginType}
+          </if>
             and menabled = 1
     </select>
 
@@ -15,4 +21,16 @@
         insert into member (memail, mname, mpassword, mrole, mlogintype, mphone,menabled, mmileage)
         values (#{memail}, #{mname}, #{mpassword}, #{mrole}, #{mloginType}, #{mphone}, 1, #{mmileage})
     </insert>
+
+    <select id="findFundingListByEmail" resultType="funding">
+        select fid, fstore_name, ftitle, fthumb fiurl, fstatus
+        from funding
+        where memail = #{email}
+    </select>
+
+    <select id="findFundingDetailByFundingId" resultMap="common.fundingDetailMap">
+        select fid, fstore_name, ftitle, fsummary, fstory, fdate, fstatus
+        from funding
+        where fid = #{fundingId}
+    </select>
 </mapper>

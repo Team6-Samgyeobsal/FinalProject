@@ -11,6 +11,10 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 @Controller
 @RequestMapping("/web/account")
 @RequiredArgsConstructor
@@ -19,9 +23,7 @@ public class AccountController {
     private final MemberService memberService;
 
     @GetMapping("/login")
-    public String loginPage(@RequestParam(required = false, name = "error") String error,
-                            Model model){
-        model.addAttribute("error", error);
+    public String loginPage(){
         return "account/login";
     }
 

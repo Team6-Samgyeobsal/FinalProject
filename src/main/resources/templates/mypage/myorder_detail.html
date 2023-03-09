@@ -1,10 +1,5 @@
 <html lang="ko" class="scroll-top scroll-apex">
   <head>
-    <style>
-      .async-hide {
-        opacity: 0 !important;
-      }
-    </style>
 
     <meta charset="utf-8" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
@@ -30,58 +25,22 @@
       sizes="32x32"
       type="image/png" />
 
-    <script>
-      wadiz = {};
-      wadiz.sessionUser = '605949501';
-      wadiz.globals = {
-        isLogged: JSON.parse('true'),
-        userId: '6059495',
-        encUserId: '605949501',
-        hashedUserName: 'fd7c846e9116d3becb0fb40c8cee3f6cd31f4145',
-        staticHost: 'https://static.wadiz.kr',
-        publicApiHost: 'https://public-api.wadiz.kr',
-        embedApiHost: 'https://embed-api.wadiz.kr',
-        serviceApiHost: 'https://service.wadiz.kr',
-        analyticsHost: 'https://analytics.wadiz.kr',
-        platformApiHost: 'https://platform.wadiz.kr',
-      };
-    </script>
+    <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
+
 
     <link
       rel="stylesheet"
-      href="https://static.wadiz.kr/static/web/wui.css?cb9a5d5c" />
-    <link
+      href="/import/css/wui.css" />
+       <link
       rel="stylesheet"
-      href="https://static.wadiz.kr/static/web/css/vendor.6b6b0127.chunk.css" />
-    <link
-      rel="stylesheet"
-      href="https://static.wadiz.kr/static/web/common.css?f19ec0c0" />
-    <link
-      rel="stylesheet"
-      href="https://static.wadiz.kr/static/web/layout.css?cf366e90" />
+      href="/import/css/layout.css" />
     <script
       type="text/javascript"
-      src="https://static.wadiz.kr/static/web/polyfill.js?efeedaed"></script>
+      src="/import/js/vendor.js"></script>
     <script
       type="text/javascript"
-      src="https://static.wadiz.kr/static/web/wui.js?ecf1279f"></script>
-    <script
-      type="text/javascript"
-      src="https://static.wadiz.kr/static/web/vendor.js?3f2fd166"></script>
-    <script
-      type="text/javascript"
-      src="https://static.wadiz.kr/static/web/common.js?d4ee3c82"></script>
-    <script
-      type="text/javascript"
-      src="https://static.wadiz.kr/static/web/layout.js?70697b0a"></script>
-
-    <link
-      href="https://cdn.wadiz.kr/resources/static/css/wlayout.css?v=201803151400"
-      rel="stylesheet" />
-
-    <link rel="stylesheet" href="https://use.fontawesome.com/7f85a56ba4.css" />
+      src="/import/js/layout.js"></script>
   </head>
-  <link href="../../static/css/mypage/myorder_detail.css" />
   <body cz-shortcut-listen="true">
     <style>
       .mypage-project.bg {
@@ -97,59 +56,19 @@
       }
     </style>
     <link
-      href="https://www.wadiz.kr/resources/static/css/wmypage.css?v=20220915"
-      rel="stylesheet" />
-    <link
-      href="https://www.wadiz.kr/resources/static/css/util.css"
-      rel="stylesheet" />
-    <link
-      href="https://www.wadiz.kr/resources/static/css/wprojectcard.css"
+      href="/import/css/wmypage.css?v=20220915"
       rel="stylesheet" />
 
     <link
       rel="stylesheet"
-      href="https://static.wadiz.kr/account/reward-payments.2f8399ae.css" />
-
-    <link
-      rel="stylesheet"
-      href="https://static.wadiz.kr/static/my/main.0f0d4897.css" />
-
-    <style type="text/css">
-      /* 모바일화면에서 공통 Header 가림 */
-      #wadizHeader {
-        display: none;
-      }
-      @media screen and (min-width: 960px) {
-        #wadizHeader {
-          display: block;
-        }
-      }
-    </style>
-
-    <script
-      type="text/javascript"
-      src="https://cdn.wadiz.kr/resources/static/js/wMotion.js?v=20190222"></script>
-
-    <link
-      rel="stylesheet"
-      href="https://static.wadiz.kr/static/floating-buttons/main.8785363b.css" />
+      href="/import/css/main.0f0d4897.css" />
 
     <div id="page-container">
       <div class="black-bg-wrap" style="display: none"></div>
 
       <div id="wz-header">
-        <div th:replace="/fragment/header__3X3Cg.html :: header"></div>
+        <div th:replace="/fragment/header__1TR2D.html :: header"></div>
       </div>
-
-      <script>
-        window.dispatchEvent(
-          new CustomEvent('WadizHeaderLoaded', {
-            detail: {
-              element: document.getElementById('wz-header'),
-            },
-          })
-        );
-      </script>
 
       <form id="forwardForm" method="get">
         <input type="hidden" id="returnURL" name="returnURL" />
@@ -574,74 +493,12 @@
           };
         </script>
 
-        <style>
-          #holidayNoticeLypop .risk-popup-main-wrap li {
-            list-style: disc;
-            margin-left: 20px;
-          }
-          #holidayNoticeLypop div.risk-popup-text {
-            font-size: 14px;
-            line-height: 150%;
-          }
-        </style>
 
         <div id="footer">
           <div th:replace="/fragment/footer__15kue.html :: footer"></div>
         </div>
-
-        <script>
-          window.dispatchEvent(
-            new CustomEvent('WadizFooterLoaded', {
-              detail: {
-                element: document.getElementById('footer'),
-              },
-            })
-          );
-        </script>
       </div>
 
-      <div id="floating-buttons-app">
-        <div class="FloatingButtons_container__2VDUa">
-          <button
-            type="button"
-            class="FloatingTopButton_pageTop__2vt6t FloatingTopButton_visible__3h8Ak"
-            title="위로 이동">
-            <svg
-              viewBox="0 0 40 40"
-              focusable="false"
-              role="presentation"
-              class="withIcon_icon__24D_5"
-              aria-hidden="true">
-              <path
-                d="M33 30l-1.4 1.4L20 19.8 8.4 31.4 7 30l13-13zm1-21H6v2h28z"></path>
-            </svg></button
-          ><button
-            type="button"
-            data-ga-category="공통_최근본_UI"
-            data-ga-action="클릭"
-            data-ga-label=""
-            class="RecentView_container__5Nxua"
-            aria-label="최근본"
-            style="display: none">
-            <div
-              aria-hidden="true"
-              class="RecentView_thumbnail__107ZW CardThumbnail_thumbnail__sw2ym CardThumbnail_visible__1ZiAB CardThumbnail_noanimation__3qJay"
-              style="
-                background-image: url('https://cdn.wadiz.kr/wwwwadiz/green001/2023/0220/20230220164239986_190459.jpg/wadiz/resize/400.00001192092896/format/jpg/quality/85/');
-              "></div>
-          </button>
-          <div class="ChannelTalk_container__3tYAO">
-            <button
-              type="button"
-              aria-label="채널톡 와디즈 고객센터 문의"></button>
-          </div>
-        </div>
-      </div>
     </div>
-    <style>
-      .ab-iam-root.v3 {
-        z-index: 9999;
-      }
-    </style>
   </body>
 </html>

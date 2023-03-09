@@ -1,0 +1,364 @@
+.inner-contents {
+    word-break: keep-all;
+    color: #212529;
+    overflow-wrap: break-word; /* 레거시 사진 주석 */
+}
+
+.inner-contents h1 {
+    line-height: 62px;
+    letter-spacing: -0.6px;
+    font-size: 48px;
+    font-weight: bold;
+    font-style: normal;
+    margin-top: calc(40px + 8px);
+    margin-bottom: 16px;
+}
+
+.inner-contents h2 {
+    line-height: 48px;
+    letter-spacing: -0.6px;
+    font-size: 36px;
+    font-weight: bold;
+    font-style: normal;
+    margin-top: calc(40px + 8px);
+    margin-bottom: 16px;
+}
+
+.inner-contents h3 {
+    line-height: 38px;
+    letter-spacing: -0.6px;
+    font-size: 28px;
+    font-weight: bold;
+    font-style: normal;
+    margin-top: 40px;
+    margin-bottom: 16px;
+}
+
+.inner-contents h4 {
+    line-height: 34px;
+    letter-spacing: -0.51px;
+    font-size: 24px;
+    font-weight: bold;
+    font-style: normal;
+    margin-top: 32px;
+    margin-bottom: 16px;
+}
+
+.inner-contents h5 {
+    line-height: 20px;
+    letter-spacing: 0;
+    font-size: 14px;
+    font-weight: bold;
+    font-style: normal;
+    margin-bottom: 40px;
+    text-align: center;
+    color: #adb5bd;
+}
+
+.inner-contents p {
+    line-height: 28px;
+    letter-spacing: -0.3px;
+    font-size: 16px;
+    font-weight: normal;
+    font-style: normal;
+    margin-top: 12px;
+    margin-bottom: 12px;
+    color: #495057;
+}
+
+.inner-contents p:has(.fr-dii)::after {
+    display: block;
+    clear: both;
+    content: '';
+}
+
+.inner-contents u {
+    border-bottom: 0.1em solid #00c4c4;
+    text-decoration: none;
+}
+
+.inner-contents a {
+    transition: color 0.3s;
+    color: #557cf2;
+}
+
+.inner-contents a:hover {
+    text-decoration: underline;
+    color: #395bbf;
+}
+
+.inner-contents b, .inner-contents strong {
+    font-weight: bold !important;
+}
+
+.inner-contents hr {
+    margin: 40px auto;
+    border: 1px solid #e9ecef;
+    width: 240px;
+    text-align: center;
+}
+
+.inner-contents ol {
+    list-style: decimal;
+}
+
+.inner-contents ol > li {
+    line-height: 28px;
+    letter-spacing: -0.3px;
+    font-size: 16px;
+    font-weight: normal;
+    font-style: normal;
+    position: relative;
+    margin-left: calc(4px * 5);
+    list-style: inherit;
+}
+
+.inner-contents ul {
+    padding-left: 0;
+    list-style: disc;
+}
+
+.inner-contents ul > li {
+    line-height: 28px;
+    letter-spacing: -0.3px;
+    font-size: 16px;
+    font-weight: normal;
+    font-style: normal;
+    margin-left: calc(4px * 5);
+    list-style: inherit;
+}
+
+.inner-contents ul > li > ul {
+    list-style: circle;
+}
+
+.inner-contents ul > li > ul > li > ul {
+    list-style: circle;
+}
+
+.inner-contents table {
+    margin: 24px 0;
+    border: none;
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: collapse;
+    empty-cells: show;
+    color: #495057;
+}
+
+.inner-contents table thead th {
+    background-color: #f2f4f6;
+    font-weight: bold;
+}
+
+.inner-contents table thead th.fr-selected-cell {
+    border-color: #00b2b2;
+}
+
+.inner-contents table tbody > tr {
+    background-color: #fff;
+}
+
+.inner-contents table th, .inner-contents table td {
+    line-height: 28px;
+    letter-spacing: -0.3px;
+    font-size: 16px;
+    font-weight: normal;
+    font-style: normal;
+    border: 1px solid #dde2e6;
+    padding: 8px;
+}
+
+.inner-contents table th img, .inner-contents table td img {
+    margin: auto;
+    padding: 0;
+    width: auto !important;
+    min-width: auto !important;
+    height: auto !important;
+}
+
+.inner-contents table th:empty, .inner-contents table td:empty {
+    height: 24px;
+}
+
+.inner-contents table td.head-cell {
+    font-weight: bold;
+}
+
+.inner-contents table td.fr-highlighted, .inner-contents table td th.fr-highlighted {
+    border: 1px double #f66;
+}
+
+.inner-contents table td.fr-selected-cell {
+    border-color: #00b2b2;
+}
+
+.inner-contents table td.fr-thick, .inner-contents table td th.fr-thick {
+    border-width: 2px;
+}
+
+.inner-contents table td h1, .inner-contents table td h2, .inner-contents table td h3, .inner-contents table td h4, .inner-contents table td h5, .inner-contents table td h6, .inner-contents table td p {
+    margin: 0;
+}
+
+.inner-contents table.fr-dashed-borders th, .inner-contents table.fr-dashed-borders td {
+    border-style: dashed;
+    padding: 4px 12px;
+}
+
+.inner-contents mark {
+    background-color: transparent;
+    color: inherit;
+}
+
+.inner-contents mark.color-mint {
+    background-image: linear-gradient(to top, #8be4e4 40%, transparent 10%, transparent 50%);
+}
+
+.inner-contents mark.color-yellow {
+    background-image: linear-gradient(to top, #ffdd8b 40%, transparent 10%, transparent 50%);
+}
+
+.inner-contents blockquote {
+    line-height: 28px;
+    letter-spacing: -0.3px;
+    font-size: 16px;
+    font-weight: normal;
+    font-style: normal;
+    border-left: 0.2em solid #adb5bd;
+    padding-left: 16px;
+    color: #495057;
+}
+
+.inner-contents blockquote.type-default {
+    margin: 0 auto;
+    border-left: none;
+    padding-left: 0;
+    width: 100%;
+    max-width: 480px;
+    text-align: center;
+    color: inherit;
+}
+
+.inner-contents blockquote.type-default::before {
+    display: inline-block;
+    vertical-align: middle;
+    text-transform: none;
+    font-family: wadizicon !important;
+    font-weight: normal;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-style: normal;
+    font-variant: normal;
+    display: block;
+    margin: 40px auto 12px;
+    width: 24px;
+    height: 24px;
+    line-height: 1;
+    color: #adb5bd;
+    font-size: 24px;
+}
+
+.inner-contents blockquote.type-default::after {
+    display: inline-block;
+    vertical-align: middle;
+    text-transform: none;
+    font-family: wadizicon !important;
+    font-weight: normal;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-style: normal;
+    font-variant: normal;
+    display: block;
+    margin: 12px auto 40px;
+    width: 24px;
+    height: 24px;
+    line-height: 1;
+    color: #adb5bd;
+    font-size: 24px;
+}
+
+.inner-contents blockquote.type-default p {
+    line-height: 34px;
+    letter-spacing: -0.51px;
+    font-size: 24px;
+    font-weight: bold;
+    font-style: normal;
+    text-align: center;
+    color: #495057;
+    font-weight: normal;
+}
+
+.inner-contents blockquote.type-line {
+    margin: 12px 0;
+    border-left: none;
+    padding-left: 0;
+    color: inherit;
+}
+
+.inner-contents blockquote.type-line > * {
+    border-left: 0.2em solid #adb5bd;
+    padding-left: 16px;
+}
+
+.inner-contents blockquote.type-line > *:first-child {
+    margin-top: 0;
+}
+
+.inner-contents blockquote.type-line > *:last-child {
+    margin-bottom: 0;
+}
+
+.inner-contents blockquote.type-line p {
+    color: #868e96;
+}
+
+.inner-contents blockquote h1, .inner-contents blockquote h2, .inner-contents blockquote h3, .inner-contents blockquote h4, .inner-contents blockquote h5, .inner-contents blockquote h6, .inner-contents blockquote p {
+    margin: 0;
+}
+
+.inner-contents img {
+    max-width: 100%;
+    vertical-align: top;
+}
+
+.inner-contents img.fr-dii {
+    vertical-align: top;
+}
+
+.inner-contents img.fr-dii:first-child {
+    margin-left: 0;
+}
+
+.inner-contents img.fr-dii:last-child {
+    margin-right: 0;
+}
+
+.inner-contents img.fr-dii.fr-fil, .inner-contents img.fr-dii.fr-fir {
+    float: none !important;
+}
+
+.inner-contents span.fr-img-caption.fr-dii {
+    vertical-align: top;
+}
+
+.inner-contents span.fr-img-caption.fr-dii:first-child {
+    margin-left: 0;
+}
+
+.inner-contents span.fr-img-caption.fr-dii:last-child {
+    margin-right: 0;
+}
+
+.inner-contents span.fr-img-caption .fr-img-wrap .fr-inner {
+    line-height: 20px;
+    letter-spacing: 0;
+    font-size: 14px;
+    font-weight: bold;
+    font-style: normal;
+    color: #adb5bd;
+}
+
+.inner-contents span.fr-video.fr-dvi {
+    vertical-align: top;
+}
