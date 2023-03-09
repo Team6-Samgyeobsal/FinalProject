@@ -96,7 +96,7 @@
         ,f.fid
     </select>
 
-    <select id ="getFundingDetail" resultMap="common.fundingDetailMap" >
+    <select id ="getFundingDetail" resultMap="util.fundingDetailMap" >
         select fstore_name,
                fsummary,
                f.fid,

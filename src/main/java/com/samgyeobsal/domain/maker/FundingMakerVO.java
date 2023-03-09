@@ -24,6 +24,9 @@ public class FundingMakerVO {
 
     private String fthumb;
 
+    private String cid;
+    private String tid;
+
     private boolean hasProduct;
     private boolean hasImg;
 
