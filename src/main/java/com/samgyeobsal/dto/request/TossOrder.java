@@ -8,7 +8,6 @@ import java.util.Date;
 public class TossOrder {
     private String osId; // 주문 ID
     private int osCount; // 주문 상품 수량
-    private String osConsumer; // 소비자
     private String osPhone; // 주문자 전화번호
     private String osMemo; // 주문 메모
     private String osMail; // 이메일

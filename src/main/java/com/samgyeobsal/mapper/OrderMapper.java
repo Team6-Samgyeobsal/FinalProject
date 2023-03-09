@@ -28,7 +28,7 @@ public interface OrderMapper {
     @Insert("INSERT INTO ORDERS(OID, OCONSUMER, OPHONE, OMEMO, OUSED_MILEAGE, OORIGIN_PRICE, OPRICE, OSTATUS, ODATE, MEMAIL, PMCODE, QRUSED_DATE, CPID)" +
             " VALUES(#{osId}, #{osConsumer}, #{osPhone}, #{osMemo}, #{msMileage}, #{osOriginPrice}, #{osAfterPrice}, #{osState}, " +
             " #{osDate} ,#{osMail} ,#{pmMethod}, #{osDate}, '')")
-    public int saveToss(TossOrder orderRequest);
+    public int saveToss(TossOrder tossOrder);
 
     @Select("select * from ORDERS")
     public List<OrderRequest> selectAllOrder();
