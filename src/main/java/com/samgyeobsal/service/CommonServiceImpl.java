@@ -1,5 +1,6 @@
 package com.samgyeobsal.service;
 
+import com.samgyeobsal.domain.common.CategoryVO;
 import com.samgyeobsal.domain.common.CompetitionHyundaiVO;
 import com.samgyeobsal.mapper.CommonMapper;
 import lombok.RequiredArgsConstructor;
@@ -22,6 +23,11 @@ public class CommonServiceImpl implements CommonService{
     @Override
     public CompetitionHyundaiVO getCompetitionByCidAndTid(String cid, String tid) {
         return commonMapper.getCompetitionByCidAndTid(cid, tid);
+    }
+
+    @Override
+    public List<CategoryVO> getCategoryList() {
+        return commonMapper.getCategoryList();
     }
 
 }

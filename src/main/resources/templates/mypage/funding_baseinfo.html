@@ -1,4 +1,5 @@
-<html lang="ko" style="--vh: 7.96px">
+<html lang="ko" style="--vh: 7.96px"
+      xmlns:th="http://www.thymeleaf.org">
   <head>
     <meta charset="utf-8" />
     <link
@@ -64,7 +65,8 @@
                 <div>woowang789</div>
               </div>
             </nav>
-            <form th:object="${baseInfo}">
+            <form id="baseInfoForm" th:object="${baseInfo}" method="post" th:action>
+              <input type="hidden" th:field="*{fid}">
             <section class="Page_container__1PffN">
               <ol class="Breadcrumb_container__3YjD4">
                 <li class="Breadcrumb_item__2r9Ym">프로젝트 관리</li>
@@ -82,7 +84,7 @@
                     <div class="Section_header__1qwS7 spacing-4">
                       <h2
                         class="Section_title__ikPIm Section_isRequired__F8rij">
-                        프로젝트 제목
+                        가게 제목
                       </h2>
                       <div class="Section_guide__2xeJO"></div>
                     </div>
@@ -91,10 +93,7 @@
                         class="TextField_textField__23rCe TextField_md__2zsQn">
                         <label></label>
                         <div class="TextField_field__1E9vt">
-                          <input
-                            th:name="fstore_name"
-                            th:id = "fstore_name"
-                            th:value = "${baseInfo.getFstore_name()}"
+                          <input th:field = "*{fstore_name}"
                             placeholder="제목을 입력해 주세요"
                             maxlength="40"
                             type="text"
@@ -147,7 +146,8 @@
                                 <span class="Badge_container__3mdFR Badge_visible__2c54z">
                                   <span class="Badge_badge__zKi0D Badge_label__2iNzD Badge_sm__3truG Badge_secondary__3CihT Badge_tertiary__-ciUe">프로젝트 이미지</span>
                                 </span>
-                                <input type="hidden" th:value="${baseInfo.getFthumb()}" th:name="fthumb" id="fthumb"/>
+                                <input type="hidden"
+                                       th:field="*{fthumb}" id="fthumb"/>
                               </div>
                             </div>
                           </div>
@@ -181,12 +181,38 @@
                     <div class="Section_header__1qwS7 spacing-4">
                       <h2
                               class="Section_title__ikPIm Section_isRequired__F8rij">
+                        음식 카테고리
+                      </h2>
+                    </div>
+                    <div class="Section_content__3OkLZ">
+                      <select class="form-select"
+                              th:field="*{ctid}">
+                        <option th:each="ct : ${categoryList}"
+                                th:selected="${ct.ctid == baseInfo.getCtid()}"
+                                th:value="${ct.ctid}"
+                                th:text="${ct.ctname}"></option>
+                      </select>
+                    </div>
+
+                  </div>
+                </section>
+                <section class="Section_container__3md8M spacing-9" style="">
+                  <div style="max-width: 600px">
+                    <div class="Section_header__1qwS7 spacing-4">
+                      <h2
+                              class="Section_title__ikPIm Section_isRequired__F8rij">
                         장소
                       </h2>
                       <div class="Section_guide__2xeJO"></div>
                     </div>
                     <div class="Section_content__3OkLZ">
-                      <select class="form-select hyundai_select" th:name="competitionHyundai.cid" th:value="${baseInfo.getCid()}">
+                      <select class="form-select hyundai_select"
+                              th:field="*{cid}">
+                        <option th:each="comp : ${activeCompetitionList}"
+                                th:selected="${comp.cid == baseInfo.getCid()}"
+                                th:value="${comp.cid}"
+                                th:data-cfunding_start_date="${comp.getStringFundingStart()}"
+                                th:data-cfunding_end_date="${comp.getStringFundingEnd()}" th:text="${comp.tname}"></option>
                       </select>
                     </div>
 
@@ -225,7 +251,8 @@
                   </div>
                 </section>
                 <button
-                  class="Button_button__1e2A2 Button_primary__PxOJr Button_contained__TTXSM Button_xl__2x3J_"
+                  class="Button_button__1e2A2 Button_primary__PxOJr Button_contained__TTXSM Button_xl__2x3J_
+                  baseInfoBtn"
                   type="button"
                   style="width: 420px; max-width: 100%">
                   <span
@@ -268,34 +295,10 @@
         $('.fileInput').click();
       });
 
-      // 진행중인 competition 가져오기
-      $.ajax({
-        url : '/api/common/theHyundai',
-        type: 'GET',
-        success : function(result){
-          let tmp = ``;
-          $(result).each(function(idx,d){
-            tmp += `<option
-                        value="${d['cid']}"
-                        data-cfunding_start_date="${d['stringFundingStart']}"
-                        data-cfunding_end_date="${d['stringFundingEnd']}">${d['tname']}</option>`;
-          })
-          $('.hyundai_select').html(tmp);
-          console.log("result",result);
-
-          // 초기 장소 select 값 세팅
-          let v = $('.hyundai_select').attr('value');
-          $('.hyundai_select option[value=' + v + ']').prop('selected', true);
-
-        },error: function(request,status,error){
-          console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error)
-        }
-      })
-
-
       // x 버튼 누르면 nothumb 출력
       $(document).on('click','.imgCloseBtn',function (e){
         printNoThumb();
+        $('#fthumb').val('');
       })
 
       // select 로 장소 고르면 프로젝트 기간 변경됨
@@ -331,6 +334,10 @@
         })
       })
 
+      $('.baseInfoBtn').click(function(e){
+        e.preventDefault();
+        $('#baseInfoForm').submit();
+      })
     })
 
     function printNoThumb(){

@@ -1,5 +1,6 @@
 package com.samgyeobsal.mapper;
 
+import com.samgyeobsal.domain.common.CategoryVO;
 import com.samgyeobsal.domain.common.CompetitionHyundaiVO;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
@@ -27,6 +28,11 @@ public class CommonMapperTest {
         String tid = "1";
         CompetitionHyundaiVO competition = commonMapper.getCompetitionByCidAndTid(cid, tid);
         log.info("competition = {}", competition);
+    }
 
+    @Test
+    void getCategoryList(){
+        List<CategoryVO> categoryList = commonMapper.getCategoryList();
+        log.info("categoryList = {}", categoryList);
     }
 }

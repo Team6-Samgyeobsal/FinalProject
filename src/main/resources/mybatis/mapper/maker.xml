@@ -23,4 +23,19 @@
         ) tmp2 on (f.fid = tmp2.fid)
         where f.fid = #{fundingId}
     </select>
+
+    <update id="updateFundingBaseInfo">
+        update funding
+        set fstore_name = #{fstore_name},
+            fthumb = #{fthumb},
+            ctid = #{ctid},
+            cid = #{cid}
+        where fid = #{fid}
+    </update>
+
+    <select id="findFundingImgListByFundingId" resultType="fundingImg">
+        select fi.fiid, fi.fiurl, fi.fid
+        from funding_img fi
+        where fi.fid = #{fundingId}
+    </select>
 </mapper>

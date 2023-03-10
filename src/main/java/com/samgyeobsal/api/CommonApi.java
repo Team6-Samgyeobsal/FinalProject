@@ -99,12 +99,4 @@ public class CommonApi {
         }
         return result;
     }
-
-    @GetMapping("/theHyundai")
-    public ResponseEntity<List<CompetitionHyundaiVO>> getTheHyundai(){
-        log.info("theHyundai");
-
-        List<CompetitionHyundaiVO> activeCompetitionList = commonService.getActiveCompetitionList();
-        return new ResponseEntity<>(activeCompetitionList, HttpStatus.OK);
-    }
 }

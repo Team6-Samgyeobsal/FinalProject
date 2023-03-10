@@ -47,7 +47,7 @@
     <div id="root">
       <div id="AppLayout_Container" class="AppLayout_container__3zbzb">
         <div class="AppLayout_main__14bCi">
-          <div th:replace="/fragment/funding_sidebar.html :: sidebar(${fundingMaker.getFid()})"></div>
+          <div th:replace="/fragment/funding_sidebar.html :: sidebar(${fundingStory.getFid()})"></div>
           <div id="AppLayout_Contents" class="AppLayout_contents__wv3DF">
             <div id="container" class="ContentsLayout_container__11k-W">
               <div class="FundingStoryContainer_container__33WY0">
@@ -97,6 +97,33 @@
                 <form
                   class="wz form FundingStoryFormContainer_form__326Zc Form_form__3ASTU">
                   <div class="Loader_loader__d9YUC Form_loader__1YJ5I"></div>
+                  <section class="Section_container__3md8M spacing-4" style="">
+                    <div style="max-width: 600px">
+                      <div class="Section_header__1qwS7 spacing-4">
+                        <h2
+                                class="Section_title__ikPIm Section_isRequired__F8rij">
+                          프로젝트 제목
+                        </h2>
+                        <div class="Section_guide__2xeJO"></div>
+                      </div>
+                      <div class="Section_content__3OkLZ">
+                        <div
+                                class="TextField_textField__23rCe TextField_md__2zsQn">
+                          <label></label>
+                          <div class="TextField_field__1E9vt">
+                            <input
+                                   placeholder="제목을 입력해 주세요"
+                                   maxlength="40"
+                                   type="text"
+                                   class="Input_input__2kAAL Input_md__3-eZ6"
+                                   aria-invalid="false"
+                                   value="" />
+                          </div>
+                        </div>
+                      </div>
+
+                    </div>
+                  </section>
                   <section class="Section_container__3md8M">
                     <div style="max-width: 600px">
                       <div class="Section_header__1qwS7">
@@ -142,7 +169,21 @@
                                 >여러 장 등록돼요.</em
                               >
                             </div>
+
+                            <!-- 등록한 이미지 확인 -->
+                            <div class="ImageFormField_imageWrapper__3Y_F5" th:each=" fImg : ${fundingStory.getImgs()}">
+                              <div class="ImageBox_container__gwruR">
+                                <div alt="logo" class="ImageBox_preview__10fos" style="width: 312px; height: 174px;">
+                                  <i class="icon-image-o ImageBox_icon__1C0qm" aria-hidden="true"></i>
+                                  <div class="ImageBox_image__3Nt8h" style="" th:style="|background-image: url('${fImg.fiurl}');|"></div>
+                                </div>
+                                <button type="button" class="wz button less icon mini ImageBox_button__c8WR7" th:data-id="${fImg.fiid}">
+                                <i class="icon-close" aria-hidden="true"></i></button>
+                              </div>
+                            </div>
                           </div>
+                          <!-- 등록된 이미지 인풋 -->
+                          <input type="hidden" th:each=" fImg : ${fundingStory.getImgs()}" th:value="${fImg.fiurl}" th:id="'input_'+${fImg.fiid}">
                         </div>
                       </div>
                     </div>
@@ -169,9 +210,9 @@
                               <div class="wz input">
                                 <textarea
                                   placeholder="내용 입력"
-                                  helper="[object Object]"
                                   maxlength="100"
                                   name="storyInfo.coreMessage"
+                                  th:text="${fundingStory.getFstory()}"
                                   rows="3"></textarea>
                               </div>
                               <em class="helper FormFieldTextarea_helper__3-iK_"

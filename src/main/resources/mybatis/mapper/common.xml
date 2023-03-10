@@ -18,4 +18,9 @@
                  inner join the_hyundai t on (c.tid = t.tid)
         where c.cid = #{cid} and c.tid = #{tid}
     </select>
+
+    <select id="getCategoryList" resultType="category">
+        select ctid, ctname
+        from category
+    </select>
 </mapper>

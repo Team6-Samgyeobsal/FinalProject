@@ -17,6 +17,9 @@
         <typeAlias type="com.samgyeobsal.domain.funding.ReviewVO" alias="review"/>
         <typeAlias type="com.samgyeobsal.domain.maker.FundingMakerVO" alias="fundingMaker"/>
         <typeAlias type="com.samgyeobsal.domain.common.CompetitionHyundaiVO" alias="competitionHyundai"/>
+        <typeAlias type="com.samgyeobsal.domain.common.CategoryVO" alias="category"/>
+        <typeAlias type="com.samgyeobsal.domain.maker.FundingStoryDTO" alias="fundingStory"/>
+
     </typeAliases>
 
 </configuration>
