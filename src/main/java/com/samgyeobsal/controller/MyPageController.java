@@ -101,6 +101,8 @@ public class MyPageController {
         FundingStoryDTO fundingStory = new FundingStoryDTO(fundingMaker);
         fundingStory.setImgs(makerService.getFundingImgsByFundingId(fundingId));
 
+        log.info("fundingStroy = {}", fundingStory);
+
         model.addAttribute("fundingStory", fundingStory);
         return "mypage/funding_story";
     }

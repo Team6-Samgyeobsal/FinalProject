@@ -27,5 +27,6 @@ public class FundingStoryDTO {
         this.fid = fundingMaker.getFid();
         this.ftitle = fundingMaker.getFtitle();
         this.fstory = fundingMaker.getFstory();
+        this.fsummary = fundingMaker.getFsummary();
     }
 }
