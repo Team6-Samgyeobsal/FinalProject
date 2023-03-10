@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.samgyeobsal.mapper.StoreMapper">
+    <select id="getStoreList" resultType="store">
+        select fstore_name,
+               ftitle,
+               fthumb,
+               tname,
+               f.fid
+        from funding f
+                 join competition c on c.tid=f.tid and f.cid=c.cid
+                 join the_hyundai t on t.tid = c.tid
+        where fstatus = 'STORE' and fdate between cstore_start_date and cstore_end_date
+        order by t.tid ,f.fid
+    </select>
+</mapper>

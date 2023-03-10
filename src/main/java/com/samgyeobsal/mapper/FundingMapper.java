@@ -12,7 +12,7 @@ public interface FundingMapper {
 
     List<FundingVO> getFundingList(@Param("criteria") FundingCriteria criteria);
 
-    FundingDetailVO getFundingDetail(@Param("fid") String fid);
+    FundingDetailVO getFundingDetail(@Param("fid") String fid,@Param("fstatus") String fstatus);
 
     List<ReviewVO> getReviewList(@Param("criteria") ReviewCriteria criteria);
 }

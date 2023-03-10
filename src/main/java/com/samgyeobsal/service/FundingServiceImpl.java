@@ -19,8 +19,8 @@ public class FundingServiceImpl implements FundingService{
     }
 
     @Override
-    public FundingDetailVO getFundingDetail(String fid) {
-        return fundingMapper.getFundingDetail(fid);
+    public FundingDetailVO getFundingDetail(String fid,String fstatus) {
+        return fundingMapper.getFundingDetail(fid,fstatus);
     }
 
     @Override

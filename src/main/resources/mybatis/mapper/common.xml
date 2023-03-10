@@ -15,7 +15,7 @@
         <result property="ctname" column="ctname" />
         <result property="fstory" column="fstory" />
         <result property="fdate" column="fdate" />
-        <result property="cfunding_end_date" column="cfunding_end_date" />
+        <result property="end_date" column="end_date" />
         <result property="fstatus" column="fstatus" />
         <result property="fstore_score" column="fstore_score" />
         <result property="ffunding_score" column="ffunding_score" />
@@ -30,6 +30,7 @@
 
     <resultMap id="productMap"
                type="product">
+        <result property="fpid" column="fpid" />
         <result property="fporigin_price" column="fporigin_price" />
         <result property="fpprice" column="fpprice" />
         <result property="fptitle" column="fptitle" />
@@ -41,5 +42,19 @@
                type="fundingImg">
         <result property="fiurl" column="fiurl" />
 
+    </resultMap>
+
+    <resultMap id="productDetailMap" type="productDetail">
+        <result property="fptitle" column="fptitle" />
+        <result property="fporigin_price" column="fporigin_price" />
+        <result property="fpprice" column="fpprice" />
+        <result property="fpcontent" column="fpcontent" />
+        <collection property="options"
+                    resultMap="productOptionMap" />
+    </resultMap>
+
+    <resultMap id="productOptionMap" type="productOption">
+        <result property="poid" column="poid" />
+        <result property="pooption" column="pooption" />
     </resultMap>
 </mapper>

@@ -15,6 +15,9 @@
         <typeAlias type="com.samgyeobsal.domain.funding.ProductVO" alias="product"/>
         <typeAlias type="com.samgyeobsal.domain.funding.FundingImgVO" alias="fundingImg"/>
         <typeAlias type="com.samgyeobsal.domain.funding.ReviewVO" alias="review"/>
+        <typeAlias type="com.samgyeobsal.domain.store.StoreVO" alias="store"/>
+        <typeAlias type="com.samgyeobsal.domain.order.ProductOptionVO" alias="productOption"/>
+        <typeAlias type="com.samgyeobsal.domain.order.ProductDetailVO" alias="productDetail"/>
     </typeAliases>
 
 </configuration>

@@ -2,13 +2,12 @@ package com.samgyeobsal.service;
 
 import com.samgyeobsal.domain.funding.*;
 
-import java.sql.SQLException;
 import java.util.List;
 
 public interface FundingService {
     List<FundingVO> getFundingList(FundingCriteria criteria) ;
 
-    FundingDetailVO getFundingDetail(String fid);
+    FundingDetailVO getFundingDetail(String fid, String fstatus);
 
     List<ReviewVO>getReviewList(ReviewCriteria criteria);
 }

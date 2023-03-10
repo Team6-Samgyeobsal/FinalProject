@@ -1,6 +1,10 @@
 package com.samgyeobsal.service;
 
 import com.samgyeobsal.domain.order.OrderRequest;
+import com.samgyeobsal.domain.order.ProductDetailVO;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 /**
  * @filename OrderService
@@ -16,4 +20,6 @@ import com.samgyeobsal.domain.order.OrderRequest;
  */
 public interface OrderService {
     public int saveOrder(OrderRequest orderRequest);
+
+    List<ProductDetailVO> getProductList(String fid);
 }

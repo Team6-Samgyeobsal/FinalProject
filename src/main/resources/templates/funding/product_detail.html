@@ -120,57 +120,6 @@
         <div th:replace="/fragment/header__3X3Cg.html :: header"></div>
         <div class="MainWrapper_content__GZkTa">
             <div class="RewardDetailDesktop_container__2Yzds">
-                <div class="RewardDetailDesktop_header__3mesc">
-                    <div class="Tabs_container__-5nuO">
-                        <ul class="Tabs_tabs__3tVIy">
-                            <li class="Tabs_tab__aXf3b Tabs_active__2pupa">
-                                <a
-                                        href="/web/campaign/detail/181985?_refer_section_st=PREORDER_1181985"
-                                        data-ga-category="펀딩_상세"
-                                        data-ga-action="클릭"
-                                        data-ga-label="탭_스토리"
-                                >스토리</a
-                                >
-                            </li>
-                            <li class="Tabs_tab__aXf3b">
-                                <a
-                                        href="/web/campaign/detailPost/181985181985"
-                                        data-ga-category="펀딩_상세"
-                                        data-ga-action="클릭"
-                                        data-ga-label="탭_새소식"
-                                >새소식<span class="Tabs_count__PDpvT"> 7</span></a
-                                >
-                            </li>
-                            <li class="Tabs_tab__aXf3b">
-                                <a
-                                        href="/web/campaign/detail/qa/181985181985"
-                                        data-ga-category="펀딩_상세"
-                                        data-ga-action="클릭"
-                                        data-ga-label="탭_커뮤니티"
-                                >커뮤니티<span class="Tabs_count__PDpvT"> 1</span></a
-                                >
-                            </li>
-                            <li class="Tabs_tab__aXf3b">
-                                <a
-                                        href="/web/campaign/detailBacker/181985181985"
-                                        data-ga-category="펀딩_상세"
-                                        data-ga-action="클릭"
-                                        data-ga-label="탭_서포터"
-                                >서포터<span class="Tabs_count__PDpvT"> 665</span></a
-                                >
-                            </li>
-                            <li class="Tabs_tab__aXf3b">
-                                <a
-                                        href="/web/campaign/detail/fundingInfo/181985?_refer_section_st=PREORDER_1181985"
-                                        data-ga-category="펀딩_상세"
-                                        data-ga-action="클릭"
-                                        data-ga-label="탭_반환정책"
-                                >환불·정책</a
-                                >
-                            </li>
-                        </ul>
-                    </div>
-                </div>
                 <div class="RewardDetailDesktop_contentWrapper__1Gcox">
                     <div class="RewardDetailDesktop_content__2GNV4">
                         <div class="RewardDetailDesktop_left__DOcT2">
@@ -278,7 +227,7 @@
                                                 class="PartnerBanner_container__2m0Mo"
                                                 href="/crowd/cosmax"
                                         ><span class="PartnerBanner_terms__2-kMz"
-                                        >협력기관</span
+                                        >상호명</span
                                         ><span class="PartnerBanner_desc__2mN1_"
                                         >[[${funding.fstore_name}]]</span
                                         >
@@ -305,7 +254,8 @@
                                         <div class="BaseInfo_rate__vZ7aw">
                                             <div class="BaseInfo_infoWrapper__1GKex">
                             <span class="BaseInfo_achivementRate__hcznC"
-                            >[[${funding.totalemail}]]</span
+                            >[[${#numbers.formatInteger(funding.totalemail, 1,
+                                                'COMMA')}]]</span
                             ><span class="BaseInfo_successInfo__2Rmqm"
                                             >명 참여</span
                                             >
@@ -320,7 +270,7 @@
                                         </div>
                                         <div class="BaseInfo_rate__vZ7aw">
                                             <p class="BaseInfo_totalBackedAmount__1R7OU">
-                                                [[${#numbers.formatInteger(funding.totalprice, 3,
+                                                [[${#numbers.formatInteger(funding.totalprice, 1,
                                                 'COMMA')}]]<span>원</span>
                                             </p>
                                             <span
@@ -340,8 +290,8 @@
                                             <button
                                                     class="Button_button__mRXZC Button_primary__1HJqX Button_contained__k9pMW Button_md__136bx Button_block__1LAUA CTA_button__UoUYx"
                                                     type="button"
-                                            >
-                            <span
+                                                    th:style="${funding.fstatus == 'FUNDING' ? '' :'border-color: #adb5bd; background-color: #adb5bd;'}">
+                                            <span
                             ><span class="Button_children__3HY2l"
                             ><p>예약 구매하기</p></span
                             ></span
@@ -494,15 +444,16 @@
                                             <div class="Rewards_period__3XgCS">
                                                 <p>진행기간</p>
                                                 <p>[[${#dates.format(funding.fdate, 'yyyy.MM.dd')}]] ~
-                                                    [[${#dates.format(funding.cfunding_end_date, 'yyyy.MM.dd')}]]</p>
+                                                    [[${#dates.format(funding.end_date, 'yyyy.MM.dd')}]]</p>
                                             </div>
                                         </div>
                                         <div class="Rewards_list__X7K46">
 
                                             <div
                                                     th:each="product:${funding.products}"
-                                                    class="Reward_container__qyq1y Reward_expand__17Y0G"
-                                            >
+                                                    class="Reward_container__qyq1y"
+                                                    th:data-fpid="${product.fpid}"
+                                                    >
                                                 <div class="Reward_header__166NH">
                                                     <div class="Reward_headerLeft__C4mAW">
                                                         <div class="Reward_amount__1EXUE">
@@ -516,8 +467,8 @@
                                                         >
                                                         </div>
                                                         <p class="Reward_name__21dvW">
-                                                            -[[(100-${product.fpprice*100/product.fporigin_price})]]%
-                                                            할인중! 문구 변경 요망!
+                                                            [[${product.fptitle}]]
+
                                                         </p>
                                                     </div>
                                                 </div>
@@ -535,7 +486,9 @@
                                         <div class="CTA_right__GmlJC">
                                             <div class="CTA_buttonWrap__22Mf3">
                                                 <button class="Button_button__mRXZC Button_primary__1HJqX Button_contained__k9pMW Button_md__136bx Button_block__1LAUA CTA_button__UoUYx"
-                                                        type="button"><span><span class="Button_children__3HY2l"><p>예약 구매하기</p></span></span>
+                                                        type="button"
+                                                        th:style="${funding.fstatus == 'FUNDING' ? '' :'border-color: #adb5bd; background-color: #adb5bd;'}">
+                                                    <span><span class="Button_children__3HY2l"><p>예약 구매하기</p></span></span>
                                                 </button>
                                             </div>
                                         </div>
@@ -577,10 +530,10 @@
                                 <div class="SatisfactionTabs_container__28MSj">
                                     <div class="SatisfactionTabs_item__2jVmh SatisfactionTabs_active__1PFX2"
                                          data-rtype="funding">
-                                        <span>응원 댓글</span><span class="SatisfactionTabs_count__2zWkx">[[${#numbers.formatInteger(funding.rfcount, 3, 'COMMA')}]]</span>
+                                        <span>응원 댓글</span><span class="SatisfactionTabs_count__2zWkx">[[${#numbers.formatInteger(funding.rfcount, 1, 'COMMA')}]]</span>
                                     </div>
                                     <div class="SatisfactionTabs_item__2jVmh" data-rtype="store"><span>스토어</span><span
-                                            class="SatisfactionTabs_count__2zWkx">[[${#numbers.formatInteger(funding.rscount, 3, 'COMMA')}]]</span>
+                                            class="SatisfactionTabs_count__2zWkx">[[${#numbers.formatInteger(funding.rscount, 1, 'COMMA')}]]</span>
                                     </div>
                                 </div>
                             </div>
@@ -625,7 +578,8 @@
                                         <div>
                                             <li th:each="product:${funding.products}">
                                                 <div class="ProductSelectMenuItem_container__2ubAS"
-                                                     style="border-bottom-left-radius: 0px; border-bottom-right-radius: 0px;">
+                                                     style="border-bottom-left-radius: 0px; border-bottom-right-radius: 0px;"
+                                                     th:data-fpid="${product.fpid}">
                                                     <div class="ProductSelectMenuItem_titleWrapper__3A4A8">
                                                         <div class="ProductSelectMenuItem_title__3v1Qt">
                                                             <div class="ProductSelectMenuItem_name__qDMQi">
@@ -721,7 +675,16 @@
 </div>
 <script>
     $(document).ready(function () {
-        $('#story').click(function () {
+
+        $('.Reward_container__qyq1y').hover(function (){
+        $(this).find('.Badge_badge__2h6cT').removeClass('Badge_tertiary__1ERKE').addClass('Badge_contained__Q3unx')
+        },function (){
+            $(this).find('.Badge_badge__2h6cT').removeClass('Badge_contained__Q3unx').addClass('Badge_tertiary__1ERKE')
+        })
+
+
+
+            $('#story').click(function () {
             console.log("스토리");
             if ($('.Story_container__wZtYc').hasClass('Story_expanded__3TsCo')) {
                 $('.Story_container__wZtYc').removeClass('Story_expanded__3TsCo');
@@ -794,9 +757,26 @@
 </script>
 <script th:inline="javascript">
     $(document).ready(function () {
+        if([[${funding.fstatus=='FUNDING'}]]) {
+            $('.Reward_container__qyq1y').addClass('Reward_expand__17Y0G');
+        }
+        else {
+            $('.Reward_container__qyq1y').addClass('Reward_disabled__1jxB-');
+             $('.ProductSelectMenuItem_container__2ubAS').addClass('ProductSelectMenuItem_disabled__1-5Cp');
+        }
+        $('.Reward_container__qyq1y, .ProductSelectMenuItem_container__2ubAS').on('click', function() {
+            if([[${funding.fstatus=='FUNDING'}]]) {
+                console.log('물건클릭')
+
+                location.href='/web/order/'+[[${funding.fid}]]+'/step1?fpid='+$(this).data('fpid');
+            }
+        });
+
         let fid = [[${funding.fid}]];
         let sort = 1;
         let type = "funding";
+        let page = 0;
+        $('#reviewList').html('');
         getReview(fid, sort, type);
 
         $('.SatisfactionTabs_item__2jVmh').click(function () {
@@ -806,6 +786,8 @@
                 $(this).siblings('.SatisfactionTabs_item__2jVmh').removeClass('SatisfactionTabs_active__1PFX2');
                 type = $(this).data('rtype');
                 console.log(type);
+                $('#reviewList').html('');
+                page=0;
                 getReview(fid, sort, type);
             }
         })
@@ -813,12 +795,23 @@
             console.log('바뀜');
             $('#sorted').text($('.SortingSelect_select__21qNT').val());
             sort = $('#sorted').text();
+            $('#reviewList').html('');
+            page=0;
             getReview(fid, sort, type);
         })
 
+        $(window).scroll(function() {
+            if ($(window).scrollTop() + $(window).height() >= $(document).height()-1000) {
+                console.log('다음 페이지');
+                page++
+                getReview(fid, sort, type);
+            }
+        });
+
+
 
         function getReview(fid, sort, type) {
-            $('#reviewList').html('');
+
             $.ajax({
                 url: '/api/funding/review',
                 type: "get",
@@ -826,11 +819,12 @@
                 data: {
                     fid: fid,
                     sort: sort,
-                    type: type
+                    type: type,
+                    page:page
                 },
                 success: function (data, status) {
                     let k = "";
-                    if (data.length == 0) {
+                    if (data.length == 0&&page==0) {
                         k = `<div class="SatisfactionNoReview_container__1xzoJ"><span class="SatisfactionNoReview_icon__1sDe_"></span><p class="SatisfactionNoReview_text__N24Pm">아직 작성된 만족도 평가가 없어요</p></div><div></div>`
 
                     } else {

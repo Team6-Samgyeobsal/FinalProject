@@ -11,4 +11,5 @@ public class ReviewCriteria {
     private String fid;
     private String sort;
     private String type;
+    private int page;
 }

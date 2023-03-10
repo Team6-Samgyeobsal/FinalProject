@@ -14,4 +14,6 @@ public class FundingCriteria {
     private String place;
 
     private String sort;
+
+    private int page;
 }

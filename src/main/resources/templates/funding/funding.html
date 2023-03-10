@@ -815,7 +815,9 @@
                         let type=0;
                         let place=0;
                         let sort=0;
-                        getList(type,place,sort);
+                        let page=0;
+                        $('.TableLayout_container__1_Ap4').html('');
+                        getList(type,place,sort,page);
 
 
                             $('.ImageTab_tab__3siCY').click(function () {
@@ -823,7 +825,9 @@
                             if (!$(this).hasClass('ImageTab_active__BGdXu')) {
                                 type = $(this).closest('li').data('index');
                                 console.log(type);
-                                getList(type,place,sort);
+                                $('.TableLayout_container__1_Ap4').html('');
+                                page=0;
+                                getList(type,place,sort,page);
                                 $('.ImageTab_tab__3siCY').removeClass('ImageTab_active__BGdXu');
                                 $(this).addClass('ImageTab_active__BGdXu');
                             }
@@ -834,7 +838,9 @@
                                 $(this).addClass('OrderSelectDesktop_active__YTP2K');
                                 sort=$(this).text();
                                 console.log(sort);
-                                getList(type,place,sort);
+                                page=0;
+                                $('.TableLayout_container__1_Ap4').html('');
+                                getList(type,place,sort,page);
                             }
 
                         })
@@ -842,12 +848,21 @@
                             place=$(this).val();
                             $('.OrderSelect_content__1RjYa').find('span').text(place);
                             $('.Main_categoryName__3YilF').text(place);
-                            getList(type,place,sort);
+                            $('.TableLayout_container__1_Ap4').html('');
+                            page=0;
+                            getList(type,place,sort,page);
                         })
 
-
-                        function getList(type,place,sort){
-                            $('.TableLayout_container__1_Ap4').html('');
+                        $(window).scroll(function() {
+                            if ($(window).scrollTop() + $(window).height() >= $(document).height()-1) {
+                                console.log('다음 페이지');
+                                page++
+                                getList(type,place,sort,page);
+                            }
+                        });
+                        function getList(type,place,sort,page){
+                            console.log("get list");
+                           // $('.TableLayout_container__1_Ap4').html('');
                             let url = '/api/funding/list';
                             $.ajax({
                                 url: url,
@@ -856,7 +871,8 @@
                                 data:{
                                     type:type,
                                     place:place,
-                                    sort:sort
+                                    sort:sort,
+                                    page:page
                                 },
 
                                 success: function (data, status) {
@@ -979,12 +995,7 @@
                                     alert("실패");
                                 }
                             })
-
                         }
-
-
-
-
                     })
                 </script>
 

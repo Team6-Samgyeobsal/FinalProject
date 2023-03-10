@@ -199,7 +199,7 @@
                 메이커님에게 지금 필요한<br />서비스를 알아보세요
               </h2>
               <div class="LeadMakerServiceSection_serviceListInner__yiYxe">
-                <div class="ServiceContent_serviceCard__2SQG4" th>
+                <div class="ServiceContent_serviceCard__2SQG4" th:each="store:${store}">
                   <div class="ServiceContent_serviceCardInner__3WQ-A">
                     <div class="ServiceContent_textBox__nEm9O">
                       <div class="ServiceContent_serviceNameBox__vg8cp">
@@ -210,17 +210,17 @@
                               "
                             ></span
                             ><em class="ServiceContent_serviceName__5mUou"
-                      >와디즈 스토어</em
+                      >[[${store.tname}]]</em
                       >
                       </div>
                       <p class="ServiceContent_description__2iqxJ">
-                        펀딩 성공 후<br />꾸준한 매출을 올릴 수 있어요
+                        [[${store.ftitle}]]
                       </p>
                       <a
                               class="ServiceContent_moreButton__3xqiC"
-                              href="https://www.wadiz.kr/link/introduction_store"
+                              th:href="@{/web/store/{fid}(fid=${store.fid})}"
                               target="_blank"
-                      >스토어 가이드 바로가기<svg
+                      >[[${store.fstore_name}]] 바로가기<svg
                               viewBox="0 0 40 40"
                               focusable="false"
                               role="presentation"
@@ -234,8 +234,8 @@
                     </div>
                     <div
                             class="ServiceContent_serviceImg__3ovld"
-                            style="
-                            background-image: url('https://static.wadiz.kr/main/media/img-service-store.c0871e56.png');
+                            th:style="
+                            'background-image: url('+${store.fthumb}+');'
                           "
                     ></div>
                   </div>

@@ -54,5 +54,18 @@
 <!--        where mid = #{mid}-->
 <!--    </select>-->
 
+    <select id="getProductList" resultMap="common.productDetailMap">
+        select fptitle,
+               fp.fporigin_price,
+               fpprice,
+               fpcontent,
+               poid,
+               pooption
+        from funding_product fp
+        join product_option po on fp.fpid=po.fpid
+        where fid=#{fid}
+        order by fp.fpid
+    </select>
+
 
 </mapper>
