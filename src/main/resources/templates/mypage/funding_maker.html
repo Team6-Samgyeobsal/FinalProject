@@ -60,7 +60,7 @@
           </div>
         </div>
         <div class="AppLayout_main__14bCi">
-          <div th:replace="/fragment/funding_sidebar.html :: sidebar"></div>
+          <div th:replace="/fragment/funding_sidebar.html :: sidebar(${fundingMaker.getFid()})"></div>
           <div id="AppLayout_Contents" class="AppLayout_contents__wv3DF">
             <div class="FundingContainer_wrapper__3FtZE">
               <div class="FundingHeader_container__2vEbt">
@@ -77,8 +77,13 @@
                     </div>
                     <div class="FundingStatus_statusView__D10Ag"></div>
                     <div class="FundingStatus_statusView__D10Ag">
-                      <div class="FundingStatus_icon__1Xrqx yellow"></div>
-                      작성 중
+<!--                      <div class="FundingStatus_icon__1Xrqx red"></div>-->
+                      <span th:if="${fundingMaker.getFstatus().toString() == 'PREPARING'}">준비 중</span>
+                      <span th:if="${fundingMaker.getFstatus().toString() == 'PARTICIPATE'}">심사 중</span>
+                      <span th:if="${fundingMaker.getFstatus().toString() == 'FUNDING'}">펀딩 중</span>
+                      <span th:if="${fundingMaker.getFstatus().toString() == 'STORE'}">판매 중</span>
+                      <span th:if="${fundingMaker.getFstatus().toString() == 'FAIL'}">펀딩 실패</span>
+                      <span th:if="${fundingMaker.getFstatus().toString() == 'END'}">판매 종료</span>
                     </div>
                     <div class="FundingStatus_guide__37jtT">
                       아래의 필수 항목들이 모두 작성 완료 상태로 바뀌면
@@ -91,17 +96,18 @@
                         class="PageMenuList_card__1VyAW PageMenuList_wadizColor__3nQuN">
                         <div class="PageMenuList_container__1xz-L">
                           <div class="PageMenuList_name__2nKKm">기본 정보</div>
-                          <div
-                            class="PageMenuList_status__3M6fF PageMenuList_wadizColor__3nQuN">
-                            작성 중
+                          <div class="PageMenuList_status__3M6fF PageMenuList_wadizColor__3nQuN">
+                            <span th:if="${fundingMaker.getCtid()=='' || fundingMaker.getFstore_name()=='' || fundingMaker.getFthumb()==''}">작성 전</span>
+                            <span th:unless="${fundingMaker.getCtid()=='' || fundingMaker.getFstore_name()=='' || fundingMaker.getFthumb()==''}"
+                            style="color:gray">작성완료</span>
                           </div>
                           <a
                             class="PageMenuList_buttonWrapper__3PXAt"
-                            href="/studio/reward/194455/funding/baseinfo"
+                            th:href="|/web/mypage/maker/funding/${fundingMaker.getFid()}/baseInfo|"
                             ><button type="button" class="wz button">
-                              작성하기
-                            </button></a
-                          >
+                              <span th:if="${fundingMaker.getCtid()=='' || fundingMaker.getFstore_name()=='' || fundingMaker.getFthumb()==''}">작성하기</span>
+                              <span th:unless="${fundingMaker.getCtid()=='' || fundingMaker.getFstore_name()=='' || fundingMaker.getFthumb()==''}">수정하기</span>
+                            </button></a>
                         </div>
                       </div>
                       <div
@@ -112,15 +118,17 @@
                           </div>
                           <div
                             class="PageMenuList_status__3M6fF PageMenuList_wadizColor__3nQuN">
-                            작성 전
+                            <span th:if="${!fundingMaker.isHasImg() || fundingMaker.getFsummary()=='' || fundingMaker.getFstory()==''}">작성 전</span>
+                            <span style="color:gray"
+                                 th:unless="${!fundingMaker.isHasImg() || fundingMaker.getFsummary()=='' || fundingMaker.getFstory()==''}">작성완료</span>
                           </div>
                           <a
                             class="PageMenuList_buttonWrapper__3PXAt"
-                            href="/studio/reward/194455/funding/story"
+                            th:href="|/web/mypage/maker/funding/${fundingMaker.getFid()}/story|"
                             ><button type="button" class="wz button">
-                              작성하기
-                            </button></a
-                          >
+                            <span th:if="${!fundingMaker.isHasImg() || fundingMaker.getFsummary()=='' || fundingMaker.getFstory()==''}">작성하기</span>
+                            <span th:unless="${!fundingMaker.isHasImg() || fundingMaker.getFsummary()=='' || fundingMaker.getFstory()==''}">수정하기</span>
+                            </button></a>
                         </div>
                       </div>
                       <div
@@ -131,15 +139,17 @@
                           </div>
                           <div
                             class="PageMenuList_status__3M6fF PageMenuList_wadizColor__3nQuN">
-                            작성 전
+                            <span th:if="${!fundingMaker.isHasProduct()}">작성 전</span>
+                            <span style="color:gray"
+                                    th:unless="${!fundingMaker.isHasProduct()}">작성완료</span>
                           </div>
                           <a
                             class="PageMenuList_buttonWrapper__3PXAt"
-                            href="/studio/reward/194455/funding/condition"
+                            th:href="|/web/mypage/maker/funding/${fundingMaker.getFid()}/reward|"
                             ><button type="button" class="wz button">
-                              작성하기
-                            </button></a
-                          >
+                            <span th:if="${!fundingMaker.isHasProduct()}">작성하기</span>
+                            <span th:unless="${!fundingMaker.isHasProduct()}">수정하기</span>
+                            </button></a>
                         </div>
                       </div>
                     </div>

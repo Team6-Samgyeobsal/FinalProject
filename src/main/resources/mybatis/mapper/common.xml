@@ -1,45 +1,26 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper  namespace="common">
+<mapper namespace="com.samgyeobsal.mapper.CommonMapper">
 
-    <resultMap id="fundingDetailMap"  type="fundingDetail">
-        <result property="fstore_name" column="fstore_name" />
-        <result property="fsummary" column="fsummary" />
-        <result property="fid" column="fid" />
-        <result property="ftitle" column="ftitle" />
-        <result property="totalprice" column="totalprice" />
-        <result property="totalemail" column="totalemail" />
-        <result property="tname" column="tname" />
-        <result property="ctname" column="ctname" />
-        <result property="fstory" column="fstory" />
-        <result property="fdate" column="fdate" />
-        <result property="cfunding_end_date" column="cfunding_end_date" />
-        <result property="fstatus" column="fstatus" />
-        <result property="fstore_score" column="fstore_score" />
-        <result property="ffunding_score" column="ffunding_score" />
-        <result property="expire" column="expire" />
-        <result property="rfcount" column="rfcount" />
-        <result property="rscount" column="rscount" />
-        <collection property="products"
-                    resultMap="productMap" />
-        <collection property="imgs"
-                    resultMap="imgMap" />
-    </resultMap>
+    <select id="getActiveCompetitionList" resultType="competitionHyundai">
+        select c.cid, c.cfunding_start_date, c.cfunding_end_date, c.cstore_start_date, c.cstore_end_date,
+               t.tid, t.tname
+        from competition c
+        inner join the_hyundai t on (c.tid = t.tid)
+        where sysdate between c.cfunding_start_date and cfunding_end_date
+    </select>
 
-    <resultMap id="productMap"
-               type="product">
-        <result property="fporigin_price" column="fporigin_price" />
-        <result property="fpprice" column="fpprice" />
-        <result property="fptitle" column="fptitle" />
-        <result property="fpcontent" column="fpcontent" />
-        <result property="pcchipimg" column="pcchipimg" />
-    </resultMap>
+    <select id="getCompetitionByCidAndTid" resultType="competitionHyundai">
+        select c.cid, c.cfunding_start_date, c.cfunding_end_date, c.cstore_start_date, c.cstore_end_date,
+               t.tid, t.tname
+        from competition c
+                 inner join the_hyundai t on (c.tid = t.tid)
+        where c.cid = #{cid} and c.tid = #{tid}
+    </select>
 
-    <resultMap id="imgMap"
-               type="fundingImg">
-        <result property="fiurl" column="fiurl" />
-
-    </resultMap>
+    <select id="getCategoryList" resultType="category">
+        select ctid, ctname
+        from category
+    </select>
 </mapper>

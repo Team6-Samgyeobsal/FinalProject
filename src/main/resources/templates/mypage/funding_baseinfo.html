@@ -1,4 +1,5 @@
-<html lang="ko" style="--vh: 7.96px">
+<html lang="ko" style="--vh: 7.96px"
+      xmlns:th="http://www.thymeleaf.org">
   <head>
     <meta charset="utf-8" />
     <link
@@ -21,7 +22,10 @@
     <meta name="wadiz-app-hidden-header" content="yes" />
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <title>기본 정보 | 와디즈 메이커 스튜디오</title>
-
+    <!-- 부트스트랩 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <!-- jquery -->
+    <script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
     <link
       href="/import/css/6.41bf0148.chunk.css"
       rel="stylesheet" />
@@ -43,7 +47,7 @@
     <div id="root">
       <div id="AppLayout_Container" class="AppLayout_container__3zbzb">
         <div class="AppLayout_main__14bCi">
-          <div th:replace="/fragment/funding_sidebar.html :: sidebar"></div>
+          <div th:replace="/fragment/funding_sidebar.html :: sidebar(${baseInfo.getFid()})"></div>
           <div id="AppLayout_Contents" class="AppLayout_contents__wv3DF">
             <nav class="ProjectNavbar_container__3ybm3">
               <div
@@ -61,6 +65,8 @@
                 <div>woowang789</div>
               </div>
             </nav>
+            <form id="baseInfoForm" th:object="${baseInfo}" method="post" th:action>
+              <input type="hidden" th:field="*{fid}">
             <section class="Page_container__1PffN">
               <ol class="Breadcrumb_container__3YjD4">
                 <li class="Breadcrumb_item__2r9Ym">프로젝트 관리</li>
@@ -78,7 +84,7 @@
                     <div class="Section_header__1qwS7 spacing-4">
                       <h2
                         class="Section_title__ikPIm Section_isRequired__F8rij">
-                        프로젝트 제목
+                        가게 제목
                       </h2>
                       <div class="Section_guide__2xeJO"></div>
                     </div>
@@ -87,7 +93,7 @@
                         class="TextField_textField__23rCe TextField_md__2zsQn">
                         <label></label>
                         <div class="TextField_field__1E9vt">
-                          <input
+                          <input th:field = "*{fstore_name}"
                             placeholder="제목을 입력해 주세요"
                             maxlength="40"
                             type="text"
@@ -95,11 +101,9 @@
                             aria-invalid="false"
                             value="" />
                         </div>
-                        <em class="HelperMessage_helperMessage__1qZPy"
-                          >40자 남음</em
-                        >
                       </div>
                     </div>
+
                   </div>
                 </section>
                 <section class="Section_container__3md8M spacing-9" style="">
@@ -120,21 +124,51 @@
                     </div>
                     <div class="Section_content__3OkLZ">
                       <div class="spacing-5">
-                        <div class="ImageUploadField_container__2fG-h">
+
+                        <!-- 기존 썸네일 url이 있는 경우 -->
+                        <div class="ImageField_container__10np3 thumb_ui"
+                             th:style="${baseInfo.getFthumb() == null || baseInfo.getFthumb() == ''}?'display:none':'display:block'">
+                          <div class="ImageField_box__3Rfx-">
+                            <div class="ImageField_header__3V3uv">
+                              <div>미리 보기</div>
+                              <button class="ImageField_deleteButton__34nlU imgCloseBtn" type="button">
+                                <svg viewBox="0 0 40 40" focusable="false" role="presentation" class="withIcon_icon__3lrgp" aria-hidden="true" style="width: 24px; height: 24px;">
+                                  <path d="M33.4 8L32 6.6l-12 12-12-12L6.6 8l12 12-12 12L8 33.4l12-12 12 12 1.4-1.4-12-12 12-12z"></path>
+                                </svg>
+                              </button>
+                            </div>
+                            <div class="ImageField_content__2CUFr">
+                              <div>
+                                <div class="ImageBox_container__3bM1r spacing-3">
+                                  <div class="ImageBox_image__755_w thumb_style"
+                                       th:style="'background-image: url('+${baseInfo.getFthumb()}+');'"></div>
+                                </div>
+                                <span class="Badge_container__3mdFR Badge_visible__2c54z">
+                                  <span class="Badge_badge__zKi0D Badge_label__2iNzD Badge_sm__3truG Badge_secondary__3CihT Badge_tertiary__-ciUe">프로젝트 이미지</span>
+                                </span>
+                                <input type="hidden"
+                                       th:field="*{fthumb}" id="fthumb"/>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <!-- 썸네일 이미지 url이 없는 경우 -->
+                        <div class="ImageUploadField_container__2fG-h no_thumb_ui"
+                             th:style="${baseInfo.getFthumb() != null || baseInfo.getFthumb() != ''}?'display:none':'display:block'">
                           첨부 파일을 업로드해 주세요.
                           <div
                             class="ImageUploadButton_container__2eGcY spacing-2">
                             <input
-                              class="is-hidden"
+                              style="display: none"
                               type="file"
-                              accept="image/jpg,image/jpeg,image/png" /><button
-                              class="Button_button__1e2A2 Button_tertiaryGrey__3gRf4 Button_contained__TTXSM Button_sm__dnvmq Button_circular__3NpOv"
+                              accept="image/jpg,image/jpeg,image/png" class="fileInput"/>
+                            <button
+                              class="Button_button__1e2A2 Button_tertiaryGrey__3gRf4 Button_contained__TTXSM Button_sm__dnvmq Button_circular__3NpOv uploadBtn"
                               type="button">
-                              <span
-                                ><span class="Button_children__q9VCZ"
-                                  >업로드</span
-                                ></span
-                              >
+                              <span>
+                                <span class="Button_children__q9VCZ">업로드</span>
+                              </span>
                             </button>
                           </div>
                         </div>
@@ -144,10 +178,52 @@
                 </section>
                 <section class="Section_container__3md8M spacing-9" style="">
                   <div style="max-width: 600px">
+                    <div class="Section_header__1qwS7 spacing-4">
+                      <h2
+                              class="Section_title__ikPIm Section_isRequired__F8rij">
+                        음식 카테고리
+                      </h2>
+                    </div>
+                    <div class="Section_content__3OkLZ">
+                      <select class="form-select"
+                              th:field="*{ctid}">
+                        <option th:each="ct : ${categoryList}"
+                                th:selected="${ct.ctid == baseInfo.getCtid()}"
+                                th:value="${ct.ctid}"
+                                th:text="${ct.ctname}"></option>
+                      </select>
+                    </div>
+
+                  </div>
+                </section>
+                <section class="Section_container__3md8M spacing-9" style="">
+                  <div style="max-width: 600px">
+                    <div class="Section_header__1qwS7 spacing-4">
+                      <h2
+                              class="Section_title__ikPIm Section_isRequired__F8rij">
+                        장소
+                      </h2>
+                      <div class="Section_guide__2xeJO"></div>
+                    </div>
+                    <div class="Section_content__3OkLZ">
+                      <select class="form-select hyundai_select"
+                              th:field="*{cid}">
+                        <option th:each="comp : ${activeCompetitionList}"
+                                th:selected="${comp.cid == baseInfo.getCid()}"
+                                th:value="${comp.cid}"
+                                th:data-cfunding_start_date="${comp.getStringFundingStart()}"
+                                th:data-cfunding_end_date="${comp.getStringFundingEnd()}" th:text="${comp.tname}"></option>
+                      </select>
+                    </div>
+
+                  </div>
+                </section>
+                <section class="Section_container__3md8M spacing-9" style="">
+                  <div style="max-width: 600px">
                     <div class="Section_header__1qwS7">
                       <h2
                         class="Section_title__ikPIm Section_isRequired__F8rij">
-                        프로젝트 종료일
+                        프로젝트 일정
                       </h2>
                       <div class="Section_guide__2xeJO"></div>
                     </div>
@@ -160,11 +236,13 @@
                             style="width: 100%">
                             <div class="ant-picker-input">
                               <input
-                                placeholder="예시) 2023-03-07"
+                                style="width: 500px"
+                                id="project_time"
+                                readonly
                                 title=""
                                 size="12"
-                                autocomplete="off"
-                                value="" />
+                                value=""
+                                th:value="${baseInfo.getStringFundingStart()!=null? baseInfo.getStringFundingStart() + ' ~ ' + baseInfo.getStringFundingEnd():''}"/>
                             </div>
                           </div>
                         </div>
@@ -173,15 +251,17 @@
                   </div>
                 </section>
                 <button
-                  class="Button_button__1e2A2 Button_primary__PxOJr Button_contained__TTXSM Button_xl__2x3J_"
+                  class="Button_button__1e2A2 Button_primary__PxOJr Button_contained__TTXSM Button_xl__2x3J_
+                  baseInfoBtn"
                   type="button"
                   style="width: 420px; max-width: 100%">
                   <span
-                    ><span class="Button_children__q9VCZ">저장하기</span></span
-                  >
+                    ><span class="Button_children__q9VCZ">저장하기</span>
+                  </span>
                 </button>
               </div>
             </section>
+            </form>
           </div>
         </div>
       </div>
@@ -207,5 +287,70 @@
         </div>
       </div>
     </div>
+  <script>
+    $(document).ready(function(){
+
+      // 업로드 버튼과 file input 과 연결시키기
+      $('.uploadBtn').click(function(e){
+        $('.fileInput').click();
+      });
+
+      // x 버튼 누르면 nothumb 출력
+      $(document).on('click','.imgCloseBtn',function (e){
+        printNoThumb();
+        $('#fthumb').val('');
+      })
+
+      // select 로 장소 고르면 프로젝트 기간 변경됨
+      $(document).on('change','.hyundai_select',function(e){
+        let selected = $('.hyundai_select option:selected');
+        let endDate = selected.data('cfunding_end_date');
+        let startDate = selected.data('cfunding_start_date');
+        $('#project_time').val(startDate + " ~ " + endDate);
+      })
+
+      // 사진 ajax 수행
+      $(document).on('change','.fileInput',function(e){
+        let formData = new FormData();
+        let inputFile = $('.fileInput');
+        let files = inputFile[0].files;
+
+        for(let i = 0;i<files.length;i++){
+          console.log(files[i]);
+          formData.append("uploadFiles", files[i]);
+        }
+        $.ajax({
+          url:'/api/common/uploadImg',
+          processData : false,
+          contentType : false,
+          data : formData,
+          type : 'POST',
+          dataType : 'json',
+          success : function(result){
+            console.log(result);
+            $('#fthumb').val(result[0]['imageURL']);
+            printThumb(result[0]['imageURL']);
+          }
+        })
+      })
+
+      $('.baseInfoBtn').click(function(e){
+        e.preventDefault();
+        $('#baseInfoForm').submit();
+      })
+    })
+
+    function printNoThumb(){
+      // thumb_ui를 없애고, no_thumb_ui 를 만듦
+      $('.thumb_ui').css("display", "none");
+      $('.no_thumb_ui').css("display", "block");
+    }
+    function printThumb(imgUrl){
+      // no_thumb_ui를 없애고, thumb_ui 를 만듦
+      $('.thumb_ui .thumb_style').css('background-image','url('+imgUrl+')')
+      $('.thumb_ui').css("display", "block");
+      $('.no_thumb_ui').css("display", "none");
+    }
+  </script>
   </body>
 </html>

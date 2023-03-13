@@ -96,7 +96,7 @@
         ,f.fid
     </select>
 
-    <select id ="getFundingDetail" resultMap="common.fundingDetailMap" >
+    <select id ="getFundingDetail" resultMap="util.fundingDetailMap" >
         select fstore_name,
                fsummary,
                f.fid,
@@ -180,6 +180,25 @@
             </otherwise>
         </choose>
 
+    </select>
+
+    <select id="findProductListByFundingId" resultMap="util.productMap">
+        select fp.fpid, fp.fid, fp.fporigin_price,
+               fp.fpprice, fp.fptitle, fp.fpcontent,
+               po.poid, po.pooption
+        from funding_product fp
+        left join product_option po on (fp.fpid = po.fpid)
+        where fp.fid = #{fundingId}
+    </select>
+
+    <select id="findProductByFundingIdAndProductId" resultMap="util.productMap">
+        select fp.fpid, fp.fid, fp.fporigin_price,
+               fp.fpprice, fp.fptitle, fp.fpcontent,
+               po.poid, po.pooption
+        from funding_product fp
+                 left join product_option po on (fp.fpid = po.fpid)
+        where fp.fid = #{fundingId}
+            and fp.fpid = #{productId}
     </select>
 
 </mapper>

@@ -11,4 +11,8 @@ public interface FundingService {
     FundingDetailVO getFundingDetail(String fid);
 
     List<ReviewVO>getReviewList(ReviewCriteria criteria);
+
+    List<ProductVO> getProductListByFundingId(String fundingId);
+
+    ProductVO getProductByFundingIdAndProductId(String fundingId, String productId);
 }

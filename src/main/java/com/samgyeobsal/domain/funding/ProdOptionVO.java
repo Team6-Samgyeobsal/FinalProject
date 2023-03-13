@@ -7,9 +7,8 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class FundingImgVO {
-
-    private String fiid;
-    private String fiurl;
-    private String fid;
+public class ProdOptionVO {
+    private String poid;
+    private String pooption;
+    private String fpid;
 }

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<div class="AppSidebarLayout_contents__2thGr" id="sidebar" th:fragment="sidebar">
+<div class="AppSidebarLayout_contents__2thGr" id="sidebar" th:fragment="sidebar (fundingId)">
   <div class="AppSidebarRewardProjectInfo_container__2Ykhp AppSidebarRewardProjectInfo_defaultBackgroundImage__1rWVS">
     <div class="AppSidebarRewardProjectInfo_projectFlagGroup__2GdB4">
       <span class="AppSidebarRewardProjectInfo_flag__2Ctnr">프로젝트</span><span class="AppSidebarRewardProjectInfo_flag__2Ctnr">작성 중</span>
@@ -14,16 +14,16 @@
     <div class="AppSidebarMenuList_margin__3qjoc"></div>
     <ul>
       <li>
-        <a aria-current="page" class="AppSidebarMenuList_navLink__1FytL AppSidebarMenuList_active__tbFuL" href="/studio/reward/194455/funding">프로젝트 관리<i class="icon-chevron-left AppSidebarMenuList_chevronIcon__2YV-z AppSidebarMenuList_open__bjhTR" aria-hidden="true"></i></a>
+        <a aria-current="page" class="AppSidebarMenuList_navLink__1FytL AppSidebarMenuList_active__tbFuL" href="/web/mypage/funding/1" th:href="|/web/mypage/maker/funding/${fundingId}|">프로젝트 관리<i class="icon-chevron-left AppSidebarMenuList_chevronIcon__2YV-z AppSidebarMenuList_open__bjhTR" aria-hidden="true"></i></a>
         <ul class="AppSidebarRewardSubList_container__2zCmr">
+          <a class="AppSidebarMenuList_navLink__1FytL AppSidebarRewardSubList_subMenu__iqWsa" href="/web/mypage/funding/1/baseinfo" th:href="|/web/mypage/maker/funding/${fundingId}/baseInfo|">기본 정보</a>
           <li>
-            <a class="AppSidebarMenuList_navLink__1FytL AppSidebarRewardSubList_subMenu__iqWsa" href="/studio/reward/194455/funding/baseinfo">기본 정보</a>
           </li>
           <li>
-            <a class="AppSidebarMenuList_navLink__1FytL AppSidebarRewardSubList_subMenu__iqWsa" href="/studio/reward/194455/funding/story">스토리 작성</a>
+            <a class="AppSidebarMenuList_navLink__1FytL AppSidebarRewardSubList_subMenu__iqWsa" href="/web/mypage/funding/1/story" th:href="|/web/mypage/maker/funding/${fundingId}/story|">스토리 작성</a>
           </li>
           <li>
-            <a class="AppSidebarMenuList_navLink__1FytL AppSidebarRewardSubList_subMenu__iqWsa" href="/studio/reward/194455/funding/condition">리워드 설계</a>
+            <a class="AppSidebarMenuList_navLink__1FytL AppSidebarRewardSubList_subMenu__iqWsa" href="/web/mypage/funding/1/reward" th:href="|/web/mypage/maker/funding/${fundingId}/reward|">리워드 설계</a>
           </li>
         </ul>
       </li>

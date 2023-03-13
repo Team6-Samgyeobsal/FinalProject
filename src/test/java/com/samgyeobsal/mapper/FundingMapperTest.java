@@ -3,6 +3,7 @@ package com.samgyeobsal.mapper;
 import com.jayway.jsonpath.Criteria;
 import com.samgyeobsal.domain.funding.*;
 import lombok.extern.log4j.Log4j2;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -40,5 +41,22 @@ public class FundingMapperTest {
 //        reviewCriteria.setType("1");
         List<ReviewVO> list = fundingMapper.getReviewList(reviewCriteria);
         list.forEach(review -> log.info(review));
+    }
+
+    @Test
+    void findProductListByFundingId(){
+        String fundingId = "1";
+        List<ProductVO> products = fundingMapper.findProductListByFundingId(fundingId);
+        log.info("products = {}", products);
+    }
+
+    @Test
+    void findProductByFundingIdAndProductId(){
+        String fundingId = "1";
+        String productId = "1";
+        ProductVO product = fundingMapper.findProductByFundingIdAndProductId(fundingId, productId);
+        log.info("product = {}", product);
+        Assertions.assertEquals(product.getFpid(), productId);
+
     }
 }

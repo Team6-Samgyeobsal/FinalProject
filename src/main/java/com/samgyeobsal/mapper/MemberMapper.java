@@ -18,5 +18,4 @@ public interface MemberMapper {
 
     List<FundingVO> findFundingListByEmail(@Param("email") String email);
 
-    FundingDetailVO findFundingDetailByFundingId(@Param("fundingId") String fundingId);
 }
