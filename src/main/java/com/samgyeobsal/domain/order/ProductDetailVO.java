@@ -11,9 +11,10 @@ import java.util.List;
 @ToString
 public class ProductDetailVO {
 
+    private String fpid;
     private String fptitle;
-    private String fporigin_price;
-    private String fpprice;
+    private int fporigin_price;
+    private int fpprice;
     private  String fpcontent;
 
     List<ProductOptionVO> options;

@@ -1,365 +1,529 @@
 <html lang="ko" class="scroll-top scroll-apex" translate="no">
 <meta charset="utf-8">
-  <head>
+<head>
 
     <title>리워드 선택</title>
-    <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.3.js"
+            integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
 
     <link
-      rel="shortcut icon"
-      href="https://static.wadiz.kr/assets/icon/favicon.ico" />
+            rel="shortcut icon"
+            href="https://static.wadiz.kr/assets/icon/favicon.ico"/>
     <link
-      rel="icon"
-      href="https://static.wadiz.kr/assets/icon/favicon-16x16.png"
-      sizes="16x16"
-      type="image/png" />
+            rel="icon"
+            href="https://static.wadiz.kr/assets/icon/favicon-16x16.png"
+            sizes="16x16"
+            type="image/png"/>
     <link
-      rel="icon"
-      href="https://static.wadiz.kr/assets/icon/favicon-32x32.png"
-      sizes="32x32"
-      type="image/png" />
+            rel="icon"
+            href="https://static.wadiz.kr/assets/icon/favicon-32x32.png"
+            sizes="32x32"
+            type="image/png"/>
 
 
     <link
-      rel="stylesheet"
-      href="/import/css/wui.css" />
+            rel="stylesheet"
+            href="/import/css/wui.css"/>
 
     <link
-      rel="stylesheet"
-      href="/import/css/layout.css" />
+            rel="stylesheet"
+            href="/import/css/layout.css"/>
     <script
-      type="text/javascript"
-      src="/import/js/vendor.js"></script>
+            type="text/javascript"
+            src="/import/js/vendor.js"></script>
     <script
-      type="text/javascript"
-      src="/import/js/layout.js"></script>
+            type="text/javascript"
+            src="/import/js/layout.js"></script>
 
 
-    <meta name="wadiz-app-hidden-header" content="yes" />
+    <meta name="wadiz-app-hidden-header" content="yes"/>
     <!-- E: Common Meta -->
 
     <link
-      rel="stylesheet"
-      href="/import/css/common.css" />
+            rel="stylesheet"
+            href="/import/css/common.css"/>
     <link
-      rel="stylesheet"
-      href="/import/css/wpurchase_reward.css" />
+            rel="stylesheet"
+            href="/import/css/wpurchase_reward.css"/>
     <!-- 리워드결제페이지 -->
 
     <link
-      rel="stylesheet"
-      href="/import/css/reward-product.cfd21a1c.css" />
+            rel="stylesheet"
+            href="/import/css/reward-product.cfd21a1c.css"/>
 
     <script
-      type="text/javascript"
-      src="/import/js/wCommon.js"></script>
+            type="text/javascript"
+            src="/import/js/wCommon.js"></script>
 
-  </head>
-  <body>
-    <div id="page-container">
-      <div class="black-bg-wrap" style="display: none"></div>
+</head>
+<body>
+<div id="page-container">
+    <div class="black-bg-wrap" style="display: none"></div>
 
-      <div id="wz-header">
+    <div id="wz-header">
         <div th:replace="/fragment/header__1TR2D.html :: header"></div>
-
-      </div>
-
-
-      <form id="forwardForm" method="get">
-        <input type="hidden" id="returnURL" name="returnURL" />
-      </form>
-      <input type="hidden" id="sessionLoginCheck" value="true" />
-
-      <div id="newContainer">
-        <div id="wPurchaseWrap">
-          <div class="wpurchase-title">
-            <h2>
-              개발비 1.5억ㅣ현대리바트 기술력 담아낸 3만원대 발 받침대
-              Comfy<span class="name"
-                ><em
-                  style="
-                    background-image: url(https://cdn.wadiz.kr/wwwwadiz/green001/2023/0208/20230208171549898_158604.png/wadiz/resize/600/format/jpg/quality/80/optimize);
-                  "></em
-                >현대리바트</span
-              >
-            </h2>
-          </div>
-          <div class="wpurchase-wrap">
-            <div class="wpurchase-step">
-              <ol>
-                <li class="active">
-                  <em>리워드<br />선택</em>
-                </li>
-                <li><em>결제 예약</em></li>
-                <li><em>소문내기</em></li>
-              </ol>
-            </div>
-            <form name="purchaseForm" id="purchaseForm" method="post">
-              <input
-                type="hidden"
-                name="secureStateBagKey"
-                value="NTZjMTkwNTItMTk0Mi00NDRjLTg2ZDUtNmE1MDBjZmYyMTYxTVdaa09UbGhOelF0TjJNME5pMDBNalJrTFRrNU56VXRZemt4WXpjM01UUm1PVFpq" />
-              <input type="hidden" name="campaignId" value="158604" />
-              <input type="hidden" name="fundingPrice" value="42000" />
-
-              <div class="wpurchase-reward">
-                <div class="top-area">
-                  <h3><em>리워드 선택</em></h3>
-                </div>
-                <div
-                  id="reward-product-app"
-                  data-campaign-id="158604"
-                  data-selected-reward-id="411146">
-                  <ul class="RewardProductList_container__2hIAB">
-                    <li class="RewardProductList_list__2oOvi" th:each="product:${products}">
-                      <section class="RewardProductItem_container__1wZBW">
-                        <label
-                          class="RewardProductItem_label__2t2Wd"
-                          for="checkbox-reward-product-411146"
-                          ><div class="RewardProductItem_price__2oEJ1">
-                            <label
-                              for="checkbox-reward-product-411146"
-                              class="Checkbox_checkbox__2e0Lm Checkbox_md__3Dc59 RewardProductItem_check__28u2o"
-                              ><input
-                                data-reward-id="411146"
-                                id="checkbox-reward-product-411146"
-                                type="checkbox"
-                                class="Checkbox_input__YDTIS" /><span
-                                class="Checkbox_icon__2obcO"
-                                aria-hidden="true"
-                                ><svg
-                                  viewBox="0 0 16 2"
-                                  focusable="false"
-                                  role="presentation"
-                                  class="withIcon_icon__2cPeY Checkbox_removeIcon__35rE-"
-                                  aria-hidden="true">
-                                  <path
-                                    fill-rule="evenodd"
-                                    d="M0 0h16v2H0z"></path></svg
-                                ><svg
-                                  viewBox="0 0 48 48"
-                                  focusable="false"
-                                  role="presentation"
-                                  class="withIcon_icon__2cPeY Checkbox_checkIcon__2wLzE"
-                                  aria-hidden="true">
-                                  <path
-                                    d="M18 39.6L4.8 26.4l3.36-3.36L18 32.76l21.84-21.72 3.36 3.36z"></path></svg></span
-                              ><span
-                                class="Checkbox_content__HOXzE"></span></label
-                            ><span>[[${#numbers.formatInteger(product.fpprice, 3, 'COMMA')}]]</span>&nbsp;원
-                          </div>
-                          <div class="RewardProductItem_content__Pw7qB">
-                            <div class="RewardProductItem_title__en2gj">
-                              [[${product.fptitle}]]
-                              <div class="RewardProductItem_remain__XDQPL">
-                                <span class="RewardProductItem_limit__5TztV"
-                                  >제한수량 2800개</span
-                                ><span class="RewardProductItem_stock__5qZys"
-                                  >790개 남음</span
-                                >
-                              </div>
-                            </div>
-                            <div class="RewardProductItem_description__1Eenu">
-                              [[${product.fpcontent}]]
-                            </div>
-                          </div>
-                          </label
-                        >
-                        <div class="RewardProductItem_option__3BtOP" style="display: none">
-                          <div class="SelectMenu_container__vXzGW">
-                            <button
-                              type="button"
-                              class="SelectMenu_title__2__qX"
-                              aria-label="확장 버튼"
-                              aria-expanded="false">
-                              <span class="SelectMenu_placeholder__3X3SL"
-                                >옵션 선택</span
-                              ><svg
-                                viewBox="0 0 32 32"
-                                focusable="false"
-                                role="presentation"
-                                class="withIcon_icon__2cPeY"
-                                aria-hidden="true">
-                                <path
-                                  d="M16 22.4L5.6 12l1.12-1.12L16 20.16l9.28-9.28L26.4 12 16 22.4z"></path>
-                              </svg>
-                            </button>
-                            <div class="SelectMenu_content__2rDch" style="display: none">
-                              <div class="SelectMenu_children__WyY4w">
-                                <ul>
-                                  <li class="RewardProductOption_list__3yoqJ">
-                                    <div class="RewardProductOptionItem_container__1yGSJ">
-                                      <span class="RewardProductOptionItem_title__ZuGtV">토마토레드 4</span>
-                                    </div>
-                                  </li>
-                                  <li class="RewardProductOption_list__3yoqJ">
-                                    <div class="RewardProductOptionItem_container__1yGSJ">
-                                      <span class="RewardProductOptionItem_title__ZuGtV">올리브그린 4</span>
-                                    </div>
-                                  </li>
-                                  <li class="RewardProductOption_list__3yoqJ">
-                                    <div class="RewardProductOptionItem_container__1yGSJ">
-                                      <span class="RewardProductOptionItem_title__ZuGtV">토마토레드 3 + 올리브그린 1</span>
-                                    </div>
-                                  </li>
-                                  <li class="RewardProductOption_list__3yoqJ">
-                                    <div class="RewardProductOptionItem_container__1yGSJ">
-                                      <span class="RewardProductOptionItem_title__ZuGtV">토마토레드 2 + 올리브그린 2</span>
-                                    </div>
-                                  </li>
-                                  <li class="RewardProductOption_list__3yoqJ">
-                                    <div class="RewardProductOptionItem_container__1yGSJ">
-                                      <span class="RewardProductOptionItem_title__ZuGtV">토마토레드 1 + 올리브그린 3</span>
-                                    </div>
-                                  </li>
-                                </ul>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <ul>
-
-                        </ul>
-                        <hr
-                          class="Divider_divider__2FemR Divider_horizontal__3HbEu Divider_lightBG__HS5Rl Divider_spacing1__Jn7xQ Divider_caption2__1wUp- RewardProductItem_divider__1MITY" />
-                        <input
-                          type="hidden"
-                          id="amountRw411146"
-                          value="42000" /><input
-                          type="hidden"
-                          id="remainCnt411146"
-                          value="790" /><input
-                          type="hidden"
-                          id="limitCnt411146"
-                          value="2800" /><input
-                          type="hidden"
-                          id="qty411146"
-                          value="1" /><input
-                          type="hidden"
-                          id="optionType411146"
-                          value="SELECT" /><input
-                          type="hidden"
-                          id="limitQtyUnitType411146"
-                          value="OPTION" /><input
-                          type="hidden"
-                          id="isOption411146"
-                          value="true" /><input
-                          type="hidden"
-                          id="cardLength411146"
-                          value="1" /><input
-                          type="hidden"
-                          id="rewardOptions411146"
-                          value='[{"rewardOptionId":127464,"optionValue":"다크그레이-다크그레이","quantity":1}]' /><input
-                          type="hidden"
-                          id="optionMemos411146"
-                          value='["다크그레이-다크그레이 (1개)"]' />
-                      </section>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </form>
-            <div class="btn-wrap">
-              <button class="wz button primary" onclick="purchaseNextStep();">
-                다음 단계로 <i class="icon chevron-right"></i>
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div id="authMailLypop" class="lypop-fixed" style="display: none">
-        <div class="popup-mint-basic">
-          <a href="/web/campaign/detail/158604" class="btn-close">
-            <em></em>
-          </a>
-          <div class="popup-mint-text">
-            <strong class="tit-popup"
-              >프로젝트에 참여하기 위한<br />
-              기본 회원 정보를 확인해 주세요.</strong
-            >
-            <div style="padding: 20px">- 이메일 인증 : 미인증</div>
-          </div>
-          <div class="btn-wrap">
-            <a class="btn-pd-mint" href="/web/waccount/wAuth"
-              >기본 회원정보 변경</a
-            >
-          </div>
-        </div>
-      </div>
-
-      <div id="footer">
-        <div th:replace="/fragment/footer__15kue.html :: footer"></div>
-
-      </div>
 
     </div>
 
 
-    <style>
-      .ab-iam-root.v3 {
+    <form id="forwardForm" method="get">
+        <input type="hidden" id="returnURL" name="returnURL"/>
+    </form>
+    <input type="hidden" id="sessionLoginCheck" value="true"/>
+
+    <div id="newContainer">
+        <div id="wPurchaseWrap">
+            <div class="wpurchase-title">
+                <h2>
+                    개발비 1.5억ㅣ현대리바트 기술력 담아낸 3만원대 발 받침대
+                    Comfy<span class="name"
+                ><em
+                        style="
+                    background-image: url(https://cdn.wadiz.kr/wwwwadiz/green001/2023/0208/20230208171549898_158604.png/wadiz/resize/600/format/jpg/quality/80/optimize);
+                  "></em
+                >현대리바트</span
+                >
+                </h2>
+            </div>
+            <div class="wpurchase-wrap">
+                <div class="wpurchase-step">
+                    <ol>
+                        <li class="active">
+                            <em>리워드<br/>선택</em>
+                        </li>
+                        <li><em>결제 예약</em></li>
+                        <li><em>소문내기</em></li>
+                    </ol>
+                </div>
+                <form name="purchaseForm" id="purchaseForm" method="post">
+                    <input
+                            type="hidden"
+                            name="secureStateBagKey"
+                            value="NTZjMTkwNTItMTk0Mi00NDRjLTg2ZDUtNmE1MDBjZmYyMTYxTVdaa09UbGhOelF0TjJNME5pMDBNalJrTFRrNU56VXRZemt4WXpjM01UUm1PVFpq"/>
+                    <input type="hidden" name="campaignId" value="158604"/>
+                    <input type="hidden" name="fundingPrice" value="42000"/>
+
+                    <div class="wpurchase-reward">
+                        <div class="top-area">
+                            <h3><em>리워드 선택</em></h3>
+                        </div>
+                        <div
+                                id="reward-product-app"
+                                data-campaign-id="158604"
+                                data-selected-reward-id="411146">
+                            <ul class="RewardProductList_container__2hIAB">
+                                <li class="RewardProductList_list__2oOvi" th:each="product:${products}"
+                                    th:data-fpprice="${#numbers.formatInteger(product.fpprice, 3, 'COMMA')}"
+                                    th:data-pprice="${product.fpprice}">
+                                    <section class="RewardProductItem_container__1wZBW" th:id="fpid+${product.fpid}">
+                                        <label
+                                                class="RewardProductItem_label__2t2Wd"
+                                                th:for="${product.fpid}"
+                                        >
+                                            <div class="RewardProductItem_price__2oEJ1">
+                                                <label
+                                                        th:for="${product.fpid}"
+                                                        class="Checkbox_checkbox__2e0Lm Checkbox_md__3Dc59 RewardProductItem_check__28u2o"
+                                                ><input
+                                                        data-reward-id="411146"
+                                                        th:id="${product.fpid}"
+                                                        type="checkbox"
+                                                        class="Checkbox_input__YDTIS"/><span
+                                                        class="Checkbox_icon__2obcO"
+                                                        aria-hidden="true"
+                                                ><svg
+                                                        viewBox="0 0 16 2"
+                                                        focusable="false"
+                                                        role="presentation"
+                                                        class="withIcon_icon__2cPeY Checkbox_removeIcon__35rE-"
+                                                        aria-hidden="true">
+                                  <path
+                                          fill-rule="evenodd"
+                                          d="M0 0h16v2H0z"></path></svg
+                                                ><svg
+                                                        viewBox="0 0 48 48"
+                                                        focusable="false"
+                                                        role="presentation"
+                                                        class="withIcon_icon__2cPeY Checkbox_checkIcon__2wLzE"
+                                                        aria-hidden="true">
+                                  <path
+                                          d="M18 39.6L4.8 26.4l3.36-3.36L18 32.76l21.84-21.72 3.36 3.36z"></path></svg></span
+                                                ><span
+                                                        class="Checkbox_content__HOXzE"></span></label
+                                                ><span>[[${#numbers.formatInteger(product.fpprice, 3, 'COMMA')}]]</span>&nbsp;원
+                                            </div>
+                                            <div class="RewardProductItem_content__Pw7qB">
+                                                <div class="RewardProductItem_title__en2gj">
+                                                    [[${product.fptitle}]]
+                                                    <div class="RewardProductItem_remain__XDQPL">
+                                <span class="RewardProductItem_limit__5TztV"
+                                >제한수량 2800개</span
+                                ><span class="RewardProductItem_stock__5qZys"
+                                                    >790개 남음</span
+                                                    >
+                                                    </div>
+                                                </div>
+                                                <div class="RewardProductItem_description__1Eenu">
+                                                    [[${product.fpcontent}]]
+                                                </div>
+                                            </div>
+                                        </label
+                                        >
+                                        <div class="RewardProductItem_option__3BtOP" style="display: none">
+                                            <div class="SelectMenu_container__vXzGW">
+                                                <button
+                                                        type="button"
+                                                        class="SelectMenu_title__2__qX"
+                                                        aria-label="확장 버튼"
+                                                        aria-expanded="false">
+                              <span class="SelectMenu_placeholder__3X3SL"
+                              >옵션 선택</span
+                              >
+                                                    <svg
+                                                            viewBox="0 0 32 32"
+                                                            focusable="false"
+                                                            role="presentation"
+                                                            class="withIcon_icon__2cPeY"
+                                                            aria-hidden="true">
+                                                        <path
+                                                                d="M16 22.4L5.6 12l1.12-1.12L16 20.16l9.28-9.28L26.4 12 16 22.4z"></path>
+                                                    </svg>
+                                                </button>
+                                                <div class="SelectMenu_content__2rDch" style="display: none">
+                                                    <div class="SelectMenu_children__WyY4w">
+                                                        <ul>
+                                                            <li class="RewardProductOption_list__3yoqJ"
+                                                                th:each="option:${product.options}"
+                                                                th:data-poid="${option.poid}"
+                                                               >
+                                                                <div class="RewardProductOptionItem_container__1yGSJ" >
+                                                                    <span class="RewardProductOptionItem_title__ZuGtV">[[${product.fptitle}]] [[${option.pooption} ]]</span>
+                                                                </div>
+                                                            </li>
+
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <ul>
+
+                                        </ul>
+                                        <hr
+                                                class="Divider_divider__2FemR Divider_horizontal__3HbEu Divider_lightBG__HS5Rl Divider_spacing1__Jn7xQ Divider_caption2__1wUp- RewardProductItem_divider__1MITY"/>
+                                        <input
+                                                type="hidden"
+                                                id="amountRw411146"
+                                                value="42000"/><input
+                                            type="hidden"
+                                            id="remainCnt411146"
+                                            value="790"/><input
+                                            type="hidden"
+                                            id="limitCnt411146"
+                                            value="2800"/><input
+                                            type="hidden"
+                                            id="qty411146"
+                                            value="1"/><input
+                                            type="hidden"
+                                            id="optionType411146"
+                                            value="SELECT"/><input
+                                            type="hidden"
+                                            id="limitQtyUnitType411146"
+                                            value="OPTION"/><input
+                                            type="hidden"
+                                            id="isOption411146"
+                                            value="true"/><input
+                                            type="hidden"
+                                            id="cardLength411146"
+                                            value="1"/><input
+                                            type="hidden"
+                                            id="rewardOptions411146"
+                                            value='[{"rewardOptionId":127464,"optionValue":"다크그레이-다크그레이","quantity":1}]'/><input
+                                            type="hidden"
+                                            id="optionMemos411146"
+                                            value='["다크그레이-다크그레이 (1개)"]'/>
+                                    </section>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </form>
+                <div class="btn-wrap">
+                    <button class="wz button primary" onclick="">
+                        다음 단계로 <i class="icon chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="authMailLypop" class="lypop-fixed" style="display: none">
+        <div class="popup-mint-basic">
+            <a href="/web/campaign/detail/158604" class="btn-close">
+                <em></em>
+            </a>
+            <div class="popup-mint-text">
+                <strong class="tit-popup"
+                >프로젝트에 참여하기 위한<br/>
+                    기본 회원 정보를 확인해 주세요.</strong
+                >
+                <div style="padding: 20px">- 이메일 인증 : 미인증</div>
+            </div>
+            <div class="btn-wrap">
+                <a class="btn-pd-mint" href="/web/waccount/wAuth"
+                >기본 회원정보 변경</a
+                >
+            </div>
+        </div>
+    </div>
+
+    <div id="footer">
+        <div th:replace="/fragment/footer__15kue.html :: footer"></div>
+
+    </div>
+
+</div>
+
+<div class="ToastContainer_container__3oKp3" style="display: none"><div class="Toast_container__2HAXg Toast_show__3Bg04 Toast_warning__3vj31"><div class="Toast_content__4BPXL Toast_warning__3vj31">이미 같은 옵션을 선택했습니다<br>옵션 수량을 추가해 주세요</div></div></div>
+<style>
+    .ab-iam-root.v3 {
         z-index: 9999;
-      }
-    </style>
+    }
+</style>
 
-    <script>
+<script>
 
-      $(document).ready(function (){
+    $(document).ready(function () {
 
-        $('.RewardProductItem_label__2t2Wd').click(function (){
-          console.log("체크박스 클릭");
-          if($(this).find('.Checkbox_input__YDTIS').is(':checked')){
-            console.log("체크 확인");
-            $('.RewardProductItem_option__3BtOP').show();
-            $(this).siblings('ul').find('.RewardProductItem_item__3va6f').show();
-          }else{
-            $('.RewardProductItem_option__3BtOP').hide();
-            $(this).siblings('ul').find('.RewardProductItem_item__3va6f').hide();
-          }
-          $('.SelectMenu_title__2__qX').on('click', function (event) {
-            event.stopImmediatePropagation(); // 이벤트 버블링을 막기 위해 추가
-            console.log('리스트 클릭');
-            if ($(this).hasClass('SelectMenu_expand__3_pBj')) {
-              $(this).removeClass('SelectMenu_expand__3_pBj');
-              $(this).siblings('.SelectMenu_content__2rDch').hide();
+        const params = new URLSearchParams(window.location.search);
+        const fpid  = "fpid"+params.get('fpid');
+        $('.RewardProductItem_container__1wZBW').each(function() {
+            if ($(this).attr('id') === fpid) {
+                $(this).find('input[type="checkbox"]').prop('checked', true);
+                $(this).find('.RewardProductItem_option__3BtOP').show();
             } else {
-              $(this).addClass('SelectMenu_expand__3_pBj');
-              $(this).siblings('.SelectMenu_content__2rDch').show();
+                $(this).find('input[type="checkbox"]').prop('checked', false);
             }
-          });
-          $('.RewardProductOption_list__3yoqJ').click(function (event){
-            event.stopImmediatePropagation();
-            $(this).closest('.SelectMenu_content__2rDch').siblings('.SelectMenu_title__2__qX').find('.SelectMenu_placeholder__3X3SL').text($(this).find('.RewardProductOptionItem_title__ZuGtV').text());
-            $(this).closest('.SelectMenu_content__2rDch').siblings('.SelectMenu_title__2__qX').removeClass('SelectMenu_expand__3_pBj');
-            $(this).closest('.SelectMenu_content__2rDch').hide();
+        });
 
-            var card = '<li class="RewardProductItem_item__3va6f"><section aria-label="[선착순 4P] 아쿠아웨이브 4개 상품 카드" class="RewardProductCard_container__3N2S2"><div><div class="RewardProductCard_title__32DP6"><div class="RewardProductCard_name__1Mz6S"><div><span>토마토레드 4</span></div></div><button type="button" class="RewardProductCard_cancel__3PE3x" aria-label="삭제 버튼"><svg viewBox="0 0 48 48" focusable="false" role="presentation" class="withIcon_icon__2cPeY" aria-hidden="true"><path d="M24 3.6C12.733 3.6 3.6 12.733 3.6 24S12.733 44.4 24 44.4 44.4 35.267 44.4 24 35.267 3.6 24 3.6zm9.252 27.948l-1.704 1.704L24 25.692l-7.548 7.56-1.704-1.704L22.308 24l-7.56-7.548 1.704-1.704L24 22.308l7.548-7.56 1.704 1.704L25.692 24l7.56 7.548z"></path></svg></button></div></div><div class="RewardProductCard_content__2wx8s"><div class="RewardProductCard_quantity__2CSmq"><div class="ProductQuantity_container__1_106"><button type="button" aria-label="감소 버튼" disabled="" class="ProductQuantity_minusButton__22tR8"></button><input type="text" aria-label="수량 입력" data-testid="quantity" value="1"><button type="button" aria-label="증가 버튼" class="ProductQuantity_plusButton__2TJ7g"></button></div><p class="RewardProductCard_price__3t1PE">68,400원</p></div></div></section></li>';
-            $(this).closest('.RewardProductItem_option__3BtOP').siblings('ul').append(card);
+        $('.RewardProductItem_label__2t2Wd').click(function () {
+            console.log("체크박스 클릭");
+            if ($(this).find('.Checkbox_input__YDTIS').is(':checked')) {
+                console.log("체크 확인");
+                $(this).siblings('.RewardProductItem_option__3BtOP').show();
+                $(this).siblings('ul').find('.RewardProductItem_item__3va6f').show();
+            } else {
+                $(this).siblings('.RewardProductItem_option__3BtOP').hide();
+                $(this).siblings('ul').find('.RewardProductItem_item__3va6f').hide();
+            }
+        });
+            $('.SelectMenu_title__2__qX').on('click', function (event) {
+                event.stopImmediatePropagation(); // 이벤트 버블링을 막기 위해 추가
+                console.log('리스트 클릭');
+                if ($(this).hasClass('SelectMenu_expand__3_pBj')) {
+                    $(this).removeClass('SelectMenu_expand__3_pBj');
+                    $(this).siblings('.SelectMenu_content__2rDch').hide();
+                } else {
+                    $(this).addClass('SelectMenu_expand__3_pBj');
+                    $(this).siblings('.SelectMenu_content__2rDch').show();
+                }
+            });
+            $('.RewardProductOption_list__3yoqJ').click(function (event) {
+                event.stopImmediatePropagation();
+                $(this).closest('.SelectMenu_content__2rDch').siblings('.SelectMenu_title__2__qX').find('.SelectMenu_placeholder__3X3SL').text($(this).find('.RewardProductOptionItem_title__ZuGtV').text());
+                $(this).closest('.SelectMenu_content__2rDch').siblings('.SelectMenu_title__2__qX').removeClass('SelectMenu_expand__3_pBj');
+                $(this).closest('.SelectMenu_content__2rDch').hide();
+                let option = $(this).find('.RewardProductOptionItem_title__ZuGtV').text();
+                let pprice=$(this).closest('.RewardProductList_list__2oOvi').data('pprice');
+                let fpprice = $(this).closest('.RewardProductList_list__2oOvi').data('fpprice');
+                 let poid = $(this).data('poid');
+                //console.log("poid"+$(this).closest('.RewardProductItem_option__3BtOP').siblings('ul').find('.RewardProductItem_item__3va6f').data('poid'));
+                let count=0;
+                $(this).closest('.RewardProductItem_option__3BtOP')
+                    .siblings('ul')
+                    .find('.RewardProductItem_item__3va6f')
+                    .each(function() {
+                        let pid = $(this).data('poid');
+                        console.log("pid"+pid);
+                        console.log("poid"+poid);
+                        if(pid==poid) {count++;}// 배열에 값 추가
+                    })
+                console.log(count);
 
-          })
 
+                if(count==0) {
+                    var card = `<li class="RewardProductItem_item__3va6f" data-poid="${poid}">
+                              <section
+                                aria-label="[선착순 4P] 아쿠아웨이브 4개 상품 카드"
+                                class="RewardProductCard_container__3N2S2"
+                              >
+                                <div>
+                                  <div class="RewardProductCard_title__32DP6">
+                                    <div class="RewardProductCard_name__1Mz6S">
+                                      <div><span>${option}</span></div>
+                                    </div>
+                                    <button
+                                      type="button"
+                                      class="RewardProductCard_cancel__3PE3x"
+                                      aria-label="삭제 버튼"
+                                    >
+                                      <svg
+                                        viewBox="0 0 48 48"
+                                        focusable="false"
+                                        role="presentation"
+                                        class="withIcon_icon__2cPeY"
+                                        aria-hidden="true"
+                                      >
+                                        <path
+                                          d="M24 3.6C12.733 3.6 3.6 12.733 3.6 24S12.733 44.4 24 44.4 44.4 35.267 44.4 24 35.267 3.6 24 3.6zm9.252 27.948l-1.704 1.704L24 25.692l-7.548 7.56-1.704-1.704L22.308 24l-7.56-7.548 1.704-1.704L24 22.308l7.548-7.56 1.704 1.704L25.692 24l7.56 7.548z"
+                                        ></path>
+                                      </svg>
+                                    </button>
+                                  </div>
+                                </div>
+                                <div class="RewardProductCard_content__2wx8s">
+                                  <div class="RewardProductCard_quantity__2CSmq">
+                                    <div class="ProductQuantity_container__1_106" id="poid${poid}">
+                                      <button
+                                        type="button"
+                                        aria-label="감소 버튼"
+                                        disabled=""
+                                        class="ProductQuantity_minusButton__22tR8"
+                                      ></button
+                                      ><input
+                                        type="text"
+                                        class="amount"
+                                        id="amount${poid}"
+                                        data-price="${pprice}"
+                                        aria-label="수량 입력"
+                                        data-testid="quantity"
+                                        value="1"
+                                        maxlength ="2"
+                                      /><button
+                                        type="button"
+                                        aria-label="증가 버튼"
+                                        class="ProductQuantity_plusButton__2TJ7g"
+                                      ></button>
+                                    </div>
+                                    <p class="RewardProductCard_price__3t1PE">${fpprice}원</p>
+                                  </div>
+                                </div>
+                              </section>
+                            </li>
+`;
+                    $(this).closest('.RewardProductItem_option__3BtOP').siblings('ul').append(card);
+
+                }else {
+                    let str = "#poid" + poid;
+                    let str1 = "#amount" + poid;
+                    $('.ToastContainer_container__3oKp3').show();
+                    $(this).closest('.RewardProductItem_option__3BtOP').siblings('ul').find(str).css('border', '1px solid #f25555');
+                    $(this).closest('.RewardProductItem_option__3BtOP').siblings('ul').find(str1).css({ 'borderRight': '1px solid #f25555', 'borderLeft': '1px solid #f25555', 'color': '#f25555' });
+
+                    setTimeout(function(){
+                        $('.ToastContainer_container__3oKp3').hide();
+                        $('.ProductQuantity_container__1_106').css('border', '1px solid #cdd3d8');
+                        $('.amount').css({ 'borderRight': '1px solid #cdd3d8', 'borderLeft': '1px solid #cdd3d8', 'color': '#212529' });
+                    }, 3000);
+                }
+            })
+
+
+
+
+    })
+
+</script>
+<script>
+    $(document).ready(function () {
+        $(document).on('click', '.RewardProductCard_cancel__3PE3x', function () {
+            console.log('삭제');
+            $(this).closest('.RewardProductItem_item__3va6f').remove();
+        });
+        $(document).on('click', '.ProductQuantity_plusButton__2TJ7g', function () {
+            console.log('증가');
+            console.log($(this).prev().val());
+            let plus = $(this).prev().val();
+            plus++;
+            if (plus <= 1) {
+                $(this).siblings('.ProductQuantity_minusButton__22tR8').prop("disabled", true);
+            } else {
+                $(this).siblings('.ProductQuantity_minusButton__22tR8').prop("disabled", false);
+            }
+            if (plus > 99) {
+                plus = 99;
+                alert('최대 99개까지만 구매할 수 있습니다.');
+            }
+            ;
+            $(this).prev().val(plus);
+            let price = $(this).prev().data('price') * $(this).prev().val();
+            $(this).closest('.ProductQuantity_container__1_106').siblings('.RewardProductCard_price__3t1PE').text(price.toLocaleString() + '원');
+        });
+
+        $(document).on('click', '.ProductQuantity_minusButton__22tR8', function () {
+            console.log('감소');
+            console.log($(this).next().val());
+            let minus = $(this).next().val();
+            minus--;
+            if (minus <= 1) {
+                $(this).prop("disabled", true);
+            } else {
+                $(this).prop("disabled", false);
+            }
+
+            // if (minus < 1) {
+            //   minus = 1;
+            //   alert('1개 이상 구매해야 합니다.');
+            // };
+            $(this).next().val(minus);
+            let price = $(this).next().data('price') * $(this).next().val();
+            $(this).closest('.ProductQuantity_container__1_106').siblings('.RewardProductCard_price__3t1PE').text(price.toLocaleString() + '원');
+        });
+
+        $(document).on('propertychange input', '.amount', function () {
+            if($(this).val()>=100){
+                alert('100개 이상 X');
+                $(this).val(99);
+            }
+            console.log('변경');
+            let price = $(this).data('price') * $(this).val();
+            console.log(price);
+            $(this).closest('.ProductQuantity_container__1_106').siblings('.RewardProductCard_price__3t1PE').text(price.toLocaleString() + '원');
+        });
+        $(".RewardProductItem_item__3va6f input").each(function() {
+            var value = $(this).val();
+            console.log(value);
         });
 
 
 
 
-      })
 
-    </script>
-  <script>
-    // $(document).ready(function (){
-    //   $('.RewardProductCard_cancel__3PE3x').on('click',function (){
-    //     console.log('삭제');
-    //     //$(this).closest('.RewardProductItem_item__3va6f').remove();
-    //   })
-    // })
-    $(document).ready(function (){
-      $(document).on('click', '.RewardProductCard_cancel__3PE3x', function (){
-        console.log('삭제');
-        $(this).closest('.RewardProductItem_item__3va6f').remove();
-      });
+
+
     });
-  </script>
+</script>
+<script>
+    $(document).ready(function (){
+        $('.wz.button.primary').click(function (){
 
-  </body>
+            $(".RewardProductItem_item__3va6f").each(function(index,data) {
+
+                let poid = $(this).data('poid');
+                console.log(poid);
+                let amount = $(this).find('.amount').val();
+                console.log(amount);
+
+                let input=`<input type="hidden" name="item[${index}].poid" value="${poid}">
+                           <input type="hidden" name="item[${index}].amount" value="${amount}">`;
+                $('#order-step1').append(input);
+            });
+            $('#order-step1').submit();
+        })
+    })
+</script>
+
+<form method="post" th:action="@{/web/order/{fid}/step1(fid=${fid})}" id="order-step1">
+</form>
+</body>
 </html>

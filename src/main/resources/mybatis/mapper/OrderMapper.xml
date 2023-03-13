@@ -55,7 +55,8 @@
 <!--    </select>-->
 
     <select id="getProductList" resultMap="common.productDetailMap">
-        select fptitle,
+        select fp.fpid,
+               fptitle,
                fp.fporigin_price,
                fpprice,
                fpcontent,
@@ -67,5 +68,19 @@
         order by fp.fpid
     </select>
 
+    <select id="getOrderList" resultType="orderList">
+        select fpid,
+               fid,
+               fpprice,
+               fptitle,
+               fp.fpcontent,
+               poid,pooption
+        from funding_product fp
+        join product_option po on fp.fpid=po.fpid
+        where poid in
+        <foreach collection="item" item="step" index="index" separator="," open="(" close=")">
+            #{step.poid}
+        </foreach>
+    </select>
 
 </mapper>

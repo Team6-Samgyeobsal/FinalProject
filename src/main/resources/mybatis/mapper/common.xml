@@ -45,6 +45,7 @@
     </resultMap>
 
     <resultMap id="productDetailMap" type="productDetail">
+        <result property="fpid" column="fpid" />
         <result property="fptitle" column="fptitle" />
         <result property="fporigin_price" column="fporigin_price" />
         <result property="fpprice" column="fpprice" />

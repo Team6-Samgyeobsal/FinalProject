@@ -1,5 +1,6 @@
 package com.samgyeobsal.controller;
 
+import com.samgyeobsal.domain.order.OrderStep1DTO;
 import com.samgyeobsal.service.OrderService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -37,21 +38,25 @@ public class OrderController {
     @GetMapping("/{fid}/step1")
     public String orderStep1Page(@PathVariable("fid") String fid,Model model){
         model.addAttribute("products",orderService.getProductList(fid));
+        model.addAttribute("fid",fid);
         return "order/order_step1";
     }
 
     // step2 페이지로 리다이렉트 하게끔
-    @PostMapping("/{fundingId}/step1")
-    public String orderStep1(
-            @PathVariable("fundingId") String fundingId,
-            RedirectAttributes redirect){
-
-//        redirect.addFlashAttribute();
-        return "redirect:/web/order/step2";
+    @PostMapping("/{fid}/step1")
+    public String orderStep1(@PathVariable("fid") String fid,
+                             RedirectAttributes redirect,
+                             @ModelAttribute OrderStep1DTO orderStep1DTO){
+        redirect.addFlashAttribute("order",orderStep1DTO);
+        return "redirect:/web/order/"+fid+"/step2";
     }
 
     @GetMapping("/{fundingId}/step2")
-    public String orderStep2Page(){
+    public String orderStep2Page(Model model, @ModelAttribute("order") OrderStep1DTO orderStep1DTO){
+
+        model.addAttribute("order",orderService.getOrderList(orderStep1DTO));
+        System.out.println("orderService.getOrderList(orderStep1DTO)"+orderService.getOrderList(orderStep1DTO));
+
         return "order/order_step2";
     }
 

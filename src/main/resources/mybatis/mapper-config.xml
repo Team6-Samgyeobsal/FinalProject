@@ -18,6 +18,7 @@
         <typeAlias type="com.samgyeobsal.domain.store.StoreVO" alias="store"/>
         <typeAlias type="com.samgyeobsal.domain.order.ProductOptionVO" alias="productOption"/>
         <typeAlias type="com.samgyeobsal.domain.order.ProductDetailVO" alias="productDetail"/>
+        <typeAlias type="com.samgyeobsal.domain.order.OrderListVO" alias="orderList"/>
     </typeAliases>
 
 </configuration>

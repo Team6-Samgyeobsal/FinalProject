@@ -1,6 +1,8 @@
 package com.samgyeobsal.mapper;
 
+import com.samgyeobsal.domain.order.OrderListVO;
 import com.samgyeobsal.domain.order.OrderRequest;
+import com.samgyeobsal.domain.order.OrderStep1DTO;
 import com.samgyeobsal.domain.order.ProductDetailVO;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -23,4 +25,6 @@ import java.util.List;
 public interface OrderMapper {
     int save(OrderRequest orderRequest);
     List<ProductDetailVO> getProductList(@Param("fid") String fid);
+
+    List<OrderListVO> getOrderList(OrderStep1DTO orderStep1DTO);
 }

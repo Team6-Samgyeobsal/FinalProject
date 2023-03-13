@@ -1,9 +1,9 @@
 package com.samgyeobsal.service;
 
+import com.samgyeobsal.domain.order.OrderListVO;
 import com.samgyeobsal.domain.order.OrderRequest;
+import com.samgyeobsal.domain.order.OrderStep1DTO;
 import com.samgyeobsal.domain.order.ProductDetailVO;
-import org.apache.ibatis.annotations.Param;
-
 import java.util.List;
 
 /**
@@ -22,4 +22,6 @@ public interface OrderService {
     public int saveOrder(OrderRequest orderRequest);
 
     List<ProductDetailVO> getProductList(String fid);
+
+    List<OrderListVO> getOrderList(OrderStep1DTO orderStep1DTO);
 }

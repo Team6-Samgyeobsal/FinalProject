@@ -1,11 +1,15 @@
 package com.samgyeobsal.mapper;
 
+import com.samgyeobsal.domain.order.OrderItemVO;
+import com.samgyeobsal.domain.order.OrderListVO;
+import com.samgyeobsal.domain.order.OrderStep1DTO;
 import com.samgyeobsal.domain.order.ProductDetailVO;
 import lombok.extern.log4j.Log4j2;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @SpringBootTest
@@ -20,4 +24,13 @@ public class OrderMapperTest {
         List<ProductDetailVO> productDetailVO=orderMapper.getProductList("1");
         productDetailVO.forEach(productDetail -> log.info(productDetail));
     }
+
+//    @Test
+//    public void getOrderListTest(){
+//        OrderStep1DTO orderStep1DTO= new OrderStep1DTO();
+//        List<OrderItemVO> step = new ArrayList<>();
+//        OrderItemVO item1= newO
+//        step.setPo()
+//        List<OrderListVO> orderList=orderMapper.getOrderList();
+//    }
 }
