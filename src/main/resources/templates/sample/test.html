@@ -7,11 +7,14 @@
     <script src="https://js.tosspayments.com/v1/payment"></script>
 </head>
 <script>
+    // 클라이언트 키 설정
     const clientKey = 'test_ck_GKNbdOvk5rkA775xZjE3n07xlzmj'
+    // TossPayments 객체 생성
     const tossPayments = TossPayments(clientKey)
 </script>
 <body>
 <div>
+    <!-- 버튼 클릭 시 paymentToss 함수 실행 -->
     <button onClick="paymentToss();">
         토스 가상계좌
     </button>
@@ -19,23 +22,29 @@
 <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 <script>
     const paymentToss = () => {
-
+        // UUIDd 생성 API 호출
         $.ajax({
             url: "/web/util/uuid",
             async: true,
             success: ( result ) => {
                 console.log(result);
                 let products = result['products'];
-                let orderName = products[0];
+                let members = result['members'];
+                console.log(products);
+                let amount = products[0]['fpprice'];
+                let orderName = products[0]['fptitle'];
                 if(products.length > 1){
                     orderName += "외 "+ (products.length-1)+"건";
                 }
+                let customerName = members[0]['mname'];
+
+                // Tosspayments API 호출
                 tossPayments.requestPayment('가상계좌', { // 결제 수단 파라미터
                     // 결제 정보 파라미터
-                    amount: 15000, //가격
+                    amount: amount, //가격
                     orderId: result.uuid, //uuid인데 ajax 불러 오는것도 orderName넣으려고 만듬(js에서 만드는거 보다는 백에서 만드는게 편함)
                     orderName: orderName, //상품명
-                    customerName: '박토스', // user 이름
+                    customerName: customerName, // user 이름
                     successUrl: 'http://localhost:80/sample/testSuccess', //성공 url 성공 url에서는 승인 api 한번 호출하고 마이페이지로 넘어가도록 해야함
                     failUrl: 'http://localhost:80/fail',
                     validHours: 24,
@@ -45,8 +54,6 @@
                 })
             }
         });
-
-
     }
 </script>
 </body>

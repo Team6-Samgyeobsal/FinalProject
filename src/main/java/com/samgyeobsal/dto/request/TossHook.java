@@ -10,4 +10,5 @@ public class TossHook {
     private String status;
     private String transactionKey;
     private String orderId;
+    private String customerMobilePhone;
 }

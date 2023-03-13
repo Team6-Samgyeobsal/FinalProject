@@ -26,6 +26,14 @@ import com.google.zxing.qrcode.QRCodeWriter;
  */
 public class QRCodeGenerator {
 
+    /**
+     * 주어진 링크를 인코딩하여 QR 코드 이미지를 생성하고,
+     * 그 이미지를 byte 배열 형태로 반환하는 메서드
+     * @param link
+     * @return QR 코드 이미지를 바이트 배열 형태로 변환
+     * @throws WriterException
+     * @throws IOException
+     */
     public static byte[] generateQRCodeImage(String link) throws WriterException, IOException {
 
         // QR코드 생성 옵션 설정
@@ -40,7 +48,7 @@ public class QRCodeGenerator {
         // QR 코드 이미지 생성
         BufferedImage qrCodeImage = MatrixToImageWriter.toBufferedImage(bitMatrix);
 
-        // QR 코드 이미지를 바이트 배열로 변환
+        // QR 코드 이미지를 바이트 배열로 변환, byteArrayOutputStream에 저장
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         ImageIO.write(qrCodeImage,"png", byteArrayOutputStream);
         byteArrayOutputStream.flush();

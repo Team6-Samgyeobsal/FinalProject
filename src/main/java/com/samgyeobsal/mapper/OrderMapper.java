@@ -25,8 +25,8 @@ import java.util.List;
 public interface OrderMapper {
     int save(OrderRequest orderRequest);
 
-    @Insert("INSERT INTO ORDERS(OID, OCONSUMER, OPHONE, OMEMO, OUSED_MILEAGE, OORIGIN_PRICE, OPRICE, OSTATUS, ODATE, MEMAIL, PMCODE, QRUSED_DATE, CPID)" +
-            " VALUES(#{osId}, #{osConsumer}, #{osPhone}, #{osMemo}, #{msMileage}, #{osOriginPrice}, #{osAfterPrice}, #{osState}, " +
+    @Insert("INSERT INTO ORDERS(OID,  OPHONE, OMEMO, OUSED_MILEAGE, OORIGIN_PRICE, OPRICE, OSTATUS, ODATE, MEMAIL, PMCODE, QRUSED_DATE, CPID)" +
+            " VALUES(#{osId}, #{osPhone}, #{osMemo}, #{msMileage}, #{osOriginPrice}, #{osAfterPrice}, #{osState}, " +
             " #{osDate} ,#{osMail} ,#{pmMethod}, #{osDate}, '')")
     public int saveToss(TossOrder tossOrder);
 

@@ -1,23 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+<head> <!-- 문서의 인코딩 방식과 제목 설정 -->
     <meta charset="UTF-8">
     <title>testSuccess</title>
 </head>
-<body>
+<body> <!-- 페이지에 보여주는 내용 작성, javascript를 이용하여 결제 승인 과정과 서버로의 데이터 전송 수행 -->
     <div>
         성공하면 인증 결제 승인 이후에 정보를 저장하고 마이페이지로 이동.
     </div>
     <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
     <script>
+        // URL Querystring으로 전달된 파라미터를 가져옴
         const params = new URLSearchParams(window.location.search);
 
+        // DOMContentLoaded 이벤트가 발생할 때 실행되는 함수
         document.addEventListener("DOMContentLoaded", function(){
             console.log({
+                // params.get() : 해당 매개 변수의 값을 가져옴
                 paymentKey: params.get('paymentKey'),
                     orderId: params.get('orderId'),
                     amount: params.get('amount')
             });
+
+            // 결제 승인을 위한 API 요청 보냄
             $.ajax({
                 url: 'https://api.tosspayments.com/v1/payments/confirm',
                 type:'post',
@@ -34,52 +39,37 @@
                 success: ( result ) => {
 
                     console.log(result);
+                    let phone = result['mobilePhone'];
+                    let totalAmount = result['totalAmount']
 
 
+                    // 요청할 주문 정보 객체 생성
                     const req = {
                         osId: result.orderId.toString(),
                         osCount: 1,
-                        osConsumer: "소규석",
-                        osPhone: "01095592602",
+                        osPhone: "12345667",
                         osMemo: "가상계좌",
                         osMail: "user@gmail.com",
                         csPid: null,
                         osState: 'WAITING',
-                        osOriginPrice: 20000,
+                        osOriginPrice: totalAmount,
                         osAfterPrice: result.balanceAmount,
                         msMileage: 0,
                         pmMethod: 1,
                         pmCompany: "Toss",
                         msId: "isshosng",
                         osDate: result.requestedAt
-                        /*
-                        oId : result.orderId,
-                        oCount : 1,
-                        oConsumer : "최태승",
-                        oPhone : "01012345678",
-                        oMemo: "가상계좌",
-                        oMail : "id@email.com",
-                        cPid : "가입축하쿠폰",
-                        oState: "입금대기",
-                        oOriginPrice : 100000,
-                        oAfterPrice : result.balanceAmount.toString(),
-                        mMileage : 5000,
-                        pmMethod : 3,
-                        pmCompany : "TOSS",
-                        mId : "isshosng",
-                        oDate: result.requestedAt.toString()
-
-                         */
                     };
 
                     console.log(req);
 
+                    // 주문 정보를 저장하기 위한 API 요청을 보냄
                     $.ajax({
-                        url: '/test/order/toss',
-                        type:'post',
-                        contentType: "application/json; charset=UTF-8",
-                        dataType: "json",
-                        data: JSON.stringify(req),
+                        url: '/test/order/toss', // 요청을 보낼 서버의 URL
+                        type:'post', // HTTP 요청의 메서드 지정
+                        contentType: "application/json; charset=UTF-8", // 전송하는 데이터 타입 - json
+                        dataType: "json", // 서버로부터 받아올 데이터 타입 - json
+                        data: JSON.stringify(req),// 서버로 전송할 데이터 설정
                         success: (res) => {
                             console.log(res);
                         }

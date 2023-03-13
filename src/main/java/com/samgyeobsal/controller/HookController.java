@@ -29,10 +29,12 @@ public class HookController {
     @PostMapping("/order")
     public String orderMessage(@RequestBody TossHook tossHook) {
 
+        System.out.println("tosshook : " + tossHook);
+
         if(tossHook.getStatus().equals("DONE")) {
             tossHook.setStatus("주문완료");
         } else {
-            tossHook.setStatus("주문실페");
+            tossHook.setStatus("주문실패");
         }
         orderService.updateOrder(tossHook.getStatus(), tossHook.getOrderId());
 

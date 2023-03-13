@@ -27,7 +27,7 @@ public class TossApi {
 
  @PostMapping("/toss")
     public String tossTest(@RequestBody TossOrder tossOrder) {
-     System.out.println(tossOrder);
+     System.out.println("tossOrder : " + tossOrder);
      orderService.saveToss(tossOrder);
      return "성공";
  }

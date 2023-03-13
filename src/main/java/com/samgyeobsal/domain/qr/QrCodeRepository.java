@@ -3,7 +3,6 @@ package com.samgyeobsal.domain.qr;
 import com.google.zxing.WriterException;
 import com.samgyeobsal.controller.QRCodeGenerator;
 import com.samgyeobsal.mapper.QrCodeMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.io.IOException;
@@ -23,7 +22,7 @@ import java.io.IOException;
 @Repository
 public class QrCodeRepository {
 
-    private final QrCodeMapper qrCodeMapper;
+    private final QrCodeMapper qrCodeMapper; // 데이터베이스와 상호작용을 위해 생성자에서 해당 객체를 받아와 필드에 할당함
 
 
     public QrCodeRepository(QrCodeMapper qrCodeMapper) {

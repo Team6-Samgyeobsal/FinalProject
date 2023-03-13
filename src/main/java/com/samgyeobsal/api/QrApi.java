@@ -30,8 +30,14 @@ import java.io.IOException;
 @RequiredArgsConstructor
 @RequestMapping("/qr")
 public class QrApi {
-
     private final QrCodeService qrCodeService;
+
+    /**
+     *
+     * @param link
+     * @return
+     * @throws WriterException
+     */
 
     @PostMapping("/qrcode")
     public ResponseEntity<byte[]> generateQrCode(@RequestBody String link) throws WriterException {
