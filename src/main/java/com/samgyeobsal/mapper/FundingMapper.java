@@ -15,4 +15,8 @@ public interface FundingMapper {
     FundingDetailVO getFundingDetail(@Param("fid") String fid);
 
     List<ReviewVO> getReviewList(@Param("criteria") ReviewCriteria criteria);
+
+    List<ProductVO> findProductListByFundingId(String fundingId);
+
+    ProductVO findProductByFundingIdAndProductId(String fundingId, String productId);
 }

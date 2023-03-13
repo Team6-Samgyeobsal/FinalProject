@@ -63,8 +63,9 @@
         <div class="AppLayout_main__14bCi">
           <div th:replace="/fragment/funding_sidebar.html :: sidebar(${fundingStory.getFid()})"></div>
           <div id="AppLayout_Contents" class="AppLayout_contents__wv3DF">
-            <form th:object="${fundingStory}" method="POST" th:action>
+            <form th:object="${fundingStory}" method="POST" th:action th:id="submitForm">
 
+              <input type="hidden" th:field="*{fid}">
             <div id="container" class="ContentsLayout_container__11k-W">
               <div class="FundingStoryContainer_container__33WY0">
                 <ol class="Breadcrumb_container__3YjD4">
@@ -203,9 +204,15 @@
                           <!-- 사진 end -->
                           <!-- 등록된 이미지 인풋 -->
                           <div id="imgInputArea">
-                          <input type="hidden" th:each=" fImg : ${fundingStory.getImgs()}"
-                                 th:name="'fundingStory.imgs['+${fImgStat.index}+'].fiurl'"
-                                 th:value="${fImg.fiurl}">
+                            <div  th:each=" fImg : ${fundingStory.getImgs()}" th:data-url="${fImg.getFiurl()}">
+                              <input type="hidden"
+                                     th:field="*{imgs[__${fImgStat.index}__].fiurl}">
+                              <input type="hidden"
+                                     th:field="*{imgs[__${fImgStat.index}__].fid}">
+                              <input type="hidden"
+                                     th:field="*{imgs[__${fImgStat.index}__].fiid}">
+                            </div>
+
                           </div>
                           <!-- 등록된 이미지 인풋  end -->
                         </div>
@@ -226,7 +233,6 @@
                         쉽고 간결하게 소개해 주세요.
                       </div>
                       <div class="Section_content__3OkLZ">
-                        <div class="StorySummaryField_container__25ePA">
                           <div
                             class="field Form_field__35I9T FormFieldTextarea_field__33Ncu">
                             <div class="wide column-2"></div>
@@ -245,13 +251,11 @@
                             </div>
                           </div>
                         </div>
-                      </div>
-                    </div>
+                  </div>
                   </section>
-
-                  <section
-                          class="Section_container__3md8M StoryEditorWrapperItemWeb_container__3bMs8"
+                  <section class="Section_container__3md8M StoryEditorWrapperItemWeb_container__3bMs8"
                           style="max-width: 720px">
+                    <input type="hidden" th:field="*{fstory}">
                     <div class="Section_header__1qwS7 spacing-4">
                       <h2
                               class="Section_title__ikPIm Section_isRequired__F8rij">
@@ -302,16 +306,23 @@
 
     <div class="ReactModalPortal"></div>
     <div class="ReactModalPortal"></div>
-  <script>
+  <script th:inline="javascript">
+    /*<![CDATA[*/
+    let imgLen = /*[[${#lists.size(fundingStory.imgs)}]]*/
+    /*]]>*/
+    /*<![CDATA[*/
+    let fid = /*[[${fundingStory.fid}]]*/
+    /*]]>*/
     $(document).ready(function(){
-
       // 소개 사진 삭제 시 이벤트
       $(document).on('click','.delBtn',function(e){
         let imgUrl = $(this).data('url');
         console.log(imgUrl);
-        $('#imgInputArea input[value="' + imgUrl + '"]').remove();
+        $('#imgInputArea div[data-url="' + imgUrl + '"]').remove();
         $(this).closest('.imgWrap').remove();
       })
+
+      // 이미지 업로드 시
       $(document).on('change','#uploadImg',function (e){
         let formData = new FormData();
         let inputFile = $('#uploadImg');
@@ -320,15 +331,19 @@
           formData.append("uploadFiles", files[i]);
         }
         uploadImg(formData, function(result){
-          printImgAndCreateInput(result[0]['imageURL'])
+          printImgAndCreateInput(result[0], imgLen++);
         })
       })
-      $(document).on('click','.submitBtn',function(e){
+
+      // submit 이벤트
+      $(document).on('click', '.submitBtn', function (e) {
         e.preventDefault();
-        console.log('ttt');
-        console.log("html", $('.note-editable').html())
-        console.log("text", $('.note-editable').text())
-      })
+        console.log('tt')
+        // 서머노트 와 input 동기화
+        $('#fstory').val($('.note-editable').html());
+        $('#submitForm').submit();
+      });
+
 
       // 서머노트 설정
       $('#summernote').summernote({
@@ -336,6 +351,7 @@
         lang: 'ko-KR',
         placeholder: '스토리를 작성해주세요!',
         callbacks : {
+          // 서머노트 이미지 업로드
           onImageUpload : function(files){
             let data = new FormData();
             data.append('uploadFiles',files[0]);
@@ -346,6 +362,11 @@
           }
         }
       });
+
+      // 서머노트 초기값 설정
+      let storyHtml = $('#fstory').val();
+      $('#summernote').summernote('code', storyHtml);
+      console.log(storyHtml);
 
     })
     function uploadImg(data, callback){
@@ -361,15 +382,16 @@
         }
       })
     }
-    function printImgAndCreateInput(url){
+    function printImgAndCreateInput(result, index){
+      console.log(result);
       let template = `
       <div class="ImageFormField_imageWrapper__3Y_F5 imgWrap">
          <div class="ImageBox_container__gwruR">
             <div alt="logo" class="ImageBox_preview__10fos" style="width: 312px; height: 174px;">
                <i class="icon-image-o ImageBox_icon__1C0qm" aria-hidden="true"></i>
-                  <div class="ImageBox_image__3Nt8h" style="background-image: url('${url}');"></div>
+                  <div class="ImageBox_image__3Nt8h" style="background-image: url('${result['imageURL']}');"></div>
             </div>
-            <button type="button" class="wz button less icon mini ImageBox_button__c8WR7 delBtn" data-url="${url}">
+            <button type="button" class="wz button less icon mini ImageBox_button__c8WR7 delBtn" data-url="${result['imageURL']}">
             <i class="icon-close" aria-hidden="true"></i></button>
          </div>
       </div>
@@ -377,7 +399,11 @@
       $('.imgs').append(template);
 
       let template2 = `
-      <input type="hidden" value="${url}">
+          <div data-url="${result['imageURL']}">
+             <input type="hidden" id="imgs${index}.fiurl" name="imgs[${index}].fiurl" value="${result['imageURL']}">
+             <input type="hidden" id="imgs${index}.fid" name="imgs[${index}].fid" value="${fid}">
+             <input type="hidden" id="imgs${index}.fiid" name="imgs[${index}].fiid" value="${result['uuid']}">
+          </div>
       `;
       $('#imgInputArea').append(template2);
     }

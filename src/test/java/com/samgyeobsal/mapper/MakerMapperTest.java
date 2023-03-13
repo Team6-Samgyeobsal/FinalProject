@@ -3,6 +3,7 @@ package com.samgyeobsal.mapper;
 import com.samgyeobsal.domain.funding.FundingImgVO;
 import com.samgyeobsal.domain.maker.FundingBaseInfoDTO;
 import com.samgyeobsal.domain.maker.FundingMakerVO;
+import com.samgyeobsal.domain.maker.FundingStoryDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -10,7 +11,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @Slf4j
 @SpringBootTest
@@ -47,6 +50,49 @@ public class MakerMapperTest {
         String fundingId = "111";
         List<FundingImgVO> fundingImg = makerMapper.findFundingImgListByFundingId(fundingId);
         log.info("fundingImg = {}", fundingImg);
+    }
+
+    @Test
+    @Transactional
+    void updateFundingStory(){
+        FundingStoryDTO story = new FundingStoryDTO();
+        story.setFid("1");
+        story.setFtitle("testTitle");
+        story.setFsummary("testSummary");
+        story.setFstory("testStory");
+        makerMapper.updateFundingStory(story);
+
+        FundingMakerVO fundingMaker = makerMapper.findFundingMakerByFundingId("1");
+        Assertions.assertEquals(fundingMaker.getFtitle(), story.getFtitle());
+    }
+
+    @Test
+    @Transactional
+    void deleteFundingImgsByFundingId(){
+        String fid = "1";
+        makerMapper.deleteFundingImgsByFundingId(fid);
+        List<FundingImgVO> fundingImgs = makerMapper.findFundingImgListByFundingId(fid);
+        Assertions.assertEquals(fundingImgs.size(), 0);
+    }
+
+    @Test
+    @Transactional
+    void insertFundingImgs(){
+        String fid = "1";
+        FundingImgVO img1 = new FundingImgVO();
+        img1.setFid(fid);
+        img1.setFiid(UUID.randomUUID().toString());
+        img1.setFiurl("http://localhost/displayImg?imgName=123123123123");
+
+        FundingImgVO img2 = new FundingImgVO();
+        img2.setFid(fid);
+        img2.setFiid(UUID.randomUUID().toString());
+        img2.setFiurl("http://localhost/displayImg?imgName=123123123123");
+        List<FundingImgVO> list = new ArrayList<>();
+        list.add(img1);
+        list.add(img2);
+        int row = makerMapper.insertFundingImgs(list);
+        Assertions.assertEquals(row, list.size());
 
     }
 

@@ -102,7 +102,7 @@ COMMENT ON COLUMN funding.fstatus IS
 ALTER TABLE funding ADD CONSTRAINT funding_pk PRIMARY KEY ( fid );
 
 CREATE TABLE funding_img (
-                             fiid  VARCHAR2(30 BYTE) NOT NULL,
+                             fiid  VARCHAR2(50 BYTE) NOT NULL,
                              fiurl VARCHAR2(100 BYTE) NOT NULL,
                              fid   VARCHAR2(100 BYTE) NOT NULL
 );

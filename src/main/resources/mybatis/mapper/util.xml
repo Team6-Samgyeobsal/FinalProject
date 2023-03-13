@@ -30,11 +30,13 @@
 
     <resultMap id="productMap"
                type="product">
+        <result property="fpid" column="fpid" />
         <result property="fporigin_price" column="fporigin_price" />
         <result property="fpprice" column="fpprice" />
         <result property="fptitle" column="fptitle" />
         <result property="fpcontent" column="fpcontent" />
         <result property="pcchipimg" column="pcchipimg" />
+        <collection property="options" resultMap="prodOptionMap"/>
     </resultMap>
 
     <resultMap id="imgMap"
@@ -51,5 +53,11 @@
         <result property="fstory" column="fstory" />
         <collection property="imgs"
                     resultMap="imgMap" />
+    </resultMap>
+
+    <resultMap id="prodOptionMap" type="prodOption">
+        <result property="poid" column="poid" />
+        <result property="pooption" column="pooption" />
+        <result property="fpid" column="fpid" />
     </resultMap>
 </mapper>

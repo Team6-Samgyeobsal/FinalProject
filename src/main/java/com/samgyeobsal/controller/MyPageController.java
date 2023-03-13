@@ -20,6 +20,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/web/mypage")
@@ -84,6 +85,8 @@ public class MyPageController {
                                BindingResult bindingResult,
                                RedirectAttributes redirectAttributes) throws UnsupportedEncodingException {
         redirectAttributes.addAttribute("fundingId", fundingId);
+
+        // 에러 발생 시
         if(bindingResult.hasErrors()){
             String msg = bindingResult.getAllErrors().get(0).getDefaultMessage();
             return "redirect:/web/mypage/maker/funding/{fundingId}/baseInfo?error=" + URLEncoder.encode(msg, "UTF-8");
@@ -98,13 +101,30 @@ public class MyPageController {
     @GetMapping("/maker/funding/{fundingId}/story")
     public String fundingStory(@PathVariable("fundingId") String fundingId, Model model){
         FundingMakerVO fundingMaker = makerService.getFundingMakerByFundingId(fundingId);
+        log.info("fundingMaker = {}", fundingMaker);
         FundingStoryDTO fundingStory = new FundingStoryDTO(fundingMaker);
         fundingStory.setImgs(makerService.getFundingImgsByFundingId(fundingId));
 
-        log.info("fundingStroy = {}", fundingStory);
-
         model.addAttribute("fundingStory", fundingStory);
         return "mypage/funding_story";
+    }
+
+    @PostMapping("/maker/funding/{fundingId}/story")
+    public String fundingStoryPost(@PathVariable("fundingId") String fundingId,
+                                   @Validated @ModelAttribute("fundingStory") FundingStoryDTO fundingStoryDTO,
+                                   BindingResult bindingResult,
+                                   RedirectAttributes redirectAttributes) throws UnsupportedEncodingException {
+
+        redirectAttributes.addAttribute("fundingId", fundingId);
+        if(bindingResult.hasErrors()){
+            String msg = bindingResult.getAllErrors().get(0).getDefaultMessage();
+            return "redirect:/web/mypage/maker/funding/{fundingId}/story?error=" + URLEncoder.encode(msg, "UTF-8");
+        }
+
+        log.info("fundingStory post = {}", fundingStoryDTO);
+        makerService.updateFundingStory(fundingStoryDTO);
+
+        return "redirect:/web/mypage/maker/funding/{fundingId}";
     }
 
     @GetMapping("/maker/funding/{fundingId}/reward")

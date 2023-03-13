@@ -1,9 +1,6 @@
 package com.samgyeobsal.api;
 
-import com.samgyeobsal.domain.funding.FundingCriteria;
-import com.samgyeobsal.domain.funding.FundingVO;
-import com.samgyeobsal.domain.funding.ReviewCriteria;
-import com.samgyeobsal.domain.funding.ReviewVO;
+import com.samgyeobsal.domain.funding.*;
 import com.samgyeobsal.service.FundingService;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.xml.ws.Response;
 import java.util.List;
 
 @RestController
@@ -34,5 +32,22 @@ public class FundingApi {
 
         List<ReviewVO> review= fundingService.getReviewList(criteria);
         return new ResponseEntity<>(review, HttpStatus.OK);
+    }
+
+    @GetMapping("/{fundingId}/product")
+    public ResponseEntity<List<ProductVO>> getProductList(
+            @PathVariable("fundingId") String fundingId ){
+        List<ProductVO> products = fundingService.getProductListByFundingId(fundingId);
+        return new ResponseEntity<>(products, HttpStatus.OK);
+    }
+
+    @GetMapping("/{fundingId}/product/{productId}")
+    public ResponseEntity<ProductVO> getProduct(
+            @PathVariable("fundingId") String fundingId,
+            @PathVariable("productId") String productId
+    ){
+        ProductVO productVO = fundingService.getProductByFundingIdAndProductId(fundingId, productId);
+        return new ResponseEntity<>(productVO, HttpStatus.OK);
+
     }
 }
