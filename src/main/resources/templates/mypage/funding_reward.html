@@ -25,6 +25,8 @@
     <script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
     <!-- bootstrap cdn -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <!-- fontawesome -->
+    <script src="https://kit.fontawesome.com/f5ed871e11.js" crossorigin="anonymous"></script>
     <link
       href="/import/css/6.41bf0148.chunk.css"
       rel="stylesheet" />
@@ -44,6 +46,11 @@
       charset="utf-8"
       src="https://static.wadiz.kr/studio/funding/static/js/18.221f899c.chunk.js"></script>
     <style>
+      .optRow{
+        margin-bottom: 5px;
+        display: flex;
+        justify-content: space-between;
+      }
       .css-1hwfws3 {
         -webkit-box-align: center;
         align-items: center;
@@ -215,15 +222,6 @@
                       <section
                         class="rewardListArea FundingConditionRewardSection_container__a4jlz spacing-9">
                       </section>
-                      <button
-                        class="Button_button__1e2A2 Button_primary__PxOJr Button_contained__TTXSM Button_xl__2x3J_ Button_block__2mEqp"
-                        type="button">
-                        <span
-                          ><span class="Button_children__q9VCZ"
-                            >저장하기</span
-                          ></span
-                        >
-                      </button>
                     </div>
                   </div>
                 </section>
@@ -248,6 +246,23 @@
       loadRewards();
     })
 
+    // modal 에서 추가 버튼 누를 시
+    $(document).on('click','.btnAdd ',function(e){
+      // TODO : 리워드 추가 버튼 누를 시 DB 반영하게끔
+      let price = $('.priceInput').val();
+      let originPrice = $('.originPriceInput').val();
+      let title = $('.titleInput').val();
+      let contentInput = $('.contentInput').val();
+      let opt = ``;
+      $('.optRow p').each(function(idx,el){
+        opt += $(el).text();
+        if(idx !== $('.optRow p').length-1){
+          opt+=','
+        }
+      })
+      console.log('opt', opt);
+    })
+
     // 리워드 추가 영역 누르면 -> 리워드 추가 modal
     $(document).on('click','.emptyRewardArea',function(e){
       showRewardModal();
@@ -257,7 +272,12 @@
     $(document).on('click','.ConfirmModal_closeIconWrapper__3vX7j',function(e){
       $('.modalArea').html('');
     })
+    // 리워드 modal 취소 버튼 이벤트
+    $(document).on('click','.btnCancel',function(e){
+      $('.modalArea').html('');
+    })
 
+    // 리워드 카드에서 수정 버튼 누를 시
     $(document).on('click','.btnEdit',function(e){
       let fpid = $(this).data('fpid');
       $.ajax({
@@ -271,7 +291,24 @@
       })
     })
 
+    // 옵션 추가 버튼 클릭 시
+    $(document).on('click','.addOptBtn',function(){
+      let optVal = $('#prod_opt1').val();
+      let tmp = `<div class="optRow">
+                  <p>${optVal}</p>
+                  <i class="fa-solid fa-trash optDelBtn"></i>
+                </div>`
+      $('.optArea').append(tmp);
+      $('#prod_opt1').val('');
+    })
 
+    // 옵션 삭제 버튼 클릭 시
+    $(document).on('click','.optDelBtn',function(){
+      console.log('click optDel')
+      $(this).closest('.optRow').remove();
+    })
+
+    // 펀딩 아이디 에 따른 리워드 가져오기
     function loadRewards(){
       $.ajax({
         url : '/api/funding/'+fid+'/product',
@@ -280,6 +317,8 @@
         success : printRewards
       })
     }
+
+    // 리워드 리턴
     function printRewards(list){
       console.log(list);
       $('.rewardListArea').html('');
@@ -316,14 +355,26 @@
       })
     }
 
+    // 리워드 modal 보여줌
     function showRewardModal(data){
-      let fpcontent = data['fpcontent']??'';
-      let fpid = data['fpid'] ?? '';
-      let fporigin_price = data['fporigin_price'] ?? '';
-      let fpprice = data['fpprice'] ?? '';
-      let fptitle = data['fptitle'] ?? '';
-      let options = data['options'] ?? null;
-      console.log(fpcontent);
+      let fpcontent = data?data['fpcontent']:'';
+      let fpid = data ?data['fpid']: '';
+      let fporigin_price = data ?data['fporigin_price']: '';
+      let fpprice = data ?data['fpprice']: '';
+      let fptitle = data ?data['fptitle']: '';
+      let options = data ?data['options']: null;
+      let optTemplate = '';
+      if(options != null){
+        $(options).each(function(idx, data){
+          let temp = `
+                <div class="optRow">
+                  <p>${data.pooption}</p>
+                  <i class="fa-solid fa-trash optDelBtn"></i>
+                </div>
+        `;
+          optTemplate += temp;
+        })
+      }
       let template= `
     <div
       data-react-modal-body-trap=""
@@ -368,7 +419,7 @@
                   <input
                     placeholder="0"
                     type="text"
-                    class="Input_input__2kAAL Input_md__3-eZ6"
+                    class="Input_input__2kAAL Input_md__3-eZ6 priceInput"
                     aria-invalid="false"
                     value="${fpprice}" /><span
                     class="TextField_fixedText__2vIuK TextField_endText__3jIeG"
@@ -385,7 +436,7 @@
                   <input
                     placeholder="0"
                     type="text"
-                    class="Input_input__2kAAL Input_md__3-eZ6"
+                    class="Input_input__2kAAL Input_md__3-eZ6 originPriceInput"
                     aria-invalid="false"
                     value="${fporigin_price}" /><span
                     class="TextField_fixedText__2vIuK TextField_endText__3jIeG"
@@ -402,7 +453,7 @@
                   placeholder="예시) [얼리버드] 베이지 이불∙베개 1세트"
                   maxlength="60"
                   type="text"
-                  class="Input_input__2kAAL Input_md__3-eZ6"
+                  class="Input_input__2kAAL Input_md__3-eZ6 titleInput"
                   aria-invalid="false"
                   value="${fptitle}" />
               </div>
@@ -415,28 +466,30 @@
                   placeholder="리워드 구성과 혜택을 간결하게 설명해 주세요."
                   maxlength="400"
                   rows="3"
-                  class="Textarea_textarea__2swOj undefined">${fpcontent}</textarea
+                  class="Textarea_textarea__2swOj contentInput">${fpcontent}</textarea
                 >
               </div>
             </div>
             <div class="select-menu spacing-8" style="width: 50%">
               <div class="label">옵션</div>
               <div class="css-2b097c-container" style="margin-left: 10px">
-
+              <div class="optArea">
+                 ${optTemplate}
+              </div>
                 <input type="text" class="form-control" id="prod_opt1" placeholder="예시) 매운맛">
-                <button type="button" class="btn btn-outline-primary" style="margin-top: 10px">Add</button>
+                <button type="button" class="btn btn-outline-primary addOptBtn" style="margin-top: 10px">Add</button>
               </div>
             </div>
             <div
               class="FundingConditionRewardModalContainer_buttonGroup__3TYhj">
               <button
-                class="Button_button__1e2A2 Button_secondary__JuhOu Button_lg__3vRQD Button_block__2mEqp"
+                class="btnCancel Button_button__1e2A2 Button_secondary__JuhOu Button_lg__3vRQD Button_block__2mEqp"
                 type="button">
                 <span
                   ><span class="Button_children__q9VCZ">취소</span></span
                 ></button
               ><button
-                class="Button_button__1e2A2 Button_primary__PxOJr Button_contained__TTXSM Button_lg__3vRQD Button_block__2mEqp"
+                class="btnAdd Button_button__1e2A2 Button_primary__PxOJr Button_contained__TTXSM Button_lg__3vRQD Button_block__2mEqp"
                 type="button">
                 <span><span class="Button_children__q9VCZ">추가</span></span>
               </button>
