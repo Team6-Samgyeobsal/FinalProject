@@ -9,5 +9,7 @@ import lombok.ToString;
 @ToString
 public class FundingImgVO {
 
+    private String fiid;
     private String fiurl;
+    private String fid;
 }

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper  namespace="util">
+
+    <resultMap id="fundingDetailMap"  type="fundingDetail">
+        <result property="fstore_name" column="fstore_name" />
+        <result property="fsummary" column="fsummary" />
+        <result property="fid" column="fid" />
+        <result property="ftitle" column="ftitle" />
+        <result property="totalprice" column="totalprice" />
+        <result property="totalemail" column="totalemail" />
+        <result property="tname" column="tname" />
+        <result property="ctname" column="ctname" />
+        <result property="fstory" column="fstory" />
+        <result property="fdate" column="fdate" />
+        <result property="cfunding_end_date" column="cfunding_end_date" />
+        <result property="fstatus" column="fstatus" />
+        <result property="fstore_score" column="fstore_score" />
+        <result property="ffunding_score" column="ffunding_score" />
+        <result property="expire" column="expire" />
+        <result property="rfcount" column="rfcount" />
+        <result property="rscount" column="rscount" />
+        <collection property="products"
+                    resultMap="productMap" />
+        <collection property="imgs"
+                    resultMap="imgMap" />
+    </resultMap>
+
+    <resultMap id="productMap"
+               type="product">
+        <result property="fpid" column="fpid" />
+        <result property="fporigin_price" column="fporigin_price" />
+        <result property="fpprice" column="fpprice" />
+        <result property="fptitle" column="fptitle" />
+        <result property="fpcontent" column="fpcontent" />
+        <result property="pcchipimg" column="pcchipimg" />
+        <collection property="options" resultMap="prodOptionMap"/>
+    </resultMap>
+
+    <resultMap id="imgMap"
+               type="fundingImg">
+        <result property="fiid" column="fiid"/>
+        <result property="fid" column="fid"/>
+        <result property="fiurl" column="fiurl" />
+    </resultMap>
+
+    <resultMap id="fundingStoryMap" type="fundingStory">
+        <result property="fsummary" column="fsummary" />
+        <result property="fid" column="fid" />
+        <result property="ftitle" column="ftitle" />
+        <result property="fstory" column="fstory" />
+        <collection property="imgs"
+                    resultMap="imgMap" />
+    </resultMap>
+
+    <resultMap id="prodOptionMap" type="prodOption">
+        <result property="poid" column="poid" />
+        <result property="pooption" column="pooption" />
+        <result property="fpid" column="fpid" />
+    </resultMap>
+
+    <resultMap id="productDetailMap" type="productDetail">
+        <result property="fpid" column="fpid" />
+        <result property="fptitle" column="fptitle" />
+        <result property="fporigin_price" column="fporigin_price" />
+        <result property="fpprice" column="fpprice" />
+        <result property="fpcontent" column="fpcontent" />
+        <collection property="options"
+                    resultMap="productOptionMap" />
+    </resultMap>
+
+    <resultMap id="productOptionMap" type="productOption">
+        <result property="poid" column="poid" />
+        <result property="pooption" column="pooption" />
+    </resultMap>
+</mapper>

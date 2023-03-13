@@ -6,5 +6,5 @@ public enum FundingStatus {
     FUNDING, // 펀딩 경연 중
     STORE, // 펀딩 승리 시 스토어로 넘어감
     FAIL, // 펀딩 경연 실패
-    END // 스토어 기간 종료 시
+    END // 스토어 기간 종료 시,
 }

@@ -4,6 +4,8 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.util.List;
+
 @ToString
 @Getter
 @Setter
@@ -14,4 +16,6 @@ public class ProductVO {
     private  int fpprice;
     private String fptitle;
     private String fpcontent;
+
+    private List<ProdOptionVO> options;
 }

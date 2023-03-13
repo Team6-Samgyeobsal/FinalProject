@@ -1,6 +1,10 @@
 package com.samgyeobsal.service;
 
 import com.samgyeobsal.domain.order.*;
+
+import com.samgyeobsal.domain.order.OrderRequest;
+import com.samgyeobsal.dto.request.TossOrder;
+
 import com.samgyeobsal.mapper.OrderMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -43,6 +47,7 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
+
     public List<ProductDetailVO> getProductList(String fid) {
         return orderMapper.getProductList(fid);
     }
@@ -53,12 +58,31 @@ public class OrderServiceImpl implements OrderService {
         for (OrderItemVO orderItemVO : orderStep1DTO.getItem()) {
 
             for (OrderListVO listVO : orderList) {
-                if(orderItemVO.getPoid().equals(listVO.getPoid())){
+                if (orderItemVO.getPoid().equals(listVO.getPoid())) {
                     listVO.setAmount(orderItemVO.getAmount());
-                    System.out.println("-------------------"+orderItemVO.getAmount());
+                    System.out.println("-------------------" + orderItemVO.getAmount());
                 }
             }
         }
         return orderList;
+    }
+
+    @Override
+    public int saveToss(TossOrder tossOrder) {
+        int save = orderMapper.saveToss(tossOrder);
+
+        System.out.println(save);
+
+        if (save == 1) {
+            return 1;
+        } else {
+            return 0;
+        }
+    }
+
+    @Override
+    public void updateOrder(String oStatus, String oId) {
+        orderMapper.updateOrder(oStatus,oId);
+
     }
 }

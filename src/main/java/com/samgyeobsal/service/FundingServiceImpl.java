@@ -28,4 +28,13 @@ public class FundingServiceImpl implements FundingService{
         return fundingMapper.getReviewList(criteria);
     }
 
+    @Override
+    public List<ProductVO> getProductListByFundingId(String fundingId) {
+        return fundingMapper.findProductListByFundingId(fundingId);
+    }
+
+    @Override
+    public ProductVO getProductByFundingIdAndProductId(String fundingId, String productId) {
+        return fundingMapper.findProductByFundingIdAndProductId(fundingId,productId);
+    }
 }

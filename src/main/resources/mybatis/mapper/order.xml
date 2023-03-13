@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.samgyeobsal.mapper.OrderMapper">
+
+    <insert id="save"
+            parameterType="com.samgyeobsal.domain.order.OrderRequest">
+        INSERT INTO
+            ORDERS( OID, OPHONE, OMEMO,
+                    OORIGINPRICE, OAFTERPRICE, OSTATUS, MID, PMCODE, CPID, OEMAIL)
+        VALUES(#{oid}, #{ophone}, #{omemo}, #{obeforePrice}, #{oafterPrice}, #{oState},
+               #{mid}
+                  , 'pmcode1', #{cpid}, #{oemail})
+    </insert>
+
+    <update id="updateOrder">
+        update ORDERS set OSTATUS = #{oStatus} where OID = #{oId}
+    </update>
+
+    <select id="getProductList" resultMap="util.productDetailMap">
+        select fp.fpid,
+               fptitle,
+               fp.fporigin_price,
+               fpprice,
+               fpcontent,
+               poid,
+               pooption
+        from funding_product fp
+                 join product_option po on fp.fpid=po.fpid
+        where fid=#{fid}
+        order by fp.fpid
+    </select>
+
+    <select id="getOrderList" resultType="orderList">
+        select fpid,
+        fid,
+        fpprice,
+        fptitle,
+        fp.fpcontent,
+        poid,pooption
+        from funding_product fp
+        join product_option po on fp.fpid=po.fpid
+        where poid in
+        <foreach collection="item" item="step" index="index" separator="," open="(" close=")">
+            #{step.poid}
+        </foreach>
+    </select>
+
+
+
+
+</mapper>

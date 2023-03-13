@@ -15,10 +15,19 @@
         <typeAlias type="com.samgyeobsal.domain.funding.ProductVO" alias="product"/>
         <typeAlias type="com.samgyeobsal.domain.funding.FundingImgVO" alias="fundingImg"/>
         <typeAlias type="com.samgyeobsal.domain.funding.ReviewVO" alias="review"/>
+
         <typeAlias type="com.samgyeobsal.domain.store.StoreVO" alias="store"/>
         <typeAlias type="com.samgyeobsal.domain.order.ProductOptionVO" alias="productOption"/>
         <typeAlias type="com.samgyeobsal.domain.order.ProductDetailVO" alias="productDetail"/>
         <typeAlias type="com.samgyeobsal.domain.order.OrderListVO" alias="orderList"/>
+
+        <typeAlias type="com.samgyeobsal.domain.maker.FundingMakerVO" alias="fundingMaker"/>
+        <typeAlias type="com.samgyeobsal.domain.common.CompetitionHyundaiVO" alias="competitionHyundai"/>
+        <typeAlias type="com.samgyeobsal.domain.common.CategoryVO" alias="category"/>
+        <typeAlias type="com.samgyeobsal.domain.maker.FundingStoryDTO" alias="fundingStory"/>
+        <typeAlias type="com.samgyeobsal.domain.funding.ProdOptionVO" alias="prodOption"/>
+
+
     </typeAliases>
 
 </configuration>

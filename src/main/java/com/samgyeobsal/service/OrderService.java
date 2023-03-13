@@ -2,9 +2,13 @@ package com.samgyeobsal.service;
 
 import com.samgyeobsal.domain.order.OrderListVO;
 import com.samgyeobsal.domain.order.OrderRequest;
+
 import com.samgyeobsal.domain.order.OrderStep1DTO;
 import com.samgyeobsal.domain.order.ProductDetailVO;
 import java.util.List;
+
+import com.samgyeobsal.dto.request.TossOrder;
+
 
 /**
  * @filename OrderService
@@ -21,7 +25,12 @@ import java.util.List;
 public interface OrderService {
     public int saveOrder(OrderRequest orderRequest);
 
+
     List<ProductDetailVO> getProductList(String fid);
 
     List<OrderListVO> getOrderList(OrderStep1DTO orderStep1DTO);
+
+    public int saveToss(TossOrder tossOrder);
+    public void updateOrder(String oStatus, String oId);
+
 }
