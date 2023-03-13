@@ -34,7 +34,7 @@
     </select>
 
     <select id="getOrderList" resultType="orderList">
-        select fpid,
+        select fp.fpid,
         fid,
         fpprice,
         fptitle,
