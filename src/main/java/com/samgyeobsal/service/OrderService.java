@@ -1,6 +1,7 @@
 package com.samgyeobsal.service;
 
 import com.samgyeobsal.domain.order.OrderRequest;
+import com.samgyeobsal.dto.request.TossOrder;
 
 /**
  * @filename OrderService
@@ -16,4 +17,7 @@ import com.samgyeobsal.domain.order.OrderRequest;
  */
 public interface OrderService {
     public int saveOrder(OrderRequest orderRequest);
+
+    public int saveToss(TossOrder tossOrder);
+    public void updateOrder(String oStatus, String oId);
 }
