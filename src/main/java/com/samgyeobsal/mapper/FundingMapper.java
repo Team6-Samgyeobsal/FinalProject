@@ -1,6 +1,7 @@
 package com.samgyeobsal.mapper;
 
 import com.samgyeobsal.domain.funding.*;
+import com.samgyeobsal.domain.maker.UpdateFundingProductDTO;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -19,4 +20,5 @@ public interface FundingMapper {
     List<ProductVO> findProductListByFundingId(String fundingId);
 
     ProductVO findProductByFundingIdAndProductId(String fundingId, String productId);
+
 }
