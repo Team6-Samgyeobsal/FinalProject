@@ -299,7 +299,24 @@
           console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
         },
       })
+    })
 
+    // 리워드 카드에서 삭제 버튼 누를 시
+    $(document).on('click','.btnDel',function(e){
+      let fpid = $(this).data('fpid');
+      $.ajax({
+        url: '/api/funding/' + fid + '/product/remove',
+        data : JSON.stringify(
+                {fpid}
+        ),
+        contentType : 'application/json',
+        type: 'POST',
+        dataType:'text',
+        success : function (data){
+          console.log('delete success');
+          loadRewards();
+        }
+      })
     })
 
     // 리워드 추가 영역 누르면 -> 리워드 추가 modal
@@ -383,7 +400,7 @@
                                   <span class="Button_children__q9VCZ">수정</span>
                                 </span>
                               </button>
-                              <button data-fpid="${reward['fpid']}" class="Button_button__1e2A2 Button_xs__x1b7M Button_startIcon__19sdm" type="button">
+                              <button data-fpid="${reward['fpid']}" class="btnDel Button_button__1e2A2 Button_xs__x1b7M Button_startIcon__19sdm" type="button">
                                 <span><svg viewBox="0 0 40 40" focusable="false" role="presentation" class="withIcon_icon__3lrgp Button_icon__1qsE3" aria-hidden="true">
                                   <path d="M36.67 5.31H3.33v2h2.82v31.88h27.7V7.31h2.82zm-4.82 31.88H8.15V7.31h23.7zM15 .81h10v2H15z"></path>
                                   <path d="M14.75 15.18h2v15h-2zm8.5 0h2v15h-2z"></path></svg><span class="Button_children__q9VCZ">삭제</span>

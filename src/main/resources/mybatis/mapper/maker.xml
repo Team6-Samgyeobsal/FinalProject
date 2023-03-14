@@ -62,8 +62,8 @@
 
     <insert id="insertFundingProduct">
         insert into funding_product
-            (fpid, fid, fporigin_price, fpprice, fptitle, fpcontent)
-        values (#{fpid}, #{fid}, #{originPrice}, #{price}, #{title}, #{content})
+            (fpid, fid, fporigin_price, fpprice, fptitle, fpcontent, fpstatus)
+        values (#{fpid}, #{fid}, #{originPrice}, #{price}, #{title}, #{content}, 1)
     </insert>
 
     <update id="updateFundingProduct">

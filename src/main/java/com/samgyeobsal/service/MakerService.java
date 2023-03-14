@@ -20,4 +20,6 @@ public interface MakerService {
 
     void updateFundingProduct(UpdateFundingProductDTO product);
 
+    void deleteFundingProduct(String fpid);
+
 }

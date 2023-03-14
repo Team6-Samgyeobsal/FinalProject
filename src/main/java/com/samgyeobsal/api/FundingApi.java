@@ -12,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/funding")
@@ -62,6 +63,15 @@ public class FundingApi {
         log.info("fundingReward = {}", fundingReward);
         makerService.updateFundingProduct(fundingReward);
 
+        return new ResponseEntity<>("success", HttpStatus.OK);
+    }
+
+    @PostMapping("/{fundingId}/product/remove")
+    public ResponseEntity<String> removeProduct(
+            @PathVariable("fundingId") String fundingId, @RequestBody Map<String,String> map){
+        String fpid = map.get("fpid");
+
+        makerService.deleteFundingProduct(fpid);
         return new ResponseEntity<>("success", HttpStatus.OK);
     }
 }

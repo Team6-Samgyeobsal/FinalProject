@@ -75,4 +75,10 @@ public class MakerServiceImpl implements MakerService {
         if(row == 0) throw new RuntimeException("updateFundingProduct 에러 발생");
 
     }
+
+    @Override
+    public void deleteFundingProduct(String fpid) {
+        int row = makerMapper.deleteFundingProduct(fpid);
+        if(row == 0) throw new RuntimeException("deleteFundingProduct 에러발생");
+    }
 }

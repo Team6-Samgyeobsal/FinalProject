@@ -190,8 +190,8 @@
                fp.fpprice, fp.fptitle, fp.fpcontent,
                po.poid, po.pooption
         from funding_product fp
-                 left join product_option po on (fp.fpid = po.fpid)
-        where fp.fid = #{fundingId}
+                 left join product_option po on (fp.fpid = po.fpid and po.postatus='1')
+        where fp.fid = #{fundingId} and fp.fpstatus = '1'
     </select>
 
     <select id="findProductByFundingIdAndProductId" resultMap="util.productMap">
