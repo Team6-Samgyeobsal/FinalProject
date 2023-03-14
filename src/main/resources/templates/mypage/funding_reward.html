@@ -248,19 +248,58 @@
 
     // modal 에서 추가 버튼 누를 시
     $(document).on('click','.btnAdd ',function(e){
-      // TODO : 리워드 추가 버튼 누를 시 DB 반영하게끔
+      let fpid = $('#fpid').val();
       let price = $('.priceInput').val();
       let originPrice = $('.originPriceInput').val();
       let title = $('.titleInput').val();
-      let contentInput = $('.contentInput').val();
-      let opt = ``;
-      $('.optRow p').each(function(idx,el){
-        opt += $(el).text();
-        if(idx !== $('.optRow p').length-1){
-          opt+=','
-        }
+      let content = $('.contentInput').val();
+      let opts = new Array();
+      $('.optRow').each(function(idx,el){
+        let map = new Object();
+        map.poid = $(el).children('input[name="poid"]').val();
+        map.fpid = $(el).children('input[name="fpid"]').val();
+        map.pooption = $(el).children('p').text();
+        opts.push(map);
       })
-      console.log('opt', opt);
+      if(price === ''){
+        console.log('price null');
+        return;
+      }
+      if(originPrice === ''){
+        console.log('originPrice null');
+        return;
+      }
+      if(title === ''){
+        console.log('title null');
+        return;
+      }
+      if (content === '') {
+        console.log('content null');
+        return;
+      }
+      if (opts.length === 0) {
+        console.log('opt null');
+        return;
+      }
+
+      $.ajax({
+        url: '/api/funding/' + fid + '/product',
+        data : JSON.stringify(
+                {fpid, price, originPrice, title, content, opts}
+        ),
+        contentType : 'application/json',
+        type: 'POST',
+        dataType:'text',
+        success : function(data){
+          console.log(data);
+          $('.modalArea').html('');
+          loadRewards();
+        },
+        error : function(request, status, error ) {
+          console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+        },
+      })
+
     })
 
     // 리워드 추가 영역 누르면 -> 리워드 추가 modal
@@ -277,7 +316,7 @@
       $('.modalArea').html('');
     })
 
-    // 리워드 카드에서 수정 버튼 누를 시
+    // 리워드 카드의 수정 버튼 누를 시
     $(document).on('click','.btnEdit',function(e){
       let fpid = $(this).data('fpid');
       $.ajax({
@@ -294,9 +333,12 @@
     // 옵션 추가 버튼 클릭 시
     $(document).on('click','.addOptBtn',function(){
       let optVal = $('#prod_opt1').val();
+      let fpid = $('#fpid').val();
       let tmp = `<div class="optRow">
-                  <p>${optVal}</p>
-                  <i class="fa-solid fa-trash optDelBtn"></i>
+                    <input type="hidden" value="${fpid}" name="fpid">
+                    <input type="hidden" name="poid">
+                    <p>${optVal}</p>
+                    <i class="fa-solid fa-trash optDelBtn"></i>
                 </div>`
       $('.optArea').append(tmp);
       $('#prod_opt1').val('');
@@ -357,6 +399,7 @@
 
     // 리워드 modal 보여줌
     function showRewardModal(data){
+      console.log(data);
       let fpcontent = data?data['fpcontent']:'';
       let fpid = data ?data['fpid']: '';
       let fporigin_price = data ?data['fporigin_price']: '';
@@ -366,8 +409,12 @@
       let optTemplate = '';
       if(options != null){
         $(options).each(function(idx, data){
+          // continue
+          if(data.poid == null) return true;
           let temp = `
                 <div class="optRow">
+                  <input type="hidden" value="${data.fpid}" name="fpid">
+                  <input type="hidden" value="${data.poid}" name="poid">
                   <p>${data.pooption}</p>
                   <i class="fa-solid fa-trash optDelBtn"></i>
                 </div>

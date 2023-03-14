@@ -1,9 +1,11 @@
 package com.samgyeobsal.mapper;
 
 import com.samgyeobsal.domain.funding.FundingImgVO;
+import com.samgyeobsal.domain.funding.ProdOptionVO;
 import com.samgyeobsal.domain.maker.FundingBaseInfoDTO;
 import com.samgyeobsal.domain.maker.FundingMakerVO;
 import com.samgyeobsal.domain.maker.FundingStoryDTO;
+import com.samgyeobsal.domain.maker.UpdateFundingProductDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -96,5 +98,58 @@ public class MakerMapperTest {
 
     }
 
+    @Test
+    @Transactional
+    void insertFundingProduct(){
+        String fpid = UUID.randomUUID().toString();
+        String fid = "1";
+        UpdateFundingProductDTO product = new UpdateFundingProductDTO();
+        product.setFpid(fpid);
+        product.setFid(fid);
+
+        product.setOriginPrice("1000");
+        product.setPrice("900");
+        product.setContent("testContent");
+        product.setTitle("testTitle");
+
+        int row = makerMapper.insertFundingProduct(product);
+        Assertions.assertEquals(row, 1);
+    }
+
+    @Test
+    @Transactional
+    void updateFundingProduct(){
+        String fpid = "1";
+        String fid = "1";
+        UpdateFundingProductDTO product = new UpdateFundingProductDTO();
+        product.setFpid(fpid);
+        product.setFid(fid);
+
+        product.setOriginPrice("1000");
+        product.setPrice("900");
+        product.setContent("testContent");
+        product.setTitle("testTitle");
+
+        int row = makerMapper.updateFundingProduct(product);
+        Assertions.assertEquals(row,1);
+    }
+
+    @Test
+    @Transactional
+    void deleteAllFundingProductOption(){
+        String fpid = "1";
+        makerMapper.deleteAllFundingProductOption(fpid);
+    }
+
+    @Test
+    @Transactional
+    void updateProductOption(){
+        String fpid = "1";
+        ProdOptionVO opt = new ProdOptionVO();
+        opt.setFpid(fpid);
+        opt.setPoid("1");
+        opt.setPooption("testOption");
+
+    }
 
 }

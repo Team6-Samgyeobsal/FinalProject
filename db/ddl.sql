@@ -158,7 +158,7 @@ ALTER TABLE notice ADD CONSTRAINT notice_pk PRIMARY KEY ( nid );
 
 CREATE TABLE order_item (
                             oid          VARCHAR2(40 BYTE) NOT NULL,
-                            poid         VARCHAR2(30 BYTE) NOT NULL,
+                            poid         VARCHAR2(100 BYTE) NOT NULL,
                             oicount      NUMBER NOT NULL,
                             oitotalprice NUMBER(8) NOT NULL
 );

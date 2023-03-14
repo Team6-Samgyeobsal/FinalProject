@@ -1,6 +1,7 @@
 package com.samgyeobsal.service;
 
 import com.samgyeobsal.domain.funding.*;
+import com.samgyeobsal.domain.maker.UpdateFundingProductDTO;
 import com.samgyeobsal.mapper.FundingMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
