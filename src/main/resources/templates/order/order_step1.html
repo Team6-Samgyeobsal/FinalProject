@@ -311,10 +311,9 @@
             if ($(this).find('.Checkbox_input__YDTIS').is(':checked')) {
                 console.log("체크 확인");
                 $(this).siblings('.RewardProductItem_option__3BtOP').show();
-                $(this).siblings('ul').find('.RewardProductItem_item__3va6f').show();
             } else {
                 $(this).siblings('.RewardProductItem_option__3BtOP').hide();
-                $(this).siblings('ul').find('.RewardProductItem_item__3va6f').hide();
+                $(this).siblings('ul').html('');
             }
         });
             $('.SelectMenu_title__2__qX').on('click', function (event) {

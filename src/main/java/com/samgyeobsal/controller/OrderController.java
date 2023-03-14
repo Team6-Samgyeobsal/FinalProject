@@ -9,6 +9,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.http.HttpSession;
+
 
 /**
  * @filename OrderController
@@ -51,19 +53,20 @@ public class OrderController {
     // step2 페이지로 리다이렉트 하게끔
     @PostMapping("/{fid}/step1")
     public String orderStep1(@PathVariable("fid") String fid,
-                             RedirectAttributes redirect,
+                             HttpSession session,
                              @ModelAttribute OrderStep1DTO orderStep1DTO){
-        redirect.addFlashAttribute("order",orderStep1DTO);
+        session.setAttribute("order", orderStep1DTO);
         return "redirect:/web/order/"+fid+"/step2";
     }
 
     @GetMapping("/{fundingId}/step2")
-    public String orderStep2Page(Model model, @ModelAttribute("order") OrderStep1DTO orderStep1DTO){
-
-        model.addAttribute("order",orderService.getOrderList(orderStep1DTO));
+    public String orderStep2Page(Model model, HttpSession session){
+        OrderStep1DTO orderStep1DTO = (OrderStep1DTO) session.getAttribute("order");
+        model.addAttribute("order", orderService.getOrderList(orderStep1DTO));
         System.out.println("orderService.getOrderList(orderStep1DTO)"+orderService.getOrderList(orderStep1DTO));
 
         return "order/order_step2";
     }
+
 
 }

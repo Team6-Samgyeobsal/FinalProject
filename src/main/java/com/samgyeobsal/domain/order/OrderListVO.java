@@ -4,15 +4,17 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.util.List;
+
 @Getter
 @Setter
 @ToString
 public class OrderListVO {
-    private String fid;
+    private String fpid;
     private int fpprice;
     private String fptitle;
     private String fpcontent;
-    private String poid;
-    private String pooption;
-    private int amount;
+    private int sumprice;
+    private int sumamount;
+    private List<OrderListDetailVO> orderListDetail;
 }

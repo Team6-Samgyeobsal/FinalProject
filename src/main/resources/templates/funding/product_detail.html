@@ -489,7 +489,7 @@
                                                 <button class="Button_button__mRXZC Button_primary__1HJqX Button_contained__k9pMW Button_md__136bx Button_block__1LAUA CTA_button__UoUYx"
                                                         type="button"
                                                         th:style="${funding.fstatus == 'FUNDING' ? '' :'border-color: #adb5bd; background-color: #adb5bd;'}"
-                                                        th:id = "${funding.fstatus == 'FUNDING'} ? 'abled' :'disabled'">
+                                                        th:id = "${funding.fstatus == 'FUNDING'} ? 'abled1' :'disabled1'">
                                                     <span><span class="Button_children__3HY2l"><p>예약 구매하기</p></span></span>
                                                 </button>
                                             </div>
@@ -684,7 +684,7 @@
             $(this).find('.Badge_badge__2h6cT').removeClass('Badge_contained__Q3unx').addClass('Badge_tertiary__1ERKE')
         })
 
-        $('#abled').click(function (){
+        $('#abled, #abled1').click(function (){
             location.href='/web/order/'+[[${funding.fid}]]+'/step1'
         })
 
