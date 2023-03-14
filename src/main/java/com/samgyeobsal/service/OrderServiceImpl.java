@@ -53,18 +53,31 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public List<OrderListVO> getOrderList(OrderStep1DTO orderStep1DTO) {
+    public OrderFormDTO getOrderList(OrderStep1DTO orderStep1DTO) {
         List<OrderListVO> orderList = orderMapper.getOrderList(orderStep1DTO);
+        int totalprice=0;
         for (OrderItemVO orderItemVO : orderStep1DTO.getItem()) {
 
             for (OrderListVO listVO : orderList) {
-                if (orderItemVO.getPoid().equals(listVO.getPoid())) {
-                    listVO.setAmount(orderItemVO.getAmount());
-                    System.out.println("-------------------" + orderItemVO.getAmount());
+                for (OrderListDetailVO detailVO : listVO.getOrderListDetail()) {
+                    if (orderItemVO.getPoid().equals(detailVO.getPoid())) {
+                        detailVO.setAmount(orderItemVO.getAmount());
+                        int price = listVO.getFpprice();
+                        int amount = orderItemVO.getAmount();
+                        int sumprice = price * amount;
+                        int sumamount=amount;
+                        totalprice += sumprice;
+                        listVO.setSumprice(listVO.getSumprice() + sumprice);
+                        listVO.setSumamount(listVO.getSumamount()+amount);
+                    }
                 }
+
             }
+
         }
-        return orderList;
+        System.out.println("orderList++"+orderList);
+        System.out.println("totalprice"+totalprice);
+        return new OrderFormDTO(orderList,totalprice);
     }
 
     @Override

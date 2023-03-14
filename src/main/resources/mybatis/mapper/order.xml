@@ -29,11 +29,11 @@
                pooption
         from funding_product fp
                  join product_option po on fp.fpid=po.fpid
-        where fid=#{fid}
-        order by fp.fpid
+        where fid=#{fid} and fpstatus = 1 and postatus = 1
+        order by fp.fpid,po.poid
     </select>
 
-    <select id="getOrderList" resultType="orderList">
+    <select id="getOrderList" resultMap="util.orderListMap">
         select fp.fpid,
         fid,
         fpprice,

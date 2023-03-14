@@ -75,4 +75,18 @@
         <result property="poid" column="poid" />
         <result property="pooption" column="pooption" />
     </resultMap>
+
+    <resultMap id="orderListDetailMap" type="orderListDetail">
+        <result property="poid" column="poid" />
+        <result property="pooption" column="pooption" />
+    </resultMap>
+
+    <resultMap id="orderListMap" type="orderList">
+        <result property="fpid" column="fpid" />
+        <result property="fpprice" column="fpprice" />
+        <result property="fptitle" column="fptitle" />
+        <result property="fpcontent" column="fpcontent" />
+        <collection property="orderListDetail"
+                    resultMap="orderListDetailMap" />
+    </resultMap>
 </mapper>

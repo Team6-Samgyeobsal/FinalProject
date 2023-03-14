@@ -189,26 +189,24 @@
 
               <div class="wpurchase-order">
                 <div class="order-list" data-choiced-legnth="1">
-                  <ul>
+                  <ul th:each="order:${order.orderList}">
                     <li>
                       <p class="title">
-                        [얼리버드] COMFY 2단 쿠션 발받침대 1개
+                        [[${order.fptitle}]]
                       </p>
                       <p class="text">
-                        ★ 얼리버드 한정수량 혜택 ★ 정가 대비 39% 혜택 + 무료
-                        배송 COMFY 2단 쿠션 발받침대 그레이-그레이, 그레이-그린,
-                        화이트-베이지 中 택1
+                        [[${order.fpcontent}]]
                       </p>
                       <div class="info">
                         <div class="option">
                           <span class="option-section-header">옵션-</span>
                           <span>
                             <!-- 이전 SELECT 타입, N옵션 타입 일경우(SELECT, OPTION) -->
-                            다크그레이-다크그레이 (1개)
+                            <th:block th:each="detail:${order.orderListDetail}">[[${detail.pooption}]] ([[${detail.amount}]]개)<br></th:block>
                           </span>
                         </div>
 
-                        <p class="sum"><em>수량 : 1개</em>42,000원</p>
+                        <p class="sum"><em>수량 : [[${order.sumamount}]]개</em>[[${#numbers.formatInteger(order.sumprice, 3, 'COMMA')}]]원</p>
                       </div>
                     </li>
                     <input
@@ -247,14 +245,6 @@
                   </ul>
                 </div>
                 <div class="order-addinfo">
-                  <dl>
-                    <dt>추가 후원금</dt>
-                    <dd>0원</dd>
-                  </dl>
-                  <dl>
-                    <dt>배송비</dt>
-                    <dd>0원</dd>
-                  </dl>
                   <div class="point">
                     <dl id="coupon-field" class="disabled">
                       <dt>
@@ -286,7 +276,7 @@
                         <label class="wz checkbox">
                           <input type="checkbox" id="ckptAll" /><span
                             >모두 사용 (보유 포인트
-                            <span id="usablePoint">0</span>P)</span
+                            <span id="usablePoint">1000</span>P)</span
                           >
                         </label>
                         <input
@@ -325,7 +315,7 @@
                         <dt>리워드 금액</dt>
                         <dd>
                           <span
-                            ><em class="TitleValuePrice_money__2q48W">42,000</em
+                            ><em class="TitleValuePrice_money__2q48W">[[${#numbers.formatInteger(order.totalprice, 3, 'COMMA')}]]</em
                             >원</span
                           >
                         </dd>
@@ -352,227 +342,19 @@
                       </dl>
                     </div>
                     <div class="TitleValuePrice_container__2tb72">
-                      <dl class="">
-                        <dt>추가 후원금</dt>
-                        <dd>
-                          <span
-                            ><em class="TitleValuePrice_money__2q48W">0</em
-                            >원</span
-                          >
-                        </dd>
-                      </dl>
-                    </div>
-                    <div class="TitleValuePrice_container__2tb72">
-                      <dl class="">
-                        <dt>배송비</dt>
-                        <dd>
-                          <span
-                            ><em class="TitleValuePrice_money__2q48W">0</em
-                            >원</span
-                          >
-                        </dd>
-                      </dl>
-                    </div>
-                    <div class="TitleValuePrice_container__2tb72">
                       <hr class="TitleValuePrice_divide__-8plx" />
                       <dl class="TitleValuePrice_total__2cGge">
                         <dt>최종 결제 금액</dt>
                         <dd>
-                          <span><em class="">42,000 원</em></span>
+                          <span><em class="">(쿠폰/포인트 들어오면 jquery) 원</em></span>
                         </dd>
                       </dl>
-                    </div>
-                  </div>
-                  <div class="SupporterClubPrice_containerWrapper__3ooRN">
-                    <div class="SupporterClubPrice_container__1RZFe">
-                      <div class="SupporterClubPrice_title__NwKg8">
-                        <label
-                          class="Radio_radio__1S1J3 Radio_md__36Y-U SupporterClubPrice_radioButton__2vny7"
-                          ><input
-                            type="radio"
-                            name="price"
-                            readonly=""
-                            value="SUPPORTER_CLUB" /><span
-                            class="Radio_icon__gDAhN"></span
-                          ><span class="Radio_label__3LIYq"></span></label
-                        ><span class="SupporterClubPrice_text__3tPq8"
-                          ><span>서포터클럽 특별 금액</span></span
-                        >
-                      </div>
-                      <div class="TitleValuePrice_container__2tb72">
-                        <dl class="TitleValuePrice_total__2cGge">
-                          <dt>최종 결제 금액</dt>
-                          <dd>
-                            <span
-                              class="Badge_container__16KN_ Badge_visible__2jFR_ BasePrice_badge__7avU4"
-                              ><span
-                                class="Badge_badge__23sNq Badge_label__1ER2E Badge_sm__1R6P4 Badge_primary__2cRAc Badge_tertiary__34CN6"
-                                >3,000원 할인</span
-                              ></span
-                            ><span
-                              ><em class="TitleValuePrice_money__2q48W"
-                                >39,000</em
-                              >원</span
-                            >
-                          </dd>
-                        </dl>
-                      </div>
-                    </div>
-                    <div class="BasePrice_promotion__2OH5G">
-                      <em>모든 배송비 할인 + 쿠폰,</em
-                      ><span>얼리버드 부럽지 않은 할인 혜택!</span
-                      ><svg
-                        viewBox="0 0 40 40"
-                        focusable="false"
-                        role="presentation"
-                        class="withIcon_icon__2cPeY"
-                        aria-hidden="true">
-                        <path
-                          d="M28 20L15 33l-1.4-1.4L25.2 20 13.6 8.4 15 7l13 13z"></path>
-                      </svg>
                     </div>
                   </div>
                   <input type="hidden" id="totalPrice" value="42000" />
                 </div>
               </div>
-              <div class="wpurchase-delivery-wrap">
-                <div class="wpurchase-supporter-info">
-                  <h3><em>서포터</em></h3>
-                  <div class="wpurchase-input-box">
-                    <dl>
-                      <dt>이름</dt>
-                      <dd>woowang789</dd>
-                    </dl>
-                    <dl>
-                      <dt>이메일</dt>
-                      <dd>wangjh789@gmail.com</dd>
-                    </dl>
-                    <dl class="supporter-phone-number">
-                      <dt>휴대폰 번호</dt>
 
-                      <dd id="certPhone" class="phone">
-                        <input
-                          type="text"
-                          placeholder="숫자만 입력"
-                          class="numOnly"
-                          id="supporterMobileNumber"
-                          value="" />
-                        <button
-                          type="button"
-                          id="sendSmsBtn"
-                          onclick="sendSms()">
-                          인증
-                        </button>
-                        <button
-                          type="button"
-                          id="resendSmsBtn"
-                          onclick="resendSms()">
-                          재전송
-                        </button>
-                        <div id="supporterCertArea" class="cert">
-                          <input
-                            type="text"
-                            placeholder="인증번호 6자리 입력"
-                            class="numOnly"
-                            id="authCode"
-                            maxlength="6" /><em id="ms_timer"></em>
-                        </div>
-                      </dd>
-                    </dl>
-                    <div class="wpurchase-terms">
-                      <p class="check-area">
-                        <label class="wz checkbox">
-                          <input
-                            type="checkbox"
-                            id="cktm04"
-                            class="checkcbox"
-                            checked="checked" />
-                          <span
-                            >(필수) 프로젝트 진행에 대한 새소식 및 결제 관련
-                            안내를 받습니다.</span
-                          >
-                        </label>
-                      </p>
-                    </div>
-                    <p id="timeError" class="error-text">
-                      시간이 종료되었습니다.<br />다시 요청해주세요.
-                    </p>
-                    <p id="phoneNumError" class="error-text">
-                      유효한 전화번호를 입력해주세요.
-                    </p>
-                    <p id="confirmError" class="error-text">
-                      인증번호가 맞지 않습니다.<br />다시 요청해주세요.
-                    </p>
-                    <input type="hidden" id="confirmId" value="" />
-                    <div id="supporterCertBtn" class="btn-wrap">
-                      <button type="button" onclick="confirmSmsCode()">
-                        확인
-                      </button>
-                    </div>
-                  </div>
-                </div>
-                <div class="wpurchase-delivery">
-                  <h3><em>리워드 배송지</em></h3>
-                  <button type="button" class="show-list">
-                    <i class="wadizicon wa-expand-more" aria-hidden="true"></i
-                    >최근 배송지 보기
-                  </button>
-                  <div class="delivery-list"></div>
-                  <div class="deliver-new active">
-                    <dl>
-                      <dt>
-                        <label class="wz radio">
-                          <input
-                            type="radio"
-                            id="rddvNew"
-                            name="delivery"
-                            checked="checked" />
-                          <span></span>
-                        </label>
-                      </dt>
-                      <dd>
-                        <label for="rddvNew">
-                          <p><strong>새로입력</strong></p>
-                        </label>
-                      </dd>
-                    </dl>
-                    <div class="input-area">
-                      <p class="title">이름</p>
-                      <input type="text" id="newPresenteeName" />
-                      <p class="title">휴대폰 번호</p>
-                      <input type="tel" id="newContactNumber" maxlength="13" />
-                      <em class="error-message" id="errorPhoneNum"
-                        >휴대폰 번호를 정확히 입력해주세요.</em
-                      >
-                      <p class="title">주소</p>
-                      <button type="button" onclick="findPostCode()">
-                        우편번호 검색
-                      </button>
-                      <p class="text" id="newAddress"></p>
-                      <input
-                        type="text"
-                        maxlength="96"
-                        id="newAddressDetails"
-                        placeholder="상세주소" />
-                      <input type="hidden" id="newZipCode" />
-                    </div>
-                  </div>
-                  <div class="delivery-shippingMemo">
-                    <div class="input-area">
-                      <p class="title">배송 시 요청사항 (선택)</p>
-                      <input
-                        type="text"
-                        id="shippingMemo"
-                        name="shippingMemo"
-                        maxlength="50"
-                        placeholder="ex) 부재시 경비실에 보관해주세요." />
-                      <p class="subtext">
-                        해당 요청사항은 배송에 관련된 내용만 적어주세요.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
               <div class="payment-info-container">
                 <!-- 결제 정보 (간편결제 / 직접입력) 앱 -->
                 <div

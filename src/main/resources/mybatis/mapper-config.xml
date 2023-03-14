@@ -20,12 +20,14 @@
         <typeAlias type="com.samgyeobsal.domain.order.ProductOptionVO" alias="productOption"/>
         <typeAlias type="com.samgyeobsal.domain.order.ProductDetailVO" alias="productDetail"/>
         <typeAlias type="com.samgyeobsal.domain.order.OrderListVO" alias="orderList"/>
+        <typeAlias type="com.samgyeobsal.domain.order.OrderListDetailVO" alias="orderListDetail"/>
 
         <typeAlias type="com.samgyeobsal.domain.maker.FundingMakerVO" alias="fundingMaker"/>
         <typeAlias type="com.samgyeobsal.domain.common.CompetitionHyundaiVO" alias="competitionHyundai"/>
         <typeAlias type="com.samgyeobsal.domain.common.CategoryVO" alias="category"/>
         <typeAlias type="com.samgyeobsal.domain.maker.FundingStoryDTO" alias="fundingStory"/>
         <typeAlias type="com.samgyeobsal.domain.funding.ProdOptionVO" alias="prodOption"/>
+
 
 
     </typeAliases>
