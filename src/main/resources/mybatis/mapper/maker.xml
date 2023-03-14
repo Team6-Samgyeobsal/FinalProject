@@ -59,4 +59,45 @@
         values (#{fundingImg.fid}, #{fundingImg.fiid}, #{fundingImg.fiurl})
         </foreach>
     </update>
+
+    <insert id="insertFundingProduct">
+        insert into funding_product
+            (fpid, fid, fporigin_price, fpprice, fptitle, fpcontent, fpstatus)
+        values (#{fpid}, #{fid}, #{originPrice}, #{price}, #{title}, #{content}, 1)
+    </insert>
+
+    <update id="updateFundingProduct">
+        update funding_product
+        set fporigin_price = #{originPrice},
+            fpprice = #{price},
+            fptitle = #{title},
+            fpcontent = #{content}
+        where fpid = #{fpid} and fid = #{fid}
+    </update>
+
+    <update id="deleteAllFundingProductOption">
+        update product_option
+        set postatus = '0'
+        where fpid = #{fpid}
+    </update>
+
+    <update id="updateProductOption">
+        merge into product_option po
+        using (
+            select #{poid} poid, #{pooption} pooption, #{fpid} fpid
+            from dual
+            ) u
+        on (po.poid = u.poid)
+        when matched then
+            update set po.pooption = u.pooption, po.postatus = '1'
+        when not matched then
+            insert (poid, pooption, fpid, postatus)
+            values (u.poid, u.pooption, u.fpid, '1')
+    </update>
+
+    <update id="deleteFundingProduct">
+        update funding_product
+        set fpstatus = '0'
+        where fpid = #{fpid}
+    </update>
 </mapper>

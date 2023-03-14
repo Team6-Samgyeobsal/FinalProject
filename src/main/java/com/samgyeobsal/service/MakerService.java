@@ -4,6 +4,7 @@ import com.samgyeobsal.domain.funding.FundingImgVO;
 import com.samgyeobsal.domain.maker.FundingBaseInfoDTO;
 import com.samgyeobsal.domain.maker.FundingMakerVO;
 import com.samgyeobsal.domain.maker.FundingStoryDTO;
+import com.samgyeobsal.domain.maker.UpdateFundingProductDTO;
 
 import java.util.List;
 
@@ -17,6 +18,8 @@ public interface MakerService {
 
     void updateFundingStory(FundingStoryDTO story);
 
+    void updateFundingProduct(UpdateFundingProductDTO product);
 
+    void deleteFundingProduct(String fpid);
 
 }
