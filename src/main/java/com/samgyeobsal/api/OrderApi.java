@@ -63,8 +63,7 @@ public class OrderApi {
     }
 
     @GetMapping("/{orderId}")
-    public ResponseEntity<OrderVO> getOrderInfo(
-            @PathVariable("orderId") String orderId){
+    public ResponseEntity<OrderVO> getOrderInfo(@PathVariable("orderId") String orderId){
         OrderVO order = orderService.getOrderByOrderId(orderId);
         return new ResponseEntity<>(order, HttpStatus.OK);
     }

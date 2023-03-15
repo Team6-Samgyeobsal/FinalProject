@@ -97,11 +97,10 @@
                       </p>
                       <p class="PurchaseInfoContainer_status__205il">
                         <i class="PurchaseInfoContainer_icon__3cTu1"></i>
-                        <span th:if="${order.fstatus=='FUNDING'}">진행중</span>
-                        <span th:if="${order.fstatus=='STORE'}">입점중</span>
+                        <span th:if="${#strings.equals(order.fstatus,'FUNDING')}">진행중</span>
+                        <span th:unless="${#strings.equals(order.fstatus,'FUNDING')}">입점중</span>
                       </p>
-                      <a
-                        href="/web/campaign/detail/190459"
+                      <a th:href="|/web/${#strings.equals(order.fstatus,'FUNDING')?'funding':'store'}/${order.getOrders().get(0).getFid()}|"
                         target="_blank"
                         rel="noopener noreferrer"
                         ><p class="PurchaseInfoContainer_title__3Z6oW" th:text="${order.ftitle}">
@@ -116,7 +115,7 @@
                           <p class="PurchaseInfoContainer_listTitle__eA-QW">
                             결제 번호
                           </p>
-                          <p>9851346</p>
+                          <p th:text="${order.oid}">oid</p>
                         </div>
                         <div class="PurchaseInfoContainer_list__vACqm">
                           <p class="PurchaseInfoContainer_listTitle__eA-QW">
@@ -363,9 +362,9 @@
     </div>
 
   <script th:inline="javascript">
-
+    let orderId = /*[[${order.oid}]]*/
     $(document).ready(function(e){
-
+      console.log(orderId);
     })
   </script>
   </body>
