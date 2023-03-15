@@ -1,10 +1,7 @@
 package com.samgyeobsal.mapper;
 
-import com.samgyeobsal.domain.order.OrderListVO;
-import com.samgyeobsal.domain.order.OrderRequest;
+import com.samgyeobsal.domain.order.*;
 
-import com.samgyeobsal.domain.order.OrderStep1DTO;
-import com.samgyeobsal.domain.order.ProductDetailVO;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -45,4 +42,7 @@ public interface OrderMapper {
 
     int updateOrder(@Param("oStatus") String oStatus, @Param("oId") String oId);
 
+    List<OrderVO> findOrderListByMemberId(String memberId);
+
+    OrderVO findOrderByOrderId(String orderId);
 }

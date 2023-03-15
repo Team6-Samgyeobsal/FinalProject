@@ -5,9 +5,11 @@ import com.samgyeobsal.domain.common.CompetitionHyundaiVO;
 import com.samgyeobsal.domain.maker.FundingBaseInfoDTO;
 import com.samgyeobsal.domain.maker.FundingMakerVO;
 import com.samgyeobsal.domain.maker.FundingStoryDTO;
+import com.samgyeobsal.domain.order.OrderVO;
 import com.samgyeobsal.service.CommonService;
 import com.samgyeobsal.service.MakerService;
 import com.samgyeobsal.service.MemberService;
+import com.samgyeobsal.service.OrderService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -29,6 +31,7 @@ import java.util.Map;
 public class MyPageController {
 
     private final MemberService memberService;
+    private final OrderService orderService;
     private final MakerService makerService;
     private final CommonService commonService;
 
@@ -43,7 +46,9 @@ public class MyPageController {
     }
 
     @GetMapping("/order/{orderId}")
-    public String myorderDetailPage(@PathVariable("orderId") String orderId){
+    public String myorderDetailPage(@PathVariable("orderId") String orderId, Model model){
+        OrderVO order = orderService.getOrderByOrderId(orderId);
+        model.addAttribute("order", order);
         return "mypage/myorder_detail";
     }
 

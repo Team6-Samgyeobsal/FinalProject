@@ -30,4 +30,9 @@ public interface OrderService {
     public int saveToss(TossOrder tossOrder);
     public void updateOrder(String oStatus, String oId);
 
+    List<OrderVO> getMyOrderList(String memberId);
+
+    OrderVO getOrderByOrderId(String orderId);
+
+
 }

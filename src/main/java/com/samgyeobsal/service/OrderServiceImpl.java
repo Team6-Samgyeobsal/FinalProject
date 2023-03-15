@@ -96,6 +96,15 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public void updateOrder(String oStatus, String oId) {
         orderMapper.updateOrder(oStatus,oId);
+    }
 
+    @Override
+    public List<OrderVO> getMyOrderList(String memberId) {
+        return orderMapper.findOrderListByMemberId(memberId);
+    }
+
+    @Override
+    public OrderVO getOrderByOrderId(String orderId) {
+        return orderMapper.findOrderByOrderId(orderId);
     }
 }

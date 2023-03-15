@@ -1,9 +1,6 @@
 package com.samgyeobsal.mapper;
 
-import com.samgyeobsal.domain.order.OrderItemVO;
-import com.samgyeobsal.domain.order.OrderListVO;
-import com.samgyeobsal.domain.order.OrderStep1DTO;
-import com.samgyeobsal.domain.order.ProductDetailVO;
+import com.samgyeobsal.domain.order.*;
 import lombok.extern.log4j.Log4j2;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,4 +30,12 @@ public class OrderMapperTest {
 //        step.setPo()
 //        List<OrderListVO> orderList=orderMapper.getOrderList();
 //    }
+
+    @Test
+    public void findOrderListByMemberId(){
+        String memberId = "user@gmail.com";
+        List<OrderVO> orderList = orderMapper.findOrderListByMemberId(memberId);
+        log.info("orderList = {}", orderList);
+
+    }
 }
