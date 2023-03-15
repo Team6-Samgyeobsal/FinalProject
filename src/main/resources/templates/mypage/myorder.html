@@ -22,7 +22,8 @@
       sizes="32x32"
       type="image/png" />
     <link rel="mask-icon" href="/resources/static/svg/wa.svg" color="#1d2129" />
-
+    <title>내 주문 정보 | 와디즈</title>
+    <script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
     <link
       rel="stylesheet"
       href="/import/css/wui.css" />
@@ -59,71 +60,65 @@
                       aria-atomic="false"
                       aria-relevant="additions text"
                       class="css-7pg0cj-a11yText"></span>
-                    <div class="select-menu__control css-yk16xz-control">
-                      <div
-                        class="select-menu__value-container select-menu__value-container--has-value css-1hwfws3">
-                        <div
-                          class="select-menu__single-value css-1uccc91-singleValue">
-                          전체
-                        </div>
-                        <input
-                          id="react-select-2-input"
-                          readonly=""
-                          tabindex="0"
-                          aria-autocomplete="list"
-                          class="css-62g3xt-dummyInput"
-                          value="" />
-                      </div>
-                      <div class="select-menu__indicators css-1wy0on6">
-                        <span
-                          class="select-menu__indicator-separator css-0"></span>
-                        <div
-                          class="select-menu__indicator select-menu__dropdown-indicator css-tlfecz-indicatorContainer"
-                          aria-hidden="true">
-                          <svg
-                            viewBox="0 0 32 32"
-                            focusable="false"
-                            role="presentation"
-                            class="withIcon_icon__20lDO"
-                            aria-hidden="true">
-                            <path
-                              d="M16 22.4L5.6 12l1.12-1.12L16 20.16l9.28-9.28L26.4 12 16 22.4z"></path>
-                          </svg>
-                        </div>
-                      </div>
-                    </div>
-                    <input name="filteringType" type="hidden" value="" />
                   </div>
                 </div>
               </div>
               <div>
-                <ul class="MyFundingList_myFundingList__3outv">
-                  <li class="MyFundingList_listItem__2C_bx">
-                    <a href="/web/wmypage/myfunding/purchase/9851346"
+                <ul class="flist MyFundingList_myFundingList__3outv">
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div th:replace="/fragment/footer__31KP4.html :: footer"></div>
+
+        </div>
+      </main>
+    </div>
+  <script>
+    $(document).ready(function(){
+      loadOrderList();
+    })
+
+    function loadOrderList(){
+      $.ajax({
+        url : "/api/member/order",
+        type : 'GET',
+        dataType : 'json',
+        success : function(data){
+          console.log(data);
+          printOrderList(data);
+        }
+      })
+    }
+
+    function printOrderList(data){
+      $('.flist').html('');
+
+      $(data).each(function (idx, d) {
+        let template = `
+                <li class="MyFundingList_listItem__2C_bx">
+                    <a href="/web/mypage/order/${d.oid}"
                       ><dl class="MyFundingListItem_fundingCard__1mDVb">
                         <dt>
                           <em class="MyFundingListItem_category__15_rp"
-                            >프리오더 / 푸드</em
+                            >${d.ctname}</em
                           ><em class="MyFundingListItem_date__2JkBG"
-                            >2023.02.28 참여</em
+                            >${d.odateString} 참여</em
                           >
                         </dt>
                         <dd>
                           <p class="MyFundingListItem_status__3WM80">
-                            <i class="MyFundingListItem_icon__qMlG5"></i>진행중
+                            <i class="MyFundingListItem_icon__qMlG5"></i>${d.fstatus}
                           </p>
                           <p class="MyFundingListItem_title__1MJNN">
-                            어묵국물까지 주는 꾸덕한 옛날 떡볶이! 조리도구도
-                            필요없다는데?
+                            ${d.ftitle}
                           </p>
                           <p class="MyFundingListItem_maker__2m1j6">
-                            by 제이앤와이푸드
+                            by ${d.fstore_name}
                           </p>
                           <p class="MyFundingListItem_fundingInfo__2_DFC">
                             <em class="MyFundingListItem_fundStatus__1t2dq"
-                              >결제 예약</em
-                            ><em class="MyFundingListItem_comment__2zTJL"
-                              >2023.03.20 17시 결제 예정</em
+                              >${d.ostatus === 'WAITING'? "결제 대기" : "결제 완료"}</em
                             >
                           </p>
                           <span class="MyFundingListItem_detail__WKhV2"
@@ -134,14 +129,10 @@
                         </dd></dl
                     ></a>
                   </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <div th:replace="/fragment/footer__31KP4.html :: footer"></div>
-
-        </div>
-      </main>
-    </div>
+        `;
+        $('.flist').append(template);
+      });
+    }
+  </script>
   </body>
 </html>

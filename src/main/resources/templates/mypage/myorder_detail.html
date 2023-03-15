@@ -92,42 +92,36 @@
                   data-param-referer="">
                   <div>
                     <div class="PurchaseInfoContainer_container__1uMSh">
-                      <p class="PurchaseInfoContainer_cate__1QTet">
-                        프리오더 / 푸드
+                      <p class="PurchaseInfoContainer_cate__1QTet" th:text="${order.ctname}">
+                        카테고리 이름
                       </p>
                       <p class="PurchaseInfoContainer_status__205il">
-                        <i class="PurchaseInfoContainer_icon__3cTu1"></i>진행중
+                        <i class="PurchaseInfoContainer_icon__3cTu1"></i>
+                        <span th:if="${#strings.equals(order.fstatus,'FUNDING')}">진행중</span>
+                        <span th:unless="${#strings.equals(order.fstatus,'FUNDING')}">입점중</span>
                       </p>
-                      <a
-                        href="/web/campaign/detail/190459"
+                      <a th:href="|/web/${#strings.equals(order.fstatus,'FUNDING')?'funding':'store'}/${order.getOrders().get(0).getFid()}|"
                         target="_blank"
                         rel="noopener noreferrer"
-                        ><p class="PurchaseInfoContainer_title__3Z6oW">
-                          어묵국물까지 주는 꾸덕한 옛날 떡볶이! 조리도구도
-                          필요없다는데?
+                        ><p class="PurchaseInfoContainer_title__3Z6oW" th:text="${order.ftitle}">
+                          펀딩 이름
                         </p></a
                       >
                       <p class="PurchaseInfoContainer_maker__2k4e3">
-                        by <button>제이앤와이푸드</button>
+                        by <button th:text="${order.fstore_name}">스토어 이름</button>
                       </p>
                       <div class="PurchaseInfoContainer_summary__lg8v7">
                         <div class="PurchaseInfoContainer_list__vACqm">
                           <p class="PurchaseInfoContainer_listTitle__eA-QW">
                             결제 번호
                           </p>
-                          <p>9851346</p>
+                          <p th:text="${order.oid}">oid</p>
                         </div>
                         <div class="PurchaseInfoContainer_list__vACqm">
                           <p class="PurchaseInfoContainer_listTitle__eA-QW">
                             참여일
                           </p>
-                          <p>2023.02.28 09:53</p>
-                        </div>
-                        <div class="PurchaseInfoContainer_list__vACqm">
-                          <p class="PurchaseInfoContainer_listTitle__eA-QW">
-                            종료일
-                          </p>
-                          <p>2023.03.17</p>
+                          <p th:text="${order.getOdateString()}">2022-22-22</p>
                         </div>
                         <div class="FundingRewardInfo_container__2Bvhc">
                           <div class="FundingRewardInfo_list__ETyrt">
@@ -135,21 +129,17 @@
                               결제 상태
                             </p>
                             <p class="FundingRewardInfo_status__1lR2q">
-                              결제 예약
+                              <span th:if="${order.ostatus == 'WAITING'}">결제 대기</span>
+                              <span th:if="${order.ostatus != 'WAITING'}">결제 완료</span>
                             </p>
-                          </div>
-                          <div class="FundingRewardInfo_subText__GPFx3">
-                            프로젝트 종료 후 2023.03.20 17시에 결제가 진행되며,
-                            결제 실패건에 한하여 다음 영업일 17시에 재결제가
-                            진행됩니다. (최대 4차 결제 진행)
                           </div>
                           <div class="FundingRewardInfo_cancelBtn__1y1oz">
                             <button class="wz button" color="gray">
-                              결제 예약 취소
+                              결제 취소
                             </button>
                           </div>
                           <div class="FundingRewardInfo_info__ja3-c">
-                            결제 예약 취소는 프로젝트 종료일인 2023.03.17 까지
+                            결제 예약 취소는 프로젝트 종료일까지
                             가능합니다.<br />리워드 종류 및 수량 변경은
                             불가하며, 취소 후 재 펀딩해야 합니다.
                           </div>
@@ -160,48 +150,24 @@
                       <h2 class="PurchaseStatus_rewardInfo__2N7jO">
                         리워드 정보
                       </h2>
-                      <div class="PurchaseStatusItemContainer_container__3Zv4D">
-                        <h3 class="PurchaseStatusItemContainer_title__2sTw5">
-                          [얼리버드] 1997 떡볶이 캠핑패키지
+                      <div class="PurchaseStatusItemContainer_container__3Zv4D"
+                        th:each="o : ${order.getOrders()}">
+                        <h3 class="PurchaseStatusItemContainer_title__2sTw5"
+                        th:text="${o.fptitle}">
+                          옵션 이름
                         </h3>
                         <div
                           class="PurchaseStatusItemContainer_description__33DNm">
-                          <p class="PurchaseStatusItemContainer_desc__3zaXY">
-                            떡볶이 밀키트는 기본! 조리할 때/드실 때 필요한
-                            제품들도 함께 구성되어 있어, 언제 어디서든 간편하게
-                            떡볶이를 즐기실 수 있습니다 :) 구성품 :
-                            1997떡볶이(+어묵국물소스) , 알류미늄 냄비,
-                            숟가락/젓가락/물티슈 SET 2개, 500ML 생수 2개, 종이컵
-                            (10온스) 2개
+                          <p class="PurchaseStatusItemContainer_desc__3zaXY"
+                            th:text="${o.fpcontent}">
+                            옵션 설명
                           </p>
-                          <button
-                            class="PurchaseStatusItemContainer_iconBtn__14gHQ">
-                            접어두기<i
-                              class="icon chevron-right PurchaseStatusItemContainer_icon__2PWfg PurchaseStatusItemContainer_open__2PZ_I"
-                              aria-hidden="true"></i>
-                          </button>
                           <hr
                             class="Divider_divider__1CIPR Divider_horizontal__29Gjw Divider_lightBG__1vKyf Divider_caption2__3jCC2" />
                         </div>
                         <div class="PurchaseStatusItemContainer_detail__2q2l_">
-                          <p>9,900원 / 1개</p>
-                          <p
-                            class="PurchaseStatusItemContainer_deliveryStart__davkF">
-                            발송 시작일: 2023년 03월 말 (21~말일) 예정
-                          </p>
+                          <p><span th:text="${o.fpprice * o.amount}">amount</span>원 / <span th:text="${o.amount}">count</span>개</p>
                         </div>
-                      </div>
-                      <div class="PurchaseStatus_info__2uLpV">
-                        <p>
-                          ※ 프로젝트 교환・환불・A/S 정책은 환불・정책을
-                          확인하세요.
-                        </p>
-                        <a
-                          href="/web/campaign/detail/fundingInfo/190459"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          >프로젝트 환불・정책 바로가기</a
-                        >
                       </div>
                     </div>
                     <div class="FundingPayment_container__1cP6O">
@@ -210,7 +176,7 @@
                         <ul>
                           <li class="FundingPayment_list__1ayI4">
                             <p>리워드 금액</p>
-                            <p>9,900원</p>
+                            <p><span th:text="${order.oprice}"></span>원</p>
                           </li>
                           <li class="FundingPayment_list__1ayI4">
                             <p>쿠폰 차감금액</p>
@@ -220,27 +186,14 @@
                             <p>포인트 차감금액</p>
                             <p>- 0원</p>
                           </li>
-                          <li class="FundingPayment_list__1ayI4">
-                            <p>추가 후원금</p>
-                            <p>0원</p>
-                          </li>
-                          <li class="FundingPayment_list__1ayI4">
-                            <p>배송비</p>
-                            <p>3,000원</p>
-                          </li>
                           <hr
                             class="Divider_divider__1CIPR Divider_horizontal__29Gjw Divider_lightBG__1vKyf Divider_spacing5__37PiC Divider_caption2__3jCC2" />
                           <li
                             class="FundingPayment_list__1ayI4 FundingPayment_bold__BfCej">
                             <p>최종 결제 금액</p>
-                            <p>12,900원</p>
+                            <p><span th:text="${order.oprice}"></span>원</p>
                           </li>
                         </ul>
-                      </div>
-                    </div>
-                    <div class="Toast_toast__RW3fu">
-                      <div class="Toast_content__2Xl1R">
-                        처리 도중 문제가 발생하였습니다.
                       </div>
                     </div>
                   </div>
@@ -285,15 +238,6 @@
                               <dd>일시불</dd>
                             </dl>
                           </div>
-                          <div class="SimplePayEdit_simplePayEdit__ZPmN-">
-                            <button class="wz primary-outline block button">
-                              결제 정보 변경하기
-                            </button>
-                          </div>
-                          <input
-                            type="hidden"
-                            name="has-simplepay-info"
-                            value="false" />
                         </div>
                       </div>
                       <div class="modify">
@@ -410,95 +354,18 @@
             </button>
           </div>
         </div>
-        <!-- 다음 주소검색 -->
-        <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-        <script type="text/javascript">
-          var element = document.getElementById('daumAddressCon');
-          var Wpost = function (cb) {
-            if (cb) {
-              // callback 이 있을경우는 callback 의 action
-              daum.postcode.load(function () {
-                new daum.Postcode({
-                  oncomplete: function (data) {
-                    cb(data);
-                  },
-                }).open();
-              });
-            } else {
-              // callback 이 없을 경우 wadiz 일반 action
-              daum.postcode.load(function () {
-                new daum.Postcode({
-                  width: '100%',
-                  height: '100%',
-                  oncomplete: function (data) {
-                    // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
-
-                    // 각 주소의 노출 규칙에 따라 주소를 조합한다.
-                    // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
-                    var fullAddr = ''; // 최종 주소 변수
-                    var extraAddr = ''; // 조합형 주소 변수
-
-                    // 사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
-                    if (data.userSelectedType === 'R') {
-                      // 사용자가 도로명 주소를 선택했을 경우
-                      fullAddr = data.roadAddress;
-                    } else {
-                      // 사용자가 지번 주소를 선택했을 경우(J)
-                      fullAddr = data.jibunAddress;
-                    }
-
-                    // 사용자가 선택한 주소가 도로명 타입일때 조합한다.
-                    if (data.userSelectedType === 'R') {
-                      //법정동명이 있을 경우 추가한다.
-                      if (data.bname !== '') {
-                        extraAddr += data.bname;
-                      }
-                      // 건물명이 있을 경우 추가한다.
-                      if (data.buildingName !== '') {
-                        extraAddr +=
-                          extraAddr !== ''
-                            ? ', ' + data.buildingName
-                            : data.buildingName;
-                      }
-                      // 조합형주소의 유무에 따라 양쪽에 괄호를 추가하여 최종 주소를 만든다.
-                      fullAddr +=
-                        extraAddr !== '' ? ' (' + extraAddr + ')' : '';
-                    }
-
-                    // 우편번호와 주소 정보를 해당 필드에 넣는다.
-                    var $zipCode = $('#zipCode');
-                    var $location1 = $('#location1');
-                    var $location2 = $('#location2');
-                    if ($zipCode.length) {
-                      $zipCode.val(data.zonecode);
-                    }
-                    if ($location1.length) {
-                      $location1.val('[' + data.zonecode + '] ' + fullAddr);
-                      $location1.attr(
-                        'title',
-                        '[' + data.zonecode + '] ' + fullAddr
-                      );
-                    }
-                    if ($location2.length) {
-                      $location2.prop('disabled', false).val('');
-                      // 커서를 상세주소 필드로 이동한다.
-                      $location2.focus();
-                    }
-                    closeLyPop('daumAddress');
-                  },
-                }).embed(element, { autoClose: false });
-                showLyPop('daumAddress');
-              });
-            }
-          };
-        </script>
-
 
         <div id="footer">
           <div th:replace="/fragment/footer__15kue.html :: footer"></div>
         </div>
       </div>
-
     </div>
+
+  <script th:inline="javascript">
+    let orderId = /*[[${order.oid}]]*/
+    $(document).ready(function(e){
+      console.log(orderId);
+    })
+  </script>
   </body>
 </html>

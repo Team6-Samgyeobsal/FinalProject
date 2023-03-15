@@ -89,4 +89,44 @@
         <collection property="orderListDetail"
                     resultMap="orderListDetailMap" />
     </resultMap>
+
+    <resultMap id="orderItemMap" type="orderItem">
+        <result property="poid" column="poid"/>
+        <result property="amount" column="oicount"/>
+        <result property="pooption" column="pooption"/>
+        <result property="fpid" column="fpid"/>
+        <result property="fid" column="fid"/>
+        <result property="fpprice" column="fpprice"/>
+        <result property="fporigin_price" column="fporigin_price"/>
+        <result property="fptitle" column="fptitle"/>
+        <result property="fpcontent" column="fpcontent"/>
+
+    </resultMap>
+
+    <resultMap id="orderListResultMap" type="order">
+        <result property="oid" column="oid"/>
+        <result property="ophone" column="ophone"/>
+        <result property="omemo" column="omemo"/>
+        <result property="oused_mileage" column="oused_mileage"/>
+        <result property="oorigin_price" column="oorigin_price"/>
+        <result property="oprice" column="oprice"/>
+        <result property="ostatus" column="ostatus"/>
+        <result property="odate" column="odate"/>
+        <result property="memail" column="memail"/>
+        <result property="pmcode" column="pmcode"/>
+        <result property="qrused_date" column="qrused_date"/>
+        <result property="cpid" column="cpid"/>
+        <result property="fstore_name" column="fstore_name"/>
+        <result property="ftitle" column="ftitle"/>
+        <result property="fsummary" column="fsummary"/>
+        <result property="fstory" column="fstory"/>
+        <result property="fdate" column="fdate"/>
+        <result property="fstatus" column="fstatus"/>
+        <result property="ctid" column="ctid"/>
+        <result property="ctname" column="ctname"/>
+        <collection property="orders" resultMap="orderItemMap"/>
+
+
+
+    </resultMap>
 </mapper>

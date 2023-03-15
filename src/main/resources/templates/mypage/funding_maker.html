@@ -156,9 +156,13 @@
                   </div>
                   <div class="FundingSubmit_container__3kwkh">
                     <button
+                      th:disabled="${fundingMaker.getFstatus() == 'PREPARING' &&
+                    fundingMaker.getCtid()=='' || fundingMaker.getFstore_name()=='' || fundingMaker.getFthumb()=='' ||
+                    !fundingMaker.isHasImg() || fundingMaker.getFsummary()=='' || fundingMaker.getFstory()=='' ||
+                    !fundingMaker.isHasProduct()
+                    }"
                       type="button"
-                      disabled=""
-                      class="wz button primary FundingSubmit_button__1Qs0d">
+                      class="submitBtn wz button primary FundingSubmit_button__1Qs0d">
                       제출하기
                     </button>
                   </div>
@@ -173,6 +177,10 @@
       </div>
     </div>
 
-
+  <script>
+    $(document).ready(function (){
+      console.log('tt');
+    })
+  </script>
   </body>
 </html>

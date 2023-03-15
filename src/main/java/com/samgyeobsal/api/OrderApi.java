@@ -1,14 +1,17 @@
 package com.samgyeobsal.api;
 
 import com.samgyeobsal.domain.order.OrderRequest;
+import com.samgyeobsal.domain.order.OrderVO;
+import com.samgyeobsal.security.domain.Account;
 import com.samgyeobsal.service.OrderService;
 import lombok.RequiredArgsConstructor;
 import oracle.ucp.proxy.annotation.Post;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 
 /**
@@ -57,6 +60,12 @@ public class OrderApi {
     @PostMapping
     public ResponseEntity<Integer> kakaoPay(@RequestBody OrderRequest request){
         return ResponseEntity.ok().body(orderService.saveOrder(request));
+    }
+
+    @GetMapping("/{orderId}")
+    public ResponseEntity<OrderVO> getOrderInfo(@PathVariable("orderId") String orderId){
+        OrderVO order = orderService.getOrderByOrderId(orderId);
+        return new ResponseEntity<>(order, HttpStatus.OK);
     }
 
 }
