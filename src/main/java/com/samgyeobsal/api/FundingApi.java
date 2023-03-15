@@ -1,11 +1,13 @@
 package com.samgyeobsal.api;
 
+import com.lilittlecat.chatgpt.offical.ChatGPT;
 import com.samgyeobsal.domain.funding.*;
 import com.samgyeobsal.domain.maker.UpdateFundingProductDTO;
 import com.samgyeobsal.service.FundingService;
 import com.samgyeobsal.service.MakerService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import okhttp3.OkHttpClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 @RestController
 @RequestMapping("/api/funding")
@@ -73,5 +76,18 @@ public class FundingApi {
 
         makerService.deleteFundingProduct(fpid);
         return new ResponseEntity<>("success", HttpStatus.OK);
+    }
+
+    @GetMapping("/chatGpt")
+    public  ResponseEntity<?> chapGpt(String question){
+        OkHttpClient http = new OkHttpClient.Builder()
+                .connectTimeout(60, TimeUnit.SECONDS)
+                .writeTimeout(60, TimeUnit.SECONDS)
+                .readTimeout(60, TimeUnit.SECONDS)
+                .build();
+        ChatGPT chatGPT = new ChatGPT("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", http);
+        String hello = chatGPT.ask(question);
+
+        return new ResponseEntity<>(hello, HttpStatus.OK);
     }
 }

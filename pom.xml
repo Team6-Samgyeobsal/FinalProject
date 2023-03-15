@@ -164,11 +164,13 @@
 			<version>3.5.0</version>
 		</dependency>
 
+		<!-- https://mvnrepository.com/artifact/com.lilittlecat/chatgpt -->
 		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-devtools</artifactId>
-			<optional>true</optional>
+			<groupId>com.lilittlecat</groupId>
+			<artifactId>chatgpt</artifactId>
+			<version>1.0.0</version>
 		</dependency>
+
 	</dependencies>
 
 	<build>
@@ -188,6 +190,7 @@
 		</plugins>
 	</build>
 	<repositories>
+
 		<repository>
 			<id>spring-milestones</id>
 			<name>Spring Milestones</name>
@@ -204,6 +207,7 @@
 				<enabled>false</enabled>
 			</releases>
 		</repository>
+
 	</repositories>
 	<pluginRepositories>
 		<pluginRepository>
