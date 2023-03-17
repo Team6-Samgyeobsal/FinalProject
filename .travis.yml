@@ -1,0 +1,20 @@
+language: java
+jdk:
+  - oraclejdk8
+
+services:
+  - oracle
+
+env:
+  global:
+    - ORACLE_URL=jdbc:oracle:thin:@edudb_high?TNS_ADMIN=/Users/isshosng/dev64/Wallet_edudb
+    - ORACLE_USER=CSW2YA
+    - ORACLE_PASSWORD=Qwerty123456
+
+before_install:
+  - echo "MAVEN_OPTS='-Xmx2048m -XX:MaxPermSize=512m'" > ~/.mavenrc
+
+install: true
+
+script:
+  - mvn clean install -DskipTests=false
