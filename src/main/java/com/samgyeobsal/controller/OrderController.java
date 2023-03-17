@@ -64,7 +64,6 @@ public class OrderController {
         OrderStep1DTO orderStep1DTO = (OrderStep1DTO) session.getAttribute("order");
         model.addAttribute("order", orderService.getOrderList(orderStep1DTO));
         System.out.println("orderService.getOrderList(orderStep1DTO)"+orderService.getOrderList(orderStep1DTO));
-
         return "order/order_step2";
     }
 
