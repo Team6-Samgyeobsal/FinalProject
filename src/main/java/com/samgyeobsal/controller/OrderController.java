@@ -53,10 +53,12 @@ public class OrderController {
 
 //        redirect.addFlashAttribute();
         return "redirect:/web/order/step2";
+
     }
 
     @GetMapping("/{fundingId}/step2")
     public String orderStep2Page(){
+
         return "order/order_step2";
     }
 
