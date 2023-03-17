@@ -6,12 +6,12 @@ import com.samgyeobsal.domain.maker.FundingBaseInfoDTO;
 import com.samgyeobsal.domain.maker.FundingMakerVO;
 import com.samgyeobsal.domain.maker.FundingStoryDTO;
 import com.samgyeobsal.domain.order.OrderVO;
-import com.samgyeobsal.service.CommonService;
-import com.samgyeobsal.service.MakerService;
-import com.samgyeobsal.service.MemberService;
-import com.samgyeobsal.service.OrderService;
+import com.samgyeobsal.security.domain.Account;
+import com.samgyeobsal.service.*;
+import com.samgyeobsal.type.FundingStatus;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -31,6 +31,7 @@ import java.util.Map;
 public class MyPageController {
 
     private final MemberService memberService;
+    private final ReviewService reviewService;
     private final OrderService orderService;
     private final MakerService makerService;
     private final CommonService commonService;
@@ -46,9 +47,21 @@ public class MyPageController {
     }
 
     @GetMapping("/order/{orderId}")
-    public String myorderDetailPage(@PathVariable("orderId") String orderId, Model model){
+    public String myorderDetailPage(
+            @AuthenticationPrincipal Account account,
+            @PathVariable("orderId") String orderId, Model model){
+        String email = account.getMember().getMemail();
+        boolean writableStoreReview = true; // 임시 true
+
         OrderVO order = orderService.getOrderByOrderId(orderId);
+
+        if(order.getFstatus() == FundingStatus.STORE){
+            writableStoreReview = reviewService.isWritableStoreReview(email, orderId);
+        }
+
         model.addAttribute("order", order);
+        model.addAttribute("writableStoreReview", writableStoreReview);
+
         return "mypage/myorder_detail";
     }
 
