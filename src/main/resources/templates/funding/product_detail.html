@@ -291,12 +291,12 @@
                                                     class="Button_button__mRXZC Button_primary__1HJqX Button_contained__k9pMW Button_md__136bx Button_block__1LAUA CTA_button__UoUYx"
                                                     type="button"
                                                     th:style="${funding.fstatus == 'FUNDING' ? '' :'border-color: #adb5bd; background-color: #adb5bd;'}"
-                                                    th:id = "${funding.fstatus == 'FUNDING'} ? 'abled' :'disabled'">
+                                                    th:id="${funding.fstatus == 'FUNDING'} ? 'abled' :'disabled'">
                                             <span
-                            ><span class="Button_children__3HY2l"
-                            ><p>예약 구매하기</p></span
-                            ></span
-                            >
+                                            ><span class="Button_children__3HY2l"
+                                            ><p>예약 구매하기</p></span
+                                            ></span
+                                            >
                                             </button>
                                         </div>
                                     </div>
@@ -454,7 +454,7 @@
                                                     th:each="product:${funding.products}"
                                                     class="Reward_container__qyq1y"
                                                     th:data-fpid="${product.fpid}"
-                                                    >
+                                            >
                                                 <div class="Reward_header__166NH">
                                                     <div class="Reward_headerLeft__C4mAW">
                                                         <div class="Reward_amount__1EXUE">
@@ -489,8 +489,9 @@
                                                 <button class="Button_button__mRXZC Button_primary__1HJqX Button_contained__k9pMW Button_md__136bx Button_block__1LAUA CTA_button__UoUYx"
                                                         type="button"
                                                         th:style="${funding.fstatus == 'FUNDING' ? '' :'border-color: #adb5bd; background-color: #adb5bd;'}"
-                                                        th:id = "${funding.fstatus == 'FUNDING'} ? 'abled1' :'disabled1'">
-                                                    <span><span class="Button_children__3HY2l"><p>예약 구매하기</p></span></span>
+                                                        th:id="${funding.fstatus == 'FUNDING'} ? 'abled1' :'disabled1'">
+                                                    <span><span
+                                                            class="Button_children__3HY2l"><p>예약 구매하기</p></span></span>
                                                 </button>
                                             </div>
                                         </div>
@@ -553,6 +554,15 @@
                                                 <option value="높은 평점순">높은 평점순</option>
                                                 <option value="낮은 평점순">낮은 평점순</option>
                                             </select></div>
+                                        </div>
+                                        <div>
+                                            <div>
+                                                <button class="Button_button__mRXZC Button_secondary__20rLg Button_contained__k9pMW Button_lg__22YWj gray CommunityCommentWriteButton_button__3bPl4"
+                                                        type="button"
+                                                        style="border-color: #495057;
+                                                               background-color: #495057;"><span><span
+                                                        class="Button_children__3HY2l">글 남기기</span></span></button>
+                                            </div>
                                         </div>
                                     </div>
                                     <div id="reviewList">
@@ -678,18 +688,18 @@
 <script>
     $(document).ready(function () {
 
-        $('.Reward_container__qyq1y').hover(function (){
-        $(this).find('.Badge_badge__2h6cT').removeClass('Badge_tertiary__1ERKE').addClass('Badge_contained__Q3unx')
-        },function (){
+        $('.Reward_container__qyq1y').hover(function () {
+            $(this).find('.Badge_badge__2h6cT').removeClass('Badge_tertiary__1ERKE').addClass('Badge_contained__Q3unx')
+        }, function () {
             $(this).find('.Badge_badge__2h6cT').removeClass('Badge_contained__Q3unx').addClass('Badge_tertiary__1ERKE')
         })
 
-        $('#abled, #abled1').click(function (){
-            location.href='/web/order/'+[[${funding.fid}]]+'/step1'
+        $('#abled, #abled1').click(function () {
+            location.href = '/web/order/' + [[${funding.fid}]] + '/step1'
         })
 
 
-            $('#story').click(function () {
+        $('#story').click(function () {
             console.log("스토리");
             if ($('.Story_container__wZtYc').hasClass('Story_expanded__3TsCo')) {
                 $('.Story_container__wZtYc').removeClass('Story_expanded__3TsCo');
@@ -762,18 +772,17 @@
 </script>
 <script th:inline="javascript">
     $(document).ready(function () {
-        if([[${funding.fstatus=='FUNDING'}]]) {
+        if ([[${funding.fstatus=='FUNDING'}]]) {
             $('.Reward_container__qyq1y').addClass('Reward_expand__17Y0G');
-        }
-        else {
+        } else {
             $('.Reward_container__qyq1y').addClass('Reward_disabled__1jxB-');
-             $('.ProductSelectMenuItem_container__2ubAS').addClass('ProductSelectMenuItem_disabled__1-5Cp');
+            $('.ProductSelectMenuItem_container__2ubAS').addClass('ProductSelectMenuItem_disabled__1-5Cp');
         }
-        $('.Reward_container__qyq1y, .ProductSelectMenuItem_container__2ubAS').on('click', function() {
-            if([[${funding.fstatus=='FUNDING'}]]) {
+        $('.Reward_container__qyq1y, .ProductSelectMenuItem_container__2ubAS').on('click', function () {
+            if ([[${funding.fstatus=='FUNDING'}]]) {
                 console.log('물건클릭')
 
-                location.href='/web/order/'+[[${funding.fid}]]+'/step1?fpid='+$(this).data('fpid');
+                location.href = '/web/order/' + [[${funding.fid}]] + '/step1?fpid=' + $(this).data('fpid');
             }
         });
 
@@ -792,7 +801,7 @@
                 type = $(this).data('rtype');
                 console.log(type);
                 $('#reviewList').html('');
-                page=0;
+                page = 0;
                 getReview(fid, sort, type);
             }
         })
@@ -801,18 +810,17 @@
             $('#sorted').text($('.SortingSelect_select__21qNT').val());
             sort = $('#sorted').text();
             $('#reviewList').html('');
-            page=0;
+            page = 0;
             getReview(fid, sort, type);
         })
 
-        $(window).scroll(function() {
-            if ($(window).scrollTop() + $(window).height() >= $(document).height()-1000) {
+        $(window).scroll(function () {
+            if ($(window).scrollTop() + $(window).height() >= $(document).height() - 1000) {
                 console.log('다음 페이지');
                 page++
                 getReview(fid, sort, type);
             }
         });
-
 
 
         function getReview(fid, sort, type) {
@@ -825,11 +833,11 @@
                     fid: fid,
                     sort: sort,
                     type: type,
-                    page:page
+                    page: page
                 },
                 success: function (data, status) {
                     let k = "";
-                    if (data.length == 0&&page==0) {
+                    if (data.length == 0 && page == 0) {
                         k = `<div class="SatisfactionNoReview_container__1xzoJ"><span class="SatisfactionNoReview_icon__1sDe_"></span><p class="SatisfactionNoReview_text__N24Pm">아직 작성된 만족도 평가가 없어요</p></div><div></div>`
 
                     } else {
@@ -890,6 +898,124 @@
         }
     })
 
+</script>
+
+<div class="ReactModalPortal" style="display:none;">
+    <div class="ReactModal__Overlay ReactModal__Overlay--after-open ConfirmModal_overlay__2vouq waffle__modal__overlay CommunityCommentWriteForm_overlay__2KrJn waffle__modal__overlay"
+         style="background-color: rgba(0, 0, 0, 0.2);">
+        <div class="ReactModal__Content ReactModal__Content--after-open ConfirmModal_confirmModal__2-l3c ConfirmModal_sizeLg__1CEh6 CommunityCommentWriteForm_container__3q80P"
+             tabindex="-1" role="dialog" aria-modal="true">
+            <div class="ConfirmModal_header__2yOEU">
+                <div class="ConfirmModal_closeIconRoot__2whkj">
+                    <button class="ConfirmModal_closeIconWrapper__2-lWO">
+                        <svg viewBox="0 0 40 40" focusable="false" role="presentation"
+                             class="withIcon_icon__20lDO ConfirmModal_closeIcon__3DABU" aria-hidden="true">
+                            <path d="M33.4 8L32 6.6l-12 12-12-12L6.6 8l12 12-12 12L8 33.4l12-12 12 12 1.4-1.4-12-12 12-12z"></path>
+                        </svg>
+                    </button>
+                </div>
+                <div title="글 남기기" class="ConfirmModal_title__2I2A3 ConfirmModal_showCloseButton__2Mb8W">글 남기기</div>
+            </div>
+            <div class="ConfirmModal_content__nIMXh ConfirmModal_hasTitle__2YXj0">
+                <div class="CommunityCommentWriteForm_writeWrap__1WbRO"><p
+                        class="CommunityCommentWriteForm_explanation__3Ui22">응원 · 의견 · 체험 리뷰를 남겨주세요.<br>메이커의 답변이 필요한 문의는
+                    ‘메이커에게 문의하기’를 이용해주세요.</p>
+                    <div>
+                        <form name="feedback-form">
+                            <div class="CommunityCommentWriteForm_field__3PqtU"><label for="feedback-contents">
+                                <div class="wz input"><textarea name="body" id="feedback-contents"
+                                                                placeholder="메이커에게 응원∙의견∙체험 리뷰 메시지를 남겨주세요." class=""
+                                                                maxlength="2000"></textarea></div>
+                            </label><span
+                                    class="Badge_container__3ioDw Badge_visible__n2Hg1 CommunityCommentWriteForm_badge__1Kx4a"><span
+                                    class="Badge_badge__2h6cT Badge_label__VC3QR Badge_sm__1ia4P Badge_secondary__1o9ka Badge_tertiary__1ERKE">0자/ 최소 10자</span></span>
+                            </div>
+                            <div>
+                                <div class="ImageUploader_container__3hnJo">
+                                    <div class="ImageUploader_contentWrap__3mxSw">
+                                        <div class="ImageUploader_button__1lBvx">
+                                            <svg viewBox="0 0 32 32" focusable="false" role="presentation"
+                                                 class="withIcon_icon__360C7 ImageUploader_addIcon__gr-Ml"
+                                                 aria-hidden="true" style="width: 24px; height: 24px;">
+                                                <path d="M20.8 16.8a4.8 4.8 0 1 1-9.6 0 4.8 4.8 0 0 1 9.6 0z"></path>
+                                                <path d="M22.4 6.4L20 3.2h-8L9.6 6.4h-8v20.8h28.8V6.4zM16 23.2c-3.535 0-6.4-2.865-6.4-6.4s2.865-6.4 6.4-6.4 6.4 2.865 6.4 6.4-2.865 6.4-6.4 6.4z"></path>
+                                            </svg>
+                                            <span>0/5</span>
+                                            <div class="StaticPopper_container__3cXVt ImageUploader_popper__3QY91">
+                                                <div>소중한 경험을 남겨주시면<br>다른 서포터에게 큰 도움이 돼요</div>
+                                                <div class="StaticPopper_arrow__1PjvA ImageUploader_popperArrow__3m9us"
+                                                     aria-hidden="true"></div>
+                                            </div>
+                                        </div>
+                                        <div class="ImageUploader_imageContainer__1TB8t"
+                                             style="transform: translateX(0px);"></div>
+                                    </div>
+                                    <input type="file" accept="image/png, image/jpeg, image/jpg" value=""
+                                           style="display: none;"></div>
+                            </div>
+                            <div color="danger"
+                                 class="MessageBox_messageBox__3be7S MessageBox_danger__1NTYn CommunityCommentWriteForm_dangerMsg__1vpvD">
+                                <span><svg viewBox="0 0 40 40" focusable="false" role="presentation"
+                                           class="withIcon_icon__20lDO MessageBox_icon__RobzF MessageBox_withoutTitle__1h2Jc"
+                                           aria-hidden="true"><path fill="none" d="M0 0h40v40H0z"></path><path
+                                        d="M20 1a19 19 0 1 0 19 19A19.06 19.06 0 0 0 20 1zm1 28.6h-2v-13h2zm-1-15.84A1.8 1.8 0 1 1 21.8 12a1.8 1.8 0 0 1-1.8 1.76z"></path></svg></span>
+                                <div class="MessageBox_content__3DhRV">
+                                    <div class="MessageBox_description__5-Jfn">최근 메이커 또는 제3자에 대한 허위사실 유포, 비방 목적의 댓글로 인해
+                                        당사자간 법적분쟁이 발생한 사례가 증가하고 있습니다. 악의적 댓글 작성자는 명예훼손, 모욕 등으로 법적 책임을 부담하게 될 수 있다는 점을
+                                        유의하여 주시기 바랍니다.
+                                    </div>
+                                </div>
+                            </div>
+                            <div color="basic"
+                                 class="MessageBox_messageBox__3be7S MessageBox_basic__2S29U MessageBox_vertical__2dh5G">
+                                <span><svg viewBox="0 0 40 40" focusable="false" role="presentation"
+                                           class="withIcon_icon__20lDO MessageBox_icon__RobzF" aria-hidden="true"><path
+                                        fill="none" d="M0 0h40v40H0z"></path><path
+                                        d="M20 1a19 19 0 1 0 19 19A19.06 19.06 0 0 0 20 1zm1 28.6h-2v-13h2zm-1-15.84A1.8 1.8 0 1 1 21.8 12a1.8 1.8 0 0 1-1.8 1.76z"></path></svg></span>
+                                <div class="MessageBox_content__3DhRV"><p class="MessageBox_title__1P3UH">게시물 이용안내</p>
+                                    <div class="MessageBox_description__5-Jfn">
+                                        <ul class="CommunityCommentWriteForm_basicMsg__2ruLY">
+                                            <li>본 프로젝트와 무관한 글, 사진, 광고성, 욕설, 비방, 도배 등의 글은 예고 없이 삭제 등 조치가 취해질 수 있으며, 해당
+                                                내용으로 인해 메이커, 서포터, 제3자에게 피해가 발생되지 않도록 유의해 주세요.
+                                            </li>
+                                            <li>리워드 관련 문의 및 배송 문의는 '메이커에게 문의하기'를 통해 정확한 답변을 받을 수 있어요.</li>
+                                            <li>서포터님의 연락처, 성명, 이메일 등의 소중한 개인정보는 절대 남기지 마세요.</li>
+                                            <li>체험 리뷰는 반드시 펀딩을 위해 진행된 오프라인 전시(체험)에 참여한 후 작성하세요.</li>
+                                            <li>체험 리뷰 등록 시, 프로필 닉네임과 내용이 공개되며, 서비스 내 콘텐츠에 활용돼요.</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="CommunityCommentWriteForm_bottom__1db7N">
+                                <button class="Button_button__mRXZC Button_secondary__20rLg Button_lg__22YWj"
+                                        type="button"
+                                        id="cancelReview"
+                                ><span><span class="Button_children__3HY2l">취소</span></span>
+                                </button>
+                                <button class="Button_button__mRXZC Button_primary__1HJqX Button_contained__k9pMW Button_lg__22YWj Button_disabled__2i2Uo"
+                                        type="button" disabled=""><span><span class="Button_children__3HY2l">등록하기</span></span>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        $('.Button_button__mRXZC.Button_secondary__20rLg.Button_contained__k9pMW').click(function () {
+            $('.ReactModalPortal').show();
+        })
+        $('.ConfirmModal_closeIconWrapper__2-lWO,  #cancelReview').click(function () {
+            $('.ReactModalPortal').hide();
+        })
+        $('#feedback-contents').on('input', function() {
+            console.log($(this).val());
+            $('.Badge_container__3ioDw .Badge_badge__2h6cT.Badge_label__VC3QR.Badge_secondary__1o9ka.Badge_tertiary__1ERKE').text($(this).val().length+"자/ 최소 10자")
+        });
+    })
 </script>
 </body>
 </html>

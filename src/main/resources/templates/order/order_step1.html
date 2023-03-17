@@ -493,13 +493,6 @@
             var value = $(this).val();
             console.log(value);
         });
-
-
-
-
-
-
-
     });
 </script>
 <script>
@@ -512,12 +505,13 @@
                 console.log(poid);
                 let amount = $(this).find('.amount').val();
                 console.log(amount);
-
                 let input=`<input type="hidden" name="item[${index}].poid" value="${poid}">
                            <input type="hidden" name="item[${index}].amount" value="${amount}">`;
                 $('#order-step1').append(input);
             });
-            $('#order-step1').submit();
+            if( $('#order-step1').html().length>1){
+                $('#order-step1').submit();
+            }
         })
     })
 </script>

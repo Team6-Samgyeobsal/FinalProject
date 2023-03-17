@@ -9,9 +9,9 @@ import java.util.concurrent.TimeUnit;
 public class ChatGptService {
     public static void main(String[] args) {
         OkHttpClient http = new OkHttpClient.Builder()
-                .connectTimeout(60, TimeUnit.SECONDS)
-                .writeTimeout(60, TimeUnit.SECONDS)
-                .readTimeout(60, TimeUnit.SECONDS)
+                .connectTimeout(600, TimeUnit.SECONDS)
+                .writeTimeout(600, TimeUnit.SECONDS)
+                .readTimeout(600, TimeUnit.SECONDS)
                 .build();
 
         ChatGPT chatGPT = new ChatGPT("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", http);

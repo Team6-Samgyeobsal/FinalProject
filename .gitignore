@@ -36,3 +36,4 @@ build/
 *.properties
 
 .DS_Store
+.travis.yml
