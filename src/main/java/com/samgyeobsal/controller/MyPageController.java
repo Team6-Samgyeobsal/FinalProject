@@ -51,7 +51,8 @@ public class MyPageController {
             @AuthenticationPrincipal Account account,
             @PathVariable("orderId") String orderId, Model model){
         String email = account.getMember().getMemail();
-        boolean writableStoreReview = true; // 임시 true
+        // TODO : 임시로 true
+        boolean writableStoreReview = true;
 
         OrderVO order = orderService.getOrderByOrderId(orderId);
 

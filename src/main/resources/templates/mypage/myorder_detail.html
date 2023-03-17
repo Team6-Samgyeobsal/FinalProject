@@ -396,28 +396,20 @@
                   </div>
                   <div>
                     <div class="ImageUploader_container__3hnJo">
-                      <div class="ImageUploader_contentWrap__3mxSw">
-                        <div class="ImageUploader_button__1lBvx">
+                      <div class="imgWrap ImageUploader_contentWrap__3mxSw">
+                        <div class="uploadBtn ImageUploader_button__1lBvx">
                           <svg viewBox="0 0 32 32" focusable="false" role="presentation"
                                class="withIcon_icon__360C7 ImageUploader_addIcon__gr-Ml"
                                aria-hidden="true" style="width: 24px; height: 24px;">
                             <path d="M20.8 16.8a4.8 4.8 0 1 1-9.6 0 4.8 4.8 0 0 1 9.6 0z"></path>
                             <path d="M22.4 6.4L20 3.2h-8L9.6 6.4h-8v20.8h28.8V6.4zM16 23.2c-3.535 0-6.4-2.865-6.4-6.4s2.865-6.4 6.4-6.4 6.4 2.865 6.4 6.4-2.865 6.4-6.4 6.4z"></path>
                           </svg>
-                          <span>0/5</span>
-                          <div class="StaticPopper_container__3cXVt ImageUploader_popper__3QY91">
-                            <div>소중한 경험을 남겨주시면<br>다른 서포터에게 큰 도움이 돼요</div>
-                            <div class="StaticPopper_arrow__1PjvA ImageUploader_popperArrow__3m9us"
-                                 aria-hidden="true"></div>
-                          </div>
-                        </div>
-                        <div class="ImageUploader_imageContainer__1TB8t"
-                             style="transform: translateX(0px);">
-                          <div class="ImageUploader_animationContainer__2XgIc" style="transform: translateX(0px);"><div class="ImageUploader_thumbnailWrap__3p8Vw"><img class="ImageUploader_thumbnail__1RglT" src="/testImg1" alt=""></div><div class="ImageUploader_closeButton__dn3ee"></div></div>
                         </div>
                       </div>
-                      <input type="file" accept="image/png, image/jpeg, image/jpg" value=""
+                      <input id="imgInput"
+                              type="file" accept="image/png, image/jpeg, image/jpg" value=""
                              style="display: none;"></div>
+                      <input type="hidden" id="imgUrl">
                   </div>
                   <div color="danger"
                        class="MessageBox_messageBox__3be7S MessageBox_danger__1NTYn CommunityCommentWriteForm_dangerMsg__1vpvD">
@@ -458,7 +450,7 @@
                             type="button"
                     ><span><span class="Button_children__3HY2l">취소</span></span>
                     </button>
-                    <button class="Button_button__mRXZC Button_primary__1HJqX Button_contained__k9pMW Button_lg__22YWj Button_disabled__2i2Uo"
+                    <button class="submitBtn Button_button__mRXZC Button_primary__1HJqX Button_contained__k9pMW Button_lg__22YWj Button_disabled__2i2Uo"
                             type="button" disabled=""><span><span class="Button_children__3HY2l">등록하기</span></span>
                     </button>
                   </div>
@@ -471,18 +463,107 @@
     </div>
 
     <script>
-      let orderId = /*[[${order.oid}]]*/
+      /*<![CDATA[*/
+      let fid = [[${order.orders[0].fid}]]
+      /*]]>*/
+      /*<![CDATA[*/
+      let orderId = [[${order.oid}]]
+      /*]]>*/
       $(document).ready(function () {
-        $('.writeStoreReview').click(function () {
-          $('.ReactModalPortal').show();
-        })
-        $('.ConfirmModal_closeIconWrapper__2-lWO,  #cancelReview').click(function () {
-          $('.ReactModalPortal').hide();
-        })
-        $('#feedback-contents').on('input', function() {
-          console.log($(this).val());
-          $('.Badge_container__3ioDw .Badge_badge__2h6cT.Badge_label__VC3QR.Badge_secondary__1o9ka.Badge_tertiary__1ERKE').text($(this).val().length+"자/ 최소 10자")
+
+      })
+      $('.ImageUploader_button__1lBvx').click(function(){
+        $('#imgInput').click();
+      })
+      $('#imgInput').change(function(e){
+        let formData = new FormData();
+        let inputFile = $('#imgInput');
+        let files = inputFile[0].files;
+        for(let i=0;i<files.length;i++){
+          formData.append("uploadFiles", files[i]);
+        }
+        uploadImg(formData, function (result) {
+          console.log(result);
+          $('.uploadBtn').css('display', 'none');
+          let template = `
+          <div class="ImageUploader_imageContainer__1TB8t" style="transform: translateX(0px);">
+              <div class="ImageUploader_animationContainer__2XgIc" style="transform: translateX(0px);">
+                <div class="ImageUploader_thumbnailWrap__3p8Vw">
+                  <img class="ImageUploader_thumbnail__1RglT" src="${result[0]['imageURL']}" alt="">
+                </div>
+              <div class="ImageUploader_closeButton__dn3ee"></div>
+            </div>
+          </div>
+          `;
+          $('#imgUrl').val(result[0]['imageURL']);
+
+          $('.imgWrap').append(template);
         });
+      })
+
+
+      function uploadImg(data, callback){
+        $.ajax({
+          url:'/api/common/uploadImg',
+          processData : false,
+          contentType : false,
+          data : data,
+          type : 'POST',
+          dataType : 'json',
+          success : function(result){
+            if(callback) callback(result);
+          }
+        })
+      }
+
+      // 댓글 모달창 열기
+      $('.writeStoreReview').click(function () {
+        $('.ReactModalPortal').show();
+      })
+
+      // 댓글 모달창 닫기
+      $('.ConfirmModal_closeIconWrapper__2-lWO,  #cancelReview').click(function () {
+        $('.ReactModalPortal').hide();
+      })
+
+      // 댓글 모달창 길이에 따른 이벤트
+      $('#feedback-contents').on('input', function() {
+        if($(this).val().length >= 10 ){
+          $('.submitBtn').prop('disabled', false);
+          $('.submitBtn').removeClass('Button_disabled__2i2Uo')
+
+        }else{
+          $('.submitBtn').prop('disabled', true);
+          $('.submitBtn').addClass('Button_disabled__2i2Uo')
+        }
+        $('.Badge_container__3ioDw .Badge_badge__2h6cT.Badge_label__VC3QR.Badge_secondary__1o9ka.Badge_tertiary__1ERKE').text($(this).val().length+"자/ 최소 10자")
+      });
+      $(document).on('click','.ImageUploader_closeButton__dn3ee',function(){
+        console.log('click closeBtn');
+        $('#imgInput').val('');
+        $('.uploadBtn').css('display', 'flex');
+        $('.ImageUploader_imageContainer__1TB8t').remove();
+      })
+
+      $('.submitBtn').click(function(){
+        let rcontent = $('#feedback-contents').val();
+        let rimg_url = $('#imgUrl').val();
+        let rtype = 'STORE';
+        $.ajax({
+          url: "/api/funding/"+fid+"/product/review",
+          type: "post",
+          contentType: "application/json; charset=utf-8",
+          data:JSON.stringify({
+            rcontent : rcontent,
+            rimg_url : rimg_url,
+            rtype : rtype,
+            fid : fid
+          }),
+        })
+
+        $('.ReactModalPortal').hide();
+        location.reload();
+
       })
     </script>
   </body>
