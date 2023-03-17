@@ -3,14 +3,18 @@ package com.samgyeobsal.api;
 import com.lilittlecat.chatgpt.offical.ChatGPT;
 import com.samgyeobsal.domain.funding.*;
 import com.samgyeobsal.domain.maker.UpdateFundingProductDTO;
+import com.samgyeobsal.domain.review.InsertReviewDTO;
+import com.samgyeobsal.security.domain.Account;
 import com.samgyeobsal.service.FundingService;
 import com.samgyeobsal.service.MakerService;
+import com.samgyeobsal.service.ReviewService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import okhttp3.OkHttpClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -25,6 +29,8 @@ public class FundingApi {
 
     private final FundingService fundingService;
     private final MakerService makerService;
+
+    private final ReviewService reviewService;
 
     @GetMapping("/list")
     public ResponseEntity<List<FundingVO>> getFundingList(@ModelAttribute FundingCriteria criteria) {
@@ -90,4 +96,19 @@ public class FundingApi {
 
         return new ResponseEntity<>(hello, HttpStatus.OK);
     }
+
+    @PostMapping("/{fundingId}/product/review")
+    public ResponseEntity<String> fundingReview(
+            @PathVariable("fundingId") String fundingId,
+            @RequestBody InsertReviewDTO insertReviewDTO,
+            @AuthenticationPrincipal Account account)
+    {
+        String memail=account.getMember().getMemail();
+        insertReviewDTO.setMemail(memail);
+
+        reviewService.insertReview(insertReviewDTO);
+        log.info("insertReviewDTO"+insertReviewDTO);
+        return new ResponseEntity<>("success", HttpStatus.OK);
+    }
+
 }

@@ -1,5 +1,6 @@
 package com.samgyeobsal.service;
 
+import com.samgyeobsal.domain.review.InsertReviewDTO;
 import com.samgyeobsal.mapper.ReviewMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -15,5 +16,10 @@ public class ReviewServiceImpl implements ReviewService{
     @Override
     public boolean isWritableStoreReview(String email, String orderId) {
         return reviewMapper.isWritableStoreReview(email, orderId);
+    }
+
+    @Override
+    public int insertReview(InsertReviewDTO insertReviewDTO) {
+        return reviewMapper.insertReview(insertReviewDTO);
     }
 }

@@ -171,7 +171,7 @@
         order by
         <choose>
             <when test="criteria.sort =='최신순'.toString()">
-                rdate
+                rdate desc
             </when>
             <when test="criteria.sort =='높은 평점순'.toString()">
                 rscore desc
@@ -180,7 +180,7 @@
                 rscore
             </when>
             <otherwise>
-                rdate
+                rdate desc
             </otherwise>
         </choose>
         ,memail

@@ -896,6 +896,53 @@
             })
 
         }
+        $('.Button_button__mRXZC.Button_secondary__20rLg.Button_contained__k9pMW').click(function () {
+            $('.ReactModalPortal').show();
+        })
+        $('.ConfirmModal_closeIconWrapper__2-lWO,  #cancelReview').click(function () {
+            $('.ReactModalPortal').hide();
+        })
+        $('#feedback-contents').on('input', function() {
+            if($(this).val().length >= 10 ){
+                $('.submitBtn').prop('disabled', false);
+                $('.submitBtn').removeClass('Button_disabled__2i2Uo')
+
+            }else{
+                $('.submitBtn').prop('disabled', true);
+                $('.submitBtn').addClass('Button_disabled__2i2Uo')
+            }
+            console.log($(this).val());
+            $('.Badge_container__3ioDw .Badge_badge__2h6cT.Badge_label__VC3QR.Badge_secondary__1o9ka.Badge_tertiary__1ERKE').text($(this).val().length+"자/ 최소 10자")
+        });
+        $('.submitBtn').click(function (){
+            insertReview();
+        })
+
+        function insertReview() {
+            let url = "/api/funding/" + fid + "/product/review"
+            let rtype = "FUNDING";
+            let rcontent = $('#feedback-contents').val();
+            console.log(rcontent);
+            $.ajax({
+                url: url,
+                type: "post",
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify({
+                    fid: fid,
+                    rcontent: rcontent,
+                    rtype: rtype
+                }),
+                success: function (data, status) {
+                    getReview(fid, sort, type);
+                    $('.ReactModalPortal').hide();
+                },
+                error: function (status, error) {
+                    alert("실패");
+                }
+            })
+        }
+
+
     })
 
 </script>
@@ -992,7 +1039,7 @@
                                         id="cancelReview"
                                 ><span><span class="Button_children__3HY2l">취소</span></span>
                                 </button>
-                                <button class="Button_button__mRXZC Button_primary__1HJqX Button_contained__k9pMW Button_lg__22YWj Button_disabled__2i2Uo"
+                                <button class="Button_button__mRXZC Button_primary__1HJqX Button_contained__k9pMW Button_lg__22YWj Button_disabled__2i2Uo submitBtn"
                                         type="button" disabled=""><span><span class="Button_children__3HY2l">등록하기</span></span>
                                 </button>
                             </div>
@@ -1003,19 +1050,5 @@
         </div>
     </div>
 </div>
-<script>
-    $(document).ready(function () {
-        $('.Button_button__mRXZC.Button_secondary__20rLg.Button_contained__k9pMW').click(function () {
-            $('.ReactModalPortal').show();
-        })
-        $('.ConfirmModal_closeIconWrapper__2-lWO,  #cancelReview').click(function () {
-            $('.ReactModalPortal').hide();
-        })
-        $('#feedback-contents').on('input', function() {
-            console.log($(this).val());
-            $('.Badge_container__3ioDw .Badge_badge__2h6cT.Badge_label__VC3QR.Badge_secondary__1o9ka.Badge_tertiary__1ERKE').text($(this).val().length+"자/ 최소 10자")
-        });
-    })
-</script>
 </body>
 </html>

@@ -13,4 +13,9 @@
           and o.oid = #{orderId} and r.rtype='STORE'
           and o.qrused_date is not null
     </select>
+    
+    <insert id="insertReview">
+        insert into review(rscore,rtype,rimg_url,memail,fid,rdate,rcontent)
+        values('3',#{rtype},#{rimg_url},#{memail},#{fid},sysdate,#{rcontent})
+    </insert>
 </mapper>
