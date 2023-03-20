@@ -1,6 +1,7 @@
 package com.samgyeobsal.service;
 
 
+import com.samgyeobsal.domain.fame.FameVO;
 import com.samgyeobsal.domain.store.StoreVO;
 import com.samgyeobsal.mapper.StoreMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,4 +18,5 @@ public class StoreServiceImpl implements StoreService{
     public List<StoreVO> getStoreList() {
         return storeMapper.getStoreList();
     }
+
 }

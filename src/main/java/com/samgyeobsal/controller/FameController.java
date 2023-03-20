@@ -1,5 +1,7 @@
 package com.samgyeobsal.controller;
 
+import com.samgyeobsal.mapper.FameMapper;
+import com.samgyeobsal.service.FameService;
 import com.samgyeobsal.service.FundingService;
 import com.samgyeobsal.service.StoreService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,25 +12,18 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/web/store")
-public class StoreController {
+@RequestMapping("/web/fame")
+public class FameController {
 
     @Autowired
-    StoreService storeService;
+    FameService fameService;
 
-    @Autowired
-    FundingService fundingService;
 
     @GetMapping("")
-    public String store(Model model){
-        model.addAttribute("store",storeService.getStoreList());
-        return "store/store";
-    }
-    @GetMapping("/{fid}")
-    public String storeDetail(@PathVariable String fid, Model model){
+    public String fame(String type){
 
-        model.addAttribute("funding",fundingService.getFundingDetail(fid,"STORE"));
-        return "funding/product_detail";
+        return "fame/fame";
     }
+
 
 }

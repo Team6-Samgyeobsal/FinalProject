@@ -497,6 +497,10 @@
                 alert('100개 이상 X');
                 $(this).val(99);
             }
+            if (!$.isNumeric($(this).val())){
+                alert('숫자만');
+                $(this).val(1);
+            }
             console.log('변경');
             let price = $(this).data('price') * $(this).val();
             console.log(price);
