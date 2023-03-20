@@ -11,7 +11,7 @@
       content="테크, 패션, 푸드, 뷰티, 홈리빙까지. 와디즈 펀딩으로 매일 새로운 일상을 발견하고, 와디즈 스토어에서 새로운 쇼핑을 만나보세요." />
     <title>결제 예약</title>
     <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
-
+    <script src="https://js.tosspayments.com/v1/payment"></script>
     <link
       rel="shortcut icon"
       href="https://static.wadiz.kr/assets/icon/favicon.ico" />
@@ -1288,11 +1288,59 @@
                 </div>
               </div>
             </div>
-            <div class="btn-wrap">
+            <!--<div class="btn-wrap">
               <button type="button" id="btn-submit" class="wz primary button">
                 결제 예약하기
               </button>
+            </div>-->
+            <script>
+              // 클라이언트 키 설정
+              const clientKey = 'test_ck_GKNbdOvk5rkA775xZjE3n07xlzmj'
+              // TossPayments 객체 생성
+              const tossPayments = TossPayments(clientKey)
+            </script>
+            <div class="btn-wrap">
+              <button type ="button" onClick="paymentToss();" class="wz primary button">
+                결제하기
+              </button>
             </div>
+            <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+            <script>
+              const paymentToss = () => {
+                // UUIDd 생성 API 호출
+                $.ajax({
+                  url: "/web/util/uuid",
+                  async: true,
+                  success: ( result ) => {
+                    console.log(result);
+                    let products = result['products'];
+                    let members = result['members'];
+                    console.log(products);
+                    let amount = products[0]['fpprice'];
+                    let orderName = products[0]['fptitle'];
+                    if(products.length > 1){
+                      orderName += "외 "+ (products.length-1)+"건";
+                    }
+                    let customerName = members[0]['mname'];
+
+                    // Tosspayments API 호출
+                    tossPayments.requestPayment('가상계좌', { // 결제 수단 파라미터
+                      // 결제 정보 파라미터
+                      amount: amount, //가격
+                      orderId: result.uuid, //uuid인데 ajax 불러 오는것도 orderName넣으려고 만듬(js에서 만드는거 보다는 백에서 만드는게 편함)
+                      orderName: orderName, //상품명
+                      customerName: customerName, // user 이름
+                      successUrl: 'http://localhost:80/sample/testSuccess', //성공 url 성공 url에서는 승인 api 한번 호출하고 마이페이지로 넘어가도록 해야함
+                      failUrl: 'http://localhost:80/fail',
+                      validHours: 24,
+                      cashReceipt: {
+                        type: '소득공제',
+                      },
+                    })
+                  }
+                });
+              }
+            </script>
             <!-- 간편결제 예약 앱 -->
             <div id="reward-reservation-app" data-reservation-info="null"></div>
           </div>
