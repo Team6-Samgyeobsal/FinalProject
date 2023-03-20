@@ -12,6 +12,7 @@ import java.util.List;
 public class OrderListVO {
     private String fpid;
     private int fpprice;
+    private int fporigin_price;
     private String fptitle;
     private String fpcontent;
     private int sumprice;

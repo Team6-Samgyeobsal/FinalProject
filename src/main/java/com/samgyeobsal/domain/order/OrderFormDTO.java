@@ -18,4 +18,6 @@ public class OrderFormDTO {
     private int totalprice;
 
     private OrderFtitleVO orderFtitle;
+
+    // TODO : order table column 채우기
 }

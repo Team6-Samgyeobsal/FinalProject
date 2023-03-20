@@ -7,6 +7,7 @@ import com.samgyeobsal.mapper.EventMapper;
 import com.samgyeobsal.service.OrderService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -34,6 +35,9 @@ import javax.servlet.http.HttpSession;
 @RequestMapping("/web/order")
 @Slf4j
 public class OrderController {
+
+    @Value("${toss.client.key}")
+    private String tossKey;
 
     private final OrderService orderService;
     private final EventMapper eventMapper;
@@ -67,6 +71,7 @@ public class OrderController {
     public String orderStep2Page(Model model, HttpSession session,@PathVariable String fundingId, @AuthenticationPrincipal Account account){
         OrderStep1DTO orderStep1DTO = (OrderStep1DTO) session.getAttribute("order");
         model.addAttribute("order", orderService.getOrderList(orderStep1DTO,fundingId));
+        model.addAttribute("tossKey", tossKey);
         System.out.println("orderService.getOrderList(orderStep1DTO)"+orderService.getOrderList(orderStep1DTO,fundingId));
         return "order/order_step2";
     }

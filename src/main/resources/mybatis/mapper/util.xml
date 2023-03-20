@@ -84,6 +84,7 @@
     <resultMap id="orderListMap" type="orderList">
         <result property="fpid" column="fpid" />
         <result property="fpprice" column="fpprice" />
+        <result property="fporigin_price" column="fporigin_price" />
         <result property="fptitle" column="fptitle" />
         <result property="fpcontent" column="fpcontent" />
         <collection property="orderListDetail"

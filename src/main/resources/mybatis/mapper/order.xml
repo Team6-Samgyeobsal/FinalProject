@@ -38,6 +38,7 @@
         fid,
         fpprice,
         fptitle,
+        fp.fporigin_price,
         fp.fpcontent,
         poid,pooption
         from funding_product fp
