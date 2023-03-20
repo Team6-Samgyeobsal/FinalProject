@@ -25,6 +25,14 @@ public class MakerMapperTest {
     private MakerMapper makerMapper;
 
     @Test
+    @Transactional
+    void insertFunding(){
+        String fid = UUID.randomUUID().toString();
+        String memail = "user@gmail.com";
+        makerMapper.insertFunding(fid, memail);
+    }
+
+    @Test
     void findFundingMakerByFundingId(){
         String fundingId = "1";
         FundingMakerVO fundingMaker = makerMapper.findFundingMakerByFundingId(fundingId);

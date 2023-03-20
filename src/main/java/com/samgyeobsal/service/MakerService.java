@@ -10,6 +10,11 @@ import java.util.List;
 
 public interface MakerService {
 
+    /**
+     return : 생성한 funding id
+     */
+    String createFunding(String email);
+
     FundingMakerVO getFundingMakerByFundingId(String fundingId);
 
     void updateFundingBaseInfo(FundingBaseInfoDTO baseInfo);

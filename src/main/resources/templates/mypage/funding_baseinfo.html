@@ -242,7 +242,7 @@
                                 title=""
                                 size="12"
                                 value=""
-                                th:value="${baseInfo.getStringFundingStart()!=null? baseInfo.getStringFundingStart() + ' ~ ' + baseInfo.getStringFundingEnd():''}"/>
+                                th:value="${baseInfo.getCfunding_start_date()!=null && baseInfo.getStringFundingStart()!=null? baseInfo.getStringFundingStart() + ' ~ ' + baseInfo.getStringFundingEnd():''}"/>
                             </div>
                           </div>
                         </div>

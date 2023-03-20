@@ -24,6 +24,11 @@
         where f.fid = #{fundingId}
     </select>
 
+    <insert id="insertFunding">
+        insert into funding (fid, memail, fstatus)
+        values (#{fid}, #{memail}, 'PREPARING')
+    </insert>
+
     <update id="updateFundingBaseInfo">
         update funding
         set fstore_name = #{fstore_name},

@@ -24,6 +24,14 @@ public class MakerServiceImpl implements MakerService {
     private final MakerMapper makerMapper;
 
     @Override
+    public String createFunding(String email) {
+        String fid = UUID.randomUUID().toString();
+        int row = makerMapper.insertFunding(fid, email);
+        if(row == 0) throw new RuntimeException("funding createFunding error");
+        return fid;
+    }
+
+    @Override
     public FundingMakerVO getFundingMakerByFundingId(String fundingId) {
         return makerMapper.findFundingMakerByFundingId(fundingId);
     }
