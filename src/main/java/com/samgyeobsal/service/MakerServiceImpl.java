@@ -39,6 +39,7 @@ public class MakerServiceImpl implements MakerService {
     @Override
     public void updateFundingBaseInfo(FundingBaseInfoDTO baseInfo) {
         int row = makerMapper.updateFundingBaseInfo(baseInfo);
+
         if(row == 0) throw new RuntimeException("에러 발생");
     }
 

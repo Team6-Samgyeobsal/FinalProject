@@ -34,7 +34,8 @@
         set fstore_name = #{fstore_name},
             fthumb = #{fthumb},
             ctid = #{ctid},
-            cid = #{cid}
+            cid = #{cid},
+            tid = #{tid}
         where fid = #{fid}
     </update>
 

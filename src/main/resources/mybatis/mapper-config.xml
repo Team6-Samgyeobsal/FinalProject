@@ -31,6 +31,7 @@
         <typeAlias type="com.samgyeobsal.domain.common.CategoryVO" alias="category"/>
         <typeAlias type="com.samgyeobsal.domain.maker.FundingStoryDTO" alias="fundingStory"/>
         <typeAlias type="com.samgyeobsal.domain.funding.ProdOptionVO" alias="prodOption"/>
+        <typeAlias type="com.samgyeobsal.domain.order.OrderFtitleVO" alias="orderFtitle"/>
 
 
 

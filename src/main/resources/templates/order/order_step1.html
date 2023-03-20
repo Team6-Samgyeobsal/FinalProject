@@ -75,14 +75,14 @@
         <div id="wPurchaseWrap">
             <div class="wpurchase-title">
                 <h2>
-                    개발비 1.5억ㅣ현대리바트 기술력 담아낸 3만원대 발 받침대
-                    Comfy<span class="name"
-                ><em
-                        style="
+                    [[${products.orderFtitle.ftitle}]]
+                    <span class="name"
+                    ><em
+                            style="
                     background-image: url(https://cdn.wadiz.kr/wwwwadiz/green001/2023/0208/20230208171549898_158604.png/wadiz/resize/600/format/jpg/quality/80/optimize);
                   "></em
-                >현대리바트</span
-                >
+                    >현대리바트</span
+                    >
                 </h2>
             </div>
             <div class="wpurchase-wrap">
@@ -112,7 +112,7 @@
                                 data-campaign-id="158604"
                                 data-selected-reward-id="411146">
                             <ul class="RewardProductList_container__2hIAB">
-                                <li class="RewardProductList_list__2oOvi" th:each="product:${products}"
+                                <li class="RewardProductList_list__2oOvi" th:each="product:${products.productDetail}"
                                     th:data-fpprice="${#numbers.formatInteger(product.fpprice, 3, 'COMMA')}"
                                     th:data-pprice="${product.fpprice}">
                                     <section class="RewardProductItem_container__1wZBW" th:id="fpid+${product.fpid}">
@@ -195,8 +195,8 @@
                                                             <li class="RewardProductOption_list__3yoqJ"
                                                                 th:each="option:${product.options}"
                                                                 th:data-poid="${option.poid}"
-                                                               >
-                                                                <div class="RewardProductOptionItem_container__1yGSJ" >
+                                                            >
+                                                                <div class="RewardProductOptionItem_container__1yGSJ">
                                                                     <span class="RewardProductOptionItem_title__ZuGtV">[[${product.fptitle}]] [[${option.pooption} ]]</span>
                                                                 </div>
                                                             </li>
@@ -284,7 +284,11 @@
 
 </div>
 
-<div class="ToastContainer_container__3oKp3" style="display: none"><div class="Toast_container__2HAXg Toast_show__3Bg04 Toast_warning__3vj31"><div class="Toast_content__4BPXL Toast_warning__3vj31">이미 같은 옵션을 선택했습니다<br>옵션 수량을 추가해 주세요</div></div></div>
+<div class="ToastContainer_container__3oKp3" style="display: none">
+    <div class="Toast_container__2HAXg Toast_show__3Bg04 Toast_warning__3vj31">
+        <div class="Toast_content__4BPXL Toast_warning__3vj31">이미 같은 옵션을 선택했습니다<br>옵션 수량을 추가해 주세요</div>
+    </div>
+</div>
 <style>
     .ab-iam-root.v3 {
         z-index: 9999;
@@ -296,8 +300,9 @@
     $(document).ready(function () {
 
         const params = new URLSearchParams(window.location.search);
-        const fpid  = "fpid"+params.get('fpid');
-        $('.RewardProductItem_container__1wZBW').each(function() {
+        const fpid = "fpid" + params.get('fpid');
+        //
+        $('.RewardProductItem_container__1wZBW').each(function () {
             if ($(this).attr('id') === fpid) {
                 $(this).find('input[type="checkbox"]').prop('checked', true);
                 $(this).find('.RewardProductItem_option__3BtOP').show();
@@ -316,42 +321,44 @@
                 $(this).siblings('ul').html('');
             }
         });
-            $('.SelectMenu_title__2__qX').on('click', function (event) {
-                event.stopImmediatePropagation(); // 이벤트 버블링을 막기 위해 추가
-                console.log('리스트 클릭');
-                if ($(this).hasClass('SelectMenu_expand__3_pBj')) {
-                    $(this).removeClass('SelectMenu_expand__3_pBj');
-                    $(this).siblings('.SelectMenu_content__2rDch').hide();
-                } else {
-                    $(this).addClass('SelectMenu_expand__3_pBj');
-                    $(this).siblings('.SelectMenu_content__2rDch').show();
-                }
-            });
-            $('.RewardProductOption_list__3yoqJ').click(function (event) {
-                event.stopImmediatePropagation();
-                $(this).closest('.SelectMenu_content__2rDch').siblings('.SelectMenu_title__2__qX').find('.SelectMenu_placeholder__3X3SL').text($(this).find('.RewardProductOptionItem_title__ZuGtV').text());
-                $(this).closest('.SelectMenu_content__2rDch').siblings('.SelectMenu_title__2__qX').removeClass('SelectMenu_expand__3_pBj');
-                $(this).closest('.SelectMenu_content__2rDch').hide();
-                let option = $(this).find('.RewardProductOptionItem_title__ZuGtV').text();
-                let pprice=$(this).closest('.RewardProductList_list__2oOvi').data('pprice');
-                let fpprice = $(this).closest('.RewardProductList_list__2oOvi').data('fpprice');
-                 let poid = $(this).data('poid');
-                //console.log("poid"+$(this).closest('.RewardProductItem_option__3BtOP').siblings('ul').find('.RewardProductItem_item__3va6f').data('poid'));
-                let count=0;
-                $(this).closest('.RewardProductItem_option__3BtOP')
-                    .siblings('ul')
-                    .find('.RewardProductItem_item__3va6f')
-                    .each(function() {
-                        let pid = $(this).data('poid');
-                        console.log("pid"+pid);
-                        console.log("poid"+poid);
-                        if(pid==poid) {count++;}// 배열에 값 추가
-                    })
-                console.log(count);
+        $('.SelectMenu_title__2__qX').on('click', function (event) {
+            event.stopImmediatePropagation(); // 이벤트 버블링을 막기 위해 추가
+            console.log('리스트 클릭');
+            if ($(this).hasClass('SelectMenu_expand__3_pBj')) {
+                $(this).removeClass('SelectMenu_expand__3_pBj');
+                $(this).siblings('.SelectMenu_content__2rDch').hide();
+            } else {
+                $(this).addClass('SelectMenu_expand__3_pBj');
+                $(this).siblings('.SelectMenu_content__2rDch').show();
+            }
+        });
+        $('.RewardProductOption_list__3yoqJ').click(function (event) {
+            event.stopImmediatePropagation();
+            $(this).closest('.SelectMenu_content__2rDch').siblings('.SelectMenu_title__2__qX').find('.SelectMenu_placeholder__3X3SL').text($(this).find('.RewardProductOptionItem_title__ZuGtV').text());
+            $(this).closest('.SelectMenu_content__2rDch').siblings('.SelectMenu_title__2__qX').removeClass('SelectMenu_expand__3_pBj');
+            $(this).closest('.SelectMenu_content__2rDch').hide();
+            let option = $(this).find('.RewardProductOptionItem_title__ZuGtV').text();
+            let pprice = $(this).closest('.RewardProductList_list__2oOvi').data('pprice');
+            let fpprice = $(this).closest('.RewardProductList_list__2oOvi').data('fpprice');
+            let poid = $(this).data('poid');
+            //console.log("poid"+$(this).closest('.RewardProductItem_option__3BtOP').siblings('ul').find('.RewardProductItem_item__3va6f').data('poid'));
+            let count = 0;
+            $(this).closest('.RewardProductItem_option__3BtOP')
+                .siblings('ul')
+                .find('.RewardProductItem_item__3va6f')
+                .each(function () {
+                    let pid = $(this).data('poid');
+                    console.log("pid" + pid);
+                    console.log("poid" + poid);
+                    if (pid == poid) {
+                        count++;
+                    }// 배열에 값 추가
+                })
+            console.log(count);
 
 
-                if(count==0) {
-                    var card = `<li class="RewardProductItem_item__3va6f" data-poid="${poid}">
+            if (count == 0) {
+                var card = `<li class="RewardProductItem_item__3va6f" data-poid="${poid}">
                               <section
                                 aria-label="[선착순 4P] 아쿠아웨이브 4개 상품 카드"
                                 class="RewardProductCard_container__3N2S2"
@@ -410,24 +417,30 @@
                               </section>
                             </li>
 `;
-                    $(this).closest('.RewardProductItem_option__3BtOP').siblings('ul').append(card);
+                $(this).closest('.RewardProductItem_option__3BtOP').siblings('ul').append(card);
 
-                }else {
-                    let str = "#poid" + poid;
-                    let str1 = "#amount" + poid;
-                    $('.ToastContainer_container__3oKp3').show();
-                    $(this).closest('.RewardProductItem_option__3BtOP').siblings('ul').find(str).css('border', '1px solid #f25555');
-                    $(this).closest('.RewardProductItem_option__3BtOP').siblings('ul').find(str1).css({ 'borderRight': '1px solid #f25555', 'borderLeft': '1px solid #f25555', 'color': '#f25555' });
+            } else {
+                let str = "#poid" + poid;
+                let str1 = "#amount" + poid;
+                $('.ToastContainer_container__3oKp3').show();
+                $(this).closest('.RewardProductItem_option__3BtOP').siblings('ul').find(str).css('border', '1px solid #f25555');
+                $(this).closest('.RewardProductItem_option__3BtOP').siblings('ul').find(str1).css({
+                    'borderRight': '1px solid #f25555',
+                    'borderLeft': '1px solid #f25555',
+                    'color': '#f25555'
+                });
 
-                    setTimeout(function(){
-                        $('.ToastContainer_container__3oKp3').hide();
-                        $('.ProductQuantity_container__1_106').css('border', '1px solid #cdd3d8');
-                        $('.amount').css({ 'borderRight': '1px solid #cdd3d8', 'borderLeft': '1px solid #cdd3d8', 'color': '#212529' });
-                    }, 3000);
-                }
-            })
-
-
+                setTimeout(function () {
+                    $('.ToastContainer_container__3oKp3').hide();
+                    $('.ProductQuantity_container__1_106').css('border', '1px solid #cdd3d8');
+                    $('.amount').css({
+                        'borderRight': '1px solid #cdd3d8',
+                        'borderLeft': '1px solid #cdd3d8',
+                        'color': '#212529'
+                    });
+                }, 3000);
+            }
+        })
 
 
     })
@@ -480,7 +493,7 @@
         });
 
         $(document).on('propertychange input', '.amount', function () {
-            if($(this).val()>=100){
+            if ($(this).val() >= 100) {
                 alert('100개 이상 X');
                 $(this).val(99);
             }
@@ -489,34 +502,58 @@
             console.log(price);
             $(this).closest('.ProductQuantity_container__1_106').siblings('.RewardProductCard_price__3t1PE').text(price.toLocaleString() + '원');
         });
-        $(".RewardProductItem_item__3va6f input").each(function() {
+        $(".RewardProductItem_item__3va6f input").each(function () {
             var value = $(this).val();
             console.log(value);
         });
     });
 </script>
 <script>
-    $(document).ready(function (){
-        $('.wz.button.primary').click(function (){
+    $(document).ready(function () {
+        $('.wz.button.primary').click(function () {
 
-            $(".RewardProductItem_item__3va6f").each(function(index,data) {
+            $(".RewardProductItem_item__3va6f").each(function (index, data) {
 
                 let poid = $(this).data('poid');
                 console.log(poid);
                 let amount = $(this).find('.amount').val();
                 console.log(amount);
-                let input=`<input type="hidden" name="item[${index}].poid" value="${poid}">
+                let input = `<input type="hidden" name="item[${index}].poid" value="${poid}">
                            <input type="hidden" name="item[${index}].amount" value="${amount}">`;
                 $('#order-step1').append(input);
             });
-            if( $('#order-step1').html().length>1){
+            if ($('#order-step1').html().length > 1) {
                 $('#order-step1').submit();
+            }else {
+                $('.DialogModal_dialogPortal__1rRI2').show();
             }
+        })
+        $('.Dialog_dialogButtonReverse__1hgC5').click(function (){
+            $('.DialogModal_dialogPortal__1rRI2').hide();
         })
     })
 </script>
 
-<form method="post" th:action="@{/web/order/{fid}/step1(fid=${fid})}" id="order-step1">
+<form method="post" th:action="@{/web/order/{fid}/step1(fid=${products.orderFtitle.fid})}" id="order-step1">
 </form>
+<div class="DialogModal_dialogPortal__1rRI2" style="display: none">
+    <div class="DialogModal_dialogOverlay__3PgUV DialogModal_dialogOverlayAfterOpen__1fWcT">
+        <div class="DialogModal_dialogContent__3P4An DialogModal_dialogContentAfterOpen__EjXJ4" tabindex="-1"
+             role="dialog" aria-modal="true">
+            <div class="Dialog_dialogWrap__2x9kS">
+                <div class="Dialog_dialogBox__yCpT4">
+                    <div class="Dialog_dialogTextBox__Cxk45">
+                        <div class="Dialog_dialogMessage__TLIV9"><p>최소 1개 이상의 리워드를 선택해주세요.</p></div>
+                    </div>
+                    <div class="Dialog_dialogButtonArea__3x6Ry">
+                        <button type="button"
+                                class="Dialog_dialogButton__E0TnP Dialog_dialogButtonPrimary__3w6ow Dialog_dialogButtonReverse__1hgC5">
+                            <span>확인</span></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 </body>
 </html>

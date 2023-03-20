@@ -81,9 +81,11 @@ public class MyPageController {
     @GetMapping("/maker/funding/{fundingId}/baseInfo")
     public String fundingBaseInfo(
             @PathVariable("fundingId") String fundingId, Model model){
+        // TODO : tid 까지 가져와야됨
         FundingMakerVO fundingMaker = makerService.getFundingMakerByFundingId(fundingId);
         FundingBaseInfoDTO baseInfo = new FundingBaseInfoDTO(fundingMaker);
 
+        log.info("fundingMaker = {}", fundingMaker);
         List<CompetitionHyundaiVO> activeCompetitionList = commonService.getActiveCompetitionList();
         List<CategoryVO> categoryList = commonService.getCategoryList();
         if(fundingMaker.getCid() !=null && fundingMaker.getTid() != null)
@@ -104,6 +106,7 @@ public class MyPageController {
                                BindingResult bindingResult,
                                RedirectAttributes redirectAttributes) throws UnsupportedEncodingException {
         redirectAttributes.addAttribute("fundingId", fundingId);
+        log.info("saveBaseInfo = {}", baseInfoDTO);
 
         // 에러 발생 시
         if(bindingResult.hasErrors()){
