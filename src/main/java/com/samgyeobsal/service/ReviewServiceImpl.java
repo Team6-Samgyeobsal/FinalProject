@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 public class ReviewServiceImpl implements ReviewService{
 
     private final ReviewMapper reviewMapper;
+    private final CommonService commonService;
 
     @Override
     public boolean isWritableStoreReview(String email, String orderId) {
@@ -19,7 +20,10 @@ public class ReviewServiceImpl implements ReviewService{
     }
 
     @Override
-    public int insertReview(InsertReviewDTO insertReviewDTO) {
-        return reviewMapper.insertReview(insertReviewDTO);
+    public void insertReview(InsertReviewDTO insertReviewDTO) {
+        int score = commonService.getReviewScore(insertReviewDTO.getRcontent());
+        insertReviewDTO.setRscore(score);
+        int row = reviewMapper.insertReview(insertReviewDTO);
+        if(row == 0) throw new RuntimeException("review Mapper Error");
     }
 }

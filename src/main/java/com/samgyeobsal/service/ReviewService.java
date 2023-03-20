@@ -5,5 +5,5 @@ import com.samgyeobsal.domain.review.InsertReviewDTO;
 public interface ReviewService {
 
     boolean isWritableStoreReview(String email, String orderId);
-    int insertReview(InsertReviewDTO insertReviewDTO);
+    void insertReview(InsertReviewDTO insertReviewDTO);
 }
