@@ -1,11 +1,14 @@
 package com.samgyeobsal.service;
 
+import com.samgyeobsal.domain.member.MemberVO;
 import com.samgyeobsal.domain.order.*;
 
 import com.samgyeobsal.domain.order.OrderRequest;
 import com.samgyeobsal.dto.request.TossOrder;
 
+import com.samgyeobsal.mapper.MemberMapper;
 import com.samgyeobsal.mapper.OrderMapper;
+import com.samgyeobsal.type.LoginType;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -30,6 +33,8 @@ public class OrderServiceImpl implements OrderService {
 
     private final OrderMapper orderMapper;
 
+    private final MemberMapper memberMapper;
+
     @Override
     public int saveOrder(OrderRequest orderRequest) {
 
@@ -48,12 +53,15 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
 
-    public List<ProductDetailVO> getProductList(String fid) {
-        return orderMapper.getProductList(fid);
+    public ProductDetailFormDTO getProductList(String fid) {
+        List<ProductDetailVO> productDetail = orderMapper.getProductList(fid);
+        OrderFtitleVO orderFtitleVO = orderMapper.getFtitle(fid);
+
+        return new ProductDetailFormDTO(productDetail,orderFtitleVO);
     }
 
     @Override
-    public OrderFormDTO getOrderList(OrderStep1DTO orderStep1DTO) {
+    public OrderFormDTO getOrderList(OrderStep1DTO orderStep1DTO,String fid) {
         List<OrderListVO> orderList = orderMapper.getOrderList(orderStep1DTO);
         int totalprice=0;
         for (OrderItemVO orderItemVO : orderStep1DTO.getItem()) {
@@ -75,9 +83,11 @@ public class OrderServiceImpl implements OrderService {
             }
 
         }
+        OrderFtitleVO orderFtitleVO=orderMapper.getFtitle(fid);
+
         System.out.println("orderList++"+orderList);
         System.out.println("totalprice"+totalprice);
-        return new OrderFormDTO(orderList,totalprice);
+        return new OrderFormDTO(orderList,totalprice,orderFtitleVO);
     }
 
     @Override
@@ -107,4 +117,8 @@ public class OrderServiceImpl implements OrderService {
     public OrderVO getOrderByOrderId(String orderId) {
         return orderMapper.findOrderByOrderId(orderId);
     }
+
+
+
+
 }

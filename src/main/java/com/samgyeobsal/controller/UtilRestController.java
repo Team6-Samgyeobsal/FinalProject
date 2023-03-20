@@ -2,8 +2,10 @@ package com.samgyeobsal.controller;
 
 import com.samgyeobsal.domain.funding.ProductVO;
 import com.samgyeobsal.domain.member.MemberVO;
-import com.samgyeobsal.type.LoginType;
-import com.samgyeobsal.type.Role;
+import com.samgyeobsal.security.domain.Account;
+import com.samgyeobsal.service.OrderService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -30,8 +32,10 @@ public class UtilRestController {
      * Map 타입으로 반환하는 getuuid() 메서드 정의
      * @return
      */
+    @Autowired
+    OrderService orderService;
     @GetMapping("/uuid")
-    public Map<?, ?> getUuid() {
+    public Map<?, ?> getUuid(@AuthenticationPrincipal Account account, int fpprice, String fptitle) {
         // 반환할 데이터를 담을 HashMap 객체 생성
         HashMap<Object, Object> result = new HashMap<>();
         // ProductVO, MemberVO 타입의 객체를 담을 리스트 생성
@@ -41,19 +45,20 @@ public class UtilRestController {
         ProductVO prod = new ProductVO();
         MemberVO mbs = new MemberVO();
 
-        prod.setFptitle("수제 살치살 소갈비 1.2kg (6대) + 후식 냉면 세트");
-        prod.setFpcontent("고급 부위인 살치살을 수작업으로 지방 및 근막을 제거하여 품질 및 식감을 개선하고 20년 경력의 육부장이 직접 칼집을 넣어 과일 양념과 고기가 잘 어우러져 고급 매장에서 먹는 듯한 프리미엄 갈비 입니다.");
-        prod.setFpprice(43900);
-        prod.setFporigin_price(50000);
+
+        prod.setFptitle(fptitle);
+        prod.setFpcontent("난 뭐지");
+        prod.setFpprice(fpprice);
+        prod.setFporigin_price(fpprice);
         products.add(prod);
 
-        mbs.setMemail("user@gmail.com");
-        mbs.setMpassword("1111");
-        mbs.setMname("user1");
-        mbs.setMphone("01023398197");
-        mbs.setMloginType(LoginType.LOGIN_FORM);
-        mbs.setMrole(Role.ROLE_USER);
-        mbs.setMmileage(1000);
+        mbs.setMemail(account.getMember().getMemail());
+        mbs.setMpassword(account.getPassword());
+        mbs.setMname(account.getName());
+        mbs.setMphone(account.getMember().getMphone());
+        mbs.setMloginType(account.getMember().getMloginType());
+        mbs.setMrole(account.getMember().getMrole());
+        mbs.setMmileage(account.getMember().getMmileage());
 
         members.add(mbs);
 

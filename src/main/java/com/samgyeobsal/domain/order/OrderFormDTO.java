@@ -1,5 +1,6 @@
 package com.samgyeobsal.domain.order;
 
+import com.samgyeobsal.domain.member.MemberVO;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -16,5 +17,5 @@ public class OrderFormDTO {
     private List<OrderListVO> orderList;
     private int totalprice;
 
-
+    private OrderFtitleVO orderFtitle;
 }

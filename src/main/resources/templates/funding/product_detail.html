@@ -93,6 +93,10 @@
             type="text/css"
             href="/import/css/0.10c7bd2e.chunk.css"
     />
+    <link
+            rel="stylesheet"
+            href="/import/css/main.42cef079.css"
+    />
 
 
     <link
@@ -616,12 +620,18 @@
                                 </div>
                             </div>
                             <div class="ProductBuyInfo_container__1nPti">
-                                <div class="ProductFloatButton_container__2jWfi">
-
-                                    <button rel="noreferrer noopener"
+                                <div class="ProductFloatButton_container__2jWfi"
+                                >
+                                    <button
+                                            rel="noreferrer noopener"
                                             class="Button_button__mRXZC Button_primary__1HJqX Button_contained__k9pMW Button_xl__3MTkK ProductFloatButton_button__tpSGA"
-                                            type="button"><span><span
-                                            class="Button_children__3HY2l"><span>구매하기</span></span></span></button>
+                                            type="button"
+                                            th:id="${funding.fstatus == 'FUNDING'} ? 'abled2' :'disabled2'"
+                                            th:style="${funding.fstatus == 'FUNDING' ? '' :'border-color: #adb5bd; background-color: #adb5bd;'}"><span><span
+                                            class="Button_children__3HY2l"
+
+                                            ><span>구매하기</span></span></span></button
+                                    >
                                 </div>
                             </div>
                         </div>
@@ -694,7 +704,7 @@
             $(this).find('.Badge_badge__2h6cT').removeClass('Badge_contained__Q3unx').addClass('Badge_tertiary__1ERKE')
         })
 
-        $('#abled, #abled1').click(function () {
+        $('#abled, #abled1, #abled2').click(function () {
             location.href = '/web/order/' + [[${funding.fid}]] + '/step1'
         })
 
@@ -976,29 +986,6 @@
                             </label><span
                                     class="Badge_container__3ioDw Badge_visible__n2Hg1 CommunityCommentWriteForm_badge__1Kx4a"><span
                                     class="Badge_badge__2h6cT Badge_label__VC3QR Badge_sm__1ia4P Badge_secondary__1o9ka Badge_tertiary__1ERKE">0자/ 최소 10자</span></span>
-                            </div>
-                            <div>
-                                <div class="ImageUploader_container__3hnJo">
-                                    <div class="ImageUploader_contentWrap__3mxSw">
-                                        <div class="ImageUploader_button__1lBvx">
-                                            <svg viewBox="0 0 32 32" focusable="false" role="presentation"
-                                                 class="withIcon_icon__360C7 ImageUploader_addIcon__gr-Ml"
-                                                 aria-hidden="true" style="width: 24px; height: 24px;">
-                                                <path d="M20.8 16.8a4.8 4.8 0 1 1-9.6 0 4.8 4.8 0 0 1 9.6 0z"></path>
-                                                <path d="M22.4 6.4L20 3.2h-8L9.6 6.4h-8v20.8h28.8V6.4zM16 23.2c-3.535 0-6.4-2.865-6.4-6.4s2.865-6.4 6.4-6.4 6.4 2.865 6.4 6.4-2.865 6.4-6.4 6.4z"></path>
-                                            </svg>
-                                            <span>0/5</span>
-                                            <div class="StaticPopper_container__3cXVt ImageUploader_popper__3QY91">
-                                                <div>소중한 경험을 남겨주시면<br>다른 서포터에게 큰 도움이 돼요</div>
-                                                <div class="StaticPopper_arrow__1PjvA ImageUploader_popperArrow__3m9us"
-                                                     aria-hidden="true"></div>
-                                            </div>
-                                        </div>
-                                        <div class="ImageUploader_imageContainer__1TB8t"
-                                             style="transform: translateX(0px);"></div>
-                                    </div>
-                                    <input type="file" accept="image/png, image/jpeg, image/jpg" value=""
-                                           style="display: none;"></div>
                             </div>
                             <div color="danger"
                                  class="MessageBox_messageBox__3be7S MessageBox_danger__1NTYn CommunityCommentWriteForm_dangerMsg__1vpvD">

@@ -1,9 +1,11 @@
 package com.samgyeobsal.controller;
 
 import com.samgyeobsal.domain.order.OrderStep1DTO;
+import com.samgyeobsal.security.domain.Account;
 import com.samgyeobsal.service.OrderService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -46,7 +48,6 @@ public class OrderController {
     @GetMapping("/{fid}/step1")
     public String orderStep1Page(@PathVariable("fid") String fid,Model model){
         model.addAttribute("products",orderService.getProductList(fid));
-        model.addAttribute("fid",fid);
         return "order/order_step1";
     }
 
@@ -60,10 +61,10 @@ public class OrderController {
     }
 
     @GetMapping("/{fundingId}/step2")
-    public String orderStep2Page(Model model, HttpSession session){
+    public String orderStep2Page(Model model, HttpSession session,@PathVariable String fundingId, @AuthenticationPrincipal Account account){
         OrderStep1DTO orderStep1DTO = (OrderStep1DTO) session.getAttribute("order");
-        model.addAttribute("order", orderService.getOrderList(orderStep1DTO));
-        System.out.println("orderService.getOrderList(orderStep1DTO)"+orderService.getOrderList(orderStep1DTO));
+        model.addAttribute("order", orderService.getOrderList(orderStep1DTO,fundingId));
+        System.out.println("orderService.getOrderList(orderStep1DTO)"+orderService.getOrderList(orderStep1DTO,fundingId));
         return "order/order_step2";
     }
 

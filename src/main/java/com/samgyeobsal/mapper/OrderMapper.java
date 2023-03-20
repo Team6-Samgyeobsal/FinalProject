@@ -45,4 +45,7 @@ public interface OrderMapper {
     List<OrderVO> findOrderListByMemberId(String memberId);
 
     OrderVO findOrderByOrderId(String orderId);
+
+
+    OrderFtitleVO getFtitle(String fid);
 }
