@@ -1,6 +1,8 @@
 package com.samgyeobsal.controller;
 
+import com.samgyeobsal.domain.event.Event;
 import com.samgyeobsal.domain.order.OrderStep1DTO;
+import com.samgyeobsal.mapper.EventMapper;
 import com.samgyeobsal.service.OrderService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -32,12 +34,13 @@ import javax.servlet.http.HttpSession;
 public class OrderController {
 
     private final OrderService orderService;
+    private final EventMapper eventMapper;
 
     private String mId = "testuser";
 
     /**
      *
-     * @param fundingId
+     * @param
      * @return
      */
 
@@ -67,5 +70,12 @@ public class OrderController {
         return "order/order_step2";
     }
 
+
+    @GetMapping("/coupon")
+    public Event checkCouponName(@RequestParam("couponname") String couponName){
+        Event event = eventMapper.findByName(couponName);
+        System.out.println("쿠폰 :" + event);
+        return event;
+    }
 
 }
