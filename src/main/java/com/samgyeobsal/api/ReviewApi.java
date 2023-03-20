@@ -13,13 +13,4 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api")
 public class ReviewApi {
 
-    @GetMapping("/funding/{fundingId}/review/isExist")
-    public ResponseEntity<Boolean> fundingReviewExist(
-            @AuthenticationPrincipal Account account,
-            @PathVariable("fundingId") String fundingId
-    ){
-        if(account == null) return new ResponseEntity<>(true, HttpStatus.OK);
-        // TODO : 펀딩아이디와 멤버 이메일로 이미 댓글을 쓴 적있는지 확인
-        return new ResponseEntity<>(false, HttpStatus.OK);
-    }
 }

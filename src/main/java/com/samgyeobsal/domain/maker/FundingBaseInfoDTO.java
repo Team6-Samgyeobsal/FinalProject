@@ -37,6 +37,7 @@ public class FundingBaseInfoDTO {
         this.fthumb = vo.getFthumb();
         this.ctid = vo.getCtid();
         this.ctname = vo.getCtname();
+        this.tid = vo.getTid();
     }
 
     public void setCompetitionHyundai(CompetitionHyundaiVO competition) {

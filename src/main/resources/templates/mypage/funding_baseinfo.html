@@ -155,7 +155,7 @@
 
                         <!-- 썸네일 이미지 url이 없는 경우 -->
                         <div class="ImageUploadField_container__2fG-h no_thumb_ui"
-                             th:style="${baseInfo.getFthumb() != null || baseInfo.getFthumb() != ''}?'display:none':'display:block'">
+                             th:style="${baseInfo.getFthumb() == null || baseInfo.getFthumb() == ''}?'display:block':'display:none'">
                           첨부 파일을 업로드해 주세요.
                           <div
                             class="ImageUploadButton_container__2eGcY spacing-2">
@@ -207,13 +207,16 @@
                     </div>
                     <div class="Section_content__3OkLZ">
                       <select class="form-select hyundai_select"
-                              th:field="*{cid}">
+                              id="cid" name="cid">
                         <option th:each="comp : ${activeCompetitionList}"
-                                th:selected="${comp.cid == baseInfo.getCid()}"
+                                th:selected="${#strings.equals(comp.tid,baseInfo.tid)}"
                                 th:value="${comp.cid}"
+                                th:data-tid="${comp.tid}"
                                 th:data-cfunding_start_date="${comp.getStringFundingStart()}"
                                 th:data-cfunding_end_date="${comp.getStringFundingEnd()}" th:text="${comp.tname}"></option>
                       </select>
+
+                      <input type="hidden" th:field="*{tid}">
                     </div>
 
                   </div>
@@ -242,7 +245,7 @@
                                 title=""
                                 size="12"
                                 value=""
-                                th:value="${baseInfo.getStringFundingStart()!=null? baseInfo.getStringFundingStart() + ' ~ ' + baseInfo.getStringFundingEnd():''}"/>
+                                th:value="${baseInfo.getCfunding_start_date()!=null ? baseInfo.getStringFundingStart() + ' ~ ' + baseInfo.getStringFundingEnd():''}"/>
                             </div>
                           </div>
                         </div>
@@ -336,6 +339,8 @@
 
       $('.baseInfoBtn').click(function(e){
         e.preventDefault();
+        let tid = $('#cid option:selected').data('tid');
+        $('#tid').val(tid);
         $('#baseInfoForm').submit();
       })
     })

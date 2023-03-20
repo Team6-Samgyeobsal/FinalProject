@@ -13,5 +13,6 @@ public class InsertReviewDTO {
     private String rcontent;
     private String rtype;
     private String rimg_url;
+    private Integer rscore;
 
 }

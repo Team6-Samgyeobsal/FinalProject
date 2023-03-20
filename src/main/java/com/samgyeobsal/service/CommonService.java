@@ -12,4 +12,8 @@ public interface CommonService {
     CompetitionHyundaiVO getCompetitionByCidAndTid(String cid, String tid);
 
     List<CategoryVO> getCategoryList();
+
+    int getReviewScore(String review);
+
+
 }

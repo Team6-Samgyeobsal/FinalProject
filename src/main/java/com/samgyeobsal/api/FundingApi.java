@@ -32,6 +32,13 @@ public class FundingApi {
 
     private final ReviewService reviewService;
 
+    @PostMapping
+    public ResponseEntity<?> createFunding(@AuthenticationPrincipal Account account){
+        String memail = account.getMember().getMemail();
+        String fid = makerService.createFunding(memail);
+        return new ResponseEntity<>(fid, HttpStatus.OK);
+    }
+
     @GetMapping("/list")
     public ResponseEntity<List<FundingVO>> getFundingList(@ModelAttribute FundingCriteria criteria) {
         log.info(criteria);

@@ -6,7 +6,7 @@
       <header class="header-wrapper">
         <div class="header-container">
           <h1 class="wadiz-logo">
-            <a href="/web/main"
+            <a href="/web/funding"
               ><span class="label">와디즈</span
               ><svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -65,8 +65,8 @@
             </div>
             <div sec:authorize="isAnonymous()" class="HeaderDesktop_user__3zGmM">
               <div class="User_container__bqVd2">
-                <button type="button" class="User_btnSign__1URTs">로그인</button
-                ><button data-event="iam.signup" class="User_btnSign__1URTs">
+                <button type="button" class="User_btnSign__1URTs loginBtn">로그인</button
+                ><button data-event="iam.signup" class="User_btnSign__1URTs registBtn">
                   회원가입
                 </button>
               </div>
@@ -85,7 +85,7 @@
             <div sec:authorize="isAuthenticated()" class="web-header-funding-open funding-open">
               <div>
                 <div>
-                  <button aria-label="프로젝트 만들기" class="Button_button__3J1Nv Button_primary__1EZQV Button_md__2iTxL funding-open-button" type="button">
+                  <button aria-label="프로젝트 만들기" class="fundingMakeBtn Button_button__3J1Nv Button_primary__1EZQV Button_md__2iTxL funding-open-button" type="button">
                     <span>
                       <span class="Button_children__1ZhTo">프로젝트 만들기</span>
                     </span>
@@ -97,5 +97,30 @@
         </div>
       </header>
     </div>
+
+    <script>
+      $(document).ready(function(){
+        console.log('ready');
+        $('.loginBtn').click(function (e){
+          location.href = "/web/account/login";
+        })
+        $('.registBtn').click(function(){
+          location.href= "/web/acocunt/registIntro"
+        })
+
+        $('.fundingMakeBtn').click(function (e){
+          $.ajax({
+            url: '/api/funding/',
+            type: 'POST',
+            dataType:'text',
+            success : function (fid){
+              console.log('펀딩 만들기 성공/ fid = ', fid);
+              location.href = '/web/mypage/maker/funding/' + fid;
+            }
+          })
+        })
+      })
+    </script>
+
   </div>
 </html>

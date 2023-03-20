@@ -308,10 +308,10 @@
     <div class="ReactModalPortal"></div>
   <script th:inline="javascript">
     /*<![CDATA[*/
-    let imgLen = /*[[${#lists.size(fundingStory.imgs)}]]*/
+    let imgLen = [[${#lists.size(fundingStory.imgs)}]]
     /*]]>*/
     /*<![CDATA[*/
-    let fid = /*[[${fundingStory.fid}]]*/
+    let fid = [[${fundingStory.fid}]]
     /*]]>*/
     $(document).ready(function(){
       // 소개 사진 삭제 시 이벤트

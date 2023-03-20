@@ -16,6 +16,8 @@ public interface MakerMapper {
 
     FundingMakerVO findFundingMakerByFundingId(String fundingId);
 
+    int insertFunding(String fid, String memail);
+
     int updateFundingBaseInfo(FundingBaseInfoDTO baseInfo);
 
     List<FundingImgVO> findFundingImgListByFundingId(String fundingId);
@@ -23,6 +25,7 @@ public interface MakerMapper {
     int updateFundingStory(FundingStoryDTO story);
 
     int deleteFundingImgsByFundingId(String fid);
+
 
     int insertFundingImgs(@Param("imgs") List<FundingImgVO> imgs);
 

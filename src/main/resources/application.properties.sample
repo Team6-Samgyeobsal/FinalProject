@@ -21,3 +21,17 @@ logging.level.org.springframework.security.web=info
 spring.security.oauth2.client.registration.google.client-id=
 spring.security.oauth2.client.registration.google.client-secret=
 spring.security.oauth2.client.registration.google.scope=email
+
+# jwt 1h, 3w
+jwt.secret-key=secret-key-lalala-lululu-fucking-error-WeakKeyException-not-secure-enough
+jwt.token-validity-in-sec=36000000
+jwt.refresh-token-validity-in-sec=2592000000
+
+#multipart
+spring.servlet.multipart.enabled=true
+spring.servlet.multipart.max-request-size=30MB
+spring.servlet.multipart.max-file-size=10MB
+
+upload.path=<YOUR_UPLOAD_PATH
+
+review.sentimental.url=http://localhost:4000/api/review/sentimental
