@@ -37,5 +37,6 @@ upload.path=<YOUR_UPLOAD_PATH
 # review ai server url
 review.sentimental.url=http://localhost:4000/api/review/sentimental
 
-# toss client key
+# toss key
 toss.client.key=
+toss.secret.key=
