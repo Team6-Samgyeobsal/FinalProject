@@ -91,19 +91,6 @@ public class FundingApi {
         return new ResponseEntity<>("success", HttpStatus.OK);
     }
 
-    @GetMapping("/chatGpt")
-    public  ResponseEntity<?> chapGpt(String question){
-        OkHttpClient http = new OkHttpClient.Builder()
-                .connectTimeout(60, TimeUnit.SECONDS)
-                .writeTimeout(60, TimeUnit.SECONDS)
-                .readTimeout(60, TimeUnit.SECONDS)
-                .build();
-        ChatGPT chatGPT = new ChatGPT("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", http);
-        String hello = chatGPT.ask(question);
-
-        return new ResponseEntity<>(hello, HttpStatus.OK);
-    }
-
     @PostMapping("/{fundingId}/product/review")
     public ResponseEntity<String> fundingReview(
             @PathVariable("fundingId") String fundingId,

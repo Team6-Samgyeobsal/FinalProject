@@ -979,39 +979,7 @@
                         }
                     })
                 </script>
-                <script>
-                    $(document).ready(function () {
 
-                        let question="너의 이름이 뭐니?";
-                        function chatGpt(question) {
-                            console.log("get list");
-                            // $('.TableLayout_container__1_Ap4').html('');
-                            let url = '/api/funding/chatGpt';
-                            $.ajax({
-                                url: url,
-                                type: "get",
-                                contentType: "application/json; charset=utf-8",
-                                data:{
-                                    question:question
-                                },
-
-                                success: function (data, status) {
-                                    console.log(data);
-
-                                },
-                                error: function (status, error) {
-                                    alert("실패");
-                                }
-                            })
-
-                        }
-                        chatGpt(question);
-                    })
-
-
-
-
-                </script>
 
     </main>
 

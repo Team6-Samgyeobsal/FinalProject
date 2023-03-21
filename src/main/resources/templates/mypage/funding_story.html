@@ -1,46 +1,50 @@
 <html lang="ko" style="--vh: 7.96px"
       xmlns:th="http://www.thymeleaf.org">
- <!-- TODO : sumit 이벤트 -->
-  <head>
-    <meta charset="utf-8" />
+<!-- TODO : sumit 이벤트 -->
+<head>
+    <meta charset="utf-8"/>
     <link
-      rel="shortcut icon"
-      href="https://static.wadiz.kr/studio/funding/favicon.ico" />
+            rel="shortcut icon"
+            href="https://static.wadiz.kr/studio/funding/favicon.ico"/>
     <link
-      rel="icon"
-      type="image/png"
-      sizes="32x32"
-      href="https://static.wadiz.kr/studio/funding/favicon-32x32.png" />
+            rel="icon"
+            type="image/png"
+            sizes="32x32"
+            href="https://static.wadiz.kr/studio/funding/favicon-32x32.png"/>
     <link
-      rel="icon"
-      type="image/png"
-      sizes="16x16"
-      href="https://static.wadiz.kr/studio/funding/favicon-16x16.png" />
+            rel="icon"
+            type="image/png"
+            sizes="16x16"
+            href="https://static.wadiz.kr/studio/funding/favicon-16x16.png"/>
     <meta
-      name="viewport"
-      content="width=device-width,initial-scale=1,maximum-scale=1,shrink-to-fit=no,viewport-fit=cover" />
-    <meta name="theme-color" content="#000000" />
-    <meta name="wadiz-app-hidden-header" content="yes" />
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+            name="viewport"
+            content="width=device-width,initial-scale=1,maximum-scale=1,shrink-to-fit=no,viewport-fit=cover"/>
+    <meta name="theme-color" content="#000000"/>
+    <meta name="wadiz-app-hidden-header" content="yes"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge"/>
     <title>스토리 작성 | 와디즈 메이커 스튜디오</title>
-    <script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.js"
+            integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
 
     <link
-      href="/import/css/6.41bf0148.chunk.css"
-      rel="stylesheet" />
+            href="/import/css/6.41bf0148.chunk.css"
+            rel="stylesheet"/>
     <link
-      href="/import/css/main.f4a9cc74.chunk.css"
-      rel="stylesheet" />
+            href="/import/css/main.f4a9cc74.chunk.css"
+            rel="stylesheet"/>
     <link
-      rel="stylesheet"
-      type="text/css"
-      href="https://static.wadiz.kr/studio/funding/static/css/2.4e40d539.chunk.css" />
+            href="/import/css/main.42cef079.css"
+            rel="stylesheet"/>
+    <link
+            rel="stylesheet"
+            type="text/css"
+            href="https://static.wadiz.kr/studio/funding/static/css/2.4e40d539.chunk.css"/>
     <!-- import 하면 인코딩 깨짐 -->
 
     <link
-      rel="stylesheet"
-      type="text/css"
-      href="/import/css/8.30afc8ef.chunk.css" />
+            rel="stylesheet"
+            type="text/css"
+            href="/import/css/8.30afc8ef.chunk.css"/>
 
     <!-- summernote import start -->
     <!-- include libraries(jQuery, bootstrap) -->
@@ -52,339 +56,357 @@
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
     <!-- summernote import end -->
 
-    </head>
-  <body class="ReactModal__Body--open" aria-hidden="true">
-    <div
-      data-react-modal-body-trap=""
-      tabindex="0"
-      style="position: absolute; opacity: 0"></div>
-    <div id="root">
-      <div id="AppLayout_Container" class="AppLayout_container__3zbzb">
+</head>
+<body class="ReactModal__Body--open" aria-hidden="true">
+<div
+        data-react-modal-body-trap=""
+        tabindex="0"
+        style="position: absolute; opacity: 0"></div>
+<div id="root">
+    <div id="AppLayout_Container" class="AppLayout_container__3zbzb">
         <div class="AppLayout_main__14bCi">
-          <div th:replace="/fragment/funding_sidebar.html :: sidebar(${fundingStory.getFid()})"></div>
-          <div id="AppLayout_Contents" class="AppLayout_contents__wv3DF">
-            <form th:object="${fundingStory}" method="POST" th:action th:id="submitForm">
+            <div th:replace="/fragment/funding_sidebar.html :: sidebar(${fundingStory.getFid()})"></div>
+            <div id="AppLayout_Contents" class="AppLayout_contents__wv3DF">
+                <form th:object="${fundingStory}" method="POST" th:action th:id="submitForm">
 
-              <input type="hidden" th:field="*{fid}">
-            <div id="container" class="ContentsLayout_container__11k-W">
-              <div class="FundingStoryContainer_container__33WY0">
-                <ol class="Breadcrumb_container__3YjD4">
-                  <li class="Breadcrumb_item__2r9Ym">프로젝트 관리</li>
-                  <li class="Breadcrumb_item__2r9Ym">스토리 작성</li>
-                </ol>
-                <nav class="DetailNavbar_container__3SkEf">
-                  <div class="AppNavbar_container__5uOnI">
-                    <div
-                      style="
+                    <input type="hidden" th:field="*{fid}">
+                    <div id="container" class="ContentsLayout_container__11k-W">
+                        <div class="FundingStoryContainer_container__33WY0">
+                            <ol class="Breadcrumb_container__3YjD4">
+                                <li class="Breadcrumb_item__2r9Ym">프로젝트 관리</li>
+                                <li class="Breadcrumb_item__2r9Ym">스토리 작성</li>
+                            </ol>
+                            <nav class="DetailNavbar_container__3SkEf">
+                                <div class="AppNavbar_container__5uOnI">
+                                    <div
+                                            style="
                         background: url('https://static.wadiz.kr/studio/funding/static/media/wadiz-logo.549edcd7.svg')
                           50% center / contain no-repeat;
                         width: 129px;
                         height: 48px;
                         cursor: pointer;
                       "></div>
-                    <div class="AppNavbar_maker__2WVfm">
-                      <div class="Avatar_avatar__2DI5d Avatar_xs__i50kh">
-                        <span></span>
-                      </div>
-                      <div>woowang789</div>
-                    </div>
-                    <div class="AppNavbar_buttonGroup__UcLfm">
-                      <button
-                        class="Button_button__1e2A2 Button_tertiaryGrey__3gRf4 Button_text__3KyLl Button_md__1FRMG"
-                        type="button">
+                                    <div class="AppNavbar_maker__2WVfm">
+                                        <div class="Avatar_avatar__2DI5d Avatar_xs__i50kh">
+                                            <span></span>
+                                        </div>
+                                        <div>woowang789</div>
+                                    </div>
+                                    <div class="AppNavbar_buttonGroup__UcLfm">
+                                        <button
+                                                class="Button_button__1e2A2 Button_tertiaryGrey__3gRf4 Button_text__3KyLl Button_md__1FRMG"
+                                                type="button">
                         <span
-                          ><span class="Button_children__q9VCZ"
-                            >나가기</span
-                          ></span
+                        ><span class="Button_children__q9VCZ"
+                        >나가기</span
+                        ></span
                         >
-                      </button>
-                    </div>
-                  </div>
-                </nav>
-                <div class="HeaderLayout_container__3fXkO">
-                  <div class="HeaderLayout_contents__F4hlC">
-                    <h2 class="FundingStoryContainer_title__1r0ZE">
-                      스토리 작성
-                    </h2>
-                    <p class="FundingStoryContainer_description__1sMTR">
-                      메이커님의 프로젝트를 소개해 주세요.
-                    </p>
-                  </div>
-                </div>
-                <form
-                  class="wz form FundingStoryFormContainer_form__326Zc Form_form__3ASTU">
-                  <section class="Section_container__3md8M spacing-4" style="">
-                    <div style="max-width: 600px">
-                      <div class="Section_header__1qwS7 spacing-4">
-                        <h2
-                                class="Section_title__ikPIm Section_isRequired__F8rij">
-                          프로젝트 제목
-                        </h2>
-                        <div class="Section_guide__2xeJO"></div>
-                      </div>
-                      <div class="Section_content__3OkLZ">
-                        <div
-                                class="TextField_textField__23rCe TextField_md__2zsQn">
-                          <label></label>
-                          <div class="TextField_field__1E9vt">
-                            <input
-                                   th:field="*{ftitle}"
-                                   placeholder="제목을 입력해 주세요"
-                                   maxlength="40"
-                                   type="text"
-                                   class="Input_input__2kAAL Input_md__3-eZ6"
-                                   aria-invalid="false"
-                                   value="" />
-                          </div>
-                        </div>
-                      </div>
-
-                    </div>
-                  </section>
-                  <section class="Section_container__3md8M">
-                    <div style="max-width: 600px">
-                      <div class="Section_header__1qwS7">
-                        <h2
-                          class="Section_title__ikPIm Section_isRequired__F8rij">
-                          소개 사진 등록
-                        </h2>
-                        <div class="Section_guide__2xeJO"></div>
-                      </div>
-                      <div class="Section_description__10Uwo">
-                        프로젝트의 맨 위에서 가장 먼저 보여 주고 싶은
-                        사진을 등록해 주세요.
-                      </div>
-                      <div class="Section_content__3OkLZ">
-                        <div class="StoryVideoOrImageField_container__1lnfV">
-                          <div
-                            class="imgs field Form_field__35I9T required ImageFormField_field__X1jTW StoryImageField_field__3O6yy">
-                            <div class="ImageFormField_buttonWrapper__su3pO">
-                              <label
-                                class="wz label ImageFileButton_label__3thB2 Label_label__3oH0h"
-                                ><button
-                                  type="button"
-                                  class="wz button gray ImageFileButton_button__3gAHD">
-                                  <i
-                                    class="icon-camera-o"
-                                    aria-hidden="true"></i
-                                  >등록하기
-                                </button>
-                                <div
-                                  class="wz input right ImageFileButton_input__1Dnch uploadBtn">
-                                  <input
-                                    id="uploadImg"
-                                    accept="image/JPG,image/JPEG,image/GIF,image/PNG"
-                                    name="uploadFile"
-                                    placeholder=""
-                                    type="file"
-                                    value="" /></div></label
-                              ><em class="helper error"></em
-                              ><em class="helper ImageFormField_helper__3XC5c"
-                                >2MB 이하의 JPG, JPEG, GIF, PNG 파일</em
-                              ><em class="helper ImageFormField_helper__3XC5c"
-                                >해상도 630x400 픽셀 이상</em
-                              ><em class="helper ImageFormField_helper__3XC5c"
-                                >여러 장 등록돼요.</em
-                              >
-                            </div>
-
-                            <!-- 등록한 이미지 확인 -->
-                            <div class="ImageFormField_imageWrapper__3Y_F5 imgWrap" th:each=" fImg : ${fundingStory.getImgs()}">
-                              <div class="ImageBox_container__gwruR">
-                                <div alt="logo" class="ImageBox_preview__10fos" style="width: 312px; height: 174px;">
-                                  <i class="icon-image-o ImageBox_icon__1C0qm" aria-hidden="true"></i>
-                                  <div class="ImageBox_image__3Nt8h" style="" th:style="|background-image: url('${fImg.fiurl}');|"></div>
+                                        </button>
+                                    </div>
                                 </div>
-                                <button type="button" class="wz button less icon mini ImageBox_button__c8WR7 delBtn"
-                                        th:data-url="${fImg.fiurl}">
-                                <i class="icon-close" aria-hidden="true"></i></button>
-                              </div>
+                            </nav>
+                            <div class="HeaderLayout_container__3fXkO">
+                                <div class="HeaderLayout_contents__F4hlC">
+                                    <h2 class="FundingStoryContainer_title__1r0ZE">
+                                        스토리 작성
+                                    </h2>
+                                    <p class="FundingStoryContainer_description__1sMTR">
+                                        메이커님의 프로젝트를 소개해 주세요.
+                                    </p>
+                                </div>
                             </div>
-                          </div>
-                          <!-- 사진 end -->
-                          <!-- 등록된 이미지 인풋 -->
-                          <div id="imgInputArea">
-                            <div  th:each=" fImg : ${fundingStory.getImgs()}" th:data-url="${fImg.getFiurl()}">
-                              <input type="hidden"
-                                     th:field="*{imgs[__${fImgStat.index}__].fiurl}">
-                              <input type="hidden"
-                                     th:field="*{imgs[__${fImgStat.index}__].fid}">
-                              <input type="hidden"
-                                     th:field="*{imgs[__${fImgStat.index}__].fiid}">
-                            </div>
+                            <form
+                                    class="wz form FundingStoryFormContainer_form__326Zc Form_form__3ASTU">
+                                <section class="Section_container__3md8M spacing-4" style="">
+                                    <div style="max-width: 600px">
+                                        <div class="Section_header__1qwS7 spacing-4">
+                                            <h2
+                                                    class="Section_title__ikPIm Section_isRequired__F8rij">
+                                                프로젝트 제목
+                                            </h2>
+                                            <div class="Section_guide__2xeJO"></div>
+                                        </div>
+                                        <div class="Section_content__3OkLZ">
+                                            <div
+                                                    class="TextField_textField__23rCe TextField_md__2zsQn">
+                                                <label></label>
+                                                <div class="TextField_field__1E9vt">
+                                                    <input
+                                                            th:field="*{ftitle}"
+                                                            placeholder="제목을 입력해 주세요"
+                                                            maxlength="40"
+                                                            type="text"
+                                                            class="Input_input__2kAAL Input_md__3-eZ6"
+                                                            aria-invalid="false"
+                                                            value=""/>
+                                                </div>
+                                            </div>
+                                        </div>
 
-                          </div>
-                          <!-- 등록된 이미지 인풋  end -->
-                        </div>
-                      </div>
-                    </div>
-                  </section>
-                  <section class="Section_container__3md8M">
-                    <div style="max-width: 600px">
-                      <div class="Section_header__1qwS7">
-                        <h2
-                          class="Section_title__ikPIm Section_isRequired__F8rij">
-                          프로젝트 요약
-                        </h2>
-                        <div class="Section_guide__2xeJO"></div>
-                      </div>
-                      <div class="Section_description__10Uwo">
-                        소개 사진과 함께 보이는 글이에요. 프로젝트를
-                        쉽고 간결하게 소개해 주세요.
-                      </div>
-                      <div class="Section_content__3OkLZ">
-                          <div
-                            class="field Form_field__35I9T FormFieldTextarea_field__33Ncu">
-                            <div class="wide column-2"></div>
-                            <div class="wide column-4">
-                              <div class="wz input">
+                                    </div>
+                                </section>
+                                <section class="Section_container__3md8M">
+                                    <div style="max-width: 600px">
+                                        <div class="Section_header__1qwS7">
+                                            <h2
+                                                    class="Section_title__ikPIm Section_isRequired__F8rij">
+                                                소개 사진 등록
+                                            </h2>
+                                            <div class="Section_guide__2xeJO"></div>
+                                        </div>
+                                        <div class="Section_description__10Uwo">
+                                            프로젝트의 맨 위에서 가장 먼저 보여 주고 싶은
+                                            사진을 등록해 주세요.
+                                        </div>
+                                        <div class="Section_content__3OkLZ">
+                                            <div class="StoryVideoOrImageField_container__1lnfV">
+                                                <div
+                                                        class="imgs field Form_field__35I9T required ImageFormField_field__X1jTW StoryImageField_field__3O6yy">
+                                                    <div class="ImageFormField_buttonWrapper__su3pO">
+                                                        <label
+                                                                class="wz label ImageFileButton_label__3thB2 Label_label__3oH0h"
+                                                        >
+                                                            <button
+                                                                    type="button"
+                                                                    class="wz button gray ImageFileButton_button__3gAHD">
+                                                                <i
+                                                                        class="icon-camera-o"
+                                                                        aria-hidden="true"></i
+                                                                >등록하기
+                                                            </button>
+                                                            <div
+                                                                    class="wz input right ImageFileButton_input__1Dnch uploadBtn">
+                                                                <input
+                                                                        id="uploadImg"
+                                                                        accept="image/JPG,image/JPEG,image/GIF,image/PNG"
+                                                                        name="uploadFile"
+                                                                        placeholder=""
+                                                                        type="file"
+                                                                        value=""/></div>
+                                                        </label
+                                                        ><em class="helper error"></em
+                                                    ><em class="helper ImageFormField_helper__3XC5c"
+                                                    >2MB 이하의 JPG, JPEG, GIF, PNG 파일</em
+                                                    ><em class="helper ImageFormField_helper__3XC5c"
+                                                    >해상도 630x400 픽셀 이상</em
+                                                    ><em class="helper ImageFormField_helper__3XC5c"
+                                                    >여러 장 등록돼요.</em
+                                                    >
+                                                    </div>
+
+                                                    <!-- 등록한 이미지 확인 -->
+                                                    <div class="ImageFormField_imageWrapper__3Y_F5 imgWrap"
+                                                         th:each=" fImg : ${fundingStory.getImgs()}">
+                                                        <div class="ImageBox_container__gwruR">
+                                                            <div alt="logo" class="ImageBox_preview__10fos"
+                                                                 style="width: 312px; height: 174px;">
+                                                                <i class="icon-image-o ImageBox_icon__1C0qm"
+                                                                   aria-hidden="true"></i>
+                                                                <div class="ImageBox_image__3Nt8h" style=""
+                                                                     th:style="|background-image: url('${fImg.fiurl}');|"></div>
+                                                            </div>
+                                                            <button type="button"
+                                                                    class="wz button less icon mini ImageBox_button__c8WR7 delBtn"
+                                                                    th:data-url="${fImg.fiurl}">
+                                                                <i class="icon-close" aria-hidden="true"></i></button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- 사진 end -->
+                                                <!-- 등록된 이미지 인풋 -->
+                                                <div id="imgInputArea">
+                                                    <div th:each=" fImg : ${fundingStory.getImgs()}"
+                                                         th:data-url="${fImg.getFiurl()}">
+                                                        <input type="hidden"
+                                                               th:field="*{imgs[__${fImgStat.index}__].fiurl}">
+                                                        <input type="hidden"
+                                                               th:field="*{imgs[__${fImgStat.index}__].fid}">
+                                                        <input type="hidden"
+                                                               th:field="*{imgs[__${fImgStat.index}__].fiid}">
+                                                    </div>
+
+                                                </div>
+                                                <!-- 등록된 이미지 인풋  end -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </section>
+                                <section class="Section_container__3md8M">
+                                    <div style="max-width: 600px">
+                                        <div class="Section_header__1qwS7">
+                                            <h2
+                                                    class="Section_title__ikPIm Section_isRequired__F8rij">
+                                                프로젝트 요약
+                                            </h2>
+                                            <div class="Section_guide__2xeJO"></div>
+                                        </div>
+                                        <div class="Section_description__10Uwo">
+                                            소개 사진과 함께 보이는 글이에요. 프로젝트를
+                                            쉽고 간결하게 소개해 주세요.
+                                        </div>
+                                        <div class="Section_content__3OkLZ">
+                                            <div
+                                                    class="field Form_field__35I9T FormFieldTextarea_field__33Ncu">
+                                                <div class="wide column-2"></div>
+                                                <div class="wide column-4">
+                                                    <div class="wz input">
                                 <textarea
-                                  placeholder="내용 입력"
-                                  maxlength="100"
-                                  name="storyInfo.coreMessage"
-                                  th:field="*{fsummary}"
-                                  rows="3"></textarea>
-                              </div>
-                              <em class="helper FormFieldTextarea_helper__3-iK_"
-                                >100자 남음</em
-                              >
-                            </div>
-                          </div>
-                        </div>
-                  </div>
-                  </section>
-                  <section class="Section_container__3md8M StoryEditorWrapperItemWeb_container__3bMs8"
-                          style="max-width: 720px">
-                    <input type="hidden" th:field="*{fstory}">
-                    <div class="Section_header__1qwS7 spacing-4">
-                      <h2
-                              class="Section_title__ikPIm Section_isRequired__F8rij">
-                        프로젝트 스토리
-                      </h2>
-                    </div>
-                    <div class="Section_content__3OkLZ">
-                      <div
-                              class="WYSIWYGEditor_container__3MZO0 StoryEditorWrapperItemWeb_editor__3AvV7">
+                                        placeholder="내용 입력"
+                                        maxlength="100"
+                                        name="storyInfo.coreMessage"
+                                        th:field="*{fsummary}"
+                                        rows="3"></textarea>
+                                                    </div>
+                                                    <em class="helper FormFieldTextarea_helper__3-iK_"
+                                                    >100자 남음</em
+                                                    >
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </section>
+                                <section class="Section_container__3md8M StoryEditorWrapperItemWeb_container__3bMs8"
+                                         style="max-width: 720px">
+                                    <input type="hidden" th:field="*{fstory}">
+                                    <div class="Section_header__1qwS7 spacing-4">
+                                        <h2
+                                                class="Section_title__ikPIm Section_isRequired__F8rij">
+                                            프로젝트 스토리
+                                        </h2>
+                                        <div>
+                                            <div>
+                                                <button class="Button_button__mRXZC Button_secondary__20rLg Button_contained__k9pMW Button_lg__22YWj gray CommunityCommentWriteButton_button__3bPl4"
+                                                        type="button"><span><span
+                                                        class="Button_children__3HY2l">도움 받기</span></span></button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="Section_content__3OkLZ">
 
-                        <!-- 서머노트 start -->
-                        <textarea id="summernote" name="editordata"></textarea>
+                                        <div
+                                                class="WYSIWYGEditor_container__3MZO0 StoryEditorWrapperItemWeb_editor__3AvV7">
 
-                        <!-- 서버노트 end -->
-                      </div>
-                    </div>
-                  </section>
-                </form>
-                <div class="FundingStoryContainer_btnWrapper__32tvJ">
-                  <button
-                    class="submitBtn Button_button__1e2A2 Button_primary__PxOJr Button_contained__TTXSM Button_xl__2x3J_"
-                    type="button"
-                    style="width: 420px; max-width: 100%">
+                                            <!-- 서머노트 start -->
+                                            <textarea id="summernote" name="editordata"></textarea>
+
+                                            <!-- 서버노트 end -->
+                                        </div>
+                                    </div>
+                                </section>
+                            </form>
+                            <div class="FundingStoryContainer_btnWrapper__32tvJ">
+                                <button
+                                        class="submitBtn Button_button__1e2A2 Button_primary__PxOJr Button_contained__TTXSM Button_xl__2x3J_"
+                                        type="button"
+                                        style="width: 420px; max-width: 100%">
                     <span
-                      ><span class="Button_children__q9VCZ"
-                        >저장하기</span
-                      ></span
+                    ><span class="Button_children__q9VCZ"
+                    >저장하기</span
+                    ></span
                     >
-                  </button>
-                </div>
-              </div>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
             </div>
-            </form>
-          </div>
         </div>
-      </div>
-      <div class="Toast_toast__1b_B2">
-        <div class="Toast_content__G-bTq"></div>
-      </div>
     </div>
+    <div class="Toast_toast__1b_B2">
+        <div class="Toast_content__G-bTq"></div>
+    </div>
+</div>
 
-    <script src="https://static.wadiz.kr/studio/funding/static/js/6.c1c1a47c.chunk.js"></script>
-    <script src="https://static.wadiz.kr/studio/funding/static/js/main.bc1a3f3f.chunk.js"></script>
-    <div
-      data-react-modal-body-trap=""
-      tabindex="0"
-      style="position: absolute; opacity: 0"></div>
+<script src="https://static.wadiz.kr/studio/funding/static/js/6.c1c1a47c.chunk.js"></script>
+<script src="https://static.wadiz.kr/studio/funding/static/js/main.bc1a3f3f.chunk.js"></script>
+<div
+        data-react-modal-body-trap=""
+        tabindex="0"
+        style="position: absolute; opacity: 0"></div>
 
-    <div class="ReactModalPortal"></div>
-    <div class="ReactModalPortal"></div>
-  <script th:inline="javascript">
+<div class="ReactModalPortal"></div>
+<div class="ReactModalPortal"></div>
+<script th:inline="javascript">
     /*<![CDATA[*/
     let imgLen = [[${#lists.size(fundingStory.imgs)}]]
     /*]]>*/
     /*<![CDATA[*/
     let fid = [[${fundingStory.fid}]]
     /*]]>*/
-    $(document).ready(function(){
-      // 소개 사진 삭제 시 이벤트
-      $(document).on('click','.delBtn',function(e){
-        let imgUrl = $(this).data('url');
-        console.log(imgUrl);
-        $('#imgInputArea div[data-url="' + imgUrl + '"]').remove();
-        $(this).closest('.imgWrap').remove();
-      })
-
-      // 이미지 업로드 시
-      $(document).on('change','#uploadImg',function (e){
-        let formData = new FormData();
-        let inputFile = $('#uploadImg');
-        let files = inputFile[0].files;
-        for(let i=0;i<files.length;i++){
-          formData.append("uploadFiles", files[i]);
-        }
-        uploadImg(formData, function(result){
-          printImgAndCreateInput(result[0], imgLen++);
+    $(document).ready(function () {
+        // 소개 사진 삭제 시 이벤트
+        $(document).on('click', '.delBtn', function (e) {
+            let imgUrl = $(this).data('url');
+            console.log(imgUrl);
+            $('#imgInputArea div[data-url="' + imgUrl + '"]').remove();
+            $(this).closest('.imgWrap').remove();
         })
-      })
 
-      // submit 이벤트
-      $(document).on('click', '.submitBtn', function (e) {
-        e.preventDefault();
-        console.log('tt')
-        // 서머노트 와 input 동기화
-        $('#fstory').val($('.note-editable').html());
-        $('#submitForm').submit();
-      });
-
-
-      // 서머노트 설정
-      $('#summernote').summernote({
-        height: 300,
-        lang: 'ko-KR',
-        placeholder: '스토리를 작성해주세요!',
-        callbacks : {
-          // 서머노트 이미지 업로드
-          onImageUpload : function(files){
-            let data = new FormData();
-            data.append('uploadFiles',files[0]);
-            uploadImg(data,function(data){
-              $('#summernote')
-                      .summernote('insertImage', data[0]['imageURL']);
+        // 이미지 업로드 시
+        $(document).on('change', '#uploadImg', function (e) {
+            let formData = new FormData();
+            let inputFile = $('#uploadImg');
+            let files = inputFile[0].files;
+            for (let i = 0; i < files.length; i++) {
+                formData.append("uploadFiles", files[i]);
+            }
+            uploadImg(formData, function (result) {
+                printImgAndCreateInput(result[0], imgLen++);
             })
-          }
-        }
-      });
+        })
 
-      // 서머노트 초기값 설정
-      let storyHtml = $('#fstory').val();
-      $('#summernote').summernote('code', storyHtml);
-      console.log(storyHtml);
+        // submit 이벤트
+        $(document).on('click', '.submitBtn', function (e) {
+            e.preventDefault();
+            console.log('tt')
+            // 서머노트 와 input 동기화
+            $('#fstory').val($('.note-editable').html());
+            $('#submitForm').submit();
+        });
+
+
+        // 서머노트 설정
+        $('#summernote').summernote({
+            height: 300,
+            lang: 'ko-KR',
+            placeholder: '스토리를 작성해주세요!',
+            callbacks: {
+                // 서머노트 이미지 업로드
+                onImageUpload: function (files) {
+                    let data = new FormData();
+                    data.append('uploadFiles', files[0]);
+                    uploadImg(data, function (data) {
+                        $('#summernote')
+                            .summernote('insertImage', data[0]['imageURL']);
+                    })
+                }
+            }
+        });
+
+        // 서머노트 초기값 설정
+        let storyHtml = $('#fstory').val();
+        $('#summernote').summernote('code', storyHtml);
+        console.log(storyHtml);
 
     })
-    function uploadImg(data, callback){
-      $.ajax({
-        url:'/api/common/uploadImg',
-        processData : false,
-        contentType : false,
-        data : data,
-        type : 'POST',
-        dataType : 'json',
-        success : function(result){
-          if(callback) callback(result);
-        }
-      })
+
+    function uploadImg(data, callback) {
+        $.ajax({
+            url: '/api/common/uploadImg',
+            processData: false,
+            contentType: false,
+            data: data,
+            type: 'POST',
+            dataType: 'json',
+            success: function (result) {
+                if (callback) callback(result);
+            }
+        })
     }
-    function printImgAndCreateInput(result, index){
-      console.log(result);
-      let template = `
+
+    function printImgAndCreateInput(result, index) {
+        console.log(result);
+        let template = `
       <div class="ImageFormField_imageWrapper__3Y_F5 imgWrap">
          <div class="ImageBox_container__gwruR">
             <div alt="logo" class="ImageBox_preview__10fos" style="width: 312px; height: 174px;">
@@ -396,17 +418,188 @@
          </div>
       </div>
       `;
-      $('.imgs').append(template);
+        $('.imgs').append(template);
 
-      let template2 = `
+        let template2 = `
           <div data-url="${result['imageURL']}">
              <input type="hidden" id="imgs${index}.fiurl" name="imgs[${index}].fiurl" value="${result['imageURL']}">
              <input type="hidden" id="imgs${index}.fid" name="imgs[${index}].fid" value="${fid}">
              <input type="hidden" id="imgs${index}.fiid" name="imgs[${index}].fiid" value="${result['uuid']}">
           </div>
       `;
-      $('#imgInputArea').append(template2);
+        $('#imgInputArea').append(template2);
     }
-  </script>
-  </body>
+</script>
+
+<div class="ReactModalPortal" style="display:none;">
+    <div class="ReactModal__Overlay ReactModal__Overlay--after-open ConfirmModal_overlay__2vouq waffle__modal__overlay CommunityCommentWriteForm_overlay__2KrJn waffle__modal__overlay"
+         style="background-color: rgba(0, 0, 0, 0.2);">
+        <div class="ReactModal__Content ReactModal__Content--after-open ConfirmModal_confirmModal__2-l3c ConfirmModal_sizeLg__1CEh6 CommunityCommentWriteForm_container__3q80P"
+             tabindex="-1" role="dialog" aria-modal="true">
+            <div class="ConfirmModal_header__2yOEU">
+                <div class="ConfirmModal_closeIconRoot__2whkj">
+                    <button class="ConfirmModal_closeIconWrapper__2-lWO">
+                        <svg viewBox="0 0 40 40" focusable="false" role="presentation"
+                             class="withIcon_icon__20lDO ConfirmModal_closeIcon__3DABU" aria-hidden="true">
+                            <path d="M33.4 8L32 6.6l-12 12-12-12L6.6 8l12 12-12 12L8 33.4l12-12 12 12 1.4-1.4-12-12 12-12z"></path>
+                        </svg>
+                    </button>
+                </div>
+                <div title="도움 받기" class="ConfirmModal_title__2I2A3 ConfirmModal_showCloseButton__2Mb8W">도움 받기</div>
+            </div>
+            <div class="ConfirmModal_content__nIMXh ConfirmModal_hasTitle__2YXj0">
+                <div class="CommunityCommentWriteForm_writeWrap__1WbRO"><p
+                        class="CommunityCommentWriteForm_explanation__3Ui22">ChatGPT를 활용한 소개글!<br>생성시 약 10초의 시간이 소요됩니다.</p>
+                    <div>
+                        <form name="feedback-form">
+                            <div class="CommunityCommentWriteForm_field__3PqtU"><label for="feedback-store">
+                                <div class="wz input"><span>가게이름</span><textarea name="body" id="feedback-store"
+                                                                                 placeholder="가게이름" class=""
+                                                                                 maxlength="100"
+                                                                                 style="width: 500px; height: 50px;"></textarea>
+                                </div>
+                            </label><span
+                                    class="Badge_container__3ioDw Badge_visible__n2Hg1 CommunityCommentWriteForm_badge__1Kx4a"></span>
+                            </div>
+                            <div class="CommunityCommentWriteForm_field__3PqtU"><label for="feedback-contents">
+                                <div class="wz input"><span>간단 홍보글</span><textarea name="body" id="feedback-contents"
+                                                                                   placeholder="간단 홍보글" class=""
+                                                                                   maxlength="100"
+                                                                                   style="width: 500px; height: 100px;"></textarea>
+                                </div>
+                            </label><span
+                                    class="Badge_container__3ioDw Badge_visible__n2Hg1 CommunityCommentWriteForm_badge__1Kx4a"></span>
+                            </div>
+                            <div class="CommunityCommentWriteForm_bottom__1db7N">
+                                <button class="Button_button__mRXZC Button_secondary__20rLg Button_lg__22YWj"
+                                        type="button"
+                                        id="cancelReview"
+                                ><span><span class="Button_children__3HY2l">취소</span></span>
+                                </button>
+                                <button class="Button_button__mRXZC Button_primary__1HJqX Button_contained__k9pMW Button_lg__22YWj chatGPT "
+                                        type="button" ><span><span class="Button_children__3HY2l"
+                                >생성</span></span>
+                                </button>
+                                <button class="Button_button__mRXZC Button_primary__1HJqX Button_contained__k9pMW Button_lg__22YWj copy "
+                                        type="button"
+                                        style="border-color: #656060;
+                                               background-color: #656060;
+                                               color: #fff;">
+                                    <span><span class="Button_children__3HY2l">복사하기</span></span>
+                                </button>
+
+                            </div>
+                            <div class="CardSpinner_container__1cKRs" style="display:none; width: 350px; height: 350px;">
+                                <svg viewBox="25 25 50 50" class="CardSpinner_loader__2-LrZ" aria-label="Loading">
+                                    <g class="Loader_circular__3PTZN">
+                                        <circle class="Loader_path__198fo" cx="50" cy="50" r="20" fill="none" stroke-width="4" stroke-miterlimit="10"></circle>
+                                    </g>
+                                </svg>
+                            </div>
+                            <div class="CommunityCommentWriteForm_field__3PqtU" id="chatOut"><label for="feedback-out">
+                                <div class="wz input"><span>출력내용</span><textarea name="body" id="feedback-out"
+                                                                               placeholder="출력" class=""
+
+                                                                               style="width: 500px; height: 500px;"></textarea>
+                                </div>
+                            </label><span
+                                    class="Badge_container__3ioDw Badge_visible__n2Hg1 CommunityCommentWriteForm_badge__1Kx4a"></span>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        let store=$('.Input_input__2kAAL').val()
+        let content=$('#fsummary').val()
+        $('#feedback-store').val(store);
+        $('#feedback-contents').val(content);
+
+
+        $('.Button_button__mRXZC.Button_secondary__20rLg.Button_contained__k9pMW').click(function () {
+            console.log($('.Input_input__2kAAL').val());
+            $('.ReactModalPortal').show();
+        })
+        $('.ConfirmModal_closeIconWrapper__2-lWO,  #cancelReview').click(function () {
+            $('.ReactModalPortal').hide();
+        })
+        $('.chatGPT').click(function (){
+            $('.CardSpinner_container__1cKRs').show();
+            $('#chatOut').hide();
+            let store1=$('#feedback-store').val();
+            let content1=$('#feedback-contents').val();
+            let question="음식점 소개를 하려고 하는데 이름은 "+store1+", '"+content1+"' 라는 내용임 ";
+            console.log("-------"+question);
+            chatGpt(question);
+
+        })
+
+        $(".copy").click(function() {
+            let copy=$('#feedback-out').val();
+            if(copy) {
+                navigator.clipboard.writeText(copy);
+                alert("복사되었습니다.");
+            } else {
+                alert("복사할 내용이 없습니다.");
+            }
+        });
+
+
+        // $('#feedback-store').on('input', function () {
+        //     if ($(this).val().length >= 1) {
+        //         $('.chatGPT').prop('disabled', false);
+        //         $('.chatGPT').removeClass('Button_disabled__2i2Uo')
+        //
+        //     } else {
+        //         $('.chatGPT').prop('disabled', true);
+        //         $('.chatGPT').addClass('Button_disabled__2i2Uo')
+        //     }
+        //     console.log($(this).val());
+        //     $('.Badge_container__3ioDw .Badge_badge__2h6cT.Badge_label__VC3QR.Badge_secondary__1o9ka.Badge_tertiary__1ERKE').text($(this).val().length + "자/ 최소 10자")
+        // });
+        // $('.chatGPT').click(function () {
+        //     //insertReview();
+        // })
+
+            function chatGpt(question) {
+                console.log("get list");
+                // $('.TableLayout_container__1_Ap4').html('');
+                let url = '/api/chatGpt';
+                $.ajax({
+                    url: url,
+                    type: "get",
+                    contentType: "application/json; charset=utf-8",
+                    data:{
+                        question:question
+                    },
+
+                    success: function (data, status) {
+                        console.log(data);
+                        $('#feedback-out').val('');
+                        $('#feedback-out').val(data);
+                        $('.CardSpinner_container__1cKRs').hide();
+                        $('#chatOut').show();
+
+                    },
+                    error: function (status, error) {
+                        alert("실패");
+                    }
+                })
+
+            }
+            // chatGpt(question);
+        })
+
+
+
+
+</script>
+    })
+</script>
+</body>
 </html>
