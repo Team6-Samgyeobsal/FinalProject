@@ -823,7 +823,7 @@
                         $('.TableLayout_container__1_Ap4').html('');
                         getList(type,place,sort,page);
 
-
+                            //음식 종류 클릭 시 이벤트
                             $('.ImageTab_tab__3siCY').click(function () {
                             console.log('음식 종류');
                             if (!$(this).hasClass('ImageTab_active__BGdXu')) {
@@ -836,6 +836,7 @@
                                 $(this).addClass('ImageTab_active__BGdXu');
                             }
                         })
+                        //정렬 클릭 시 이벤트
                         $('.OrderSelectDesktop_sortItem__12TKi').click(function () {
                             if (!$(this).hasClass('OrderSelectDesktop_active__YTP2K')) {
                                 $('.OrderSelectDesktop_sortItem__12TKi').removeClass('OrderSelectDesktop_active__YTP2K');
@@ -848,6 +849,7 @@
                             }
 
                         })
+                        //더 현대 장소 변경 시 이벤트
                         $('.OrderSelect_sortContainer__3F7LQ .OrderSelect_selectBox__2hBjk').change(function (){
                             place=$(this).val();
                             $('.OrderSelect_content__1RjYa').find('span').text(place);
@@ -866,7 +868,6 @@
                         });
                         function getList(type,place,sort,page){
                                     console.log("get list");
-                                    // $('.TableLayout_container__1_Ap4').html('');
                                     let url = '/api/funding/list';
                                     $.ajax({
                                         url: url,

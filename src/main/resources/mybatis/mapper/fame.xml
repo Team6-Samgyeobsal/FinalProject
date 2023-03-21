@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.samgyeobsal.mapper.FameMapper">
+    <select id="getFameList" resultType="fame">
+        select f.fid,
+        fstore_name,
+        ftitle,
+        nvl(totalprice,0) as totalprice,
+        nvl(totalemail,0) as totalemail,
+        fthumb,
+        fstore_score
+        from funding f
+        left join (select f.fid,
+                          sum(oitotalprice) as totalprice
+                   from order_item oi
+                   join product_option po on oi.poid=po.poid
+                   join funding_product fp on po.fpid=fp.fpid
+                   join funding f on f.fid=fp.fid
+                   join orders o on oi.oid=o.oid
+                   where ostatus = 'COMPLETE'
+                   group by f.fid) total on total.fid= f.fid
+        left join ( select f.fid,
+                           count(distinct o.memail) as totalemail
+                    from order_item oi
+                    join product_option po on oi.poid=po.poid
+                    join funding_product fp on po.fpid=fp.fpid
+                    join funding f on f.fid=fp.fid
+                    join orders o on oi.oid=o.oid
+                    where ostatus = 'COMPLETE'
+                    group by f.fid) cnt on cnt.fid=f.fid
+        where fstatus = 'END'
+        <choose>
+            <when test="criteria.type =='1'.toString()">
+                and f.ctid='1'
+            </when>
+            <when test="criteria.type =='2'.toString()">
+                and f.ctid='2'
+            </when>
+            <when test="criteria.type =='3'.toString()">
+                and  f.ctid='3'
+            </when>
+            <when test="criteria.type =='4'.toString()">
+                and  f.ctid='4'
+            </when>
+            <when test="criteria.type =='5'.toString()">
+                and f.ctid='5'
+            </when>
+            <when test="criteria.type =='6'.toString()">
+                and f.ctid='6'
+            </when>
+            <when test="criteria.type =='7'.toString()">
+                and f.ctid='7'
+            </when>
+            <otherwise>
+            </otherwise>
+        </choose>
+        order by totalprice desc,fstore_score desc , totalemail desc ,f.fid
+        OFFSET #{criteria.page}*12 ROWS FETCH NEXT 12 ROWS ONLY
+    </select>
+</mapper>

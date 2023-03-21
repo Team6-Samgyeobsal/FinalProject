@@ -20,6 +20,8 @@
         join product_option po on oi.poid=po.poid
         join funding_product fp on po.fpid=fp.fpid
         join funding f on f.fid=fp.fid
+        join orders o on oi.oid=o.oid
+        where ostatus = 'COMPLETE'
         group by f.fid) total on total.fid= f.fid
         left join ( select f.fid,
         count(distinct o.memail) as totalemail
@@ -28,6 +30,7 @@
         join funding_product fp on po.fpid=fp.fpid
         join funding f on f.fid=fp.fid
         join orders o on oi.oid=o.oid
+        where ostatus = 'COMPLETE'
         group by f.fid) cnt on cnt.fid=f.fid
         join competition c on c.cid=f.cid and c.tid=f.tid
         left join (select f.fid,
