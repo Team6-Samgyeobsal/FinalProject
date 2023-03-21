@@ -25,20 +25,22 @@ import java.util.List;
  */
 @Mapper
 public interface OrderMapper {
-    int save(OrderRequest orderRequest);
+    int insertOrder(@Param("order") OrderFormDTO order, @Param("email") String email);
+
+    int insertOrderItem(String oid, String poid, int oicount, int oitotalprice);
 
     List<ProductDetailVO> getProductList(@Param("fid") String fid);
 
     List<OrderListVO> getOrderList(OrderStep1DTO orderStep1DTO);
 
 
-    @Insert("INSERT INTO ORDERS(OID,  OPHONE, OMEMO, OUSED_MILEAGE, OORIGIN_PRICE, OPRICE, OSTATUS, ODATE, MEMAIL, PMCODE, QRUSED_DATE, CPID)" +
-            " VALUES(#{osId}, #{osPhone}, #{osMemo}, #{msMileage}, #{osOriginPrice}, #{osAfterPrice}, #{osState}, " +
-            " #{osDate} ,#{osMail} ,#{pmMethod}, #{osDate}, '')")
-    public int saveToss(TossOrder tossOrder);
-
-    @Select("select * from ORDERS")
-    public List<OrderRequest> selectAllOrder();
+//    @Insert("INSERT INTO ORDERS(OID,  OPHONE, OMEMO, OUSED_MILEAGE, OORIGIN_PRICE, OPRICE, OSTATUS, ODATE, MEMAIL, PMCODE, QRUSED_DATE, CPID)" +
+//            " VALUES(#{osId}, #{osPhone}, #{osMemo}, #{msMileage}, #{osOriginPrice}, #{osAfterPrice}, #{osState}, " +
+//            " #{osDate} ,#{osMail} ,#{pmMethod}, #{osDate}, '')")
+//    public int saveToss(TossOrder tossOrder);
+//
+//    @Select("select * from ORDERS")
+//    public List<OrderRequest> selectAllOrder();
 
     int updateOrder(@Param("oStatus") String oStatus, @Param("oId") String oId);
 

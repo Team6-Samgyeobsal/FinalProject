@@ -5,14 +5,21 @@
 
 <mapper namespace="com.samgyeobsal.mapper.OrderMapper">
 
-    <insert id="save"
-            parameterType="com.samgyeobsal.domain.order.OrderRequest">
-        INSERT INTO
-            ORDERS( OID, OPHONE, OMEMO,
-                    OORIGINPRICE, OAFTERPRICE, OSTATUS, MID, PMCODE, CPID, OEMAIL)
-        VALUES(#{oid}, #{ophone}, #{omemo}, #{obeforePrice}, #{oafterPrice}, #{oState},
-               #{mid}
-                  , 'pmcode1', #{cpid}, #{oemail})
+    <insert id="insertOrder">
+        insert into orders (
+         oid, ophone, omemo, oused_mileage,
+         oorigin_price, oprice, ostatus,
+         odate, memail, pmcode, cpid)
+        values (
+        #{order.oid}, #{order.ophone}, '', #{order.oused_mileage},
+        #{order.totalOriginPrice}, #{order.totalPrice}, 'WAITING',
+        sysdate, #{email}, #{order.pmcode}, #{order.cpid})
+    </insert>
+
+    <insert id="insertOrderItem">
+        insert into order_item (oid, poid, oicount, oitotalprice)
+        values (#{oid}, #{poid}, #{oicount}, #{oitotalprice})
+
     </insert>
 
     <update id="updateOrder">

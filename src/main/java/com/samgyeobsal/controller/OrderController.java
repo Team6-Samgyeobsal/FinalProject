@@ -63,6 +63,8 @@ public class OrderController {
     public String orderStep1(@PathVariable("fid") String fid,
                              HttpSession session,
                              @ModelAttribute OrderStep1DTO orderStep1DTO){
+        log.info("orderStep1 orderStep1DTO = {}", orderStep1DTO);
+
         session.setAttribute("order", orderStep1DTO);
         return "redirect:/web/order/"+fid+"/step2";
     }
@@ -70,9 +72,9 @@ public class OrderController {
     @GetMapping("/{fundingId}/step2")
     public String orderStep2Page(Model model, HttpSession session,@PathVariable String fundingId, @AuthenticationPrincipal Account account){
         OrderStep1DTO orderStep1DTO = (OrderStep1DTO) session.getAttribute("order");
+        log.info("orderStep2Page orderStep1DTO = {}", orderStep1DTO);
         model.addAttribute("order", orderService.getOrderList(orderStep1DTO,fundingId));
         model.addAttribute("tossKey", tossKey);
-        System.out.println("orderService.getOrderList(orderStep1DTO)"+orderService.getOrderList(orderStep1DTO,fundingId));
         return "order/order_step2";
     }
 

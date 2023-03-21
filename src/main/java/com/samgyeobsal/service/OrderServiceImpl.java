@@ -1,18 +1,19 @@
 package com.samgyeobsal.service;
 
-import com.samgyeobsal.domain.member.MemberVO;
 import com.samgyeobsal.domain.order.*;
 
-import com.samgyeobsal.domain.order.OrderRequest;
 import com.samgyeobsal.dto.request.TossOrder;
 
 import com.samgyeobsal.mapper.MemberMapper;
 import com.samgyeobsal.mapper.OrderMapper;
-import com.samgyeobsal.type.LoginType;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @filename OrderServiceImpl
@@ -29,26 +30,26 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class OrderServiceImpl implements OrderService {
 
     private final OrderMapper orderMapper;
 
-    private final MemberMapper memberMapper;
-
     @Override
-    public int saveOrder(OrderRequest orderRequest) {
+    @Transactional
+    public String saveOrder(OrderFormDTO orderForm, String email) {
 
-        // String uuid = UUID.randomUUID().toString();
+        int row = orderMapper.insertOrder(orderForm, email);
+        if(row == 0) throw new RuntimeException("saveOrder Error");
 
-        orderRequest.setOId("isshosng");
-
-        int save = orderMapper.save(orderRequest);
-
-        if (save == 1) {
-            return 1;
-        } else {
-            return 0;
+        for (OrderListVO list : orderForm.getOrderList()) {
+            for (OrderListDetailVO detail : list.getOrderListDetail()) {
+                row = orderMapper.insertOrderItem(orderForm.getOid(), detail.getPoid(), detail.getAmount(), list.getFpprice() * detail.getAmount());
+                if(row == 0) throw new RuntimeException("saveOrder Error");
+            }
         }
+
+        return orderForm.getOid();
     }
 
     @Override
@@ -62,45 +63,26 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public OrderFormDTO getOrderList(OrderStep1DTO orderStep1DTO,String fid) {
+        Map<String, Integer> map = new HashMap<>();
+        for (OrderItemVO item : orderStep1DTO.getItem())
+            map.put(item.getPoid(), item.getAmount());
+
         List<OrderListVO> orderList = orderMapper.getOrderList(orderStep1DTO);
-        int totalprice=0;
-        for (OrderItemVO orderItemVO : orderStep1DTO.getItem()) {
 
-            for (OrderListVO listVO : orderList) {
-                for (OrderListDetailVO detailVO : listVO.getOrderListDetail()) {
-                    if (orderItemVO.getPoid().equals(detailVO.getPoid())) {
-                        detailVO.setAmount(orderItemVO.getAmount());
-                        int price = listVO.getFpprice();
-                        int amount = orderItemVO.getAmount();
-                        int sumprice = price * amount;
-                        int sumamount=amount;
-                        totalprice += sumprice;
-                        listVO.setSumprice(listVO.getSumprice() + sumprice);
-                        listVO.setSumamount(listVO.getSumamount()+amount);
-                    }
-                }
-
+        for (OrderListVO orderListVO : orderList) {
+            for (OrderListDetailVO orderListDetailVO : orderListVO.getOrderListDetail()) {
+                orderListDetailVO.setAmount(map.get(orderListDetailVO.getPoid()));
             }
-
         }
+
+
         OrderFtitleVO orderFtitleVO=orderMapper.getFtitle(fid);
 
-        System.out.println("orderList++"+orderList);
-        System.out.println("totalprice"+totalprice);
-        return new OrderFormDTO(orderList,totalprice,orderFtitleVO);
-    }
-
-    @Override
-    public int saveToss(TossOrder tossOrder) {
-        int save = orderMapper.saveToss(tossOrder);
-
-        System.out.println(save);
-
-        if (save == 1) {
-            return 1;
-        } else {
-            return 0;
+        for (OrderListVO orderListVO : orderList) {
+            log.info("sumamount = {}",orderListVO.getSumamount());
+            log.info("sumprice = {}", orderListVO.getSumprice());
         }
+        return new OrderFormDTO(orderList, orderFtitleVO);
     }
 
     @Override

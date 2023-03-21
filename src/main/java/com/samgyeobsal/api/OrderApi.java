@@ -56,11 +56,11 @@ public class OrderApi {
      *     "mId" : "isshosng"
      * }
      */
-
-    @PostMapping
-    public ResponseEntity<Integer> kakaoPay(@RequestBody OrderRequest request){
-        return ResponseEntity.ok().body(orderService.saveOrder(request));
-    }
+//
+//    @PostMapping
+//    public ResponseEntity<Integer> kakaoPay(@RequestBody OrderRequest request){
+//        return ResponseEntity.ok().body(orderService.saveOrder(request));
+//    }
 
     @GetMapping("/{orderId}")
     public ResponseEntity<OrderVO> getOrderInfo(@PathVariable("orderId") String orderId){
