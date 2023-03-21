@@ -1,5 +1,6 @@
 package com.samgyeobsal.domain.order;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -12,9 +13,22 @@ import java.util.List;
 public class OrderListVO {
     private String fpid;
     private int fpprice;
+    private int fporigin_price;
     private String fptitle;
     private String fpcontent;
-    private int sumprice;
-    private int sumamount;
     private List<OrderListDetailVO> orderListDetail;
+
+
+    public int getSumamount(){
+        int sumAmount = 0;
+        for (OrderListDetailVO orderListDetailVO : orderListDetail) {
+            sumAmount += orderListDetailVO.getAmount();
+        }
+        return sumAmount;
+    }
+
+    public int getSumprice(){
+        return getSumamount() * this.fpprice;
+    }
 }
+

@@ -5,7 +5,6 @@ import com.samgyeobsal.domain.order.*;
 import java.util.List;
 
 import com.samgyeobsal.dto.request.TossOrder;
-import com.samgyeobsal.type.LoginType;
 
 
 /**
@@ -21,15 +20,15 @@ import com.samgyeobsal.type.LoginType;
  * </pre>
  */
 public interface OrderService {
-    public int saveOrder(OrderRequest orderRequest);
+    String saveOrder(OrderFormDTO orderForm,String email);
 
 
     ProductDetailFormDTO getProductList(String fid);
 
     OrderFormDTO getOrderList(OrderStep1DTO orderStep1DTO,String fid);
 
-    public int saveToss(TossOrder tossOrder);
-    public void updateOrder(String oStatus, String oId);
+
+    void updateOrder(String oStatus, String oId);
 
     List<OrderVO> getMyOrderList(String memberId);
 
