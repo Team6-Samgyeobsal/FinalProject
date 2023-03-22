@@ -23,7 +23,7 @@
     </insert>
 
     <select id="findFundingListByEmail" resultType="funding">
-        select fid, fstore_name, ftitle, fthumb fiurl, fstatus
+        select fid, fstore_name, ftitle, fthumb, fstatus
         from funding
         where memail = #{email}
     </select>

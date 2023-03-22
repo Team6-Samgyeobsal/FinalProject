@@ -9,9 +9,8 @@
       name="description"
       content="테크, 패션, 푸드, 뷰티, 홈리빙까지. 와디즈 펀딩으로 매일 새로운 일상을 발견하고, 와디즈 스토어에서 새로운 쇼핑을 만나보세요." />
     <title>와디즈 - 마이와디즈</title>
-    <!-- jquery + cookie -->
+    <!-- jquery -->
     <script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js" integrity="sha512-3j3VU6WC5rPQB4Ld1jnLV7Kd5xr+cq9avvhwqzbH/taCRNURoeEpoPBK9pDyeukwSxwRPJ8fDgvYXd6SkaZ2TA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 
     <link
@@ -213,8 +212,8 @@
                             class="MyWadizSupporterProjectInfo_project__3Vaun">
                             <div
                               class="MyWadizSupporterProjectInfo_projectLink__2K77b">
-                              <a href="/web/mywadiz/participation"
-                                ><span>펀딩·프리오더</span><b>1</b></a
+                              <a href="/web/mypage/order"
+                                ><span>펀딩</span><b>상세보기 > </b></a
                               >
                             </div>
                           </div>
@@ -372,12 +371,16 @@
         now.setHours(now.getHours() - 1); // 1시간 전으로 설정
         document.cookie = "accessToken=; expires=" + now.toUTCString() + "; path=/;";
         document.cookie = "refreshToken=; expires=" + now.toUTCString() + "; path=/;";
-        //TODO : 로그아웃
         location.href = '/web/funding';
         console.log('쿠키 삭제');
-
-
       })
+    })
+    $(document).on('click','.MyWadizUserTypeSwitch_button__BYDWf',function(){
+      if($(this).data('event')==='supporter_mode'){
+        location.href = '/web/mypage';
+      } else{
+        location.href = '/web/mypage/maker';
+      }
     })
   </script>
   </body>

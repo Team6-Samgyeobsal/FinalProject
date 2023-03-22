@@ -47,6 +47,12 @@
       type="text/css"
       href="/import/css/my-wadiz.635555ef.chunk.css" />
   </head>
+
+  <style>
+    .MyWadizMyProject_projectListContainer__2C9hy ul{
+      white-space: normal;
+    }
+  </style>
   <body cz-shortcut-listen="true">
     <div id="page-container">
       <main id="main-app">
@@ -91,7 +97,7 @@
                         와디즈 계정으로 로그인 중
                       </p>
                       <button
-                        class="Button_button__MvCi9 Button_md__3RBTF Button_circular__2lnPs Button_block__3LZpG"
+                        class="logoutBtn Button_button__MvCi9 Button_md__3RBTF Button_circular__2lnPs Button_block__3LZpG"
                         type="button">
                         <span
                           ><span class="Button_children__25PKp"
@@ -140,6 +146,15 @@
 
     $(document).ready(function(){
       getFundingList();
+
+      $('.logoutBtn').click(function(e){
+        var now = new Date();
+        now.setHours(now.getHours() - 1); // 1시간 전으로 설정
+        document.cookie = "accessToken=; expires=" + now.toUTCString() + "; path=/;";
+        document.cookie = "refreshToken=; expires=" + now.toUTCString() + "; path=/;";
+        location.href = '/web/funding';
+        console.log('쿠키 삭제');
+      })
     })
 
     function getFundingList(){
@@ -159,8 +174,8 @@
 
       $(data).each((idx ,d) => {
         let sty = '';
-        if(d['fiurl'] != null && d['fiurl']!==''){
-          sty = "background-image: -webkit-image-set(url("+d['fiurl']+") 1x);"
+        if(d['fthumb'] != null && d['fthumb']!==''){
+          sty = "background-image: -webkit-image-set(url("+d['fthumb']+") 1x);"
         }
         let sts = '';
         switch (d['fstatus']){
@@ -183,6 +198,7 @@
             sts = '종료'
             break;
         }
+        let title = d['fstore_name'] == null ? '제목을 입력해주세요' : d['fstore_name'];
 
         let funding_template = `
       <li>
@@ -192,7 +208,7 @@
           ></span>
             <div class="TextContent_content__2jSfH CardType_content__2B7IB">
               <h1 class="TextContent_title__3Clug">
-                ${d['fstore_name']}
+                ${title}
               </h1>
               <p class="TextContent_summary__18CPX">
                 ${sts}
@@ -206,6 +222,14 @@
       })
     $('.funding_list').html(tmp);
     }
+
+    $(document).on('click','.MyWadizUserTypeSwitch_button__BYDWf',function(){
+      if($(this).data('event')==='supporter_mode'){
+        location.href = '/web/mypage';
+      } else{
+        location.href = '/web/mypage/maker';
+      }
+    })
   </script>
   </body>
 </html>

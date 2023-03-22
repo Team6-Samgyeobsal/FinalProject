@@ -81,7 +81,6 @@ public class MyPageController {
     @GetMapping("/maker/funding/{fundingId}/baseInfo")
     public String fundingBaseInfo(
             @PathVariable("fundingId") String fundingId, Model model){
-        // TODO : tid 까지 가져와야됨
         FundingMakerVO fundingMaker = makerService.getFundingMakerByFundingId(fundingId);
         FundingBaseInfoDTO baseInfo = new FundingBaseInfoDTO(fundingMaker);
 

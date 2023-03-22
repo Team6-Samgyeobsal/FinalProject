@@ -105,12 +105,6 @@
     <script>
       $(document).ready(function(){
         console.log('ready');
-        $('.loginBtn').click(function (e){
-          location.href = "/web/account/login";
-        })
-        $('.registBtn').click(function(){
-          location.href= "/web/acocunt/registIntro"
-        })
 
         $('.fundingMakeBtn').click(function (e){
           $.ajax({
@@ -123,10 +117,20 @@
             }
           })
         })
-        $('.HeaderDesktop_user__3zGmM').click(function (){
-          location.href='/web/mypage/maker';
-        })
       })
+      $(document).on('click','.loginBtn',function(e){
+        e.preventDefault();
+        location.href = "/web/account/login";
+      })
+      $(document).on('click','.registBtn',function(e){
+        e.preventDefault();
+        location.href= "/web/acocunt/registIntro"
+      })
+      $(document).on('click','.HeaderDesktop_user__3zGmM',function(e){
+        e.preventDefault();
+        location.href='/web/mypage';
+      })
+
     </script>
 
   </div>
