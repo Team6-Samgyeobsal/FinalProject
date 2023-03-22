@@ -5,39 +5,39 @@
 
     <select id="getFundingList" resultType="funding">
         select f.fid,
-        fstore_name,
-        ftitle,
-        nvl(totalprice,0) as totalprice,
-        nvl(totalemail,0) as totalemail,
-        nvl(totalreview,0) as totalreview,
-        fthumb,
-        trunc(cfunding_end_date-sysdate,0) expire,
-        c.cid
+               fstore_name,
+               ftitle,
+               nvl(totalprice,0) as totalprice,
+               nvl(totalemail,0) as totalemail,
+               nvl(totalreview,0) as totalreview,
+               fthumb,
+               trunc(cfunding_end_date-sysdate,0) expire,
+               c.cid
         from funding f
         left join (select f.fid,
-        sum(oitotalprice) as totalprice
-        from order_item oi
-        join product_option po on oi.poid=po.poid
-        join funding_product fp on po.fpid=fp.fpid
-        join funding f on f.fid=fp.fid
-        join orders o on oi.oid=o.oid
-        where ostatus = 'COMPLETE'
-        group by f.fid) total on total.fid= f.fid
+                        sum(oitotalprice) as totalprice
+                   from order_item oi
+                   join product_option po on oi.poid=po.poid
+                   join funding_product fp on po.fpid=fp.fpid
+                   join funding f on f.fid=fp.fid
+                   join orders o on oi.oid=o.oid
+                   where ostatus = 'COMPLETE'
+                   group by f.fid) total on total.fid= f.fid
         left join ( select f.fid,
-        count(distinct o.memail) as totalemail
-        from order_item oi
-        join product_option po on oi.poid=po.poid
-        join funding_product fp on po.fpid=fp.fpid
-        join funding f on f.fid=fp.fid
-        join orders o on oi.oid=o.oid
-        where ostatus = 'COMPLETE'
-        group by f.fid) cnt on cnt.fid=f.fid
+                           count(distinct o.memail) as totalemail
+                    from order_item oi
+                    join product_option po on oi.poid=po.poid
+                    join funding_product fp on po.fpid=fp.fpid
+                    join funding f on f.fid=fp.fid
+                    join orders o on oi.oid=o.oid
+                    where ostatus = 'COMPLETE'
+                    group by f.fid) cnt on cnt.fid=f.fid
         join competition c on c.cid=f.cid and c.tid=f.tid
         left join (select f.fid,
-        count(r.memail) as totalreview
-        from review r
-        join funding f on r.fid=f.fid
-        group by f.fid) r on r.fid = f.fid
+                          count(r.memail) as totalreview
+                   from review r
+                   join funding f on r.fid=f.fid
+                   group by f.fid) r on r.fid = f.fid
         where fstatus = 'FUNDING' and sysdate between cfunding_start_date  and cfunding_end_date
         <choose>
             <when test="criteria.type =='1'.toString()">

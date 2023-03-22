@@ -200,7 +200,7 @@ ALTER TABLE payment_method ADD CONSTRAINT payment_method_un UNIQUE ( pmmethod,
                                                                      pmcompany );
 
 CREATE TABLE product_option (
-                                poid     VARCHAR2(30 BYTE) NOT NULL,
+                                poid     VARCHAR2(100 BYTE) NOT NULL,
                                 pooption VARCHAR2(30) NOT NULL,
                                 fpid     VARCHAR2(100 BYTE) NOT NULL
 );
