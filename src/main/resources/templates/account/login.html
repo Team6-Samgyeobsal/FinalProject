@@ -200,7 +200,7 @@
             console.log(data);
             $.cookie('accessToken', data['accessToken'], {expires: 1, path: '/'});
             $.cookie('refreshToken', data['refreshToken'], {expires: 7, path: '/'});
-            location.href="/web";
+            location.href="/web/funding";
           }, error : function(request,status,error){
             showToast("이메일, 비밀번호를 다시 확인해주세요");
             // console.log("==========",request.status, request.responseText, error);

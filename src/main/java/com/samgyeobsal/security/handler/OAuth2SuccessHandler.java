@@ -49,6 +49,6 @@ public class OAuth2SuccessHandler extends SimpleUrlAuthenticationSuccessHandler 
         refreshTokenVO.setMemail(account.getMember().getMemail());
         refreshTokenService.insertRefreshToken(refreshTokenVO);
 
-        getRedirectStrategy().sendRedirect(request, response, "/web");
+        getRedirectStrategy().sendRedirect(request, response, "/web/funding");
     }
 }
