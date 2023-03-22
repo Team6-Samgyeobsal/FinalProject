@@ -33,6 +33,7 @@
         <typeAlias type="com.samgyeobsal.domain.funding.ProdOptionVO" alias="prodOption"/>
         <typeAlias type="com.samgyeobsal.domain.order.OrderFtitleVO" alias="orderFtitle"/>
         <typeAlias type="com.samgyeobsal.domain.fame.FameVO" alias="fame"/>
+        <typeAlias type="com.samgyeobsal.domain.notice.NoticeVO" alias="notice"/>
 
 
 

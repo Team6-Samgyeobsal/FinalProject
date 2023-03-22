@@ -12,7 +12,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Slf4j
 public class NoticeController {
     @GetMapping("")
-    public String loginPage(){
+    public String notice(){
         return "notice/notice";
+    }
+
+    @GetMapping("/detail")
+    public String noticeDetail(){
+        return "notice/noticeDetail";
     }
 }

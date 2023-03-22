@@ -1,9 +1,6 @@
 <html lang="ko" class="scroll-top scroll-apex">
 <head>
-  <link
-          rel="stylesheet"
-          href="/import/css/main.42cef079.css"
-  />
+
 
   <meta charset="utf-8" />
   <meta http-equiv="x-ua-compatible" content="ie=edge" />
@@ -16,15 +13,19 @@
 
   <link
           rel="stylesheet"
+          href="/import/css/main.42cef079.css"
+  />
+  <link
+          rel="stylesheet"
           href="/import/css/wui.css"
   />
   <link
           rel="stylesheet"
-          href="/import/css/common.css?c6244339"
+          href="/import/css/common.css"
   />
   <link
           rel="stylesheet"
-          href="/import/css/layout.css?199718d4"
+          href="/import/css/layout.css"
   />
 
 
@@ -48,6 +49,25 @@
   <main class="board wzui">
     <div class="ui-header">
       <h2 class="title">공지 사항</h2>
+      <div class="ui-tabs">
+        <ul>
+          <li><a href="#">전체</a></li>
+
+          <li>
+            <a href="#1">공지</a>
+          </li>
+
+          <li class="active">
+            <a href="#2">이벤트</a>
+          </li>
+
+          <li>
+            <a href="#38">보도자료</a>
+          </li>
+
+
+        </ul>
+      </div>
     </div>
     <div aria-hidden="true"></div>
     <div class="board-main">
@@ -120,5 +140,9 @@
     ></div>
   </main>
 </div>
+<div id="footer">
+  <div th:replace="/fragment/footer__15kue.html :: footer"></div>
+</div>
+
 </body>
 </html>
