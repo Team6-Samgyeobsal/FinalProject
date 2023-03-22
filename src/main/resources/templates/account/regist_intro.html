@@ -205,14 +205,6 @@
                   </div>
                 </div>
             </div>
-              <input type="hidden" name="userName" /><input
-                name="loginIdType" /><input
-                type="hidden"
-                name="secureStateBagKey"
-                value="" /><input
-                type="hidden"
-                name="termsUpdateRequest[0].value"
-                value="[object Object]" />
               <div
                 class="TextField_textField__35N7X TextField_md__3IhLK EmailSignUpFormContainer_formField__1vy9Q">
                 <label>이름</label>
@@ -225,6 +217,20 @@
                     type="text"
                     class="Input_input__2J70Z Input_md__2OZCr"
                     aria-invalid="false" />
+                </div>
+              </div>
+              <div
+                      class="TextField_textField__35N7X TextField_md__3IhLK EmailSignUpFormContainer_formField__1vy9Q">
+                <label>휴대폰 번호</label>
+                <div class="TextField_field__1B2AH">
+                  <input
+                          th:field="*{phone}"
+                          id="phoneInput"
+                          name="nickName"
+                          placeholder="휴대폰 번호 입력 (- 제외)"
+                          type="tel"
+                          class="Input_input__2J70Z Input_md__2OZCr"
+                          aria-invalid="false" />
                 </div>
               </div>
               <div
@@ -416,8 +422,15 @@
         let passwordVal = $('#passwordInput').val();
         let passwordCheckVal = $('#passwordCheckInput').val();
 
+        let phoneVal = $('#phoneInput').val();
+
         if(nameVal === ''){
           showToast('이름을 입력해주세요.');
+          return;
+        }
+
+        if(phoneVal === ''){
+          showToast('핸드폰 번호를 입력해주세요');
           return;
         }
 
