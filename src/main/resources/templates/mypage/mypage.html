@@ -9,6 +9,9 @@
       name="description"
       content="테크, 패션, 푸드, 뷰티, 홈리빙까지. 와디즈 펀딩으로 매일 새로운 일상을 발견하고, 와디즈 스토어에서 새로운 쇼핑을 만나보세요." />
     <title>와디즈 - 마이와디즈</title>
+    <!-- jquery -->
+    <script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
+
 
     <link
       rel="shortcut icon"
@@ -103,7 +106,7 @@
                     <div class="MyWadizSupporterProfile_profileUser__a_r1P">
                       <button data-event="profile">
                         <strong
-                          ><span>woowang789<i>님</i></span
+                          ><span th:text="${#authentication.principal.member.mname}">사용자이름<i>님</i></span
                           ><svg
                             viewBox="0 0 40 40"
                             focusable="false"
@@ -124,7 +127,7 @@
                         와디즈 계정으로 로그인 중
                       </p>
                       <button
-                        class="Button_button__MvCi9 Button_md__3RBTF Button_circular__2lnPs Button_block__3LZpG"
+                        class="logoutBtn Button_button__MvCi9 Button_md__3RBTF Button_circular__2lnPs Button_block__3LZpG"
                         type="button">
                         <span
                           ><span class="Button_children__25PKp"
@@ -209,8 +212,8 @@
                             class="MyWadizSupporterProjectInfo_project__3Vaun">
                             <div
                               class="MyWadizSupporterProjectInfo_projectLink__2K77b">
-                              <a href="/web/mywadiz/participation"
-                                ><span>펀딩·프리오더</span><b>1</b></a
+                              <a href="/web/mypage/order"
+                                ><span>펀딩</span><b>상세보기 > </b></a
                               >
                             </div>
                           </div>
@@ -338,7 +341,7 @@
                               와디즈 계정으로 로그인 중
                             </p>
                             <button
-                              class="Button_button__mRXZC Button_md__136bx Button_block__1LAUA"
+                              class="logoutBtn Button_button__mRXZC Button_md__136bx Button_block__1LAUA"
                               type="button">
                               <span
                                 ><span class="Button_children__3HY2l"
@@ -359,7 +362,26 @@
 
         </div>
       </main>
-
     </div>
+
+  <script>
+    $(document).ready(function(){
+      $('.logoutBtn').click(function(e){
+        var now = new Date();
+        now.setHours(now.getHours() - 1); // 1시간 전으로 설정
+        document.cookie = "accessToken=; expires=" + now.toUTCString() + "; path=/;";
+        document.cookie = "refreshToken=; expires=" + now.toUTCString() + "; path=/;";
+        location.href = '/web/funding';
+        console.log('쿠키 삭제');
+      })
+    })
+    $(document).on('click','.MyWadizUserTypeSwitch_button__BYDWf',function(){
+      if($(this).data('event')==='supporter_mode'){
+        location.href = '/web/mypage';
+      } else{
+        location.href = '/web/mypage/maker';
+      }
+    })
+  </script>
   </body>
 </html>

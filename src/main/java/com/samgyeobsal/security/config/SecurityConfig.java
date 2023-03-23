@@ -53,11 +53,11 @@ public class SecurityConfig {
                                 .antMatchers("/web/mypage/**").hasRole("USER")
                                 .anyRequest().permitAll()
                 )
-                .oauth2Login()
-                .userInfoEndpoint().userService(oAuth2DetailsService)
-                .and()
-                .successHandler(new OAuth2SuccessHandler(jwtTokenProvider, refreshTokenService))
-                .and()
+//                .oauth2Login()
+//                .userInfoEndpoint().userService(oAuth2DetailsService)
+//                .and()
+//                .successHandler(new OAuth2SuccessHandler(jwtTokenProvider, refreshTokenService))
+//                .and()
                 .addFilterBefore(new JwtTokenFilter(jwtTokenProvider,refreshTokenService), UsernamePasswordAuthenticationFilter.class);
 
 

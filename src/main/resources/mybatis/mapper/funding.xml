@@ -12,8 +12,10 @@
                nvl(totalreview,0) as totalreview,
                fthumb,
                trunc(cfunding_end_date-sysdate,0) expire,
-               c.cid
+               c.cid,
+               ct.ctid, ct.ctname, t.tid, t.tname, f.memail
         from funding f
+        inner join category ct on (f.ctid = ct.ctid)
         left join (select f.fid,
                         sum(oitotalprice) as totalprice
                    from order_item oi
@@ -33,51 +35,19 @@
                     where ostatus = 'COMPLETE'
                     group by f.fid) cnt on cnt.fid=f.fid
         join competition c on c.cid=f.cid and c.tid=f.tid
+        inner join the_hyundai t  on(f.tid = t.tid)
         left join (select f.fid,
                           count(r.memail) as totalreview
                    from review r
                    join funding f on r.fid=f.fid
                    group by f.fid) r on r.fid = f.fid
         where fstatus = 'FUNDING' and sysdate between cfunding_start_date  and cfunding_end_date
-        <choose>
-            <when test="criteria.type =='1'.toString()">
-                and f.ctid='1'
-            </when>
-            <when test="criteria.type =='2'.toString()">
-                and f.ctid='2'
-            </when>
-            <when test="criteria.type =='3'.toString()">
-                and  f.ctid='3'
-            </when>
-            <when test="criteria.type =='4'.toString()">
-                and  f.ctid='4'
-            </when>
-            <when test="criteria.type =='5'.toString()">
-                and f.ctid='5'
-            </when>
-            <when test="criteria.type =='6'.toString()">
-                and f.ctid='6'
-            </when>
-            <when test="criteria.type =='7'.toString()">
-                and f.ctid='7'
-            </when>
-            <otherwise>
-            </otherwise>
-        </choose>
-        <choose>
-            <when test="criteria.place =='더현대 서울'.toString()">
-                and c.tid='1'
-            </when>
-            <when test="criteria.place =='더현대 대구'.toString()">
-                and c.tid='2'
-            </when>
-            <when test="criteria.place =='더현대 광주'.toString()">
-                and  c.tid='3'
-            </when>
-            <otherwise>
-            </otherwise>
-        </choose>
-
+        <if test="criteria.type !=null and !criteria.type.equals('')">
+            and f.ctid=#{criteria.type}
+        </if>
+        <if test="criteria.tid != null and !criteria.tid.equals('')">
+            and c.tid = #{criteria.tid}
+        </if>
         order by
         <choose>
             <when test="criteria.sort =='모집금액순'.toString()">
@@ -164,16 +134,9 @@
         rcontent
         from review
         where fid=#{criteria.fid}
-        <choose>
-            <when test="criteria.type =='funding'.toString()">
-                and rtype='FUNDING'
-            </when>
-            <when test="criteria.type =='store'.toString()">
-                and rtype='STORE'
-            </when>
-            <otherwise>
-            </otherwise>
-        </choose>
+          <if test="criteria.type != null and criteria.type.equals('')">
+              and rtype=#{criteria.type}
+          </if>
         order by
         <choose>
             <when test="criteria.sort =='최신순'.toString()">

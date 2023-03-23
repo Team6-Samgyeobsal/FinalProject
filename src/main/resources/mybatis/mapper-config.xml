@@ -35,6 +35,8 @@
         <typeAlias type="com.samgyeobsal.domain.fame.FameVO" alias="fame"/>
         <typeAlias type="com.samgyeobsal.domain.notice.NoticeVO" alias="notice"/>
 
+        <typeAlias type="com.samgyeobsal.domain.admin.FundingDocumentDTO" alias="fundingDocument"/>
+
 
 
     </typeAliases>

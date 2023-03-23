@@ -867,7 +867,8 @@
                             }
                         });
                         function getList(type,place,sort,page){
-                                    console.log("get list");
+                            if(type === 0) type = null;
+
                                     let url = '/api/funding/list';
                                     $.ajax({
                                         url: url,

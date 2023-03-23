@@ -2,11 +2,9 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <div class="AppSidebarLayout_contents__2thGr" id="sidebar" th:fragment="sidebar (fundingId)">
   <div class="AppSidebarRewardProjectInfo_container__2Ykhp AppSidebarRewardProjectInfo_defaultBackgroundImage__1rWVS">
-    <div class="AppSidebarRewardProjectInfo_projectFlagGroup__2GdB4">
-      <span class="AppSidebarRewardProjectInfo_flag__2Ctnr">프로젝트</span><span class="AppSidebarRewardProjectInfo_flag__2Ctnr">작성 중</span>
-    </div>
-    <a class="AppSidebarRewardProjectInfo_projectName__1Hf5o" href="/web/campaign/detail/194455?preview=Y" target="_blank" rel="nofollow noopener noreferrer">woowang789의<br>멋진 프로젝트</a><button class="Button_button__1e2A2 Button_info__Nu98q Button_text__3KyLl Button_md__1FRMG Button_endIcon__3ZOY3 AppSidebarRewardProjectInfo_projectNumberButton__1izF_" type="button">
-                <span><span class="Button_children__q9VCZ">프로젝트 번호 194455</span><svg viewBox="0 0 32 32" focusable="false" role="presentation" class="withIcon_icon__3lrgp Button_icon__1qsE3 AppSidebarRewardProjectInfo_expandIcon__2oHiN" aria-hidden="true" style="width: 20px; height: 20px">
+
+    <a class="AppSidebarRewardProjectInfo_projectName__1Hf5o" href="/web/campaign/detail/194455?preview=Y" target="_blank" rel="nofollow noopener noreferrer"><span th:text="${#authentication.principal.member.mname}">woowang789</span>의<br>멋진 프로젝트</a><button class="Button_button__1e2A2 Button_info__Nu98q Button_text__3KyLl Button_md__1FRMG Button_endIcon__3ZOY3 AppSidebarRewardProjectInfo_projectNumberButton__1izF_" type="button">
+                <span><span class="Button_children__q9VCZ">프로젝트 번호 <span th:text="${fundingId}">FID</span></span><svg viewBox="0 0 32 32" focusable="false" role="presentation" class="withIcon_icon__3lrgp Button_icon__1qsE3 AppSidebarRewardProjectInfo_expandIcon__2oHiN" aria-hidden="true" style="width: 20px; height: 20px">
                     <path d="M16 22.4L5.6 12l1.12-1.12L16 20.16l9.28-9.28L26.4 12 16 22.4z"></path></svg></span>
   </button>
   </div>
@@ -28,20 +26,6 @@
         </ul>
       </li>
       <li>
-        <a class="AppSidebarMenuList_navLink__1FytL AppSidebarMenuList_disabled__3yitR" href="/studio/reward/194455/news">새소식<i class="icon-lock-o AppSidebarMenuList_lockIcon__3H-rC" aria-hidden="true"></i>
-          <div class="AppSidebarMenuList_helpFloating__3uu8D">
-            프로젝트 공개 후 확인할 수 있어요.<br>(오픈예정 신청한
-            경우, 오픈예정 공개 후 가능)
-          </div></a>
-      </li>
-      <li>
-        <a class="AppSidebarMenuList_navLink__1FytL AppSidebarMenuList_disabled__3yitR" href="/studio/reward/194455/dashboard/coming-report">오픈예정 현황<i class="icon-lock-o AppSidebarMenuList_lockIcon__3H-rC" aria-hidden="true"></i>
-          <div class="AppSidebarMenuList_helpFloating__3uu8D">
-            오픈예정 공개 후 확인할 수 있어요.<br>(오픈예정 서비스
-            신청자에 한함)
-          </div></a>
-      </li>
-      <li>
         <a class="AppSidebarMenuList_navLink__1FytL AppSidebarMenuList_disabled__3yitR" href="/studio/reward/194455/dashboard/funding-report">프로젝트 현황<i class="icon-lock-o AppSidebarMenuList_lockIcon__3H-rC" aria-hidden="true"></i>
           <div class="AppSidebarMenuList_helpFloating__3uu8D">
             프로젝트 공개 후 확인할 수 있어요.
@@ -53,19 +37,6 @@
             프로젝트 종료 후 확인할 수 있어요.
           </div></a>
       </li>
-      <li>
-        <a class="AppSidebarMenuList_navLink__1FytL AppSidebarMenuList_disabled__3yitR" href="/studio/reward/194455/supporter">환불 관리<i class="icon-lock-o AppSidebarMenuList_lockIcon__3H-rC" aria-hidden="true"></i>
-          <div class="AppSidebarMenuList_helpFloating__3uu8D">
-            프로젝트 공개 후 확인할 수 있어요.
-          </div></a>
-      </li>
-      <li>
-        <a class="AppSidebarMenuList_navLink__1FytL AppSidebarMenuList_disabled__3yitR" href="/studio/reward/194455/settlement">수수료∙정산 관리<i class="icon-lock-o AppSidebarMenuList_lockIcon__3H-rC" aria-hidden="true"></i>
-          <div class="AppSidebarMenuList_helpFloating__3uu8D">
-            프로젝트 제출 후 확인할 수 있어요.
-          </div></a>
-      </li>
-
     </ul>
   </nav>
 </div>
