@@ -34,7 +34,13 @@ public class FundingMapperTest {
     public void getFundingDetailTest(){
         FundingDetailVO fundingDetailVO = fundingMapper.getFundingDetail(fid,"FUNDING");
         System.out.println(fundingDetailVO);
+    }
 
+    @Test
+    public void getFundingDetailTest2(){
+        String fid = "d5c1a8a5-6466-4488-8792-66e39e26ff1e";
+        FundingDetailVO fundingDetailVO = fundingMapper.getFundingDetail(fid,"PARTICIPATE");
+        System.out.println(fundingDetailVO);
     }
     @Test
     public void getReviewListTest(){

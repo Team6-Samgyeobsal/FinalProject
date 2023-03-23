@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.samgyeobsal.mapper.AdminMapper">
+
+    <select id="getDocumentList" resultType="fundingDocument">
+        select f.fid, f.fstore_name, f.ftitle, f.fdate, f.memail, ct.ctname, t.tname
+        from competition c
+                 inner join the_hyundai t on (c.tid = t.tid)
+                 inner join funding f on (f.cid = c.cid and f.tid = c.tid)
+                 inner join category ct on (ct.ctid = f.ctid)
+        where sysdate between c.cfunding_start_date and c.cfunding_end_date
+          and f.fstatus = 'PARTICIPATE'
+        order by f.fdate
+    </select>
+
+    <update id="updateDocumentStatus">
+        update funding
+        set fstatus = #{status}
+        where fid = #{fid}
+    </update>
+</mapper>

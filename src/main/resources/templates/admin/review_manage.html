@@ -48,8 +48,7 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800">펀딩 서류 심사</h1>
-                    <p class="mb-4">123123</p>
+                    <h1 class="h3 mb-2 text-gray-800">리뷰 관리</h1>
 
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
@@ -61,36 +60,41 @@
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-                                            <th>펀딩이름</th>
-                                            <th>펀딩자</th>
-                                            <th>지역</th>
-                                            <th>카테고리</th>
-                                            <th>제출날짜</th>
-                                            <th>미리보기</th>
-                                            <th>승인 / 거절</th>
+                                            <th>작성자</th>
+                                            <th>작성내용</th>
+                                            <th>평점</th>
+                                            <th>리뷰타입</th>
+                                            <th>작성날짜</th>
+                                            <th>삭제</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                    <tr th:each="doc : ${docs}" th:data-fid="${doc.fid}">
-                                        <td th:text="${doc.ftitle}">펀딩 이름</td>
-                                        <td th:text="${doc.memail}">펀딩자</td>
-                                        <td th:text="${doc.tname}">지역</td>
-                                        <td th:text="${doc.ctname}">카테고리</td>
-                                        <td th:text="${#dates.format(doc.fdate, 'yyyy-MM-dd HH:mm')}">제출날짜</td>
-                                        <td>
-                                            <a href="#" target="_blank" th:href="|/web/admin/document/${doc.fid}/preview|" class="btn btn-info btn-icon-split">
-                                                <span class="text">미리보기</span>
+                                        <tr>
+                                            <td>Tiger Nixon</td>
+                                            <td>System Architect</td>
+                                            <td>Edinburgh</td>
+                                            <td>61</td>
+                                            <td>2011/04/25</td>
+                                            <td>
+                                            <a href="#" class="btn btn-danger btn-icon-split">
+                                                <span class="text">삭제</span>
                                             </a>
-                                        </td>
-                                        <td>
-                                            <a href="#" class="btn btn-success btn-circle updateBtn" data-bool="true">
-                                                <i class="fas fa-check"></i>
-                                            </a>
-                                            <a href="#" class="btn btn-danger btn-circle updateBtn" data-bool="false">
-                                                <i class="fas fa-trash"></i>
-                                            </a>
-                                        </td>
-                                    </tr>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Garrett Winters</td>
+                                            <td>Accountant</td>
+                                            <td>Tokyo</td>
+                                            <td>63</td>
+                                            <td>2011/07/25</td>
+                                            <td>
+                                                <a href="#" class="btn btn-danger btn-icon-split">
+                                                    <span class="text">삭제</span>
+                                                </a>
+                                            </td>
+                                        </tr>
+
+
                                     </tbody>
                                 </table>
                             </div>
@@ -161,28 +165,6 @@
     <!-- Page level custom scripts -->
 <!--    <script src="/admin/js/demo/datatables-demo.js"></script>-->
 
-<script>
-    $(document).on('click','.updateBtn',function(e){
-        let val = JSON.parse($(this).data('bool'));
-        let fid = $(this).closest('tr').data('fid');
-
-        console.log(val, fid);
-        $.ajax({
-            url: '/api/admin/document',
-            type : 'post',
-            data : JSON.stringify({
-                fid,
-                isPass : val
-            }),
-            contentType:"application/json",
-            dataType:'text',
-            success : function(data){
-                console.log(data);
-                location.reload();
-            }
-        })
-    })
-</script>
 </body>
 
 </html>
