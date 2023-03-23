@@ -2,6 +2,7 @@ package com.samgyeobsal.mapper;
 
 import com.samgyeobsal.domain.admin.FundingDocumentDTO;
 import com.samgyeobsal.domain.admin.UpdateDocumentDTO;
+import com.samgyeobsal.domain.funding.ReviewVO;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,5 +37,14 @@ public class AdminMapperTest {
 
         int i = adminMapper.updateDocumentStatus(document);
         log.info("row = {}", i);
+    }
+
+    @Test
+    void getAllReviewList(){
+        List<ReviewVO> allReviewList = adminMapper.getAllReviewList();
+        for (ReviewVO reviewVO : allReviewList) {
+            log.info("review = {}", reviewVO);
+
+        }
     }
 }

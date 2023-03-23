@@ -19,4 +19,15 @@
         set fstatus = #{status}
         where fid = #{fid}
     </update>
+
+    <select id="getAllReviewList" resultType="review">
+        select rscore, rtype, rimg_url, memail, fid, rdate, rcontent
+        from review
+        order by rdate desc
+    </select>
+
+    <delete id="deleteReview">
+        delete from review
+        where fid = #{fid} and rtype=#{rtype} and memail = #{memail}
+    </delete>
 </mapper>

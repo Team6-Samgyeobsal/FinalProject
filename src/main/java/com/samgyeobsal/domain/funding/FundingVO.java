@@ -16,4 +16,11 @@ public class FundingVO {
     private String fthumb;
     private int expire;
     private String fstatus;
+
+    // 추가
+    private String ctid;
+    private String ctname;
+    private String tid;
+    private String tname;
+    private String memail;
 }

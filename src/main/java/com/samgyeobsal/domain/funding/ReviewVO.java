@@ -15,5 +15,6 @@ public class ReviewVO {
     private String rimg_url;
     private String memail;
     private String rdate;
+    private String fid;
     private String rcontent;
 }

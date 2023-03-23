@@ -24,11 +24,10 @@ public class FundingMapperTest {
     @Test
     public void getFundingListTest() {
         FundingCriteria criteria= new FundingCriteria();
-        criteria.setPlace("1");
-        criteria.setSort("1");
-        criteria.setType("1");
+        criteria.setPage(0);
+
         List<FundingVO> list = fundingMapper.getFundingList(criteria);
-        list.forEach(funding -> log.info(funding));
+        list.forEach(funding -> log.info("funding = {}", funding));
     }
     @Test
     public void getFundingDetailTest(){
@@ -46,7 +45,7 @@ public class FundingMapperTest {
     public void getReviewListTest(){
         ReviewCriteria reviewCriteria = new ReviewCriteria();
         reviewCriteria.setFid("1");
-       reviewCriteria.setSort("1");
+        reviewCriteria.setSort("1");
         reviewCriteria.setType("1");
         List<ReviewVO> list = fundingMapper.getReviewList(reviewCriteria);
         list.forEach(review -> log.info(review));

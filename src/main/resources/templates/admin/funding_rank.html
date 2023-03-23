@@ -56,7 +56,7 @@
 
                         <!-- Earnings (Monthly) Card Example -->
                         <div class="col-xl-3 col-md-6 mb-4">
-                            <div data-area="all" class="h_area card border-left-primary shadow h-100 py-2">
+                            <div data-area="all" class="h_area card border-left-primary shadow h-100 py-2" data-tname="">
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
@@ -74,7 +74,7 @@
 
                         <!-- Earnings (Monthly) Card Example -->
                         <div class="col-xl-3 col-md-6 mb-4">
-                            <div data-area="seoul" class="h_area card border-left-success shadow h-100 py-2">
+                            <div data-area="seoul" class="h_area card border-left-success shadow h-100 py-2" data-tname="더현대 서울">
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
@@ -92,7 +92,7 @@
 
                         <!-- Earnings (Monthly) Card Example -->
                         <div class="col-xl-3 col-md-6 mb-4">
-                            <div data-area="daegu" class="h_area card border-left-info shadow h-100 py-2">
+                            <div data-area="daegu" class="h_area card border-left-info shadow h-100 py-2" data-tname="더현대 대구">
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
@@ -110,7 +110,7 @@
 
                         <!-- Pending Requests Card Example -->
                         <div class="col-xl-3 col-md-6 mb-4">
-                            <div data-area="gwangju" class="h_area card border-left-warning shadow h-100 py-2">
+                            <div data-area="gwangju" class="h_area card border-left-warning shadow h-100 py-2" data-tname="더현대 광주">
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
@@ -137,7 +137,7 @@
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-                                            <th>펀딩ID</th>
+                                            <th>순위</th>
                                             <th>펀딩이름</th>
                                             <th>펀딩자</th>
                                             <th>지역</th>
@@ -145,41 +145,7 @@
                                             <th>펀딩금액</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>System Architect</td>
-                                            <td>Edinburgh</td>
-                                            <td>61</td>
-                                            <td>2011/04/25</td>
-                                            <td>$320,800</td>
-                                        </tr>
-                                        <tr>
-                                            <td>2</td>
-                                            <td>Accountant</td>
-                                            <td>Tokyo</td>
-                                            <td>63</td>
-                                            <td>2011/07/25</td>
-                                            <td>$170,750</td>
-                                        </tr>
-                                        <tr>
-                                            <td>3</td>
-                                            <td>Junior Technical Author</td>
-                                            <td>San Francisco</td>
-                                            <td>66</td>
-                                            <td>2009/01/12</td>
-                                            <td>$86,000</td>
-                                        </tr>
-                                        <tr>
-                                            <td>4</td>
-                                            <td>Senior Javascript Developer</td>
-                                            <td>Edinburgh</td>
-                                            <td>22</td>
-                                            <td>2012/03/29</td>
-                                            <td>$433,060</td>
-                                        </tr>
-
-
+                                    <tbody >
                                     </tbody>
                                 </table>
                             </div>
@@ -250,6 +216,63 @@
     <!-- Page level custom scripts -->
 <!--    <script src="/admin/js/demo/datatables-demo.js"></script>-->
 
+<script>
+    $(document).ready(function(){
+        console.log('ready');
+        getAllList();
+
+    })
+
+    $(document).on('click','.h_area', function(e){
+        let tname = $(this).data('tname');
+        console.log(tname);
+        getAllList(tname);
+    })
+
+    function getAllList(place){
+        $('tbody').html('');
+
+        let idx = 0;
+        function getList(place, page){
+            $.ajax({
+                url : '/api/admin/funding',
+                type : 'get',
+                data:{
+                    place: place,
+                    page: page,
+                },
+                contentType:"application/json",
+                success : function(data){
+                    console.log(data.length);
+                    if(data.length !==0){
+                        printTable(idx,data);
+                        getList(place, page + 1);
+                        idx += data.length;
+                    }
+                }
+            })
+        }
+        getList(place, 0);
+    }
+
+    function printTable(no,data){
+        $(data).each(function(idx ,d){
+            let template = `
+            <tr data-fid="${d['fid']}">
+                <td>${no+idx+1}</td>
+                <td>${d['ftitle']}</td>
+                <td>${d['memail']}</td>
+                <td>${d['tname']}</td>
+                <td>${d['ctname']}</td>
+                <td>${d['totalprice']}</td>
+            </tr>
+            `
+            $('tbody').append(template);
+
+        })
+    }
+
+</script>
 </body>
 
 </html>
