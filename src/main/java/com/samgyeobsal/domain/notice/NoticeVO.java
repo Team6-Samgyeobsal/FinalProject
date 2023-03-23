@@ -13,6 +13,8 @@ public class NoticeVO {
 
     private String nid;
     private String ntitle;
-    private Date ndate;
+    private String ndate;
     private String nstatus;
+    private String nthumb;
+    private String ncontent;
 }

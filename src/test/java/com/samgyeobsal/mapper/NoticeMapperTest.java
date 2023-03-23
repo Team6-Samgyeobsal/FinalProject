@@ -17,7 +17,15 @@ public class NoticeMapperTest {
 
     @Test
     public void getNoticeListTest(){
-        List<NoticeVO> noticeVO = noticeMapper.getNoticeList();
+        String status="notice";
+        List<NoticeVO> noticeVO = noticeMapper.getNoticeList(status);
         noticeVO.forEach(notice -> log.info(notice));
+    }
+
+    @Test
+    public void getNoticeDetailList(){
+        String nid ="1";
+        NoticeVO noticeVO= noticeMapper.getNoticeDetail(nid);
+        log.info("notice= "+noticeVO);
     }
 }

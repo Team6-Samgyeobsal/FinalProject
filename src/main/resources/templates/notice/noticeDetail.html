@@ -1,9 +1,10 @@
 <html lang="ko" class="scroll-half-screen scroll-top">
 <head>
   <title>
-    [런드리고x와디즈] 서포터클럽 대상 런드리고 1만원 할인 쿠폰 받고 와디즈
-    쿠폰팩도 받자! | 와디즈 공지사항
+    [[${notice.ntitle}]]
   </title>
+  <script src="https://code.jquery.com/jquery-3.6.3.js"
+          integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
 
   <link rel="stylesheet" href="/import/css/wboard.css" />
   <link
@@ -48,8 +49,7 @@
         <div class="wboard-detail-content">
           <div class="article-top">
             <p class="title">
-              [런드리고x와디즈] 서포터클럽 대상 런드리고 1만원 할인 쿠폰
-              받고 와디즈 쿠폰팩도 받자!
+              [[${notice.ntitle}]]
             </p>
             <div class="info">
               <em
@@ -58,71 +58,11 @@
                       background-image: url(https://static.wadiz.kr/assets/icon/apple-touch-icon.png);
                     "
               ></em>
-              <span class="user-info">와디즈 <br />2023.03.06</span>
+              <span class="user-info">더쉐프 <br />[[${notice.ndate}]]</span>
             </div>
           </div>
           <div class="inner-contents">
-            <p style="margin: 0">
-              <img
-                      src="https://cdn.wadiz.kr/ft/images/green001/2023/0306/20230306191134198_37.png/wadiz/format/jpg/quality/80/optimize"
-                      class="fr-fic fr-dib"
-              />
-            </p>
-            <p style="margin: 0">
-              <img
-                      data-supporterclub="laundrygo"
-                      style="margin: 0"
-                      src="https://cdn.wadiz.kr/ft/images/green001/2023/0306/20230306164725985_94.jpg/wadiz/format/jpg/quality/80/optimize"
-                      class="fr-fic fr-dib"
-              />
-            </p>
-            <p style="margin: 0">
-              <a
-                      href="https://www.wadiz.kr/web/supporter-club/intro"
-                      rel="noopener noreferrer"
-                      target="_blank"
-              ><img
-                      style="margin: 0"
-                      src="https://cdn.wadiz.kr/ft/images/green001/2023/0306/20230306164726531_94.jpg/wadiz/format/jpg/quality/80/optimize"
-                      class="fr-fic fr-dib"
-              /></a>
-            </p>
-            <p style="margin: 0">
-              <img
-                      style="margin: 0"
-                      src="https://cdn.wadiz.kr/ft/images/green001/2023/0306/20230306164744309_94.jpg/wadiz/format/jpg/quality/80/optimize"
-                      class="fr-fic fr-dib"
-              />
-            </p>
-            <p style="margin: 0">
-              <a
-                      href="https://www.wadiz.kr/web/wreward/collection/laundrygo?order=recommend&amp;endYn=N&amp;keyword="
-                      rel="noopener noreferrer"
-                      target="_blank"
-              ><img
-                      style="margin: 0"
-                      src="https://cdn.wadiz.kr/ft/images/green001/2023/0306/20230306164754471_94.gif"
-                      class="fr-fic fr-dib"
-              /></a>
-            </p>
-            <p style="margin: 0">
-              <a
-                      href="https://www.wadiz.kr/web/store/collection/laundrygo"
-                      rel="noopener noreferrer"
-                      target="_blank"
-              ><img
-                      style="margin: 0"
-                      src="https://cdn.wadiz.kr/ft/images/green001/2023/0306/20230306164803259_94.gif"
-                      class="fr-fic fr-dib"
-              /></a>
-            </p>
-            <p style="margin: 0">
-              <img
-                      style="margin: 0"
-                      src="https://cdn.wadiz.kr/ft/images/green001/2023/0306/20230306164812141_94.jpg/wadiz/format/jpg/quality/80/optimize"
-                      class="fr-fic fr-dib"
-              />
-            </p>
+            [(${notice.ncontent})]
           </div>
           <div class="article-attached">
             <ul></ul>
@@ -131,7 +71,7 @@
       </div>
       <div class="wboard-detail-bottom">
         <div class="wboard-detail-btn-wrap">
-          <a class="wz button" href="#this" onclick="moveList()"
+          <a class="wz button" href="/web/notice"
           >목록으로 돌아가기</a
           >
         </div>

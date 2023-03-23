@@ -1,13 +1,13 @@
-package com.samgyeobsal.mapper;
+package com.samgyeobsal.service;
 
 import com.samgyeobsal.domain.notice.NoticeVO;
-import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
 
-@Mapper
-public interface NoticeMapper {
+public interface NoticeService {
+
     List<NoticeVO> getNoticeList(String status);
+
     NoticeVO getNoticeDetail(String nid);
     NoticeVO getEventDetail(String eid);
 }

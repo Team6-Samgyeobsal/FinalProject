@@ -11,6 +11,8 @@
 
   <title>와디즈 공지 사항</title>
 
+  <script src="https://code.jquery.com/jquery-3.6.3.js"
+          integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
   <link
           rel="stylesheet"
           href="/import/css/main.42cef079.css"
@@ -51,18 +53,14 @@
       <h2 class="title">공지 사항</h2>
       <div class="ui-tabs">
         <ul>
-          <li><a href="#">전체</a></li>
+          <li class="active" data-status=""><a >전체</a></li>
 
-          <li>
-            <a href="#1">공지</a>
+          <li data-status="notice">
+            <a >공지</a>
           </li>
 
-          <li class="active">
-            <a href="#2">이벤트</a>
-          </li>
-
-          <li>
-            <a href="#38">보도자료</a>
+          <li data-status="event">
+            <a >이벤트</a>
           </li>
 
 
@@ -72,66 +70,6 @@
     <div aria-hidden="true"></div>
     <div class="board-main">
       <ul>
-        <li>
-          <a
-                  class="article"
-                  href="/web/wboard/newsBoardDetail/8424?headWordId=&amp;cPage=1"
-          >
-            <em class="category">이벤트</em>
-
-            <em class="status closed">진행 중</em>
-
-            <em class="notice">중요</em>
-
-            <em class="notice">BEST</em>
-
-            <div class="info">
-              <div
-                      class="thumb"
-                      style="
-                      background-image: url(https://cdn.wadiz.kr/ft/images/green001/2023/0313/20230313113455996_0.jpg/wadiz/resize/400/format/jpg/quality/80/optimize);
-                    "
-              ></div>
-
-              <h3 class="title">
-                [이벤트] 3월 '집 밖의 발견' 기획전 | 펀딩·스토어 각 7,OOO원
-                선착순 쿠폰 (~3/31)
-              </h3>
-              <span class="author">와디즈</span
-              ><span class="created-at">2023.03.07</span>
-            </div>
-          </a>
-        </li>
-        <li>
-          <a
-                  class="article"
-                  href="/web/wboard/newsBoardDetail/8424?headWordId=&amp;cPage=1"
-          >
-            <em class="category">이벤트</em>
-
-            <em class="status closed">진행 중</em>
-
-            <em class="notice">중요</em>
-
-            <em class="notice">BEST</em>
-
-            <div class="info">
-              <div
-                      class="thumb"
-                      style="
-                      background-image: url(https://cdn.wadiz.kr/ft/images/green001/2023/0313/20230313113455996_0.jpg/wadiz/resize/400/format/jpg/quality/80/optimize);
-                    "
-              ></div>
-
-              <h3 class="title">
-                [이벤트] 3월 '집 밖의 발견' 기획전 | 펀딩·스토어 각 7,OOO원
-                선착순 쿠폰 (~3/31)
-              </h3>
-              <span class="author">와디즈</span
-              ><span class="created-at">2023.03.07</span>
-            </div>
-          </a>
-        </li>
       </ul>
     </div>
     <div
@@ -143,6 +81,70 @@
 <div id="footer">
   <div th:replace="/fragment/footer__15kue.html :: footer"></div>
 </div>
+<script>
+  $(document).ready(function (){
+    let status="";
+    getNotice(status);
 
+    $('.ui-tabs').find('li').click(function (){
+      console.log($(this).find('a').text());
+      $('.ui-tabs').find('li').removeClass('active');
+      $(this).addClass('active');
+      status=$(this).data('status');
+      getNotice(status);
+
+    })
+
+
+
+
+
+
+    function getNotice(status) {
+       $('.board-main').find('ul').html('');
+      $.ajax({
+        url: '/api/notice/list',
+        type: "get",
+        contentType: "application/json; charset=utf-8",
+        data: {
+          status:status
+        },
+        success: function (data, status) {
+          let k="";
+
+           data.forEach(function (notice) {
+             let proceeding = notice['nstatus'] === 'EVENT'? '<em class="category">이벤트</em><em class="status closed">진행 중</em>' : '<em class="notice">공지</em>';
+             let urlStatus = notice['nstatus'] === 'NOTICE'?'notice' :'event'
+              k += `<li>
+          <a class="article" href="/web/${urlStatus}/${notice.nid}">
+            ${proceeding}
+<!--            <em class="notice">중요</em>-->
+            <div class="info">
+              <div class="thumb" style="
+                      background-image: url(${notice.nthumb});
+                    "></div>
+
+              <h3 class="title">
+                ${notice.ntitle}
+              </h3>
+              <span class="author">더쉐프</span><span class="created-at">${notice.ndate}</span>
+            </div>
+          </a>
+        </li>`;
+
+            });
+
+          $('.board-main').find('ul').append(k);
+
+
+        },
+        error: function (status, error) {
+          alert("실패");
+        }
+      })
+
+    }
+  })
+</script>
 </body>
 </html>

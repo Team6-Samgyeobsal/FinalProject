@@ -5,8 +5,30 @@
 
 <mapper namespace="com.samgyeobsal.mapper.NoticeMapper">
     <select id="getNoticeList" resultType="notice">
-        select nid ,ntitle, ndate, 'NOTICE' nstatus from notice
+        select * from(select nid ,ntitle, to_char(ndate,'YYYY.MM.DD') ndate, 'NOTICE' nstatus ,nthumb from notice
         union
-        select to_char(eno) , etitle , eissuedate ndate,'EVENT' nstatus from event
+        select to_char(eid) , etitle , to_char(eissuedate,'YYYY.MM.DD') ,'EVENT' ,ethumb from event)
+
+        <choose>
+            <when test="status =='notice'.toString()">
+                where nstatus='NOTICE'
+            </when>
+            <when test="status =='event'.toString()">
+                where nstatus='EVENT'
+            </when>
+            <otherwise>
+            </otherwise>
+        </choose>
     </select>
+
+    <select id="getNoticeDetail" resultType="notice">
+        select nid, ntitle, to_char(ndate,'YYYY.MM.DD') ndate, ncontent from notice
+        where  nid = #{nid}
+    </select>
+
+    <select id="getEventDetail" resultType="notice">
+        select eid nid, etitle ntitle, to_char(eissuedate,'YYYY.MM.DD') ndate, econtent ncontent from event
+        where eid = #{eid}
+    </select>
+
 </mapper>
