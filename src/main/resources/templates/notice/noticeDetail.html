@@ -1,0 +1,92 @@
+<html lang="ko" class="scroll-half-screen scroll-top">
+<head>
+  <title>
+    [[${notice.ntitle}]]
+  </title>
+  <script src="https://code.jquery.com/jquery-3.6.3.js"
+          integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
+
+  <link rel="stylesheet" href="/import/css/wboard.css" />
+  <link
+          rel="stylesheet"
+          href="/import/css/wui.css"
+  />
+  <link
+          rel="stylesheet"
+          href="/import/css/common.css"
+  />
+  <link
+          rel="stylesheet"
+          href="/import/css/layout.css"
+  />
+  <link
+          rel="stylesheet"
+          type="text/css"
+          href="/import/css/froala_custom.css"
+  />
+  <link
+          rel="stylesheet"
+          href="/import/css/main.42cef079.css"
+  />
+</head>
+<body>
+<div id="page-container">
+  <div class="black-bg-wrap" style="display: none"></div>
+
+  <div id="wz-header">
+    <div th:replace="/fragment/header__3X3Cg.html :: header">
+  </div>
+
+
+  <form id="forwardForm" method="get">
+    <input type="hidden" id="returnURL" name="returnURL" />
+  </form>
+  <input type="hidden" id="sessionLoginCheck" value="false" />
+
+  <div id="newContainer">
+    <div id="wBoardWrap">
+      <div class="wboard-wrap">
+        <div class="wboard-detail-content">
+          <div class="article-top">
+            <p class="title">
+              [[${notice.ntitle}]]
+            </p>
+            <div class="info">
+              <em
+                      class="user-img"
+                      style="
+                      background-image: url(https://static.wadiz.kr/assets/icon/apple-touch-icon.png);
+                    "
+              ></em>
+              <span class="user-info">더쉐프 <br />[[${notice.ndate}]]</span>
+            </div>
+          </div>
+          <div class="inner-contents">
+            [(${notice.ncontent})]
+          </div>
+          <div class="article-attached">
+            <ul></ul>
+          </div>
+        </div>
+      </div>
+      <div class="wboard-detail-bottom">
+        <div class="wboard-detail-btn-wrap">
+          <a class="wz button" href="/web/notice"
+          >목록으로 돌아가기</a
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+  <input
+          type="hidden"
+          id="articleUrl"
+          value="https://www.wadiz.kr/web/wboard/newsBoardDetail/8422"
+  />
+  <div id="fb-root"></div>
+
+  <div id="footer">
+    <div th:replace="/fragment/footer__15kue.html :: footer"></div>
+  </div>
+</body>
+</html>

@@ -13,11 +13,12 @@ drop table product_option cascade constraint purge;
 drop table event cascade constraint purge;
 drop table coupon_detail cascade constraint purge;
 drop table qr_code cascade constraint purge;
-drop table JWT_REFRESH cascade constraint purge;
-drop table FUNDING_IMG cascade constraint purge;
+drop table funding_img cascade constraint purge;
+drop table jwt_refresh cascade constraint purge;
+
 
 -- 생성자 Oracle SQL Developer Data Modeler 21.2.0.183.1957
---   위치:        2023-03-08 17:05:33 KST
+--   위치:        2023-03-23 11:08:15 KST
 --   사이트:      Oracle Database 21c
 --   유형:      Oracle Database 21c
 
@@ -28,7 +29,7 @@ drop table FUNDING_IMG cascade constraint purge;
 -- predefined type, no DDL - XMLTYPE
 
 CREATE TABLE category (
-                          ctid   VARCHAR2(30 BYTE) NOT NULL,
+                          ctid   VARCHAR2(100 BYTE) NOT NULL,
                           ctname VARCHAR2(30 BYTE) NOT NULL
 );
 
@@ -47,13 +48,12 @@ ALTER TABLE competition ADD CONSTRAINT competition_pk PRIMARY KEY ( cid,
                                                                     tid );
 
 CREATE TABLE coupon_detail (
-                               cpid         VARCHAR2(30 BYTE) NOT NULL,
-                               eno          NUMBER NOT NULL,
+                               cpid         VARCHAR2(100 BYTE) NOT NULL,
                                memail       VARCHAR2(60 BYTE) NOT NULL,
                                cpissuedate  TIMESTAMP NOT NULL,
                                cpexpiredate TIMESTAMP NOT NULL,
                                cpusedate    TIMESTAMP,
-                               cpstatus     NUMBER(1)
+                               eid          VARCHAR2(100 BYTE) NOT NULL
 );
 
 ALTER TABLE coupon_detail ADD CONSTRAINT coupon_detail_pk PRIMARY KEY ( cpid );
@@ -61,21 +61,18 @@ ALTER TABLE coupon_detail ADD CONSTRAINT coupon_detail_pk PRIMARY KEY ( cpid );
 ALTER TABLE coupon_detail ADD CONSTRAINT coupon_detail_memail_un UNIQUE ( memail );
 
 CREATE TABLE event (
-                       eno          NUMBER NOT NULL,
-                       etitle       VARCHAR2(100 BYTE),
-                       econtent     VARCHAR2(200 BYTE),
+                       eid          VARCHAR2(100 BYTE) NOT NULL,
+                       etitle       VARCHAR2(100 BYTE) NOT NULL,
+                       econtent     CLOB,
                        eissuedate   TIMESTAMP,
                        eexpiredate  TIMESTAMP,
-                       elimitcount  NUMBER,
-                       ecount       NUMBER,
-                       eimg         VARCHAR2(400 BYTE),
-                       ediscount    NUMBER,
-                       estatus      NUMBER(1) NOT NULL,
-                       edetailimg   VARCHAR2(400),
-                       ecoupontitle VARCHAR2(100)
+                       ethumb       VARCHAR2(400 BYTE) NOT NULL,
+                       ediscount    NUMBER NOT NULL,
+                       ecoupontitle VARCHAR2(100) NOT NULL,
+                       etype        VARCHAR2(100 BYTE) NOT NULL
 );
 
-ALTER TABLE event ADD CONSTRAINT event_pk PRIMARY KEY ( eno );
+ALTER TABLE event ADD CONSTRAINT event_pk PRIMARY KEY ( eid );
 
 CREATE TABLE funding (
                          fid            VARCHAR2(100 BYTE) NOT NULL,
@@ -88,8 +85,8 @@ CREATE TABLE funding (
                          memail         VARCHAR2(60 BYTE) NOT NULL,
                          fstore_score   NUMBER,
                          ffunding_score NUMBER,
-                         ctid           VARCHAR2(30 BYTE),
-                         fthumb         VARCHAR2(200 BYTE),
+                         ctid           VARCHAR2(100 BYTE),
+                         fthumb         VARCHAR2(300 BYTE),
                          cid            VARCHAR2(100 BYTE),
                          tid            VARCHAR2(100 BYTE)
 );
@@ -102,8 +99,8 @@ COMMENT ON COLUMN funding.fstatus IS
 ALTER TABLE funding ADD CONSTRAINT funding_pk PRIMARY KEY ( fid );
 
 CREATE TABLE funding_img (
-                             fiid  VARCHAR2(50 BYTE) NOT NULL,
-                             fiurl VARCHAR2(100 BYTE) NOT NULL,
+                             fiid  VARCHAR2(100 BYTE) NOT NULL,
+                             fiurl VARCHAR2(300 BYTE) NOT NULL,
                              fid   VARCHAR2(100 BYTE) NOT NULL
 );
 
@@ -145,40 +142,38 @@ CREATE TABLE member (
 ALTER TABLE member ADD CONSTRAINT member_pk PRIMARY KEY ( memail );
 
 CREATE TABLE notice (
-                        nid       VARCHAR2(30 BYTE) NOT NULL,
-                        ntitle    VARCHAR2(100 BYTE) NOT NULL,
-                        nthum_img VARCHAR2(100 BYTE) NOT NULL,
-                        nimg1     VARCHAR2(100 BYTE) NOT NULL,
-                        nimg2     VARCHAR2(100 BYTE),
-                        nimg3     VARCHAR2(100 BYTE),
-                        ndate     DATE NOT NULL
+                        nid      VARCHAR2(100 BYTE) NOT NULL,
+                        ntitle   VARCHAR2(100 BYTE) NOT NULL,
+                        ncontent CLOB NOT NULL,
+                        ndate    DATE NOT NULL,
+                        nthumb   VARCHAR2(300 BYTE) NOT NULL
 );
 
 ALTER TABLE notice ADD CONSTRAINT notice_pk PRIMARY KEY ( nid );
 
 CREATE TABLE order_item (
-                            oid          VARCHAR2(40 BYTE) NOT NULL,
+                            oid          VARCHAR2(100 BYTE) NOT NULL,
                             poid         VARCHAR2(100 BYTE) NOT NULL,
                             oicount      NUMBER NOT NULL,
-                            oitotalprice NUMBER(8) NOT NULL
+                            oitotalprice NUMBER NOT NULL
 );
 
 ALTER TABLE order_item ADD CONSTRAINT order_item_pk PRIMARY KEY ( oid,
                                                                   poid );
 
 CREATE TABLE orders (
-                        oid           VARCHAR2(40 BYTE) NOT NULL,
+                        oid           VARCHAR2(100 BYTE) NOT NULL,
                         ophone        VARCHAR2(11 BYTE) NOT NULL,
-                        omemo         VARCHAR2(60 BYTE),
+                        omemo         VARCHAR2(300 BYTE),
                         oused_mileage NUMBER,
-                        oorigin_price NUMBER(8) NOT NULL,
-                        oprice        NUMBER(8) NOT NULL,
+                        oorigin_price NUMBER NOT NULL,
+                        oprice        NUMBER NOT NULL,
                         ostatus       VARCHAR2(15 BYTE) NOT NULL,
                         odate         DATE,
                         memail        VARCHAR2(60 BYTE) NOT NULL,
-                        pmcode        VARCHAR2(30 BYTE) NOT NULL,
+                        pmcode        VARCHAR2(100 BYTE) NOT NULL,
                         qrused_date   DATE,
-                        cpid          VARCHAR2(30 BYTE)
+                        cpid          VARCHAR2(100 BYTE)
 );
 
 COMMENT ON COLUMN orders.ostatus IS
@@ -189,8 +184,8 @@ REFUND		환불';
 ALTER TABLE orders ADD CONSTRAINT orders_pk PRIMARY KEY ( oid );
 
 CREATE TABLE payment_method (
-                                pmcode    VARCHAR2(30 BYTE) NOT NULL,
-                                pmcompany VARCHAR2(30 BYTE),
+                                pmcode    VARCHAR2(100 BYTE) NOT NULL,
+                                pmcompany VARCHAR2(100 BYTE),
                                 pmmethod  NUMBER(1)
 );
 
@@ -201,17 +196,17 @@ ALTER TABLE payment_method ADD CONSTRAINT payment_method_un UNIQUE ( pmmethod,
 
 CREATE TABLE product_option (
                                 poid     VARCHAR2(100 BYTE) NOT NULL,
-                                pooption VARCHAR2(30) NOT NULL,
+                                pooption VARCHAR2(100) NOT NULL,
                                 fpid     VARCHAR2(100 BYTE) NOT NULL
 );
 
 ALTER TABLE product_option ADD CONSTRAINT product_option_pk PRIMARY KEY ( poid );
 
 CREATE TABLE qr_code (
-                         qid     VARCHAR2(30 BYTE) NOT NULL,
-                         link    VARCHAR2(100 BYTE) NOT NULL,
+                         qid     VARCHAR2(100 BYTE) NOT NULL,
+                         link    VARCHAR2(300 BYTE) NOT NULL,
                          qr_code VARCHAR2(2000 BYTE) NOT NULL,
-                         oid     VARCHAR2(40 BYTE) NOT NULL
+                         oid     VARCHAR2(100 BYTE) NOT NULL
 );
 
 CREATE UNIQUE INDEX qr_code__idx ON
@@ -222,13 +217,15 @@ CREATE UNIQUE INDEX qr_code__idx ON
 ALTER TABLE qr_code ADD CONSTRAINT qr_code_pk PRIMARY KEY ( qid );
 
 CREATE TABLE review (
-                        rscore   NUMBER NOT NULL,
-                        rtype    VARCHAR2(20) NOT NULL,
-                        rimg_url VARCHAR2(200 BYTE),
-                        memail   VARCHAR2(60 BYTE) NOT NULL,
-                        fid      VARCHAR2(100 BYTE) NOT NULL,
-                        rdate    DATE NOT NULL,
-                        rcontent VARCHAR2(400 BYTE) NOT NULL
+                        rscore    NUMBER NOT NULL,
+                        rtype     VARCHAR2(20) NOT NULL,
+                        rimg_url  VARCHAR2(300 BYTE),
+                        memail    VARCHAR2(60 BYTE) NOT NULL,
+                        fid       VARCHAR2(100 BYTE) NOT NULL,
+                        rdate     DATE NOT NULL,
+                        rcontent  VARCHAR2(400 BYTE) NOT NULL,
+                        recontent VARCHAR2(400 BYTE),
+                        redate    DATE
 );
 
 COMMENT ON COLUMN review.rtype IS
@@ -252,8 +249,8 @@ ALTER TABLE competition
         REFERENCES the_hyundai ( tid );
 
 ALTER TABLE coupon_detail
-    ADD CONSTRAINT coupon_detail_event_fk FOREIGN KEY ( eno )
-        REFERENCES event ( eno );
+    ADD CONSTRAINT coupon_detail_event_fk FOREIGN KEY ( eid )
+        REFERENCES event ( eid );
 
 ALTER TABLE coupon_detail
     ADD CONSTRAINT coupon_detail_member_fk FOREIGN KEY ( memail )
@@ -365,3 +362,4 @@ ALTER TABLE review
 --
 -- ERRORS                                   0
 -- WARNINGS                                 0
+
