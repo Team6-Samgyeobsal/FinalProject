@@ -1,8 +1,6 @@
 package com.samgyeobsal.service;
 
-import com.samgyeobsal.domain.admin.DeleteReviewDTO;
-import com.samgyeobsal.domain.admin.FundingDocumentDTO;
-import com.samgyeobsal.domain.admin.UpdateDocumentDTO;
+import com.samgyeobsal.domain.admin.*;
 import com.samgyeobsal.domain.funding.ReviewVO;
 import com.samgyeobsal.mapper.AdminMapper;
 import lombok.RequiredArgsConstructor;
@@ -38,5 +36,20 @@ public class AdminServiceImpl implements AdminService {
     public void deleteReview(DeleteReviewDTO reviewDTO) {
         int row = adminMapper.deleteReview(reviewDTO);
         if (row == 0) throw new RuntimeException("delete Review Error");
+    }
+
+    @Override
+    public List<TotalSaleDTO> getHyundaiTotalSale() {
+        return adminMapper.getHyundaiTotalSaleList();
+    }
+
+    @Override
+    public List<DailySaleDTO> getRecentDailySaleListByHyundai(String tid) {
+        return adminMapper.getRecentDailySaleListByHyundai(tid);
+    }
+
+    @Override
+    public List<CategorySale> getRecentCategorySaleListByHyundai(String tid) {
+        return adminMapper.getRecentCategorySaleListByHyundai(tid);
     }
 }

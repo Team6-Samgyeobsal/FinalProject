@@ -36,6 +36,9 @@
         <typeAlias type="com.samgyeobsal.domain.notice.NoticeVO" alias="notice"/>
 
         <typeAlias type="com.samgyeobsal.domain.admin.FundingDocumentDTO" alias="fundingDocument"/>
+        <typeAlias type="com.samgyeobsal.domain.admin.TotalSaleDTO" alias="totalSale"/>
+        <typeAlias type="com.samgyeobsal.domain.admin.DailySaleDTO" alias="dailySale"/>
+        <typeAlias type="com.samgyeobsal.domain.admin.CategorySale" alias="categorySale"/>
 
 
 

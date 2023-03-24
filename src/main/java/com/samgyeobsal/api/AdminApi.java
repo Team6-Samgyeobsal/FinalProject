@@ -1,7 +1,6 @@
 package com.samgyeobsal.api;
 
-import com.samgyeobsal.domain.admin.DeleteReviewDTO;
-import com.samgyeobsal.domain.admin.UpdateDocumentDTO;
+import com.samgyeobsal.domain.admin.*;
 import com.samgyeobsal.domain.funding.FundingCriteria;
 import com.samgyeobsal.domain.funding.FundingVO;
 import com.samgyeobsal.domain.funding.ReviewVO;
@@ -58,4 +57,27 @@ public class AdminApi {
         adminService.deleteReview(reviewDTO);
         return new ResponseEntity<>("success", HttpStatus.OK);
     }
+
+    @GetMapping("/totalSale")
+    public ResponseEntity<List<TotalSaleDTO>> getHyundaiTotalSale() {
+        List<TotalSaleDTO> hyundaiTotalSale = adminService.getHyundaiTotalSale();
+        for (TotalSaleDTO saleDTO : hyundaiTotalSale) {
+            log.info("saleDTO = {}", saleDTO);
+        }
+        return new ResponseEntity<>(hyundaiTotalSale, HttpStatus.OK);
+    }
+
+    @GetMapping("/dailySale")
+    public ResponseEntity<List<DailySaleDTO>> getRecentDailySaleListByHyundai(@RequestParam(required = false) String tid){
+        List<DailySaleDTO> dailySaleList = adminService.getRecentDailySaleListByHyundai(tid);
+        return new ResponseEntity<>(dailySaleList, HttpStatus.OK);
+    }
+
+    @GetMapping("/categorySale")
+    public ResponseEntity<List<CategorySale>> getRecentCategorySaleListByHyundai(@RequestParam(required = false) String tid) {
+        List<CategorySale> categorySaleList = adminService.getRecentCategorySaleListByHyundai(tid);
+        return new ResponseEntity<>(categorySaleList, HttpStatus.OK);
+    }
+
+
 }

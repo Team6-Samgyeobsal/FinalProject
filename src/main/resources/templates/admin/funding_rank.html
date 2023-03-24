@@ -49,82 +49,8 @@
 
                     <!-- Page Heading -->
                     <h1 class="h3 mb-2 text-gray-800">펀딩 랭킹</h1>
-                    <p class="mb-4">123123</p>
 
-
-                    <div class="row">
-
-                        <!-- Earnings (Monthly) Card Example -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div data-area="all" class="h_area card border-left-primary shadow h-100 py-2" data-tname="">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                                더현대 전체</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-calendar fa-2x text-gray-300"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Earnings (Monthly) Card Example -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div data-area="seoul" class="h_area card border-left-success shadow h-100 py-2" data-tname="더현대 서울">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                                더현대 서울</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">$215,000</div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Earnings (Monthly) Card Example -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div data-area="daegu" class="h_area card border-left-info shadow h-100 py-2" data-tname="더현대 대구">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
-                                                더현대 대구</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">$215,000</div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Pending Requests Card Example -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div data-area="gwangju" class="h_area card border-left-warning shadow h-100 py-2" data-tname="더현대 광주">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                                                더현대 광주</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">$215,000</div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-comments fa-2x text-gray-300"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                    <div class="row hyundaiSale">
                     </div>
 
                     <!-- DataTales Example -->
@@ -217,9 +143,14 @@
 <!--    <script src="/admin/js/demo/datatables-demo.js"></script>-->
 
 <script>
+    // tid
+    let areaArr = ['','seoul','daegu','gwangju'];
+    let colorArr = ['border-left-primary', 'border-left-success', 'border-left-info', 'border-left-warning'];
+
     $(document).ready(function(){
         console.log('ready');
         getAllList();
+        getTotalSales();
 
     })
 
@@ -269,6 +200,42 @@
             `
             $('tbody').append(template);
 
+        })
+    }
+
+    function getTotalSales(){
+        $.ajax({
+            url : '/api/admin/totalSale',
+            type : 'get',
+            contentType: 'application/json',
+            success : function(data){
+                printTotalSale(data);
+            }
+        })
+    }
+
+    function printTotalSale(data){
+        console.log(data);
+        $(data).each(function(idx, d){
+            let template = `
+                   <div class="col-xl-3 col-md-6 mb-4">
+                        <div data-tname="${d['tname']}" data-tid="${d['tid']||''}" data-area="${areaArr[d['tid']]||''}" class="h_area card ${colorArr[idx]} shadow h-100 py-2">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                            ${d['tname']}</div>
+                                        <div class="h5 mb-0 font-weight-bold text-gray-800">${d['totalPrice']}</div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                   </div>
+                `;
+            $('.hyundaiSale').append(template);
         })
     }
 
