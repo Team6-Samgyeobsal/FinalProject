@@ -17,4 +17,6 @@ public class ReviewVO {
     private String rdate;
     private String fid;
     private String rcontent;
+    private String recontent;
+    private Date redate;
 }

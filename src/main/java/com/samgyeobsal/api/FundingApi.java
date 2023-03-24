@@ -4,6 +4,7 @@ import com.lilittlecat.chatgpt.offical.ChatGPT;
 import com.samgyeobsal.domain.funding.*;
 import com.samgyeobsal.domain.maker.UpdateFundingProductDTO;
 import com.samgyeobsal.domain.review.InsertReviewDTO;
+import com.samgyeobsal.domain.review.ReplyReviewVO;
 import com.samgyeobsal.security.domain.Account;
 import com.samgyeobsal.service.FundingService;
 import com.samgyeobsal.service.MakerService;
@@ -102,6 +103,15 @@ public class FundingApi {
 
         reviewService.insertReview(insertReviewDTO);
         log.info("insertReviewDTO"+insertReviewDTO);
+        return new ResponseEntity<>("success", HttpStatus.OK);
+    }
+
+    @PostMapping("/{fundingId}/product/replyReview")
+    public ResponseEntity<String> fundingReplyReview(
+            @PathVariable("fundingId") String fundingId,
+            @RequestBody ReplyReviewVO replyReviewVO)
+    {
+        reviewService.ReplyReview(replyReviewVO);
         return new ResponseEntity<>("success", HttpStatus.OK);
     }
 }

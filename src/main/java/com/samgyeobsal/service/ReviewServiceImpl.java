@@ -1,6 +1,7 @@
 package com.samgyeobsal.service;
 
 import com.samgyeobsal.domain.review.InsertReviewDTO;
+import com.samgyeobsal.domain.review.ReplyReviewVO;
 import com.samgyeobsal.mapper.ReviewMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -25,5 +26,11 @@ public class ReviewServiceImpl implements ReviewService{
         insertReviewDTO.setRscore(score);
         int row = reviewMapper.insertReview(insertReviewDTO);
         if(row == 0) throw new RuntimeException("review Mapper Error");
+    }
+
+    @Override
+    public void ReplyReview(ReplyReviewVO replyReviewVO) {
+        int row=reviewMapper.replyReview(replyReviewVO);
+        if(row == 0) throw new RuntimeException("replyReview Mapper Error");
     }
 }
