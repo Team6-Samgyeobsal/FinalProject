@@ -30,4 +30,70 @@
         delete from review
         where fid = #{fid} and rtype=#{rtype} and memail = #{memail}
     </delete>
+
+
+    <select id="getHyundaiTotalSaleList" resultType="totalSale">
+        select t.tid, nvl(t.tname, '더현대 전체') tname, nvl(sum(o.oprice),0) totalprice
+        from competition c
+                 inner join the_hyundai t on (c.tid = t.tid)
+                 inner join funding f on (f.cid = c.cid and f.tid = c.tid)
+                 left join funding_product fp on (fp.fid = f.fid)
+                 left join product_option po on (po.fpid = fp.fpid)
+                 left join order_item oi on (oi.poid = po.poid)
+                 left join orders o on (oi.oid = o.oid and o.ostatus = 'COMPLETE')
+        where sysdate between cfunding_start_date and cfunding_end_date
+        GROUP BY GROUPING SETS((t.tid, t.tname), ())
+        order by totalPrice desc, tid NULLS FIRST
+    </select>
+
+    <select id="getRecentDailySaleListByHyundai" resultType="dailySale">
+        select c.odate, nvl(sum(oprice),0) dailySale
+        from (
+            select distinct TRUNC(o.odate) odate, o.oprice, o.oid, t.tid
+            from orders o
+            inner join order_item oi on (o.oid = oi.oid)
+            inner join product_option po on (oi.poid = po.poid)
+            inner join funding_product fp on (fp.fpid = po.fpid)
+            inner join funding f on (f.fid = fp.fid)
+            inner join competition c on (c.cid = f.cid and c.tid = f.tid)
+            inner join the_hyundai t on (t.tid = c.tid)
+            where
+                o.odate between TRUNC(sysdate) - 7 and TRUNC(sysdate) - 1
+            <if test="tid != null and !tid.equals('')">
+                and f.tid = #{tid}
+            </if>
+            ) s
+        right join (
+            SELECT TRUNC(sysdate) - level odate
+            FROM DUAL
+            CONNECT BY LEVEL <![CDATA[<]]>= 7) c on (s.odate = c.odate)
+        group by c.odate
+        order by c.odate
+    </select>
+
+    <select id="getRecentCategorySaleListByHyundai" resultType="categorySale">
+        select c.ctid, c.ctname, nvl(sum(a.oprice),0) totalSale
+        from(
+                select o.oid, o.oprice, f.ctid, ct.ctname
+                from orders o
+                         inner join order_item oi on (o.oid = oi.oid)
+                         inner join product_option po on (po.poid = oi.poid)
+                         inner join funding_product fp on (fp.fpid = po.fpid)
+                         inner join funding f on (f.fid = fp.fid)
+                         inner join competition c on (f.cid = c.cid and f.tid = c.tid)
+                         inner join the_hyundai t on (t.tid = c.tid)
+                         inner join category ct on (ct.ctid = f.ctid)
+                where o.odate between TRUNC(sysdate) - 7 and TRUNC(sysdate) - 1
+                <if test="tid != null and !tid.equals('')">
+                    and t.tid = #{tid}
+                </if>
+
+                group by o.oid, o.oprice, f.ctid, ct.ctname
+            ) a
+                right join (
+            select ctid, ctname
+            from category) c on (a.ctid = c.ctid and a.ctname = c.ctname)
+        group by c.ctid, c.ctname
+        order by c.ctid
+    </select>
 </mapper>

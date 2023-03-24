@@ -1,7 +1,6 @@
 package com.samgyeobsal.mapper;
 
-import com.samgyeobsal.domain.admin.FundingDocumentDTO;
-import com.samgyeobsal.domain.admin.UpdateDocumentDTO;
+import com.samgyeobsal.domain.admin.*;
 import com.samgyeobsal.domain.funding.ReviewVO;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
@@ -44,7 +43,30 @@ public class AdminMapperTest {
         List<ReviewVO> allReviewList = adminMapper.getAllReviewList();
         for (ReviewVO reviewVO : allReviewList) {
             log.info("review = {}", reviewVO);
+        }
+    }
 
+    @Test
+    void getHyundaiTotalSale(){
+        List<TotalSaleDTO> hyundaiTotalSale = adminMapper.getHyundaiTotalSaleList();
+        for (TotalSaleDTO hyundai : hyundaiTotalSale) {
+            log.info("hyundai = {}", hyundai);
+        }
+    }
+
+    @Test
+    void getRecentDailySaleListByHyundai(){
+        List<DailySaleDTO> recentDailySaleListByHyundai = adminMapper.getRecentDailySaleListByHyundai(null);
+        for (DailySaleDTO dailySaleDTO : recentDailySaleListByHyundai) {
+            log.info("dailySale = {}", dailySaleDTO);
+        }
+    }
+
+    @Test
+    void getRecentCategoryRatioByHyundai(){
+        List<CategorySale> categorySaleList = adminMapper.getRecentCategorySaleListByHyundai("1");
+        for (CategorySale categorySale : categorySaleList) {
+            log.info("categorySale = {}", categorySale);
         }
     }
 }
