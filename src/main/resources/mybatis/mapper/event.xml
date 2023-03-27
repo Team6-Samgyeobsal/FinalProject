@@ -9,8 +9,20 @@
         SELECT *
         FROM EVENT e
                  LEFT JOIN COUPON_DETAIL cd
-                           ON e.ENO = cd.ENO
+                           ON e.EID = cd.EID
         WHERE e.ECOUPONTITLE=#{eCouponName}
     </select>
+
+    <!-- 유저가 갖고 있는 쿠폰 리스트 가져오기-->
+    <select id="findUserCouponList" resultType="com.samgyeobsal.dto.response.UserCouponList">
+        select e.EID as eId ,e.ECOUPONTITLE as eCouponTitle, e.ETYPE as eType, e.EDISCOUNT as Ediscount, cd.CPID as cpId
+        from EVENT e join COUPON_DETAIL cd on e.EID = cd.EID
+        where cd.MEMAIL = #{mEmail} and cd.CPUSEDATE is null
+    </select>
+
+    <update id="updateUseDate">
+        update COUPON_DETAIL set CPUSEDATE = #{useDt} where CPID = #{cpId}
+    </update>
+
 
 </mapper>
