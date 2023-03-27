@@ -154,4 +154,9 @@ public class MyPageController {
         model.addAttribute("fundingMaker", fundingMaker);
         return "mypage/funding_reward";
     }
+
+    @GetMapping("/coupon")
+    public String coupon(){
+        return "mypage/mypage_coupon";
+    }
 }

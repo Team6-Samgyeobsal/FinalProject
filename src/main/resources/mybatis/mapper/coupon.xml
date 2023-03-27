@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.samgyeobsal.mapper.CouponMapper">
+
+    <select id="getCouponList" resultType="coupon">
+        select
+            e.eid,
+            cd.cpid,
+            etitle,
+            ediscount,
+            etype,
+            cpissuedate,
+            cpexpiredate,
+            cpusedate
+        from coupon_detail cd
+                 join event e on cd.eid=e.eid
+        where memail=#{criteria.memail}
+        <choose>
+            <when test="criteria.used =='0'.toString()">
+                and cpusedate is null and sysdate &lt; cpexpiredate
+            </when>
+            <when test="criteria.used =='1'.toString()">
+                and cpusedate is not null or sysdate &gt;= cpexpiredate
+            </when>
+            <otherwise>
+                and cpusedate is null and sysdate &lt; cpexpiredate
+            </otherwise>
+        </choose>
+        order by cpexpiredate
+        OFFSET #{criteria.page}*12 ROWS FETCH NEXT 12 ROWS ONLY
+    </select>
+
+
+
+</mapper>

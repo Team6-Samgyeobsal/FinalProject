@@ -16,9 +16,8 @@ drop table qr_code cascade constraint purge;
 drop table funding_img cascade constraint purge;
 drop table jwt_refresh cascade constraint purge;
 
-
 -- 생성자 Oracle SQL Developer Data Modeler 21.2.0.183.1957
---   위치:        2023-03-23 11:08:15 KST
+--   위치:        2023-03-26 22:03:02 KST
 --   사이트:      Oracle Database 21c
 --   유형:      Oracle Database 21c
 
@@ -58,7 +57,8 @@ CREATE TABLE coupon_detail (
 
 ALTER TABLE coupon_detail ADD CONSTRAINT coupon_detail_pk PRIMARY KEY ( cpid );
 
-ALTER TABLE coupon_detail ADD CONSTRAINT coupon_detail_memail_un UNIQUE ( memail );
+ALTER TABLE coupon_detail ADD CONSTRAINT coupon_detail_memail_un UNIQUE ( memail,
+                                                                          eid );
 
 CREATE TABLE event (
                        eid          VARCHAR2(100 BYTE) NOT NULL,
@@ -362,4 +362,3 @@ ALTER TABLE review
 --
 -- ERRORS                                   0
 -- WARNINGS                                 0
-
