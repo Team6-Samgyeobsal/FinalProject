@@ -35,4 +35,6 @@ public class FundingDetailVO {
     private List<ProductVO> products;
 
     private List<FundingImgVO> imgs;
+
+    private String fthumb;
 }

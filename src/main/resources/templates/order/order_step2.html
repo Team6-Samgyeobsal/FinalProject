@@ -25,34 +25,34 @@
           href="https://static.wadiz.kr/assets/icon/favicon-32x32.png"
           sizes="32x32"
           type="image/png" />
-    <meta charset="utf-8" />
-    <meta http-equiv="x-ua-compatible" content="ie=edge" />
-    <meta
-      name="viewport"
-      content="width=device-width,initial-scale=1,shrink-to-fit=no,user-scalable=no,viewport-fit=cover" />
-    <meta
-      name="description"
-      content="테크, 패션, 푸드, 뷰티, 홈리빙까지. 와디즈 펀딩으로 매일 새로운 일상을 발견하고, 와디즈 스토어에서 새로운 쇼핑을 만나보세요." />
-    <title>결제 예약</title>
-    <link
-            rel="stylesheet"
-            href="/import/css/main.42cef079.css"
-    />
-    <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
-    <script src="https://js.tosspayments.com/v1/payment"></script>
-    <link
-      rel="shortcut icon"
-      href="https://static.wadiz.kr/assets/icon/favicon.ico" />
-    <link
-      rel="icon"
-      href="https://static.wadiz.kr/assets/icon/favicon-16x16.png"
-      sizes="16x16"
-      type="image/png" />
-    <link
-      rel="icon"
-      href="https://static.wadiz.kr/assets/icon/favicon-32x32.png"
-      sizes="32x32"
-      type="image/png" />
+  <meta charset="utf-8" />
+  <meta http-equiv="x-ua-compatible" content="ie=edge" />
+  <meta
+          name="viewport"
+          content="width=device-width,initial-scale=1,shrink-to-fit=no,user-scalable=no,viewport-fit=cover" />
+  <meta
+          name="description"
+          content="테크, 패션, 푸드, 뷰티, 홈리빙까지. 와디즈 펀딩으로 매일 새로운 일상을 발견하고, 와디즈 스토어에서 새로운 쇼핑을 만나보세요." />
+  <title>결제 예약</title>
+  <link
+          rel="stylesheet"
+          href="/import/css/main.42cef079.css"
+  />
+  <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
+  <script src="https://js.tosspayments.com/v1/payment"></script>
+  <link
+          rel="shortcut icon"
+          href="https://static.wadiz.kr/assets/icon/favicon.ico" />
+  <link
+          rel="icon"
+          href="https://static.wadiz.kr/assets/icon/favicon-16x16.png"
+          sizes="16x16"
+          type="image/png" />
+  <link
+          rel="icon"
+          href="https://static.wadiz.kr/assets/icon/favicon-32x32.png"
+          sizes="32x32"
+          type="image/png" />
 
   <link
           rel="stylesheet"
@@ -208,11 +208,13 @@
                           </span>
                     </button>
                   </dt>
-                  <dd>
+                  <dd style="width: 50%;">
                     <p class="text" id="nullCoupon">사용가능한 쿠폰이 없습니다.</p>
-                    <select id="couponSelect" th:each="cp : ${userCoupon}" onchange="onChangeCoupon()" class="wz dense outline dropdown">
+                    <select id="couponSelect" onchange="onChangeCoupon()" class="wz dense outline dropdown">
                       <option value="-1" selected >선택</option>
-                      <option th:text="${cp.eCouponTitle}" th:value="${cp.eId}" />
+                      <option th:each="cp: ${userCoupon}"
+                              th:value="${cp.eId}"
+                              th:text="${cp.eCouponTitle}"></option>
                     </select>
                   </dd>
                 </dl>
@@ -1158,6 +1160,7 @@
         </div>
         <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
         <!-- 쿠폰 selectBox -->
+
         <script th:inline="javascript">
           const couponList = [[${userCoupon}]];
 
@@ -1215,16 +1218,17 @@
             })
           }
 
-          const onChangeCoupon = () => {
+          let onChangeCoupon = () => {
             // selectBox 요소
             let selectBox = document.getElementById("couponSelect");
             // selectBox의 value(선택한 옵션의 cId)
-            const selectValue = selectBox.options[selectBox.selectedIndex].value;
+            let selectValue = selectBox.options[selectBox.selectedIndex].value;
 
             // if문에서 selectBox의 value가 '선택 == -1'인지 확인
             if(Number(selectValue) != -1) {
-              const selectObject = couponList.find(item => item.eid === Number(selectValue));
-              const totalVal = selectObject.etype === "PERCENTAGE" ? (finalPrice - finalPrice*(selectObject.ediscount)/100) : (finalPrice - selectObject.ediscount);
+              let selectObject = couponList.find(item => item.eid === Number(selectValue));
+              let totalVal = selectObject.etype === "PERCENTAGE" ? (finalPrice - finalPrice*(selectObject.ediscount)/100) : (finalPrice - selectObject.ediscount);
+              let discountValue = selectObject.etype === "PERCENTAGE" ? (finalPrice*(selectObject.ediscount)/100) : ( selectObject.ediscount);
 
               // orderForm의 cpId 설정
               order['cpid'] = selectObject.cpId;
@@ -1235,7 +1239,9 @@
               amount = totalVal;
 
               // 쿠폰 차감금액 설정
-              $('#couponCharge').text(finalPrice*(selectObject.ediscount)/100);
+              //let discountType = selectBox.options[selectBox.selectedIndex].getAttribute("data-etype");
+              //let discountValue = selectBox.options[selectBox.selectedIndex].getAttribute("data-ediscount");
+              $('#couponCharge').text(discountValue);
 
               // 최종 결제금액
               $('#finalTotalPrice').text(totalVal);

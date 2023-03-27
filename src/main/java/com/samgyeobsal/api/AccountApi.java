@@ -43,6 +43,7 @@ public class AccountApi {
             @Validated  @RequestBody LoginDTO loginDTO,
             BindingResult bindingResult) {
         MemberVO member = memberService.login(loginDTO);
+        log.info(">>>>>>>>>>>member : {}",member);
         if(bindingResult.hasErrors())
             return new ResponseEntity<>(bindingResult.getAllErrors(), HttpStatus.BAD_REQUEST);
 
