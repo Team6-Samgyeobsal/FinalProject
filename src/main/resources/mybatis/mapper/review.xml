@@ -18,4 +18,8 @@
         insert into review(rscore,rtype,rimg_url,memail,fid,rdate,rcontent)
         values(#{rscore},#{rtype},#{rimg_url},#{memail},#{fid},sysdate,#{rcontent})
     </insert>
+
+    <update id="replyReview">
+        update review set recontent=#{recontent} , redate=sysdate where fid=#{fid}and memail=#{memail} and rtype=#{rtype}
+    </update>
 </mapper>

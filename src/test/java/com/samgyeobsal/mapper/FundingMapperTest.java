@@ -46,7 +46,7 @@ public class FundingMapperTest {
         ReviewCriteria reviewCriteria = new ReviewCriteria();
         reviewCriteria.setFid("1");
         reviewCriteria.setSort("1");
-        reviewCriteria.setType("1");
+        reviewCriteria.setType("FUNDING");
         List<ReviewVO> list = fundingMapper.getReviewList(reviewCriteria);
         list.forEach(review -> log.info(review));
     }

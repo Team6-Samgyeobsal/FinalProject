@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="ko" class="scroll-top">
+<head>
+
+
+  <script src="https://code.jquery.com/jquery-3.6.3.js"
+          integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
+
+  <link
+          rel="stylesheet"
+          href="/import/css/wui.css"
+  />
+  <link
+          rel="stylesheet"
+          href="/import/css/common.css"
+  />
+  <link
+          rel="stylesheet"
+          href="/import/css/layout.css"
+  />
+
+
+  <link
+          rel="stylesheet"
+          href="/import/css/main.59add347.css"
+  />
+
+  <link
+          rel="stylesheet"
+          type="text/css"
+          href="/import/css/coupon-zone.310ae1be.chunk.css"
+  />
+</head>
+<body style="overflow: auto">
+<div id="page-container">
+  <main id="main-app">
+    <div th:replace="/fragment/header__3X3Cg.html :: header"></div>
+    <div class="MainWrapper_content__GZkTa">
+      <div class="CouponDownloadPage_container__11FjV">
+        <div class="CouponHeader_container__32sO_">
+          <h2 class="CouponHeader_title__3c4F1">쿠폰</h2>
+          <nav class="CouponHeader_nav__RB-oN CouponHeader_large__3awJs">
+            <ul>
+              <li>
+                <a
+                        aria-current="page"
+                        class="CouponHeader_link__1-ZCz CouponHeader_active__343sL"
+                        href="#none"
+                        data-used="0"
+                >나의 쿠폰<em>2</em></a
+                >
+              </li>
+              <li>
+                <a
+                        class="CouponHeader_link__1-ZCz"
+                        href="#none"
+                        data-used="1"
+                >지난 쿠폰 내역</a
+                >
+              </li>
+            </ul>
+          </nav>
+        </div>
+        <div class="CouponWrapper_container__15SYM">
+          <div class="CouponWrapper_wrapper__bZyG7"></div>
+        </div>
+        <div
+                class="CouponWrapper_container__15SYM CouponDownloadPage_list__2oh3Q"
+        >
+          <div class="CouponWrapper_wrapper__bZyG7">
+            <div class="CouponDownloadList_container__3o78w">
+              <div class="ListContainer_container__360Ty">
+
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="CouponHelpMessage_container__20OPs">
+          <div
+                  class="CouponWrapper_container__15SYM CouponHelpMessage_couponWrapper__13hbp"
+          >
+            <div class="CouponWrapper_wrapper__bZyG7">
+              <p class="CouponHelpMessage_title__Bs2c_">쿠폰 이용안내</p>
+              <ol>
+                <li>본 쿠폰은 다운(쿠폰 받기) 후, 사용할 수 있습니다.</li>
+                <li>
+                  쿠폰은 펀딩・프리오더・스토어・투자 서비스 이용 시
+                  사용할 수 있습니다.
+                </li>
+                <li>쿠폰은 다른 쿠폰과 중복하여 사용할 수 없습니다.</li>
+                <li>
+                  쿠폰의 구체적인 사용 조건은 발행되는 쿠폰 별로 다를 수
+                  있습니다.
+                </li>
+                <li>
+                  쿠폰 이용에 대한 자세한 안내는 나의 쿠폰 하단 서비스 별
+                  쿠폰 이용 안내를 참고해주세요.
+                </li>
+              </ol>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="FloatingButtons_container__2E5Fl">
+      <button
+              type="button"
+              class="FloatingTopButton_pageTop__2gqm9 FloatingTopButton_visible__2sh_N"
+              title="위로 이동"
+      >
+        <svg
+                viewBox="0 0 40 40"
+                focusable="false"
+                role="presentation"
+                class="withIcon_icon__20lDO"
+                aria-hidden="true"
+        >
+          <path
+                  d="M33 30l-1.4 1.4L20 19.8 8.4 31.4 7 30l13-13zm1-21H6v2h28z"
+          ></path>
+        </svg></button
+      ><button
+            type="button"
+            data-ga-category="공통_최근본_UI"
+            data-ga-action="클릭"
+            data-ga-label=""
+            class="RecentView_container__1boAT"
+            aria-label="최근본"
+            style="display: none"
+    >
+      <div
+              aria-hidden="true"
+              class="RecentView_thumbnail__1lnV0 CardThumbnail_thumbnail__3bDBJ CardThumbnail_visible__343f4 CardThumbnail_noanimation__23cSf"
+              style="
+                  background-image: url('https://cdn.wadiz.kr/wwwwadiz/green001/2023/0209/20230209173259728_190020.jpg/wadiz/resize/400/format/jpg/quality/85/');
+                "
+      ></div>
+    </button>
+    </div>
+  </main>
+  <form
+          action="/web/waccount/wAccountLogin"
+          id="returnForm"
+          method="get"
+          novalidate="novalidate"
+  >
+    <input type="hidden" id="returnURL" name="returnURL" />
+  </form>
+</div>
+<div id="wadiz-app-banner"></div>
+<script>
+  $(document).ready(function () {
+    let page=0;
+    let used=0;
+
+    $(document).on('click', '.CouponDownloadItem_more__33hhG', function () {
+      console.log("상세보기");
+      let expandI=$(this).find('i');
+      let expandC= $(this).next('.CouponDownloadItem_expand__2mKjH');
+      if(expandI.hasClass('expand-more')) {
+        expandC.removeClass('CouponDownloadItem_hidden__2_dqn');
+        expandI.removeClass('expand-more').addClass('expand-less');
+      }else {
+        expandC.addClass('CouponDownloadItem_hidden__2_dqn');
+        expandI.removeClass('expand-less').addClass('expand-more');
+      }
+    })
+
+    getCouponList(used,page);
+
+    function getCouponList(used,page) {
+      $('.ListContainer_container__360Ty').html('');
+      $.ajax({
+        url: '/api/coupon/mypage',
+        type: "get",
+        contentType: "application/json; charset=utf-8",
+        data: {
+          used:used,
+          page:page
+        },
+        success: function (data, status) {
+          let k="";
+          if (data.length == 0 && page == 0) {
+            k = `<div class="CouponListMessage_container__1q1lc"><p>쿠폰 내역이 없습니다.</p></div>`
+
+          } else {
+
+
+            data.forEach(function (coupon) {
+              let couponDate1 = couponDate(coupon.cpexpiredate);
+              let discount = coupon['etype'] === 'FIXED' ? '원' : '%'
+              console.log(coupon['cpusedate']);
+              let unavailable =(coupon['cpusedate']=== null|| coupon['cpusedate'].length === 0 )? '':'CouponDownloadItem_unavailable__34Fh7';
+              let canUsed =(coupon['cpusedate']=== null|| coupon['cpusedate'].length === 0 )? '사용 가능':'사용 불가';
+              k += `<div class="CouponDownloadList_item__3KB38">
+                  <div class="CouponDownloadItem_container__1hk2c">
+                    <div class="CouponDownloadItem_content__2MxtW">
+                      <p class="CouponDownloadItem_type__oZK5g">
+                        펀딩
+                      </p>
+                      <p class="CouponDownloadItem_title__1G1Me">
+                        ${coupon.etitle}
+                      </p>
+                      <p class="CouponDownloadItem_amount__1riXI">
+                        ${coupon.ediscount}${discount} 할인
+                      </p>
+                      <p>${couponDate1} ${canUsed}</p>
+                      <button
+                              type="button"
+                              class="CouponDownloadItem_more__33hhG"
+                      >
+                        상세 조건 보기<i
+                              class="icon expand-more CouponDownloadItem_moreIcon__1asez"
+                              aria-hidden="true"
+                      ></i>
+                      </button>
+                      <div
+                              class="CouponDownloadItem_expand__2mKjH CouponDownloadItem_hidden__2_dqn"
+                      >
+                        <div class="CouponInfoTable_table__3Keqy">
+                          <table>
+                            <tbody>
+                            <tr>
+                              <th>발급기간</th>
+                              <td>${couponDate1}</td>
+                            </tr>
+                            <tr>
+                              <th>사용조건</th>
+                              <td>
+                                30,000원 이상 결제 예약 시<br />APP에서
+                                사용 가능
+                              </td>
+                            </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+                    <button
+                            type="button"
+                            class="CouponDownloadItem_button__3fO54 ${unavailable}"
+                    >
+                      <span>쿠폰 ${canUsed}</span>
+                    </button>
+                  </div>
+                </div>`;
+
+            });
+          }
+            $('.ListContainer_container__360Ty').append(k);
+
+          const count = $('.ListContainer_container__360Ty').length;
+          $('.CouponHeader_container__32sO_ .CouponHeader_nav__RB-oN .CouponHeader_link__1-ZCz > em').text(count);
+        },
+        error: function (status, error) {
+          alert("실패");
+        }
+      })
+
+    }
+    // $(window).scroll(function () {
+    //   if ($(window).scrollTop() + $(window).height() >= $(document).height()) {
+    //     console.log('다음 페이지');
+    //     page++
+    //     getCouponList(used,page);
+    //   }
+    // });
+
+    $('.CouponHeader_link__1-ZCz ').click(function (){
+      $('.CouponHeader_link__1-ZCz ').removeClass('CouponHeader_active__343sL');
+      $(this).addClass('CouponHeader_active__343sL');
+      used=$(this).data('used');
+      getCouponList(used,page);
+    })
+    function couponDate(d){
+      let cDate = new Date(d);
+
+      let year = cDate.getFullYear();
+      let month = ('0' + (cDate.getMonth() + 1)).slice(-2);
+      let day = ('0' + cDate.getDate()).slice(-2);
+      let hours = cDate.getHours();
+      let minutes = cDate.getMinutes();
+      let dateString = year + '.' + month  + '.' + day+' '+hours+'시 '+minutes+'분까지';
+
+
+      return dateString;
+    }
+
+  })
+</script>
+
+
+</body>
+</html>
+

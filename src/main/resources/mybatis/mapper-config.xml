@@ -39,6 +39,7 @@
         <typeAlias type="com.samgyeobsal.domain.admin.TotalSaleDTO" alias="totalSale"/>
         <typeAlias type="com.samgyeobsal.domain.admin.DailySaleDTO" alias="dailySale"/>
         <typeAlias type="com.samgyeobsal.domain.admin.CategorySale" alias="categorySale"/>
+        <typeAlias type="com.samgyeobsal.domain.coupon.CouponVO" alias="coupon"/>
 
 
 

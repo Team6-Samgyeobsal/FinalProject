@@ -13,7 +13,8 @@
 
 
     <title>와디즈 펀딩</title>
-
+    <script src="https://code.jquery.com/jquery-3.6.3.js"
+            integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
 
     <link rel="mask-icon" href="/resources/static/svg/wa.svg" color="#1d2129"/>
     <link
@@ -49,7 +50,10 @@
             rel="stylesheet"
             href="/import/css/layout.css"
     />
-
+    <link
+            rel="stylesheet"
+            href="/import/css/reward-community.e0d531bd.chunk.css"
+    />
 
     <script
             type="text/javascript"
@@ -87,6 +91,11 @@
             type="text/css"
             href="/import/css/froala_custom.css?v=20221122"
     />
+    <style>
+        .CommunityCommentItem_replyContent__3UQ-7 {
+            background-color: #f2f4f6;
+        }
+    </style>
 
 
 </head>
@@ -773,7 +782,7 @@
         let type = "funding";
         let page = 0;
         $('#reviewList').html('');
-        getReview(fid, sort, type);
+        getReview(fid, sort, type,page);
 
         $('.SatisfactionTabs_item__2jVmh').click(function () {
             if (!$(this).hasClass('SatisfactionTabs_active__1PFX2')) {
@@ -784,7 +793,7 @@
                 console.log(type);
                 $('#reviewList').html('');
                 page = 0;
-                getReview(fid, sort, type);
+                getReview(fid, sort, type, page);
             }
         })
         $('.SortingSelect_select__21qNT').change(function () {
@@ -793,19 +802,41 @@
             sort = $('#sorted').text();
             $('#reviewList').html('');
             page = 0;
-            getReview(fid, sort, type);
+            getReview(fid, sort, type, page);
         })
 
         $(window).scroll(function () {
             if ($(window).scrollTop() + $(window).height() >= $(document).height() - 1000) {
                 console.log('다음 페이지');
                 page++
-                getReview(fid, sort, type);
+                getReview(fid, sort, type, page);
             }
         });
+        function timeForToday(value) {
+            const today = new Date();
+            const timeValue = new Date(value);
+
+            const betweenTime = Math.floor((today.getTime() - timeValue.getTime()) / 1000 / 60);
+            if (betweenTime < 1) return '방금 전';
+            if (betweenTime < 60) {
+                return `${betweenTime}분 전`;
+            }
+
+            const betweenTimeHour = Math.floor(betweenTime / 60);
+            if (betweenTimeHour < 24) {
+                return `${betweenTimeHour}시간 전`;
+            }
+
+            const betweenTimeDay = Math.floor(betweenTime / 60 / 24);
+            if (betweenTimeDay < 365) {
+                return `${betweenTimeDay}일 전`;
+            }
+
+            return `${Math.floor(betweenTimeDay / 365)}년 전`;
+        }
 
 
-        function getReview(fid, sort, type) {
+        function getReview(fid, sort, type, page) {
 
             $.ajax({
                 url: '/api/funding/review',
@@ -825,6 +856,73 @@
                     } else {
 
                         data.forEach(function (review) {
+                            let img='';
+                            let content='';
+                            let mid=review.memail;
+                            let button='답글';
+                            if (review.rimg_url != null && review.rimg_url.length != 0) {
+                                img= `<div class="ThumbnailViewer_container__1JD2g StoreSatisfactionCard_thumbnails__3fwAc" style="height: 97.5px;"><div class="ThumbnailViewer_thumbnailWrap__2Ocsq ThumbnailViewer_imageView__3WXK_" style="width: 130px;"><img loading="lazy" class="ThumbnailViewer_thumbnail__240ql" srcset="${review.rimg_url} 1x, "${review.rimg_url} 2x" alt=""></div></div>`;
+
+                            }
+                            if(review.recontent !=null&&review.recontent.length!==0){
+                                let store_name=[[${funding.fstore_name}]];
+                                let replycontent=review.recontent;
+                                let redate=timeForToday(review.redate);
+                                button='답글 수정';
+
+
+                                content=`<div class="CommunityCommentItem_replyContent__3UQ-7">
+  <div class="CommunityCommentReplyListContainer_container__1waBy">
+    <div class="CommentReplyList_container__2phlF">
+      <div class="CommunityCommentReplyContent_container__ImfPm">
+        <div class="CommentUserWrapper_container__10Bt-">
+          <div class="CommentUserWrapper_avatar__1MYTO">
+            <a href="/web/maker/detail/276658"
+              ><div
+                class="Avatar_avatar__2HQiR"
+                style="width: 36px; height: 36px"
+              >
+                <span
+                  class="Avatar_hasImage__31hv2"
+                  style="
+                    background-image: url('https://www.wadiz.kr/wwwwadiz/green001/2023/0209/20230209151355203_190020.jpg');
+                    border: 1px solid rgb(221, 226, 230);
+                  "
+                ></span></div
+            ></a>
+          </div>
+          <div class="CommentUserWrapper_main__2oHy1">
+            <div class="CommentUserInfo_container__2G0cq">
+              <span class="CommentUserInfo_name__3WGGI"
+                ><a href="/web/maker/detail/276658"
+                  ><strong>${store_name}</strong></a
+                ></span
+              ><span
+                class="Badge_container__3ioDw Badge_visible__n2Hg1 CommentUserInfo_waffleBadge__2Oqhl"
+                ><span
+                  class="Badge_badge__2h6cT Badge_label__VC3QR Badge_sm__1ia4P Badge_info__2ivul Badge_contained__Q3unx"
+                  >메이커</span
+                ></span
+              ><span class="CommentUserInfo_date__1ggwf">${redate}</span>
+            </div>
+            <div>
+              <div class="CommentTextContent_container__3EM7N">
+                <div class="CommentTextContent_contentBox__uvt_R">
+                  ${replycontent}
+                </div>
+              </div>
+            </div>
+            <div class="CommunityCommentReplyContent_utils__-Na0q"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+                            }
+
+
                             k += `<div class="StoreSatisfactionCard_container__3TDTr">
                             <div class="StoreSatisfactionCard_divider__Zh8Se"></div>
                             <div class="StoreSatisfactionCard_header__156AH">
@@ -853,18 +951,73 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="StoreSatisfactionCard_content__2izM4">`;
-                            if (review.rimg_url != null && review.rimg_url.length != 0) {
-                                k += `<div class="ThumbnailViewer_container__1JD2g StoreSatisfactionCard_thumbnails__3fwAc" style="height: 97.5px;"><div class="ThumbnailViewer_thumbnailWrap__2Ocsq ThumbnailViewer_imageView__3WXK_" style="width: 130px;"><img loading="lazy" class="ThumbnailViewer_thumbnail__240ql" srcset="${review.rimg_url} 1x, "${review.rimg_url} 2x" alt=""></div></div>`;
-
-                            }
-
-
-                            k += `
+                            <div class="StoreSatisfactionCard_content__2izM4">
+                            ${img}
                                 <div class="StoreSatisfactionCard_comment__2d9RM">${review.rcontent}
                                 </div>
                             </div>
-                        </div>`;
+                            <div class="CommunityCommentContent_bottom__-IKRP">
+                                   <button
+                                           class="Button_button__mRXZC Button_secondary__20rLg Button_sm__1aKYg CommunityCommentContent_replyBtn__2T16c CommunityCommentContent_active__4SdQQ"
+                                           type="button"
+                                            >
+    <span><span class="Button_children__3HY2l">${button}</span></span>
+  </button>
+</div>
+                        </div>
+ <div class="CommunityCommentItem_replyContent__3UQ-7" style="display:none;">
+  <div class="CommunityCommentReplyListContainer_container__1waBy">
+    <div class="CommentReplyList_container__2phlF">
+      <div class="CommunityCommentReplyWriteForm_container__10W0O">
+        <div class="CommentUserWrapper_container__10Bt-">
+          <div class="CommentUserWrapper_avatar__1MYTO">
+            <a href="/web/wmypage/myprofile/fundinglist/"
+              ><div
+                class="Avatar_avatar__2HQiR"
+                style="width: 36px; height: 36px"
+              >
+                <span
+                  class="Avatar_hasImage__31hv2"
+                  style="
+                    background-image: url('https://static.wadiz.kr/assets/icon/profile-icon-3.png');
+                  "
+                ></span></div
+            ></a>
+          </div>
+          <div class="CommentUserWrapper_main__2oHy1">
+            <div class="CommunityCommentReplyWriteForm_writeForm__2YHmv">
+              <form class="CommentForm_container__2bT5x">
+                <div class="wz input CommentForm_textarea__yw5Av">
+                  <textarea
+                    placeholder="내용을 입력해 주세요."
+                    maxlength="2000"
+                    maxheight="400"
+                    style="overflow-y: hidden; resize: none; height: 97px"
+                    data-memail=${mid}
+                  ></textarea>
+                </div>
+                <div class="CommentForm_bottom__3THGM">
+                  <span class="CommentForm_count__3Wfsk">0 / 2,000</span
+                  ><button
+                    type="button"
+                    class="wz button CommentForm_button__1Rp_R dense primary"
+                  >
+                    등록
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+                        ${content}
+
+
+`;
+
 
                         });
                     }
@@ -897,12 +1050,13 @@
             $('.Badge_container__3ioDw .Badge_badge__2h6cT.Badge_label__VC3QR.Badge_secondary__1o9ka.Badge_tertiary__1ERKE').text($(this).val().length+"자/ 최소 10자")
         });
         $('.submitBtn').click(function (){
+            page = 0;
             insertReview();
         })
-
+        let rtype = [[${funding.fstatus}]];
         function insertReview() {
             let url = "/api/funding/" + fid + "/product/review"
-            let rtype = "FUNDING";
+
             let rcontent = $('#feedback-contents').val();
             console.log(rcontent);
             $.ajax({
@@ -915,7 +1069,7 @@
                     rtype: rtype
                 }),
                 success: function (data, status) {
-                    getReview(fid, sort, type);
+                    getReview(fid, sort, type, page);
                     $('.ReactModalPortal').hide();
                 },
                 error: function (status, error) {
@@ -923,6 +1077,53 @@
                 }
             })
         }
+
+        $(document).on('click', '.CommunityCommentContent_bottom__-IKRP button.CommunityCommentContent_replyBtn__2T16c.CommunityCommentContent_active__4SdQQ', function () {
+            console.log('답글 보이게');
+            const reply=$(this).closest('.StoreSatisfactionCard_container__3TDTr').next('.CommunityCommentItem_replyContent__3UQ-7');
+            if (reply.is(':visible') || reply.css('display') === 'none') {
+                reply.toggle();
+            }
+        });
+        $(document).on('click', '.CommentForm_container__2bT5x .CommentForm_bottom__3THGM .CommentForm_button__1Rp_R', function () {
+            console.log('답글 저장');
+            const replyWrite=$(this).closest('.CommentForm_bottom__3THGM').prev('.wz.input').find('textarea');
+            let replyWriteRecontent=replyWrite.val()
+            console.log(replyWriteRecontent);
+            let replyWriterMemail=replyWrite.data('memail')
+            console.log(replyWriterMemail);
+            replyReview(replyWriteRecontent,replyWriterMemail);
+        });
+
+        function replyReview(recontent,rmemail) {
+            let url = "/api/funding/" + fid + "/product/replyReview"
+
+            $.ajax({
+                url: url,
+                type: "post",
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify({
+                    fid: fid,
+                    recontent: recontent,
+                    rtype: rtype,
+                    memail:rmemail
+                }),
+                success: function (data, status) {
+                    console.log("답글 성공");
+                    $('#reviewList').html('');
+                    page = 0;
+                    getReview(fid, sort, type, page);
+
+
+                },
+                error: function (status, error) {
+                    alert("실패");
+                }
+            })
+        }
+
+
+
 
 
     })
