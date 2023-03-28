@@ -82,6 +82,7 @@
                ctname,
                fstory,
                fdate,
+               f.memail,
                case when fstatus='FUNDING' then cfunding_end_date
                     else cstore_end_date end end_date,
                fstatus,
@@ -94,8 +95,6 @@
                fptitle,
                fpcontent,
                fiurl,
-               nvl(rfcount,0) rfcount,
-               nvl(rscount,0) rscount,
                fp.fpid
         from funding f
                  left join (select fid,sum(sumprice) totalprice
@@ -122,8 +121,6 @@
                  join category ct on ct.ctid=f.ctid
                  left join funding_product fp on fp.fid=f.fid
                  left join funding_img fi on f.fid=fi.fid
-                 left join (select fid,count(*) rfcount from review where fid=#{fid} and rtype='FUNDING' group by fid) rf on rf.fid=f.fid
-                 left join (select fid,count(*) rscount from review where fid=#{fid} and rtype='STORE' group by fid) rs on rs.fid=f.fid
         where  f.fid=#{fid} and fstatus =#{fstatus} and fpstatus = 1
     </select>
 
@@ -178,6 +175,13 @@
                  left join product_option po on (fp.fpid = po.fpid and po.postatus='1')
         where fp.fid = #{fundingId}
           and fp.fpid = #{productId}
+    </select>
+
+    <select id="reviewCount" resultType="reviewCount">
+        select *
+        from
+        (select count(fid) rfcount from review where fid=#{fid} and rtype='FUNDING'),
+        (select count(fid) rscount from review where fid=#{fid} and rtype='STORE')
     </select>
 
 </mapper>

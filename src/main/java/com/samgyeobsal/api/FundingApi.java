@@ -18,6 +18,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
@@ -48,11 +49,14 @@ public class FundingApi {
     }
 
     @GetMapping("/review")
-    public ResponseEntity<List<ReviewVO>> getReviewList(@ModelAttribute ReviewCriteria criteria) {
+    public ResponseEntity<Map<String,Object>> getReviewList(@ModelAttribute ReviewCriteria criteria) {
         log.info("-----------------criteria ="+criteria);
-
+        ReviewCountVO countVO=fundingService.reviewCount(criteria.getFid());
         List<ReviewVO> review= fundingService.getReviewList(criteria);
-        return new ResponseEntity<>(review, HttpStatus.OK);
+        Map<String,Object> res = new HashMap<>();
+        res.put("reviewCount",countVO);
+        res.put("review",review);
+        return new ResponseEntity<>(res, HttpStatus.OK);
     }
 
     @GetMapping("/{fundingId}/product")

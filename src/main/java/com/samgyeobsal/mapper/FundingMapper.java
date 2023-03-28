@@ -21,4 +21,6 @@ public interface FundingMapper {
 
     ProductVO findProductByFundingIdAndProductId(String fundingId, String productId);
 
+    ReviewCountVO reviewCount (String fid);
+
 }

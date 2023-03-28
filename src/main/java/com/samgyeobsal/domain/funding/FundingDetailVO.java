@@ -27,10 +27,7 @@ public class FundingDetailVO {
     private double fstore_score;
     private double ffunding_score;
     private int expire;
-
-    private int rfcount;
-
-    private int rscount;
+    private String memail;
 
     private List<ProductVO> products;
 

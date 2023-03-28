@@ -18,19 +18,27 @@
         where memail=#{criteria.memail}
         <choose>
             <when test="criteria.used =='0'.toString()">
-                and cpusedate is null and sysdate &lt; cpexpiredate
+                and cpusedate is null and sysdate &lt;= cpexpiredate
             </when>
             <when test="criteria.used =='1'.toString()">
-                and cpusedate is not null or sysdate &gt;= cpexpiredate
+                and cpusedate is not null or sysdate &gt; cpexpiredate
             </when>
             <otherwise>
-                and cpusedate is null and sysdate &lt; cpexpiredate
+                and cpusedate is null and sysdate &lt;= cpexpiredate
             </otherwise>
         </choose>
         order by cpexpiredate
         OFFSET #{criteria.page}*12 ROWS FETCH NEXT 12 ROWS ONLY
     </select>
 
+    <select id="couponCount" resultType="int">
+        select count(cpid)
+        from coupon_detail
+        where memail = #{memail}
+        and cpusedate is  null and  sysdate &lt;= cpexpiredate
+    </select>
 
-
+    <insert id="issueCoupon">
+              insert into coupon_detail values (#{cpid},#{memail},sysdate,(select eexpiredate from event where eid = #{eid}),'',#{eid})
+    </insert>
 </mapper>

@@ -20,8 +20,7 @@
         <result property="fstore_score" column="fstore_score" />
         <result property="ffunding_score" column="ffunding_score" />
         <result property="expire" column="expire" />
-        <result property="rfcount" column="rfcount" />
-        <result property="rscount" column="rscount" />
+        <result property="memail" column="memail" />
         <collection property="products"
                     resultMap="productMap" />
         <collection property="imgs"

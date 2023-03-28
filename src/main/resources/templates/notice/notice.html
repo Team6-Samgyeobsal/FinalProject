@@ -94,6 +94,19 @@
       getNotice(status);
 
     })
+    function couponDate(d){
+      let cDate = new Date(d);
+
+      let year = cDate.getFullYear();
+      let month = ('0' + (cDate.getMonth() + 1)).slice(-2);
+      let day = ('0' + cDate.getDate()).slice(-2);
+      let hours = cDate.getHours();
+      let minutes = cDate.getMinutes();
+      let dateString = year + '.' + month  + '.' + day;
+
+
+      return dateString;
+    }
 
 
 
@@ -115,6 +128,7 @@
            data.forEach(function (notice) {
              let proceeding = notice['nstatus'] === 'EVENT'? '<em class="category">이벤트</em><em class="status closed">진행 중</em>' : '<em class="notice">공지</em>';
              let urlStatus = notice['nstatus'] === 'NOTICE'?'notice' :'event'
+             let ndate = couponDate(notice.ndate);
               k += `<li>
           <a class="article" href="/web/${urlStatus}/${notice.nid}">
             ${proceeding}
@@ -127,7 +141,7 @@
               <h3 class="title">
                 ${notice.ntitle}
               </h3>
-              <span class="author">더쉐프</span><span class="created-at">${notice.ndate}</span>
+              <span class="author">더쉐프</span><span class="created-at">${ndate}</span>
             </div>
           </a>
         </li>`;

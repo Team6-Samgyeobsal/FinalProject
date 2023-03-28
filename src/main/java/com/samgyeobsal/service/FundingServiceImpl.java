@@ -38,4 +38,9 @@ public class FundingServiceImpl implements FundingService{
     public ProductVO getProductByFundingIdAndProductId(String fundingId, String productId) {
         return fundingMapper.findProductByFundingIdAndProductId(fundingId,productId);
     }
+
+    @Override
+    public ReviewCountVO reviewCount (String fid){
+        return fundingMapper.reviewCount(fid);
+    }
 }
