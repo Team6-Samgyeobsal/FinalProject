@@ -5,10 +5,10 @@ PROJECT=thechef.site
 
 cd $REPOSITORY
 
-JAR_NAME=$(ls $REPOSITORY/ | grep '.jar' | tail -n 1)
-JAR_PATH=$REPOSITORY/$JAR_NAME
+JAR_NAME=$(ls $REPOSITORY/$PROJECT/  | grep '.jar' | tail -n 1)
+JAR_PATH=$REPOSITORY/$PROJECT/$JAR_NAME
 
-CURRENT_PID=$(pgrep -f *.jar)
+CURRENT_PID=$(pgrep -fl $JAR_PATH | awk '{print $1}')
 
 if [ -z $CURRENT_PID ]
 then
@@ -22,5 +22,5 @@ fi
 echo "> $JAR_PATH deploy"
 
 nohup java -jar \
-  -Dspring.config.location=file:///home/ubuntu/$PROJECT/application.properties \
-  $JAR_PATH >> /home/ubuntu/$PROJECT/log/nohup_log.out 2>&1 &
+  -Dspring.config.location=file:///$REPOSITORY/$PROJECT/application.properties \
+  $JAR_PATH >> /$REPOSITORY/$PROJECT/log/nohup_log.out 2>&1 &
