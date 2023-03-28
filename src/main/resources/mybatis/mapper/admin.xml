@@ -100,6 +100,6 @@
     <update id="updateFundingStatus">
         update funding
         set fstatus = 'STORE'
-        where fid = fid
+        where fid = #{fid}
     </update>
 </mapper>

@@ -24,14 +24,6 @@ public class ReviewMapperTest {
     @Autowired
     private FundingMapper fundingMapper;
 
-    @Test
-    void isWritableStoreReview() {
-        String email = "user@gmail.com";
-        String oid = "1";
-        Boolean writable = reviewMapper.isWritableStoreReview(email, oid);
-        log.info("writable = {}", writable);
-    }
-
     @Transactional
     @Test
     void insertFundingReviewTest(){
@@ -67,6 +59,5 @@ public class ReviewMapperTest {
         reviewCriteria.setType("funding");
         List<ReviewVO> list = fundingMapper.getReviewList(reviewCriteria);
         list.forEach(review -> log.info("review = {}",review));
-
     }
 }

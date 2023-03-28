@@ -1,13 +1,13 @@
 package com.samgyeobsal.service;
 
 import com.google.zxing.WriterException;
-import com.samgyeobsal.controller.QRCodeGenerator;
+import com.samgyeobsal.util.QRCodeGenerator;
 import com.samgyeobsal.mapper.QrCodeMapper;
 import lombok.RequiredArgsConstructor;
-import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
+import java.util.Base64;
 import java.util.UUID;
 
 /**
@@ -34,10 +34,11 @@ public class QrCodeServiceImpl implements QrCodeService {
 
         // QR 코드 생성
         byte[] qrCodeBytes = QRCodeGenerator.generateQRCodeImage(oid);
+        String encodedString = Base64.getEncoder().encodeToString(qrCodeBytes);
         String qid = UUID.randomUUID().toString();
 
         // DB에 QR 코드 삽입
-        qrCodeMapper.insertQrCode(qid, oid, qrCodeBytes);
+        qrCodeMapper.insertQrCode(qid, oid, encodedString);
 
       return qrCodeBytes; // 생성된 QR 코드 바이트 배열을 반환
     }

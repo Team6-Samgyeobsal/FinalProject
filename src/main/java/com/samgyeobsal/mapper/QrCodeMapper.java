@@ -22,5 +22,7 @@ public interface QrCodeMapper {
      * @param qrCode
      */
     void insertQrCode(@Param("qid") String qid, @Param("oid") String oid,
-                      @Param("qrCode") byte[] qrCode);
+                      @Param("qrCode") String qrCode);
+
+    String getQrCodeString(String oid);
 }

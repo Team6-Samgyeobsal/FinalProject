@@ -2,17 +2,6 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.samgyeobsal.mapper.ReviewMapper">
-
-    <select id="isWritableStoreReview" resultType="boolean">
-        select decode(count(*),1,0,1)
-        from review r
-            inner join member m on (r.memail = m.memail)
-            inner join funding f on (f.fid = r.fid)
-            inner join orders o on (o.memail = m.memail)
-        where m.memail = #{email}
-          and o.oid = #{orderId} and r.rtype='STORE'
-          and o.qrused_date is not null
-    </select>
     
     <insert id="insertReview">
         insert into review(rscore,rtype,rimg_url,memail,fid,rdate,rcontent)
@@ -20,6 +9,12 @@
     </insert>
 
     <update id="replyReview">
-        update review set recontent=#{recontent} , redate=sysdate where fid=#{fid}and memail=#{memail} and rtype=#{rtype}
+        update review set recontent=#{recontent} , redate=sysdate where fid=#{fid} and memail=#{memail} and rtype=#{rtype}
     </update>
+
+    <select id="isAlreadyExistReview" resultType="boolean">
+        select decode(count(*),1,1,0)
+        from review r
+        where r.rtype = #{rtype} and r.memail = #{memail}
+    </select>
 </mapper>

@@ -145,12 +145,21 @@
                               결제 취소
                             </button>
                           </div>
-                          <div th:if="${writableStoreReview}" class="FundingRewardInfo_cancelBtn__1y1oz">
+                          <div th:if="${#strings.equals(order.getFstatus(),'STORE') && order.qrused_date == null}"
+                               class="FundingRewardInfo_cancelBtn__1y1oz qr_area" style="display: flex; justify-content: center" >
+
+                          </div>
+                          <div th:if="${#strings.equals(order.getFstatus(),'STORE') && order.qrused_date != null && !isAlreadyExistReview}" class="FundingRewardInfo_cancelBtn__1y1oz">
                             <button class="wz button writeStoreReview" color="gray">
                               후기 작성
                             </button>
                           </div>
-                          <div class="FundingRewardInfo_info__ja3-c">
+                          <div th:if="${#strings.equals(order.getFstatus(),'STORE') && order.qrused_date != null && isAlreadyExistReview}" class="FundingRewardInfo_cancelBtn__1y1oz">
+                            <button class="wz button writeStoreReview" disabled color="gray">
+                              후기 작성 완료
+                            </button>
+                          </div>
+                          <div th:if="${#strings.equals(order.getFstatus(),'FUNDING')}" class="FundingRewardInfo_info__ja3-c">
                             결제 예약 취소는 프로젝트 종료일까지
                             가능합니다.<br />리워드 종류 및 수량 변경은
                             불가하며, 취소 후 재 펀딩해야 합니다.
@@ -224,19 +233,6 @@
                         결제 정보
                       </h4>
                       <div>
-                        <div
-                          id="modify-pay-app"
-                          data-type="edit"
-                          data-backing-payment-id="9851346"
-                          data-campaign-title="어묵국물까지 주는 꾸덕한 옛날 떡볶이! 조리도구도 필요없다는데?"
-                          data-is-modifiable="true"
-                          data-card-no="************7081"
-                          data-card-quota="0"
-                          data-pay-by="dbcredit"
-                          data-is-available-installment="false"
-                          data-is-donation-category="false"
-                          data-is-preorder-type="true">
-                          <div>
                             <dl>
                               <dt>결제방법</dt>
                               <dd>신용(체크)카드</dd>
@@ -250,92 +246,6 @@
                               <dd>일시불</dd>
                             </dl>
                           </div>
-                        </div>
-                      </div>
-                      <div class="modify">
-                        <form id="creditPaymentInfoForm">
-                          <input
-                            type="hidden"
-                            id="backingPaymentId"
-                            name="backingPaymentId"
-                            value="9851346" />
-                          <p>신용(체크)카드 번호</p>
-                          <div class="input-wrap divide">
-                            <span class="div4"
-                              ><input
-                                type="tel"
-                                name="cardNum1"
-                                maxlength="4"
-                                class="input-text numOnly"
-                            /></span>
-                            <span class="div4"
-                              ><input
-                                type="tel"
-                                name="cardNum2"
-                                maxlength="4"
-                                class="input-text numOnly"
-                            /></span>
-                            <span class="div4"
-                              ><input
-                                type="password"
-                                name="cardNum3"
-                                maxlength="4"
-                                class="input-text numOnly"
-                            /></span>
-                            <span class="div4"
-                              ><input
-                                type="tel"
-                                name="cardNum4"
-                                maxlength="4"
-                                class="input-text numOnly"
-                            /></span>
-                          </div>
-                          <p>유효기간</p>
-                          <div class="input-wrap divide">
-                            <input
-                              type="tel"
-                              name="cardExpMM"
-                              maxlength="2"
-                              class="input-text div1 numOnly"
-                              placeholder="월" />
-                            <input
-                              type="tel"
-                              name="cardExpYY"
-                              maxlength="2"
-                              class="input-text div2 numOnly"
-                              placeholder="년" />
-                          </div>
-                          <p>비밀번호 앞 두자리</p>
-                          <input
-                            type="password"
-                            name="cardPwd"
-                            maxlength="2"
-                            class="input-text inline numOnly" /><span
-                            ><i class="dot"></i><i class="dot"></i
-                          ></span>
-                          <p>생년월일 (주민등록번호 앞 6자리)</p>
-                          <input
-                            type="tel"
-                            name="buyerAuthNum"
-                            maxlength="11"
-                            class="input-text mb5 numOnly" />
-                          <p class="comment">
-                            법인카드의 경우 사업자등록번호 10자리 입력
-                          </p>
-                        </form>
-                        <div class="btn-wrap divide">
-                          <button
-                            type="button"
-                            class="btn-line div1"
-                            onclick="cancelModifyPaydetail()">
-                            취소
-                          </button>
-                          <button
-                            type="button"
-                            class="btn-green-line div2"
-                            onclick="ajaxModifyBCreditPaymentInfoMultiple()">
-                            저장
-                          </button>
                         </div>
                       </div>
                     </div>
@@ -464,13 +374,30 @@
 
     <script>
       /*<![CDATA[*/
-      let fid = [[${order.orders[0].fid}]]
-      /*]]>*/
-      /*<![CDATA[*/
-      let orderId = '[[${order.oid}]]'
-      /*]]>*/
-      $(document).ready(function () {
+      let fid = '[[${order.orders[0].fid}]]'
 
+      let orderId = '[[${order.oid}]]'
+
+      let showQr = [[${#strings.equals(order.getFstatus(),'STORE') && order.qrused_date == null}]]
+      /*]]>*/
+
+
+      function getQrCode(){
+        console.log('getQrcode')
+        $.ajax({
+          url : `/api/order/${orderId}/qrcode`,
+          type : 'get',
+          dataType : 'text',
+          success : function(data){
+            console.log(data);
+            let temp = `<img alt="QR Code" src="data:image/png;base64,${data}" style="width: 100px;">`
+            $('.qr_area').append(temp);
+          }
+        })
+      }
+
+      $(document).ready(function () {
+          getQrCode();
       })
       $('.ImageUploader_button__1lBvx').click(function(){
         $('#imgInput').click();

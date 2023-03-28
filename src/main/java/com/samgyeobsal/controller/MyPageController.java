@@ -6,6 +6,7 @@ import com.samgyeobsal.domain.maker.FundingBaseInfoDTO;
 import com.samgyeobsal.domain.maker.FundingMakerVO;
 import com.samgyeobsal.domain.maker.FundingStoryDTO;
 import com.samgyeobsal.domain.order.OrderVO;
+import com.samgyeobsal.mapper.ReviewMapper;
 import com.samgyeobsal.security.domain.Account;
 import com.samgyeobsal.service.*;
 import com.samgyeobsal.type.FundingStatus;
@@ -30,7 +31,6 @@ import java.util.Map;
 @Slf4j
 public class MyPageController {
 
-    private final MemberService memberService;
     private final ReviewService reviewService;
     private final OrderService orderService;
     private final MakerService makerService;
@@ -51,17 +51,11 @@ public class MyPageController {
             @AuthenticationPrincipal Account account,
             @PathVariable("orderId") String orderId, Model model){
         String email = account.getMember().getMemail();
-        // TODO : 임시로 true
-        boolean writableStoreReview = true;
 
         OrderVO order = orderService.getOrderByOrderId(orderId);
 
-        if(order.getFstatus() == FundingStatus.STORE){
-            writableStoreReview = reviewService.isWritableStoreReview(email, orderId);
-        }
-
+        model.addAttribute("isAlreadyExistReview", reviewService.isAlreadyExistReview("STORE", email));
         model.addAttribute("order", order);
-        model.addAttribute("writableStoreReview", writableStoreReview);
 
         return "mypage/myorder_detail";
     }

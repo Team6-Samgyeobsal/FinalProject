@@ -17,7 +17,7 @@ import java.util.UUID;
 @Log4j2
 public class FundingMapperTest {
 
-    private final String fid="1";
+    private final String fid="11";
     @Autowired
     FundingMapper fundingMapper;
 

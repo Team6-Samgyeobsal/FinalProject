@@ -43,6 +43,13 @@ public class AdminApi {
         return new ResponseEntity<>(fundingList, HttpStatus.OK);
     }
 
+    @PostMapping("/funding/{fid}/promote")
+    public ResponseEntity<String> promoteFundingToStore(@PathVariable("fid") String fid){
+        adminService.promoteFundingToStore(fid);
+
+        return new ResponseEntity<>("success", HttpStatus.OK);
+    }
+
     @GetMapping("/review")
     public ResponseEntity<List<ReviewVO>> getAllReviewList(){
         List<ReviewVO> reviewList = adminService.getAllReviewList();
@@ -78,6 +85,7 @@ public class AdminApi {
         List<CategorySale> categorySaleList = adminService.getRecentCategorySaleListByHyundai(tid);
         return new ResponseEntity<>(categorySaleList, HttpStatus.OK);
     }
+
 
 
 }

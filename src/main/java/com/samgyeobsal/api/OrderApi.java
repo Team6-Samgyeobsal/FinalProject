@@ -3,9 +3,11 @@ package com.samgyeobsal.api;
 import com.samgyeobsal.domain.order.OrderRequest;
 import com.samgyeobsal.domain.order.OrderVO;
 import com.samgyeobsal.dto.request.TossHook;
+import com.samgyeobsal.mapper.QrCodeMapper;
 import com.samgyeobsal.security.domain.Account;
 import com.samgyeobsal.service.OrderService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import oracle.ucp.proxy.annotation.Post;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -32,14 +34,26 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/order")
+@Slf4j
 public class OrderApi {
 
     private final OrderService orderService;
+    private final QrCodeMapper qrCodeMapper;
 
     @GetMapping("/{orderId}")
     public ResponseEntity<OrderVO> getOrderInfo(@PathVariable("orderId") String orderId){
         OrderVO order = orderService.getOrderByOrderId(orderId);
         return new ResponseEntity<>(order, HttpStatus.OK);
+    }
+
+    @GetMapping("/{orderId}/qrcode")
+    public ResponseEntity<String> getOrderQrCode(@PathVariable("orderId") String orderId){
+        log.info("getOrderQrCode orderId = {}", orderId);
+
+        String qrCodeString = qrCodeMapper.getQrCodeString(orderId);
+        log.info("qrCodeString = {}", qrCodeString);
+
+        return new ResponseEntity<>(qrCodeString, HttpStatus.OK);
     }
 
     @PostMapping("/hook")

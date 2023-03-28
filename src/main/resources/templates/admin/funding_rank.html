@@ -69,6 +69,7 @@
                                             <th>지역</th>
                                             <th>카테고리</th>
                                             <th>펀딩금액</th>
+                                            <th>스토어 전환</th>
                                         </tr>
                                     </thead>
                                     <tbody >
@@ -196,12 +197,27 @@
                 <td>${d['tname']}</td>
                 <td>${d['ctname']}</td>
                 <td>${d['totalprice']}</td>
+                <td>
+                    <a class="btn btn-info btn-icon-split btn_promote">
+                          <span class="text">전환하기</span>
+                    </a>
+                </td>
             </tr>
             `
             $('tbody').append(template);
-
         })
     }
+    $(document).on('click','.btn_promote',function(e){
+        let fid = $(this).closest('tr').data('fid')
+        $.ajax({
+            url : `/api/admin/funding/${fid}/promote`,
+            type : 'post',
+            success : function(data){
+                console.log(data);
+                location.reload();
+            }
+        })
+    })
 
     function getTotalSales(){
         $.ajax({

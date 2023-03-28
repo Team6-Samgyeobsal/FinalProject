@@ -6,6 +6,7 @@ import com.samgyeobsal.mapper.ReviewMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @Slf4j
@@ -15,13 +16,14 @@ public class ReviewServiceImpl implements ReviewService{
     private final ReviewMapper reviewMapper;
     private final CommonService commonService;
 
-    @Override
-    public boolean isWritableStoreReview(String email, String orderId) {
-        return reviewMapper.isWritableStoreReview(email, orderId);
-    }
 
     @Override
+    @Transactional
     public void insertReview(InsertReviewDTO insertReviewDTO) {
+
+        boolean res = isAlreadyExistReview(insertReviewDTO.getRtype(), insertReviewDTO.getMemail());
+        if(res) throw new RuntimeException("already exist review");
+
         int score = commonService.getReviewScore(insertReviewDTO.getRcontent());
         insertReviewDTO.setRscore(score);
         int row = reviewMapper.insertReview(insertReviewDTO);
@@ -29,8 +31,13 @@ public class ReviewServiceImpl implements ReviewService{
     }
 
     @Override
-    public void ReplyReview(ReplyReviewVO replyReviewVO) {
+    public void replyReview(ReplyReviewVO replyReviewVO) {
         int row=reviewMapper.replyReview(replyReviewVO);
         if(row == 0) throw new RuntimeException("replyReview Mapper Error");
+    }
+
+    @Override
+    public boolean isAlreadyExistReview(String rtype, String memail) {
+        return reviewMapper.isAlreadyExistReview(rtype, memail);
     }
 }

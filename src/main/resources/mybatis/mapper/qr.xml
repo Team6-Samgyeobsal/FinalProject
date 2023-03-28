@@ -6,4 +6,10 @@
         INSERT INTO QR_CODE (QID, LINK, QR_CODE, OID)
         VALUES (#{qid}, 'tempLink', #{qrCode,jdbcType=BLOB},#{oid})
     </insert>
+
+    <select id="getQrCodeString" resultType="string">
+        select qr_code
+        from qr_code
+        where oid = #{oid}
+    </select>
 </mapper>
