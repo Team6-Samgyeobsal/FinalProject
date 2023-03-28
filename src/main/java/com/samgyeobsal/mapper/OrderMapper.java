@@ -5,9 +5,6 @@ import com.samgyeobsal.domain.order.*;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
-import com.samgyeobsal.dto.request.TossOrder;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
 

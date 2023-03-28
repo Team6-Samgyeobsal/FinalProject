@@ -1,20 +1,15 @@
 package com.samgyeobsal.api;
 
-import com.samgyeobsal.domain.order.OrderRequest;
 import com.samgyeobsal.domain.order.OrderVO;
 import com.samgyeobsal.dto.request.TossHook;
 import com.samgyeobsal.mapper.QrCodeMapper;
-import com.samgyeobsal.security.domain.Account;
 import com.samgyeobsal.service.OrderService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import oracle.ucp.proxy.annotation.Post;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 
 
 /**

@@ -2,9 +2,6 @@ package com.samgyeobsal.service;
 
 import com.samgyeobsal.domain.order.*;
 
-import com.samgyeobsal.dto.request.TossOrder;
-
-import com.samgyeobsal.mapper.MemberMapper;
 import com.samgyeobsal.mapper.OrderMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

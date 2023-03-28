@@ -68,6 +68,8 @@ public class MyPageController {
     @GetMapping("/maker/funding/{fundingId}")
     public String fundingPage(@PathVariable("fundingId") String fundingId, Model model) {
         FundingMakerVO fundingMaker = makerService.getFundingMakerByFundingId(fundingId);
+        log.info("fundingMaker = {}", fundingMaker);
+
         model.addAttribute("fundingMaker", fundingMaker);
         return "mypage/funding_maker";
     }

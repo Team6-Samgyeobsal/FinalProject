@@ -99,7 +99,8 @@
 
     <update id="updateFundingStatus">
         update funding
-        set fstatus = 'STORE'
+        set fstatus = #{fstatus},
+            fdate = sysdate
         where fid = #{fid}
     </update>
 </mapper>

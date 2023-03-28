@@ -23,5 +23,5 @@ public interface AdminMapper {
 
     List<CategorySale> getRecentCategorySaleListByHyundai(String tid);
 
-    void updateFundingStatus(String fid);
+    void updateFundingStatus(String fid, String fstatus);
 }

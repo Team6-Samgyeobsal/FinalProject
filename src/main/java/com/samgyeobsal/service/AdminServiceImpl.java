@@ -64,7 +64,7 @@ public class AdminServiceImpl implements AdminService {
     @Override
     @Transactional
     public void promoteFundingToStore(String fid) {
-        adminMapper.updateFundingStatus(fid);
+        adminMapper.updateFundingStatus(fid,"STORE");
         List<String> orderIdList = orderMapper.findOrderIdListByFundingId(fid);
         for (String oId : orderIdList) {
             try {
