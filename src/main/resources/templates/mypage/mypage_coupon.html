@@ -181,14 +181,18 @@
           page:page
         },
         success: function (data, status) {
+          console.log(data.couponList);
+           $('.CouponHeader_container__32sO_ .CouponHeader_nav__RB-oN .CouponHeader_link__1-ZCz > em').text(data.couponCount);
+
           let k="";
-          if (data.length == 0 && page == 0) {
+
+          if (data.couponList == null &&data.couponList.length == 0 && page == 0) {
             k = `<div class="CouponListMessage_container__1q1lc"><p>쿠폰 내역이 없습니다.</p></div>`
 
           } else {
 
 
-            data.forEach(function (coupon) {
+            data.couponList.forEach(function (coupon) {
               let couponDate1 = couponDate(coupon.cpexpiredate);
               let discount = coupon['etype'] === 'FIXED' ? '원' : '%'
               console.log(coupon['cpusedate']);
@@ -251,8 +255,7 @@
           }
             $('.ListContainer_container__360Ty').append(k);
 
-          const count = $('.ListContainer_container__360Ty').length;
-          $('.CouponHeader_container__32sO_ .CouponHeader_nav__RB-oN .CouponHeader_link__1-ZCz > em').text(count);
+
         },
         error: function (status, error) {
           alert("실패");

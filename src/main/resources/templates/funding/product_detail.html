@@ -55,10 +55,7 @@
             href="/import/css/reward-community.e0d531bd.chunk.css"
     />
 
-    <script
-            type="text/javascript"
-            src="https://static.wadiz.kr/static/web/common.js?87db9043"
-    ></script>
+
 
 
     <link rel="stylesheet" href="/css/funding/product_detail.css">
@@ -517,11 +514,12 @@
                             <div class="DetailSatisfaction_tabsWrap__1YI1J">
                                 <div class="SatisfactionTabs_container__28MSj">
                                     <div class="SatisfactionTabs_item__2jVmh SatisfactionTabs_active__1PFX2"
+
                                          data-rtype="funding">
-                                        <span>응원 댓글</span><span class="SatisfactionTabs_count__2zWkx">[[${#numbers.formatInteger(funding.rfcount, 1, 'COMMA')}]]</span>
+                                        <span>응원 댓글</span><span class="SatisfactionTabs_count__2zWkx" id="fundingCount">200</span>
                                     </div>
                                     <div class="SatisfactionTabs_item__2jVmh" data-rtype="store"><span>스토어</span><span
-                                            class="SatisfactionTabs_count__2zWkx">[[${#numbers.formatInteger(funding.rscount, 1, 'COMMA')}]]</span>
+                                            class="SatisfactionTabs_count__2zWkx" id="storeCount">100</span>
                                     </div>
                                 </div>
                             </div>
@@ -676,7 +674,7 @@
 
 
 </div>
-<script>
+<script th:inline="javascript">
     $(document).ready(function () {
 
         $('.Reward_container__qyq1y').hover(function () {
@@ -684,8 +682,12 @@
         }, function () {
             $(this).find('.Badge_badge__2h6cT').removeClass('Badge_contained__Q3unx').addClass('Badge_tertiary__1ERKE')
         })
+        // $('#abled').click(function (){
+        //     console.log("able 클릭")
+        // })
 
         $('#abled, #abled1, #abled2').click(function () {
+            // console.log([[${funding.fid}]]);
             location.href = '/web/order/' + [[${funding.fid}]] + '/step1'
         })
 
@@ -721,6 +723,7 @@
     })
 </script>
 <script th:inline="javascript">
+
     var currentPosition = 0;
     var slideWidth = 750;
     var totalSlides = [[${#lists.size(funding.imgs)}]];
@@ -850,12 +853,15 @@
                 },
                 success: function (data, status) {
                     let k = "";
-                    if (data.length == 0 && page == 0) {
+                    console.log(data.reviewCount);
+                    $('#fundingCount').text(data.reviewCount.rfcount);
+                    $('#storeCount').text(data.reviewCount.rscount);
+                    if (data.review.length == 0 && page == 0) {
                         k = `<div class="SatisfactionNoReview_container__1xzoJ"><span class="SatisfactionNoReview_icon__1sDe_"></span><p class="SatisfactionNoReview_text__N24Pm">아직 작성된 만족도 평가가 없어요</p></div><div></div>`
 
                     } else {
 
-                        data.forEach(function (review) {
+                        data.review.forEach(function (review) {
                             let img='';
                             let content='';
                             let mid=review.memail;
@@ -921,6 +927,20 @@
 </div>
 `;
                             }
+                            let loginReply='';
+                            let login=[[${#authentication.principal}]];
+                            if(login!='anonymousUser'&& login.member.memail===[[${funding.memail}]]) {
+                                console.log('주인장');
+                                console.log(button);
+                                loginReply = `<div class="CommunityCommentContent_bottom__-IKRP">
+                                   <button
+                                           class="Button_button__mRXZC Button_secondary__20rLg Button_sm__1aKYg CommunityCommentContent_replyBtn__2T16c CommunityCommentContent_active__4SdQQ"
+                                           type="button"
+                                            >
+                                <span><span class="Button_children__3HY2l">${button}</span></span>
+                                   </button>
+                                </div>`;
+                            }
 
 
                             k += `<div class="StoreSatisfactionCard_container__3TDTr">
@@ -956,14 +976,7 @@
                                 <div class="StoreSatisfactionCard_comment__2d9RM">${review.rcontent}
                                 </div>
                             </div>
-                            <div class="CommunityCommentContent_bottom__-IKRP">
-                                   <button
-                                           class="Button_button__mRXZC Button_secondary__20rLg Button_sm__1aKYg CommunityCommentContent_replyBtn__2T16c CommunityCommentContent_active__4SdQQ"
-                                           type="button"
-                                            >
-    <span><span class="Button_children__3HY2l">${button}</span></span>
-  </button>
-</div>
+                            ${loginReply}
                         </div>
  <div class="CommunityCommentItem_replyContent__3UQ-7" style="display:none;">
   <div class="CommunityCommentReplyListContainer_container__1waBy">
@@ -1053,11 +1066,13 @@
             page = 0;
             insertReview();
         })
-        let rtype = [[${funding.fstatus}]];
+
+
         function insertReview() {
             let url = "/api/funding/" + fid + "/product/review"
-
+            let rtype = [[${funding.fstatus}]];
             let rcontent = $('#feedback-contents').val();
+
             console.log(rcontent);
             $.ajax({
                 url: url,
@@ -1069,7 +1084,9 @@
                     rtype: rtype
                 }),
                 success: function (data, status) {
+                    $('#reviewList').html('');
                     getReview(fid, sort, type, page);
+                    $('#reviewList').html('');
                     $('.ReactModalPortal').hide();
                 },
                 error: function (status, error) {
@@ -1092,10 +1109,12 @@
             console.log(replyWriteRecontent);
             let replyWriterMemail=replyWrite.data('memail')
             console.log(replyWriterMemail);
-            replyReview(replyWriteRecontent,replyWriterMemail);
+            let rtype = [[${funding.fstatus}]];
+            replyReview(replyWriteRecontent,rtype,replyWriterMemail);
         });
 
-        function replyReview(recontent,rmemail) {
+
+        function replyReview(recontent,rtype,rmemail) {
             let url = "/api/funding/" + fid + "/product/replyReview"
 
             $.ajax({

@@ -25,34 +25,34 @@
           href="https://static.wadiz.kr/assets/icon/favicon-32x32.png"
           sizes="32x32"
           type="image/png" />
-    <meta charset="utf-8" />
-    <meta http-equiv="x-ua-compatible" content="ie=edge" />
-    <meta
-      name="viewport"
-      content="width=device-width,initial-scale=1,shrink-to-fit=no,user-scalable=no,viewport-fit=cover" />
-    <meta
-      name="description"
-      content="테크, 패션, 푸드, 뷰티, 홈리빙까지. 와디즈 펀딩으로 매일 새로운 일상을 발견하고, 와디즈 스토어에서 새로운 쇼핑을 만나보세요." />
-    <title>결제 예약</title>
-    <link
-            rel="stylesheet"
-            href="/import/css/main.42cef079.css"
-    />
-    <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
-    <script src="https://js.tosspayments.com/v1/payment"></script>
-    <link
-      rel="shortcut icon"
-      href="https://static.wadiz.kr/assets/icon/favicon.ico" />
-    <link
-      rel="icon"
-      href="https://static.wadiz.kr/assets/icon/favicon-16x16.png"
-      sizes="16x16"
-      type="image/png" />
-    <link
-      rel="icon"
-      href="https://static.wadiz.kr/assets/icon/favicon-32x32.png"
-      sizes="32x32"
-      type="image/png" />
+  <meta charset="utf-8" />
+  <meta http-equiv="x-ua-compatible" content="ie=edge" />
+  <meta
+          name="viewport"
+          content="width=device-width,initial-scale=1,shrink-to-fit=no,user-scalable=no,viewport-fit=cover" />
+  <meta
+          name="description"
+          content="테크, 패션, 푸드, 뷰티, 홈리빙까지. 와디즈 펀딩으로 매일 새로운 일상을 발견하고, 와디즈 스토어에서 새로운 쇼핑을 만나보세요." />
+  <title>결제 예약</title>
+  <link
+          rel="stylesheet"
+          href="/import/css/main.42cef079.css"
+  />
+  <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
+  <script src="https://js.tosspayments.com/v1/payment"></script>
+  <link
+          rel="shortcut icon"
+          href="https://static.wadiz.kr/assets/icon/favicon.ico" />
+  <link
+          rel="icon"
+          href="https://static.wadiz.kr/assets/icon/favicon-16x16.png"
+          sizes="16x16"
+          type="image/png" />
+  <link
+          rel="icon"
+          href="https://static.wadiz.kr/assets/icon/favicon-32x32.png"
+          sizes="32x32"
+          type="image/png" />
 
   <link
           rel="stylesheet"
@@ -115,9 +115,6 @@
   <script
           type="text/javascript"
           src="/import/js/wCommon.js"></script>
-  <script
-          type="text/javascript"
-          src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 
 </head>
 <body>
@@ -208,11 +205,13 @@
                           </span>
                     </button>
                   </dt>
-                  <dd>
+                  <dd style="width: 50%;">
                     <p class="text" id="nullCoupon">사용가능한 쿠폰이 없습니다.</p>
-                    <select id="couponSelect" th:each="cp : ${userCoupon}" onchange="onChangeCoupon()" class="wz dense outline dropdown">
+                    <select id="couponSelect" onchange="onChangeCoupon()" class="wz dense outline dropdown">
                       <option value="-1" selected >선택</option>
-                      <option th:text="${cp.eCouponTitle}" th:value="${cp.eId}" />
+                      <option th:each="cp: ${userCoupon}"
+                              th:value="${cp.eId}"
+                              th:text="${cp.eCouponTitle}"></option>
                     </select>
                   </dd>
                 </dl>
@@ -222,7 +221,7 @@
                     <label class="wz checkbox">
                       <input type="checkbox" id="ckptAll" /><span
                     >모두 사용 (보유 포인트
-                            <span id="usablePoint">1000</span>P)</span
+                            <span id="usablePoint" th:text="${#authentication.principal.member.mmileage}">1000</span>P)</span
                     >
                       </select>
                     </label>
@@ -231,7 +230,7 @@
                             id="pointInput"
                             class="numOnly pointInput"
                             maxlength="8"
-                            disabled="disabled" />
+                             />
                   </dd>
                 </dl>
                 <input type="hidden" id="limitPoint" value="0" />
@@ -249,6 +248,7 @@
                   <label
                           class="Radio_radio__1S1J3 Radio_md__36Y-U DefaultPrice_radioButton__2HF50"
                   ><input
+
                           type="radio"
                           name="price"
                           readonly=""
@@ -283,7 +283,7 @@
                     <dt>포인트 차감금액</dt>
                     <dd>
                           <span class="TitleValuePrice_danger__3Sy33"
-                          >0 원</span
+                          ><span id="mileageCharge">0</span> 원</span
                           >
                     </dd>
                   </dl>
@@ -293,7 +293,7 @@
                   <dl class="TitleValuePrice_total__2cGge">
                     <dt>최종 결제 금액</dt>
                     <dd>
-                      <span><em class="finalPrice"><span id="finalTotalPrice"></span> 원</em></span>
+                      <span><em class="finalPrice"><span id="finalTotalPrice">[[${#numbers.formatInteger(order.totalOriginPrice, 3, 'COMMA')}]]</span> 원</em></span>
                     </dd>
                   </dl>
                 </div>
@@ -372,10 +372,10 @@
                       id="acceptAllCheckBox"
                       class="notice-confirm-checkbox"
                       type="checkbox"
-                      name="check1"
+                      name="checkAll"
                       value="Y"
                       autocomplete="off"
-                      onchange="acceptAllChanged(this)" />
+                      />
               <span>전체 동의하기</span>
             </label>
             <div id="eachTermsNoticeWrap">
@@ -388,7 +388,7 @@
                           name="check1"
                           value="Y"
                           autocomplete="off"
-                          onchange="eachTermsChanged()" />
+                           />
                   <span>개인정보 제3자 제공 동의</span>
                 </label>
                 <span
@@ -465,7 +465,7 @@
                           name="check1"
                           value="Y"
                           autocomplete="off"
-                          onchange="eachTermsChanged()" />
+                           />
                   <span>책임 규정에 대한 동의</span>
                 </label>
                 <span
@@ -1141,6 +1141,7 @@
                 </div>
               </div>
             </div>
+
           </div>
         </div>
         <script th:inline="javascript">
@@ -1152,20 +1153,80 @@
           const tossPayments = TossPayments(clientKey)
         </script>
         <div class="btn-wrap">
-          <button type ="button" onClick="paymentToss();" class="wz primary button">
+          <button type ="button" id="tossPay" class="wz primary button">
             결제하기
           </button>
         </div>
         <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
         <!-- 쿠폰 selectBox -->
-        <script th:inline="javascript">
-          const couponList = [[${userCoupon}]];
 
+
+        <script th:inline="javascript">
+          let couponList = [[${userCoupon}]];
           $(document).ready(function (){
+              $("#acceptAllCheckBox").click(function() {
+                if($("#acceptAllCheckBox").is(":checked")) $("input[name=check1]").prop("checked", true);
+                else $("input[name=check1]").prop("checked", false);
+              });
+
+              $("input[name=check1]").click(function() {
+                let total = $("input[name=check1]").length;
+                let checked = $("input[name=check1]:checked").length;
+                if(total != checked) $("#acceptAllCheckBox").prop("checked", false);
+                else $("#acceptAllCheckBox").prop("checked", true);
+              });
+
+
+            let maxMileage =[[${#authentication.principal.member.mmileage}]]
+                $('#ckptAll').click(function (){
+
+                  console.log($('#pointInput').val());
+                  if ($('#ckptAll').is(':checked')) {
+                    $('#pointInput').val(maxMileage);
+                  }else {
+                    $('#pointInput').val('');
+                  }
+
+                  if($('#pointInput').val()==null||$('#pointInput').val()==''){
+                    $('#mileageCharge').text(0);
+                  }else {
+                    $('#mileageCharge').text($('#pointInput').val());
+                  }
+                  onChangeCoupon();
+                })
+                $(document).on('propertychange input', '#pointInput', function () {
+
+                  if ($(this).val() > maxMileage) {
+                    alert(maxMileage+'P 이상 X');
+                    $(this).val(maxMileage);
+                  }
+                  if (!$.isNumeric($(this).val())&&$(this).val()!=''){
+                    alert('숫자만');
+                    $(this).val(0);
+                  }
+
+                  if($('#pointInput').val()==null||$('#pointInput').val()==''){
+                    $('#mileageCharge').text(0);
+                  }else {
+                    $('#mileageCharge').text($(this).val());
+                  }
+                  onChangeCoupon();
+                });
+
+
+
 
             if(Boolean(couponList[0]))  document.getElementById("nullCoupon").setAttribute("hidden", "true");
             $('#couponCharge').text("0");
-            $('.finalTotalPrice').text(finalPrice);
+            // $('.finalTotalPrice').text(finalPrice);
+            $('#tossPay').click(function (){
+              if($("#acceptAllCheckBox").is(":checked")){
+                paymentToss();
+              }else {
+                alert("약관 동의")
+              }
+
+            })
 
           })
 
@@ -1174,6 +1235,7 @@
           let user = [[${#authentication.principal.member}]];
 
           let orderList = [[${order.orderList}]];
+
 
 
           let name = user['mname'];
@@ -1196,7 +1258,7 @@
           order['totalPrice'] = order['totalOriginPrice'];
           console.log("order =", order);
 
-          const paymentToss = () => {
+          let paymentToss = () => {
             // Tosspayments API 호출
             tossPayments.requestPayment('가상계좌', { // 결제 수단 파라미터
               // 결제 정보 파라미터
@@ -1215,17 +1277,21 @@
             })
           }
 
-          const onChangeCoupon = () => {
+          let onChangeCoupon = () => {
             // selectBox 요소
             let selectBox = document.getElementById("couponSelect");
             // selectBox의 value(선택한 옵션의 cId)
-            const selectValue = selectBox.options[selectBox.selectedIndex].value;
+            let selectValue = selectBox.options[selectBox.selectedIndex].value;
+
+            let mileage=$('#pointInput').val();
+            console.log(mileage);
 
             // if문에서 selectBox의 value가 '선택 == -1'인지 확인
             if(Number(selectValue) != -1) {
-              const selectObject = couponList.find(item => item.eid === Number(selectValue));
-              const totalVal = selectObject.etype === "PERCENTAGE" ? (finalPrice - finalPrice*(selectObject.ediscount)/100) : (finalPrice - selectObject.ediscount);
-
+              let selectObject = couponList.find(item => item.eid === Number(selectValue));
+              let totalVal = selectObject.etype === "PERCENTAGE" ? (finalPrice - finalPrice*(selectObject.ediscount)/100-mileage) : (finalPrice - selectObject.ediscount-mileage);
+              let discountValue = selectObject.etype === "PERCENTAGE" ? (finalPrice*(selectObject.ediscount)/100) : ( selectObject.ediscount);
+              console.log(totalVal);
               // orderForm의 cpId 설정
               order['cpid'] = selectObject.cpId;
               // 전체 가격 form
@@ -1235,17 +1301,19 @@
               amount = totalVal;
 
               // 쿠폰 차감금액 설정
-              $('#couponCharge').text(finalPrice*(selectObject.ediscount)/100);
+              //let discountType = selectBox.options[selectBox.selectedIndex].getAttribute("data-etype");
+              //let discountValue = selectBox.options[selectBox.selectedIndex].getAttribute("data-ediscount");
+              $('#couponCharge').text(discountValue);
 
               // 최종 결제금액
-              $('#finalTotalPrice').text(totalVal);
+              $('#finalTotalPrice').text(totalVal.toLocaleString('ko-KR'));
               console.log($('#finalTotalPrice').text());
             } else {
               order['cpid'] = ""
               order['totalPrice'] = finalPrice;
               amount = finalPrice;
               $('#couponCharge').text("0");
-              $('#finalTotalPrice').text(finalPrice);
+              $('#finalTotalPrice').text((finalPrice-mileage).toLocaleString('ko-KR'));
             }
           }
         </script>

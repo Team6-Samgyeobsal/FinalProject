@@ -87,7 +87,7 @@ public class OrderController {
     @GetMapping("/coupon")
     public Event checkCouponName(@RequestParam("couponname") String couponName){
         Event event = eventMapper.findByName(couponName);
-        System.out.println("쿠폰 :" + event);
+        log.info("쿠폰 :" + event);
         return event;
     }
 

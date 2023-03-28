@@ -6,6 +6,7 @@
 
     <resultMap id="fundingDetailMap"  type="fundingDetail">
         <result property="fstore_name" column="fstore_name" />
+        <result property="fthumb" column="fthumb"/>
         <result property="fsummary" column="fsummary" />
         <result property="fid" column="fid" />
         <result property="ftitle" column="ftitle" />
@@ -20,8 +21,7 @@
         <result property="fstore_score" column="fstore_score" />
         <result property="ffunding_score" column="ffunding_score" />
         <result property="expire" column="expire" />
-        <result property="rfcount" column="rfcount" />
-        <result property="rscount" column="rscount" />
+        <result property="memail" column="memail" />
         <collection property="products"
                     resultMap="productMap" />
         <collection property="imgs"

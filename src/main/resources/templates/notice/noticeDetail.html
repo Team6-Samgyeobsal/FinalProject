@@ -58,7 +58,7 @@
                       background-image: url(https://static.wadiz.kr/assets/icon/apple-touch-icon.png);
                     "
               ></em>
-              <span class="user-info">더쉐프 <br />[[${notice.ndate}]]</span>
+              <span class="user-info">더쉐프 <br /><span th:text="${#dates.format(notice.ndate, 'yyyy.MM.dd')}"></span></span>
             </div>
           </div>
           <div class="inner-contents">
@@ -88,5 +88,35 @@
   <div id="footer">
     <div th:replace="/fragment/footer__15kue.html :: footer"></div>
   </div>
+    <script th:inline="javascript">
+      $(document).ready(function (){
+        console.log([[${notice}]]);
+        let eid=[[${notice.nid}]];
+        $('.issueCoupon').click(function (){
+          issueCoupon(eid);
+        })
+
+
+        function issueCoupon(eid) {
+
+          $.ajax({
+            url: '/api/coupon/issue',
+            type: "post",
+            contentType: "application/json; charset=utf-8",
+            data: JSON.stringify({
+              eid:eid
+            }),
+            success: function (data, status) {
+              alert("발급되었습니다");
+
+            },
+            error: function (status, error) {
+              alert("실패");
+            }
+          })
+
+        }
+      })
+    </script>
 </body>
 </html>

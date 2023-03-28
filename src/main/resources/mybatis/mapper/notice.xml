@@ -5,9 +5,9 @@
 
 <mapper namespace="com.samgyeobsal.mapper.NoticeMapper">
     <select id="getNoticeList" resultType="notice">
-        select * from(select nid ,ntitle, to_char(ndate,'YYYY.MM.DD') ndate, 'NOTICE' nstatus ,nthumb from notice
+        select * from(select nid ,ntitle, ndate, 'NOTICE' nstatus ,nthumb from notice
         union
-        select to_char(eid) , etitle , to_char(eissuedate,'YYYY.MM.DD') ,'EVENT' ,ethumb from event)
+        select to_char(eid) , etitle , eissuedate ,'EVENT' ,ethumb from event)
 
         <choose>
             <when test="status =='notice'.toString()">
@@ -22,12 +22,12 @@
     </select>
 
     <select id="getNoticeDetail" resultType="notice">
-        select nid, ntitle, to_char(ndate,'YYYY.MM.DD') ndate, ncontent from notice
+        select nid, ntitle, ndate, ncontent from notice
         where  nid = #{nid}
     </select>
 
     <select id="getEventDetail" resultType="notice">
-        select eid nid, etitle ntitle, to_char(eissuedate,'YYYY.MM.DD') ndate, econtent ncontent from event
+        select eid nid, etitle ntitle, eissuedate ndate, econtent ncontent, eexpiredate from event
         where eid = #{eid}
     </select>
 
