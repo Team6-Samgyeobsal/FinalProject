@@ -51,3 +51,7 @@ jobs:
     # aws s3
     - name: Upload to AWS S3
       run: aws s3 cp --region ap-northeast-2 thechef.site.zip s3://thechef.site.artifact/
+      
+    # aws codedeploy
+    - name: Run to AWS Codedeploy
+      run: aws deploy create-deployment --application-name thechef.site-deploy --deployment-config-name CodeDeployDefault.AllAtOnce --deployment-group-name thechef.site-deploy-group --s3-location bucket=thechef.site.artifact,bundleType=zip,key=thechef.site.zip
