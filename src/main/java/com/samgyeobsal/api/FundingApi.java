@@ -106,6 +106,9 @@ public class FundingApi {
         return new ResponseEntity<>("success", HttpStatus.OK);
     }
 
+    /*
+     * 펀딩 리뷰 답글
+     */
     @PostMapping("/{fundingId}/product/replyReview")
     public ResponseEntity<String> fundingReplyReview(
             @PathVariable("fundingId") String fundingId,
