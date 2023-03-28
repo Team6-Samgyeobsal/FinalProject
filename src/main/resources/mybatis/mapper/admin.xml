@@ -96,4 +96,10 @@
         group by c.ctid, c.ctname
         order by c.ctid
     </select>
+
+    <update id="updateFundingStatus">
+        update funding
+        set fstatus = 'STORE'
+        where fid = fid
+    </update>
 </mapper>

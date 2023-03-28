@@ -96,6 +96,17 @@
         order by o.odate desc
     </select>
 
+    <select id="findOrderIdListByFundingId" resultType="string">
+        select o.oid,fp.fid
+        from orders o
+                 inner join order_item oi on (o.oid = oi.oid)
+                 inner join product_option po on (po.poid = oi.poid)
+                 inner join funding_product fp on (fp.fpid = po.fpid)
+        where o.ostatus = 'COMPLETE' and fp.fid = #{fid}
+        group by o.oid, fp.fid
+
+    </select>
+
     <select id="getFtitle" resultType="orderFtitle">
         select fid, ftitle from funding where fid=#{fid}
     </select>

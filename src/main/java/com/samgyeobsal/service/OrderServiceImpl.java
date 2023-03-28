@@ -53,7 +53,6 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-
     public ProductDetailFormDTO getProductList(String fid) {
         List<ProductDetailVO> productDetail = orderMapper.getProductList(fid);
         OrderFtitleVO orderFtitleVO = orderMapper.getFtitle(fid);

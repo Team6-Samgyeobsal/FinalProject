@@ -35,17 +35,11 @@ public interface OrderMapper {
     List<OrderListVO> getOrderList(OrderStep1DTO orderStep1DTO);
 
 
-//    @Insert("INSERT INTO ORDERS(OID,  OPHONE, OMEMO, OUSED_MILEAGE, OORIGIN_PRICE, OPRICE, OSTATUS, ODATE, MEMAIL, PMCODE, QRUSED_DATE, CPID)" +
-//            " VALUES(#{osId}, #{osPhone}, #{osMemo}, #{msMileage}, #{osOriginPrice}, #{osAfterPrice}, #{osState}, " +
-//            " #{osDate} ,#{osMail} ,#{pmMethod}, #{osDate}, '')")
-//    public int saveToss(TossOrder tossOrder);
-//
-//    @Select("select * from ORDERS")
-//    public List<OrderRequest> selectAllOrder();
-
     int updateOrder(@Param("oStatus") String oStatus, @Param("oId") String oId);
 
     List<OrderVO> findOrderListByMemberId(String memberId);
+
+    List<String> findOrderIdListByFundingId(String fid);
 
     OrderVO findOrderByOrderId(String orderId);
 

@@ -20,4 +20,6 @@ public interface AdminService {
     List<DailySaleDTO> getRecentDailySaleListByHyundai(String tid);
 
     List<CategorySale> getRecentCategorySaleListByHyundai(String tid);
+
+    void promoteFundingToStore(String fid);
 }

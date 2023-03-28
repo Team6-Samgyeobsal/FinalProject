@@ -18,8 +18,9 @@ import org.apache.ibatis.annotations.Param;
 public interface QrCodeMapper {
     /**
      * 아래의 매개변수를 DB에 QR코드 정보로 삽입하는 역할
-     * @param link
+     *
      * @param qrCode
      */
-    void insertQrCode(@Param("link") String link, @Param("qrCode") byte[] qrCode);
+    void insertQrCode(@Param("qid") String qid, @Param("oid") String oid,
+                      @Param("qrCode") byte[] qrCode);
 }

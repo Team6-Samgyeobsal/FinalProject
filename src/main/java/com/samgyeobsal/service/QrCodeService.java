@@ -16,6 +16,6 @@ import java.io.IOException;
  * </pre>
  */
 public interface QrCodeService {
-    public byte[] generateQrCode(String link) throws IOException, WriterException;
+    byte[] generateQrCode(String oid) throws IOException, WriterException;
 
 }

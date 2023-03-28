@@ -4,9 +4,12 @@ import com.google.zxing.WriterException;
 import com.samgyeobsal.controller.QRCodeGenerator;
 import com.samgyeobsal.mapper.QrCodeMapper;
 import lombok.RequiredArgsConstructor;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
+import java.util.UUID;
+
 /**
  * @filename QrCodeServiceImpl
  * @author 최태승
@@ -27,13 +30,14 @@ public class QrCodeServiceImpl implements QrCodeService {
     private final QrCodeMapper qrCodeMapper; // QrCodeMapper 빈 객체 주입을 위한 final 필드
 
     // 매개변수로 받은 문자열 링크를 이용해 QR 코드를 생성하고 DB에 삽입한 후, 생성된 QR 코드 바이트 배열을 반환하는 메서드
-    public byte[] generateQrCode(String link) throws IOException, WriterException {
+    public byte[] generateQrCode(String oid) throws IOException, WriterException {
 
-      // QR 코드 생성
-      byte[] qrCodeBytes = QRCodeGenerator.generateQRCodeImage(link);
+        // QR 코드 생성
+        byte[] qrCodeBytes = QRCodeGenerator.generateQRCodeImage(oid);
+        String qid = UUID.randomUUID().toString();
 
-      // DB에 QR 코드 삽입
-      qrCodeMapper.insertQrCode(link, qrCodeBytes);
+        // DB에 QR 코드 삽입
+        qrCodeMapper.insertQrCode(qid, oid, qrCodeBytes);
 
       return qrCodeBytes; // 생성된 QR 코드 바이트 배열을 반환
     }
