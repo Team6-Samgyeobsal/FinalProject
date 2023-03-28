@@ -21,6 +21,7 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpSession;
+import java.time.LocalDateTime;
 import java.util.Base64;
 
 
@@ -34,6 +35,7 @@ import java.util.Base64;
  * 수정일        	수정자       			수정내용
  * ----------  --------    ---------------------------
  * 2023.02.24	최태승		최초 생성
+ * 2023.03.26   최태승        쿠폰 적용
  * </pre>
  */
 
@@ -76,6 +78,7 @@ public class OrderController {
     public String orderStep2Page(Model model, HttpSession session,@PathVariable String fundingId, @AuthenticationPrincipal Account account){
         OrderStep1DTO orderStep1DTO = (OrderStep1DTO) session.getAttribute("order");
         log.info("orderStep2Page orderStep1DTO = {}", orderStep1DTO);
+        model.addAttribute("userCoupon", eventMapper.findUserCouponList(account.getMember().getMemail())); // 쿠폰 적용
         model.addAttribute("order", orderService.getOrderList(orderStep1DTO,fundingId));
         model.addAttribute("tossKey", tossKey);
         return "order/order_step2";
@@ -102,6 +105,10 @@ public class OrderController {
         String email = account.getMember().getMemail();
         if (sendTossConfirm(paymentKey, orderId, amount)) {
             orderService.saveOrder(orderFormDTO, email);
+            // 쿠폰
+            if(orderFormDTO.getCpid() != null && !orderFormDTO.getCpid().equals("")){
+                eventMapper.updateUseDate(LocalDateTime.now(), orderFormDTO.getCpid());
+            }
         }else{
             return "error/error";
         }

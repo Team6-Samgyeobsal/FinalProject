@@ -73,6 +73,7 @@
 
     <select id ="getFundingDetail" resultMap="util.fundingDetailMap" >
         select fstore_name,
+               fthumb,
                fsummary,
                f.fid,
                ftitle,

@@ -22,14 +22,6 @@ public class OrderMapperTest {
         productDetailVO.forEach(productDetail -> log.info(productDetail));
     }
 
-//    @Test
-//    public void getOrderListTest(){
-//        OrderStep1DTO orderStep1DTO= new OrderStep1DTO();
-//        List<OrderItemVO> step = new ArrayList<>();
-//        OrderItemVO item1= newO
-//        step.setPo()
-//        List<OrderListVO> orderList=orderMapper.getOrderList();
-//    }
 
     @Test
     public void findOrderListByMemberId(){

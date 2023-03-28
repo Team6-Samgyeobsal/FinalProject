@@ -28,6 +28,10 @@ public class JwtTokenFilter extends OncePerRequestFilter {
     private final JwtTokenProvider tokenProvider;
     private final RefreshTokenService refreshTokenService;
 
+    /*private final String[] urls = {
+           "web/order/hook"
+    }; // hook 토큰 체크 예외 */
+
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         String jwt = resolveToken(request, ACCESS_COOKIE_NAME);
