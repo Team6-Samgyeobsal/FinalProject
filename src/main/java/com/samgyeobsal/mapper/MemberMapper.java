@@ -12,7 +12,7 @@ import java.util.List;
 @Mapper
 public interface MemberMapper {
 
-    MemberVO findMemberByEmail(@Param("email") String email, @Param("loginType") LoginType type);
+    MemberVO findMemberByEmail(@Param("email") String email, @Param("loginType") String type);
 
     void insertMember(MemberVO member);
 

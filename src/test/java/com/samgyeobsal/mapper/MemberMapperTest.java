@@ -22,7 +22,7 @@ public class MemberMapperTest {
     @Test
     void findMemberByEmail(){
         String email = "user@gmail.com";
-        MemberVO member = memberMapper.findMemberByEmail(email, LoginType.LOGIN_FORM);
+        MemberVO member = memberMapper.findMemberByEmail(email, "email");
         log.info(member.toString());
         Assertions.assertEquals(member.getMemail(),email);
         Assertions.assertEquals(member.getMname(),"user1");
@@ -31,13 +31,13 @@ public class MemberMapperTest {
     @Test
     void findMemberByEmail2(){
         String email = "wangjh789@gmail.com";
-        MemberVO memberVO = memberMapper.findMemberByEmail(email, LoginType.LOGIN_FORM);
+        MemberVO memberVO = memberMapper.findMemberByEmail(email, "google");
         Assertions.assertNull(memberVO);
     }
     @Test
     void findMemberByEmail3(){
         String email = "wangjh789@gmail.com";
-        MemberVO memberVO = memberMapper.findMemberByEmail(email, LoginType.LOGIN_GOOGLE);
+        MemberVO memberVO = memberMapper.findMemberByEmail(email, "google");
         Assertions.assertEquals(email, memberVO.getMemail());
     }
 
@@ -62,7 +62,7 @@ public class MemberMapperTest {
         MemberVO member = insertMember.toMember();
         memberMapper.insertMember(member);
 
-        MemberVO findMember = memberMapper.findMemberByEmail(email, LoginType.LOGIN_FORM);
+        MemberVO findMember = memberMapper.findMemberByEmail(email, "google");
 
         Assertions.assertEquals(member.getMname(), findMember.getMname());
 

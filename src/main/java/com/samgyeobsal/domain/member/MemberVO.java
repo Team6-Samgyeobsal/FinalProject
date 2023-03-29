@@ -12,7 +12,7 @@ public class MemberVO {
     private String mpassword;
     private String mname;
     private Role mrole;
-    private LoginType mloginType;
+    private String mloginType;
 
     private String mphone;
     private int mmileage;

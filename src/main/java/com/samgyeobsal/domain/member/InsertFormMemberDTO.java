@@ -25,7 +25,7 @@ public class InsertFormMemberDTO {
         member.setMname(name);
         member.setMemail(email);
         member.setMpassword(password);
-        member.setMloginType(LoginType.LOGIN_FORM);
+        member.setMloginType("email");
         member.setMrole(Role.ROLE_USER);
         member.setMphone(phone);
         return member;
