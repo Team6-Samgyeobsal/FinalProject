@@ -20,6 +20,7 @@
     <meta name="theme-color" content="#000000" />
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <title>와디즈 메이커 스튜디오</title>
+    <script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
 
     <link
       href="/import/css/main.f4a9cc74.chunk.css"
@@ -97,16 +98,16 @@
                         <div class="PageMenuList_container__1xz-L">
                           <div class="PageMenuList_name__2nKKm">기본 정보</div>
                           <div class="PageMenuList_status__3M6fF PageMenuList_wadizColor__3nQuN">
-                            <span th:if="${fundingMaker.getCtid()=='' || fundingMaker.getFstore_name()=='' || fundingMaker.getFthumb()==''}">작성 전</span>
-                            <span th:unless="${fundingMaker.getCtid()=='' || fundingMaker.getFstore_name()=='' || fundingMaker.getFthumb()==''}"
+                            <span th:unless="${not #strings.isEmpty(fundingMaker.getCtid()) || not #strings.isEmpty(fundingMaker.getFstore_name()) || not #strings.isEmpty(fundingMaker.getFthumb())}">작성 전</span>
+                            <span th:if="${ not #strings.isEmpty(fundingMaker.getCtid()) || not #strings.isEmpty(fundingMaker.getFstore_name()) || not #strings.isEmpty(fundingMaker.getFthumb())}"
                             style="color:gray">작성완료</span>
                           </div>
                           <a
                             class="PageMenuList_buttonWrapper__3PXAt"
                             th:href="|/web/mypage/maker/funding/${fundingMaker.getFid()}/baseInfo|"
                             ><button type="button" class="wz button">
-                              <span th:if="${fundingMaker.getCtid()=='' || fundingMaker.getFstore_name()=='' || fundingMaker.getFthumb()==''}">작성하기</span>
-                              <span th:unless="${fundingMaker.getCtid()=='' || fundingMaker.getFstore_name()=='' || fundingMaker.getFthumb()==''}">수정하기</span>
+                              <span th:unless="${not #strings.isEmpty(fundingMaker.getCtid()) || not #strings.isEmpty(fundingMaker.getFstore_name()) || not #strings.isEmpty(fundingMaker.getFthumb())}">작성하기</span>
+                              <span th:if="${not #strings.isEmpty(fundingMaker.getCtid()) || not #strings.isEmpty(fundingMaker.getFstore_name()) || not #strings.isEmpty(fundingMaker.getFthumb())}">수정하기</span>
                             </button></a>
                         </div>
                       </div>
@@ -118,16 +119,16 @@
                           </div>
                           <div
                             class="PageMenuList_status__3M6fF PageMenuList_wadizColor__3nQuN">
-                            <span th:if="${!fundingMaker.isHasImg() || fundingMaker.getFsummary()=='' || fundingMaker.getFstory()==''}">작성 전</span>
+                            <span th:unless="${fundingMaker.isHasImg() && fundingMaker.getFsummary()!='' && fundingMaker.getFstory()!=''}">작성 전</span>
                             <span style="color:gray"
-                                 th:unless="${!fundingMaker.isHasImg() || fundingMaker.getFsummary()=='' || fundingMaker.getFstory()==''}">작성완료</span>
+                                 th:if="${fundingMaker.isHasImg() && fundingMaker.getFsummary()!='' && fundingMaker.getFstory()!=''}">작성완료</span>
                           </div>
                           <a
                             class="PageMenuList_buttonWrapper__3PXAt"
                             th:href="|/web/mypage/maker/funding/${fundingMaker.getFid()}/story|"
                             ><button type="button" class="wz button">
-                            <span th:if="${!fundingMaker.isHasImg() || fundingMaker.getFsummary()=='' || fundingMaker.getFstory()==''}">작성하기</span>
-                            <span th:unless="${!fundingMaker.isHasImg() || fundingMaker.getFsummary()=='' || fundingMaker.getFstory()==''}">수정하기</span>
+                            <span th:unless="${fundingMaker.isHasImg() && fundingMaker.getFsummary()!='' && fundingMaker.getFstory()!=''}">작성하기</span>
+                            <span th:if="${fundingMaker.isHasImg() && fundingMaker.getFsummary()!='' && fundingMaker.getFstory()!=''}">수정하기</span>
                             </button></a>
                         </div>
                       </div>
@@ -148,23 +149,29 @@
                             th:href="|/web/mypage/maker/funding/${fundingMaker.getFid()}/reward|"
                             ><button type="button" class="wz button">
                             <span th:if="${!fundingMaker.isHasProduct()}">작성하기</span>
-                            <span th:unless="${!fundingMaker.isHasProduct()}">수정하기</span>
+                            <span th:if="${fundingMaker.isHasProduct()}">수정하기</span>
                             </button></a>
                         </div>
                       </div>
                     </div>
                   </div>
                   <div class="FundingSubmit_container__3kwkh">
-                    <button
-                      th:disabled="${fundingMaker.getFstatus() == 'PREPARING' &&
+                    <button th:if="${#strings.equals(fundingMaker.getFstatus(),'PREPARING')}"
+                      type="button"
+                      th:class="'submitBtn wz button primary FundingSubmit_button__1Qs0d '+
+                        ${fundingMaker.getFstatus() == 'PREPARING' &&
                     fundingMaker.getCtid()=='' || fundingMaker.getFstore_name()=='' || fundingMaker.getFthumb()=='' ||
                     !fundingMaker.isHasImg() || fundingMaker.getFsummary()=='' || fundingMaker.getFstory()=='' ||
-                    !fundingMaker.isHasProduct()
-                    }"
-                      type="button"
-                      class="submitBtn wz button primary FundingSubmit_button__1Qs0d">
+                    !fundingMaker.isHasProduct()?'disabled':''}">
                       제출하기
                     </button>
+                    <button
+                            th:if="${#strings.equals(fundingMaker.getFstatus(),'PARTICIPATE')}"
+                            type="button"
+                            class="submitBtn wz button disabled primary FundingSubmit_button__1Qs0d">
+                      제출완료
+                    </button>
+
                   </div>
                 </div>
               </div>
@@ -178,9 +185,26 @@
     </div>
 
   <script>
+    let fid = '[[${fundingMaker.getFid()}]]'
+
     $(document).ready(function (){
       console.log('tt');
     })
+    $(document).on('click','.submitBtn',function(e){
+      sendDocument();
+    })
+
+    function sendDocument(){
+      $.ajax({
+        url : `/api/mypage/maker/funding/${fid}/submit`,
+        type: 'post',
+        dataType : 'text',
+        success : function(data){
+          console.log(data);
+          location.reload();
+        }
+      })
+    }
   </script>
   </body>
 </html>

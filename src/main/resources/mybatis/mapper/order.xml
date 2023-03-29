@@ -84,16 +84,27 @@
                fp.fid, fp.fporigin_price, fp.fpprice, fp.fptitle, fp.fpcontent,
                f.fid, f.fstore_name, f.ftitle, f.fsummary, f.fstory, f.fdate, f.fstatus,
                f.fstore_score, f.ffunding_score, f.ctid, f.fthumb, f.cid, f.tid,
-               ct.ctname
+               ct.ctname,m.mname
         from orders o
-                 inner join member m on (o.memail = m.memail)
-                 inner join order_item oi on (oi.oid = o.oid)
-                 inner join product_option po on (oi.poid = po.poid)
-                 inner join funding_product fp on (fp.fpid = po.fpid)
-                 inner join funding f on (f.fid = fp.fid)
-                 inner join category ct on (ct.ctid = f.ctid)
+        inner join member m on (o.memail = m.memail)
+        inner join order_item oi on (oi.oid = o.oid)
+        inner join product_option po on (oi.poid = po.poid)
+        inner join funding_product fp on (fp.fpid = po.fpid)
+        inner join funding f on (f.fid = fp.fid)
+        inner join category ct on (ct.ctid = f.ctid)
         where o.oid = #{orderId}
         order by o.odate desc
+    </select>
+
+    <select id="findOrderIdListByFundingId" resultType="string">
+        select o.oid,fp.fid
+        from orders o
+                 inner join order_item oi on (o.oid = oi.oid)
+                 inner join product_option po on (po.poid = oi.poid)
+                 inner join funding_product fp on (fp.fpid = po.fpid)
+        where o.ostatus = 'COMPLETE' and fp.fid = #{fid}
+        group by o.oid, fp.fid
+
     </select>
 
     <select id="getFtitle" resultType="orderFtitle">

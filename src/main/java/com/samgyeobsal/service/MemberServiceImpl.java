@@ -41,7 +41,7 @@ public class MemberServiceImpl implements MemberService {
     public boolean isExist(String email) {
         MemberVO memberVO = null;
         for(LoginType type : LoginType.values()){
-            MemberVO tmp = memberMapper.findMemberByEmail(email, type);
+            MemberVO tmp = memberMapper.findMemberByEmail(email, type.toString());
             if(tmp != null){
                 memberVO = tmp;
                 break;

@@ -1,15 +1,19 @@
 package com.samgyeobsal.service;
 
+import com.samgyeobsal.domain.funding.FundingDetailVO;
 import com.samgyeobsal.domain.funding.FundingImgVO;
 import com.samgyeobsal.domain.funding.ProdOptionVO;
 import com.samgyeobsal.domain.maker.FundingBaseInfoDTO;
 import com.samgyeobsal.domain.maker.FundingMakerVO;
 import com.samgyeobsal.domain.maker.FundingStoryDTO;
 import com.samgyeobsal.domain.maker.UpdateFundingProductDTO;
+import com.samgyeobsal.domain.order.OrderVO;
+import com.samgyeobsal.mapper.AdminMapper;
 import com.samgyeobsal.mapper.MakerMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,7 +26,9 @@ import java.util.stream.Collectors;
 public class MakerServiceImpl implements MakerService {
 
     private final MakerMapper makerMapper;
+    private final FundingService fundingService;
 
+    private final AdminMapper adminMapper;
     @Override
     public String createFunding(String email) {
         String fid = UUID.randomUUID().toString();
@@ -90,4 +96,24 @@ public class MakerServiceImpl implements MakerService {
         int row = makerMapper.deleteFundingProduct(fpid);
         if(row == 0) throw new RuntimeException("deleteFundingProduct 에러발생");
     }
+
+    @Override
+    public void submitDocument(String fid) {
+        FundingDetailVO prepare = fundingService.getFundingDetail(fid, "PREPARING");
+        log.info("prepare = {}", prepare);
+
+        if(!validateDocument(prepare))
+            throw new RuntimeException("submitDocument error");
+
+        adminMapper.updateFundingStatus(fid, "PARTICIPATE");
+    }
+
+    private boolean validateDocument(FundingDetailVO funding){
+        return StringUtils.hasText(funding.getFstore_name()) ||
+                StringUtils.hasText(funding.getFtitle()) ||
+                StringUtils.hasText(funding.getFsummary()) ||
+                StringUtils.hasText(funding.getFstory()) ||
+                StringUtils.hasText(funding.getCtname());
+    }
+
 }

@@ -4,6 +4,12 @@
 <mapper namespace="com.samgyeobsal.mapper.QrCodeMapper">
     <insert id="insertQrCode" parameterType="map">
         INSERT INTO QR_CODE (QID, LINK, QR_CODE, OID)
-        VALUES ('QRCODE2', #{link}, #{qrCode,jdbcType=BLOB},'e2b73f8a-49ce-4877-8887-c896de118abc')
+        VALUES (#{qid}, 'tempLink', #{qrCode,jdbcType=BLOB},#{oid})
     </insert>
+
+    <select id="getQrCodeString" resultType="string">
+        select qr_code
+        from qr_code
+        where oid = #{oid}
+    </select>
 </mapper>

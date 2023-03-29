@@ -10,15 +10,15 @@
         from funding f
         left join category ct on (ct.ctid = f.ctid)
         inner join (
-            select funding.fid, decode(count(*),0,0,1) hasProduct
+            select funding.fid, decode(count(funding_product.fpid),0,0,1) hasProduct
             from funding
-                 left join funding_product on (funding.fid = funding_product.fid)
+            left join funding_product on (funding.fid = funding_product.fid)
             group by funding.fid
         ) tmp on (f.fid = tmp.fid)
         inner join (
-            select funding.fid, decode(count(*),0,0,1) hasImg
+            select funding.fid, decode(count(funding_img.fiid),0,0,1) hasImg
             from funding
-                     left join funding_img on (funding.fid = funding_img.fid)
+            left join funding_img on (funding.fid = funding_img.fid)
             group by funding.fid
         ) tmp2 on (f.fid = tmp2.fid)
         where f.fid = #{fundingId}

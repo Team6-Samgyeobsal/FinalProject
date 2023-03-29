@@ -9,6 +9,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.client.registration.ClientRegistration;
 import org.springframework.security.oauth2.client.userinfo.DefaultOAuth2UserService;
 import org.springframework.security.oauth2.client.userinfo.OAuth2UserRequest;
@@ -16,10 +18,7 @@ import org.springframework.security.oauth2.core.OAuth2AuthenticationException;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 
 @Service
 @Slf4j
@@ -34,37 +33,46 @@ public class OAuth2DetailsService extends DefaultOAuth2UserService {
 
         OAuth2User oAuth2User = super.loadUser(userRequest);
 
-        try{
-            MemberVO member = saveOAuth2Member(oAuth2User.getAttributes());
-            List<GrantedAuthority> authorities = new ArrayList<>();
-            authorities.add(new SimpleGrantedAuthority(member.getMrole().toString()));
-            Account account = new Account(member, authorities, oAuth2User.getAttributes());
-            return account;
-        }catch (Exception e){
-            log.error("OAuth2DetailsService loadUser error",e);
-            return null;
-        }
+        log.info("oAUth2User = {}", oAuth2User.getAttributes());
+
+
+        MemberVO member = saveOAuth2Member(userRequest, oAuth2User);
+        List<GrantedAuthority> authorities = new ArrayList<>();
+        authorities.add(new SimpleGrantedAuthority(member.getMrole().toString()));
+        Account account = new Account(member, authorities, oAuth2User.getAttributes());
+
+        return account;
     }
 
-    private MemberVO saveOAuth2Member(Map<String, Object> attr){
-        String email = attr.get("email").toString();
-        String name = "USER_"+UUID.randomUUID().toString().substring(7);
+    private MemberVO saveOAuth2Member(OAuth2UserRequest userRequest, OAuth2User oAuth2User){
 
-        MemberVO member = memberMapper.findMemberByEmail(email, LoginType.LOGIN_FORM);
+        String provider = userRequest.getClientRegistration().getRegistrationId();
+        String providerId = oAuth2User.getAttribute("sub");
+        String username = provider + "_" + providerId;
+
+        String uuid = UUID.randomUUID().toString().substring(0, 6);
+        String password = "{noop}passwrd" + uuid;
+
+        String email = oAuth2User.getAttribute("email");
+
+
+        MemberVO member = memberMapper.findMemberByEmail(email, "email");
 
         if(member != null)
             throw new RuntimeException("already joined by form login");
 
-        member = memberMapper.findMemberByEmail(email, LoginType.LOGIN_GOOGLE);
+        member = memberMapper.findMemberByEmail(email, provider);
+
         if(member != null) return member;
         member = new MemberVO();
         member.setMemail(email);
-        member.setMname(name);
-        member.setMloginType(LoginType.LOGIN_GOOGLE);
+        member.setMname(username);
+        member.setMloginType("google");
+        member.setMphone("01011111111");
         member.setMrole(Role.ROLE_USER);
-        member.setMpassword("{noop}1111");
+        member.setMpassword(password);
 
         memberMapper.insertMember(member);
-        return memberMapper.findMemberByEmail(email, LoginType.LOGIN_GOOGLE);
+        return memberMapper.findMemberByEmail(email, provider);
     }
 }

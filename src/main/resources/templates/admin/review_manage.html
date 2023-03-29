@@ -70,36 +70,14 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td>Tiger Nixon</td>
-                                            <td>System Architect</td>
-                                            <td>Edinburgh</td>
-                                            <th><img src="https://cdn2.wadiz.kr/2023/03/08/f44d6c6b-b59c-42e2-ac24-35c271fdcffb.png/wadiz/resize/130/quality/85/"></th>
-                                            <td>61</td>
-                                            <td>2011/04/25</td>
-                                            <td>
-                                            <a href="#" class="btn btn-danger btn-icon-split">
-                                                <span class="text">삭제</span>
-                                            </a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Garrett Winters</td>
-                                            <td>Accountant</td>
-                                            <td>Tokyo</td>
-                                            <th><img src="https://cdn2.wadiz.kr/2023/03/08/f44d6c6b-b59c-42e2-ac24-35c271fdcffb.png/wadiz/resize/130/quality/85/"></th>
-                                            <td>63</td>
-                                            <td>2011/07/25</td>
-                                            <td>
-                                                <a href="#" class="btn btn-danger btn-icon-split">
-                                                    <span class="text">삭제</span>
-                                                </a>
-                                            </td>
-                                        </tr>
-
-
                                     </tbody>
                                 </table>
+                            </div>
+                            <div class="row" style="justify-content: center">
+                                <div class="col-sm-12 col-md-7">
+                                    <div class="dataTables_paginate paging_simple_numbers" id="dataTable_paginate">
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -131,26 +109,6 @@
         <i class="fas fa-angle-up"></i>
     </a>
 
-    <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.html">Logout</a>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <!-- Bootstrap core JavaScript-->
     <script src="/admin/vendor/jquery/jquery.min.js"></script>
     <script src="/admin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -171,20 +129,22 @@
 </body>
 
 <script>
+    let pageNum = 1;
+    let itemNum = 12.0;
     $(document).ready(function(){
         console.log('ready');
-        // TODO : 페이징?
         getReviewList();
     })
 
     function getReviewList(){
         $.ajax({
-            url: '/api/admin/review',
+            url: `/api/admin/review?page=${pageNum - 1}&size=${itemNum}`,
             type : 'get',
             contentType:"application/json",
             success : function(data){
                 console.log(data);
-                printTable(data);
+                printTable(data['reviewList']);
+                printPagination(data['reviewCount']);
             }
         })
     }
@@ -234,6 +194,56 @@
         })
 
         console.log(fid, rtype, memail);
+    })
+
+    // 화면에 보여줄 개수 itemNum
+    // 버튼 개수 5개
+    function printPagination (fundingCount){
+        let pagingUL = $('#dataTable_paginate');
+        var endNum = Math.ceil(pageNum/5.0) * 5;
+        var startNum = endNum - 4;
+
+        var prev = startNum !== 1;
+        var next = false;
+
+        if(endNum * itemNum >= fundingCount){
+            endNum = Math.ceil(fundingCount / itemNum);
+        }
+        if(endNum * itemNum < fundingCount){
+            next = true;
+        }
+
+        let str = `<ul class="pagination" style="justify-content: center">`
+        if(prev){
+            str += `
+            <li class="paginate_button page-item previous disabled" id="dataTable_previous">
+                <a aria-controls="dataTable" data-dt-idx="${startNum-1}" tabIndex="0" class="page-link">Previous</a>
+            </li>`
+        }
+        for (var i = startNum; i <= endNum; i++) {
+            var active = pageNum === i ? "active" : "";
+            str += `
+            <li class="paginate_button page-item ${active}">
+                <a aria-controls="dataTable" data-dt-idx="${i}"
+                                                        tabIndex="0" class="page-link">${i}</a>
+            </li>
+                  `
+        }
+        if(next){
+            str += `
+            <li class="paginate_button page-item next" id="dataTable_next">
+                <a aria-controls="dataTable" data-dt-idx="${endNum+1}" tabIndex="0" class="page-link">Next</a>
+            </li>
+            `
+        }
+        str += "</ul>";
+
+        pagingUL.html(str);
+    }
+
+    $(document).on('click','.page-item',function(){
+        pageNum = $(this).find('a').data('dt-idx');
+        getReviewList();
     })
 </script>
 

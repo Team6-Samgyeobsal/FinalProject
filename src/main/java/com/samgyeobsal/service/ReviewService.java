@@ -5,8 +5,9 @@ import com.samgyeobsal.domain.review.ReplyReviewVO;
 
 public interface ReviewService {
 
-    boolean isWritableStoreReview(String email, String orderId);
     void insertReview(InsertReviewDTO insertReviewDTO);
 
-    void ReplyReview(ReplyReviewVO replyReviewVO);
+    void replyReview(ReplyReviewVO replyReviewVO);
+
+    boolean isAlreadyExistReview(String rtype, String memail);
 }

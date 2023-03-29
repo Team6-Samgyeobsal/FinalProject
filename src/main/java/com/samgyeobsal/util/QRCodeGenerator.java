@@ -1,4 +1,4 @@
-package com.samgyeobsal.controller;
+package com.samgyeobsal.util;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;

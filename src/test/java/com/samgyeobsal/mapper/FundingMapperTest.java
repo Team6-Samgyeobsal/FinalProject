@@ -17,7 +17,7 @@ import java.util.UUID;
 @Log4j2
 public class FundingMapperTest {
 
-    private final String fid="1";
+    private final String fid="11";
     @Autowired
     FundingMapper fundingMapper;
 
@@ -65,6 +65,15 @@ public class FundingMapperTest {
         ProductVO product = fundingMapper.findProductByFundingIdAndProductId(fundingId, productId);
         log.info("product = {}", product);
         Assertions.assertEquals(product.getFpid(), productId);
+    }
+
+    @Test
+    void getFundingTotalCount(){
+        FundingCriteria criteria = new FundingCriteria();
+        criteria.setPlace("더현대 서울");
+        int fundingTotalCount = fundingMapper.getFundingTotalCount(criteria);
+        log.info("fundingCount = {}", fundingTotalCount);
+
     }
 
 }

@@ -58,7 +58,12 @@ public class SecurityConfig {
 //                .and()
 //                .successHandler(new OAuth2SuccessHandler(jwtTokenProvider, refreshTokenService))
 //                .and()
-                .addFilterBefore(new JwtTokenFilter(jwtTokenProvider,refreshTokenService), UsernamePasswordAuthenticationFilter.class);
+                .addFilterBefore(new JwtTokenFilter(jwtTokenProvider, refreshTokenService), UsernamePasswordAuthenticationFilter.class)
+                    .oauth2Login()
+                    .loginPage("/web/account/login")
+                    .successHandler(new OAuth2SuccessHandler(jwtTokenProvider, refreshTokenService))
+                    .failureUrl("/web/account/login")
+                .userInfoEndpoint().userService(oAuth2DetailsService);
 
 
         return http.build();

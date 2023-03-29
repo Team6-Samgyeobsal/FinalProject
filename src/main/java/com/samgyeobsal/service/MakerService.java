@@ -27,4 +27,6 @@ public interface MakerService {
 
     void deleteFundingProduct(String fpid);
 
+    void submitDocument(String fid);
+
 }

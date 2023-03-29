@@ -36,6 +36,8 @@ public class OrderVO {
     private String ctid;
     private String ctname;
 
+    private String mname;
+
     List<OrderItemVO> orders;
 
     public String getOdateString(){

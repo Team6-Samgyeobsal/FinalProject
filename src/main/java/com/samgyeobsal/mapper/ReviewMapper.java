@@ -7,10 +7,9 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface ReviewMapper {
 
-    Boolean isWritableStoreReview(String email, String orderId);
-
     int insertReview(InsertReviewDTO insertReviewDTO);
 
     int replyReview(ReplyReviewVO replyReviewVO);
 
+    boolean isAlreadyExistReview(String rtype, String memail);
 }

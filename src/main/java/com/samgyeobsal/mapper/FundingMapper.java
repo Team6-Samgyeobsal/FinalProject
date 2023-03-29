@@ -23,4 +23,5 @@ public interface FundingMapper {
 
     ReviewCountVO reviewCount (String fid);
 
+    int getFundingTotalCount(@Param("criteria") FundingCriteria fundingCriteria);
 }

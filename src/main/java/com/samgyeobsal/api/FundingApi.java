@@ -1,6 +1,5 @@
 package com.samgyeobsal.api;
 
-import com.lilittlecat.chatgpt.offical.ChatGPT;
 import com.samgyeobsal.domain.funding.*;
 import com.samgyeobsal.domain.maker.UpdateFundingProductDTO;
 import com.samgyeobsal.domain.review.InsertReviewDTO;
@@ -11,8 +10,6 @@ import com.samgyeobsal.service.MakerService;
 import com.samgyeobsal.service.ReviewService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
-import okhttp3.OkHttpClient;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -21,7 +18,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.TimeUnit;
 
 @RestController
 @RequestMapping("/api/funding")
@@ -115,7 +111,7 @@ public class FundingApi {
             @PathVariable("fundingId") String fundingId,
             @RequestBody ReplyReviewVO replyReviewVO)
     {
-        reviewService.ReplyReview(replyReviewVO);
+        reviewService.replyReview(replyReviewVO);
         return new ResponseEntity<>("success", HttpStatus.OK);
     }
 }
