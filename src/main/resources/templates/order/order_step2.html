@@ -6,11 +6,10 @@
   <meta
           name="viewport"
           content="width=device-width,initial-scale=1,shrink-to-fit=no,user-scalable=no,viewport-fit=cover" />
-  <meta
-          name="description"
-          content="테크, 패션, 푸드, 뷰티, 홈리빙까지. 와디즈 펀딩으로 매일 새로운 일상을 발견하고, 와디즈 스토어에서 새로운 쇼핑을 만나보세요." />
+
   <title>결제 예약</title>
   <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
+  <script src="/js/alert.js"></script>
   <script src="https://js.tosspayments.com/v1/payment"></script>
   <link
           rel="shortcut icon"
@@ -38,8 +37,7 @@
           rel="stylesheet"
           href="/import/css/main.42cef079.css"
   />
-  <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
-  <script src="https://js.tosspayments.com/v1/payment"></script>
+ <script src="https://js.tosspayments.com/v1/payment"></script>
   <link
           rel="shortcut icon"
           href="https://static.wadiz.kr/assets/icon/favicon.ico" />
@@ -393,7 +391,7 @@
                 </label>
                 <span
                         class="show-term"
-                        onclick="showLyPop('personalInfoAgreementForThirdParties');"
+                        id="case1"
                 >보기</span
                 >
                 <div
@@ -423,7 +421,7 @@
                       <tbody>
                       <tr>
                         <th>제공받는자</th>
-                        <td class="bold">(주)현대리바트</td>
+                        <td class="bold">더 쉐프</td>
                       </tr>
                       <tr>
                         <th>목적</th>
@@ -449,8 +447,8 @@
                   <div class="agree-popup-footer">
                     <button
                             type="button"
-                            class="wz button less primary"
-                            onclick="closeAgreePopup('personalInfoAgreementForThirdParties');">
+                            class="wz button less primary caseCheck"
+                            >
                       확인
                     </button>
                   </div>
@@ -470,7 +468,7 @@
                 </label>
                 <span
                         class="show-term"
-                        onclick="showLyPop('AcceptanceOfLiability');"
+                        id="case2"
                 >보기</span
                 >
                 <div
@@ -494,8 +492,8 @@
                   <div class="agree-popup-footer">
                     <button
                             type="button"
-                            class="wz button less primary"
-                            onclick="closeAgreePopup('AcceptanceOfLiability');">
+                            class="wz button less primary caseCheck"
+                            >
                       확인
                     </button>
                   </div>
@@ -1162,6 +1160,21 @@
 
 
         <script th:inline="javascript">
+
+          $('#case1').click(function (){
+            $('.black-bg-wrap').show();
+            $('#personalInfoAgreementForThirdPartiesLypop').show();
+          })
+          $('#case2').click(function (){
+            $('.black-bg-wrap').show();
+            $('#AcceptanceOfLiabilityLypop').show();
+          })
+          $('.caseCheck').click(function (){
+            $('.black-bg-wrap').hide();
+            $('#personalInfoAgreementForThirdPartiesLypop').hide();
+            $('#AcceptanceOfLiabilityLypop').hide();
+          })
+
           let couponList = [[${userCoupon}]];
           $(document).ready(function (){
               $("#acceptAllCheckBox").click(function() {
@@ -1197,11 +1210,11 @@
                 $(document).on('propertychange input', '#pointInput', function () {
 
                   if ($(this).val() > maxMileage) {
-                    alert(maxMileage+'P 이상 X');
+                    showAlert('보유 포인트를 초과하여 사용하실 수 없습니다.');
                     $(this).val(maxMileage);
                   }
                   if (!$.isNumeric($(this).val())&&$(this).val()!=''){
-                    alert('숫자만');
+                    showAlert('숫자만 입력 가능합니다.');
                     $(this).val(0);
                   }
 
@@ -1223,7 +1236,7 @@
               if($("#acceptAllCheckBox").is(":checked")){
                 paymentToss();
               }else {
-                alert("약관 동의")
+                showAlert('개인정보 제3자 제공 동의를 하셔야 결제예약이 가능합니다.');
               }
 
             })

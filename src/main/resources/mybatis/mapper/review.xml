@@ -20,6 +20,7 @@
     </insert>
 
     <update id="replyReview">
-        update review set recontent=#{recontent} , redate=sysdate where fid=#{fid}and memail=#{memail} and rtype=#{rtype}
+        update review set recontent=#{recontent} , redate=sysdate
+                      where fid=#{fid}and memail=#{memail} and rtype=#{rtype}
     </update>
 </mapper>

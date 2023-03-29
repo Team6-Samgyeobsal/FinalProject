@@ -15,7 +15,7 @@ drop table coupon_detail cascade constraint purge;
 drop table qr_code cascade constraint purge;
 drop table funding_img cascade constraint purge;
 drop table jwt_refresh cascade constraint purge;
-
+drop table queue cascade constraint purge;
 -- 생성자 Oracle SQL Developer Data Modeler 21.2.0.183.1957
 --   위치:        2023-03-26 22:03:02 KST
 --   사이트:      Oracle Database 21c
@@ -317,6 +317,24 @@ ALTER TABLE review
 ALTER TABLE review
     ADD CONSTRAINT review_member_fk FOREIGN KEY ( memail )
         REFERENCES member ( memail );
+
+CREATE TABLE queue (
+                       qid    VARCHAR2(100 BYTE) NOT NULL,
+                       fid    VARCHAR2(100 BYTE) NOT NULL,
+                       memail VARCHAR2(60 BYTE) NOT NULL,
+                       qdate  TIMESTAMP NOT NULL
+);
+ALTER TABLE queue ADD CONSTRAINT queue_pk PRIMARY KEY ( qid,
+                                                        memail );
+ALTER TABLE queue
+    ADD CONSTRAINT queue_funding_fk FOREIGN KEY ( fid )
+        REFERENCES funding ( fid );
+ALTER TABLE queue
+    ADD CONSTRAINT queue_member_fk FOREIGN KEY ( memail )
+        REFERENCES member ( memail );
+ALTER TABLE queue
+    ADD CONSTRAINT queue_qr_code_fk FOREIGN KEY ( qid )
+        REFERENCES qr_code ( qid );
 
 
 
