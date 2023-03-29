@@ -125,6 +125,7 @@
         <result property="fstatus" column="fstatus"/>
         <result property="ctid" column="ctid"/>
         <result property="ctname" column="ctname"/>
+        <result property="mname" column="mname"/>
         <collection property="orders" resultMap="orderItemMap"/>
 
 
