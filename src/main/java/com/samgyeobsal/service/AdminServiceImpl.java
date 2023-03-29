@@ -36,8 +36,8 @@ public class AdminServiceImpl implements AdminService {
     }
 
     @Override
-    public List<ReviewVO> getAllReviewList() {
-        return adminMapper.getAllReviewList();
+    public List<ReviewVO> getAllReviewList(int page, int size) {
+        return adminMapper.getAllReviewList(page,size);
     }
 
     @Override
@@ -76,5 +76,10 @@ public class AdminServiceImpl implements AdminService {
                 throw new RuntimeException(e);
             }
         }
+    }
+
+    @Override
+    public int getReviewCount() {
+        return adminMapper.getReviewCount();
     }
 }

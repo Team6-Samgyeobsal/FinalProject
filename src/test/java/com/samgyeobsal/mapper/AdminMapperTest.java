@@ -40,7 +40,7 @@ public class AdminMapperTest {
 
     @Test
     void getAllReviewList(){
-        List<ReviewVO> allReviewList = adminMapper.getAllReviewList();
+        List<ReviewVO> allReviewList = adminMapper.getAllReviewList(1,3);
         for (ReviewVO reviewVO : allReviewList) {
             log.info("review = {}", reviewVO);
         }

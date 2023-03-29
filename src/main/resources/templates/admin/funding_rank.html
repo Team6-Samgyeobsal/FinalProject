@@ -76,6 +76,12 @@
                                     </tbody>
                                 </table>
                             </div>
+                            <div class="row" style="justify-content: center">
+                                <div class="col-sm-12 col-md-7">
+                                    <div class="dataTables_paginate paging_simple_numbers" id="dataTable_paginate">
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
@@ -106,25 +112,6 @@
         <i class="fas fa-angle-up"></i>
     </a>
 
-    <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.html">Logout</a>
-                </div>
-            </div>
-        </div>
-    </div>
 
     <!-- Bootstrap core JavaScript-->
     <script src="/admin/vendor/jquery/jquery.min.js"></script>
@@ -147,44 +134,52 @@
     // tid
     let areaArr = ['','seoul','daegu','gwangju'];
     let colorArr = ['border-left-primary', 'border-left-success', 'border-left-info', 'border-left-warning'];
+    let idx = 0;
+    let pageNum = 1;
+    let fundingCount = 0;
+    let place = '더현대 전체'
 
     $(document).ready(function(){
         console.log('ready');
-        getAllList();
-        getTotalSales();
+        getList();
+        getTotalSales(null,pageNum-1);
+
 
     })
 
     $(document).on('click','.h_area', function(e){
-        let tname = $(this).data('tname');
-        console.log(tname);
-        getAllList(tname);
+        idx = 0;
+        pageNum = 1;
+
+        place = $(this).data('tname');
+
+        getList();
     })
 
-    function getAllList(place){
+    function getList(){
         $('tbody').html('');
 
-        let idx = 0;
-        function getList(place, page){
-            $.ajax({
-                url : '/api/admin/funding',
-                type : 'get',
-                data:{
-                    place: place,
-                    page: page,
-                },
-                contentType:"application/json",
-                success : function(data){
-                    console.log(data.length);
-                    if(data.length !==0){
-                        printTable(idx,data);
-                        getList(place, page + 1);
-                        idx += data.length;
-                    }
+        $.ajax({
+            url : '/api/admin/funding',
+            type : 'get',
+            data:{
+                place: place,
+                page: pageNum-1,
+            },
+            contentType:"application/json",
+            success : function(res){
+                console.log(res);
+                fundingCount = res['fundingCount'];
+                let data = res['fundingList'];
+
+                printPagination(res['fundingCount']);
+
+                if(data.length !==0){
+                    printTable(idx,data);
+                    idx += data.length;
                 }
-            })
-        }
-        getList(place, 0);
+            }
+        })
     }
 
     function printTable(no,data){
@@ -233,6 +228,7 @@
     function printTotalSale(data){
         console.log(data);
         $(data).each(function(idx, d){
+
             let template = `
                    <div class="col-xl-3 col-md-6 mb-4">
                         <div data-tname="${d['tname']}" data-tid="${d['tid']||''}" data-area="${areaArr[d['tid']]||''}" class="h_area card ${colorArr[idx]} shadow h-100 py-2">
@@ -254,6 +250,60 @@
             $('.hyundaiSale').append(template);
         })
     }
+
+    let itemNum = 12.0;
+    // 화면에 보여줄 개수 itemNum
+    // 버튼 개수 5개
+    function printPagination (fundingCount){
+        let pagingUL = $('#dataTable_paginate');
+        var endNum = Math.ceil(pageNum/5.0) * 5;
+        var startNum = endNum - 4;
+
+        var prev = startNum !== 1;
+        var next = false;
+
+        if(endNum * itemNum >= fundingCount){
+            endNum = Math.ceil(fundingCount / itemNum);
+        }
+        if(endNum * itemNum < fundingCount){
+            next = true;
+        }
+
+        let str = `<ul class="pagination" style="justify-content: center">`
+        if(prev){
+            str += `
+            <li class="paginate_button page-item previous disabled" id="dataTable_previous">
+                <a aria-controls="dataTable" data-dt-idx="${startNum-1}" tabIndex="0" class="page-link">Previous</a>
+            </li>`
+        }
+        for (var i = startNum; i <= endNum; i++) {
+            var active = pageNum === i ? "active" : "";
+            str += `
+            <li class="paginate_button page-item ${active}">
+                <a aria-controls="dataTable" data-dt-idx="${i}"
+                                                        tabIndex="0" class="page-link">${i}</a>
+            </li>
+                  `
+        }
+        if(next){
+            str += `
+            <li class="paginate_button page-item next" id="dataTable_next">
+                <a aria-controls="dataTable" data-dt-idx="${endNum+1}" tabIndex="0" class="page-link">Next</a>
+            </li>
+            `
+        }
+        str += "</ul>";
+
+        pagingUL.html(str);
+
+    }
+
+    $(document).on('click','.page-item',function(){
+        pageNum = $(this).find('a').data('dt-idx');
+        getList();
+    })
+
+
 
 </script>
 </body>

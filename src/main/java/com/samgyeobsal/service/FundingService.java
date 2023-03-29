@@ -13,4 +13,5 @@ public interface FundingService {
     ProductVO getProductByFundingIdAndProductId(String fundingId, String productId);
     ReviewCountVO reviewCount (String fid);
 
+    int getFundingTotalCount(FundingCriteria fundingCriteria);
 }

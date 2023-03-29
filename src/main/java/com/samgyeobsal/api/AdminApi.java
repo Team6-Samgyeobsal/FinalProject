@@ -12,7 +12,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/admin")
@@ -34,13 +36,18 @@ public class AdminApi {
     }
 
     @GetMapping("/funding")
-    public ResponseEntity<List<FundingVO>> getAllFundingListByPlace(
+    public ResponseEntity<?> getAllFundingListByPlace(
             @ModelAttribute FundingCriteria fundingCriteria){
         log.info("fundingCriteria = {}", fundingCriteria);
 
         List<FundingVO> fundingList = fundingService.getFundingList(fundingCriteria);
-        log.info("fundingList = {}", fundingList);
-        return new ResponseEntity<>(fundingList, HttpStatus.OK);
+        int fundingCount = fundingService.getFundingTotalCount(fundingCriteria);
+        Map<String, Object> map = new HashMap<>();
+
+        map.put("fundingList", fundingList);
+        map.put("fundingCount", fundingCount);
+
+        return new ResponseEntity<>(map, HttpStatus.OK);
     }
 
     @PostMapping("/funding/{fid}/promote")
@@ -51,9 +58,16 @@ public class AdminApi {
     }
 
     @GetMapping("/review")
-    public ResponseEntity<List<ReviewVO>> getAllReviewList(){
-        List<ReviewVO> reviewList = adminService.getAllReviewList();
-        return new ResponseEntity<>(reviewList, HttpStatus.OK);
+    public ResponseEntity<?> getAllReviewList(
+            @RequestParam(defaultValue = "0")int page, @RequestParam(defaultValue = "3")int size){
+        List<ReviewVO> reviewList = adminService.getAllReviewList(page,size);
+        int reviewCount = adminService.getReviewCount();
+
+        Map<String, Object> map = new HashMap<>();
+        map.put("reviewList", reviewList);
+        map.put("reviewCount", reviewCount);
+
+        return new ResponseEntity<>(map, HttpStatus.OK);
     }
 
     @PostMapping("/review/delete")

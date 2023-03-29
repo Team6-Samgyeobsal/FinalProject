@@ -185,4 +185,15 @@
         (select count(fid) rscount from review where fid=#{fid} and rtype='STORE')
     </select>
 
+    <select id="getFundingTotalCount" resultType="int">
+        select count(*)
+        from funding f
+        inner join competition c on (f.cid = c.cid and f.tid = c.tid)
+        where fstatus = 'FUNDING'
+          and sysdate between c.cfunding_start_date and c.cfunding_end_date
+          <if test="criteria.tid != null">
+              and f.tid = #{criteria.tid}
+          </if>
+    </select>
+
 </mapper>

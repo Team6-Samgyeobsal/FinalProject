@@ -32,7 +32,7 @@ public class AdminController {
     }
 
     @GetMapping("/document/{fid}/preview")
-    public String fundingProview(Model model, @PathVariable("fid") String fid) {
+    public String fundingPreview(Model model, @PathVariable("fid") String fid) {
         FundingDetailVO detail = fundingService.getFundingDetail(fid, "PARTICIPATE");
         log.info("detail = {}", detail);
 

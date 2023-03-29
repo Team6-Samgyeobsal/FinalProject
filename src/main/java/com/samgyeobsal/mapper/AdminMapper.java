@@ -13,7 +13,7 @@ public interface AdminMapper {
 
     int updateDocumentStatus(UpdateDocumentDTO updateDocument);
 
-    List<ReviewVO> getAllReviewList();
+    List<ReviewVO> getAllReviewList(int page, int size);
 
     int deleteReview(DeleteReviewDTO reviewDTO);
 
@@ -24,4 +24,6 @@ public interface AdminMapper {
     List<CategorySale> getRecentCategorySaleListByHyundai(String tid);
 
     void updateFundingStatus(String fid, String fstatus);
+
+    int getReviewCount();
 }

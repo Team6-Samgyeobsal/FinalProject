@@ -43,4 +43,10 @@ public class FundingServiceImpl implements FundingService{
     public ReviewCountVO reviewCount (String fid){
         return fundingMapper.reviewCount(fid);
     }
+
+    @Override
+    public int getFundingTotalCount(FundingCriteria fundingCriteria) {
+        return fundingMapper.getFundingTotalCount(fundingCriteria);
+    }
+
 }

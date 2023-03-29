@@ -31,7 +31,7 @@ public class FundingCriteria {
             case "더현대 광주" :
                 return "3";
             default:
-                return "";
+                return null;
         }
     }
 }

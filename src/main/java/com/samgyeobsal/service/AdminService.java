@@ -11,7 +11,7 @@ public interface AdminService {
 
     void updateDocumentStatus(UpdateDocumentDTO document);
 
-    List<ReviewVO> getAllReviewList();
+    List<ReviewVO> getAllReviewList(int page, int size);
 
     void deleteReview(DeleteReviewDTO reviewDTO);
 
@@ -22,4 +22,6 @@ public interface AdminService {
     List<CategorySale> getRecentCategorySaleListByHyundai(String tid);
 
     void promoteFundingToStore(String fid);
+
+    int getReviewCount();
 }

@@ -67,4 +67,13 @@ public class FundingMapperTest {
         Assertions.assertEquals(product.getFpid(), productId);
     }
 
+    @Test
+    void getFundingTotalCount(){
+        FundingCriteria criteria = new FundingCriteria();
+        criteria.setPlace("더현대 서울");
+        int fundingTotalCount = fundingMapper.getFundingTotalCount(criteria);
+        log.info("fundingCount = {}", fundingTotalCount);
+
+    }
+
 }

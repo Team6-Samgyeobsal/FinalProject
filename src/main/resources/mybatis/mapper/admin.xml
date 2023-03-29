@@ -24,6 +24,7 @@
         select rscore, rtype, rimg_url, memail, fid, rdate, rcontent
         from review
         order by rdate desc
+        OFFSET #{page} * #{size} ROWS FETCH NEXT #{size} ROWS ONLY
     </select>
 
     <delete id="deleteReview">
@@ -36,7 +37,7 @@
         select t.tid, nvl(t.tname, '더현대 전체') tname, nvl(sum(o.oprice),0) totalprice
         from competition c
                  inner join the_hyundai t on (c.tid = t.tid)
-                 inner join funding f on (f.cid = c.cid and f.tid = c.tid)
+                 left join funding f on (f.cid = c.cid and f.tid = c.tid)
                  left join funding_product fp on (fp.fid = f.fid)
                  left join product_option po on (po.fpid = fp.fpid)
                  left join order_item oi on (oi.poid = po.poid)
@@ -103,4 +104,9 @@
             fdate = sysdate
         where fid = #{fid}
     </update>
+
+    <select id="getReviewCount" resultType="int">
+        select count(*)
+        from review
+    </select>
 </mapper>
