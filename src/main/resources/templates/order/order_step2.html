@@ -1160,7 +1160,7 @@
 
 
         <script th:inline="javascript">
-
+          //규석 - 약관동의 보기
           $('#case1').click(function (){
             $('.black-bg-wrap').show();
             $('#personalInfoAgreementForThirdPartiesLypop').show();
@@ -1177,11 +1177,11 @@
 
           let couponList = [[${userCoupon}]];
           $(document).ready(function (){
+            // 규석 - 약관 동의에서 전체 체크 설정
               $("#acceptAllCheckBox").click(function() {
                 if($("#acceptAllCheckBox").is(":checked")) $("input[name=check1]").prop("checked", true);
                 else $("input[name=check1]").prop("checked", false);
               });
-
               $("input[name=check1]").click(function() {
                 let total = $("input[name=check1]").length;
                 let checked = $("input[name=check1]:checked").length;
@@ -1189,7 +1189,7 @@
                 else $("#acceptAllCheckBox").prop("checked", true);
               });
 
-
+            //규석 - 모두 사용시 클릭 시 값 입력 && 체크해제 시 값 ''으로(빈 값이면 0으로 계산)
             let maxMileage =[[${#authentication.principal.member.mmileage}]]
                 $('#ckptAll').click(function (){
 
@@ -1203,10 +1203,11 @@
                   if($('#pointInput').val()==null||$('#pointInput').val()==''){
                     $('#mileageCharge').text(0);
                   }else {
-                    $('#mileageCharge').text($('#pointInput').val());
+                    $('#mileageCharge').text($('#pointInput').val().toLocaleString('ko-KR'));
                   }
                   onChangeCoupon();
                 })
+                //규석 - 벗어난 값 입력 시 showAlert창 띄워줌
                 $(document).on('propertychange input', '#pointInput', function () {
 
                   if ($(this).val() > maxMileage) {
@@ -1221,7 +1222,7 @@
                   if($('#pointInput').val()==null||$('#pointInput').val()==''){
                     $('#mileageCharge').text(0);
                   }else {
-                    $('#mileageCharge').text($(this).val());
+                    $('#mileageCharge').text($(this).val().toLocaleString('ko-KR'));
                   }
                   onChangeCoupon();
                 });
@@ -1232,11 +1233,12 @@
             if(Boolean(couponList[0]))  document.getElementById("nullCoupon").setAttribute("hidden", "true");
             $('#couponCharge').text("0");
             // $('.finalTotalPrice').text(finalPrice);
+            //규석 - 동의 체크시 결제
             $('#tossPay').click(function (){
               if($("#acceptAllCheckBox").is(":checked")){
                 paymentToss();
               }else {
-                showAlert('개인정보 제3자 제공 동의를 하셔야 결제예약이 가능합니다.');
+                showAlert('개인정보 제3자 제공 동의를 하셔야 결제가 가능합니다.');
               }
 
             })
@@ -1295,11 +1297,12 @@
             let selectBox = document.getElementById("couponSelect");
             // selectBox의 value(선택한 옵션의 cId)
             let selectValue = selectBox.options[selectBox.selectedIndex].value;
-
+            //규석 - 입력한 마일리지
             let mileage=$('#pointInput').val();
             console.log(mileage);
 
             // if문에서 selectBox의 value가 '선택 == -1'인지 확인
+            // 규석 - 계산에서 마일리지도 포함하여 계산
             if(Number(selectValue) != -1) {
               let selectObject = couponList.find(item => item.eid === Number(selectValue));
               let totalVal = selectObject.etype === "PERCENTAGE" ? (finalPrice - finalPrice*(selectObject.ediscount)/100-mileage) : (finalPrice - selectObject.ediscount-mileage);
@@ -1316,17 +1319,19 @@
               // 쿠폰 차감금액 설정
               //let discountType = selectBox.options[selectBox.selectedIndex].getAttribute("data-etype");
               //let discountValue = selectBox.options[selectBox.selectedIndex].getAttribute("data-ediscount");
-              $('#couponCharge').text(discountValue);
+              //규석 - 숫자에 , 추가
+              $('#couponCharge').text(discountValue.toLocaleString('ko-KR'));
 
               // 최종 결제금액
               $('#finalTotalPrice').text(totalVal.toLocaleString('ko-KR'));
               console.log($('#finalTotalPrice').text());
             } else {
               order['cpid'] = ""
-              order['totalPrice'] = finalPrice;
-              amount = finalPrice;
+
+              let totalVal=finalPrice-mileage;
+              amount=totalVal;
               $('#couponCharge').text("0");
-              $('#finalTotalPrice').text((finalPrice-mileage).toLocaleString('ko-KR'));
+              $('#finalTotalPrice').text((totalVal).toLocaleString('ko-KR'));
             }
           }
         </script>
