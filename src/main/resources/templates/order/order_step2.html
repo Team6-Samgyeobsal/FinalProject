@@ -1329,6 +1329,7 @@
               order['cpid'] = ""
 
               let totalVal=finalPrice-mileage;
+              order['totalPrice'] = totalVal;
               amount=totalVal;
               $('#couponCharge').text("0");
               $('#finalTotalPrice').text((totalVal).toLocaleString('ko-KR'));
