@@ -46,4 +46,14 @@
         from oauth2_token
         where memail = #{memail}
     </select>
+
+    <delete id="deleteRefreshToken">
+        delete jwt_refresh
+        where memail = #{memail}
+    </delete>
+
+    <delete id="deleteOAuth2Token">
+        delete oauth2_token
+        where memail = #{memail}
+    </delete>
 </mapper>

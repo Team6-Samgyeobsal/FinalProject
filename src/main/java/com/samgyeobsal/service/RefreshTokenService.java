@@ -13,4 +13,6 @@ public interface RefreshTokenService {
 
     OAuth2TokenVO getOAuth2TokenByEmail(String memail);
 
+    void deleteTokens(String memail);
+
 }
