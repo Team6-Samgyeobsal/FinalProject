@@ -367,12 +367,20 @@
   <script>
     $(document).ready(function(){
       $('.logoutBtn').click(function(e){
-        var now = new Date();
-        now.setHours(now.getHours() - 1); // 1시간 전으로 설정
-        document.cookie = "accessToken=; expires=" + now.toUTCString() + "; path=/;";
-        document.cookie = "refreshToken=; expires=" + now.toUTCString() + "; path=/;";
-        location.href = '/web/funding';
-        console.log('쿠키 삭제');
+        $.ajax({
+          url : '/api/account/logout',
+          type : 'post',
+          success : function(data){
+            console.log(data);
+            location.href = '/web/funding';
+          }
+        })
+        // var now = new Date();
+        // now.setHours(now.getHours() - 1); // 1시간 전으로 설정
+        // document.cookie = "accessToken=; expires=" + now.toUTCString() + "; path=/;";
+        // document.cookie = "refreshToken=; expires=" + now.toUTCString() + "; path=/;";
+        // location.href = '/web/funding';
+        // console.log('쿠키 삭제');
       })
     })
     $(document).on('click','.MyWadizUserTypeSwitch_button__BYDWf',function(){

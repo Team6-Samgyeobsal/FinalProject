@@ -16,13 +16,34 @@
     </select>
 
     <insert id="insertRefToken">
-        insert into jwt_refresh (memail, ref_token)
-        values (#{ref_token.memail}, #{ref_token.ref_token})
+        MERGE INTO jwt_refresh
+        USING DUAL
+        ON (memail = #{ref_token.memail})
+        WHEN NOT MATCHED THEN
+            INSERT (memail, ref_token)
+            VALUES (#{ref_token.memail}, #{ref_token.ref_token})
+        WHEN MATCHED THEN
+            UPDATE
+            SET ref_token = #{ref_token.ref_token}
+            WHERE memail = #{ref_token.memail}
     </insert>
 
-    <update id="updateRefToken">
-        update jwt_refresh
-        set ref_token = #{ref_token.ref_token}
-        where memail = #{ref_token.memail}
-    </update>
+    <insert id="insertOAuth2Token">
+        MERGE INTO oauth2_token
+        USING DUAL
+        ON (memail = #{memail})
+        WHEN NOT MATCHED THEN
+            INSERT (memail, oauth2_token)
+            VALUES (#{memail}, #{oauth2_token})
+        WHEN MATCHED THEN
+            UPDATE
+            SET oauth2_token = #{oauth2_token}
+            WHERE memail = #{memail}
+    </insert>
+
+    <select id="getOAuth2TokenByEmail" resultType="oauth2Token">
+        select memail, oauth2_token
+        from oauth2_token
+        where memail = #{memail}
+    </select>
 </mapper>
