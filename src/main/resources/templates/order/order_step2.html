@@ -1248,6 +1248,7 @@
           let finalPrice=[[${order.totalOriginPrice}]];
 
           let user = [[${#authentication.principal.member}]];
+          let mMileage = [[${#authentication.principal.member.mmileage}]];
 
           let orderList = [[${order.orderList}]];
 
@@ -1268,7 +1269,7 @@
           order['ophone'] = phone;
           order['pmcode'] = 1 // 토스는 1
           order['cpid'] = "" // 나중에 쿠폰하게 된다면
-          order['oused_mileage'] = 0 // 나중에 마일리지 한다면
+          order['oused_mileage'] = ""// 나중에 마일리지 한다면
           // 쿠폰, 마일리지 적용된 가격
           order['totalPrice'] = order['totalOriginPrice'];
           console.log("order =", order);
@@ -1286,9 +1287,6 @@
               successUrl: 'http://localhost/web/order/success?order=' + encodeURIComponent(JSON.stringify(order)), //성공 url 성공 url에서는 승인 api 한번 호출하고 마이페이지로 넘어가도록 해야함
               failUrl: 'http://localhost:80/fail',
               validHours: 24
-              // cashReceipt: {
-              //   type: '소득공제',
-              // },
             })
           }
 
@@ -1317,10 +1315,14 @@
               amount = totalVal;
 
               // 쿠폰 차감금액 설정
+
               //let discountType = selectBox.options[selectBox.selectedIndex].getAttribute("data-etype");
               //let discountValue = selectBox.options[selectBox.selectedIndex].getAttribute("data-ediscount");
               //규석 - 숫자에 , 추가
               $('#couponCharge').text(discountValue.toLocaleString('ko-KR'));
+
+              $('#couponCharge').text(discountValue);
+
 
               // 최종 결제금액
               $('#finalTotalPrice').text(totalVal.toLocaleString('ko-KR'));
