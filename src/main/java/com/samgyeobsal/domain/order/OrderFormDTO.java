@@ -32,6 +32,7 @@ public class OrderFormDTO {
 
     private String cpid;
 
+
     // TODO : order table column 채우기
 
     public OrderFormDTO(List<OrderListVO> orderList, OrderFtitleVO orderFtitle){

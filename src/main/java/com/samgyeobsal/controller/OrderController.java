@@ -79,17 +79,27 @@ public class OrderController {
         OrderStep1DTO orderStep1DTO = (OrderStep1DTO) session.getAttribute("order");
         log.info("orderStep2Page orderStep1DTO = {}", orderStep1DTO);
         model.addAttribute("userCoupon", eventMapper.findUserCouponList(account.getMember().getMemail())); // 쿠폰 적용
-        model.addAttribute("mileage", eventMapper.findUserMileage(account.getMember().getMemail()));
+        model.addAttribute("mileage", eventMapper.findUserMileage(account.getMember().getMemail())); // 마일리지
         model.addAttribute("order", orderService.getOrderList(orderStep1DTO,fundingId));
         model.addAttribute("tossKey", tossKey);
         return "order/order_step2";
     }
 
+    // 쿠폰 찾기
     @GetMapping("/coupon")
     public Event checkCouponName(@RequestParam("couponname") String couponName){
         Event event = eventMapper.findByName(couponName);
-        log.info("쿠폰 :" + event);
+        log.info(">>>>> 쿠폰 :" + event);
         return event;
+    }
+
+    // 마일리지 찾기
+    @GetMapping
+    public Event checkMileage(@RequestParam("mmileage") Integer mMileage){
+        Event event = eventMapper.findMileage(mMileage);
+        log.info(">>>>> 마일리지 :" + event);
+        return event;
+
     }
 
     @GetMapping("/success")

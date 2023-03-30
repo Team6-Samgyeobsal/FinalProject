@@ -5,6 +5,7 @@ import com.samgyeobsal.dto.response.UserCouponList;
 import com.samgyeobsal.dto.response.UserMileage;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.security.core.parameters.P;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -17,15 +18,22 @@ import java.util.List;
  * <pre>
  * 수정일        	수정자       			수정내용
  * ----------  --------    ---------------------------
- * 2023.03.26	최태승		최초 생성
+ * 2023.03.26	최태승        최초 생성
+ * 2023.03.30   최태승        쿠폰, 마일리지 적용
  * </pre>
  */
 @Mapper
 public interface EventMapper {
     Event findByName(String eCouponName);
+    Event findMileage(Integer mMileage);
 
     List<UserCouponList> findUserCouponList(@Param("mEmail") String mEmail);
     List<UserMileage> findUserMileage(@Param("mEmail") String mEmail);
+
+    int updateUsedMileage(@Param("usedMl") Integer usedMl, @Param("oid") String oid);
+
+    int updateUserMileage(UserMileage userMileage);
+
 
     int updateUseDate(@Param("useDt") LocalDateTime useDt, @Param("cpId") String cpId);
 

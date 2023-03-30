@@ -22,12 +22,19 @@
 
     <!-- 유저가 갖고 있는 마일리지 가져오기-->
     <select id="findUserMileage" resultType="com.samgyeobsal.dto.response.UserMileage">
-        select MEMAIL, MMILEAGE from MEMBER;
+        select MEMAIL, MMILEAGE from MEMBER
     </select>
 
     <update id="updateUseDate">
         update COUPON_DETAIL set CPUSEDATE = #{useDt} where CPID = #{cpId}
     </update>
 
+    <update id="updateUsedMileage">
+        update ORDERS set OUSED_MILEAGE = #{usedMl} where OID = #{oid}
+    </update>
+
+    <update id="updateUserMileage">
+        update MEMBER set MMILEAGE =MMILEAGE-#{mMileage} + (#{oprice}*5/100) where MEMAIL = #{mEmail}
+    </update>
 
 </mapper>
