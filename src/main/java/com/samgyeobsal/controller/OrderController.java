@@ -79,6 +79,7 @@ public class OrderController {
         OrderStep1DTO orderStep1DTO = (OrderStep1DTO) session.getAttribute("order");
         log.info("orderStep2Page orderStep1DTO = {}", orderStep1DTO);
         model.addAttribute("userCoupon", eventMapper.findUserCouponList(account.getMember().getMemail())); // 쿠폰 적용
+        model.addAttribute("mileage", eventMapper.findUserMileage(account.getMember().getMemail()));
         model.addAttribute("order", orderService.getOrderList(orderStep1DTO,fundingId));
         model.addAttribute("tossKey", tossKey);
         return "order/order_step2";
@@ -105,10 +106,6 @@ public class OrderController {
         String email = account.getMember().getMemail();
         if (sendTossConfirm(paymentKey, orderId, amount)) {
             orderService.saveOrder(orderFormDTO, email);
-            // 쿠폰
-            if(orderFormDTO.getCpid() != null && !orderFormDTO.getCpid().equals("")){
-                eventMapper.updateUseDate(LocalDateTime.now(), orderFormDTO.getCpid());
-            }
         }else{
             return "error/error";
         }

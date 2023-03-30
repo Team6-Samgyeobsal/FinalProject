@@ -2,6 +2,7 @@ package com.samgyeobsal.mapper;
 
 import com.samgyeobsal.domain.event.Event;
 import com.samgyeobsal.dto.response.UserCouponList;
+import com.samgyeobsal.dto.response.UserMileage;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -24,6 +25,7 @@ public interface EventMapper {
     Event findByName(String eCouponName);
 
     List<UserCouponList> findUserCouponList(@Param("mEmail") String mEmail);
+    List<UserMileage> findUserMileage(@Param("mEmail") String mEmail);
 
     int updateUseDate(@Param("useDt") LocalDateTime useDt, @Param("cpId") String cpId);
 
