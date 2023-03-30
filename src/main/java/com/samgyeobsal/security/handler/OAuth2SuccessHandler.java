@@ -36,9 +36,14 @@ public class OAuth2SuccessHandler extends SimpleUrlAuthenticationSuccessHandler 
         String accessToken = jwtTokenProvider.createAccessToken(account.getMember().getMemail());
         String refreshToken = jwtTokenProvider.createRefreshToken(account.getMember().getMemail());
 
-        Cookie acsCookie = new Cookie("accessToken", accessToken);
-        acsCookie.setPath("/");
-        response.addCookie(acsCookie);
+        log.info("onAuthenticationSuccess accessToken = {}", accessToken);
+
+        // 헤더에 토큰 설정
+        response.setHeader("Authorization", "Bearer " + accessToken);
+
+//        Cookie acsCookie = new Cookie("accessToken", accessToken);
+//        acsCookie.setPath("/");
+//        response.addCookie(acsCookie);
 
         Cookie refCookie = new Cookie("refreshToken", refreshToken);
         refCookie.setPath("/");

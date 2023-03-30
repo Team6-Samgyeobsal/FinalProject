@@ -82,14 +82,14 @@ public class CommonApi {
 
     @GetMapping("/displayImg")
     public ResponseEntity<byte[]> displayImg(@RequestParam("imgName") String imgName) {
-        log.info("imgName = {}", imgName);
+//        log.info("imgName = {}", imgName);
 
         ResponseEntity<byte[]> result = null;
         try {
             String srcFileName = URLDecoder.decode(imgName, "UTF-8");
-            log.info("srcFileName = {}", srcFileName);
+//            log.info("srcFileName = {}", srcFileName);
             File file = new File(uploadPath + File.separator + srcFileName);
-            log.info("file = {}", file);
+//            log.info("file = {}", file);
             HttpHeaders headers = new HttpHeaders();
             headers.add("Content-Type", Files.probeContentType(file.toPath()));
             result = new ResponseEntity<>(FileCopyUtils.copyToByteArray(file), headers, HttpStatus.OK);

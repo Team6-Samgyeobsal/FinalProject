@@ -88,13 +88,13 @@ public class JwtTokenProvider implements InitializingBean {
     public JwtStatus validateToken(String token){
         try{
             Jwts.parserBuilder().setSigningKey(key).build().parseClaimsJws(token);
-            log.info("token access = {}",token);
+//            log.info("token access = {}",token);
             return JwtStatus.ACCESS;
         }catch (ExpiredJwtException e){
             log.info("token expired = {}", token);
             return JwtStatus.EXPIRED;
         }catch (JwtException | IllegalArgumentException e){
-            log.info("jwtException", e);
+//            log.info("jwtException", e);
         }
         return JwtStatus.DENIED;
     }

@@ -1,5 +1,6 @@
 package com.samgyeobsal.mapper;
 
+import com.samgyeobsal.domain.member.OAuth2TokenVO;
 import com.samgyeobsal.domain.member.RefreshTokenVO;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -7,10 +8,11 @@ import org.apache.ibatis.annotations.Param;
 @Mapper
 public interface RefreshTokenMapper {
 
-
     void insertRefToken(@Param("ref_token") RefreshTokenVO refToken);
     RefreshTokenVO findRefTokenByToken(String token);
     RefreshTokenVO findRefTokenByEmail(String email);
 
-    void updateRefToken(@Param("ref_token") RefreshTokenVO refToken);
+    int insertOAuth2Token(OAuth2TokenVO token);
+
+    OAuth2TokenVO getOAuth2TokenByEmail(String memail);
 }
