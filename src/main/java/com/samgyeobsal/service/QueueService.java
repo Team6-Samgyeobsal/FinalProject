@@ -1,13 +1,10 @@
-package com.samgyeobsal.mapper;
+package com.samgyeobsal.service;
 
 import com.samgyeobsal.domain.queue.QueueVO;
-import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
 
-@Mapper
-public interface QueueMapper {
+public interface QueueService {
 
     List<QueueVO> getQueueList(String fid);
-
 }
