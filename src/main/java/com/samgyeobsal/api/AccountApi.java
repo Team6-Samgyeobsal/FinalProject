@@ -2,7 +2,9 @@ package com.samgyeobsal.api;
 
 import com.samgyeobsal.domain.member.LoginDTO;
 import com.samgyeobsal.domain.member.MemberVO;
+import com.samgyeobsal.domain.member.OAuth2TokenVO;
 import com.samgyeobsal.domain.member.RefreshTokenVO;
+import com.samgyeobsal.security.domain.Account;
 import com.samgyeobsal.security.provider.JwtTokenProvider;
 import com.samgyeobsal.security.service.FormUserDetailService;
 import com.samgyeobsal.service.MemberService;
@@ -10,13 +12,17 @@ import com.samgyeobsal.service.RefreshTokenService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -41,9 +47,9 @@ public class AccountApi {
     @PostMapping("/login")
     public ResponseEntity<?> login(
             @Validated  @RequestBody LoginDTO loginDTO,
-            BindingResult bindingResult) {
+            BindingResult bindingResult, HttpServletResponse response) {
         MemberVO member = memberService.login(loginDTO);
-        log.info(">>>>>>>>>>>member : {}",member);
+
         if(bindingResult.hasErrors())
             return new ResponseEntity<>(bindingResult.getAllErrors(), HttpStatus.BAD_REQUEST);
 
@@ -61,6 +67,70 @@ public class AccountApi {
         refreshTokenVO.setRef_token(refreshToken);
         refreshTokenService.insertRefreshToken(refreshTokenVO);
 
-        return new ResponseEntity<>(res, HttpStatus.OK);
+        // 헤더에 accessToken 설정
+        HttpHeaders headers = new HttpHeaders();
+        headers.setBearerAuth(accessToken);
+
+        Cookie acsCookie = new Cookie("accessToken", accessToken);
+        acsCookie.setPath("/");
+        response.addCookie(acsCookie);
+
+        Cookie refCookie = new Cookie("refreshToken", refreshToken);
+        acsCookie.setPath("/");
+        response.addCookie(refCookie);
+
+        return new ResponseEntity<>(res, headers, HttpStatus.OK);
+    }
+
+    @PostMapping("/logout")
+    public ResponseEntity<String> logout(
+            HttpServletRequest request, HttpServletResponse response,
+            @AuthenticationPrincipal Account account) {
+
+        log.info("accounes = {}", account);
+
+        // 현재 사용자의 쿠키 삭제
+        Cookie[] cookies = request.getCookies();
+        if (cookies != null) {
+            for (Cookie cookie : cookies) {
+                if (cookie.getName().equals("accessToken") || cookie.getName().equals("refreshToken")) {
+                    cookie.setValue("");
+                    cookie.setPath("/");
+                    cookie.setMaxAge(0);
+                    response.addCookie(cookie);
+                }
+            }
+        }
+
+        OAuth2TokenVO oAUth2Token = refreshTokenService.getOAuth2TokenByEmail(account.getMember().getMemail());
+        String provider = account.getMember().getMloginType();
+
+        log.info("logout provider = {}", provider);
+
+        if(oAUth2Token != null){
+
+            String accessToken = oAUth2Token.getOauth2_token();
+
+            RestTemplate restTemplate = new RestTemplate();
+            HttpHeaders headers = new HttpHeaders();
+            headers.setBearerAuth(accessToken);
+            HttpEntity<String> entity = new HttpEntity<>(null, headers);
+
+            if(provider.equals("kakao")){
+                log.info("kakao logout start");
+                ResponseEntity<String> res = restTemplate.exchange(
+                        "https://kapi.kakao.com/v1/user/logout", HttpMethod.POST, entity, String.class);
+                log.info("kakao logout : {}", res);
+            } else if (provider.equals("google")) {
+                log.info("google logout start");
+                // Google API 서버로 로그아웃 요청 보내기
+                ResponseEntity<String> res = restTemplate.exchange(
+                        "https://www.google.com/accounts/Logout", HttpMethod.POST, entity, String.class);
+                log.info("google logout = {}", res);
+
+            }
+        }
+
+        return new ResponseEntity<>("success", HttpStatus.OK);
     }
 }

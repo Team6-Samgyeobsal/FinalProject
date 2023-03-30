@@ -20,6 +20,10 @@ public class Account extends User implements OAuth2User {
 
     private Map<String, Object> OA2_attr;
 
+    private String accessToken;
+
+    private String provider;
+
     public Account(MemberVO member,
                    Collection<? extends GrantedAuthority> authorities) {
         super(member.getMemail(), member.getMpassword(), authorities);

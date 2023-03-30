@@ -28,4 +28,8 @@
         where memail = #{email}
     </select>
 
+    <insert id="insertOAUth2Token">
+        insert into oauth2_token
+    </insert>
+
 </mapper>
