@@ -2,12 +2,14 @@ package com.samgyeobsal.service;
 
 import com.samgyeobsal.domain.order.*;
 
+import com.samgyeobsal.mapper.EventMapper;
 import com.samgyeobsal.mapper.OrderMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -31,10 +33,15 @@ import java.util.Map;
 public class OrderServiceImpl implements OrderService {
 
     private final OrderMapper orderMapper;
+    private final EventMapper eventMapper;
 
     @Override
     @Transactional
     public String saveOrder(OrderFormDTO orderForm, String email) {
+
+        if(orderForm.getCpid() != null && !orderForm.getCpid().equals("")){
+            eventMapper.updateUseDate(LocalDateTime.now(), orderForm.getCpid());
+        }
 
         int row = orderMapper.insertOrder(orderForm, email);
         if(row == 0) throw new RuntimeException("saveOrder Error");
