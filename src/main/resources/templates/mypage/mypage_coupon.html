@@ -263,13 +263,13 @@
       })
 
     }
-    // $(window).scroll(function () {
-    //   if ($(window).scrollTop() + $(window).height() >= $(document).height()) {
-    //     console.log('다음 페이지');
-    //     page++
-    //     getCouponList(used,page);
-    //   }
-    // });
+    $(window).scroll(function () {
+      if ($(window).scrollTop() + $(window).height() >= $(document).height()-1) {
+        console.log('다음 페이지');
+        page++
+        getCouponList(used,page);
+      }
+    });
 
     $('.CouponHeader_link__1-ZCz ').click(function (){
       $('.CouponHeader_link__1-ZCz ').removeClass('CouponHeader_active__343sL');

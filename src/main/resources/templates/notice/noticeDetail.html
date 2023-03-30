@@ -3,6 +3,7 @@
   <title>
     [[${notice.ntitle}]]
   </title>
+
   <script src="https://code.jquery.com/jquery-3.6.3.js"
           integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
 
@@ -28,6 +29,12 @@
           rel="stylesheet"
           href="/import/css/main.42cef079.css"
   />
+  <script src="/js/confirm.js"></script>
+  <link
+          rel="stylesheet"
+          href="/import/css/payments.562cdee9.css"
+  />
+  <link rel="stylesheet" href="https://static.wadiz.kr/static/web/common.css?a5fa8553">
 </head>
 <body>
 <div id="page-container">
@@ -108,14 +115,19 @@
             }),
             success: function (data, status) {
               alert("발급되었습니다");
+              showConfirm("쿠폰이 발급되었습니다","마이페이지 - 쿠폰함으로 가시겠습니까?")
+
 
             },
             error: function (status, error) {
-              alert("실패");
+              showConfirm("쿠폰이 이미 발급되었습니다.","마이페이지 - 쿠폰함으로 가시겠습니까?")
             }
           })
 
         }
+        $(document).on('click','.checkConfirm',function (){
+          location.href='/web/mypage/coupon';
+        })
       })
     </script>
 </body>

@@ -3,10 +3,17 @@
 <head>
 
     <title>리워드 선택</title>
+
+
     <link
             rel="stylesheet"
             href="/import/css/main.42cef079.css"
     />
+   <link
+        rel="stylesheet"
+        href="/import/css/payments.562cdee9.css"
+    />
+    <script src="/js/toast.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.3.js"
             integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
 
@@ -32,12 +39,15 @@
     <link
             rel="stylesheet"
             href="/import/css/layout.css"/>
-    <script
-            type="text/javascript"
-            src="/import/js/vendor.js"></script>
-    <script
-            type="text/javascript"
-            src="/import/js/layout.js"></script>
+<!--    <script-->
+<!--            type="text/javascript"-->
+<!--            src="/import/js/vendor.js"></script>-->
+<!--    <script-->
+<!--            type="text/javascript"-->
+<!--            src="/import/js/layout.js"></script>-->
+<!--    <script-->
+<!--            type="text/javascript"-->
+<!--            src="/js/alert.js"></script>-->
 
 
     <meta name="wadiz-app-hidden-header" content="yes"/>
@@ -55,9 +65,10 @@
             rel="stylesheet"
             href="/import/css/reward-product.cfd21a1c.css"/>
 
-    <script
-            type="text/javascript"
-            src="/import/js/wCommon.js"></script>
+<!--    <script-->
+<!--            type="text/javascript"-->
+<!--            src="/import/js/wCommon.js"></script>-->
+
 
 </head>
 <body>
@@ -288,11 +299,11 @@
 
 </div>
 
-<div class="ToastContainer_container__3oKp3" style="display: none">
-    <div class="Toast_container__2HAXg Toast_show__3Bg04 Toast_warning__3vj31">
-        <div class="Toast_content__4BPXL Toast_warning__3vj31">이미 같은 옵션을 선택했습니다<br>옵션 수량을 추가해 주세요</div>
-    </div>
-</div>
+<!--<div class="ToastContainer_container__3oKp3" style="display: none">-->
+<!--    <div class="Toast_container__2HAXg Toast_show__3Bg04 Toast_warning__3vj31">-->
+<!--        <div class="Toast_content__4BPXL Toast_warning__3vj31">이미 같은 옵션을 선택했습니다<br>옵션 수량을 추가해 주세요</div>-->
+<!--    </div>-->
+<!--</div>-->
 <style>
     .ab-iam-root.v3 {
         z-index: 9999;
@@ -305,11 +316,11 @@
 
         const params = new URLSearchParams(window.location.search);
         const fpid = "fpid" + params.get('fpid');
-        //
+        //리워드 클릭시 체크박스 체크
         $('.RewardProductItem_container__1wZBW').each(function () {
             if ($(this).attr('id') === fpid) {
                 $(this).find('input[type="checkbox"]').prop('checked', true);
-                $(this).find('.RewardProductItem_option__3BtOP').show();
+                // $(this).find('.RewardProductItem_option__3BtOP').show();
             } else {
                 $(this).find('input[type="checkbox"]').prop('checked', false);
             }
@@ -424,9 +435,12 @@
                 $(this).closest('.RewardProductItem_option__3BtOP').siblings('ul').append(card);
 
             } else {
+
                 let str = "#poid" + poid;
                 let str1 = "#amount" + poid;
-                $('.ToastContainer_container__3oKp3').show();
+                //$('.ToastContainer_container__3oKp3').show();
+                console.log('이미 같은 옵션을 선택했습니다 \n옵션 수량을 추가해 주세요');
+                showToast("이미 같은 옵션을 선택했습니다 </br>옵션 수량을 추가해 주세요");
                 $(this).closest('.RewardProductItem_option__3BtOP').siblings('ul').find(str).css('border', '1px solid #f25555');
                 $(this).closest('.RewardProductItem_option__3BtOP').siblings('ul').find(str1).css({
                     'borderRight': '1px solid #f25555',
@@ -435,7 +449,7 @@
                 });
 
                 setTimeout(function () {
-                    $('.ToastContainer_container__3oKp3').hide();
+                    // $('.ToastContainer_container__3oKp3').hide();
                     $('.ProductQuantity_container__1_106').css('border', '1px solid #cdd3d8');
                     $('.amount').css({
                         'borderRight': '1px solid #cdd3d8',
@@ -544,24 +558,25 @@
 
 <form method="post" th:action="@{/web/order/{fid}/step1(fid=${products.orderFtitle.fid})}" id="order-step1">
 </form>
-<div class="DialogModal_dialogPortal__1rRI2" style="display: none">
-    <div class="DialogModal_dialogOverlay__3PgUV DialogModal_dialogOverlayAfterOpen__1fWcT">
-        <div class="DialogModal_dialogContent__3P4An DialogModal_dialogContentAfterOpen__EjXJ4" tabindex="-1"
-             role="dialog" aria-modal="true">
-            <div class="Dialog_dialogWrap__2x9kS">
-                <div class="Dialog_dialogBox__yCpT4">
-                    <div class="Dialog_dialogTextBox__Cxk45">
-                        <div class="Dialog_dialogMessage__TLIV9"><p>최소 1개 이상의 리워드를 선택해주세요.</p></div>
-                    </div>
-                    <div class="Dialog_dialogButtonArea__3x6Ry">
-                        <button type="button"
-                                class="Dialog_dialogButton__E0TnP Dialog_dialogButtonPrimary__3w6ow Dialog_dialogButtonReverse__1hgC5">
-                            <span>확인</span></button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+<!--<div class="DialogModal_dialogPortal__1rRI2" style="display: none">-->
+<!--    <div class="DialogModal_dialogOverlay__3PgUV DialogModal_dialogOverlayAfterOpen__1fWcT">-->
+<!--        <div class="DialogModal_dialogContent__3P4An DialogModal_dialogContentAfterOpen__EjXJ4" tabindex="-1"-->
+<!--             role="dialog" aria-modal="true">-->
+<!--            <div class="Dialog_dialogWrap__2x9kS">-->
+<!--                <div class="Dialog_dialogBox__yCpT4">-->
+<!--                    <div class="Dialog_dialogTextBox__Cxk45">-->
+<!--                        <div class="Dialog_dialogMessage__TLIV9"><p>최소 1개 이상의 리워드를 선택해주세요.</p></div>-->
+<!--                    </div>-->
+<!--                    <div class="Dialog_dialogButtonArea__3x6Ry">-->
+<!--                        <button type="button"-->
+<!--                                class="Dialog_dialogButton__E0TnP Dialog_dialogButtonPrimary__3w6ow Dialog_dialogButtonReverse__1hgC5">-->
+<!--                            <span>확인</span></button>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+
 </body>
 </html>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.samgyeobsal.mapper.QueueMapper">
+
+<select id="getQueueList" resultType="queue">
+    select distinct mname,q.qid,qdate,f.fid,fstore_name
+    from queue qu
+             join qr_code q on qu.qid=q.qid
+             join orders o on q.oid=o.oid
+             join member m on m.memail =o.memail
+             join order_item oi on oi.oid= o.oid
+             join product_option po on po.poid=oi.poid
+             join funding_product fp on fp.fpid=po.poid
+             join funding f on f.fid=fp.fid
+    WHERE f.FID=#{fid} AND QRUSED_DATE is NULL
+    order by qdate
+</select>
+
+
+</mapper>
