@@ -17,6 +17,6 @@
     <select id="isAlreadyExistReview" resultType="boolean">
         select decode(count(*),1,1,0)
         from review r
-        where r.rtype = #{rtype} and r.memail = #{memail}
+        where r.rtype = #{rtype} and r.memail = #{memail} and r.fid = #{fid}
     </select>
 </mapper>

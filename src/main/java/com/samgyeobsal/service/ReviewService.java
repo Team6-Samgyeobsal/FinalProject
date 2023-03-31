@@ -9,5 +9,5 @@ public interface ReviewService {
 
     void replyReview(ReplyReviewVO replyReviewVO);
 
-    boolean isAlreadyExistReview(String rtype, String memail);
+    boolean isAlreadyExistReview(String rtype, String memail,String fid);
 }

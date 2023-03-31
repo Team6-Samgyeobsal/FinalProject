@@ -22,7 +22,7 @@
 
     <!-- 유저가 갖고 있는 마일리지 가져오기-->
     <select id="findUserMileage" resultType="com.samgyeobsal.dto.response.UserMileage">
-        select MEMAIL, MMILEAGE from MEMBER;
+        select MEMAIL, MMILEAGE from MEMBER
     </select>
 
     <update id="updateUseDate">
