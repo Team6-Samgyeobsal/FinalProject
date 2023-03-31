@@ -90,8 +90,9 @@ public class OAuth2DetailsService extends DefaultOAuth2UserService {
         OAuth2TokenVO token = new OAuth2TokenVO();
         token.setMemail(email);
         token.setOauth2_token(accessToken.getTokenValue());
-            // TODO : 로그아웃 시 db 에서 토큰 가져오기
         refreshTokenService.insertOAuth2Token(token);
+
+        log.info("oauth2 accessToken = {}", accessToken.getTokenValue());
 
         return account;
     }

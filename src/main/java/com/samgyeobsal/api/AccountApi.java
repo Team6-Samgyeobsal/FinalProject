@@ -130,6 +130,7 @@ public class AccountApi {
 
             }
         }
+        refreshTokenService.deleteTokens(account.getMember().getMemail());
 
         return new ResponseEntity<>("success", HttpStatus.OK);
     }

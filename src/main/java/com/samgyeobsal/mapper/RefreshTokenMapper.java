@@ -15,4 +15,8 @@ public interface RefreshTokenMapper {
     int insertOAuth2Token(OAuth2TokenVO token);
 
     OAuth2TokenVO getOAuth2TokenByEmail(String memail);
+
+    void deleteRefreshToken(String memail);
+
+    void deleteOAuth2Token(String memail);
 }
