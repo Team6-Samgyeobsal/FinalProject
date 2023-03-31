@@ -1,0 +1,1074 @@
+<!DOCTYPE html>
+<html
+        lang="ko"
+        class="scroll-top scroll-apex"
+        translate="no"
+        style="--scrollbar-width: 17px"
+>
+<head>
+
+
+
+
+
+
+    <title>와디즈 펀딩</title>
+    <script src="https://code.jquery.com/jquery-3.6.3.js"
+            integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
+
+    <link rel="mask-icon" href="/resources/static/svg/wa.svg" color="#1d2129"/>
+    <link
+            rel="stylesheet"
+            href="/import/css/main.ab4e33bf.css"
+    />
+
+    <link
+            rel="stylesheet"
+            type="text/css"
+            href="/import/css/57.d40d6736.chunk.css"
+    />
+
+    <link
+            rel="stylesheet"
+            type="text/css"
+            href="/import/css/67.f2f565ca.chunk.css"
+    />
+
+    <link
+            rel="stylesheet"
+            href="/import/css/wui.css"
+    />
+    <link
+            rel="stylesheet"
+            href="/import/css/vendor.6b6b0127.chunk.css"
+    />
+    <link
+            rel="stylesheet"
+            href="/import/css/common.css"
+    />
+    <link
+            rel="stylesheet"
+            href="/import/css/layout.css"
+    />
+    <link
+            rel="stylesheet"
+            href="/import/css/reward-community.e0d531bd.chunk.css"
+    />
+
+
+
+
+    <link rel="stylesheet" href="/css/funding/product_detail.css">
+
+
+    <link
+            rel="stylesheet"
+            type="text/css"
+            href="/import/css/0.10c7bd2e.chunk.css"
+    />
+    <link
+            rel="stylesheet"
+            href="/import/css/main.42cef079.css"
+    />
+
+
+    <link
+            rel="stylesheet"
+            type="text/css"
+            href="/import/css/reward-story.255eba09.chunk.css"
+    />
+
+    <link
+            rel="stylesheet"
+            type="text/css"
+            href="/import/css/froala_editor.pkgd.min.css?20221122"
+    />
+    <link
+            rel="stylesheet"
+            type="text/css"
+            href="/import/css/froala_custom.css?v=20221122"
+    />
+    <style>
+        .CommunityCommentItem_replyContent__3UQ-7 {
+            background-color: #f2f4f6;
+        }
+    </style>
+
+
+</head>
+<body class="" style="overflow: auto">
+<div id="page-container">
+    <main id="main-app">
+        <div th:replace="/fragment/header__3X3Cg.html :: header"></div>
+        <div class="MainWrapper_content__GZkTa">
+            <div class="RewardDetailDesktop_container__2Yzds">
+                <div class="RewardDetailDesktop_contentWrapper__1Gcox">
+                    <div class="RewardDetailDesktop_content__2GNV4">
+                        <div class="RewardDetailDesktop_left__DOcT2">
+                            <div class="RewardImageSlider_container__1lf5X">
+                                <div class="RewardImageSlider_slickList__3saFa">
+                                    <div class="slick-slider slick-initialized" dir="ltr">
+                                        <button
+                                                type="button"
+                                                class="RewardImageSlider_slickArrow__1mkDY RewardImageSlider_slickPrev__2iYfc"
+                                        >
+                                            Previous
+                                        </button>
+                                        <div class="slick-list" style="height: 426px">
+                                            <div
+                                                    class="slick-track"
+                                                    style="
+                              width: 3355px;
+                              opacity: 1;
+                              transform: translate3d(0px, 0px, 0px);
+                            "
+                                            >
+
+                                                <div th:each="img : ${funding.imgs}"
+                                                     th:data-index="${imgStat.index}"
+                                                     class="slick-slide"
+                                                     tabindex="-1"
+                                                     aria-hidden="true"
+                                                     style="outline: none; width: 750px"
+                                                >
+                                                    <div>
+                                                        <div
+                                                                tabindex="-1"
+                                                                style="width: 100%; display: inline-block"
+                                                        >
+                                                            <div
+                                                                    class="RewardImageSlider_slickBackgroundImage__gyIH3"
+                                                                    th:style=" 'background-image: url('+${img.fiurl}+');'"
+                                                            ></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <button
+                                                type="button"
+                                                class="RewardImageSlider_slickArrow__1mkDY RewardImageSlider_slickNext__3fjhE"
+                                        >
+                                            Next
+                                        </button>
+                                    </div>
+                                </div>
+                                <span class="RewardImageSlider_slickIndex__2hJn5" id="slider-index">1/[[${#lists.size(funding.imgs)}]]</span>
+                            </div>
+
+                            <div class="Story_container__wZtYc">
+                                <div class="Story_header__1va5C">
+                                    <p>프로젝트 스토리</p>
+                                </div>
+                                <div class="Story_expandable__3C3Y7">
+                                    <div>
+                                        <div class="inner-contents fr-view">
+                                            [(${funding.fstory})]
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="Story_button__2p_77">
+                                    <button
+                                            data-ga-category="펀딩_상세"
+                                            data-ga-action="클릭"
+                                            data-ga-label="스토리_더보기"
+                                            class="Button_button__mRXZC Button_primary__1HJqX Button_lg__22YWj Button_endIcon__3J7oj Button_block__1LAUA Story_gaElement__iRgQJ"
+                                            type="button"
+                                            id="story"
+                                    >
+                        <span
+                        ><span class="Button_children__3HY2l" id="story1"
+                        >스토리 더보기</span
+                        ><svg
+                                viewBox="0 0 32 32"
+                                focusable="false"
+                                role="presentation"
+                                class="withIcon_icon__20lDO Button_icon__1JHRV"
+                                aria-hidden="true"
+                        >
+                            <path
+                                    d="M16 22.4L5.6 12l1.12-1.12L16 20.16l9.28-9.28L26.4 12 16 22.4z"
+                            ></path></svg></span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="RewardDetailDesktop_right__cgJ4-">
+                            <div class="RewardVerticalInfo_container__1SxW5">
+                                <div class="BaseInfo_container__1SXpL">
+                                    <div class="BaseInfo_category__noYA2"><span>[[${funding.tname}]]</span>
+
+                                    </div>
+                                    <div class="BaseInfo_bannerWrapper__2jmjf">
+                                        <div class="FundingTypeBadge_container__1UZDH"><span
+                                                class="FundingTypeBadge_funding__4BhpK">[[${funding.ctname}]]</span>
+                                        </div>
+                                        <a
+                                                class="PartnerBanner_container__2m0Mo"
+                                                href="/crowd/cosmax"
+                                        ><span class="PartnerBanner_terms__2-kMz"
+                                        >상호명</span
+                                        ><span class="PartnerBanner_desc__2mN1_"
+                                        >[[${funding.fstore_name}]]</span
+                                        >
+                                            <svg
+                                                    viewBox="0 0 40 40"
+                                                    focusable="false"
+                                                    role="presentation"
+                                                    class="withIcon_icon__20lDO"
+                                                    aria-hidden="true"
+                                            >
+                                                <path
+                                                        d="M28 20L15 33l-1.4-1.4L25.2 20 13.6 8.4 15 7l13 13z"
+                                                ></path>
+                                            </svg>
+                                        </a>
+                                    </div>
+                                    <p class="BaseInfo_title__3qvLN">
+                                        [[${funding.ftitle}]]
+                                    </p>
+                                    <p class="BaseInfo_description__1M3_1">
+                                        [[${funding.fsummary}]]
+                                    </p>
+                                    <div class="BaseInfo_rateWrapper__1C69h">
+                                        <div class="BaseInfo_rate__vZ7aw">
+                                            <div class="BaseInfo_infoWrapper__1GKex">
+                            <span class="BaseInfo_achivementRate__hcznC"
+                            >[[${#numbers.formatInteger(funding.totalemail, 1,
+                                                'COMMA')}]]</span
+                            ><span class="BaseInfo_successInfo__2Rmqm"
+                                            >명 참여</span
+                                            >
+                                            </div>
+                                            </div>
+                                        <div class="BaseInfo_rate__vZ7aw">
+                                            <p class="BaseInfo_totalBackedAmount__1R7OU">
+                                                [[${#numbers.formatInteger(funding.totalprice, 1,
+                                                'COMMA')}]]<span>원</span>
+                                            </p>
+                                            <span
+                                                    class="Badge_container__3ioDw Badge_visible__n2Hg1 BaseInfo_remainingDay__3wD-k"
+                                            ><span
+                                                    class="Badge_badge__2h6cT Badge_label__VC3QR Badge_md__nBr2- Badge_secondary__1o9ka Badge_tertiary__1ERKE"
+                                            >[[${funding.totalprice/100000}]]% 달성</span
+                                            ></span
+                                            >
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="CTA_container__2dA0x">
+                                    <div class="CTA_right__GmlJC">
+                                        <div class="CTA_buttonWrap__22Mf3">
+                                            <button
+                                                    class="Button_button__mRXZC Button_primary__1HJqX Button_contained__k9pMW Button_md__136bx Button_block__1LAUA CTA_button__UoUYx"
+                                                    type="button"
+                                                    style="border-color: #adb5bd; background-color: #adb5bd;"
+                                                    >
+                                            <span
+                                            ><span class="Button_children__3HY2l"
+                                            ><p>[[${funding.tname}]] 입점 중</p></span
+                                            ></span
+                                            >
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div
+                                        class="MakerInfo_content__1hGxi"
+                                        style="max-height: 0px; overflow: hidden"
+                                >
+                                    <section class="MakerInfoBody_container__3KjVn">
+                                        <div class="MakerInfoBody_fundingInfo__10eQc">
+                                            <div class="MakerInfoBody_info__13G9Y">
+                                                <div class="MakerInfoBody_iconStar__3UKRW">
+                                                    <span class="MakerInfoBody_star__3WkId"></span>
+                                                </div>
+                                                <span>만족도 5.0</span
+                                                ><span
+                                                    class="MakerInfoBody_satisfactionCount__3nJE3"
+                                            >(8개)</span
+                                            >
+                                                <div class="Tooltip_container__22DWo">
+                                                    <div class="Tooltip_symbol__2TdYH">
+                                                        <div style="display: none">
+                                                            <svg
+                                                                    viewBox="0 0 40 40"
+                                                                    focusable="false"
+                                                                    role="presentation"
+                                                                    class="withIcon_icon__20lDO Tooltip_tooltipActive__3cq1C"
+                                                                    aria-hidden="true"
+                                                            >
+                                                                <path
+                                                                        fill="none"
+                                                                        d="M0 0h40v40H0z"
+                                                                ></path>
+                                                                <path
+                                                                        d="M20 1a19 19 0 1 0 19 19A19.06 19.06 0 0 0 20 1zm0 29.5a1.8 1.8 0 1 1 1.8-1.79 1.8 1.8 0 0 1-1.8 1.75zm6-16.13a6.28 6.28 0 0 1-2.7 5.2l-.6.5c-1.7 1.7-1.7 2.4-1.7 4.3h-2a6.51 6.51 0 0 1 2.3-5.7L22 18a4.29 4.29 0 0 0 2-3.7 3.7 3.7 0 0 0-4-4 3.7 3.7 0 0 0-4 4h-2a5.7 5.7 0 0 1 6-6 5.7 5.7 0 0 1 6 6z"
+                                                                ></path>
+                                                            </svg>
+                                                        </div>
+                                                        <div style="display: block">
+                                                            <svg
+                                                                    viewBox="0 0 40 40"
+                                                                    focusable="false"
+                                                                    role="presentation"
+                                                                    class="withIcon_icon__20lDO Tooltip_tooltip__1Bv4X"
+                                                                    aria-hidden="true"
+                                                            >
+                                                                <path
+                                                                        fill="none"
+                                                                        d="M0 0h40v40H0z"
+                                                                ></path>
+                                                                <path
+                                                                        d="M20 39a19 19 0 1 1 19-19 19.06 19.06 0 0 1-19 19zm0-36a17 17 0 1 0 17 17A17 17 0 0 0 20 3z"
+                                                                ></path>
+                                                                <path
+                                                                        d="M24.34 10A5.75 5.75 0 0 0 20 8.33a5.7 5.7 0 0 0-6 6h2a3.7 3.7 0 0 1 4-4 3.7 3.7 0 0 1 4 4A4.29 4.29 0 0 1 22 18l-.7.6a6.51 6.51 0 0 0-2.3 5.7h2c0-1.9 0-2.6 1.7-4.3l.6-.5a6.28 6.28 0 0 0 2.7-5.2 5.73 5.73 0 0 0-1.66-4.3zM20 26.87a1.8 1.8 0 1 0 0 3.6 1.8 1.8 0 1 0 0-3.6z"
+                                                                ></path>
+                                                            </svg>
+                                                        </div>
+                                                    </div>
+                                                    <div class="Tooltip_messagebox__5O7c4">
+                                                        펀딩·프리오더·스토어 합산<br/>∙ 통계 업데이트
+                                                        주기: 10분~최대 1일<br/>∙ 통계 기준: 펀딩,
+                                                        프리오더, 스토어 프로젝트 합산
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="MakerInfoBody_info__13G9Y">
+                              <span
+                                      class="MakerInfoBody_iconPerson__1id85"
+                              ></span
+                              ><span>서포터 906명</span>
+                                            </div>
+                                        </div>
+                                        <div class="MakerInfoBody_contact__1YsZJ">
+                                            <div class="MakerInfoBody_item__EpnHe">
+                              <span class="MakerInfoBody_label__CrLNp"
+                              >이메일</span
+                              ><span class="MakerInfoBody_value__3-Vwv"
+                                            >cs@fromrier.com</span
+                                            >
+                                            </div>
+                                            <div class="MakerInfoBody_item__EpnHe">
+                              <span class="MakerInfoBody_label__CrLNp"
+                              >문의전화</span
+                              ><span class="MakerInfoBody_value__3-Vwv"
+                                            >07086721104</span
+                                            >
+                                            </div>
+                                            <div class="MakerInfoBody_item__EpnHe">
+                              <span class="MakerInfoBody_label__CrLNp"
+                              >홈페이지</span
+                              ><span class="MakerInfoBody_value__3-Vwv"
+                                            >https://www.fromrier.com/</span
+                                            >
+                                            </div>
+                                            <div class="MakerInfoBody_item__EpnHe">
+                              <span class="MakerInfoBody_label__CrLNp"
+                              >SNS</span
+                              >
+                                                <div class="MakerInfoBody_sns__Am-DC">
+                                                    <a
+                                                            href="https://www.instagram.com/fromrier.official"
+                                                            target="_blank"
+                                                            rel="noreferrer noopener"
+                                                            class="MakerInfoBody_iconWrap__2xrGb"
+                                                    ><span
+                                                            class="MakerInfoBody_instargram__3fVh2"
+                                                    ></span
+                                                    ></a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="MakerInfoBody_inquery__1TqsV">
+                                            <button
+                                                    class="Button_button__mRXZC Button_secondary__20rLg Button_md__136bx Button_startIcon__SRdP5 Button_block__1LAUA MakerInfoBody_button__3Rs0U"
+                                                    type="button"
+                                            >
+                              <span
+                              ><svg
+                                      viewBox="0 0 40 40"
+                                      focusable="false"
+                                      role="presentation"
+                                      class="withIcon_icon__20lDO Button_icon__1JHRV"
+                                      aria-hidden="true"
+                              >
+                                  <path fill="none" d="M0 0h40v40H0z"></path>
+                                  <path
+                                          d="M10.62 38.33V29H2.87V1.67h34.26v27.79H18.92zM5 27h7.7v6.11l5.3-5.73h17V3.75H5z"
+                                  ></path>
+                                  <path
+                                          d="M12.84 13.28a1.87 1.87 0 1 0 0 3.74 1.87 1.87 0 1 0 0-3.74zm7.16 0a1.87 1.87 0 1 0 0 3.74 1.87 1.87 0 1 0 0-3.74zm7.16 0a1.87 1.87 0 1 0 0 3.74 1.87 1.87 0 1 0 0-3.74z"
+                                  ></path></svg><span class="Button_children__3HY2l"
+                              >문의하기</span
+                              ></span
+                              >
+                                            </button>
+                                        </div>
+                                    </section>
+                                </div>
+                                </section>
+
+                                <div class="RewardVerticalInfo_rewardsWrap__3tfnX">
+                                    <div class="Rewards_container__163tP">
+                                        <div class="Rewards_title__2ZZf3">
+                                            <p>리워드 선택</p>
+                                            <div class="Rewards_period__3XgCS">
+                                                <p>진행기간</p>
+                                                <p>[[${#dates.format(funding.fdate, 'yyyy.MM.dd')}]] ~
+                                                    [[${#dates.format(funding.end_date, 'yyyy.MM.dd')}]]</p>
+                                            </div>
+                                        </div>
+                                        <div class="Rewards_list__X7K46">
+
+                                            <div
+                                                    th:each="product:${funding.products}"
+                                                    class="Reward_container__qyq1y Reward_disabled__1jxB-"
+                                                    th:data-fpid="${product.fpid}"
+                                            >
+                                                <div class="Reward_header__166NH">
+                                                    <div class="Reward_headerLeft__C4mAW">
+                                                        <div class="Reward_amount__1EXUE">
+                                                            [[${#numbers.formatInteger(product.fpprice, 3,
+                                                            'COMMA')}]]원<span
+                                                                class="Badge_container__3ioDw Badge_visible__n2Hg1 Reward_remainQty__3sU0Z"
+                                                        ><span
+                                                                class="Badge_badge__2h6cT Badge_label__VC3QR Badge_md__nBr2- Badge_primary__2x__i Badge_tertiary__1ERKE"
+                                                        >[[${#numbers.formatInteger(product.fporigin_price-product.fpprice, 3, 'COMMA')}]]원 할인</span
+                                                        ></span
+                                                        >
+                                                        </div>
+                                                        <p class="Reward_name__21dvW">
+                                                            [[${product.fptitle}]]
+
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <div class="Reward_divider__1vIOJ"></div>
+                                                <div class="Reward_content__2ZZEa">
+                                                    <div class="Reward_innerContent__3J75P">
+                                                        [[${product.fpcontent}]]
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="CTA_container__2dA0x RewardVerticalInfo_bottomCTA__2wlrS RewardVerticalInfo_visible__1YML8">
+                                        <div class="CTA_right__GmlJC">
+                                            <div class="CTA_buttonWrap__22Mf3">
+                                                <button class="Button_button__mRXZC Button_primary__1HJqX Button_contained__k9pMW Button_md__136bx Button_block__1LAUA CTA_button__UoUYx"
+                                                        type="button"
+                                                        style="border-color: #adb5bd; background-color: #adb5bd;"
+                                                        >
+                                                    <span><span
+                                                            class="Button_children__3HY2l"><p>[[${funding.tname}]] 입점 중</p></span></span>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="DetailContent_container__oYgFG">
+                <nav class="DetailTab_container__1NVYg">
+
+                </nav>
+                <div class="storeTabContentsWrapper">
+                    <div class="storeTabContents">
+                        <div class="DetailSatisfaction_container__t8Ax_">
+                            <div class="CommentTitle_container__1Zdwo"><span
+                                    class="CommentTitle_title__2RXrf">만족도</span></div>
+                            <div class="DetailSatisfaction_summaryWrap__1ieLY">
+                                <div class="SatisfactionSummary_container__3szWc"><h4
+                                        class="SatisfactionSummary_title__27vSu">응원 댓글</h4>
+                                    <div class="RatingScore_container__AeQ_I RatingScore_lgFull__2tY1J SatisfactionSummary_summary__18JyH">
+                                        <div class="RatingScore_icon__rIS_k"></div>
+                                        <span class="RatingScore_score__2a-SN">[[${funding.fstore_score}]]</span><span
+                                            class="RatingScore_maxScore__2hkAT">/5.0</span></div>
+
+                                </div>
+                                <div class="DetailSatisfaction_summarySplitter__2oiTx"></div>
+                                <div class="SatisfactionSummary_container__3szWc"><h4
+                                        class="SatisfactionSummary_title__27vSu">스토어</h4>
+                                    <div class="RatingScore_container__AeQ_I RatingScore_lgFull__2tY1J SatisfactionSummary_summary__18JyH">
+                                        <div class="RatingScore_icon__rIS_k"></div>
+                                        <span class="RatingScore_score__2a-SN">[[${funding.ffunding_score}]]</span><span
+                                            class="RatingScore_maxScore__2hkAT">/5.0</span></div>
+                                </div>
+                            </div>
+                            <div class="DetailSatisfaction_tabsWrap__1YI1J">
+                                <div class="SatisfactionTabs_container__28MSj">
+                                    <div class="SatisfactionTabs_item__2jVmh"
+
+                                         data-rtype="funding">
+                                        <span>응원 댓글</span><span class="SatisfactionTabs_count__2zWkx" id="fundingCount">200</span>
+                                    </div>
+                                    <div class="SatisfactionTabs_item__2jVmh SatisfactionTabs_active__1PFX2" data-rtype="store"><span>스토어</span><span
+                                            class="SatisfactionTabs_count__2zWkx" id="storeCount">100</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="StoreSatisfactionList_container__9dez2 DetailSatisfaction_satisfactionList__3XBBJ">
+                                    <div class="RatingCommentFilter_container__2t3wf">
+
+                                        <div>
+                                            <div class="SortingSelect_sortingSelect__2zf4r RatingCommentFilter_selectBox__2Gt7m">
+                                                <span id="sorted">최신순</span><i
+                                                    class="icon expand-more SortingSelect_icon__28ocK"
+                                                    aria-hidden="true"></i><select name="sortBy"
+                                                                                   class="SortingSelect_select__21qNT">
+                                                <option value="최신순">최신순</option>
+                                                <option value="높은 평점순">높은 평점순</option>
+                                                <option value="낮은 평점순">낮은 평점순</option>
+                                            </select></div>
+                                        </div>
+<!--                                        <div>-->
+<!--                                            <div>-->
+<!--                                                <button class="Button_button__mRXZC Button_secondary__20rLg Button_contained__k9pMW Button_lg__22YWj gray CommunityCommentWriteButton_button__3bPl4"-->
+<!--                                                        type="button"-->
+<!--                                                        style="border-color: #495057;-->
+<!--                                                               background-color: #495057;"><span><span-->
+<!--                                                        class="Button_children__3HY2l">글 남기기</span></span></button>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+                                    </div>
+                                    <div id="reviewList">
+                                    </div>
+                                    <div></div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="storeTabSideBar">
+                        <div class="DetailContent_sidebar__D3FuR">
+                            <div class="ProductSelectMenu_container__18idj">
+                                <div class="ProductSelect_container__1Xa66 ProductSelect_compensate__FfGdW">
+                                    <div class="ProductSelect_title__3FqMO"><span
+                                            class="ProductSelectMenu_defaultValue___MUYQ">상품 선택</span>
+                                        <div class="ProductSelect_moreButton__2P_Sz ProductSelect_isOpenMoreInfo__201IV">
+                                            <svg viewBox="0 0 32 32" focusable="false" role="presentation"
+                                                 class="withIcon_icon__20lDO" aria-hidden="true">
+                                                <path d="M16 9.6L26.4 20l-1.12 1.12L16 11.84l-9.28 9.28L5.6 20 16 9.6z"></path>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                    <ul class="ProductSelectMenu_content__39QFr" style="display: none">
+                                        <div>
+                                            <li th:each="product:${funding.products}">
+                                                <div class="ProductSelectMenuItem_container__2ubAS ProductSelectMenuItem_disabled__1-5Cp"
+                                                     style="border-bottom-left-radius: 0px; border-bottom-right-radius: 0px;"
+                                                     th:data-fpid="${product.fpid}">
+                                                    <div class="ProductSelectMenuItem_titleWrapper__3A4A8">
+                                                        <div class="ProductSelectMenuItem_title__3v1Qt">
+                                                            <div class="ProductSelectMenuItem_name__qDMQi">
+                                                                [[${product.fptitle}]]
+                                                            </div>
+                                                            <div class="ProductSelectMenuItem_description__Kroxl">
+                                                                [[${product.fpcontent}]]
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="ProductSelectMenuItem_bottom__3SuP_">
+                                                        <div>[[${#numbers.formatInteger(product.fpprice, 3,
+                                                            'COMMA')}]]원
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </li>
+
+                                        </div>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="ProductBuyInfo_container__1nPti">
+                                <div class="ProductFloatButton_container__2jWfi"
+                                >
+                                    <button
+                                            rel="noreferrer noopener"
+                                            class="Button_button__mRXZC Button_primary__1HJqX Button_contained__k9pMW Button_xl__3MTkK ProductFloatButton_button__tpSGA"
+                                            type="button"
+
+                                            style="border-color: #adb5bd; background-color: #adb5bd;"><span><span
+                                            class="Button_children__3HY2l"
+
+                                            ><span>[[${funding.tname}]] 입점 중</span></span></span></button
+                                    >
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div th:replace="/fragment/footer__31KP4.html :: footer"></div>
+
+        </div>
+        <div class="FloatingButtons_container__2E5Fl">
+            <button
+                    type="button"
+                    class="FloatingTopButton_pageTop__2gqm9 FloatingTopButton_visible__2sh_N"
+                    title="위로 이동"
+            >
+                <svg
+                        viewBox="0 0 40 40"
+                        focusable="false"
+                        role="presentation"
+                        class="withIcon_icon__20lDO"
+                        aria-hidden="true"
+                >
+                    <path
+                            d="M33 30l-1.4 1.4L20 19.8 8.4 31.4 7 30l13-13zm1-21H6v2h28z"
+                    ></path>
+                </svg>
+            </button
+            >
+            <button
+                    type="button"
+                    data-ga-category="공통_최근본_UI"
+                    data-ga-action="클릭"
+                    data-ga-label=""
+                    class="RecentView_container__1boAT"
+                    aria-label="최근본"
+                    style="display: none"
+            >
+                <div
+                        aria-hidden="true"
+                        class="RecentView_thumbnail__1lnV0 CardThumbnail_thumbnail__3bDBJ CardThumbnail_visible__343f4 CardThumbnail_noanimation__23cSf"
+                        style="
+                background-image: url('https://cdn.wadiz.kr/wwwwadiz/green001/2023/0118/20230118100719399_179805.jpg/wadiz/resize/180/format/jpg/quality/85/');
+              "
+                ></div>
+            </button>
+        </div>
+    </main>
+    <form
+            action="/web/waccount/wAccountLogin"
+            id="returnForm"
+            method="get"
+            novalidate="novalidate"
+    >
+        <input type="hidden" id="returnURL" name="returnURL"/>
+    </form>
+
+    <script
+            type="text/javascript"
+            src="https://static.wadiz.kr/static/web/vendor.js?e91df577"
+    ></script>
+
+
+</div>
+<script th:inline="javascript">
+    $(document).ready(function () {
+        //상품 리스트에 마우스 올리면 색 변하는 이벤트
+        $('.Reward_container__qyq1y').hover(function () {
+            $(this).find('.Badge_badge__2h6cT').removeClass('Badge_tertiary__1ERKE').addClass('Badge_contained__Q3unx')
+        }, function () {
+            $(this).find('.Badge_badge__2h6cT').removeClass('Badge_contained__Q3unx').addClass('Badge_tertiary__1ERKE')
+        })
+        //스토리 확장 및 축소
+        $('#story').click(function () {
+            console.log("스토리");
+            if ($('.Story_container__wZtYc').hasClass('Story_expanded__3TsCo')) {
+                $('.Story_container__wZtYc').removeClass('Story_expanded__3TsCo');
+                $('#story').data('ga-label', '스토리_더보기');
+                $('#story1').text('스토리 더보기');
+                let location = $('#story').offset().top - 700;
+                console.log(location);
+                $(window).scrollTop(location);
+            } else {
+                $('.Story_container__wZtYc').addClass('Story_expanded__3TsCo');
+                $('#story').data('ga-label', '스토리_접기');
+                $('#story1').text('스토리 접기');
+            }
+        })
+        // 댓글쪽 상품 선택 확장 축소 이벤트
+        $('.ProductSelect_title__3FqMO').click(function () {
+            if ($('.ProductSelectMenu_container__18idj').hasClass('ProductSelectMenu_unfold__95PrK')) {
+                $('.ProductSelectMenu_container__18idj').removeClass('ProductSelectMenu_unfold__95PrK');
+                $('.ProductSelect_moreButton__2P_Sz').addClass('ProductSelect_isOpenMoreInfo__201IV');
+                $('.ProductSelectMenu_content__39QFr').hide();
+            } else {
+                $('.ProductSelectMenu_container__18idj').addClass('ProductSelectMenu_unfold__95PrK');
+                $('.ProductSelect_moreButton__2P_Sz').removeClass('ProductSelect_isOpenMoreInfo__201IV');
+                $('.ProductSelectMenu_content__39QFr').show();
+            }
+        })
+
+
+    })
+</script>
+<script th:inline="javascript">
+    //사진 이벤트
+    var currentPosition = 0;
+    var slideWidth = 750;
+    var totalSlides = [[${#lists.size(funding.imgs)}]];
+    var transitionDuration = 300;
+    console.log(totalSlides);
+
+    $('.RewardImageSlider_slickNext__3fjhE').click(function () {
+        console.log('next');
+        currentPosition -= slideWidth;
+        if (currentPosition <= -(slideWidth * totalSlides)) {
+            currentPosition = 0;
+        }
+        $('.slick-track').css({
+            'transform': 'translate3d(' + currentPosition + 'px, 0px, 0px)',
+            'transition-duration': transitionDuration + 'ms'
+        });
+        updateSliderIndex(); // Call the function to update the slider index
+    });
+
+    $('.RewardImageSlider_slickPrev__2iYfc').click(function () {
+        console.log('prev');
+        currentPosition += slideWidth;
+        if (currentPosition >= slideWidth) {
+            currentPosition = -(slideWidth * (totalSlides - 1));
+        }
+        $('.slick-track').css({
+            'transform': 'translate3d(' + currentPosition + 'px, 0px, 0px)',
+            'transition-duration': transitionDuration + 'ms'
+        });
+        updateSliderIndex(); // Call the function to update the slider index
+    });
+
+
+    function updateSliderIndex() {
+        var currentSlideIndex = (-currentPosition / slideWidth) + 1;
+        $('#slider-index').text(currentSlideIndex + '/' + totalSlides);
+    }
+
+
+</script>
+<script th:inline="javascript">
+    $(document).ready(function () {
+        //물건 클릭 시 물건을 파라미터에 담음
+        let fid = [[${funding.fid}]];
+        let sort = 1;
+        let type = "store";
+        let page = 0;
+        $('#reviewList').html('');
+        getReview(fid, sort, type,page);
+
+        //응원뎃글 <-> 스토어 댓글 바뀌는 이벤트
+        $('.SatisfactionTabs_item__2jVmh').click(function () {
+            if (!$(this).hasClass('SatisfactionTabs_active__1PFX2')) {
+                console.log("댓글 반응")
+                $(this).addClass('SatisfactionTabs_active__1PFX2');
+                $(this).siblings('.SatisfactionTabs_item__2jVmh').removeClass('SatisfactionTabs_active__1PFX2');
+                type = $(this).data('rtype');
+                console.log(type);
+                $('#reviewList').html('');
+                page = 0;
+                getReview(fid, sort, type, page);
+            }
+        })
+        //정렬 바뀌는 이벤트
+        $('.SortingSelect_select__21qNT').change(function () {
+            console.log('바뀜');
+            $('#sorted').text($('.SortingSelect_select__21qNT').val());
+            sort = $('#sorted').text();
+            $('#reviewList').html('');
+            page = 0;
+            getReview(fid, sort, type, page);
+        })
+        //무한 스크롤
+        $(window).scroll(function () {
+            if ($(window).scrollTop() + $(window).height() >= $(document).height() - 1000) {
+                console.log('다음 페이지');
+                page++
+                getReview(fid, sort, type, page);
+            }
+        });
+        //날짜 포매팅
+        function timeForToday(value) {
+            const today = new Date();
+            const timeValue = new Date(value);
+
+            const betweenTime = Math.floor((today.getTime() - timeValue.getTime()) / 1000 / 60);
+            if (betweenTime < 1) return '방금 전';
+            if (betweenTime < 60) {
+                return `${betweenTime}분 전`;
+            }
+
+            const betweenTimeHour = Math.floor(betweenTime / 60);
+            if (betweenTimeHour < 24) {
+                return `${betweenTimeHour}시간 전`;
+            }
+
+            const betweenTimeDay = Math.floor(betweenTime / 60 / 24);
+            if (betweenTimeDay < 365) {
+                return `${betweenTimeDay}일 전`;
+            }
+
+            return `${Math.floor(betweenTimeDay / 365)}년 전`;
+        }
+
+        //리뷰 출력 ajax
+        function getReview(fid, sort, type, page) {
+
+            $.ajax({
+                url: '/api/funding/review',
+                type: "get",
+                contentType: "application/json; charset=utf-8",
+                data: {
+                    fid: fid,
+                    sort: sort,
+                    type: type,
+                    page: page
+                },
+                success: function (data, status) {
+                    let k = "";
+                    console.log(data.reviewCount);
+                    $('#fundingCount').text(data.reviewCount.rfcount);
+                    $('#storeCount').text(data.reviewCount.rscount);
+                    if (data.review.length == 0 && page == 0) {
+                        k = `<div class="SatisfactionNoReview_container__1xzoJ"><span class="SatisfactionNoReview_icon__1sDe_"></span><p class="SatisfactionNoReview_text__N24Pm">아직 작성된 만족도 평가가 없어요</p></div><div></div>`
+
+                    } else {
+
+                        data.review.forEach(function (review) {
+                            let img='';
+                            let content='';
+                            let mid=review.memail;
+                            let button='답글';
+                            if (review.rimg_url != null && review.rimg_url.length != 0) {
+                                img= `<div class="ThumbnailViewer_container__1JD2g StoreSatisfactionCard_thumbnails__3fwAc" style="height: 97.5px;"><div class="ThumbnailViewer_thumbnailWrap__2Ocsq ThumbnailViewer_imageView__3WXK_" style="width: 130px;"><img loading="lazy" class="ThumbnailViewer_thumbnail__240ql" srcset="${review.rimg_url} 1x, "${review.rimg_url} 2x" alt=""></div></div>`;
+
+                            }
+                            if(review.recontent !=null&&review.recontent.length!==0){
+                                let store_name=[[${funding.fstore_name}]];
+                                let replycontent=review.recontent;
+                                let redate=timeForToday(review.redate);
+                                button='답글 수정';
+
+
+                                content=`<div class="CommunityCommentItem_replyContent__3UQ-7">
+  <div class="CommunityCommentReplyListContainer_container__1waBy">
+    <div class="CommentReplyList_container__2phlF">
+      <div class="CommunityCommentReplyContent_container__ImfPm">
+        <div class="CommentUserWrapper_container__10Bt-">
+          <div class="CommentUserWrapper_avatar__1MYTO">
+            <a href="/web/maker/detail/276658"
+              ><div
+                class="Avatar_avatar__2HQiR"
+                style="width: 36px; height: 36px"
+              >
+                <span
+                  class="Avatar_hasImage__31hv2"
+                  style="
+                    background-image: url('https://www.wadiz.kr/wwwwadiz/green001/2023/0209/20230209151355203_190020.jpg');
+                    border: 1px solid rgb(221, 226, 230);
+                  "
+                ></span></div
+            ></a>
+          </div>
+          <div class="CommentUserWrapper_main__2oHy1">
+            <div class="CommentUserInfo_container__2G0cq">
+              <span class="CommentUserInfo_name__3WGGI"
+                ><a href="/web/maker/detail/276658"
+                  ><strong>${store_name}</strong></a
+                ></span
+              ><span
+                class="Badge_container__3ioDw Badge_visible__n2Hg1 CommentUserInfo_waffleBadge__2Oqhl"
+                ><span
+                  class="Badge_badge__2h6cT Badge_label__VC3QR Badge_sm__1ia4P Badge_info__2ivul Badge_contained__Q3unx"
+                  >메이커</span
+                ></span
+              ><span class="CommentUserInfo_date__1ggwf">${redate}</span>
+            </div>
+            <div>
+              <div class="CommentTextContent_container__3EM7N">
+                <div class="CommentTextContent_contentBox__uvt_R">
+                  ${replycontent}
+                </div>
+              </div>
+            </div>
+            <div class="CommunityCommentReplyContent_utils__-Na0q"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+                            }
+                            let loginReply='';
+                            let login=[[${#authentication.principal}]];
+                            if(login!='anonymousUser'&& login.member.memail===[[${funding.memail}]]) {
+                                console.log('주인장');
+                                console.log(button);
+                                loginReply = `<div class="CommunityCommentContent_bottom__-IKRP">
+                                   <button
+                                           class="Button_button__mRXZC Button_secondary__20rLg Button_sm__1aKYg CommunityCommentContent_replyBtn__2T16c CommunityCommentContent_active__4SdQQ"
+                                           type="button"
+                                            >
+                                <span><span class="Button_children__3HY2l">${button}</span></span>
+                                   </button>
+                                </div>`;
+                            }
+
+
+                            k += `<div class="StoreSatisfactionCard_container__3TDTr">
+                            <div class="StoreSatisfactionCard_divider__Zh8Se"></div>
+                            <div class="StoreSatisfactionCard_header__156AH">
+                                <div><div class="Avatar_avatar__2HQiR Avatar_xs__RZzkx"><span class="Avatar_hasImage__31hv2" style="background-image: url(&quot;https://cdn.wadiz.kr/wwwwadiz/green001/sns_profile_pics/20200306132458432_39645569.jpg/wadiz/resize/600/format/jpg/quality/80/optimize&quot;); border: 1px solid rgb(221, 226, 230);"></span></div></div>
+                                <div class="StoreSatisfactionCard_rightPanel__XCjpV">
+                                    <div class="StoreSatisfactionCard_titleArea__1S3zk"><span
+                                        class="StoreSatisfactionCard_nickName__16JEX">${review.memail}</span>
+                                        <div class="StoreSatisfactionCard_sideArea__jGJma">
+                                            <div class="StoreSatisfactionCard_dateArea__2nNep"><span
+                                                class="StoreSatisfactionCard_updatedDate__1PmK7">${review.rdate}</span>
+                                            </div>
+                                            <div class="StoreSatisfactionCard_moreWrap__3zYcp">
+                                                <svg viewBox="0 0 40 40" focusable="false"
+                                                     role="presentation" class="withIcon_icon__20lDO"
+                                                     aria-hidden="true">
+                                                    <path d="M24.52 5A4.52 4.52 0 1 0 20 9.57 4.53 4.53 0 0 0 24.52 5zm0 30A4.52 4.52 0 1 0 20 39.48 4.53 4.53 0 0 0 24.52 35zm0-15A4.52 4.52 0 1 0 20 24.52 4.53 4.53 0 0 0 24.52 20z"></path>
+                                                </svg>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="StoreSatisfactionCard_ratingArea__2RBSe">
+                                        <div class="RatingScore_container__AeQ_I RatingScore_smTitle__1OhOH">
+                                            <div class="RatingScore_icon__rIS_k"></div>
+                                            <span class="RatingScore_score__2a-SN">${review.rscore}</span></div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="StoreSatisfactionCard_content__2izM4">
+                            ${img}
+                                <div class="StoreSatisfactionCard_comment__2d9RM">${review.rcontent}
+                                </div>
+                            </div>
+                            ${loginReply}
+                        </div>
+ <div class="CommunityCommentItem_replyContent__3UQ-7" style="display:none;">
+  <div class="CommunityCommentReplyListContainer_container__1waBy">
+    <div class="CommentReplyList_container__2phlF">
+      <div class="CommunityCommentReplyWriteForm_container__10W0O">
+        <div class="CommentUserWrapper_container__10Bt-">
+          <div class="CommentUserWrapper_avatar__1MYTO">
+            <a href="/web/wmypage/myprofile/fundinglist/"
+              ><div
+                class="Avatar_avatar__2HQiR"
+                style="width: 36px; height: 36px"
+              >
+                <span
+                  class="Avatar_hasImage__31hv2"
+                  style="
+                    background-image: url('https://static.wadiz.kr/assets/icon/profile-icon-3.png');
+                  "
+                ></span></div
+            ></a>
+          </div>
+          <div class="CommentUserWrapper_main__2oHy1">
+            <div class="CommunityCommentReplyWriteForm_writeForm__2YHmv">
+              <form class="CommentForm_container__2bT5x">
+                <div class="wz input CommentForm_textarea__yw5Av">
+                  <textarea
+                    placeholder="내용을 입력해 주세요."
+                    maxlength="2000"
+                    maxheight="400"
+                    style="overflow-y: hidden; resize: none; height: 97px"
+                    data-memail=${mid}
+                  ></textarea>
+                </div>
+                <div class="CommentForm_bottom__3THGM">
+                  <span class="CommentForm_count__3Wfsk">0 / 2,000</span
+                  ><button
+                    type="button"
+                    class="wz button CommentForm_button__1Rp_R dense primary"
+                  >
+                    등록
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+                        ${content}
+
+
+`;
+
+
+                        });
+                    }
+                    $('#reviewList').append(k);
+
+
+                },
+                error: function (status, error) {
+                    alert("실패");
+                }
+            })
+
+        }
+
+        // 가게 주인이 답글 달 수 있게
+        $(document).on('click', '.CommunityCommentContent_bottom__-IKRP button.CommunityCommentContent_replyBtn__2T16c.CommunityCommentContent_active__4SdQQ', function () {
+            console.log('답글 보이게');
+            const reply=$(this).closest('.StoreSatisfactionCard_container__3TDTr').next('.CommunityCommentItem_replyContent__3UQ-7');
+            if (reply.is(':visible') || reply.css('display') === 'none') {
+                reply.toggle();
+            }
+        });
+        // 답글 적기
+        $(document).on('click', '.CommentForm_container__2bT5x .CommentForm_bottom__3THGM .CommentForm_button__1Rp_R', function () {
+            console.log('답글 저장');
+            const replyWrite=$(this).closest('.CommentForm_bottom__3THGM').prev('.wz.input').find('textarea');
+            let replyWriteRecontent=replyWrite.val()
+            console.log(replyWriteRecontent);
+            let replyWriterMemail=replyWrite.data('memail')
+            console.log(replyWriterMemail);
+            let rtype = [[${funding.fstatus}]];
+            replyReview(replyWriteRecontent,rtype,replyWriterMemail);
+        });
+
+
+        function replyReview(recontent,rtype,rmemail) {
+            let url = "/api/funding/" + fid + "/product/replyReview"
+
+            $.ajax({
+                url: url,
+                type: "post",
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify({
+                    fid: fid,
+                    recontent: recontent,
+                    rtype: rtype,
+                    memail:rmemail
+                }),
+                success: function (data, status) {
+                    console.log("답글 성공");
+                    $('#reviewList').html('');
+                    page = 0;
+                    getReview(fid, sort, type, page);
+
+
+                },
+                error: function (status, error) {
+                    alert("실패");
+                }
+            })
+        }
+    })
+
+</script>
+</body>
+</html>

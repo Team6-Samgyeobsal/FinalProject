@@ -16,7 +16,7 @@
         <result property="ctname" column="ctname" />
         <result property="fstory" column="fstory" />
         <result property="fdate" column="fdate" />
-        <result property="cfunding_end_date" column="cfunding_end_date" />
+        <result property="end_date" column="end_date" />
         <result property="fstatus" column="fstatus" />
         <result property="fstore_score" column="fstore_score" />
         <result property="ffunding_score" column="ffunding_score" />
