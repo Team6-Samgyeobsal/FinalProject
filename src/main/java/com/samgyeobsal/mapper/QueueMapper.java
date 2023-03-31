@@ -10,4 +10,8 @@ public interface QueueMapper {
 
     List<QueueVO> getQueueList(String fid);
 
+    int useQrCode(String qid);
+
+    int insertQueue(String qid);
+
 }
