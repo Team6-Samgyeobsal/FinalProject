@@ -142,7 +142,7 @@ public class CommonServiceImpl implements CommonService{
                         "      \"image_width\": 640," +
                         "      \"image_height\": 640," +
                         "      \"link\": {" +
-                        "          \"web_url\": \"http://localhost/web/funding\"" +
+                        "          \"web_url\": \"http://192.168.137.75/web/mypage/order/"+orderVO.getOid()+"\"" +
                         "      }" +
                         "  }," +
                         "  \"item_content\" : {" +
@@ -159,9 +159,9 @@ public class CommonServiceImpl implements CommonService{
                         "  },\n" +
                         "  \"buttons\": [\n" +
                         "      {\n" +
-                        "          \"title\": \"웹으로 이동\",\n" +
+                        "          \"title\": \"QR 확인\",\n" +
                         "          \"link\": {\n" +
-                        "              \"web_url\": \"http://localhost/web/funding\"\n" +
+                        "              \"web_url\": \"http://192.168.137.75/web/mypage/order/"+orderVO.getOid()+"\"\n" +
                         "          }\n" +
                         "      }\n" +
                         "  ]\n" +
