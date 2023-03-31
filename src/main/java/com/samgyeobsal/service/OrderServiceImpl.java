@@ -103,7 +103,8 @@ public class OrderServiceImpl implements OrderService {
         return orderMapper.findOrderByOrderId(orderId);
     }
 
-
-
-
+    @Override
+    public List<String> getOrderIdListByFundingId(String fid) {
+        return orderMapper.findOrderIdListByFundingId(fid);
+    }
 }

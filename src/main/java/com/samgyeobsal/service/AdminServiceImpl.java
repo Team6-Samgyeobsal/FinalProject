@@ -21,8 +21,8 @@ public class AdminServiceImpl implements AdminService {
 
     private final AdminMapper adminMapper;
     private final QrCodeService qrCodeService;
-
-    private final OrderMapper orderMapper;
+    private final OrderService orderService;
+    private final CommonService commonService;
 
     @Override
     public List<FundingDocumentDTO> getDocumentList() {
@@ -63,11 +63,17 @@ public class AdminServiceImpl implements AdminService {
 
     @Override
     @Transactional
-    public void promoteFundingToStore(String fid) {
+    public void promoteFundingToStore(String fid, String memail) {
         adminMapper.updateFundingStatus(fid,"STORE");
-        List<String> orderIdList = orderMapper.findOrderIdListByFundingId(fid);
+        List<String> orderIdList = orderService.getOrderIdListByFundingId(fid);
         for (String oId : orderIdList) {
             try {
+                OrderVO order = orderService.getOrderByOrderId(oId);
+                 // 주문자가 user@gmail.com 일 경우에만 메시지 보내기
+                if(order.getMemail().equals("user@gmail.com")){
+                    commonService.sendOrderInfoByKakaoMessageApi(memail, order);
+                }
+
                 qrCodeService.generateQrCode(oId);
             } catch (IOException e) {
                 throw new RuntimeException(e);

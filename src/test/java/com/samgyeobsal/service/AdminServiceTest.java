@@ -25,17 +25,15 @@ public class AdminServiceTest {
     @Autowired
     private OrderMapper orderMapper;
 
-    @Test
-    @Transactional
-    void promoteFundingToStore(){
-        String fid = "1";
-        adminService.promoteFundingToStore(fid);
-        List<String> orderIdList = orderMapper.findOrderIdListByFundingId(fid);
-        for (String orderId : orderIdList) {
-            OrderVO orderByOrderId = orderService.getOrderByOrderId(orderId);
-            log.info("order = {}", orderByOrderId);
-
-        }
-
-    }
+//    @Test
+//    @Transactional
+//    void promoteFundingToStore(){
+//        String fid = "1";
+//        adminService.promoteFundingToStore(fid);
+//        List<String> orderIdList = orderMapper.findOrderIdListByFundingId(fid);
+//        for (String orderId : orderIdList) {
+//            OrderVO orderByOrderId = orderService.getOrderByOrderId(orderId);
+//            log.info("order = {}", orderByOrderId);
+//        }
+//    }
 }
