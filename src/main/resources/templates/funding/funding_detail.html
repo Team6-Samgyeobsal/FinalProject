@@ -246,8 +246,8 @@
                                                     class="Badge_container__3ioDw Badge_visible__n2Hg1 BaseInfo_remainingDay__3wD-k"
                                             ><span
                                                     class="Badge_badge__2h6cT Badge_label__VC3QR Badge_md__nBr2- Badge_primary__2x__i Badge_tertiary__1ERKE"
-                                            >[[${funding.expire}]]일 남음</span
-                                            ></span
+                                                    th:text="${funding.expire == 0 ? '오늘 마감' : funding.expire + '일 남음'}"> 100일 남음
+                                            </span></span
                                             >
                                         </div>
                                         <div class="BaseInfo_rate__vZ7aw">
@@ -272,8 +272,7 @@
                                             <button
                                                     class="Button_button__mRXZC Button_primary__1HJqX Button_contained__k9pMW Button_md__136bx Button_block__1LAUA CTA_button__UoUYx"
                                                     type="button"
-                                                    th:style="${funding.fstatus == 'FUNDING' ? '' :'border-color: #adb5bd; background-color: #adb5bd;'}"
-                                                    th:id="${funding.fstatus == 'FUNDING'} ? 'abled' :'disabled'">
+                                                    id="abled">
                                             <span
                                             ><span class="Button_children__3HY2l"
                                             ><p>예약 구매하기</p></span
@@ -426,15 +425,14 @@
                                             <p>리워드 선택</p>
                                             <div class="Rewards_period__3XgCS">
                                                 <p>진행기간</p>
-                                                <p>[[${#dates.format(funding.fdate, 'yyyy.MM.dd')}]] ~
-                                                    [[${#dates.format(funding.end_date, 'yyyy.MM.dd')}]]</p>
+                                                <p>[[${#dates.format(funding.fdate, 'yyyy.MM.dd')}]] ~ [[${#dates.format(funding.end_date, 'yyyy.MM.dd')}]]</p>
                                             </div>
                                         </div>
                                         <div class="Rewards_list__X7K46">
 
                                             <div
                                                     th:each="product:${funding.products}"
-                                                    class="Reward_container__qyq1y"
+                                                    class="Reward_container__qyq1y Reward_expand__17Y0G"
                                                     th:data-fpid="${product.fpid}"
                                             >
                                                 <div class="Reward_header__166NH">
@@ -470,8 +468,7 @@
                                             <div class="CTA_buttonWrap__22Mf3">
                                                 <button class="Button_button__mRXZC Button_primary__1HJqX Button_contained__k9pMW Button_md__136bx Button_block__1LAUA CTA_button__UoUYx"
                                                         type="button"
-                                                        th:style="${funding.fstatus == 'FUNDING' ? '' :'border-color: #adb5bd; background-color: #adb5bd;'}"
-                                                        th:id="${funding.fstatus == 'FUNDING'} ? 'abled1' :'disabled1'">
+                                                        id="abled1">
                                                     <span><span
                                                             class="Button_children__3HY2l"><p>예약 구매하기</p></span></span>
                                                 </button>
@@ -502,24 +499,13 @@
                                             class="RatingScore_maxScore__2hkAT">/5.0</span></div>
 
                                 </div>
-                                <div class="DetailSatisfaction_summarySplitter__2oiTx"></div>
-                                <div class="SatisfactionSummary_container__3szWc"><h4
-                                        class="SatisfactionSummary_title__27vSu">스토어</h4>
-                                    <div class="RatingScore_container__AeQ_I RatingScore_lgFull__2tY1J SatisfactionSummary_summary__18JyH">
-                                        <div class="RatingScore_icon__rIS_k"></div>
-                                        <span class="RatingScore_score__2a-SN">[[${funding.ffunding_score}]]</span><span
-                                            class="RatingScore_maxScore__2hkAT">/5.0</span></div>
-                                </div>
                             </div>
-                            <div class="DetailSatisfaction_tabsWrap__1YI1J">
+                            <div class="DetailSatisfaction_tabsWrap__1YI1J" >
                                 <div class="SatisfactionTabs_container__28MSj">
                                     <div class="SatisfactionTabs_item__2jVmh SatisfactionTabs_active__1PFX2"
 
-                                         data-rtype="funding">
+                                         data-rtype="funding" style="width: 100%;">
                                         <span>응원 댓글</span><span class="SatisfactionTabs_count__2zWkx" id="fundingCount">200</span>
-                                    </div>
-                                    <div class="SatisfactionTabs_item__2jVmh" data-rtype="store"><span>스토어</span><span
-                                            class="SatisfactionTabs_count__2zWkx" id="storeCount">100</span>
                                     </div>
                                 </div>
                             </div>
@@ -605,8 +591,8 @@
                                             rel="noreferrer noopener"
                                             class="Button_button__mRXZC Button_primary__1HJqX Button_contained__k9pMW Button_xl__3MTkK ProductFloatButton_button__tpSGA"
                                             type="button"
-                                            th:id="${funding.fstatus == 'FUNDING'} ? 'abled2' :'disabled2'"
-                                            th:style="${funding.fstatus == 'FUNDING' ? '' :'border-color: #adb5bd; background-color: #adb5bd;'}"><span><span
+                                            id="abled2"
+                                            ><span><span
                                             class="Button_children__3HY2l"
 
                                             ><span>구매하기</span></span></span></button
@@ -676,22 +662,20 @@
 </div>
 <script th:inline="javascript">
     $(document).ready(function () {
-
+        //상품 리스트에 마우스 올리면 색 변하는 이벤트
         $('.Reward_container__qyq1y').hover(function () {
             $(this).find('.Badge_badge__2h6cT').removeClass('Badge_tertiary__1ERKE').addClass('Badge_contained__Q3unx')
         }, function () {
             $(this).find('.Badge_badge__2h6cT').removeClass('Badge_contained__Q3unx').addClass('Badge_tertiary__1ERKE')
         })
-        // $('#abled').click(function (){
-        //     console.log("able 클릭")
-        // })
 
+        //step1으로 감
         $('#abled, #abled1, #abled2').click(function () {
             // console.log([[${funding.fid}]]);
             location.href = '/web/order/' + [[${funding.fid}]] + '/step1'
         })
 
-
+        //스토리 확장 및 축소
         $('#story').click(function () {
             console.log("스토리");
             if ($('.Story_container__wZtYc').hasClass('Story_expanded__3TsCo')) {
@@ -707,6 +691,7 @@
                 $('#story1').text('스토리 접기');
             }
         })
+        // 댓글쪽 상품 선택 확장 축소 이벤트
         $('.ProductSelect_title__3FqMO').click(function () {
             if ($('.ProductSelectMenu_container__18idj').hasClass('ProductSelectMenu_unfold__95PrK')) {
                 $('.ProductSelectMenu_container__18idj').removeClass('ProductSelectMenu_unfold__95PrK');
@@ -724,6 +709,7 @@
 </script>
 <script th:inline="javascript">
 
+    //사진 이벤트
     var currentPosition = 0;
     var slideWidth = 750;
     var totalSlides = [[${#lists.size(funding.imgs)}]];
@@ -766,18 +752,11 @@
 </script>
 <script th:inline="javascript">
     $(document).ready(function () {
-        if ([[${funding.fstatus=='FUNDING'}]]) {
-            $('.Reward_container__qyq1y').addClass('Reward_expand__17Y0G');
-        } else {
-            $('.Reward_container__qyq1y').addClass('Reward_disabled__1jxB-');
-            $('.ProductSelectMenuItem_container__2ubAS').addClass('ProductSelectMenuItem_disabled__1-5Cp');
-        }
+        //물건 클릭 시 물건을 파라미터에 담음
         $('.Reward_container__qyq1y, .ProductSelectMenuItem_container__2ubAS').on('click', function () {
-            if ([[${funding.fstatus=='FUNDING'}]]) {
                 console.log('물건클릭')
-
                 location.href = '/web/order/' + [[${funding.fid}]] + '/step1?fpid=' + $(this).data('fpid');
-            }
+
         });
 
         let fid = [[${funding.fid}]];
@@ -787,18 +766,9 @@
         $('#reviewList').html('');
         getReview(fid, sort, type,page);
 
-        $('.SatisfactionTabs_item__2jVmh').click(function () {
-            if (!$(this).hasClass('SatisfactionTabs_active__1PFX2')) {
-                console.log("댓글 반응")
-                $(this).addClass('SatisfactionTabs_active__1PFX2');
-                $(this).siblings('.SatisfactionTabs_item__2jVmh').removeClass('SatisfactionTabs_active__1PFX2');
-                type = $(this).data('rtype');
-                console.log(type);
-                $('#reviewList').html('');
-                page = 0;
-                getReview(fid, sort, type, page);
-            }
-        })
+
+
+        //정렬 바뀌는 이벤트
         $('.SortingSelect_select__21qNT').change(function () {
             console.log('바뀜');
             $('#sorted').text($('.SortingSelect_select__21qNT').val());
@@ -807,7 +777,7 @@
             page = 0;
             getReview(fid, sort, type, page);
         })
-
+        //무한 스크롤
         $(window).scroll(function () {
             if ($(window).scrollTop() + $(window).height() >= $(document).height() - 1000) {
                 console.log('다음 페이지');
@@ -815,6 +785,7 @@
                 getReview(fid, sort, type, page);
             }
         });
+        //날짜 포매팅
         function timeForToday(value) {
             const today = new Date();
             const timeValue = new Date(value);
@@ -838,7 +809,7 @@
             return `${Math.floor(betweenTimeDay / 365)}년 전`;
         }
 
-
+        //리뷰 출력 ajax
         function getReview(fid, sort, type, page) {
 
             $.ajax({
@@ -855,7 +826,6 @@
                     let k = "";
                     console.log(data.reviewCount);
                     $('#fundingCount').text(data.reviewCount.rfcount);
-                    $('#storeCount').text(data.reviewCount.rscount);
                     if (data.review.length == 0 && page == 0) {
                         k = `<div class="SatisfactionNoReview_container__1xzoJ"><span class="SatisfactionNoReview_icon__1sDe_"></span><p class="SatisfactionNoReview_text__N24Pm">아직 작성된 만족도 평가가 없어요</p></div><div></div>`
 
@@ -1044,12 +1014,15 @@
             })
 
         }
+        //글 작성 모달
         $('.Button_button__mRXZC.Button_secondary__20rLg.Button_contained__k9pMW').click(function () {
             $('.ReactModalPortal').show();
         })
+        //글 작성 모달 숨김
         $('.ConfirmModal_closeIconWrapper__2-lWO,  #cancelReview').click(function () {
             $('.ReactModalPortal').hide();
         })
+        //글 입력
         $('#feedback-contents').on('input', function() {
             if($(this).val().length >= 10 ){
                 $('.submitBtn').prop('disabled', false);
@@ -1067,7 +1040,7 @@
             insertReview();
         })
 
-
+        //리뷰 적기
         function insertReview() {
             let url = "/api/funding/" + fid + "/product/review"
             let rtype = [[${funding.fstatus}]];
@@ -1094,7 +1067,7 @@
                 }
             })
         }
-
+        // 가게 주인이 답글 달 수 있게
         $(document).on('click', '.CommunityCommentContent_bottom__-IKRP button.CommunityCommentContent_replyBtn__2T16c.CommunityCommentContent_active__4SdQQ', function () {
             console.log('답글 보이게');
             const reply=$(this).closest('.StoreSatisfactionCard_container__3TDTr').next('.CommunityCommentItem_replyContent__3UQ-7');
@@ -1102,6 +1075,7 @@
                 reply.toggle();
             }
         });
+        // 답글 적기
         $(document).on('click', '.CommentForm_container__2bT5x .CommentForm_bottom__3THGM .CommentForm_button__1Rp_R', function () {
             console.log('답글 저장');
             const replyWrite=$(this).closest('.CommentForm_bottom__3THGM').prev('.wz.input').find('textarea');
@@ -1140,11 +1114,6 @@
                 }
             })
         }
-
-
-
-
-
     })
 
 </script>

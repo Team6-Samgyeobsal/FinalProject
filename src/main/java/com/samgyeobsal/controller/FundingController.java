@@ -32,8 +32,8 @@ public class FundingController {
     }
 
     @GetMapping("/{fid}")
-    public String productDetail(@PathVariable String fid, Model model){
+    public String fundingDetail(@PathVariable String fid, Model model){
         model.addAttribute("funding",fundingService.getFundingDetail(fid,"FUNDING"));
-        return "funding/product_detail";
+        return "funding/funding_detail";
     }
 }
