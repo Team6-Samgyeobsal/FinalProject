@@ -1310,6 +1310,7 @@
               order['cpid'] = selectObject.cpId;
               // 전체 가격 form
               order['totalPrice'] = totalVal;
+              order['oused_mileage'] = mileage;
 
               // 결제 가격
               amount = totalVal;
@@ -1329,7 +1330,7 @@
               console.log($('#finalTotalPrice').text());
             } else {
               order['cpid'] = ""
-
+              order['oused_mileage'] = mileage;
               let totalVal=finalPrice-mileage;
               order['totalPrice'] = totalVal;
               amount=totalVal;
