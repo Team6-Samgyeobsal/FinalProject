@@ -1,10 +1,12 @@
 package com.samgyeobsal.service;
 
 import com.google.zxing.WriterException;
+import com.samgyeobsal.domain.common.UploadImgDTO;
 import com.samgyeobsal.util.QRCodeGenerator;
 import com.samgyeobsal.mapper.QrCodeMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.util.Base64;
@@ -28,18 +30,18 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class QrCodeServiceImpl implements QrCodeService {
     private final QrCodeMapper qrCodeMapper; // QrCodeMapper 빈 객체 주입을 위한 final 필드
+    private final ImageUploadService imageUploadService;
 
     // 매개변수로 받은 문자열 링크를 이용해 QR 코드를 생성하고 DB에 삽입한 후, 생성된 QR 코드 바이트 배열을 반환하는 메서드
-    public byte[] generateQrCode(String oid) throws IOException, WriterException {
+    public void generateQrCode(String oid) throws IOException, WriterException {
 
         // QR 코드 생성
-        byte[] qrCodeBytes = QRCodeGenerator.generateQRCodeImage(oid);
-        String encodedString = Base64.getEncoder().encodeToString(qrCodeBytes);
+        MultipartFile multipartFile = QRCodeGenerator.generateQRCodeImage(oid);
+
+        UploadImgDTO uploadImgDTO = imageUploadService.uploadImg(multipartFile);
         String qid = UUID.randomUUID().toString();
 
-        // DB에 QR 코드 삽입
-        qrCodeMapper.insertQrCode(qid, oid, encodedString);
-
-      return qrCodeBytes; // 생성된 QR 코드 바이트 배열을 반환
+        // DB에 QR 코드 이미지 삽입
+        qrCodeMapper.insertQrCode(qid, oid, uploadImgDTO.getImageURL());
     }
 }

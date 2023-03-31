@@ -44,7 +44,7 @@ public class ImageUploadServiceS3Impl implements ImageUploadService{
         try {
             amazonS3Client.putObject(savePath, saveName, file.getInputStream(), metadata);
             String url = amazonS3Client.getUrl(savePath, saveName).toString();
-            return new UploadImgDTO(url, null, null, false);
+            return new UploadImgDTO(url, uuid, null, false);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

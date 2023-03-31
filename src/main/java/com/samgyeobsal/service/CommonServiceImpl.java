@@ -8,6 +8,7 @@ import com.samgyeobsal.domain.member.OAuth2TokenVO;
 import com.samgyeobsal.domain.order.OrderItemVO;
 import com.samgyeobsal.domain.order.OrderVO;
 import com.samgyeobsal.mapper.CommonMapper;
+import com.samgyeobsal.mapper.QrCodeMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +32,8 @@ public class CommonServiceImpl implements CommonService{
     private final CommonMapper commonMapper;
 
     private final RefreshTokenService refreshTokenService;
+
+    private final QrCodeMapper qrCodeMapper;
 
     @Autowired
     private ObjectMapper objectMapper;
@@ -111,7 +114,13 @@ public class CommonServiceImpl implements CommonService{
     }
 
     private Map<String, Object> sendKakaoMessageApi(String friendsUuids, String accessToken, OrderVO orderVO){
+        
+        //TODO : 이미지 동적으로 변경
+        
         RestTemplate restTemplate = new RestTemplate();
+
+        String qrCodeUrl = qrCodeMapper.getQrCodeString(orderVO.getOid());
+
         String orderTitle = orderVO.getOrders().get(0).getFptitle();
         if(orderVO.getOrders().size() > 1) orderTitle += " 외 " + (orderVO.getOrders().size() - 1) + "건";
 
@@ -138,7 +147,7 @@ public class CommonServiceImpl implements CommonService{
                         "  \"content\": {" +
                         "      \"title\": \""+orderVO.getFtitle()+"\"," +
                         "      \"description\": \""+orderVO.getCtname()+"\"," +
-                        "      \"image_url\": \"https://mud-kage.kakao.com/dn/NTmhS/btqfEUdFAUf/FjKzkZsnoeE4o19klTOVI1/openlink_640x640s.jpg\"," +
+                        "      \"image_url\": \""+qrCodeUrl+"\"," +
                         "      \"image_width\": 640," +
                         "      \"image_height\": 640," +
                         "      \"link\": {" +
@@ -165,13 +174,12 @@ public class CommonServiceImpl implements CommonService{
                         "          }\n" +
                         "      }\n" +
                         "  ]\n" +
-                        "}\n" +
-                        "\n" +
-                        "\n" +
-                        "\n");
+                        "}");
 
 
         HttpEntity<MultiValueMap<String,String>> entity = new HttpEntity<>(params, headers);
+
+        log.info("body = {}", params.get("template_object"));
 
         ResponseEntity<String> res = restTemplate.postForEntity(
                 messageApiUrl, entity, String.class);

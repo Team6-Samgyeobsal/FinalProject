@@ -63,6 +63,8 @@ public class MakerServiceImpl implements MakerService {
         // null 인 이미지 객체 필터링
         List<FundingImgVO> filteredImgs = story.getImgs()
                 .stream().filter(i -> i.getFid() != null && i.getFiid() != null && i.getFiurl() != null).collect(Collectors.toList());
+        log.info("filteredImgs = {}", filteredImgs);
+
         if(filteredImgs.size() == 0) throw new RuntimeException("이미지 없음");
         makerMapper.insertFundingImgs(filteredImgs);
 
