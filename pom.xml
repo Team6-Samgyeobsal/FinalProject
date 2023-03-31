@@ -164,7 +164,7 @@
 			<version>3.5.0</version>
 		</dependency>
 
-		<!-- https://mvnrepository.com/artifact/com.lilittlecat/chatgpt -->
+		<!-- chatgpt -->
 		<dependency>
 			<groupId>com.lilittlecat</groupId>
 			<artifactId>chatgpt</artifactId>
