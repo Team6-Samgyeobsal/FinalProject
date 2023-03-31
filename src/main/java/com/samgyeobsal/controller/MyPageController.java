@@ -56,7 +56,7 @@ public class MyPageController {
 
         OrderVO order = orderService.getOrderByOrderId(orderId);
 
-        model.addAttribute("isAlreadyExistReview", reviewService.isAlreadyExistReview("STORE", email));
+        model.addAttribute("isAlreadyExistReview", reviewService.isAlreadyExistReview("STORE", email,order.getFid()));
         model.addAttribute("order", order);
 
         return "mypage/myorder_detail";
