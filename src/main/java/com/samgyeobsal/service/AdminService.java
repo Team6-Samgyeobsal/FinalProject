@@ -21,7 +21,7 @@ public interface AdminService {
 
     List<CategorySale> getRecentCategorySaleListByHyundai(String tid);
 
-    void promoteFundingToStore(String fid);
+    void promoteFundingToStore(String fid, String memail);
 
     int getReviewCount();
 }
