@@ -6,6 +6,7 @@ import com.samgyeobsal.mapper.RefreshTokenMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @Slf4j
@@ -36,4 +37,11 @@ public class RefreshTokenServiceImpl implements RefreshTokenService {
         return refreshTokenMapper.getOAuth2TokenByEmail(memail);
     }
 
+    @Override
+    @Transactional
+    public void deleteTokens(String memail) {
+        // refreshToken 과 oauth2Token 삭제
+        refreshTokenMapper.deleteRefreshToken(memail);
+        refreshTokenMapper.deleteOAuth2Token(memail);
+    }
 }

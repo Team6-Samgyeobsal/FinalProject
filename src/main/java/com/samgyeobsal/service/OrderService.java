@@ -33,5 +33,7 @@ public interface OrderService {
 
     OrderVO getOrderByOrderId(String orderId);
 
+    List<String> getOrderIdListByFundingId(String fid);
+
 
 }

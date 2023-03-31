@@ -35,9 +35,11 @@ public class MyPageController {
     private final OrderService orderService;
     private final MakerService makerService;
     private final CommonService commonService;
+    private final CouponService couponService;
 
     @GetMapping
-    public String mypage(){
+    public String mypage(@AuthenticationPrincipal Account account,Model model){
+        model.addAttribute("couponCount",couponService.couponCount(account.getMember().getMemail()));
         return "mypage/mypage";
     }
 
@@ -54,7 +56,7 @@ public class MyPageController {
 
         OrderVO order = orderService.getOrderByOrderId(orderId);
 
-        model.addAttribute("isAlreadyExistReview", reviewService.isAlreadyExistReview("STORE", email));
+        model.addAttribute("isAlreadyExistReview", reviewService.isAlreadyExistReview("STORE", email,order.getFid()));
         model.addAttribute("order", order);
 
         return "mypage/myorder_detail";

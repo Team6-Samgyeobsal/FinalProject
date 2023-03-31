@@ -6,7 +6,7 @@
 <mapper namespace="com.samgyeobsal.mapper.QueueMapper">
 
 <select id="getQueueList" resultType="queue">
-    select distinct mname,q.qid,qdate,f.fid,fstore_name
+    select distinct mname,q.qid,qdate,f.fid,fstore_name,o.oid
     from queue qu
              join qr_code q on qu.qid=q.qid
              join orders o on q.oid=o.oid
@@ -18,6 +18,12 @@
     WHERE f.FID=#{fid} AND QRUSED_DATE is NULL
     order by qdate
 </select>
+    <update id="useQrCode">
+        update orders set QRUSED_DATE=sysdate where oid=(select o.oid from orders o join qr_code q on o.oid=q.oid where qid=#{qid})
+    </update>
 
+    <insert id="insertQueue">
+        insert into queue(qid,qdate) values(#{qid},sysdate)
+    </insert>
 
 </mapper>

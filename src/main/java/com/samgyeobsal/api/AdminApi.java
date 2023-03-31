@@ -1,20 +1,32 @@
 package com.samgyeobsal.api;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.samgyeobsal.domain.admin.*;
 import com.samgyeobsal.domain.funding.FundingCriteria;
 import com.samgyeobsal.domain.funding.FundingVO;
 import com.samgyeobsal.domain.funding.ReviewVO;
+import com.samgyeobsal.domain.member.OAuth2TokenVO;
+import com.samgyeobsal.security.domain.Account;
 import com.samgyeobsal.service.AdminService;
 import com.samgyeobsal.service.FundingService;
+import com.samgyeobsal.service.RefreshTokenService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.*;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/admin")
@@ -51,8 +63,10 @@ public class AdminApi {
     }
 
     @PostMapping("/funding/{fid}/promote")
-    public ResponseEntity<String> promoteFundingToStore(@PathVariable("fid") String fid){
-        adminService.promoteFundingToStore(fid);
+    public ResponseEntity<String> promoteFundingToStore(
+            @PathVariable("fid") String fid,
+            @AuthenticationPrincipal Account account){
+        adminService.promoteFundingToStore(fid, account.getMember().getMemail());
 
         return new ResponseEntity<>("success", HttpStatus.OK);
     }
@@ -99,6 +113,7 @@ public class AdminApi {
         List<CategorySale> categorySaleList = adminService.getRecentCategorySaleListByHyundai(tid);
         return new ResponseEntity<>(categorySaleList, HttpStatus.OK);
     }
+
 
 
 

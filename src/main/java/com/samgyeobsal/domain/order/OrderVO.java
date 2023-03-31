@@ -32,6 +32,7 @@ public class OrderVO {
     private String fstory;
     private Date fdate;
     private FundingStatus fstatus;
+    private String fid;
 
     private String ctid;
     private String ctname;

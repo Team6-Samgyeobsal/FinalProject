@@ -21,7 +21,7 @@ public class ReviewServiceImpl implements ReviewService{
     @Transactional
     public void insertReview(InsertReviewDTO insertReviewDTO) {
 
-        boolean res = isAlreadyExistReview(insertReviewDTO.getRtype(), insertReviewDTO.getMemail());
+        boolean res = isAlreadyExistReview(insertReviewDTO.getRtype(), insertReviewDTO.getMemail(),insertReviewDTO.getFid());
         if(res) throw new RuntimeException("already exist review");
 
         int score = commonService.getReviewScore(insertReviewDTO.getRcontent());
@@ -37,7 +37,7 @@ public class ReviewServiceImpl implements ReviewService{
     }
 
     @Override
-    public boolean isAlreadyExistReview(String rtype, String memail) {
-        return reviewMapper.isAlreadyExistReview(rtype, memail);
+    public boolean isAlreadyExistReview(String rtype, String memail,String fid) {
+        return reviewMapper.isAlreadyExistReview(rtype, memail,fid);
     }
 }
