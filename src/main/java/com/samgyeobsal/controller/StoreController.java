@@ -28,7 +28,7 @@ public class StoreController {
     public String storeDetail(@PathVariable String fid, Model model){
 
         model.addAttribute("funding",fundingService.getFundingDetail(fid,"STORE"));
-        return "funding/product_detail";
+        return "store/store_detail";
     }
 
 }

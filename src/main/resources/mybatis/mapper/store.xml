@@ -11,7 +11,7 @@
         from funding f
                  join competition c on c.tid=f.tid and f.cid=c.cid
                  join the_hyundai t on t.tid = c.tid
-        where fstatus = 'STORE' and fdate between cstore_start_date and cstore_end_date
+        where fstatus = 'STORE' and sysdate between cstore_start_date and cstore_end_date
         order by t.tid ,f.fid
     </select>
 </mapper>
