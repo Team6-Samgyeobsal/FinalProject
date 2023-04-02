@@ -1,6 +1,5 @@
 <html lang="ko" style="--vh: 7.96px"
       xmlns:th="http://www.thymeleaf.org">
-<!-- TODO : sumit 이벤트 -->
 <head>
     <meta charset="utf-8"/>
     <link
@@ -46,6 +45,19 @@
             type="text/css"
             href="/import/css/8.30afc8ef.chunk.css"/>
 
+    <script src="/js/toast.js"></script>
+    <link
+            rel="stylesheet"
+            href="/import/css/reward-product.cfd21a1c.css"/>
+
+    <script src="/js/confirm.js"></script>
+    <link
+            rel="stylesheet"
+            href="/import/css/payments.562cdee9.css"
+    />
+
+    <link rel="stylesheet" href="https://static.wadiz.kr/static/web/common.css?a5fa8553">
+
     <!-- summernote import start -->
     <!-- include libraries(jQuery, bootstrap) -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
@@ -55,6 +67,7 @@
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
     <!-- summernote import end -->
+
 
 </head>
 <body class="ReactModal__Body--open" aria-hidden="true">
@@ -325,8 +338,18 @@
         style="position: absolute; opacity: 0"></div>
 
 <div class="ReactModalPortal"></div>
-<div class="ReactModalPortal"></div>
+
 <script th:inline="javascript">
+
+    var urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.has('error')) {
+        let msg = urlParams.get('error');
+        showToast(msg);
+    }
+    $(document).on('click','.quit_btn',function(){
+        showConfirm("프로젝트 작성", "정말 나가시겠습니까?",()=>location.href='/web/mypage/maker' );
+    })
+
     /*<![CDATA[*/
     let imgLen = [[${#lists.size(fundingStory.imgs)}]]
     /*]]>*/
@@ -405,7 +428,6 @@
     }
 
     function printImgAndCreateInput(result, index) {
-        console.log(result);
         let template = `
       <div class="ImageFormField_imageWrapper__3Y_F5 imgWrap">
          <div class="ImageBox_container__gwruR">
@@ -513,31 +535,8 @@
         </div>
     </div>
 </div>
-<script src="/js/toast.js"></script>
-<link
-        rel="stylesheet"
-        href="/import/css/reward-product.cfd21a1c.css"/>
-
-<script src="/js/confirm.js"></script>
-<link
-    rel="stylesheet"
-    href="/import/css/payments.562cdee9.css"
-/>
-<link
-    rel="stylesheet"
-    href="/import/css/wui.css"/>
-<link rel="stylesheet" href="https://static.wadiz.kr/static/web/common.css?a5fa8553">
 
 <script>
-    var urlParams = new URLSearchParams(window.location.search);
-    if (urlParams.has('error')) {
-        let msg = urlParams.get('error');
-        showToast(msg);
-    }
-    $(document).on('click','.quit_btn',function(){
-        showConfirm("프로젝트 작성", "정말 나가시겠습니까?",()=>location.href='/web/mypage/maker' );
-    })
-
     $(document).ready(function () {
         let store=$('.Input_input__2kAAL').val()
         let content=$('#fsummary').val()
@@ -616,14 +615,8 @@
                 })
 
             }
-            // chatGpt(question);
         })
 
-
-
-
-</script>
-    })
 </script>
 </body>
 </html>
