@@ -114,6 +114,7 @@ public class FundingApi {
             @PathVariable("fundingId") String fundingId,
             @RequestBody ReplyReviewVO replyReviewVO)
     {
+        System.out.println(">>>>>>>"+replyReviewVO.getRecontent());
         reviewService.replyReview(replyReviewVO);
         return new ResponseEntity<>("success", HttpStatus.OK);
     }

@@ -16,6 +16,7 @@ public class XssApi {
 
     @PostMapping("/parameter")
     public String strInput(@RequestParam String input){
+
         return xssService.stringTest(input);
     }
 }

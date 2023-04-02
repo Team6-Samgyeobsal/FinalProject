@@ -827,6 +827,7 @@
                     page: page
                 },
                 success: function (data, status) {
+
                     let k = "";
                     console.log(data.reviewCount);
                     $('#fundingCount').text(data.reviewCount.rfcount);
@@ -846,6 +847,7 @@
 
                             }
                             if(review.recontent !=null&&review.recontent.length!==0){
+                                console.log(review.recontent);
                                 let store_name=[[${funding.fstore_name}]];
                                 let replycontent=review.recontent;
                                 let redate=timeForToday(review.redate);
@@ -1033,7 +1035,7 @@
             console.log('답글 저장');
             const replyWrite=$(this).closest('.CommentForm_bottom__3THGM').prev('.wz.input').find('textarea');
             let replyWriteRecontent=replyWrite.val()
-            console.log(replyWriteRecontent);
+            console.log('답글 내용 :' + replyWriteRecontent);
             let replyWriterMemail=replyWrite.data('memail')
             console.log(replyWriterMemail);
             let rtype = [[${funding.fstatus}]];
