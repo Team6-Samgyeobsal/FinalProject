@@ -196,17 +196,6 @@
   <script>
     let fid = '[[${fundingMaker.getFid()}]]'
 
-    $(document).ready(function (){
-      console.log('tt');
-    })
-    $(document).on('click','.submitBtn',function(e){
-      sendDocument();
-    })
-
-    $(document).on('click','.quit_btn',function(){
-      showConfirm("프로젝트 작성", "정말 나가시겠습니까?",()=>location.href='/web/mypage/maker' );
-    })
-
     function sendDocument(){
       $.ajax({
         url : `/api/mypage/maker/funding/${fid}/submit`,
@@ -218,6 +207,19 @@
         }
       })
     }
+
+    $(document).ready(function (){
+      console.log('tt');
+    })
+    $(document).on('click','.submitBtn',function(e){
+      showConfirm("프로젝트 심사", "프로젝트를 제출하시겠습니까?", sendDocument);
+    })
+
+    $(document).on('click','.quit_btn',function(){
+      showConfirm("프로젝트 작성", "정말 나가시겠습니까?",()=>location.href='/web/mypage/maker' );
+    })
+
+
   </script>
   </body>
 </html>
