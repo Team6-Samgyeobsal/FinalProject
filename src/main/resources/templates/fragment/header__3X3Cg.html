@@ -2,6 +2,16 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://thymeleaf.org/extras/spring-security">
   <div class="web-header" th:fragment="header">
+
+    <script src="/js/confirm.js"></script>
+
+    <link
+            rel="stylesheet"
+            href="/import/css/payments.562cdee9.css" />
+
+    <link rel="stylesheet" href="https://static.wadiz.kr/static/web/common.css?a5fa8553">
+
+
     <div class="web-header-large">
       <header class="header-wrapper">
         <div class="header-container">
@@ -112,17 +122,20 @@
       $(document).ready(function(){
         console.log('ready');
 
+        let makeFunding = () => $.ajax({
+          url: '/api/funding/',
+          type: 'POST',
+          dataType: 'text',
+          success: function (fid) {
+            console.log('펀딩 만들기 성공/ fid = ', fid);
+            location.href = '/web/mypage/maker/funding/' + fid;
+          }
+        });
+
         $('.fundingMakeBtn').click(function (e){
-          $.ajax({
-            url: '/api/funding/',
-            type: 'POST',
-            dataType:'text',
-            success : function (fid){
-              console.log('펀딩 만들기 성공/ fid = ', fid);
-              location.href = '/web/mypage/maker/funding/' + fid;
-            }
-          })
+          showConfirm("펀딩 만들기", "프로젝트를 만드시겠습니까?", makeFunding);
         })
+
       })
       $(document).on('click','.loginBtn',function(e){
         e.preventDefault();

@@ -94,7 +94,7 @@
                                     </div>
                                     <div class="AppNavbar_buttonGroup__UcLfm">
                                         <button
-                                                class="Button_button__1e2A2 Button_tertiaryGrey__3gRf4 Button_text__3KyLl Button_md__1FRMG"
+                                                class="Button_button__1e2A2 Button_tertiaryGrey__3gRf4 Button_text__3KyLl Button_md__1FRMG quit_btn"
                                                 type="button">
                         <span
                         ><span class="Button_children__q9VCZ"
@@ -513,7 +513,31 @@
         </div>
     </div>
 </div>
+<script src="/js/toast.js"></script>
+<link
+        rel="stylesheet"
+        href="/import/css/reward-product.cfd21a1c.css"/>
+
+<script src="/js/confirm.js"></script>
+<link
+    rel="stylesheet"
+    href="/import/css/payments.562cdee9.css"
+/>
+<link
+    rel="stylesheet"
+    href="/import/css/wui.css"/>
+<link rel="stylesheet" href="https://static.wadiz.kr/static/web/common.css?a5fa8553">
+
 <script>
+    var urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.has('error')) {
+        let msg = urlParams.get('error');
+        showToast(msg);
+    }
+    $(document).on('click','.quit_btn',function(){
+        showConfirm("프로젝트 작성", "정말 나가시겠습니까?",()=>location.href='/web/mypage/maker' );
+    })
+
     $(document).ready(function () {
         let store=$('.Input_input__2kAAL').val()
         let content=$('#fsummary').val()

@@ -64,6 +64,11 @@
                 </div>
                 <div th:text="${#authentication.principal.member.mname}">사용자이름</div>
               </div>
+              <div class="ProjectNavbar_buttonGroup__219eP">
+                <button class="Button_button__1e2A2 Button_tertiaryGrey__3gRf4 Button_text__3KyLl Button_md__1FRMG" type="button">
+                  <span><span class="Button_children__q9VCZ quit_btn">나가기</span></span>
+                </button>
+              </div>
             </nav>
             <form id="baseInfoForm" th:object="${baseInfo}" method="post" th:action>
               <input type="hidden" th:field="*{fid}">
@@ -290,8 +295,29 @@
         </div>
       </div>
     </div>
+  <script src="/js/toast.js"></script>
+  <link
+      rel="stylesheet"
+      href="/import/css/reward-product.cfd21a1c.css"/>
+    <script src="/js/confirm.js"></script>
+    <link
+            rel="stylesheet"
+            href="/import/css/payments.562cdee9.css"
+    />
+    <link
+            rel="stylesheet"
+            href="/import/css/wui.css"/>
+    <link rel="stylesheet" href="https://static.wadiz.kr/static/web/common.css?a5fa8553">
   <script>
+    var urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.has('error')) {
+      let msg = urlParams.get('error');
+      showToast(msg);
+    }
     $(document).ready(function(){
+      $(document).on('click','.quit_btn',function(){
+        showConfirm("프로젝트 작성", "정말 나가시겠습니까?",()=>location.href='/web/mypage/maker' );
+      })
 
       // 업로드 버튼과 file input 과 연결시키기
       $('.uploadBtn').click(function(e){
@@ -343,7 +369,7 @@
         $('#tid').val(tid);
         $('#baseInfoForm').submit();
       })
-    })
+    });
 
     function printNoThumb(){
       // thumb_ui를 없애고, no_thumb_ui 를 만듦
