@@ -17,11 +17,11 @@ public class FinalProjectApplication {
 		SpringApplication.run(FinalProjectApplication.class, args);
 	}
 
-	@Bean
+	/*@Bean
 	public ObjectMapper objectMapper(){
 		ObjectMapper objectMapper = new ObjectMapper();
 		objectMapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
 		return objectMapper;
-	}
+	}*/
 
 }
