@@ -28,8 +28,18 @@
         where memail = #{email}
     </select>
 
-    <insert id="insertOAUth2Token">
-        insert into oauth2_token
-    </insert>
+    <select id="findActiveStoreByEmail" resultType="funding">
+        select f.fid, f.fstore_name, f.ftitle, f.fsummary, f.fstory,
+               f.fdate, f.fstatus, f.memail, f.ctid, f.fthumb, f.cid, f.tid,
+               t.tname, ct.ctname
+        from funding f
+                 inner join competition c on (f.tid = c.tid and f.cid = c.cid)
+                 inner join the_hyundai t on (c.tid = t.tid)
+                 inner join category ct on (ct.ctid = f.ctid)
+        where
+            f.memail = #{email}
+          and sysdate between cstore_start_date and cstore_end_date
+          and f.fstatus = 'STORE' and rownum = 1
+    </select>
 
 </mapper>

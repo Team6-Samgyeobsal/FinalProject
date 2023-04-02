@@ -17,5 +17,7 @@ public interface MemberService {
 
     List<FundingVO> findFindingListByEmail(String email);
 
+    FundingVO findActiveStoreByEmail(String email);
+
 
 }

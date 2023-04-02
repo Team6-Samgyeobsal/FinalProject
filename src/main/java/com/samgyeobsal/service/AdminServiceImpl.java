@@ -2,6 +2,7 @@ package com.samgyeobsal.service;
 
 import com.google.zxing.WriterException;
 import com.samgyeobsal.domain.admin.*;
+import com.samgyeobsal.domain.funding.FundingDetailVO;
 import com.samgyeobsal.domain.funding.ReviewVO;
 import com.samgyeobsal.domain.order.OrderVO;
 import com.samgyeobsal.mapper.AdminMapper;
@@ -23,6 +24,7 @@ public class AdminServiceImpl implements AdminService {
     private final QrCodeService qrCodeService;
     private final OrderService orderService;
     private final CommonService commonService;
+    private final FundingService fundingService;
 
     @Override
     public List<FundingDocumentDTO> getDocumentList() {
@@ -66,6 +68,7 @@ public class AdminServiceImpl implements AdminService {
     public void promoteFundingToStore(String fid, String memail) {
         adminMapper.updateFundingStatus(fid,"STORE");
         List<String> orderIdList = orderService.getOrderIdListByFundingId(fid);
+        FundingDetailVO store = fundingService.getFundingDetail(fid, "STORE");
         for (String oId : orderIdList) {
             try {
                 OrderVO order = orderService.getOrderByOrderId(oId);
@@ -74,7 +77,7 @@ public class AdminServiceImpl implements AdminService {
 
                  // 주문자가 user@gmail.com 일 경우에만 메시지 보내기
                 if(order.getMemail().equals("user@gmail.com")){
-                    commonService.sendOrderInfoByKakaoMessageApi(memail, order);
+                    commonService.sendOrderInfoByKakaoMessageApi(memail, order, store);
                 }
 
             } catch (IOException e) {

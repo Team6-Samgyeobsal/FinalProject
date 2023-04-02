@@ -4,6 +4,8 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.samgyeobsal.domain.common.CategoryVO;
 import com.samgyeobsal.domain.common.CompetitionHyundaiVO;
+import com.samgyeobsal.domain.funding.FundingDetailVO;
+import com.samgyeobsal.domain.funding.FundingVO;
 import com.samgyeobsal.domain.member.OAuth2TokenVO;
 import com.samgyeobsal.domain.order.OrderItemVO;
 import com.samgyeobsal.domain.order.OrderVO;
@@ -32,6 +34,7 @@ public class CommonServiceImpl implements CommonService{
     private final CommonMapper commonMapper;
 
     private final RefreshTokenService refreshTokenService;
+
 
     private final QrCodeMapper qrCodeMapper;
 
@@ -80,7 +83,7 @@ public class CommonServiceImpl implements CommonService{
     }
 
     @Override
-    public void sendOrderInfoByKakaoMessageApi(String memail, OrderVO orderVO) {
+    public void sendOrderInfoByKakaoMessageApi(String memail, OrderVO orderVO, FundingDetailVO store) {
         OAuth2TokenVO oAuth2Token = refreshTokenService.getOAuth2TokenByEmail(memail);
         Map<String, Object> map = sendKakaoFriendsApi(oAuth2Token.getOauth2_token());
         List<String> uuids = new ArrayList<>();
@@ -90,7 +93,7 @@ public class CommonServiceImpl implements CommonService{
             uuids.add("\"" + uid + "\"");
         }
         sendKakaoMessageApi(uuids.stream().collect(Collectors.joining(",")),
-                oAuth2Token.getOauth2_token(), orderVO);
+                oAuth2Token.getOauth2_token(), orderVO, store);
     }
 
 
@@ -113,11 +116,12 @@ public class CommonServiceImpl implements CommonService{
         }
     }
 
-    private Map<String, Object> sendKakaoMessageApi(String friendsUuids, String accessToken, OrderVO orderVO){
+    private Map<String, Object> sendKakaoMessageApi(String friendsUuids, String accessToken, OrderVO orderVO, FundingDetailVO store){
         
         //TODO : 이미지 동적으로 변경
         
         RestTemplate restTemplate = new RestTemplate();
+
 
         String qrCodeUrl = qrCodeMapper.getQrCodeString(orderVO.getOid());
 
@@ -156,7 +160,7 @@ public class CommonServiceImpl implements CommonService{
                         "  }," +
                         "  \"item_content\" : {" +
                         "      \"profile_text\" :\""+orderVO.getFstore_name()+"\"," +
-                        "      \"profile_image_url\" :\"https://mud-kage.kakao.com/dn/Q2iNx/btqgeRgV54P/VLdBs9cvyn8BJXB3o7N8UK/kakaolink40_original.png\"," +
+                        "      \"profile_image_url\" :\""+store.getFthumb()+"\"," +
                         "" +
                         "      \"title_image_text\" :\""+orderTitle+"\"," +
                         "      \"title_image_category\" : \""+orderVO.getOrders().get(0).getFpcontent()+"\"," +
@@ -164,7 +168,7 @@ public class CommonServiceImpl implements CommonService{
                                 orderItems.stream().collect(Collectors.joining(",")) +
                         "      ],\n" +
                         "      \"sum\" :\"Total\",\n" +
-                        "      \"sum_op\" : \""+orderVO.getOprice()+"\"\n" +
+                        "      \"sum_op\" : \""+orderVO.getOprice()+"원\"\n" +
                         "  },\n" +
                         "  \"buttons\": [\n" +
                         "      {\n" +
