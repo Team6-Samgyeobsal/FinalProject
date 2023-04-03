@@ -495,7 +495,7 @@
                                         class="SatisfactionSummary_title__27vSu">응원 댓글</h4>
                                     <div class="RatingScore_container__AeQ_I RatingScore_lgFull__2tY1J SatisfactionSummary_summary__18JyH">
                                         <div class="RatingScore_icon__rIS_k"></div>
-                                        <span class="RatingScore_score__2a-SN">[[${funding.fstore_score}]]</span><span
+                                        <span class="RatingScore_score__2a-SN">[[${funding.ffunding_score}]]</span><span
                                             class="RatingScore_maxScore__2hkAT">/5.0</span></div>
 
                                 </div>
@@ -826,6 +826,7 @@
                     let k = "";
                     console.log(data.reviewCount);
                     $('#fundingCount').text(data.reviewCount.rfcount);
+                    let fthumb=[[${funding.fthumb}]];
                     if (data.review.length == 0 && page == 0) {
                         k = `<div class="SatisfactionNoReview_container__1xzoJ"><span class="SatisfactionNoReview_icon__1sDe_"></span><p class="SatisfactionNoReview_text__N24Pm">아직 작성된 만족도 평가가 없어요</p></div><div></div>`
 
@@ -853,7 +854,7 @@
       <div class="CommunityCommentReplyContent_container__ImfPm">
         <div class="CommentUserWrapper_container__10Bt-">
           <div class="CommentUserWrapper_avatar__1MYTO">
-            <a href="/web/maker/detail/276658"
+            <a href="#none"
               ><div
                 class="Avatar_avatar__2HQiR"
                 style="width: 36px; height: 36px"
@@ -861,7 +862,7 @@
                 <span
                   class="Avatar_hasImage__31hv2"
                   style="
-                    background-image: url('https://www.wadiz.kr/wwwwadiz/green001/2023/0209/20230209151355203_190020.jpg');
+                    background-image: url(${fthumb});
                     border: 1px solid rgb(221, 226, 230);
                   "
                 ></span></div
@@ -870,7 +871,7 @@
           <div class="CommentUserWrapper_main__2oHy1">
             <div class="CommentUserInfo_container__2G0cq">
               <span class="CommentUserInfo_name__3WGGI"
-                ><a href="/web/maker/detail/276658"
+                ><a href="#none"
                   ><strong>${store_name}</strong></a
                 ></span
               ><span
@@ -962,7 +963,7 @@
                 <span
                   class="Avatar_hasImage__31hv2"
                   style="
-                    background-image: url('https://static.wadiz.kr/assets/icon/profile-icon-3.png');
+                    background-image: url(${fthumb});
                   "
                 ></span></div
             ></a>

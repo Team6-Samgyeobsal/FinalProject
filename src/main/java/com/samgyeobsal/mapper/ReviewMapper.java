@@ -12,4 +12,11 @@ public interface ReviewMapper {
     int replyReview(ReplyReviewVO replyReviewVO);
 
     boolean isAlreadyExistReview(String rtype, String memail ,String fid);
+
+    int updateFundingScore();
+
+    int updateStoreScore();
+
+    int deleteReview(String memail);
+
 }
