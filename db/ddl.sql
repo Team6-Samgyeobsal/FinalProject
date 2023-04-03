@@ -88,7 +88,8 @@ CREATE TABLE funding (
                          ctid           VARCHAR2(100 BYTE),
                          fthumb         VARCHAR2(300 BYTE),
                          cid            VARCHAR2(100 BYTE),
-                         tid            VARCHAR2(100 BYTE)
+                         tid            VARCHAR2(100 BYTE),
+                         FADDRESS       VARCHAR2(200 BYTE)
 );
 
 COMMENT ON COLUMN funding.fstatus IS

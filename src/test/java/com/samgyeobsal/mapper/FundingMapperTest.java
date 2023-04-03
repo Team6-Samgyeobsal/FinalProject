@@ -17,7 +17,7 @@ import java.util.UUID;
 @Log4j2
 public class FundingMapperTest {
 
-    private final String fid="76591e4a-2c32-4c18-996c-7d176f6b6758";
+    private final String fid="1";
     @Autowired
     FundingMapper fundingMapper;
 
@@ -31,15 +31,15 @@ public class FundingMapperTest {
     }
     @Test
     public void getFundingDetailTest(){
-        FundingDetailVO fundingDetailVO = fundingMapper.getFundingDetail(fid,"FUNDING");
-        System.out.println(fundingDetailVO);
+        FundingDetailVO fundingDetailVO = fundingMapper.getFundingDetail(fid,"STORE");
+        log.info("fundingDetailVO"+fundingDetailVO);
     }
 
     @Test
     public void getFundingDetailTest2(){
         String fid = "d5c1a8a5-6466-4488-8792-66e39e26ff1e";
         FundingDetailVO fundingDetailVO = fundingMapper.getFundingDetail(fid,"PARTICIPATE");
-        System.out.println(fundingDetailVO);
+        log.info(fundingDetailVO);
     }
     @Test
     public void getReviewListTest(){
