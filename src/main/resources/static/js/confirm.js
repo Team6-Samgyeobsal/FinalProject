@@ -1,4 +1,4 @@
-function showConfirm(msg,detail) {
+function showConfirm(msg,detail, callback) {
     let content = `<div class="DialogModal_dialogPortal__30RDP">
   <div
     class="DialogModal_dialogOverlay__3crIB DialogModal_basic__ZSVbj DialogModal_dialogOverlayAfterOpen__R2Uuo"
@@ -44,6 +44,11 @@ function showConfirm(msg,detail) {
     $('body').append(content);
     $('.cancelButton').click(function (){
         $('.DialogModal_dialogPortal__30RDP').remove();
+    })
+
+    $('.checkConfirm').click(function(e){
+        callback();
+        $('.cancelButton').click();
     })
 }
 // <script src="/js/confirm.js"></script>

@@ -56,7 +56,7 @@
             <button
               class="Button_button__1e2A2 Button_tertiaryGrey__3gRf4 Button_text__3KyLl Button_md__1FRMG"
               type="button">
-              <span><span class="Button_children__q9VCZ">나가기</span></span>
+              <span><span class="Button_children__q9VCZ quit_btn">나가기</span></span>
             </button>
           </div>
         </div>
@@ -184,15 +184,17 @@
       </div>
     </div>
 
+  <script src="/js/confirm.js"></script>
+    <link
+         rel="stylesheet"
+         href="/import/css/payments.562cdee9.css"
+     />
+     <link
+         rel="stylesheet"
+         href="/import/css/wui.css"/>
+     <link rel="stylesheet" href="https://static.wadiz.kr/static/web/common.css?a5fa8553">
   <script>
     let fid = '[[${fundingMaker.getFid()}]]'
-
-    $(document).ready(function (){
-      console.log('tt');
-    })
-    $(document).on('click','.submitBtn',function(e){
-      sendDocument();
-    })
 
     function sendDocument(){
       $.ajax({
@@ -205,6 +207,19 @@
         }
       })
     }
+
+    $(document).ready(function (){
+      console.log('tt');
+    })
+    $(document).on('click','.submitBtn',function(e){
+      showConfirm("프로젝트 심사", "프로젝트를 제출하시겠습니까?", sendDocument);
+    })
+
+    $(document).on('click','.quit_btn',function(){
+      showConfirm("프로젝트 작성", "정말 나가시겠습니까?",()=>location.href='/web/mypage/maker' );
+    })
+
+
   </script>
   </body>
 </html>

@@ -752,6 +752,7 @@
 </script>
 <script th:inline="javascript">
     $(document).ready(function () {
+
         //물건 클릭 시 물건을 파라미터에 담음
         $('.Reward_container__qyq1y, .ProductSelectMenuItem_container__2ubAS').on('click', function () {
                 console.log('물건클릭')
@@ -764,6 +765,7 @@
         let type = "funding";
         let page = 0;
         $('#reviewList').html('');
+        test1(fid, sort, type,page);
         getReview(fid, sort, type,page);
 
 
@@ -775,6 +777,7 @@
             sort = $('#sorted').text();
             $('#reviewList').html('');
             page = 0;
+            test1(fid, sort, type,page);
             getReview(fid, sort, type, page);
         })
         //무한 스크롤
@@ -782,6 +785,7 @@
             if ($(window).scrollTop() + $(window).height() >= $(document).height() - 1000) {
                 console.log('다음 페이지');
                 page++
+                test1(fid, sort, type,page);
                 getReview(fid, sort, type, page);
             }
         });
@@ -809,6 +813,32 @@
             return `${Math.floor(betweenTimeDay / 365)}년 전`;
         }
 
+        function test1(fid,sort,type,page) {
+            alert("Start");
+            $.ajax({
+                url: '/api/funding/review',
+                type: "get",
+                contentType: "application/json; charset=utf-8",
+                data: {
+                    fid: fid,
+                    sort: sort,
+                    type: type,
+                    page: page
+                },
+                success: function (data, status) {
+                    data.review.forEach(function (review) {
+                        alert("testttt"+review.recontent);
+                    });
+                } ,
+                error: function (status, error) {
+                    alert("실패");
+                }
+            })
+
+        }
+
+
+
         //리뷰 출력 ajax
         function getReview(fid, sort, type, page) {
 
@@ -823,6 +853,7 @@
                     page: page
                 },
                 success: function (data, status) {
+                    alert("getReview"+ data.review.recontent);
                     let k = "";
                     console.log(data.reviewCount);
                     $('#fundingCount').text(data.reviewCount.rfcount);
@@ -843,8 +874,10 @@
                             }
                             if(review.recontent !=null&&review.recontent.length!==0){
                                 let store_name=[[${funding.fstore_name}]];
+                                alert(review.recontent);
                                 let replycontent=review.recontent;
                                 let redate=timeForToday(review.redate);
+                                console.log(">>>>>>>" + replycontent);
                                 button='답글 수정';
 
 
@@ -885,7 +918,7 @@
             <div>
               <div class="CommentTextContent_container__3EM7N">
                 <div class="CommentTextContent_contentBox__uvt_R">
-                  ${replycontent}
+                 ${replycontent}
                 </div>
               </div>
             </div>
@@ -1047,7 +1080,8 @@
             let rtype = [[${funding.fstatus}]];
             let rcontent = $('#feedback-contents').val();
 
-            console.log(rcontent);
+            console.log(">>>>>>>>>>>real: " + rcontent);
+            alert(rcontent+"!!!!!!!!");
             $.ajax({
                 url: url,
                 type: "post",
@@ -1078,12 +1112,13 @@
         });
         // 답글 적기
         $(document).on('click', '.CommentForm_container__2bT5x .CommentForm_bottom__3THGM .CommentForm_button__1Rp_R', function () {
-            console.log('답글 저장');
+            console.log('ewwerewfewrew답글 저장');
             const replyWrite=$(this).closest('.CommentForm_bottom__3THGM').prev('.wz.input').find('textarea');
             let replyWriteRecontent=replyWrite.val()
-            console.log(replyWriteRecontent);
+            console.log("진짜이거답글내용:" + replyWriteRecontent);
+            alert(replyWriteRecontent+"!!!!!!!!!!!");
             let replyWriterMemail=replyWrite.data('memail')
-            console.log(replyWriterMemail);
+            console.log("ss"+ replyWriterMemail);
             let rtype = [[${funding.fstatus}]];
             replyReview(replyWriteRecontent,rtype,replyWriterMemail);
         });

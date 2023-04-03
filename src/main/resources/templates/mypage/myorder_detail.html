@@ -390,7 +390,7 @@
           dataType : 'text',
           success : function(data){
             console.log(data);
-            let temp = `<img alt="QR Code" src="data:image/png;base64,${data}" style="width: 100px;">`
+            let temp = `<img alt="QR Code" src="${data}" style="width: 100px;">`
             $('.qr_area').append(temp);
           }
         })

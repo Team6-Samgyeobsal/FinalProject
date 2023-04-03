@@ -70,4 +70,9 @@ public class MemberServiceImpl implements MemberService {
         List<FundingVO> fundingList = memberMapper.findFundingListByEmail(email);
         return fundingList;
     }
+
+    @Override
+    public FundingVO findActiveStoreByEmail(String email) {
+        return memberMapper.findActiveStoreByEmail(email);
+    }
 }

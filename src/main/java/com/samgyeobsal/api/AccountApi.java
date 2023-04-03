@@ -1,5 +1,6 @@
 package com.samgyeobsal.api;
 
+import com.samgyeobsal.domain.funding.FundingVO;
 import com.samgyeobsal.domain.member.LoginDTO;
 import com.samgyeobsal.domain.member.MemberVO;
 import com.samgyeobsal.domain.member.OAuth2TokenVO;
@@ -53,6 +54,8 @@ public class AccountApi {
         if(bindingResult.hasErrors())
             return new ResponseEntity<>(bindingResult.getAllErrors(), HttpStatus.BAD_REQUEST);
 
+        FundingVO activeStore = memberService.findActiveStoreByEmail(loginDTO.getEmail());
+
         HashMap<String, Object> res = new HashMap<>();
         String accessToken = jwtTokenProvider.createAccessToken(loginDTO.getEmail());
         String refreshToken = jwtTokenProvider.createRefreshToken(loginDTO.getEmail());
@@ -61,6 +64,7 @@ public class AccountApi {
         res.put("member", member);
         res.put("accessToken", accessToken);
         res.put("refreshToken", refreshToken);
+        res.put("store", activeStore);
 
         RefreshTokenVO refreshTokenVO = new RefreshTokenVO();
         refreshTokenVO.setMemail(loginDTO.getEmail());

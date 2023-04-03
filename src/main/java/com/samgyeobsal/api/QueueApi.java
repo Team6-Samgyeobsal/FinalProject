@@ -19,11 +19,14 @@ public class QueueApi {
     @Autowired
     QueueService queueService;
 
+    // QRUSEDDATE = null만 출력
     @GetMapping("/list")
     public ResponseEntity<List<QueueVO>> getQueueList(String fid) {
         List<QueueVO> queue = queueService.getQueueList(fid);
         return new ResponseEntity<>(queue, HttpStatus.OK);
     }
+
+    // 리스트에서 대기열 삭제 -> QRUSEDDATE 값을 넣는다
     @PostMapping("/useQrCode")
     public ResponseEntity<String> useQrCode(@RequestBody Map<String, String> map) {
         queueService.useQrCode(map.get("qid"));

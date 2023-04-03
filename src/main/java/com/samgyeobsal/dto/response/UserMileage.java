@@ -18,4 +18,5 @@ public class UserMileage {
 
     private String mEmail;
     private Integer mMileage;
+    private Integer oprice;
 }

@@ -142,11 +142,11 @@
               </div>
               <div class="ProjectNavbar_buttonGroup__219eP">
                 <button
-                  class="Button_button__1e2A2 Button_tertiaryGrey__3gRf4 Button_text__3KyLl Button_md__1FRMG"
+                  class="Button_button__1e2A2 Button_tertiaryGrey__3gRf4 Button_text__3KyLl Button_md__1FRMG quit_btn"
                   type="button">
-                  <span
-                    ><span class="Button_children__q9VCZ">나가기</span></span
-                  >
+                  <span>
+                    <span class="Button_children__q9VCZ">나가기</span>
+                  </span>
                 </button>
               </div>
             </nav>
@@ -237,6 +237,20 @@
     <div class="modalArea">
 
     </div>
+
+    <script src="/js/confirm.js"></script>
+    <script src="/js/toast.js"></script>
+    <link
+        rel="stylesheet"
+        href="/import/css/reward-product.cfd21a1c.css"/>
+    <link
+         rel="stylesheet"
+         href="/import/css/payments.562cdee9.css"
+     />
+     <link
+         rel="stylesheet"
+         href="/import/css/wui.css"/>
+    <link rel="stylesheet" href="https://static.wadiz.kr/static/web/common.css?a5fa8553">
     <script th:inline="javascript">
     /*<![CDATA[*/
     let fid = /*[[${fundingMaker.fid}]]*/
@@ -244,6 +258,9 @@
     $(document).ready(function(){
       // 초기 리워드 불러옴
       loadRewards();
+    })
+    $(document).on('click','.quit_btn',function(){
+      showConfirm("프로젝트 작성", "정말 나가시겠습니까?",()=>location.href='/web/mypage/maker' );
     })
 
     // modal 에서 추가 버튼 누를 시
@@ -262,61 +279,65 @@
         opts.push(map);
       })
       if(price === ''){
-        console.log('price null');
+        showToast("판매할 가격을 입력해주세요");
         return;
       }
       if(originPrice === ''){
-        console.log('originPrice null');
+        showToast("원래 판매가를 입력해주세요");
         return;
       }
       if(title === ''){
-        console.log('title null');
+        showToast("상품 이름을 입력해주세요");
         return;
       }
       if (content === '') {
-        console.log('content null');
+        showToast("상품 설명을 입력해주세요");
         return;
       }
       if (opts.length === 0) {
-        console.log('opt null');
+        showToast("상품 옵셥을 1개 이상 입력해주세요");
         return;
       }
-
-      $.ajax({
-        url: '/api/funding/' + fid + '/product',
-        data : JSON.stringify(
-                {fpid, price, originPrice, title, content, opts}
-        ),
-        contentType : 'application/json',
-        type: 'POST',
-        dataType:'text',
-        success : function(data){
-          console.log(data);
-          $('.modalArea').html('');
-          loadRewards();
-        },
-        error : function(request, status, error ) {
-          console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-        },
+      showConfirm("리워드 추가", "리워드를 추가하시겠습니까?",()=>{
+        $.ajax({
+          url: '/api/funding/' + fid + '/product',
+          data : JSON.stringify(
+                  {fpid, price, originPrice, title, content, opts}
+          ),
+          contentType : 'application/json',
+          type: 'POST',
+          dataType:'text',
+          success : function(data){
+            console.log(data);
+            $('.modalArea').html('');
+            loadRewards();
+          },
+          error : function(request, status, error ) {
+            console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+          },
+        })
       })
     })
 
     // 리워드 카드에서 삭제 버튼 누를 시
     $(document).on('click','.btnDel',function(e){
-      let fpid = $(this).data('fpid');
-      $.ajax({
-        url: '/api/funding/' + fid + '/product/remove',
-        data : JSON.stringify(
-                {fpid}
-        ),
-        contentType : 'application/json',
-        type: 'POST',
-        dataType:'text',
-        success : function (data){
-          console.log('delete success');
-          loadRewards();
-        }
+      showConfirm("리워드 삭제", "정말로 리워드를 삭제하시겠습니까?",()=>{
+        let fpid = $(this).data('fpid');
+        $.ajax({
+          url: '/api/funding/' + fid + '/product/remove',
+          data : JSON.stringify(
+                  {fpid}
+          ),
+          contentType : 'application/json',
+          type: 'POST',
+          dataType:'text',
+          success : function (data){
+            console.log('delete success');
+            loadRewards();
+          }
+        })
       })
+
     })
 
     // 리워드 추가 영역 누르면 -> 리워드 추가 modal
@@ -540,8 +561,10 @@
               <div class="optArea">
                  ${optTemplate}
               </div>
+              <div style="display: flex; justify-content: center;">
                 <input type="text" class="form-control" id="prod_opt1" placeholder="예시) 매운맛">
-                <button type="button" class="btn btn-outline-primary addOptBtn" style="margin-top: 10px">Add</button>
+                <button type="button" class="btn btn-outline-primary addOptBtn" style="margin-left: 10px">Add</button>
+              </div>
               </div>
             </div>
             <div

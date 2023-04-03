@@ -4,10 +4,13 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.samgyeobsal.domain.common.CategoryVO;
 import com.samgyeobsal.domain.common.CompetitionHyundaiVO;
+import com.samgyeobsal.domain.funding.FundingDetailVO;
+import com.samgyeobsal.domain.funding.FundingVO;
 import com.samgyeobsal.domain.member.OAuth2TokenVO;
 import com.samgyeobsal.domain.order.OrderItemVO;
 import com.samgyeobsal.domain.order.OrderVO;
 import com.samgyeobsal.mapper.CommonMapper;
+import com.samgyeobsal.mapper.QrCodeMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +34,9 @@ public class CommonServiceImpl implements CommonService{
     private final CommonMapper commonMapper;
 
     private final RefreshTokenService refreshTokenService;
+
+
+    private final QrCodeMapper qrCodeMapper;
 
     @Autowired
     private ObjectMapper objectMapper;
@@ -77,7 +83,7 @@ public class CommonServiceImpl implements CommonService{
     }
 
     @Override
-    public void sendOrderInfoByKakaoMessageApi(String memail, OrderVO orderVO) {
+    public void sendOrderInfoByKakaoMessageApi(String memail, OrderVO orderVO, FundingDetailVO store) {
         OAuth2TokenVO oAuth2Token = refreshTokenService.getOAuth2TokenByEmail(memail);
         Map<String, Object> map = sendKakaoFriendsApi(oAuth2Token.getOauth2_token());
         List<String> uuids = new ArrayList<>();
@@ -87,7 +93,7 @@ public class CommonServiceImpl implements CommonService{
             uuids.add("\"" + uid + "\"");
         }
         sendKakaoMessageApi(uuids.stream().collect(Collectors.joining(",")),
-                oAuth2Token.getOauth2_token(), orderVO);
+                oAuth2Token.getOauth2_token(), orderVO, store);
     }
 
 
@@ -110,8 +116,15 @@ public class CommonServiceImpl implements CommonService{
         }
     }
 
-    private Map<String, Object> sendKakaoMessageApi(String friendsUuids, String accessToken, OrderVO orderVO){
+    private Map<String, Object> sendKakaoMessageApi(String friendsUuids, String accessToken, OrderVO orderVO, FundingDetailVO store){
+        
+        //TODO : 이미지 동적으로 변경
+        
         RestTemplate restTemplate = new RestTemplate();
+
+
+        String qrCodeUrl = qrCodeMapper.getQrCodeString(orderVO.getOid());
+
         String orderTitle = orderVO.getOrders().get(0).getFptitle();
         if(orderVO.getOrders().size() > 1) orderTitle += " 외 " + (orderVO.getOrders().size() - 1) + "건";
 
@@ -138,7 +151,7 @@ public class CommonServiceImpl implements CommonService{
                         "  \"content\": {" +
                         "      \"title\": \""+orderVO.getFtitle()+"\"," +
                         "      \"description\": \""+orderVO.getCtname()+"\"," +
-                        "      \"image_url\": \"https://mud-kage.kakao.com/dn/NTmhS/btqfEUdFAUf/FjKzkZsnoeE4o19klTOVI1/openlink_640x640s.jpg\"," +
+                        "      \"image_url\": \""+qrCodeUrl+"\"," +
                         "      \"image_width\": 640," +
                         "      \"image_height\": 640," +
                         "      \"link\": {" +
@@ -147,7 +160,7 @@ public class CommonServiceImpl implements CommonService{
                         "  }," +
                         "  \"item_content\" : {" +
                         "      \"profile_text\" :\""+orderVO.getFstore_name()+"\"," +
-                        "      \"profile_image_url\" :\"https://mud-kage.kakao.com/dn/Q2iNx/btqgeRgV54P/VLdBs9cvyn8BJXB3o7N8UK/kakaolink40_original.png\"," +
+                        "      \"profile_image_url\" :\""+store.getFthumb()+"\"," +
                         "" +
                         "      \"title_image_text\" :\""+orderTitle+"\"," +
                         "      \"title_image_category\" : \""+orderVO.getOrders().get(0).getFpcontent()+"\"," +
@@ -155,7 +168,7 @@ public class CommonServiceImpl implements CommonService{
                                 orderItems.stream().collect(Collectors.joining(",")) +
                         "      ],\n" +
                         "      \"sum\" :\"Total\",\n" +
-                        "      \"sum_op\" : \""+orderVO.getOprice()+"\"\n" +
+                        "      \"sum_op\" : \""+orderVO.getOprice()+"원\"\n" +
                         "  },\n" +
                         "  \"buttons\": [\n" +
                         "      {\n" +
@@ -165,13 +178,12 @@ public class CommonServiceImpl implements CommonService{
                         "          }\n" +
                         "      }\n" +
                         "  ]\n" +
-                        "}\n" +
-                        "\n" +
-                        "\n" +
-                        "\n");
+                        "}");
 
 
         HttpEntity<MultiValueMap<String,String>> entity = new HttpEntity<>(params, headers);
+
+        log.info("body = {}", params.get("template_object"));
 
         ResponseEntity<String> res = restTemplate.postForEntity(
                 messageApiUrl, entity, String.class);

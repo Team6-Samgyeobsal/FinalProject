@@ -2,6 +2,7 @@ package com.samgyeobsal.service;
 
 import com.samgyeobsal.domain.common.CategoryVO;
 import com.samgyeobsal.domain.common.CompetitionHyundaiVO;
+import com.samgyeobsal.domain.funding.FundingDetailVO;
 import com.samgyeobsal.domain.order.OrderVO;
 
 import java.util.List;
@@ -16,7 +17,7 @@ public interface CommonService {
 
     int getReviewScore(String review);
 
-    void sendOrderInfoByKakaoMessageApi(String memail, OrderVO orderVO);
+    void sendOrderInfoByKakaoMessageApi(String memail, OrderVO orderVO, FundingDetailVO store);
 
 
 

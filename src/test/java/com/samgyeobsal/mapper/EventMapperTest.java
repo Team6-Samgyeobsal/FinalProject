@@ -11,6 +11,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 
 import lombok.extern.log4j.Log4j2;
+import org.springframework.transaction.annotation.Transactional;
 
 @Log4j2
 @SpringBootTest
@@ -35,6 +36,15 @@ public class EventMapperTest {
     public void testUpdateUseDate() {
         int result = eventMapper.updateUseDate(LocalDateTime.now(), "exampleId");
         log.info(result);
+    }
+
+    // int updateUsedMileage(@Param("usedMl") Integer usedMl, @Param("memail") String mEmail);
+
+
+    @Test
+    public void testUpdateUsedMileage(){
+        int result = eventMapper.updateUsedMileage(1, "2dedfa77-16c7-4e1a-a0be-42a19894a91d");
+        log.info("usedMileage : " + result);
     }
 
 }
