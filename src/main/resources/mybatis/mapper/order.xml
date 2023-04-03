@@ -84,7 +84,8 @@
                fp.fid, fp.fporigin_price, fp.fpprice, fp.fptitle, fp.fpcontent,
                f.fid, f.fstore_name, f.ftitle, f.fsummary, f.fstory, f.fdate, f.fstatus,
                f.fstore_score, f.ffunding_score, f.ctid, f.fthumb, f.cid, f.tid,
-               ct.ctname,m.mname
+               ct.ctname,m.mname,
+               q.qid, q.link, q.qr_code
         from orders o
         inner join member m on (o.memail = m.memail)
         inner join order_item oi on (oi.oid = o.oid)
@@ -92,6 +93,7 @@
         inner join funding_product fp on (fp.fpid = po.fpid)
         inner join funding f on (f.fid = fp.fid)
         inner join category ct on (ct.ctid = f.ctid)
+        left join qr_code q on (q.oid = o.oid)
         where o.oid = #{orderId}
         order by o.odate desc
     </select>
