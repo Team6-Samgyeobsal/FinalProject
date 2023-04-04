@@ -592,10 +592,10 @@
                                             class="Button_button__mRXZC Button_primary__1HJqX Button_contained__k9pMW Button_xl__3MTkK ProductFloatButton_button__tpSGA"
                                             type="button"
                                             id="abled2"
-                                            ><span><span
+                                    ><span><span
                                             class="Button_children__3HY2l"
 
-                                            ><span>구매하기</span></span></span></button
+                                    ><span>구매하기</span></span></span></button
                                     >
                                 </div>
                             </div>
@@ -755,8 +755,8 @@
 
         //물건 클릭 시 물건을 파라미터에 담음
         $('.Reward_container__qyq1y, .ProductSelectMenuItem_container__2ubAS').on('click', function () {
-                console.log('물건클릭')
-                location.href = '/web/order/' + [[${funding.fid}]] + '/step1?fpid=' + $(this).data('fpid');
+            console.log('물건클릭')
+            location.href = '/web/order/' + [[${funding.fid}]] + '/step1?fpid=' + $(this).data('fpid');
 
         });
 
@@ -813,32 +813,6 @@
             return `${Math.floor(betweenTimeDay / 365)}년 전`;
         }
 
-        function test1(fid,sort,type,page) {
-            alert("Start");
-            $.ajax({
-                url: '/api/funding/review',
-                type: "get",
-                contentType: "application/json; charset=utf-8",
-                data: {
-                    fid: fid,
-                    sort: sort,
-                    type: type,
-                    page: page
-                },
-                success: function (data, status) {
-                    data.review.forEach(function (review) {
-                        alert("testttt"+review.recontent);
-                    });
-                } ,
-                error: function (status, error) {
-                    alert("실패");
-                }
-            })
-
-        }
-
-
-
         //리뷰 출력 ajax
         function getReview(fid, sort, type, page) {
 
@@ -853,7 +827,6 @@
                     page: page
                 },
                 success: function (data, status) {
-                    alert("getReview"+ data.review.recontent);
                     let k = "";
                     console.log(data.reviewCount);
                     $('#fundingCount').text(data.reviewCount.rfcount);
@@ -873,10 +846,8 @@
                             }
                             if(review.recontent !=null&&review.recontent.length!==0){
                                 let store_name=[[${funding.fstore_name}]];
-                                alert(review.recontent);
                                 let replycontent=review.recontent;
                                 let redate=timeForToday(review.redate);
-                                console.log(">>>>>>>" + replycontent);
                                 button='답글 수정';
 
 
@@ -1079,8 +1050,6 @@
             let rtype = [[${funding.fstatus}]];
             let rcontent = $('#feedback-contents').val();
 
-            console.log(">>>>>>>>>>>real: " + rcontent);
-            alert(rcontent+"!!!!!!!!");
             $.ajax({
                 url: url,
                 type: "post",
@@ -1111,13 +1080,9 @@
         });
         // 답글 적기
         $(document).on('click', '.CommentForm_container__2bT5x .CommentForm_bottom__3THGM .CommentForm_button__1Rp_R', function () {
-            console.log('ewwerewfewrew답글 저장');
             const replyWrite=$(this).closest('.CommentForm_bottom__3THGM').prev('.wz.input').find('textarea');
             let replyWriteRecontent=replyWrite.val()
-            console.log("진짜이거답글내용:" + replyWriteRecontent);
-            alert(replyWriteRecontent+"!!!!!!!!!!!");
             let replyWriterMemail=replyWrite.data('memail')
-            console.log("ss"+ replyWriterMemail);
             let rtype = [[${funding.fstatus}]];
             replyReview(replyWriteRecontent,rtype,replyWriterMemail);
         });
