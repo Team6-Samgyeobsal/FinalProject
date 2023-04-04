@@ -892,21 +892,6 @@
                         <a
                                 class="PreorderMainCard_item__2FrO0"
                                 href="/web/funding/${funding.fid}"
-                                data-promo-acid="10026109"
-                                data-promo-id="https://www.wadiz.kr/web/campaign/detail/182501?acid=10026109&amp;_refer_section_st=REWARD_0"
-                                data-promo-position="REWARD_0"
-                                data-promo-name="﻿발명의날 대통령상ㅣ숨쉬는베개로 뒤척임에도 귀눌림없이 공기에 기대는 밤!"
-                                data-ec-list="AD_펀딩홈_프로젝트카드_펀딩"
-                                data-ec-id="182501"
-                                data-ec-name="﻿발명의날 대통령상ㅣ숨쉬는베개로 뒤척임에도 귀눌림없이 공기에 기대는 밤!"
-                                data-ec-category="홈·리빙"
-                                data-ec-brand="코튼샤워"
-                                data-ec-position="0"
-                                data-ec-contenttype="REWARD"
-                                data-gtm-vis-recent-on-screen-11319722_2047="10198318"
-                                data-gtm-vis-first-on-screen-11319722_2047="10198318"
-                                data-gtm-vis-total-visible-time-11319722_2047="2000"
-                                data-gtm-vis-has-fired-11319722_2047="1"
                         >
                             <div class="PreorderMainCard_thumbnailWrap__NRDb4">
                                 <div
@@ -969,11 +954,19 @@
                             >
                         </a>
                     </div>`;
-
-                                        $('.TableLayout_container__1_Ap4').append(k);
+                                        $.ajax({
+                                            url : '/api/translate',
+                                            type : 'post',
+                                            data : k,
+                                            contentType: "text/html",
+                                            success : function(data){
+                                                console.log(data);
+                                                $('.TableLayout_container__1_Ap4').append(data);
+                                            },error: function (status, error) {
+                                                console.log(error);
+                                            }
+                                        })
                                     });
-
-                                    // $('.TableLayout_container__1_Ap4').append(data);
                                 },
                                 error: function (status, error) {
                                     alert("실패");
