@@ -44,7 +44,7 @@ public class WebSiteTranslateApi {
 
         try{
             // prod 일 경우에만 api 호출
-            if(profile.equals("prod") || myLocale == MyLocale.KO){
+            if(profile.equals("prod") &&  myLocale == MyLocale.KO){
                 String url = requestUrl;
                 String clientId = clientKey;
                 String clientSecret = clientSecretKey;
