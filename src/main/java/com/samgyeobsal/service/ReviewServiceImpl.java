@@ -40,4 +40,9 @@ public class ReviewServiceImpl implements ReviewService{
     public boolean isAlreadyExistReview(String rtype, String memail,String fid) {
         return reviewMapper.isAlreadyExistReview(rtype, memail,fid);
     }
+
+    @Override
+    public void deleteReview(String memail) {
+        reviewMapper.deleteReview(memail);
+    }
 }

@@ -19,4 +19,35 @@
         from review r
         where r.rtype = #{rtype} and r.memail = #{memail} and r.fid = #{fid}
     </select>
+
+    <update id="updateFundingScore">
+        UPDATE (select f.fid,
+                       FFUNDING_SCORE,
+                       rscore
+                       from funding f
+                       JOIN (select fid,
+                                    round(avg(rscore),2) as rscore
+                       from review
+                       where rtype ='FUNDING'
+                       group by fid) r ON f.fid=r.fid)
+        SET FFUNDING_SCORE = rscore
+    </update>
+
+    <update id="updateStoreScore">
+        UPDATE (select f.fid,
+                       FSTORE_SCORE,
+                       rscore
+                from funding f
+                JOIN (select fid,
+                             round(avg(rscore),2) as rscore
+                      from review
+                      where rtype ='STORE'
+                      group by fid) r ON f.fid=r.fid)
+        SET FSTORE_SCORE = rscore
+    </update>
+
+    <delete id="deleteReview">
+        delete from review where memail = #{memail}
+    </delete>
+
 </mapper>

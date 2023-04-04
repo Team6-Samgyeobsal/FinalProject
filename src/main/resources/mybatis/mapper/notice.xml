@@ -19,6 +19,7 @@
             <otherwise>
             </otherwise>
         </choose>
+        order by ndate desc nulls last
     </select>
 
     <select id="getNoticeDetail" resultType="notice">
