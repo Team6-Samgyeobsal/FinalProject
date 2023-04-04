@@ -765,7 +765,6 @@
         let type = "funding";
         let page = 0;
         $('#reviewList').html('');
-        test1(fid, sort, type,page);
         getReview(fid, sort, type,page);
 
 
@@ -777,7 +776,6 @@
             sort = $('#sorted').text();
             $('#reviewList').html('');
             page = 0;
-            test1(fid, sort, type,page);
             getReview(fid, sort, type, page);
         })
         //무한 스크롤
@@ -785,7 +783,6 @@
             if ($(window).scrollTop() + $(window).height() >= $(document).height() - 1000) {
                 console.log('다음 페이지');
                 page++
-                test1(fid, sort, type,page);
                 getReview(fid, sort, type, page);
             }
         });
@@ -813,31 +810,6 @@
             return `${Math.floor(betweenTimeDay / 365)}년 전`;
         }
 
-        function test1(fid,sort,type,page) {
-            alert("Start");
-            $.ajax({
-                url: '/api/funding/review',
-                type: "get",
-                contentType: "application/json; charset=utf-8",
-                data: {
-                    fid: fid,
-                    sort: sort,
-                    type: type,
-                    page: page
-                },
-                success: function (data, status) {
-                    data.review.forEach(function (review) {
-                        alert("testttt"+review.recontent);
-                    });
-                } ,
-                error: function (status, error) {
-                    alert("실패");
-                }
-            })
-
-        }
-
-
 
         //리뷰 출력 ajax
         function getReview(fid, sort, type, page) {
@@ -853,7 +825,8 @@
                     page: page
                 },
                 success: function (data, status) {
-                    alert("getReview"+ data.review.recontent);
+                    console.log(data);
+
                     let k = "";
                     console.log(data.reviewCount);
                     $('#fundingCount').text(data.reviewCount.rfcount);
