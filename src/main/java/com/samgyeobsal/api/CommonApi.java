@@ -6,6 +6,7 @@ import com.samgyeobsal.domain.common.CompetitionHyundaiVO;
 import com.samgyeobsal.domain.common.UploadImgDTO;
 import com.samgyeobsal.service.CommonService;
 import com.samgyeobsal.service.ImageUploadService;
+import com.samgyeobsal.service.KaKaoMessageService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,10 +27,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 @Slf4j
 @RequestMapping("/api/common")
@@ -39,9 +37,9 @@ public class CommonApi {
 
     @Value("${upload.path}")
     private String uploadPath;
-
-
     private final ImageUploadService imageUploadService;
+
+    private final KaKaoMessageService kaKaoMessageService;
 
 
     @GetMapping("/displayImg")
@@ -80,6 +78,16 @@ public class CommonApi {
         log.info("result = {}", result);
 
         return new ResponseEntity<>(result, HttpStatus.OK);
+    }
+
+    @PostMapping("/message")
+    public ResponseEntity<String> sendMessage(@RequestBody Map<String, String> map){
+        String oid = map.get("oid");
+        String msg = map.get("msg");
+        String email = "asdvg154@naver.com";
+        kaKaoMessageService.sendWaitingInfoByKakaoMessage(email, msg, oid);
+
+        return new ResponseEntity<>("success", HttpStatus.OK);
     }
 
 }
