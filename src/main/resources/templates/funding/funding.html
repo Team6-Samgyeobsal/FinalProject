@@ -725,7 +725,7 @@
             <div class="Main_categoryMargin__1RWGF"></div>
             <div class="Main_container__2oIVn">
                 <div class="Main_category__3sabq">
-                    <p class="Main_categoryName__3YilF">더현대 전체</p>
+                    <p class="Main_categoryName__3YilF" th:text="#{theHyundai.whole}">더현대 전체</p>
                     <div class="Main_filterWrap__2l__0">
                         <div class="OrderSelect_sortContainer__3F7LQ">
                             <div class="OrderSelect_content__1RjYa">
@@ -773,49 +773,6 @@
                 >
 
                 </div>
-                <div class="FloatingButtons_container__2E5Fl">
-                    <button
-                            type="button"
-                            class="FloatingTopButton_pageTop__2gqm9 FloatingTopButton_visible__2sh_N"
-                            title="위로 이동"
-                    >
-                        <svg
-                                viewBox="0 0 40 40"
-                                focusable="false"
-                                role="presentation"
-                                class="withIcon_icon__20lDO"
-                                aria-hidden="true"
-                        >
-                            <path
-                                    d="M33 30l-1.4 1.4L20 19.8 8.4 31.4 7 30l13-13zm1-21H6v2h28z"
-                            ></path>
-                        </svg>
-                    </button
-                    >
-                    <button
-                            type="button"
-                            data-ga-category="공통_최근본_UI"
-                            data-ga-action="클릭"
-                            data-ga-label=""
-                            class="RecentView_container__1boAT"
-                            aria-label="최근본"
-                            style="display: block"
-                    >
-                        <div
-                                aria-hidden="true"
-                                class="RecentView_thumbnail__1lnV0 CardThumbnail_thumbnail__3bDBJ CardThumbnail_visible__343f4 CardThumbnail_noanimation__23cSf"
-                                style="
-                background-image: url('https://cdn.wadiz.kr/wwwwadiz/green001/2023/0215/20230215095501924_158604.jpg/wadiz/resize/180/format/jpg/quality/85/');
-              "
-                        ></div>
-                    </button>
-                    <div class="ChannelTalk_container__fd848">
-                        <button
-                                type="button"
-                                aria-label="채널톡 와디즈 고객센터 문의"
-                        ></button>
-                    </div>
-                </div>
                 <script>
                     $(document).ready(function () {
                         let type=0;
@@ -853,9 +810,12 @@
                         })
                         //더 현대 장소 변경 시 이벤트
                         $('.OrderSelect_sortContainer__3F7LQ .OrderSelect_selectBox__2hBjk').change(function (){
-                            place=$(this).val();
-                            $('.OrderSelect_content__1RjYa').find('span').text(place);
-                            $('.Main_categoryName__3YilF').text(place);
+                            let tPlace=$('option:selected', this).text();
+                            place=$('option:selected', this).data('place');
+                            console.log(tPlace);
+                            console.log(place);
+                            $('.OrderSelect_content__1RjYa').find('span').text(tPlace);
+                            $('.Main_categoryName__3YilF').text(tPlace);
                             $('.TableLayout_container__1_Ap4').html('');
                             page=0;
                             getList(type,place,sort,page);
