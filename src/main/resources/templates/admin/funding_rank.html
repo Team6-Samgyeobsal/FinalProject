@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Ranking</title>
+    <title>어드민 | 더쉐프</title>
 
     <!-- Custom fonts for this template -->
     <link href="/admin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -56,7 +56,7 @@
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">진행 중인 펀딩 (2022.03.01 ~ 2022.03.31)</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">진행 중인 펀딩</h6>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -191,7 +191,7 @@
                 <td>${d['memail']}</td>
                 <td>${d['tname']}</td>
                 <td>${d['ctname']}</td>
-                <td>${d['totalprice']}</td>
+                <td>${d['totalprice'].toLocaleString('ko-kr')}</td>
                 <td>
                     <a class="btn btn-info btn-icon-split btn_promote">
                           <span class="text">전환하기</span>
@@ -220,6 +220,9 @@
             type : 'get',
             contentType: 'application/json',
             success : function(data){
+                $(data).each(function(idx, d){
+                    d['totalPrice'] = d['totalPrice'].toLocaleString('ko-kr')+'원';
+                })
                 printTotalSale(data);
             }
         })

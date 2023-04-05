@@ -23,6 +23,7 @@ public class FundingMakerVO {
     private String ctname;
 
     private String fthumb;
+    private String faddress;
 
     private String cid;
     private String tid;

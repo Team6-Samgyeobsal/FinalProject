@@ -34,7 +34,7 @@
             >
           </li>
         </ul>
-        <div class="web-header-utils">
+        <div class="web-header-utils">`
           <div class="DesktopSearchApp_container__VEGeP">
             <form>
               <div
@@ -89,7 +89,7 @@
           </div>
           <div class="web-header-funding-open funding-open">
             <div>
-              <div>
+              <div th:if="${#strings.equals(#authentication.principal.member.mrole,'ROLE_USER')}">
                 <button
                         aria-label="프로젝트 만들기"
                         class="fundingMakeBtn Button_button__5oeoO Button_primary__3lu_z Button_md__3GjME funding-open-button"
@@ -97,6 +97,18 @@
                           <span
                           ><span class="Button_children__1tP8u"
                           >프로젝트 만들기</span
+                          ></span
+                          >
+                </button>
+              </div>
+              <div th:if="${#strings.equals(#authentication.principal.member.mrole,'ROLE_ADMIN')}">
+                <button
+                        aria-label="관리 페이지 이동"
+                        class="adminBtn Button_button__5oeoO Button_primary__3lu_z Button_md__3GjME funding-open-button"
+                        type="button">
+                          <span
+                          ><span class="Button_children__1tP8u"
+                          >관리 페이지 이동</span
                           ></span
                           >
                 </button>
@@ -127,6 +139,9 @@
     })
     $(document).on('click','.HeaderDesktop_user__dYJMc',function(){
       location.href='/web/mypage';
+    })
+    $(document).on('click','.adminBtn',function(){
+      location.href='/web/admin'
     })
   </script>
 </div>

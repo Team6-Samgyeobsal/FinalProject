@@ -20,7 +20,7 @@
     <meta name="theme-color" content="#000000" />
     <meta name="wadiz-app-hidden-header" content="yes" />
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <title>리워드 설계 | 와디즈 메이커 스튜디오</title>
+    <title>상품 설계 | 더쉐프 펀딩</title>
     <!-- jquery cdn -->
     <script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
     <!-- bootstrap cdn -->
@@ -47,7 +47,8 @@
       src="https://static.wadiz.kr/studio/funding/static/js/18.221f899c.chunk.js"></script>
     <style>
       .optRow{
-        margin-bottom: 5px;
+        font-size: 17px;
+        margin: 10px 0;
         display: flex;
         justify-content: space-between;
       }
@@ -128,7 +129,7 @@
             <nav class="ProjectNavbar_container__3ybm3">
               <div
                 style="
-                  background: url('https://static.wadiz.kr/studio/funding/static/media/wadiz-logo.549edcd7.svg')
+                  background: url('/images/logo.png')
                     50% center / contain no-repeat;
                   width: 129px;
                   height: 48px;
@@ -153,13 +154,13 @@
             <section class="Page_container__1PffN">
               <ol class="Breadcrumb_container__3YjD4">
                 <li class="Breadcrumb_item__2r9Ym">프로젝트 관리</li>
-                <li class="Breadcrumb_item__2r9Ym">리워드 설계</li>
+                <li class="Breadcrumb_item__2r9Ym">상품 설계</li>
               </ol>
               <div class="Page_title__1tce_" role="heading" aria-level="2">
-                리워드 설계
+                상품 설계
               </div>
               <div class="Page_description__VzZod">
-                서포터님들에게 제공할 리워드를 입력해 주세요.
+                소비자님들에게 제공할 상품을 입력해 주세요.
               </div>
 
               <div class="Page_content__1d0Vb">
@@ -167,7 +168,7 @@
                   class="FundingConditionGuideSection_container__7ZmHI spacing-8">
                   <div class="FundingConditionGuideSection_content__BPu9e">
                     <h4 class="FundingConditionGuideSection_title__3WoCK">
-                      리워드 설계 조건
+                      상품 설계 조건
                     </h4>
                     <ul class="FundingConditionGuideSection_list__2hGJ2">
                       <li class="FundingConditionGuideSection_item__2HEgM">
@@ -185,7 +186,7 @@
                         </h5>
                         <p
                           class="FundingConditionGuideSection_description__1NZyz">
-                          사이즈, 색상 등의 옵션 설정이 필요하면 추가해 주세요.
+                          사이즈나 맛 등의 옵션 설정이 필요하면 추가해 주세요.
                         </p>
                       </li>
                     </ul>
@@ -214,7 +215,7 @@
                                 <path
                                   d="M16 1.6C8.047 1.6 1.6 8.047 1.6 16S8.047 30.4 16 30.4 30.4 23.953 30.4 16 23.953 1.6 16 1.6zm8 15.2h-7.2V24h-1.6v-7.2H8v-1.6h7.2V8h1.6v7.2H24z"></path>
                               </svg>
-                              <p>리워드를 추가해 주세요</p>
+                              <p>상품을 추가해 주세요</p>
                             </div>
                           </div>
                         </div>
@@ -298,7 +299,7 @@
         showToast("상품 옵셥을 1개 이상 입력해주세요");
         return;
       }
-      showConfirm("리워드 추가", "리워드를 추가하시겠습니까?",()=>{
+      showConfirm("상품 추가", "상품을 추가하시겠습니까?",()=>{
         $.ajax({
           url: '/api/funding/' + fid + '/product',
           data : JSON.stringify(
@@ -321,7 +322,7 @@
 
     // 리워드 카드에서 삭제 버튼 누를 시
     $(document).on('click','.btnDel',function(e){
-      showConfirm("리워드 삭제", "정말로 리워드를 삭제하시겠습니까?",()=>{
+      showConfirm("상품 삭제", "정말로 해당 상품을 삭제하시겠습니까?",()=>{
         let fpid = $(this).data('fpid');
         $.ajax({
           url: '/api/funding/' + fid + '/product/remove',
@@ -376,7 +377,7 @@
                     <input type="hidden" value="${fpid}" name="fpid">
                     <input type="hidden" name="poid">
                     <p>${optVal}</p>
-                    <i class="fa-solid fa-trash optDelBtn"></i>
+                    <button type="button" class="btn optDelBtn" style="border-color: #e9ecef;color: #343a40;">삭제</button>
                 </div>`
       $('.optArea').append(tmp);
       $('#prod_opt1').val('');
@@ -490,9 +491,9 @@
               </button>
             </div>
             <div
-              title="리워드 추가"
+              title="상품 추가"
               class="ConfirmModal_title__sFrkL ConfirmModal_showCloseButton__1P8aT">
-              리워드 추가
+              상품 추가
             </div>
           </div>
           <div class="ConfirmModal_content__1rEr7 ConfirmModal_hasTitle__3Fk6J">
@@ -532,7 +533,7 @@
             </div>
             <div
               class="TextField_textField__23rCe TextField_md__2zsQn spacing-8">
-              <label>리워드명</label>
+              <label>상품명</label>
               <div class="TextField_field__1E9vt">
                 <input
                   placeholder="예시) [얼리버드] 베이지 이불∙베개 1세트"
@@ -545,10 +546,10 @@
             </div>
             <div
               class="TextField_textField__23rCe TextField_md__2zsQn spacing-8">
-              <label>리워드 설명</label>
+              <label>상품 설명</label>
               <div class="TextField_field__1E9vt">
                 <textarea
-                  placeholder="리워드 구성과 혜택을 간결하게 설명해 주세요."
+                  placeholder="상품 구성과 혜택을 간결하게 설명해 주세요."
                   maxlength="400"
                   rows="3"
                   class="Textarea_textarea__2swOj contentInput">${fpcontent}</textarea
@@ -563,7 +564,8 @@
               </div>
               <div style="display: flex; justify-content: center;">
                 <input type="text" class="form-control" id="prod_opt1" placeholder="예시) 매운맛">
-                <button type="button" class="btn btn-outline-primary addOptBtn" style="margin-left: 10px">Add</button>
+                <button type="button" class="btn addOptBtn" style="margin-left: 10px; border-color: #00c4c4;
+    background-color: #00c4c4; color: white">생성</button>
               </div>
               </div>
             </div>
