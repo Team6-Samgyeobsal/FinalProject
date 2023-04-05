@@ -6,7 +6,7 @@ import lombok.Getter;
 public enum MyLocale {
     KO("ko", "ko"),
     JA("ja","ja"),
-    EN("en_US","en"),
+    EN("en","en"),
     CH("zh", "zh-CN");
 
     private final String acceptLang;

@@ -627,7 +627,7 @@
                                         </div>
                                     </div>
                                     <div class="ImageTab_labelContainer__2apP3"><span
-                                            class="ImageTab_label__SvWW9">전체</span></div>
+                                            class="ImageTab_label__SvWW9" th:text="#{food.whole}">전체</span></div>
                                 </button>
                             </li>
                             <li data-index="1">
@@ -639,7 +639,7 @@
                                         </div>
                                     </div>
                                     <div class="ImageTab_labelContainer__2apP3"><span
-                                            class="ImageTab_label__SvWW9">한식</span>
+                                            class="ImageTab_label__SvWW9" th:text="#{food.korean}">한식</span>
                                     </div>
                                 </button>
                             </li>
@@ -652,7 +652,7 @@
                                         </div>
                                     </div>
                                     <div class="ImageTab_labelContainer__2apP3"><span
-                                            class="ImageTab_label__SvWW9">일식</span>
+                                            class="ImageTab_label__SvWW9" th:text="#{food.japanese}">일식</span>
                                     </div>
                                 </button>
                             </li>
@@ -665,7 +665,7 @@
                                         </div>
                                     </div>
                                     <div class="ImageTab_labelContainer__2apP3"><span
-                                            class="ImageTab_label__SvWW9">중식</span>
+                                            class="ImageTab_label__SvWW9"th:text="#{food.chinese}">중식</span>
                                     </div>
                                 </button>
                             </li>
@@ -678,7 +678,7 @@
                                         </div>
                                     </div>
                                     <div class="ImageTab_labelContainer__2apP3"><span
-                                            class="ImageTab_label__SvWW9">양식</span></div>
+                                            class="ImageTab_label__SvWW9" th:text="#{food.western}">양식</span></div>
                                 </button>
                             </li>
                             <li data-index="5">
@@ -690,7 +690,7 @@
                                         </div>
                                     </div>
                                     <div class="ImageTab_labelContainer__2apP3"><span
-                                            class="ImageTab_label__SvWW9">카페</span></div>
+                                            class="ImageTab_label__SvWW9" th:text="#{food.cafe}">카페</span></div>
                                 </button>
                             </li>
                             <li data-index="6">
@@ -702,7 +702,7 @@
                                         </div>
                                     </div>
                                     <div class="ImageTab_labelContainer__2apP3"><span
-                                            class="ImageTab_label__SvWW9">야식</span></div>
+                                            class="ImageTab_label__SvWW9" th:text="#{food.midnightSnack}">야식</span></div>
                                 </button>
                             </li>
                             <li data-index="7">
@@ -714,7 +714,7 @@
                                         </div>
                                     </div>
                                     <div class="ImageTab_labelContainer__2apP3"><span
-                                            class="ImageTab_label__SvWW9">기타</span>
+                                            class="ImageTab_label__SvWW9" th:text="#{food.etc}">기타</span>
                                     </div>
                                 </button>
                             </li>
@@ -729,7 +729,7 @@
                     <div class="Main_filterWrap__2l__0">
                         <div class="OrderSelect_sortContainer__3F7LQ">
                             <div class="OrderSelect_content__1RjYa">
-                    <span>더현대 전체</span
+                    <span th:text="#{theHyundai.whole}">더현대 전체</span
                     >
                                 <svg
                                         viewBox="0 0 32 32"
@@ -744,21 +744,21 @@
                                 </svg>
                             </div>
                             <select class="OrderSelect_selectBox__2hBjk">
-                                <option value="더현대 전체">더현대 전체</option>
-                                <option value="더현대 서울">더현대 서울</option>
-                                <option value="더현대 대구">더현대 대구</option>
-                                <option value="더현대 광주">더현대 광주</option>
+                                <option value="더현대 전체"  data-place="더현대 전체" th:text="#{theHyundai.whole}">더현대 전체</option>
+                                <option value="더현대 서울"  data-place="더현대 서울" th:text="#{theHyundai.seoul}">더현대 서울</option>
+                                <option value="더현대 대구"  data-place="더현대 대구" th:text="#{theHyundai.daegu}">더현대 대구</option>
+                                <option value="더현대 광주"  data-place="더현대 광주" th:text="#{theHyundai.gwangju}">더현대 광주</option>
                             </select>
                         </div>
                         <ul class="OrderSelectDesktop_sortContainer__1YLsr">
                             <li
                                     class="OrderSelectDesktop_sortItem__12TKi OrderSelectDesktop_active__YTP2K"
-                            >
+                                    data-sort="모집금액순"  th:text="#{sort.money}">
                                 모집금액순
                             </li>
-                            <li class="OrderSelectDesktop_sortItem__12TKi">펀딩한 사람순</li>
-                            <li class="OrderSelectDesktop_sortItem__12TKi">최신순</li>
-                            <li class="OrderSelectDesktop_sortItem__12TKi">
+                            <li class="OrderSelectDesktop_sortItem__12TKi" data-sort="펀딩한 사람순" th:text="#{sort.funding}">펀딩한 사람순</li>
+                            <li class="OrderSelectDesktop_sortItem__12TKi" data-sort="최신순"  th:text="#{sort.newest}">최신순</li>
+                            <li class="OrderSelectDesktop_sortItem__12TKi" data-sort="응원댓글순"  th:text="#{sort.review}">
                                 응원댓글순
                             </li>
                         </ul>
@@ -843,10 +843,10 @@
                             if (!$(this).hasClass('OrderSelectDesktop_active__YTP2K')) {
                                 $('.OrderSelectDesktop_sortItem__12TKi').removeClass('OrderSelectDesktop_active__YTP2K');
                                 $(this).addClass('OrderSelectDesktop_active__YTP2K');
-                                sort=$(this).text();
+                                sort=$(this).data('sort');
                                 console.log(sort);
-                                page=0;
                                 $('.TableLayout_container__1_Ap4').html('');
+                                page=0;
                                 getList(type,place,sort,page);
                             }
 
@@ -884,8 +884,9 @@
                                         },
 
                                         success: function (data, status) {
+                                            let k="";
                                     data.forEach(function (funding) {
-                                        let k = ` <div
+                                        k += ` <div
                             class="PreorderMainCard_root__1-vcs"
                             style="height: 100%; position: relative"
                     >
@@ -907,7 +908,7 @@
                                 <div class="PreorderMainCard_header__R39X1">
                                     <div class="PreorderMainCard_headerLeft__2nwa1">
                                         <p class="PreorderMainCard_participants__JDp58">
-                                            ${Math.floor(funding.totalprice/100000).toLocaleString('ko-KR')}% 달성
+                                            ${Math.floor(funding.totalprice/10000).toLocaleString('ko-KR')}% 달성
                                         </p>
                                         <p class="PreorderMainCard_amount__3UOXm">
                                             ${funding.totalprice.toLocaleString('ko-KR')}원
@@ -954,19 +955,19 @@
                             >
                         </a>
                     </div>`;
-                                        $.ajax({
-                                            url : '/api/translate',
-                                            type : 'post',
-                                            data : k,
-                                            contentType: "text/html",
-                                            success : function(data){
-                                                console.log(data);
-                                                $('.TableLayout_container__1_Ap4').append(data);
-                                            },error: function (status, error) {
-                                                console.log(error);
-                                            }
-                                        })
+
                                     });
+                                            $.ajax({
+                                                url : '/api/translate',
+                                                type : 'post',
+                                                data : k,
+                                                contentType: "text/html",
+                                                success : function(data){
+                                                    $('.TableLayout_container__1_Ap4').append(data);
+                                                },error: function (status, error) {
+                                                    console.log(error);
+                                                }
+                                            })
                                 },
                                 error: function (status, error) {
                                     alert("실패");
