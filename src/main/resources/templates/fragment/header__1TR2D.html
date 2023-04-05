@@ -16,21 +16,21 @@
         <ul class="GNBDesktop_container__1TR2D">
           <li class="GNBDesktop_item__H8bay">
             <a class="GNBDesktop_link__1AP6q" href="/web/funding"
-            ><span>펀딩 +</span></a
+            ><span th:text="#{funding}">펀딩 +</span></a
             >
           </li>
           <li class="GNBDesktop_item__H8bay">
             <a class="GNBDesktop_link__1AP6q" href="/web/store"
-            ><span>스토어</span></a
+            ><span th:text="#{store}">스토어</span></a
             >
           <li class="GNBDesktop_item__H8bay">
             <a class="GNBDesktop_link__1AP6q" href="/web/fame"
-            ><span>명예의 전당</span></a
+            ><span th:text="#{fame}">명예의 전당</span></a
             >
           </li>
           <li class="GNBDesktop_item__H8bay">
             <a class="GNBDesktop_link__1AP6q" href="/web/notice"
-            ><span>공지사항</span></a
+            ><span th:text="#{notice}">공지사항</span></a
             >
           </li>
         </ul>
@@ -96,7 +96,7 @@
                         type="button">
                           <span
                           ><span class="Button_children__1tP8u"
-                          >프로젝트 만들기</span
+                          th:text="#{makeProject}">프로젝트 만들기</span
                           ></span
                           >
                 </button>
@@ -114,6 +114,12 @@
                 </button>
               </div>
             </div>
+            <select class="TranslateSelect">
+              <option value="ko">KOREAN</option>
+              <option value="en">ENGLISH</option>
+              <option value="zh">CHINESE</option>
+              <option value="ja">JAPANESE</option>
+            </select>
           </div>
         </div>
       </div>
@@ -122,6 +128,20 @@
   <script src="/js/confirm.js"></script>
   <script>
     $(document).ready(function (){
+
+      $('.TranslateSelect').on('change', function() {
+        var lang = $('.TranslateSelect').val();
+        var url = window.location.href;
+        var regex = /(\?|&)lang=[^&]+(&|$)/g;
+        url = url.replace(regex, '$1').replace(/(\?|&)$/, '');
+        if (url.indexOf('?') === -1) {
+          url += '?';
+        } else {
+          url += '&';
+        }
+        url += 'lang=' + lang;
+        window.location.href = url;
+      });
 
       let makeFunding = () => $.ajax({
         url: '/api/funding/',

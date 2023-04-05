@@ -12,7 +12,7 @@ function showConfirm(msg,detail, callback) {
       <div class="BasicDialog_modalWrap__2cYGd">
         <div class="BasicDialog_modalWrapBox__3r1JK">
           <div class="BasicDialog_dialogBox__1V7Zt">
-            <div class="BasicDialog_dialogTitle__3na-I">
+            <div class="BasicDialog_dialogTitle__3na-I" style="width:500px;">
               ${msg}
             </div>
             <div class="BasicDialog_dialogMessage__TRYDk">

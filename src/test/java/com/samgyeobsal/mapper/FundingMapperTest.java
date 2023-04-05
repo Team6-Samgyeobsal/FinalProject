@@ -17,7 +17,7 @@ import java.util.UUID;
 @Log4j2
 public class FundingMapperTest {
 
-    private final String fid="1";
+    private final String fid="10";
     @Autowired
     FundingMapper fundingMapper;
 
@@ -25,13 +25,13 @@ public class FundingMapperTest {
     public void getFundingListTest() {
         FundingCriteria criteria= new FundingCriteria();
         criteria.setPage(0);
-
+        criteria.setSort("응원댓글순");
         List<FundingVO> list = fundingMapper.getFundingList(criteria);
         list.forEach(funding -> log.info("funding = {}", funding));
     }
     @Test
     public void getFundingDetailTest(){
-        FundingDetailVO fundingDetailVO = fundingMapper.getFundingDetail(fid,"STORE");
+        FundingDetailVO fundingDetailVO = fundingMapper.getFundingDetail(fid,"FUNDING");
         log.info("fundingDetailVO"+fundingDetailVO);
     }
 
