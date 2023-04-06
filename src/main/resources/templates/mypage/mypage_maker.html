@@ -83,6 +83,8 @@
                       <div class="MyWadizMakerProfile_profileImage__110Wi">
                         <button
                           class="MyWadizMakerProfile_detailProfile__13QK_ MyWadizMakerProfile_noLogo__1-PDp"
+                          th:style="${#strings.isEmpty(#authentication.principal.member.mprofile)?
+                            'background-image: url(&quot;https://static.wadiz.kr/assets/icon/profile-icon-6.png&quot;);' : 'background-image: url('+#authentication.principal.member.mprofile+');'}"
                           title="메이커 등록하기"></button>
                       </div>
                       <div class="MyWadizMakerProfile_profileUser__2cuK9">

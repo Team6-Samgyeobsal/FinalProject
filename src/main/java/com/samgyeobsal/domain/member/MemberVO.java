@@ -13,6 +13,7 @@ public class MemberVO {
     private String mname;
     private Role mrole;
     private String mloginType;
+    private String mprofile;
 
     private String mphone;
     private int mmileage;

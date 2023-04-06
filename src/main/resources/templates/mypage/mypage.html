@@ -64,7 +64,7 @@
   <body class="" cz-shortcut-listen="true">
     <div id="page-container">
       <main id="main-app">
-        <div th:replace="/fragment/header__3X3Cg.html :: header"></div>
+        <div th:replace="fragment/header__3X3Cg.html :: header"></div>
         <div class="MainWrapper_content__GZkTa">
           <div class="MyWadizPage_myWadizPage__wOTdS">
             <div class="MyWadizPage_profileBackground__T_LTr"></div>
@@ -89,11 +89,13 @@
                         class="MyWadizSupporterProfile_detailProfile__1JImc"
                         title="프로필 상세 보기"
                         data-event="profile"
+                        th:style="${#strings.isEmpty(#authentication.principal.member.mprofile)?
+                            'background-image: url(&quot;https://static.wadiz.kr/assets/icon/profile-icon-6.png&quot;);' : 'background-image: url('+#authentication.principal.member.mprofile+');'}"
                         style="
                           background-image: url('https://static.wadiz.kr/assets/icon/profile-icon-6.png');
                         "></button
                       ><button
-                        class="MyWadizSupporterProfile_editProfile__3HG_Z"
+                        class="MyWadizSupporterProfile_editProfile__3HG_Z upload_profile"
                         title="프로필 편집하기"
                         data-event="profile_edit">
                         <svg
@@ -106,6 +108,7 @@
                             d="M24 1.6L1.6 24v6.4H8L30.4 8zM7.36 28.8H3.2v-4.16L19.76 8.08l4.16 4.16zm17.68-17.68l-4.16-4.16L24 3.84 28.16 8z"></path>
                         </svg>
                       </button>
+                      <input type="file" style="display: none" name="profile_img" id="profile_img"/>
                     </div>
                     <div class="MyWadizSupporterProfile_profileUser__a_r1P">
                       <button data-event="profile">
@@ -302,8 +305,8 @@
         rel="stylesheet"
         href="/import/css/wui.css"/>
     <link rel="stylesheet" href="https://static.wadiz.kr/static/web/common.css?a5fa8553">
-
   <script>
+    let memail = '[[${#authentication.principal.member.memail}]]'
     $(document).ready(function(){
       $('.logoutBtn').click(function(e){
         showConfirm("로그아웃","로그아웃 하시겠습니까?",()=>{
@@ -317,6 +320,34 @@
           })
         })
 
+      })
+
+    })
+
+    $(document).on('click','.upload_profile', function(e){
+      e.preventDefault();
+      $('#profile_img').click();
+    })
+    $(document).on('change','#profile_img',function(e){
+      console.log(e);
+      let formData = new FormData();
+      let inputFile = $('#profile_img');
+      let files = inputFile[0].files;
+      formData.append("uploadFile", files[0]);
+      formData.append("memail", memail)
+
+      $.ajax({
+        url : '/api/member/uploadProfile',
+        type: 'post',
+        data : formData,
+        processData: false,
+        contentType: false,
+        dataType: 'json',
+        success : function(data){
+          console.log(data);
+          location.reload();
+          // $('.MyWadizSupporterProfile_detailProfile__1JImc').css('background-image',`url(${data['imageURL']})`)
+        }
       })
 
     })
