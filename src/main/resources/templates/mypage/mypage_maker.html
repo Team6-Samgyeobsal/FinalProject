@@ -52,6 +52,9 @@
     .MyWadizMyProject_projectListContainer__2C9hy ul{
       white-space: normal;
     }
+     .HeaderDesktop_user__3zGmM {
+       margin-top: 10px;
+     }
   </style>
   <body cz-shortcut-listen="true">
     <div id="page-container">
@@ -85,7 +88,7 @@
                       <div class="MyWadizMakerProfile_profileUser__2cuK9">
                         <button class="MyWadizMakerProfile_makerName__RJLqx">
                           <strong class="MyWadizMakerProfile_text__8kdAr"
-                            ><span>와디즈 메이커님</span></strong
+                            ><span th:text="${#authentication.principal.member.mname}+' 메이커님'">와디즈 메이커님</span></strong
                           >
                         </button>
                       </div>
@@ -93,7 +96,7 @@
                     <button
                       class="MyWadizMakerPageCompletion_container__-uhDn"></button>
                     <div class="MyWadizMakerProfile_setting__3yxCI">
-                      <p class="MyWadizLoginMode_loginMode__2smkD">
+                      <p class="MyWadizLoginMode_loginMode__2smkD" th:text="${#strings.capitalize(#authentication.principal.member.mloginType)}+' 로 로그인 중'">
                         와디즈 계정으로 로그인 중
                       </p>
                       <button

@@ -22,6 +22,9 @@ public class FundingBaseInfoDTO {
     private String ctid;
     private String ctname;
 
+    @NotBlank(message = "주소를 입력해주세요")
+    private String faddress;
+
     @NotBlank(message = "장소를 선택해주세요")
     private String cid;
     private Date cfunding_start_date;
@@ -38,6 +41,7 @@ public class FundingBaseInfoDTO {
         this.ctid = vo.getCtid();
         this.ctname = vo.getCtname();
         this.tid = vo.getTid();
+        this.faddress = vo.getFaddress();
     }
 
     public void setCompetitionHyundai(CompetitionHyundaiVO competition) {

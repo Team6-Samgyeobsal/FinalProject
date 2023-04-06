@@ -84,7 +84,7 @@
                 </button>
               </div>
             </div>
-            <div sec:authorize="isAuthenticated()" class="HeaderDesktop_user__3zGmM" style="margin-top: 10px">
+            <div sec:authorize="isAuthenticated()" class="HeaderDesktop_user__3zGmM">
               <div class="User_container__bqVd2">
                 <button type="button" class="User_btnAvatar__2Mui-" aria-label="마이 와디즈">
                   <div>
@@ -97,10 +97,17 @@
             </div>
             <div sec:authorize="isAuthenticated()" class="web-header-funding-open funding-open">
               <div>
-                <div>
+                <div th:if="${#strings.equals(#authentication.principal.member.mrole,'ROLE_USER')}">
                   <button aria-label="프로젝트 만들기" class="fundingMakeBtn Button_button__3J1Nv Button_primary__1EZQV Button_md__2iTxL funding-open-button" type="button">
                     <span>
                       <span class="Button_children__1ZhTo" th:text="#{makeProject}">프로젝트 만들기</span>
+                    </span>
+                  </button>
+                </div>
+                <div th:if="${#strings.equals(#authentication.principal.member.mrole,'ROLE_ADMIN')}">
+                  <button aria-label="관리 페이지 이동" class="adminBtn Button_button__3J1Nv Button_primary__1EZQV Button_md__2iTxL funding-open-button" type="button">
+                    <span>
+                      <span class="Button_children__1ZhTo">관리 페이지 이동</span>
                     </span>
                   </button>
                 </div>
@@ -183,6 +190,9 @@
       $(document).on('click','.HeaderDesktop_user__3zGmM',function(e){
         e.preventDefault();
         location.href='/web/mypage';
+      })
+      $(document).on('click','.adminBtn',function(){
+        location.href='/web/admin'
       })
 
     </script>
