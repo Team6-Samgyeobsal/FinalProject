@@ -8,7 +8,7 @@
 
     <select id="findMemberByEmail" resultType="member">
         select mname, mpassword, memail, mrole, mloginType,
-               mphone, mmileage
+               mphone, mmileage, mprofile
         from member
         where memail = #{email}
           <if test="loginType != null">
@@ -41,5 +41,11 @@
           and sysdate between cstore_start_date and cstore_end_date
           and f.fstatus = 'STORE' and rownum = 1
     </select>
+
+    <update id="updateMemberProfile">
+        update member
+        set mprofile = #{imageUrl}
+        where memail = #{memail}
+    </update>
 
 </mapper>

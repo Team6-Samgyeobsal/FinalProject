@@ -89,7 +89,11 @@
                 <button type="button" class="User_btnAvatar__2Mui-" aria-label="마이 와디즈">
                   <div>
                     <div class="Avatar_avatar__3xsDJ" style="width: 32px; height: 32px;">
-                      <span class="Avatar_hasImage__1wiBh" style="background-image: url(&quot;https://static.wadiz.kr/assets/icon/profile-icon-6.png&quot;);"></span>
+                      <span class="Avatar_hasImage__1wiBh"
+                            th:style="${#strings.isEmpty(#authentication.principal.member.mprofile)?
+                            'background-image: url(&quot;https://static.wadiz.kr/assets/icon/profile-icon-6.png&quot;);' : 'background-image: url('+#authentication.principal.member.mprofile+');'}"
+                            style="background-image: url(&quot;https://static.wadiz.kr/assets/icon/profile-icon-6.png&quot;);"
+                      ></span>
                     </div>
                   </div>
                 </button>

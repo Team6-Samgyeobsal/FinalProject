@@ -7,11 +7,6 @@
 >
 <head>
 
-
-
-
-
-
     <title>와디즈 펀딩</title>
     <script src="https://code.jquery.com/jquery-3.6.3.js"
             integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
@@ -99,7 +94,7 @@
 <body class="" style="overflow: auto">
 <div id="page-container">
     <main id="main-app">
-        <div th:replace="/fragment/header__3X3Cg.html :: header"></div>
+        <div th:replace="fragment/header__3X3Cg.html :: header"></div>
         <div class="MainWrapper_content__GZkTa">
             <div class="RewardDetailDesktop_container__2Yzds">
                 <div class="RewardDetailDesktop_contentWrapper__1Gcox">
@@ -159,7 +154,7 @@
 
                             <div class="Story_container__wZtYc">
                                 <div class="Story_header__1va5C">
-                                    <p>프로젝트 스토리</p>
+                                    <p th:text="#{story.project}">프로젝트 스토리</p>
                                 </div>
                                 <div id="map" style="width:500px;height:400px;"></div>
                                 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=1627a19d7cc6f4cac2d770a458865a0e"></script>
@@ -206,8 +201,8 @@
                                 </script>
                                 <div class="Story_expandable__3C3Y7">
                                     <div>
-                                        <div class="inner-contents fr-view">
-                                            [(${funding.fstory})]
+                                        <div class="inner-contents fr-view" th:utext="${funding.fstory}">
+                                            스토리
 
                                         </div>
                                     </div>
@@ -223,7 +218,7 @@
                                     >
                         <span
                         ><span class="Button_children__3HY2l" id="story1"
-                        >스토리 더보기</span
+                        th:text="#{storyMore}">스토리 더보기</span
                         ><svg
                                 viewBox="0 0 32 32"
                                 focusable="false"
@@ -241,12 +236,12 @@
                         <div class="RewardDetailDesktop_right__cgJ4-">
                             <div class="RewardVerticalInfo_container__1SxW5">
                                 <div class="BaseInfo_container__1SXpL">
-                                    <div class="BaseInfo_category__noYA2"><span>[[${funding.tname}]]</span>
+                                    <div class="BaseInfo_category__noYA2"><span th:text="${funding.tname}">더 현대</span>
 
                                     </div>
                                     <div class="BaseInfo_bannerWrapper__2jmjf">
                                         <div class="FundingTypeBadge_container__1UZDH"><span
-                                                class="FundingTypeBadge_funding__4BhpK" >[[${funding.ctname}]]</span>
+                                                class="FundingTypeBadge_funding__4BhpK" th:text="${funding.ctname}">한식</span>
                                         </div>
                                         <a
                                                 class="PartnerBanner_container__2m0Mo"
@@ -254,7 +249,7 @@
                                         ><span class="PartnerBanner_terms__2-kMz"
                                         >상호명</span
                                         ><span class="PartnerBanner_desc__2mN1_"
-                                        >[[${funding.fstore_name}]]</span
+                                        th:text="${funding.fstore_name}">가게 이름</span
                                         >
                                             <svg
                                                     viewBox="0 0 40 40"
@@ -269,40 +264,39 @@
                                             </svg>
                                         </a>
                                     </div>
-                                    <p class="BaseInfo_title__3qvLN">
-                                        [[${funding.ftitle}]]
+                                    <p class="BaseInfo_title__3qvLN" th:text="${funding.ftitle}">
+                                        제목
                                     </p>
-                                    <p class="BaseInfo_description__1M3_1">
-                                        [[${funding.fsummary}]]
+                                    <p class="BaseInfo_description__1M3_1" th:text="${funding.fsummary}">
+                                        부설명
                                     </p>
                                     <div class="BaseInfo_rateWrapper__1C69h">
                                         <div class="BaseInfo_rate__vZ7aw">
                                             <div class="BaseInfo_infoWrapper__1GKex">
                             <span class="BaseInfo_achivementRate__hcznC"
-                            >[[${#numbers.formatInteger(funding.totalemail, 1,
-                                                'COMMA')}]]</span
+                            th:text="${#numbers.formatInteger(funding.totalemail, 1,'COMMA')}">
+                                참여자수
+                            </span
                             ><span class="BaseInfo_successInfo__2Rmqm"
-                                            >명 참여</span
+                                            th:text="#{participants}">명 참여</span
                                             >
                                             </div>
                                             <span
                                                     class="Badge_container__3ioDw Badge_visible__n2Hg1 BaseInfo_remainingDay__3wD-k"
                                             ><span
                                                     class="Badge_badge__2h6cT Badge_label__VC3QR Badge_md__nBr2- Badge_primary__2x__i Badge_tertiary__1ERKE"
-                                                    th:text="${funding.expire == 0 ? '오늘 마감' : funding.expire + '일 남음'}"> 100일 남음
+                                                    th:text="${funding.expire == 0 ? '오늘 마감' : funding.expire}+#{daysLeft}"> 100일 남음
                                             </span></span
                                             >
                                         </div>
                                         <div class="BaseInfo_rate__vZ7aw">
-                                            <p class="BaseInfo_totalBackedAmount__1R7OU">
-                                                [[${#numbers.formatInteger(funding.totalprice, 1,
-                                                'COMMA')}]]<span>원</span>
+                                            <p class="BaseInfo_totalBackedAmount__1R7OU" >[[${#numbers.formatInteger(funding.totalprice, 1,'COMMA')}]]<span>원</span>
                                             </p>
                                             <span
                                                     class="Badge_container__3ioDw Badge_visible__n2Hg1 BaseInfo_remainingDay__3wD-k"
                                             ><span
                                                     class="Badge_badge__2h6cT Badge_label__VC3QR Badge_md__nBr2- Badge_secondary__1o9ka Badge_tertiary__1ERKE"
-                                            >[[${funding.totalprice/10000}]]% 달성</span
+                                            th:text="${funding.totalprice/10000}+'% '+ #{achieved}">10% 달성</span
                                             ></span
                                             >
                                         </div>
@@ -318,7 +312,7 @@
                                                     id="abled">
                                             <span
                                             ><span class="Button_children__3HY2l"
-                                            ><p>예약 구매하기</p></span
+                                            ><p th:text="#{prePurchase}">예약 구매하기</p></span
                                             ></span
                                             >
                                             </button>
@@ -330,9 +324,9 @@
                                 <div class="RewardVerticalInfo_rewardsWrap__3tfnX">
                                     <div class="Rewards_container__163tP">
                                         <div class="Rewards_title__2ZZf3">
-                                            <p>리워드 선택</p>
+                                            <p th:text="#{selectProduct}">리워드 선택</p>
                                             <div class="Rewards_period__3XgCS">
-                                                <p>진행기간</p>
+                                                <p th:text="#{duration}">진행기간</p>
                                                 <p>[[${#dates.format(funding.fdate, 'yyyy.MM.dd')}]] ~ [[${#dates.format(funding.end_date, 'yyyy.MM.dd')}]]</p>
                                             </div>
                                         </div>
@@ -363,10 +357,7 @@
                                                 </div>
                                                 <div class="Reward_divider__1vIOJ"></div>
                                                 <div class="Reward_content__2ZZEa">
-                                                    <div class="Reward_innerContent__3J75P">
-                                                        [[${product.fpcontent}]]
-
-                                                    </div>
+                                                    <div class="Reward_innerContent__3J75P" th:text="${product.fpcontent}">상품 설명</div>
                                                 </div>
                                             </div>
                                         </div>
@@ -378,7 +369,7 @@
                                                         type="button"
                                                         id="abled1">
                                                     <span><span
-                                                            class="Button_children__3HY2l"><p>예약 구매하기</p></span></span>
+                                                            class="Button_children__3HY2l"><p th:text="#{prePurchase}">예약 구매하기</p></span></span>
                                                 </button>
 
                                             </div>
@@ -398,10 +389,10 @@
                     <div class="storeTabContents">
                         <div class="DetailSatisfaction_container__t8Ax_">
                             <div class="CommentTitle_container__1Zdwo"><span
-                                    class="CommentTitle_title__2RXrf">만족도</span></div>
+                                    class="CommentTitle_title__2RXrf" th:text="#{satisfaction}">만족도</span></div>
                             <div class="DetailSatisfaction_summaryWrap__1ieLY">
                                 <div class="SatisfactionSummary_container__3szWc"><h4
-                                        class="SatisfactionSummary_title__27vSu">응원 댓글</h4>
+                                        class="SatisfactionSummary_title__27vSu" th:text="#{messages.support}">응원 댓글</h4>
                                     <div class="RatingScore_container__AeQ_I RatingScore_lgFull__2tY1J SatisfactionSummary_summary__18JyH">
                                         <div class="RatingScore_icon__rIS_k"></div>
                                         <span class="RatingScore_score__2a-SN">[[${funding.ffunding_score}]]</span><span
@@ -414,7 +405,7 @@
                                     <div class="SatisfactionTabs_item__2jVmh SatisfactionTabs_active__1PFX2"
 
                                          data-rtype="funding" style="width: 100%;">
-                                        <span>응원 댓글</span><span class="SatisfactionTabs_count__2zWkx" id="fundingCount">200</span>
+                                        <span th:text="#{messages.support}">응원 댓글</span><span class="SatisfactionTabs_count__2zWkx" id="fundingCount">200</span>
                                     </div>
                                 </div>
                             </div>
@@ -424,13 +415,13 @@
 
                                         <div>
                                             <div class="SortingSelect_sortingSelect__2zf4r RatingCommentFilter_selectBox__2Gt7m">
-                                                <span id="sorted">최신순</span><i
+                                                <span id="sorted" th:text="#{sort.newest}">최신순</span><i
                                                     class="icon expand-more SortingSelect_icon__28ocK"
                                                     aria-hidden="true"></i><select name="sortBy"
                                                                                    class="SortingSelect_select__21qNT">
-                                                <option value="최신순">최신순</option>
-                                                <option value="높은 평점순">높은 평점순</option>
-                                                <option value="낮은 평점순">낮은 평점순</option>
+                                                <option value="최신순" th:text="#{sort.newest}">최신순</option>
+                                                <option value="높은 평점순" th:text="#{sort.highestRate}">높은 평점순</option>
+                                                <option value="낮은 평점순" th:text="#{sort.lowestRate}">낮은 평점순</option>
                                             </select></div>
                                         </div>
                                         <div>
@@ -439,7 +430,7 @@
                                                         type="button"
                                                         style="border-color: #495057;
                                                                background-color: #495057;"><span><span
-                                                        class="Button_children__3HY2l">글 남기기</span></span></button>
+                                                        class="Button_children__3HY2l" th:text="#{comment}">글 남기기</span></span></button>
                                             </div>
                                         </div>
                                     </div>
@@ -456,7 +447,7 @@
                             <div class="ProductSelectMenu_container__18idj">
                                 <div class="ProductSelect_container__1Xa66 ProductSelect_compensate__FfGdW">
                                     <div class="ProductSelect_title__3FqMO"><span
-                                            class="ProductSelectMenu_defaultValue___MUYQ">상품 선택</span>
+                                            class="ProductSelectMenu_defaultValue___MUYQ" th:text="#{selectProduct}">상품 선택</span>
                                         <div class="ProductSelect_moreButton__2P_Sz ProductSelect_isOpenMoreInfo__201IV">
                                             <svg viewBox="0 0 32 32" focusable="false" role="presentation"
                                                  class="withIcon_icon__20lDO" aria-hidden="true">
@@ -504,7 +495,7 @@
                                     ><span><span
                                             class="Button_children__3HY2l"
 
-                                    ><span>구매하기</span></span></span></button
+                                            ><span th:text="#{prePurchase}">구매하기</span></span></span></button
                                     >
                                 </div>
                             </div>
@@ -580,7 +571,6 @@
 
         //step1으로 감
         $('#abled, #abled1, #abled2').click(function () {
-            // console.log([[${funding.fid}]]);
             location.href = '/web/order/' + [[${funding.fid}]] + '/step1'
         })
 
@@ -589,15 +579,15 @@
             console.log("스토리");
             if ($('.Story_container__wZtYc').hasClass('Story_expanded__3TsCo')) {
                 $('.Story_container__wZtYc').removeClass('Story_expanded__3TsCo');
-                $('#story').data('ga-label', '스토리_더보기');
-                $('#story1').text('스토리 더보기');
+                $('#story').data('ga-label', [[#{storyMore}]]);
+                $('#story1').text([[#{storyMore}]]);
                 let location = $('#story').offset().top - 700;
                 console.log(location);
                 $(window).scrollTop(location);
             } else {
                 $('.Story_container__wZtYc').addClass('Story_expanded__3TsCo');
-                $('#story').data('ga-label', '스토리_접기');
-                $('#story1').text('스토리 접기');
+                $('#story').data('ga-label', [[#{storyCollapse}]]);
+                $('#story1').text([[#{storyCollapse}]]);
             }
         })
         // 댓글쪽 상품 선택 확장 축소 이벤트
@@ -681,8 +671,9 @@
         //정렬 바뀌는 이벤트
         $('.SortingSelect_select__21qNT').change(function () {
             console.log('바뀜');
-            $('#sorted').text($('.SortingSelect_select__21qNT').val());
-            sort = $('#sorted').text();
+            $('#sorted').text($('option:selected', '.SortingSelect_select__21qNT').text());
+            sort =  $("select[name='sortBy']").val();
+            console.log(sort);
             $('#reviewList').html('');
             page = 0;
             getReview(fid, sort, type, page);
@@ -734,7 +725,6 @@
                 },
                 success: function (data, status) {
                     let k = "";
-                    console.log(data.reviewCount);
                     $('#fundingCount').text(data.reviewCount.rfcount);
                     let fthumb=[[${funding.fthumb}]];
                     if (data.review.length == 0 && page == 0) {
@@ -827,7 +817,10 @@
                             k += `<div class="StoreSatisfactionCard_container__3TDTr">
                             <div class="StoreSatisfactionCard_divider__Zh8Se"></div>
                             <div class="StoreSatisfactionCard_header__156AH">
-                                <div><div class="Avatar_avatar__2HQiR Avatar_xs__RZzkx"><span class="Avatar_hasImage__31hv2" style="background-image: url(&quot;https://cdn.wadiz.kr/wwwwadiz/green001/sns_profile_pics/20200306132458432_39645569.jpg/wadiz/resize/600/format/jpg/quality/80/optimize&quot;); border: 1px solid rgb(221, 226, 230);"></span></div></div>
+                                <div><div class="Avatar_avatar__2HQiR Avatar_xs__RZzkx"><span class="Avatar_hasImage__31hv2"
+                                style=
+                                "background-image: url(${review.mprofile==null?'&quot;https://cdn.wadiz.kr/wwwwadiz/green001/sns_profile_pics/20200306132458432_39645569.jpg/wadiz/resize/600/format/jpg/quality/80/optimize&quot;':review.mprofile});
+                                border: 1px solid rgb(221, 226, 230);"></span></div></div>
                                 <div class="StoreSatisfactionCard_rightPanel__XCjpV">
                                     <div class="StoreSatisfactionCard_titleArea__1S3zk"><span
                                         class="StoreSatisfactionCard_nickName__16JEX">${review.memail}</span>
@@ -980,14 +973,14 @@
         // 가게 주인이 답글 달 수 있게
         $(document).on('click', '.CommunityCommentContent_bottom__-IKRP button.CommunityCommentContent_replyBtn__2T16c.CommunityCommentContent_active__4SdQQ', function () {
             console.log('답글 보이게');
-            const reply=$(this).closest('.StoreSatisfactionCard_container__3TDTr').next('.CommunityCommentItem_replyContent__3UQ-7');
+            let reply=$(this).closest('.StoreSatisfactionCard_container__3TDTr').next('.CommunityCommentItem_replyContent__3UQ-7');
             if (reply.is(':visible') || reply.css('display') === 'none') {
                 reply.toggle();
             }
         });
         // 답글 적기
         $(document).on('click', '.CommentForm_container__2bT5x .CommentForm_bottom__3THGM .CommentForm_button__1Rp_R', function () {
-            const replyWrite=$(this).closest('.CommentForm_bottom__3THGM').prev('.wz.input').find('textarea');
+            let replyWrite=$(this).closest('.CommentForm_bottom__3THGM').prev('.wz.input').find('textarea');
             let replyWriteRecontent=replyWrite.val()
             let replyWriterMemail=replyWrite.data('memail')
             let rtype = [[${funding.fstatus}]];

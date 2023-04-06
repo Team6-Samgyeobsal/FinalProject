@@ -20,4 +20,5 @@ public interface MemberService {
     FundingVO findActiveStoreByEmail(String email);
 
 
+    void updateMemberProfile(String memail, String imageURL);
 }

@@ -75,4 +75,9 @@ public class MemberServiceImpl implements MemberService {
     public FundingVO findActiveStoreByEmail(String email) {
         return memberMapper.findActiveStoreByEmail(email);
     }
+
+    @Override
+    public void updateMemberProfile(String memail, String imageUrl) {
+        memberMapper.updateMemberProfile(memail, imageUrl);
+    }
 }

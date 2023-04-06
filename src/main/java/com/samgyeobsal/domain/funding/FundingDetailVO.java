@@ -36,4 +36,6 @@ public class FundingDetailVO {
     private String fthumb;
 
     private Date start_date;
+
+    private String faddress;
 }
