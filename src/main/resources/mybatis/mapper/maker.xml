@@ -5,7 +5,7 @@
 
     <select id="findFundingMakerByFundingId" resultType="fundingMaker">
         select
-            f.fid, f.fstore_name, f.ftitle, f.fsummary,f.fstory,f.fdate, f.fstatus,
+            f.fid, f.fstore_name, f.ftitle, f.fsummary,f.fstory,f.fdate, f.fstatus, f.faddress,
             f.memail, f.ctid, ct.ctname, f.fthumb, f.cid, f.tid,  tmp.hasProduct, tmp2.hasImg
         from funding f
         left join category ct on (ct.ctid = f.ctid)
@@ -35,7 +35,8 @@
             fthumb = #{fthumb},
             ctid = #{ctid},
             cid = #{cid},
-            tid = #{tid}
+            tid = #{tid},
+            faddress = #{faddress}
         where fid = #{fid}
     </update>
 

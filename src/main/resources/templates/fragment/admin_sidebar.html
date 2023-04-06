@@ -1,12 +1,14 @@
 <!DOCTYPE html>
-<ul th:fragment="sidebar" class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+<ul th:fragment="sidebar" class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" style="background-image: none; background-color: #00c4c4;" id="accordionSidebar">
 
   <!-- Sidebar - Brand -->
-  <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/web/admin">
-    <div class="sidebar-brand-icon rotate-n-15">
-      <i class="fas fa-laugh-wink"></i>
+  <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/web/admin"
+     style="background: #F8F8F8 url('/images/logo.png')
+                50% center / contain no-repeat;
+              cursor: pointer;
+            ">
+    <div class="sidebar-brand-text mx-3">
     </div>
-    <div class="sidebar-brand-text mx-3">SB Admin <sup>2</sup></div>
   </a>
 
   <!-- Divider -->

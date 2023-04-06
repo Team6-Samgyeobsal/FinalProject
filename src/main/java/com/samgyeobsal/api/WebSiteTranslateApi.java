@@ -33,13 +33,16 @@ public class WebSiteTranslateApi {
 
     @PostMapping(consumes = "text/html")
     public ResponseEntity<String> translate(
-            @RequestBody String html, Locale locale){
+            @RequestBody String html, @CookieValue(value = "locale", required = false) String locale){
         MyLocale myLocale = MyLocale.KO;
-        for (MyLocale value : MyLocale.values()) {
-            if(value.getAcceptLang().equals(locale.toString())){
-                myLocale = value;
+        if(locale != null) {
+            for (MyLocale value : MyLocale.values()) {
+                if (value.getAcceptLang().equals(locale)) {
+                    myLocale = value;
+                }
             }
         }
+
         log.info("myLocale = {}", myLocale);
 
         try{

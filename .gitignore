@@ -33,7 +33,7 @@ build/
 .vscode/
 
 
-*.properties
+application.properties
 
 .DS_Store
 .travis.yml

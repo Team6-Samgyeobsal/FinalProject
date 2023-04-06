@@ -16,25 +16,25 @@
         <ul class="GNBDesktop_container__1TR2D">
           <li class="GNBDesktop_item__H8bay">
             <a class="GNBDesktop_link__1AP6q" href="/web/funding"
-            ><span>펀딩 +</span></a
+            ><span th:text="#{funding}">펀딩 +</span></a
             >
           </li>
           <li class="GNBDesktop_item__H8bay">
             <a class="GNBDesktop_link__1AP6q" href="/web/store"
-            ><span>스토어</span></a
+            ><span th:text="#{store}">스토어</span></a
             >
           <li class="GNBDesktop_item__H8bay">
             <a class="GNBDesktop_link__1AP6q" href="/web/fame"
-            ><span>명예의 전당</span></a
+            ><span th:text="#{fame}">명예의 전당</span></a
             >
           </li>
           <li class="GNBDesktop_item__H8bay">
             <a class="GNBDesktop_link__1AP6q" href="/web/notice"
-            ><span>공지사항</span></a
+            ><span th:text="#{notice}">공지사항</span></a
             >
           </li>
         </ul>
-        <div class="web-header-utils">
+        <div class="web-header-utils">`
           <div class="DesktopSearchApp_container__VEGeP">
             <form>
               <div
@@ -89,19 +89,37 @@
           </div>
           <div class="web-header-funding-open funding-open">
             <div>
-              <div>
+              <div th:if="${#strings.equals(#authentication.principal.member.mrole,'ROLE_USER')}">
                 <button
                         aria-label="프로젝트 만들기"
                         class="fundingMakeBtn Button_button__5oeoO Button_primary__3lu_z Button_md__3GjME funding-open-button"
                         type="button">
                           <span
                           ><span class="Button_children__1tP8u"
-                          >프로젝트 만들기</span
+                          th:text="#{makeProject}">프로젝트 만들기</span
+                          ></span
+                          >
+                </button>
+              </div>
+              <div th:if="${#strings.equals(#authentication.principal.member.mrole,'ROLE_ADMIN')}">
+                <button
+                        aria-label="관리 페이지 이동"
+                        class="adminBtn Button_button__5oeoO Button_primary__3lu_z Button_md__3GjME funding-open-button"
+                        type="button">
+                          <span
+                          ><span class="Button_children__1tP8u"
+                          >관리 페이지 이동</span
                           ></span
                           >
                 </button>
               </div>
             </div>
+            <select class="TranslateSelect">
+              <option value="ko">KOREAN</option>
+              <option value="en">ENGLISH</option>
+              <option value="zh">CHINESE</option>
+              <option value="ja">JAPANESE</option>
+            </select>
           </div>
         </div>
       </div>
@@ -110,6 +128,20 @@
   <script src="/js/confirm.js"></script>
   <script>
     $(document).ready(function (){
+
+      $('.TranslateSelect').on('change', function() {
+        var lang = $('.TranslateSelect').val();
+        var url = window.location.href;
+        var regex = /(\?|&)lang=[^&]+(&|$)/g;
+        url = url.replace(regex, '$1').replace(/(\?|&)$/, '');
+        if (url.indexOf('?') === -1) {
+          url += '?';
+        } else {
+          url += '&';
+        }
+        url += 'lang=' + lang;
+        window.location.href = url;
+      });
 
       let makeFunding = () => $.ajax({
         url: '/api/funding/',
@@ -127,6 +159,9 @@
     })
     $(document).on('click','.HeaderDesktop_user__dYJMc',function(){
       location.href='/web/mypage';
+    })
+    $(document).on('click','.adminBtn',function(){
+      location.href='/web/admin'
     })
   </script>
 </div>

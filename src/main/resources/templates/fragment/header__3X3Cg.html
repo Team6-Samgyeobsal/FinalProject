@@ -25,22 +25,22 @@
           <ul class="GNBDesktop_container__3X3Cg">
             <li class="GNBDesktop_item__H8bay">
               <a class="GNBDesktop_link__1AP6q" href="/web/funding"
-                ><span>펀딩 +</span></a
+                ><span th:text="#{funding}">펀딩 +</span></a
               >
             </li>
             <li class="GNBDesktop_item__H8bay">
               <a class="GNBDesktop_link__1AP6q" href="/web/store"
-                ><span>스토어</span></a
+                ><span th:text="#{store}">스토어</span></a
               >
             </li>
             <li class="GNBDesktop_item__H8bay">
               <a class="GNBDesktop_link__1AP6q" href="/web/fame"
-              ><span>명예의 전당</span></a
+              ><span th:text="#{fame}">명예의 전당</span></a
               >
             </li>
             <li class="GNBDesktop_item__H8bay">
               <a class="GNBDesktop_link__1AP6q" href="/web/notice"
-              ><span>공지사항</span></a
+              ><span th:text="#{notice}">공지사항</span></a
               >
             </li>
           </ul>
@@ -78,13 +78,13 @@
             </div>
             <div sec:authorize="isAnonymous()" class="HeaderDesktop_user__3zGmM">
               <div class="User_container__bqVd2">
-                <button type="button" class="User_btnSign__1URTs loginBtn">로그인</button
-                ><button data-event="iam.signup" class="User_btnSign__1URTs registBtn">
+                <button type="button" class="User_btnSign__1URTs loginBtn" th:text="#{login}">로그인</button
+                ><button data-event="iam.signup" class="User_btnSign__1URTs registBtn" th:text="#{signUp}">
                   회원가입
                 </button>
               </div>
             </div>
-            <div sec:authorize="isAuthenticated()" class="HeaderDesktop_user__3zGmM" style="margin-top: 10px">
+            <div sec:authorize="isAuthenticated()" class="HeaderDesktop_user__3zGmM">
               <div class="User_container__bqVd2">
                 <button type="button" class="User_btnAvatar__2Mui-" aria-label="마이 와디즈">
                   <div>
@@ -97,22 +97,71 @@
             </div>
             <div sec:authorize="isAuthenticated()" class="web-header-funding-open funding-open">
               <div>
-                <div>
+                <div th:if="${#strings.equals(#authentication.principal.member.mrole,'ROLE_USER')}">
                   <button aria-label="프로젝트 만들기" class="fundingMakeBtn Button_button__3J1Nv Button_primary__1EZQV Button_md__2iTxL funding-open-button" type="button">
                     <span>
-                      <span class="Button_children__1ZhTo">프로젝트 만들기</span>
+                      <span class="Button_children__1ZhTo" th:text="#{makeProject}">프로젝트 만들기</span>
+                    </span>
+                  </button>
+                </div>
+                <div th:if="${#strings.equals(#authentication.principal.member.mrole,'ROLE_ADMIN')}">
+                  <button aria-label="관리 페이지 이동" class="adminBtn Button_button__3J1Nv Button_primary__1EZQV Button_md__2iTxL funding-open-button" type="button">
+                    <span>
+                      <span class="Button_children__1ZhTo">관리 페이지 이동</span>
                     </span>
                   </button>
                 </div>
               </div>
             </div>
           </div>
+          <select class="TranslateSelect" >
+            <option value="ko">KOREAN</option>
+            <option value="en">ENGLISH</option>
+            <option value="zh">CHINESE</option>
+            <option value="ja">JAPANESE</option>
+          </select>
         </div>
       </header>
     </div>
 
     <script>
-      $(document).ready(function(){
+      function getLocaleFromCookie() {
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+          const cookie = cookies[i].trim();
+          if (cookie.startsWith('locale=')) {
+            return cookie.substring(7);
+          }
+        }
+        return null;
+      }
+
+      const locale = getLocaleFromCookie();
+      console.log('locale:', locale);
+
+      $(document).ready(function() {
+        // 쿠키에서 언어 선택 로드
+        var lang = locale;
+
+
+
+        // 선택된 언어로 select 박스 변경
+        $('.TranslateSelect').val(lang);
+        $('.TranslateSelect').on('change', function() {
+          console.log('변경')
+          var lang = $('.TranslateSelect').val();
+          var url = window.location.href;
+          var regex = /(\?|&)lang=[^&]+(&|$)/g;
+          url = url.replace(regex, '$1').replace(/(\?|&)$/, '');
+          if (url.indexOf('?') === -1) {
+            url += '?';
+          } else {
+            url += '&';
+          }
+          url += 'lang=' + lang;
+          window.location.href = url;
+        });
+
         console.log('ready');
 
         let makeFunding = () => $.ajax({
@@ -141,6 +190,9 @@
       $(document).on('click','.HeaderDesktop_user__3zGmM',function(e){
         e.preventDefault();
         location.href='/web/mypage';
+      })
+      $(document).on('click','.adminBtn',function(){
+        location.href='/web/admin'
       })
 
     </script>
