@@ -98,7 +98,8 @@
                fptitle,
                fpcontent,
                fiurl,
-               fp.fpid
+               fp.fpid,
+               faddress
         from funding f
                  left join (select fid,sum(sumprice) totalprice
                             from (select distinct f.fid,o.oid, sum(oprice) sumprice
