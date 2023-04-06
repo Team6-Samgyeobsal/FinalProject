@@ -1,3 +1,4 @@
+/*
 package com.samgyeobsal.swagger;
 
 
@@ -36,3 +37,4 @@ public class Swagger2Config {
                .build();
    }
 }
+*/

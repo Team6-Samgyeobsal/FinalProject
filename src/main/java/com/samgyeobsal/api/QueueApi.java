@@ -2,10 +2,6 @@ package com.samgyeobsal.api;
 
 import com.samgyeobsal.domain.queue.QueueVO;
 import com.samgyeobsal.service.QueueService;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.SwaggerDefinition;
-import io.swagger.annotations.Tag;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,9 +11,9 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Map;
 
-@Api(value="QueueApi")
+/*@Api(value="QueueApi")
 @SwaggerDefinition(tags = {@Tag(name = "QueueApi",
-description = "모바일 대기열 기능")})
+description = "모바일 대기열 기능")})*/
 @Log4j2
 @RestController
 @RequestMapping("/api/queue")
@@ -26,9 +22,6 @@ public class QueueApi {
     @Autowired
     QueueService queueService;
 
-    @ApiOperation(value = "get Queuelist",
-    notes = "대기열에서 해당 fid에 매핑되는 값을 가져온다. ",
-    httpMethod = "SELECT")
 
     // QRUSEDDATE = null만 출력
     @GetMapping("/list")
