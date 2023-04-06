@@ -5,10 +5,7 @@
     <meta
       name="viewport"
       content="width=device-width,initial-scale=1,shrink-to-fit=no,user-scalable=no,viewport-fit=cover" />
-    <meta
-      name="description"
-      content="테크, 패션, 푸드, 뷰티, 홈리빙까지. 와디즈 펀딩으로 매일 새로운 일상을 발견하고, 와디즈 스토어에서 새로운 쇼핑을 만나보세요." />
-    <title>와디즈 - 마이와디즈</title>
+    <title>더쉐프 - 마이페이지</title>
     <!-- jquery -->
     <script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
 
@@ -54,9 +51,16 @@
       rel="stylesheet"
       type="text/css"
       href="/import/css/my-wadiz.635555ef.chunk.css" />
-    <style>
-    </style>
   </head>
+
+  <style>
+    .HeaderDesktop_user__3zGmM{
+      margin-top: 10px;
+    }
+    .MyWadizSupporterProjectInfo_project__3Vaun{
+      justify-content: center;
+    }
+  </style>
   <body class="" cz-shortcut-listen="true">
     <div id="page-container">
       <main id="main-app">
@@ -105,25 +109,13 @@
                     </div>
                     <div class="MyWadizSupporterProfile_profileUser__a_r1P">
                       <button data-event="profile">
-                        <strong
-                          ><span th:text="${#authentication.principal.member.mname}">사용자이름<i>님</i></span
-                          ><svg
-                            viewBox="0 0 40 40"
-                            focusable="false"
-                            role="presentation"
-                            class="withIcon_icon__FgeYa"
-                            aria-hidden="true">
-                            <path
-                              d="M28 20L15 33l-1.4-1.4L25.2 20 13.6 8.4 15 7l13 13z"></path></svg
-                        ></strong>
+                        <strong>
+                          <span th:text="${#authentication.principal.member.mname}">사용자이름<i>님</i></span>
+                        </strong>
                       </button>
-                      <div
-                        class="MyWadizSupporterProfile_profileUserLabel__1fiU3">
-                        서포터 ∙ 개인 회원
-                      </div>
                     </div>
                     <div class="MyWadizSupporterProfile_setting__n8-M7">
-                      <p class="MyWadizLoginMode_loginMode__2smkD">
+                      <p class="MyWadizLoginMode_loginMode__2smkD" th:text="${#strings.capitalize(#authentication.principal.member.mloginType)}+' 로 로그인 중'">
                         와디즈 계정으로 로그인 중
                       </p>
                       <button
@@ -212,9 +204,9 @@
                             class="MyWadizSupporterProjectInfo_project__3Vaun">
                             <div
                               class="MyWadizSupporterProjectInfo_projectLink__2K77b">
-                              <a href="/web/mypage/order"
-                                ><span>펀딩</span><b>상세보기 > </b></a
-                              >
+                              <a href="/web/mypage/order">
+                                <span>펀딩 기록 </span><b>상세보기 > </b>
+                              </a>
                             </div>
                           </div>
                         </div>
@@ -250,74 +242,10 @@
                       </div>
                     </div>
                     <div class="MyWadizSection_section__3FCv1">
-                      <h3 class="MyWadizSection_title__2pnV3">
-                        나의 문의 내역
-                      </h3>
-                      <div>
-                        <div class="MyWadizMenu_menu__3b-H-">
-                          <a href="/web/board/personalMessage/inbox"
-                            ><span class="MyWadizMenu_icon__1sqne"
-                              ><svg
-                                viewBox="0 0 32 32"
-                                focusable="false"
-                                role="presentation"
-                                class="withIcon_icon__FgeYa"
-                                aria-hidden="true">
-                                <path
-                                  d="M1.6 5.6v20.8h28.8V5.6zm26.88 1.6L16 17.84 3.52 7.2zm.32 17.6H3.2V9.04L16 19.92 28.8 9.04z"></path></svg></span
-                            ><strong class="MyWadizMenu_text__9ryGW"
-                              >메이커 문의</strong
-                            ><span class="MyWadizMenu_arrowIcon__2sutN"
-                              ><svg
-                                viewBox="0 0 40 40"
-                                focusable="false"
-                                role="presentation"
-                                class="withIcon_icon__FgeYa"
-                                aria-hidden="true">
-                                <path
-                                  d="M28 20L15 33l-1.4-1.4L25.2 20 13.6 8.4 15 7l13 13z"></path></svg></span
-                          ></a>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="MyWadizSection_section__3FCv1">
-                      <h3 class="MyWadizSection_title__2pnV3">고객센터</h3>
-                      <div>
-                        <div class="MyWadizMenu_menu__3b-H-">
-                          <button data-event="inquire">
-                            <span class="MyWadizMenu_icon__1sqne"
-                              ><svg
-                                viewBox="0 0 40 40"
-                                focusable="false"
-                                role="presentation"
-                                class="withIcon_icon__FgeYa"
-                                aria-hidden="true">
-                                <path fill="none" d="M0 0h40v40H0z"></path>
-                                <path
-                                  d="M10.62 38.33V29H2.87V1.67h34.26v27.79H18.92zM5 27h7.7v6.11l5.3-5.73h17V3.75H5z"></path>
-                                <path
-                                  d="M12.84 13.28a1.87 1.87 0 1 0 0 3.74 1.87 1.87 0 1 0 0-3.74zm7.16 0a1.87 1.87 0 1 0 0 3.74 1.87 1.87 0 1 0 0-3.74zm7.16 0a1.87 1.87 0 1 0 0 3.74 1.87 1.87 0 1 0 0-3.74z"></path></svg></span
-                            ><strong class="MyWadizMenu_text__9ryGW"
-                              >1:1 채팅 상담</strong
-                            ><span class="MyWadizMenu_arrowIcon__2sutN"
-                              ><svg
-                                viewBox="0 0 40 40"
-                                focusable="false"
-                                role="presentation"
-                                class="withIcon_icon__FgeYa"
-                                aria-hidden="true">
-                                <path
-                                  d="M28 20L15 33l-1.4-1.4L25.2 20 13.6 8.4 15 7l13 13z"></path></svg
-                            ></span>
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="MyWadizSection_section__3FCv1">
                       <div>
                         <div class="MyWadizOtherMenu_otherMenu__2GlwQ">
                           <div class="MyWadizMenu_menu__3b-H-">
-                            <a href="/web/wboard/newsBoardList"
+                            <a href="/web/notice"
                               ><span class="MyWadizMenu_icon__1sqne"
                                 ><i
                                   class="MyWadizOtherMenu_noticeIcon__2AXx5"></i></span
@@ -364,24 +292,33 @@
       </main>
     </div>
 
+
+    <script src="/js/confirm.js"></script>
+    <link
+        rel="stylesheet"
+        href="/import/css/payments.562cdee9.css"
+    />
+    <link
+        rel="stylesheet"
+        href="/import/css/wui.css"/>
+    <link rel="stylesheet" href="https://static.wadiz.kr/static/web/common.css?a5fa8553">
+
   <script>
     $(document).ready(function(){
       $('.logoutBtn').click(function(e){
-        $.ajax({
-          url : '/api/account/logout',
-          type : 'post',
-          success : function(data){
-            console.log(data);
-            location.href = '/web/funding';
-          }
+        showConfirm("로그아웃","로그아웃 하시겠습니까?",()=>{
+          $.ajax({
+            url : '/api/account/logout',
+            type : 'post',
+            success : function(data){
+              console.log(data);
+              location.href = '/web/funding';
+            }
+          })
         })
-        // var now = new Date();
-        // now.setHours(now.getHours() - 1); // 1시간 전으로 설정
-        // document.cookie = "accessToken=; expires=" + now.toUTCString() + "; path=/;";
-        // document.cookie = "refreshToken=; expires=" + now.toUTCString() + "; path=/;";
-        // location.href = '/web/funding';
-        // console.log('쿠키 삭제');
+
       })
+
     })
     $(document).on('click','.MyWadizUserTypeSwitch_button__BYDWf',function(){
       if($(this).data('event')==='supporter_mode'){

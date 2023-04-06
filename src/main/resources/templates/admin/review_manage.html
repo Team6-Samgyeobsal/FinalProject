@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Tables</title>
+    <title>어드민 | 더쉐프</title>
 
     <!-- Custom fonts for this template -->
     <link href="/admin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -53,7 +53,7 @@
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">Review Management</h6>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -61,7 +61,7 @@
                                     <thead>
                                         <tr>
                                             <th>작성자</th>
-                                            <th>작성내용</th>
+                                            <th style="width:30%">작성내용</th>
                                             <th>평점</th>
                                             <th>첨부사진</th>
                                             <th>리뷰타입</th>
@@ -158,11 +158,11 @@
                 data-memail="${d['memail']}">
                 <td>${d['memail']}</td>
                 <td>${d['rcontent']}</td>
-                <td>${d['rscore']}</td>
-                <td>${imgTd}</td>
-                <td>${d['rtype']}</td>
-                <td>${d['rdate']}</td>
-                <td>
+                <td style="text-align: center">${d['rscore']}</td>
+                <td style="text-align: center">${imgTd}</td>
+                <td style="text-align: center">${d['rtype']}</td>
+                <td style="text-align: center">${d['rdate'].split(' ')[0]}</td>
+                <td style="text-align: center">
                     <a href="#" class="deleteBtn btn btn-danger btn-icon-split">
                         <span class="text">삭제</span>
                     </a>
@@ -204,6 +204,7 @@
         var startNum = endNum - 4;
 
         var prev = startNum !== 1;
+
         var next = false;
 
         if(endNum * itemNum >= fundingCount){
@@ -216,7 +217,7 @@
         let str = `<ul class="pagination" style="justify-content: center">`
         if(prev){
             str += `
-            <li class="paginate_button page-item previous disabled" id="dataTable_previous">
+            <li class="paginate_button page-item previous" id="dataTable_previous">
                 <a aria-controls="dataTable" data-dt-idx="${startNum-1}" tabIndex="0" class="page-link">Previous</a>
             </li>`
         }
@@ -244,7 +245,11 @@
     $(document).on('click','.page-item',function(){
         pageNum = $(this).find('a').data('dt-idx');
         getReviewList();
+
+        $( 'html, body' ).animate( { scrollTop : 0 }, 400 );
+        return false;
     })
+
 </script>
 
 </html>

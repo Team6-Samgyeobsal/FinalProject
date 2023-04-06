@@ -91,6 +91,8 @@
                ffunding_score,
                case when fstatus='FUNDING' then trunc(cfunding_end_date-sysdate,0)
                     else trunc(cstore_end_date-sysdate,0) end  expire,
+               case when fstatus='FUNDING' then cfunding_start_date
+                    else cstore_start_date end start_date,
                fporigin_price,
                fpprice,
                fptitle,

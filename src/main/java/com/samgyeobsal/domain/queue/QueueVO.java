@@ -10,7 +10,10 @@ import java.util.Date;
 @ToString
 @Setter
 public class QueueVO {
-
     private String mname;
+    private String qid;
+    private String fid;
     private Date qdate;
+    private String fstore_name;
+    private String oid;
 }

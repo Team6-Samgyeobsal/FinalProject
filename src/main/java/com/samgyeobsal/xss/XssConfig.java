@@ -11,9 +11,26 @@ import org.springframework.http.converter.json.MappingJackson2HttpMessageConvert
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @RequiredArgsConstructor
-@Configuration
-public class XssConfig  {
+//@Configuration
+public class XssConfig implements WebMvcConfigurer {
+
     private final ObjectMapper objectMapper;
+
+    @Bean
+    public CustomXssEscapeServletFilter customXssEscapeServletFilter(){
+        return new CustomXssEscapeServletFilter();
+    }
+
+    @Bean
+    public FilterRegistrationBean<XssEscapeServletFilter> filterRegistrationBean() {
+        FilterRegistrationBean<XssEscapeServletFilter> filterRegistrationBean = new FilterRegistrationBean<>();
+        filterRegistrationBean.setFilter(customXssEscapeServletFilter());
+
+        filterRegistrationBean.setOrder(1);
+        filterRegistrationBean.addUrlPatterns("/*"); // 모든 요청에 필터 적용
+        return filterRegistrationBean;
+    }
+
 
     @Bean
     public MappingJackson2HttpMessageConverter jsonEscapeConverter() {

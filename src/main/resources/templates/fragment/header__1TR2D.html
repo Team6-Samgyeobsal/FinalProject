@@ -9,39 +9,32 @@
         <h1 class="wadiz-logo">
           <a href="/web/funding"
           ><span class="label">와디즈</span
-          ><svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="85"
-                  height="25"
-                  viewBox="0 0 85 25">
-            <path
-                    fill="#1D2129"
-                    fill-rule="nonzero"
-                    d="M58.49 2.23h2.11v21.29H59a1.73 1.73 0 0 1-1.62-1.16 9 9 0 0 1-10.93-.28 7.48 7.48 0 0 1-2.75-6.29 7.65 7.65 0 0 1 12.79-5.07V4.23a2 2 0 0 1 2-2zm-6.3 18.62a4.36 4.36 0 0 0 4.16-4.52 4.19 4.19 0 1 0-8.35 0 4.36 4.36 0 0 0 4.19 4.52zM42 23.52h-1.52a1.73 1.73 0 0 1-1.64-1.16 9 9 0 0 1-10.93-.28 7.48 7.48 0 0 1-2.75-6.29A7.65 7.65 0 0 1 38 10.72a2 2 0 0 1 1.9-1.79H42v14.59zm-8.41-2.67h.02a4.35 4.35 0 0 0 4.15-4.52 4.35 4.35 0 0 0-4.17-4.51 4.35 4.35 0 0 0-4.17 4.51 4.36 4.36 0 0 0 4.17 4.52zM83.47 8.94v2.11l-7.07 9.06h7.06v3.47h-13v-2.1l7.08-9.07h-6.62v-1.47a2 2 0 0 1 2-2h10.55zM65.86 7.3a2.48 2.48 0 1 1 0-4.96 2.48 2.48 0 0 1 0 4.96zM21.21 8.94h4.14l-4.86 14.59h-4.15l-3.21-9.36-3.21 9.36H5.77L.92 8.94h4.13L8 18l2.5-7.74a2 2 0 0 1 1.86-1.34h2.9l3 9.08 2.95-9.06zm42.65 14.59l-.04-12.59a2 2 0 0 1 2-2h2.11v14.59h-4.07z"></path></svg
-          ></a>
+          ><svg xmlns="http://www.w3.org/2000/svg" width="150" height="25" viewBox="0 0 85 25">
+            <image href="/images/logo.png" width="120" height="25" />
+          </svg></a>
         </h1>
         <ul class="GNBDesktop_container__1TR2D">
           <li class="GNBDesktop_item__H8bay">
             <a class="GNBDesktop_link__1AP6q" href="/web/funding"
-            ><span>펀딩 +</span></a
+            ><span th:text="#{funding}">펀딩 +</span></a
             >
           </li>
           <li class="GNBDesktop_item__H8bay">
             <a class="GNBDesktop_link__1AP6q" href="/web/store"
-            ><span>스토어</span></a
+            ><span th:text="#{store}">스토어</span></a
             >
           <li class="GNBDesktop_item__H8bay">
             <a class="GNBDesktop_link__1AP6q" href="/web/fame"
-            ><span>명예의 전당</span></a
+            ><span th:text="#{fame}">명예의 전당</span></a
             >
           </li>
           <li class="GNBDesktop_item__H8bay">
             <a class="GNBDesktop_link__1AP6q" href="/web/notice"
-            ><span>공지사항</span></a
+            ><span th:text="#{notice}">공지사항</span></a
             >
           </li>
         </ul>
-        <div class="web-header-utils">
+        <div class="web-header-utils">`
           <div class="DesktopSearchApp_container__VEGeP">
             <form>
               <div
@@ -96,19 +89,37 @@
           </div>
           <div class="web-header-funding-open funding-open">
             <div>
-              <div>
+              <div th:if="${#strings.equals(#authentication.principal.member.mrole,'ROLE_USER')}">
                 <button
                         aria-label="프로젝트 만들기"
                         class="fundingMakeBtn Button_button__5oeoO Button_primary__3lu_z Button_md__3GjME funding-open-button"
                         type="button">
                           <span
                           ><span class="Button_children__1tP8u"
-                          >프로젝트 만들기</span
+                          th:text="#{makeProject}">프로젝트 만들기</span
+                          ></span
+                          >
+                </button>
+              </div>
+              <div th:if="${#strings.equals(#authentication.principal.member.mrole,'ROLE_ADMIN')}">
+                <button
+                        aria-label="관리 페이지 이동"
+                        class="adminBtn Button_button__5oeoO Button_primary__3lu_z Button_md__3GjME funding-open-button"
+                        type="button">
+                          <span
+                          ><span class="Button_children__1tP8u"
+                          >관리 페이지 이동</span
                           ></span
                           >
                 </button>
               </div>
             </div>
+            <select class="TranslateSelect">
+              <option value="ko">KOREAN</option>
+              <option value="en">ENGLISH</option>
+              <option value="zh">CHINESE</option>
+              <option value="ja">JAPANESE</option>
+            </select>
           </div>
         </div>
       </div>
@@ -117,6 +128,20 @@
   <script src="/js/confirm.js"></script>
   <script>
     $(document).ready(function (){
+
+      $('.TranslateSelect').on('change', function() {
+        var lang = $('.TranslateSelect').val();
+        var url = window.location.href;
+        var regex = /(\?|&)lang=[^&]+(&|$)/g;
+        url = url.replace(regex, '$1').replace(/(\?|&)$/, '');
+        if (url.indexOf('?') === -1) {
+          url += '?';
+        } else {
+          url += '&';
+        }
+        url += 'lang=' + lang;
+        window.location.href = url;
+      });
 
       let makeFunding = () => $.ajax({
         url: '/api/funding/',
@@ -134,6 +159,9 @@
     })
     $(document).on('click','.HeaderDesktop_user__dYJMc',function(){
       location.href='/web/mypage';
+    })
+    $(document).on('click','.adminBtn',function(){
+      location.href='/web/admin'
     })
   </script>
 </div>

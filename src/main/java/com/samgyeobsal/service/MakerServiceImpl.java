@@ -27,7 +27,6 @@ public class MakerServiceImpl implements MakerService {
 
     private final MakerMapper makerMapper;
     private final FundingService fundingService;
-
     private final AdminMapper adminMapper;
     @Override
     public String createFunding(String email) {

@@ -38,6 +38,7 @@ public class NaverTransService {
         return convertToData(responseBody);
     }
 
+
     private String post(String apiUrl, Map<String, String> requestHeaders, String text, String source, String target){
         HttpURLConnection con = connect(apiUrl);
         String postParams = "source=" + source + "&target=" + target + "&text=" + text;

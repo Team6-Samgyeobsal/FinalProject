@@ -60,7 +60,6 @@ public class OAuth2DetailsService extends DefaultOAuth2UserService {
 
         log.info("oAUth2User = {}", oAuth2User.getAttributes());
 
-//        String providerId = oauth2UserInfo.getProviderId();
         String username = oauth2UserInfo.getName();
 
         String uuid = UUID.randomUUID().toString().substring(0, 6);

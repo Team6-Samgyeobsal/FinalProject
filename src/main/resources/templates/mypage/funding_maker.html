@@ -40,7 +40,7 @@
         <div class="AppNavbar_container__5uOnI">
           <div
             style="
-              background: url('https://static.wadiz.kr/studio/funding/static/media/wadiz-logo.549edcd7.svg')
+              background: url('/images/logo.png')
                 50% center / contain no-repeat;
               width: 129px;
               height: 48px;
@@ -78,7 +78,6 @@
                     </div>
                     <div class="FundingStatus_statusView__D10Ag"></div>
                     <div class="FundingStatus_statusView__D10Ag">
-<!--                      <div class="FundingStatus_icon__1Xrqx red"></div>-->
                       <span th:if="${fundingMaker.getFstatus().toString() == 'PREPARING'}">준비 중</span>
                       <span th:if="${fundingMaker.getFstatus().toString() == 'PARTICIPATE'}">심사 중</span>
                       <span th:if="${fundingMaker.getFstatus().toString() == 'FUNDING'}">펀딩 중</span>
@@ -86,7 +85,7 @@
                       <span th:if="${fundingMaker.getFstatus().toString() == 'FAIL'}">펀딩 실패</span>
                       <span th:if="${fundingMaker.getFstatus().toString() == 'END'}">판매 종료</span>
                     </div>
-                    <div class="FundingStatus_guide__37jtT">
+                    <div class="FundingStatus_guide__37jtT" style="padding-left: 0px">
                       아래의 필수 항목들이 모두 작성 완료 상태로 바뀌면
                       [제출하기]를 누를 수 있어요.
                     </div>
@@ -136,7 +135,7 @@
                         class="PageMenuList_card__1VyAW PageMenuList_wadizColor__3nQuN">
                         <div class="PageMenuList_container__1xz-L">
                           <div class="PageMenuList_name__2nKKm">
-                            리워드 설계
+                            상품 설계
                           </div>
                           <div
                             class="PageMenuList_status__3M6fF PageMenuList_wadizColor__3nQuN">
@@ -196,17 +195,6 @@
   <script>
     let fid = '[[${fundingMaker.getFid()}]]'
 
-    $(document).ready(function (){
-      console.log('tt');
-    })
-    $(document).on('click','.submitBtn',function(e){
-      sendDocument();
-    })
-
-    $(document).on('click','.quit_btn',function(){
-      showConfirm("프로젝트 작성", "정말 나가시겠습니까?",()=>location.href='/web/mypage/maker' );
-    })
-
     function sendDocument(){
       $.ajax({
         url : `/api/mypage/maker/funding/${fid}/submit`,
@@ -218,6 +206,19 @@
         }
       })
     }
+
+    $(document).ready(function (){
+      console.log('tt');
+    })
+    $(document).on('click','.submitBtn',function(e){
+      showConfirm("프로젝트 심사", "프로젝트를 제출하시겠습니까?", sendDocument);
+    })
+
+    $(document).on('click','.quit_btn',function(){
+      showConfirm("프로젝트 작성", "정말 나가시겠습니까?",()=>location.href='/web/mypage/maker' );
+    })
+
+
   </script>
   </body>
 </html>

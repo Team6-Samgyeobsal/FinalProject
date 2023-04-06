@@ -21,6 +21,7 @@
         <result property="fstore_score" column="fstore_score" />
         <result property="ffunding_score" column="ffunding_score" />
         <result property="expire" column="expire" />
+        <result property="start_date" column="start_date" />
         <result property="memail" column="memail" />
         <collection property="products"
                     resultMap="productMap" />
@@ -127,6 +128,7 @@
         <result property="ctid" column="ctid"/>
         <result property="ctname" column="ctname"/>
         <result property="mname" column="mname"/>
+        <result property="qid" column="qid"/>
         <collection property="orders" resultMap="orderItemMap"/>
 
 

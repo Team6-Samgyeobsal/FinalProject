@@ -34,4 +34,6 @@ public class FundingDetailVO {
     private List<FundingImgVO> imgs;
 
     private String fthumb;
+
+    private Date start_date;
 }

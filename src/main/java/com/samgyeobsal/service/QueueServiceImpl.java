@@ -13,7 +13,7 @@ import java.util.List;
 public class QueueServiceImpl implements QueueService{
 
     @Autowired
-    QueueMapper queueMapper;
+    private QueueMapper queueMapper;
     @Override
     public List<QueueVO> getQueueList(String fid) {
         return queueMapper.getQueueList(fid);

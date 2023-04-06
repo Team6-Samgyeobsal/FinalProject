@@ -6,7 +6,6 @@ import com.samgyeobsal.domain.funding.FundingDetailVO;
 import com.samgyeobsal.domain.funding.ReviewVO;
 import com.samgyeobsal.domain.order.OrderVO;
 import com.samgyeobsal.mapper.AdminMapper;
-import com.samgyeobsal.mapper.OrderMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -23,7 +22,7 @@ public class AdminServiceImpl implements AdminService {
     private final AdminMapper adminMapper;
     private final QrCodeService qrCodeService;
     private final OrderService orderService;
-    private final CommonService commonService;
+    private final KaKaoMessageService kaKaoMessageService;
     private final FundingService fundingService;
 
     @Override
@@ -66,9 +65,10 @@ public class AdminServiceImpl implements AdminService {
     @Override
     @Transactional
     public void promoteFundingToStore(String fid, String memail) {
-        adminMapper.updateFundingStatus(fid,"STORE");
         List<String> orderIdList = orderService.getOrderIdListByFundingId(fid);
-        FundingDetailVO store = fundingService.getFundingDetail(fid, "STORE");
+        FundingDetailVO store = fundingService.getFundingDetail(fid, "FUNDING");
+        adminMapper.updateFundingStatus(fid,"STORE");
+        log.info("store = {}", store);
         for (String oId : orderIdList) {
             try {
                 OrderVO order = orderService.getOrderByOrderId(oId);
@@ -77,7 +77,7 @@ public class AdminServiceImpl implements AdminService {
 
                  // 주문자가 user@gmail.com 일 경우에만 메시지 보내기
                 if(order.getMemail().equals("user@gmail.com")){
-                    commonService.sendOrderInfoByKakaoMessageApi(memail, order, store);
+                    kaKaoMessageService.sendOrderInfoByKakaoMessage(memail, order, store);
                 }
 
             } catch (IOException e) {

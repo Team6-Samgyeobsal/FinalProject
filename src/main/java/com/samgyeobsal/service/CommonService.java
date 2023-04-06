@@ -17,8 +17,6 @@ public interface CommonService {
 
     int getReviewScore(String review);
 
-    void sendOrderInfoByKakaoMessageApi(String memail, OrderVO orderVO, FundingDetailVO store);
-
 
 
 }
