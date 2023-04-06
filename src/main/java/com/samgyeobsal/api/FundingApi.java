@@ -49,6 +49,8 @@ public class FundingApi {
         log.info("-----------------criteria ="+criteria);
         ReviewCountVO countVO=fundingService.reviewCount(criteria.getFid());
         List<ReviewVO> review= fundingService.getReviewList(criteria);
+        log.info("reviews = {}", review);
+
         Map<String,Object> res = new HashMap<>();
         res.put("reviewCount",countVO);
         res.put("review",review);

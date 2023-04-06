@@ -126,14 +126,15 @@
                                                      aria-hidden="true"
                                                      style="outline: none; width: 750px"
                                                 >
-                                                    <div>
+                                                    <div style="width: 750px;">
                                                         <div
                                                                 tabindex="-1"
                                                                 style="width: 100%; display: inline-block"
                                                         >
                                                             <div
                                                                     class="RewardImageSlider_slickBackgroundImage__gyIH3"
-                                                                    th:style=" 'background-image: url('+${img.fiurl}+');'"
+                                                                    th:style=" 'background-image: url('+${img.fiurl}+');background-repeat: no-repeat;background-size: cover; background-position: center center;background-attachment: fixed;
+'"
                                                             ></div>
                                                         </div>
                                                     </div>
@@ -611,6 +612,7 @@
 
 </script>
 <script th:inline="javascript">
+    let isDone = false;
     $(document).ready(function () {
 
         //물건 클릭 시 물건을 파라미터에 담음
@@ -673,7 +675,7 @@
 
         //리뷰 출력 ajax
         function getReview(fid, sort, type, page) {
-
+            if(isDone) return;
             $.ajax({
                 url: '/api/funding/review',
                 type: "get",
@@ -686,9 +688,13 @@
                 },
                 success: function (data, status) {
                     console.log(data);
+                    if(data.review.length ==0)
+                        isDone = true;
+
 
                     let k = "";
                     console.log(data.reviewCount);
+
                     $('#fundingCount').text(data.reviewCount.rfcount);
                     let fthumb=[[${funding.fthumb}]];
                     if (data.review.length == 0 && page == 0) {

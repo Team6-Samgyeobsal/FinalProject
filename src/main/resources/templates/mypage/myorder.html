@@ -79,6 +79,7 @@
       </main>
     </div>
   <script>
+    let memail = '[[${#authentication.principal.member.memail}]]'
     $(document).ready(function(){
       loadOrderList();
     })
@@ -101,7 +102,7 @@
       $(data).each(function (idx, d) {
         let template = `
                 <li class="MyFundingList_listItem__2C_bx">
-                    <a href="/web/mypage/order/${d.oid}"
+                    <a href="/web/mypage/order/${d.oid}?memail=${memail}"
                       ><dl class="MyFundingListItem_fundingCard__1mDVb">
                         <dt>
                           <em class="MyFundingListItem_category__15_rp"

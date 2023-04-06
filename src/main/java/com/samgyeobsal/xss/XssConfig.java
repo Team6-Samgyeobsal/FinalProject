@@ -11,7 +11,7 @@ import org.springframework.http.converter.json.MappingJackson2HttpMessageConvert
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @RequiredArgsConstructor
-//@Configuration
+@Configuration
 public class XssConfig implements WebMvcConfigurer {
 
     private final ObjectMapper objectMapper;

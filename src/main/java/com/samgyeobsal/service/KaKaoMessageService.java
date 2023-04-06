@@ -54,8 +54,6 @@ public class KaKaoMessageService {
         String uuidStr = sendKakaoFriendsApi(oAuth2Token.getOauth2_token());
 
         sendKakaoTextMessageApi(uuidStr, oAuth2Token.getOauth2_token(), msg, oid);
-
-
     }
 
 
@@ -85,6 +83,7 @@ public class KaKaoMessageService {
     }
 
     private Map<String, Object> sendKakaoQrMessageApi(String friendsUuids, String accessToken, OrderVO orderVO, FundingDetailVO store){
+
 
         RestTemplate restTemplate = new RestTemplate();
 
@@ -120,7 +119,7 @@ public class KaKaoMessageService {
                         "      \"image_width\": 640," +
                         "      \"image_height\": 640," +
                         "      \"link\": {" +
-                        "          \"web_url\": \"http://192.168.137.75/web/mypage/order/"+orderVO.getOid()+"\"" +
+                        "          \"web_url\": \"https://thechef.site/web/mypage/order/"+orderVO.getOid()+"?memail="+orderVO.getMemail()+"\"" +
                         "      }" +
                         "  }," +
                         "  \"item_content\" : {" +
@@ -139,7 +138,7 @@ public class KaKaoMessageService {
                         "      {\n" +
                         "          \"title\": \"QR 확인\",\n" +
                         "          \"link\": {\n" +
-                        "              \"web_url\": \"http://192.168.137.75/web/mypage/order/"+orderVO.getOid()+"\"\n" +
+                        "              \"web_url\": \"https://thechef.site/web/mypage/order/"+orderVO.getOid()+"?memail="+orderVO.getMemail()+"\"\n" +
                         "          }\n" +
                         "      }\n" +
                         "  ]\n" +

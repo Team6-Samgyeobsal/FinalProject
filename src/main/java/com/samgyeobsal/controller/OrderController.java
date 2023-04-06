@@ -18,10 +18,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpSession;
-import java.time.LocalDateTime;
 import java.util.Base64;
 
 
@@ -85,23 +83,6 @@ public class OrderController {
         return "order/order_step2";
     }
 
-    // 쿠폰 찾기
-    @GetMapping("/coupon")
-    public Event checkCouponName(@RequestParam("couponname") String couponName){
-        Event event = eventMapper.findByName(couponName);
-        log.info(">>>>> 쿠폰 :" + event);
-        return event;
-    }
-
-    // 마일리지 찾기
-    @GetMapping
-    public Event checkMileage(@RequestParam("mmileage") Integer mMileage){
-        Event event = eventMapper.findMileage(mMileage);
-        log.info(">>>>> 마일리지 :" + event);
-        return event;
-
-    }
-
     @GetMapping("/success")
     public String testSuccess(
             @AuthenticationPrincipal Account account,
@@ -117,10 +98,10 @@ public class OrderController {
         if (sendTossConfirm(paymentKey, orderId, amount)) {
             orderService.saveOrder(orderFormDTO, email);
         }else{
-            return "error/error";
+            return "4xx";
         }
 
-        return "redirect:/web/mypage/order/"+orderId;
+        return "redirect:/web/mypage/order/"+orderId+"?memail="+account.getMember().getMemail();
     }
 
     private boolean sendTossConfirm(String paymentKey, String orderId, int amount){
