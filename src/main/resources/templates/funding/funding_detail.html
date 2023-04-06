@@ -193,6 +193,7 @@
                         <div class="RewardDetailDesktop_right__cgJ4-">
                             <div class="RewardVerticalInfo_container__1SxW5">
                                 <div class="BaseInfo_container__1SXpL">
+                                    <div id="summary">
                                     <div class="BaseInfo_category__noYA2"><span th:text="${funding.tname}">더 현대</span>
 
                                     </div>
@@ -202,7 +203,7 @@
                                         </div>
                                         <a
                                                 class="PartnerBanner_container__2m0Mo"
-                                                href="/crowd/cosmax"
+                                                href="#none"
                                         ><span class="PartnerBanner_terms__2-kMz"
                                         >상호명</span
                                         ><span class="PartnerBanner_desc__2mN1_"
@@ -227,6 +228,7 @@
                                     <p class="BaseInfo_description__1M3_1" th:text="${funding.fsummary}">
                                         부설명
                                     </p>
+                                    </div>
                                     <div class="BaseInfo_rateWrapper__1C69h">
                                         <div class="BaseInfo_rate__vZ7aw">
                                             <div class="BaseInfo_infoWrapper__1GKex">
@@ -242,7 +244,7 @@
                                                     class="Badge_container__3ioDw Badge_visible__n2Hg1 BaseInfo_remainingDay__3wD-k"
                                             ><span
                                                     class="Badge_badge__2h6cT Badge_label__VC3QR Badge_md__nBr2- Badge_primary__2x__i Badge_tertiary__1ERKE"
-                                                    th:text="${funding.expire == 0 ? '오늘 마감' : funding.expire}+#{daysLeft}"> 100일 남음
+                                                    th:text="${funding.expire == 0 ? '오늘 마감' : funding.expire}+' '+#{daysLeft}"> 100일 남음
                                             </span></span
                                             >
                                         </div>
@@ -608,12 +610,14 @@
 <script th:inline="javascript">
     $(document).ready(function () {
 
-        //물건 클릭 시 물건을 파라미터에 담음
-        $('.Reward_container__qyq1y, .ProductSelectMenuItem_container__2ubAS').on('click', function () {
-                console.log('물건클릭')
-                location.href = '/web/order/' + [[${funding.fid}]] + '/step1?fpid=' + $(this).data('fpid');
 
+        //물건 클릭 시 물건을 파라미터에 담음
+        $(document).on('click', '.Reward_container__qyq1y, .ProductSelectMenuItem_container__2ubAS', function() {
+            console.log('물건클릭');
+            location.href = '/web/order/' + [[${funding.fid}]] + '/step1?fpid=' + $(this).data('fpid');
         });
+
+
 
         let fid = [[${funding.fid}]];
         let sort = 1;
@@ -867,7 +871,18 @@
 
                         });
                     }
-                    $('#reviewList').append(k);
+                    $.ajax({
+                        url : '/api/translate',
+                        type : 'post',
+                        data :k,
+                        contentType: "text/html",
+                        success : function(data){
+                            $('#reviewList').append(data);
+                        },error: function (status, error) {
+                            console.log(error);
+                        }
+                    })
+
 
 
                 },
@@ -973,6 +988,46 @@
                 }
             })
         }
+        let summary=$('#summary').html();
+
+        $.ajax({
+            url : '/api/translate',
+            type : 'post',
+            data : summary,
+            contentType: "text/html",
+            success : function(data){
+                $('#summary').html('');
+                $('#summary').append(data);
+            },error: function (status, error) {
+                console.log(error);
+            }
+        })
+        let productList=$('.Rewards_list__X7K46').html();
+        $.ajax({
+            url : '/api/translate',
+            type : 'post',
+            data : productList,
+            contentType: "text/html",
+            success : function(data){
+                $('.Rewards_list__X7K46').html('');
+                $('.Rewards_list__X7K46').append(data);
+            },error: function (status, error) {
+                console.log(error);
+            }
+        })
+        let productList2=$('.ProductSelectMenu_content__39QFr').html();
+        $.ajax({
+            url : '/api/translate',
+            type : 'post',
+            data : productList2,
+            contentType: "text/html",
+            success : function(data){
+                $('.ProductSelectMenu_content__39QFr').html('');
+                $('.ProductSelectMenu_content__39QFr').append(data);
+            },error: function (status, error) {
+                console.log(error);
+            }
+        })
     })
 
 </script>

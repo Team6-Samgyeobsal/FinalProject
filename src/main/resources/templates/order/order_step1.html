@@ -93,10 +93,8 @@
                     [[${products.orderFtitle.ftitle}]]
                     <span class="name"
                     ><em
-                            style="
-                    background-image: url(https://cdn.wadiz.kr/wwwwadiz/green001/2023/0208/20230208171549898_158604.png/wadiz/resize/600/format/jpg/quality/80/optimize);
-                  "></em
-                    >현대리바트</span
+                            th:style="'background-image: url(' + ${products.orderFtitle.fthumb} + ')'"></em
+                    >[[${products.orderFtitle.fstore_name}]]</span
                     >
                 </h2>
             </div>
@@ -107,7 +105,7 @@
                             <em>리워드<br/>선택</em>
                         </li>
                         <li><em>결제 예약</em></li>
-                        <li><em>소문내기</em></li>
+                        <li><em>주문 확인</em></li>
                     </ol>
                 </div>
                 <form name="purchaseForm" id="purchaseForm" method="post">
@@ -170,13 +168,6 @@
                                             <div class="RewardProductItem_content__Pw7qB">
                                                 <div class="RewardProductItem_title__en2gj">
                                                     [[${product.fptitle}]]
-                                                    <div class="RewardProductItem_remain__XDQPL">
-                                <span class="RewardProductItem_limit__5TztV"
-                                >제한수량 2800개</span
-                                ><span class="RewardProductItem_stock__5qZys"
-                                                    >790개 남음</span
-                                                    >
-                                                    </div>
                                                 </div>
                                                 <div class="RewardProductItem_description__1Eenu">
                                                     [[${product.fpcontent}]]

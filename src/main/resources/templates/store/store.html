@@ -199,7 +199,7 @@
           <div class="LeadMakerServiceSection_inner__2RUKA">
             <div class="LeadMakerServiceSection_serviceListBox__2mhjY">
               <h2 class="LeadMakerServiceSection_title__1W7g4">
-                지금 더현대에 입점한 <br />스토어를 알아보세요
+                [[#{store.sentence1}]] <br />[[#{store.sentence2}]]
               </h2>
               <div class="LeadMakerServiceSection_serviceListInner__yiYxe">
                 <div class="ServiceContent_serviceCard__2SQG4" th:each="store:${store}">
@@ -293,13 +293,24 @@
       </div>
     </div>
   </main>
-  <form
-          action="/web/waccount/wAccountLogin"
-          id="returnForm"
-          method="get"
-          novalidate="novalidate"
-  >
-    <input type="hidden" id="returnURL" name="returnURL" />
-  </form>
+
+  <script>
+    $(document).ready(function(){
+      let storeContent=$('.LeadMakerServiceSection_serviceListInner__yiYxe').html();
+      $.ajax({
+        url : '/api/translate',
+        type : 'post',
+        data : storeContent,
+        contentType: "text/html",
+        success : function(data){
+          $('.LeadMakerServiceSection_serviceListInner__yiYxe').html('');
+          $('.LeadMakerServiceSection_serviceListInner__yiYxe').append(data);
+        },error: function (status, error) {
+          console.log(error);
+        }
+      })
+
+    })
+  </script>
 </body>
 </html>

@@ -110,7 +110,7 @@
     </select>
 
     <select id="getFtitle" resultType="orderFtitle">
-        select fid, ftitle from funding where fid=#{fid}
+        select fid, ftitle, fthumb, fstore_name from funding where fid=#{fid}
     </select>
 
 

@@ -55,17 +55,17 @@
 
   <main class="board wzui">
     <div class="ui-header">
-      <h2 class="title">공지 사항</h2>
+      <h2 class="title" th:text="#{notice}">공지 사항</h2>
       <div class="ui-tabs">
         <ul>
-          <li class="active" data-status=""><a >전체</a></li>
+          <li class="active" data-status=""><a th:text="#{whole}">전체</a></li>
 
           <li data-status="notice">
-            <a >공지</a>
+            <a th:text="#{notice.short}">공지</a>
           </li>
 
           <li data-status="event">
-            <a >이벤트</a>
+            <a th:text="#{event}">이벤트</a>
           </li>
 
 
@@ -153,7 +153,18 @@
 
             });
 
-          $('.board-main').find('ul').append(k);
+          $.ajax({
+            url : '/api/translate',
+            type : 'post',
+            data : k,
+            contentType: "text/html",
+            success : function(data){
+              $('.board-main').find('ul').append(data);
+            },error: function (status, error) {
+              console.log(error);
+            }
+          })
+
 
 
         },
