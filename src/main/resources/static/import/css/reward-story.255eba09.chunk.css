@@ -16552,7 +16552,8 @@ button.FollowingButton_alarmButton__YiJLi span:first-child .FollowingButton_icon
     font-size: 14px;
     font-weight: 400;
     margin-top: 8px;
-    color: #495057
+    color: #495057;
+    white-space: pre-wrap;
 }
 
 .BaseInfo_container__1SXpL .BaseInfo_infoWrapper__1GKex {
