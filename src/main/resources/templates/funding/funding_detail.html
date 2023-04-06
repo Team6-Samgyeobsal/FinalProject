@@ -7,11 +7,6 @@
 >
 <head>
 
-
-
-
-
-
     <title>와디즈 펀딩</title>
     <script src="https://code.jquery.com/jquery-3.6.3.js"
             integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
@@ -99,7 +94,7 @@
 <body class="" style="overflow: auto">
 <div id="page-container">
     <main id="main-app">
-        <div th:replace="/fragment/header__3X3Cg.html :: header"></div>
+        <div th:replace="fragment/header__3X3Cg.html :: header"></div>
         <div class="MainWrapper_content__GZkTa">
             <div class="RewardDetailDesktop_container__2Yzds">
                 <div class="RewardDetailDesktop_contentWrapper__1Gcox">
@@ -781,7 +776,10 @@
                             k += `<div class="StoreSatisfactionCard_container__3TDTr">
                             <div class="StoreSatisfactionCard_divider__Zh8Se"></div>
                             <div class="StoreSatisfactionCard_header__156AH">
-                                <div><div class="Avatar_avatar__2HQiR Avatar_xs__RZzkx"><span class="Avatar_hasImage__31hv2" style="background-image: url(&quot;https://cdn.wadiz.kr/wwwwadiz/green001/sns_profile_pics/20200306132458432_39645569.jpg/wadiz/resize/600/format/jpg/quality/80/optimize&quot;); border: 1px solid rgb(221, 226, 230);"></span></div></div>
+                                <div><div class="Avatar_avatar__2HQiR Avatar_xs__RZzkx"><span class="Avatar_hasImage__31hv2"
+                                style=
+                                "background-image: url(${review.mprofile==null?'&quot;https://cdn.wadiz.kr/wwwwadiz/green001/sns_profile_pics/20200306132458432_39645569.jpg/wadiz/resize/600/format/jpg/quality/80/optimize&quot;':review.mprofile});
+                                border: 1px solid rgb(221, 226, 230);"></span></div></div>
                                 <div class="StoreSatisfactionCard_rightPanel__XCjpV">
                                     <div class="StoreSatisfactionCard_titleArea__1S3zk"><span
                                         class="StoreSatisfactionCard_nickName__16JEX">${review.memail}</span>

@@ -143,12 +143,14 @@
         select rscore,
         rtype,
         rimg_url,
-        memail,
+        m.memail,
+        m.mprofile,
         to_char(rdate,'YYYY.MM.DD') rdate,
         rcontent,
         recontent,
         redate
-        from review
+        from review r
+        inner join member m on (m.memail = r.memail)
         where fid=#{criteria.fid}
           <if test="criteria.type != null and !criteria.type.equals('')">
               and rtype=upper(#{criteria.type})
@@ -168,7 +170,7 @@
                 rdate desc
             </otherwise>
         </choose>
-        ,memail
+        ,m.memail
         OFFSET #{criteria.page}*10 ROWS FETCH NEXT 10 ROWS ONLY
 
     </select>

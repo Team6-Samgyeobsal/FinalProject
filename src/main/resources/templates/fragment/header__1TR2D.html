@@ -79,6 +79,8 @@
                           style="width: 32px; height: 32px">
                             <span
                                     class="Avatar_hasImage__sjUWZ"
+                                    th:style="${#strings.isEmpty(#authentication.principal.member.mprofile)?
+                            'background-image: url(&quot;https://static.wadiz.kr/assets/icon/profile-icon-6.png&quot;);' : 'background-image: url('+#authentication.principal.member.mprofile+');'}"
                                     style="
                                 background-image: url('https://static.wadiz.kr/assets/icon/profile-icon-6.png');
                               "></span>

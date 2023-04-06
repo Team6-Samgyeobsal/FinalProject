@@ -20,4 +20,5 @@ public interface MemberMapper {
 
     FundingVO findActiveStoreByEmail(String email);
 
+    void updateMemberProfile(String memail, String imageUrl);
 }
