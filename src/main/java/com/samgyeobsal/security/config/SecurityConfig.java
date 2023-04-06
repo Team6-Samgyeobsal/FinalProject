@@ -1,6 +1,5 @@
 package com.samgyeobsal.security.config;
 
-import com.samgyeobsal.mapper.RefreshTokenMapper;
 import com.samgyeobsal.security.filter.JwtTokenFilter;
 import com.samgyeobsal.security.handler.OAuth2SuccessHandler;
 import com.samgyeobsal.security.provider.JwtTokenProvider;
@@ -16,7 +15,6 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
@@ -50,7 +48,10 @@ public class SecurityConfig {
                 .and()
                 .authorizeHttpRequests((authz) ->
                         authz
-                                .antMatchers("/web/mypage/**").hasRole("USER")
+                                .antMatchers("/web/mypage").hasRole("USER")
+                                .antMatchers("/web/mypage/order").hasRole("USER")
+                                .antMatchers("/web/mypage/maker/**").hasRole("USER")
+                                .antMatchers("/web/order/**").hasRole("USER")
                                 .anyRequest().permitAll()
                 )
                 .addFilterBefore(new JwtTokenFilter(jwtTokenProvider, refreshTokenService), UsernamePasswordAuthenticationFilter.class)

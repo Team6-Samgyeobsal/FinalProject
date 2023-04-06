@@ -126,14 +126,15 @@
                                                      aria-hidden="true"
                                                      style="outline: none; width: 750px"
                                                 >
-                                                    <div>
+                                                    <div style="width: 750px;">
                                                         <div
                                                                 tabindex="-1"
                                                                 style="width: 100%; display: inline-block"
                                                         >
                                                             <div
                                                                     class="RewardImageSlider_slickBackgroundImage__gyIH3"
-                                                                    th:style=" 'background-image: url('+${img.fiurl}+');'"
+                                                                    th:style=" 'background-image: url('+${img.fiurl}+');background-repeat: no-repeat;background-size: cover; background-position: center center;background-attachment: fixed;
+'"
                                                             ></div>
                                                         </div>
                                                     </div>
@@ -156,6 +157,49 @@
                                 <div class="Story_header__1va5C">
                                     <p th:text="#{story.project}">프로젝트 스토리</p>
                                 </div>
+                                <div id="map" style="width:500px;height:400px;"></div>
+                                <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=1627a19d7cc6f4cac2d770a458865a0e"></script>
+                                <script th:inline= "javascript">
+                                    /*<![CDATA[*/
+
+                                    var faddress = [[${funding.faddress}]]
+                                    var geocoder = new kakao.maps.services.Geocoder();
+
+                                    // 주소로 좌표 검색
+                                    geocoder.addressSearch(faddress, function (result, status) {
+
+                                        // 정상적으로 검색이 완료되면
+                                        if (status === kakao.maps.services.Status.OK) {
+                                            var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+
+                                            // 지도 생성
+                                            var container = document.getElementById('map');
+                                            var options = {
+                                                center: coords,
+                                                level: 3 // 지도 확대 레벨
+                                            };
+
+                                            var map = new kakao.maps.Map(container, options);
+                                            var imageSrc = "/images/icon_location.png", // 마커이미지의 주소
+                                                imageSize = new kakao.maps.Size(64, 69), // 마커이미지의 크기
+                                                imageOption = {offset: new kakao.maps.Point(27, 69)}; // 마커이미지의 옵션 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다
+
+                                            // 마커의 이미지정보를 가지고 있는 마커이미지를 생성합니다
+                                            var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption);
+                                            // 마커를 생성합니다
+                                            var marker = new kakao.maps.Marker({
+                                                position: coords,
+                                                image: markerImage // 마커이미지 설정
+                                            });
+
+                                            marker.setMap(map);
+                                        }
+                                    });
+                                    /*]]>*/
+
+
+                                    console.log("지도가 나오니?");
+                                </script>
                                 <div class="Story_expandable__3C3Y7">
                                     <div>
                                         <div class="inner-contents fr-view" th:utext="${funding.fstory}">
@@ -330,6 +374,7 @@
                                                     <span><span
                                                             class="Button_children__3HY2l"><p th:text="#{prePurchase}">예약 구매하기</p></span></span>
                                                 </button>
+
                                             </div>
                                         </div>
                                     </div>
@@ -450,7 +495,7 @@
                                             class="Button_button__mRXZC Button_primary__1HJqX Button_contained__k9pMW Button_xl__3MTkK ProductFloatButton_button__tpSGA"
                                             type="button"
                                             id="abled2"
-                                            ><span><span
+                                    ><span><span
                                             class="Button_children__3HY2l"
 
                                             ><span th:text="#{prePurchase}">구매하기</span></span></span></button
@@ -608,16 +653,13 @@
 
 </script>
 <script th:inline="javascript">
+    let isDone = false;
     $(document).ready(function () {
-
-
         //물건 클릭 시 물건을 파라미터에 담음
         $(document).on('click', '.Reward_container__qyq1y, .ProductSelectMenuItem_container__2ubAS', function() {
             console.log('물건클릭');
             location.href = '/web/order/' + [[${funding.fid}]] + '/step1?fpid=' + $(this).data('fpid');
         });
-
-
 
         let fid = [[${funding.fid}]];
         let sort = 1;
@@ -670,10 +712,9 @@
             return `${Math.floor(betweenTimeDay / 365)}년 전`;
         }
 
-
         //리뷰 출력 ajax
         function getReview(fid, sort, type, page) {
-
+            if(isDone) return;
             $.ajax({
                 url: '/api/funding/review',
                 type: "get",
@@ -686,8 +727,14 @@
                 },
                 success: function (data, status) {
                     console.log(data);
+                    if(data.review.length ==0)
+                        isDone = true;
+
 
                     let k = "";
+                    console.log(data.reviewCount);
+
+
                     $('#fundingCount').text(data.reviewCount.rfcount);
                     let fthumb=[[${funding.fthumb}]];
                     if (data.review.length == 0 && page == 0) {
@@ -887,7 +934,7 @@
 
                 },
                 error: function (status, error) {
-                    alert("실패");
+                    console.log('실패', error);
                 }
             })
 

@@ -50,13 +50,13 @@ public class MyPageController {
 
     @GetMapping("/order/{orderId}")
     public String myorderDetailPage(
-            @AuthenticationPrincipal Account account,
+            @RequestParam("memail") String memail,
             @PathVariable("orderId") String orderId, Model model){
-        String email = account.getMember().getMemail();
+//        String email = account.getMember().getMemail();
 
         OrderVO order = orderService.getOrderByOrderId(orderId);
 
-        model.addAttribute("isAlreadyExistReview", reviewService.isAlreadyExistReview("STORE", email,order.getFid()));
+        model.addAttribute("isAlreadyExistReview", reviewService.isAlreadyExistReview("STORE", memail,order.getFid()));
         model.addAttribute("order", order);
 
         return "mypage/myorder_detail";

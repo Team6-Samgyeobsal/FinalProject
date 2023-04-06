@@ -7,7 +7,7 @@
   </button>
 
   <!-- Topbar Navbar -->
-  <ul class="navbar-nav ml-auto">
+  <ul class="navbar-nav ml-auto" style="align-items: center;">
 
     <div class="topbar-divider d-none d-sm-block"></div>
 
@@ -18,7 +18,11 @@
         <span class="mr-2 d-none d-lg-inline text-gray-600 small" th:text="${#authentication.principal.member.mname}">Douglas McGee</span>
       </a>
     </li>
-
+    <li>
+      <a href="/web/funding" class="btn btn-info btn-icon-split">
+        <span class="text">나가기</span>
+      </a>
+    </li>
   </ul>
 
 </nav>

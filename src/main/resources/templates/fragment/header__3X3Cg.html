@@ -3,6 +3,15 @@
       xmlns:sec="http://thymeleaf.org/extras/spring-security">
   <div class="web-header" th:fragment="header">
 
+    <style>
+      @media (max-width: 1095px) {
+        /* 1095px 이하일 때 적용될 스타일 */
+        .GNBDesktop_container__3X3Cg{
+          display: none;
+        }
+      }
+    </style>
+
     <script src="/js/confirm.js"></script>
 
     <link
@@ -118,7 +127,7 @@
               </div>
             </div>
           </div>
-          <select class="TranslateSelect" >
+          <select class="TranslateSelect" style="margin-left: 10px">
             <option value="ko">KOREAN</option>
             <option value="en">ENGLISH</option>
             <option value="zh">CHINESE</option>

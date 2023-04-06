@@ -6,6 +6,8 @@ import lombok.extern.slf4j.Slf4j;
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 @Slf4j
 public class CustomXssEscapeServletFilter extends XssEscapeServletFilter {
@@ -26,7 +28,8 @@ public class CustomXssEscapeServletFilter extends XssEscapeServletFilter {
         // 제외할 URL 패턴을 정규식으로 지정
         String excludePattern = "/web/mypage/maker/funding/[a-zA-Z0-9\\-]+/story";
 
-        if (requestURI.matches(excludePattern)) {
+        if (requestURI.matches(excludePattern) || requestURI.startsWith("/web/order/success")) {
+            log.info("requestUrl = {}", requestURI);
             log.info("필터링 제외 url ");
             chain.doFilter(request, response);
             return;

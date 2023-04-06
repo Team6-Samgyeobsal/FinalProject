@@ -11,6 +11,9 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Map;
 
+/*@Api(value="QueueApi")
+@SwaggerDefinition(tags = {@Tag(name = "QueueApi",
+description = "모바일 대기열 기능")})*/
 @Log4j2
 @RestController
 @RequestMapping("/api/queue")
@@ -18,6 +21,7 @@ public class QueueApi {
 
     @Autowired
     QueueService queueService;
+
 
     // QRUSEDDATE = null만 출력
     @GetMapping("/list")
@@ -30,6 +34,7 @@ public class QueueApi {
     @PostMapping("/useQrCode")
     public ResponseEntity<String> useQrCode(@RequestBody Map<String, String> map) {
         queueService.useQrCode(map.get("qid"));
+        System.out.println("리스트 대기열 삭제 :::::");
         return new ResponseEntity<>("success", HttpStatus.OK);
     }
     @PostMapping("/insertQueue")

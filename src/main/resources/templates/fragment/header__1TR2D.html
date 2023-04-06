@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-
+<style>
+  <!-- 미디어 쿼리 -->
+</style>
 
 <div class="web-header" th:fragment="header">
   <div class="web-header-large">
@@ -116,13 +118,13 @@
                 </button>
               </div>
             </div>
-            <select class="TranslateSelect">
-              <option value="ko">KOREAN</option>
-              <option value="en">ENGLISH</option>
-              <option value="zh">CHINESE</option>
-              <option value="ja">JAPANESE</option>
-            </select>
           </div>
+          <select class="TranslateSelect" style="margin-left: 10px">
+            <option value="ko">KOREAN</option>
+            <option value="en">ENGLISH</option>
+            <option value="zh">CHINESE</option>
+            <option value="ja">JAPANESE</option>
+          </select>
         </div>
       </div>
     </header>
