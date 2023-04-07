@@ -1268,6 +1268,10 @@
 
           // db 저장을 위한 orderForm 객체
           let order = [[${order}]];
+          order['orderFtitle']['fthumb'] = '';
+          $(order['orderList']).each(function(idx, d){
+            d['fpcontent'] = '';
+          })
           order['oid'] = orderId;
           order['ophone'] = phone;
           order['pmcode'] = 1 // 토스는 1
@@ -1275,7 +1279,9 @@
           order['oused_mileage'] = ""// 나중에 마일리지 한다면
           // 쿠폰, 마일리지 적용된 가격
           order['totalPrice'] = order['totalOriginPrice'];
-          console.log("order =", order);
+          console.log(order)
+
+          console.log("order ",(JSON.stringify(order)))
 
           let paymentToss = () => {
             // Tosspayments API 호출
@@ -1350,7 +1356,7 @@
 
 
   <div id="footer">
-    <div th:replace="/fragment/footer__15kue.html :: footer"></div>
+    <div th:replace="fragment/footer__15kue.html :: footer"></div>
   </div>
 
   <div id="adn_container" style="display: none"></div>

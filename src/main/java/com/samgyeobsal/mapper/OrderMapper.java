@@ -2,7 +2,6 @@ package com.samgyeobsal.mapper;
 
 import com.samgyeobsal.domain.order.*;
 
-import com.samgyeobsal.dto.response.UserMileage;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 

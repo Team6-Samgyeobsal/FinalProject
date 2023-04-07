@@ -10,7 +10,7 @@
     <title>와디즈 펀딩</title>
     <script src="https://code.jquery.com/jquery-3.6.3.js"
             integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
-
+    <!--<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=1627a19d7cc6f4cac2d770a458865a0e"></script>-->
     <link rel="mask-icon" href="/resources/static/svg/wa.svg" color="#1d2129"/>
     <link
             rel="stylesheet"
@@ -88,6 +88,22 @@
             background-color: #f2f4f6;
         }
     </style>
+    <style>
+        html, body {width:100%;height:100%;margin:0;padding:0;}
+        .map_wrap {position:relative;overflow:hidden;width:100%;height:350px;}
+        .radius_border{border:1px solid #919191;border-radius:5px;}
+        .custom_typecontrol {position:absolute;top:10px;right:10px;overflow:hidden;width:130px;height:30px;margin:0;padding:0;z-index:1;font-size:12px;font-family:'Malgun Gothic', '맑은 고딕', sans-serif;}
+        .custom_typecontrol span {display:block;width:65px;height:30px;float:left;text-align:center;line-height:30px;cursor:pointer;}
+        .custom_typecontrol .btn {background:#fff;background:linear-gradient(#fff,  #e6e6e6);}
+        .custom_typecontrol .btn:hover {background:#f5f5f5;background:linear-gradient(#f5f5f5,#e3e3e3);}
+        .custom_typecontrol .btn:active {background:#e6e6e6;background:linear-gradient(#e6e6e6, #fff);}
+        .custom_typecontrol .selected_btn {color:#fff;background:#425470;background:linear-gradient(#425470, #5b6d8a);}
+        .custom_typecontrol .selected_btn:hover {color:#fff;}
+        .custom_zoomcontrol {position:absolute;top:50px;right:10px;width:36px;height:80px;overflow:hidden;z-index:1;background-color:#f5f5f5;}
+        .custom_zoomcontrol span {display:block;width:36px;height:40px;text-align:center;cursor:pointer;}
+        .custom_zoomcontrol span img {width:15px;height:15px;padding:12px 0;border:none;}
+        .custom_zoomcontrol span:first-child{border-bottom:1px solid #bfbfbf;}
+    </style>
 
 
 </head>
@@ -157,13 +173,28 @@
                                 <div class="Story_header__1va5C">
                                     <p th:text="#{story.project}">프로젝트 스토리</p>
                                 </div>
-                                <div id="map" style="width:500px;height:400px;"></div>
+                                <div class="map_wrap">
+                                    <div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>
+                                    <!-- 지도 확대, 축소 컨트롤 div 입니다 -->
+                                    <div class="custom_zoomcontrol radius_border">
+                                        <span onclick="zoomIn()"><img src="https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/ico_plus.png" alt="확대"></span>
+                                        <span onclick="zoomOut()"><img src="https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/ico_minus.png" alt="축소"></span>
+                                    </div>
+                                </div>
+                                <!--<div id="map" style="width:500px;height:400px;"></div>-->
+                                <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=1627a19d7cc6f4cac2d770a458865a0e&libraries=services"></script>
                                 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=1627a19d7cc6f4cac2d770a458865a0e"></script>
+                                <!--<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=1627a19d7cc6f4cac2d770a458865a0e"></script>-->
                                 <script th:inline= "javascript">
+
                                     /*<![CDATA[*/
 
-                                    var faddress = [[${funding.faddress}]]
+                                    var faddress = '[[${funding.faddress}]]';
+                                    console.log("주소 : " + faddress);
+
                                     var geocoder = new kakao.maps.services.Geocoder();
+
+
 
                                     // 주소로 좌표 검색
                                     geocoder.addressSearch(faddress, function (result, status) {
@@ -178,8 +209,19 @@
                                                 center: coords,
                                                 level: 3 // 지도 확대 레벨
                                             };
-
                                             var map = new kakao.maps.Map(container, options);
+
+                                            // 확대
+                                            function zoomIn() {
+                                                map.setLevel(map.getLevel() - 1);
+                                            }
+
+                                            // 축소
+                                            function zoomOut() {
+                                                map.setLevel(map.getLevel() + 1);
+                                            }
+
+
                                             var imageSrc = "/images/icon_location.png", // 마커이미지의 주소
                                                 imageSize = new kakao.maps.Size(64, 69), // 마커이미지의 크기
                                                 imageOption = {offset: new kakao.maps.Point(27, 69)}; // 마커이미지의 옵션 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다
@@ -195,8 +237,8 @@
                                             marker.setMap(map);
                                         }
                                     });
-                                    /*]]>*/
 
+                                    /*]]>*/
 
                                     console.log("지도가 나오니?");
                                 </script>

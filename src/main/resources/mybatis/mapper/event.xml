@@ -14,14 +14,14 @@
     </select>
 
     <!-- 유저가 갖고 있는 쿠폰 리스트 가져오기-->
-    <select id="findUserCouponList" resultType="com.samgyeobsal.dto.response.UserCouponList">
+    <select id="findUserCouponList" resultType="com.samgyeobsal.domain.event.UserCouponList">
         select e.EID as eId ,e.ECOUPONTITLE as eCouponTitle, e.ETYPE as eType, e.EDISCOUNT as Ediscount, cd.CPID as cpId
         from EVENT e join COUPON_DETAIL cd on e.EID = cd.EID
         where cd.MEMAIL = #{mEmail} and cd.CPUSEDATE is null
     </select>
 
     <!-- 유저가 갖고 있는 마일리지 가져오기-->
-    <select id="findUserMileage" resultType="com.samgyeobsal.dto.response.UserMileage">
+    <select id="findUserMileage" resultType="com.samgyeobsal.domain.event.UserMileage">
         select MEMAIL, MMILEAGE from MEMBER
     </select>
 
