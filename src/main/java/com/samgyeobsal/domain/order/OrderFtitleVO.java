@@ -12,5 +12,9 @@ public class OrderFtitleVO {
     private String ftitle;
 
     private String fid;
+    private String fthumb;
+    private String fstore_name;
+
+
 
 }

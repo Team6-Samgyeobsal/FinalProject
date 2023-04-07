@@ -31,7 +31,7 @@ public class FundingMapperTest {
     }
     @Test
     public void getFundingDetailTest(){
-        FundingDetailVO fundingDetailVO = fundingMapper.getFundingDetail(fid,"FUNDING");
+        FundingDetailVO fundingDetailVO = fundingMapper.getFundingDetail("1000151224","FUNDING");
         log.info("fundingDetailVO"+fundingDetailVO);
     }
 

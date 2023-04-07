@@ -12,8 +12,8 @@ public class FameVO {
     private String fid;
     private String fstore_name;
     private String ftitle;
-    private String totalprice;
-    private String totalemail;
+    private int totalprice;
+    private long totalemail;
     private String fthumb;
-    private String fstore_score;
+    private double fstore_score;
 }
