@@ -45,7 +45,7 @@
         <typeAlias type="com.samgyeobsal.domain.funding.ReviewCountVO" alias="reviewCount"/>
         <typeAlias type="com.samgyeobsal.domain.coupon.IssueCouponVO" alias="issueCoupon"/>
         <typeAlias type="com.samgyeobsal.domain.queue.QueueVO" alias="queue"/>
-
+        <typeAlias type="com.samgyeobsal.domain.search.SearchVO" alias="search"/>
     </typeAliases>
 
 </configuration>

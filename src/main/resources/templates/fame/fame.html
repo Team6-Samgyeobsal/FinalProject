@@ -150,6 +150,8 @@
   $(document).ready(function(){
     let page=0;
     let type=0;
+    let isDone = false;
+
     getList(type,page);
     $('.ImageTab_tab__3siCY').click(function () {
       console.log('음식 종류');
@@ -171,6 +173,7 @@
       }
     });
     function getList(type,page){
+      if(isDone)return;
       console.log("get list");
       let url = '/api/fame/list';
       $.ajax({
@@ -182,6 +185,8 @@
           page:page
         },
         success: function (data, status) {
+          if(data.search.length ==0)
+            isDone = true;
           let k="";
           data.forEach(function (fame,index) {
             console.log(fame);

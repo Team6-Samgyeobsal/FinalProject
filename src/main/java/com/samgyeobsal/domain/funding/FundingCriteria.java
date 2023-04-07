@@ -21,6 +21,7 @@ public class FundingCriteria {
     // 페이징
     private int page;
 
+
     private String getTid(){
         if(this.place == null) return null;
         switch (this.place) {
