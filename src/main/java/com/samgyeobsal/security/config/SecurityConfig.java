@@ -52,6 +52,7 @@ public class SecurityConfig {
                                 .antMatchers("/web/mypage/order").hasRole("USER")
                                 .antMatchers("/web/mypage/maker/**").hasRole("USER")
                                 .antMatchers("/web/order/**").hasRole("USER")
+
                                 .anyRequest().permitAll()
                 )
                 .addFilterBefore(new JwtTokenFilter(jwtTokenProvider, refreshTokenService), UsernamePasswordAuthenticationFilter.class)

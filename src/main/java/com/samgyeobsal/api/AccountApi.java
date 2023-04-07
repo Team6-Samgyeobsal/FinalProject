@@ -16,6 +16,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.web.DefaultRedirectStrategy;
+import org.springframework.security.web.RedirectStrategy;
+import org.springframework.security.web.savedrequest.HttpSessionRequestCache;
+import org.springframework.security.web.savedrequest.RequestCache;
+import org.springframework.security.web.savedrequest.SavedRequest;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -35,6 +40,7 @@ public class AccountApi {
 
     private final MemberService memberService;
     private final RefreshTokenService refreshTokenService;
+
     @Autowired
     private JwtTokenProvider jwtTokenProvider;
 
@@ -46,9 +52,13 @@ public class AccountApi {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<?> login(
+    public ResponseEntity<?> login(HttpServletRequest request,
             @Validated  @RequestBody LoginDTO loginDTO,
             BindingResult bindingResult, HttpServletResponse response) {
+
+        String prevPage = (String) request.getSession().getAttribute("prevPage");
+        log.info("prevPage = {}", prevPage);
+
         MemberVO member = memberService.login(loginDTO);
 
         if(bindingResult.hasErrors())
@@ -65,6 +75,7 @@ public class AccountApi {
         res.put("accessToken", accessToken);
         res.put("refreshToken", refreshToken);
         res.put("store", activeStore);
+        res.put("prevPage", prevPage);
 
         RefreshTokenVO refreshTokenVO = new RefreshTokenVO();
         refreshTokenVO.setMemail(loginDTO.getEmail());
