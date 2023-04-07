@@ -1,8 +1,9 @@
-package com.samgyeobsal.xss;
+package com.samgyeobsal.security.config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.navercorp.lucy.security.xss.servletfilter.XssEscapeServletFilter;
-import lombok.AllArgsConstructor;
+import com.samgyeobsal.security.xss.CustomXssEscapeServletFilter;
+import com.samgyeobsal.security.xss.HtmlCharacterEscapes;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;

@@ -1,7 +1,7 @@
 package com.samgyeobsal.api;
 
 import com.samgyeobsal.domain.order.OrderVO;
-import com.samgyeobsal.dto.request.TossHook;
+import com.samgyeobsal.domain.order.TossHook;
 import com.samgyeobsal.mapper.QrCodeMapper;
 import com.samgyeobsal.service.OrderService;
 import io.swagger.v3.oas.annotations.Operation;

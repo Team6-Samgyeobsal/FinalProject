@@ -2,7 +2,7 @@ package com.samgyeobsal.service;
 
 import com.samgyeobsal.domain.order.*;
 
-import com.samgyeobsal.dto.response.UserMileage;
+import com.samgyeobsal.domain.event.UserMileage;
 import com.samgyeobsal.mapper.EventMapper;
 import com.samgyeobsal.mapper.OrderMapper;
 import lombok.RequiredArgsConstructor;

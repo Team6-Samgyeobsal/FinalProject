@@ -1,4 +1,4 @@
-package com.samgyeobsal.xss;
+package com.samgyeobsal.security.config;
 
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.boot.web.servlet.MultipartConfigFactory;

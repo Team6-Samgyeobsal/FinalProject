@@ -1,4 +1,4 @@
-package com.samgyeobsal.dto.response;
+package com.samgyeobsal.domain.event;
 
 import lombok.Data;
 /**
