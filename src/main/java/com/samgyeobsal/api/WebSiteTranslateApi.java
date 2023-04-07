@@ -1,6 +1,9 @@
 package com.samgyeobsal.api;
 
 import com.samgyeobsal.type.MyLocale;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.*;
@@ -12,6 +15,7 @@ import org.springframework.web.client.RestTemplate;
 import java.util.Locale;
 
 
+@Tag(name = "번역 API")
 @RequestMapping("/api/translate")
 @RestController
 @Slf4j
@@ -30,7 +34,9 @@ public class WebSiteTranslateApi {
     private String profile;
 
 
-
+    @Operation(summary = "html을 특정 언어로 번역 후 리턴")
+    @Parameter(name = "html", description = "번역할 html")
+    @Parameter(name = "locale", description = "번역할 언어")
     @PostMapping(consumes = "text/html")
     public ResponseEntity<String> translate(
             @RequestBody String html, @CookieValue(value = "locale", required = false) String locale){
@@ -64,14 +70,10 @@ public class WebSiteTranslateApi {
                 body.add("html", html);
 
                 String result = restTemplate.postForObject(url, new HttpEntity<>(body, headers), String.class);
-
-
                 return new ResponseEntity<>(result, HttpStatus.OK);
-
             }else{
                 return new ResponseEntity<>(html, HttpStatus.OK);
             }
-
         }catch (Exception e){
             return new ResponseEntity<>(html, HttpStatus.OK);
         }

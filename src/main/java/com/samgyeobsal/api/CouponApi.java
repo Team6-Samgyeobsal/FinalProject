@@ -5,6 +5,10 @@ import com.samgyeobsal.domain.coupon.CouponVO;
 import com.samgyeobsal.domain.coupon.IssueCouponVO;
 import com.samgyeobsal.security.domain.Account;
 import com.samgyeobsal.service.CouponService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,10 +23,13 @@ import java.util.Map;
 @Log4j2
 @RestController
 @RequestMapping("/api/coupon")
+@RequiredArgsConstructor
+@Tag(name = "쿠톤 API")
 public class CouponApi {
 
-    @Autowired
-    CouponService couponService;
+    private final CouponService couponService;
+
+    @Operation(summary = "회원의 쿠폰 정보 리턴", description = "로그인 한 회원의 쿠폰 정보를 리턴합니다.")
     @GetMapping("/mypage")
     public ResponseEntity<Map<String, Object>> getCouponList(@AuthenticationPrincipal Account account, CouponCriteria couponCriteria){
         couponCriteria.setMemail(account.getMember().getMemail());
@@ -33,6 +40,7 @@ public class CouponApi {
         return new ResponseEntity<>(res, HttpStatus.OK);
     }
 
+    @Operation(summary = "쿠폰 발급", description = "로그인 한 회원에게 해당 쿠폰을 발급합니다.")
     @PostMapping("/issue")
     public ResponseEntity<String> issueCoupon(@AuthenticationPrincipal Account account, @RequestBody IssueCouponVO issueCouponVO){
         log.info("issueCouponVO"+issueCouponVO);

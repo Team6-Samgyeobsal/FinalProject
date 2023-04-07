@@ -306,7 +306,6 @@
         href="/import/css/wui.css"/>
     <link rel="stylesheet" href="https://static.wadiz.kr/static/web/common.css?a5fa8553">
   <script>
-    let memail = '[[${#authentication.principal.member.memail}]]'
     $(document).ready(function(){
       $('.logoutBtn').click(function(e){
         showConfirm("로그아웃","로그아웃 하시겠습니까?",()=>{
@@ -334,7 +333,6 @@
       let inputFile = $('#profile_img');
       let files = inputFile[0].files;
       formData.append("uploadFile", files[0]);
-      formData.append("memail", memail)
 
       $.ajax({
         url : '/api/member/uploadProfile',

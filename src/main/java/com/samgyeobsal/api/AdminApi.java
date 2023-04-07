@@ -11,6 +11,10 @@ import com.samgyeobsal.security.domain.Account;
 import com.samgyeobsal.service.AdminService;
 import com.samgyeobsal.service.FundingService;
 import com.samgyeobsal.service.RefreshTokenService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.Parameters;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,12 +35,14 @@ import java.util.stream.Collectors;
 @RestController
 @RequestMapping("/api/admin")
 @RequiredArgsConstructor
+@Tag(name = "관리자 API")
 @Slf4j
 public class AdminApi {
 
     private final AdminService adminService;
     private final FundingService fundingService;
 
+    @Operation(summary = "펀딩 서류 통과 여부 결정", description = "펀딩서류 상태를 FAIL 또는 FUNDDING으로 변경합니다.")
     @PostMapping("/document")
     public ResponseEntity<String> updateDocumentStatus(
             @RequestBody UpdateDocumentDTO document){
@@ -47,6 +53,7 @@ public class AdminApi {
         return new ResponseEntity<>("success", HttpStatus.OK);
     }
 
+    @Operation(summary = "장소에 따른 진행 중인 펀딩 리턴", description = "더 현대 장소별 진행 중인 펀딩들을 보여줍니다.")
     @GetMapping("/funding")
     public ResponseEntity<?> getAllFundingListByPlace(
             @ModelAttribute FundingCriteria fundingCriteria){
@@ -62,6 +69,8 @@ public class AdminApi {
         return new ResponseEntity<>(map, HttpStatus.OK);
     }
 
+    @Operation(summary = "입점할 펀딩 선정", description = "펀딩에 성공한 프로젝트의 상태를 변경합니다.")
+    @Parameter(name = "fid", description = "펀딩 아이디")
     @PostMapping("/funding/{fid}/promote")
     public ResponseEntity<String> promoteFundingToStore(
             @PathVariable("fid") String fid,
@@ -71,6 +80,9 @@ public class AdminApi {
         return new ResponseEntity<>("success", HttpStatus.OK);
     }
 
+    @Operation(summary = "작성된 리뷰 반환", description = "최신 순으로 정렬된 리뷰들을 반환합니다.")
+    @Parameters({@Parameter(name = "page", description = "보여줄 페이지 수"),
+            @Parameter(name = "size", description = "한 페이지에 보여줄 리뷰 수")})
     @GetMapping("/review")
     public ResponseEntity<?> getAllReviewList(
             @RequestParam(defaultValue = "0")int page, @RequestParam(defaultValue = "3")int size){
@@ -84,6 +96,7 @@ public class AdminApi {
         return new ResponseEntity<>(map, HttpStatus.OK);
     }
 
+    @Operation(summary = "리뷰 삭제", description = "부적절한 리뷰를 선택해 삭제합니다.")
     @PostMapping("/review/delete")
     public ResponseEntity<String> deleteReview(
             @RequestBody DeleteReviewDTO reviewDTO){
@@ -93,6 +106,7 @@ public class AdminApi {
         return new ResponseEntity<>("success", HttpStatus.OK);
     }
 
+    @Operation(summary = "한달 총 매출", description = "더 현대 장소별 한달 총 매출을 리턴합니다.")
     @GetMapping("/totalSale")
     public ResponseEntity<List<TotalSaleDTO>> getHyundaiTotalSale() {
         List<TotalSaleDTO> hyundaiTotalSale = adminService.getHyundaiTotalSale();
@@ -102,12 +116,16 @@ public class AdminApi {
         return new ResponseEntity<>(hyundaiTotalSale, HttpStatus.OK);
     }
 
+    @Operation(summary = "장소 별 일별 총 매출", description = "더 현대 장소 별 일주일 간 하루 매출을 리턴합니다.")
+    @Parameter(name = "tid", description = "장소 아이디")
     @GetMapping("/dailySale")
     public ResponseEntity<List<DailySaleDTO>> getRecentDailySaleListByHyundai(@RequestParam(required = false) String tid){
         List<DailySaleDTO> dailySaleList = adminService.getRecentDailySaleListByHyundai(tid);
         return new ResponseEntity<>(dailySaleList, HttpStatus.OK);
     }
 
+    @Operation(summary = "카테고리 별 일별 매출", description = "카테고리 별 일주일 간 하루 매출을 리턴합니다.")
+    @Parameter(name = "tid", description = "장소 아이디")
     @GetMapping("/categorySale")
     public ResponseEntity<List<CategorySale>> getRecentCategorySaleListByHyundai(@RequestParam(required = false) String tid) {
         List<CategorySale> categorySaleList = adminService.getRecentCategorySaleListByHyundai(tid);

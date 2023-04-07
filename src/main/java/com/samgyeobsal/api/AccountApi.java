@@ -10,6 +10,9 @@ import com.samgyeobsal.security.provider.JwtTokenProvider;
 import com.samgyeobsal.security.service.FormUserDetailService;
 import com.samgyeobsal.service.MemberService;
 import com.samgyeobsal.service.RefreshTokenService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,6 +38,7 @@ import java.util.Map;
 @RestController
 @RequiredArgsConstructor
 @Slf4j
+@Tag(name = "계정 API")
 @RequestMapping("/api/account")
 public class AccountApi {
 
@@ -44,6 +48,8 @@ public class AccountApi {
     @Autowired
     private JwtTokenProvider jwtTokenProvider;
 
+    @Operation(summary ="이메일 중복확인", description = "회원가입 시 이미 가입된 이메일인지 확인합니다.")
+    @Parameter(name = "email", description = "확인할 이메일")
     @GetMapping("/dupCheck")
     public ResponseEntity<Boolean> dupCheck(
             @RequestParam("email") String email){
@@ -51,6 +57,7 @@ public class AccountApi {
         return new ResponseEntity<>(isExist, HttpStatus.OK);
     }
 
+    @Operation(summary = "로그인 수행", description = "JWT 방식의 로그인을 수행하고 토큰을 발급하고, 이전 페이지로 이동합니다.")
     @PostMapping("/login")
     public ResponseEntity<?> login(HttpServletRequest request,
             @Validated  @RequestBody LoginDTO loginDTO,
@@ -97,6 +104,7 @@ public class AccountApi {
         return new ResponseEntity<>(res, headers, HttpStatus.OK);
     }
 
+    @Operation(summary = "로그아웃 수행", description = "accessToken을 무효화하고, refreshToken을 삭제합니다.")
     @PostMapping("/logout")
     public ResponseEntity<String> logout(
             HttpServletRequest request, HttpServletResponse response,
