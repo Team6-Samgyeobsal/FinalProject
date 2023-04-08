@@ -6,29 +6,37 @@ import com.samgyeobsal.mapper.OAuth2TokenMapper;
 import com.samgyeobsal.mapper.RefreshTokenMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.context.annotation.Primary;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Profile;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-@Profile("default")
+@Profile("prod")
 @Service
 @Slf4j
 @RequiredArgsConstructor
-public class RefreshTokenServiceLocalImpl implements RefreshTokenService {
+public class RefreshTokenServiceRedisImpl implements RefreshTokenService {
 
-    private final RefreshTokenMapper refreshTokenMapper;
+    private final RedisTemplate<String, String> redisTemplate;
     private final OAuth2TokenMapper oAuth2TokenMapper;
+
+    @Value("${jwt.refresh-token-validity-in-sec}")
+    private Long REFRESH_DURATION;
 
     @Override
     public void insertRefreshToken(RefreshTokenVO refreshToken) {
-        // 이미 존재한다면 update, 아니면 insert
-        refreshTokenMapper.insertRefToken(refreshToken);
+        redisTemplate.opsForValue().set(refreshToken.getMemail(), refreshToken.getRef_token(),REFRESH_DURATION);
     }
 
     @Override
     public RefreshTokenVO findRefTokenByEmail(String email) {
-        return refreshTokenMapper.findRefTokenByEmail(email);
+        String token = redisTemplate.opsForValue().get(email);
+        RefreshTokenVO tokenVO = new RefreshTokenVO();
+        tokenVO.setRef_token(token);
+        tokenVO.setMemail(email);
+
+        return tokenVO;
     }
 
     @Override
@@ -45,7 +53,7 @@ public class RefreshTokenServiceLocalImpl implements RefreshTokenService {
     @Transactional
     public void deleteTokens(String memail) {
         // refreshToken 과 oauth2Token 삭제
-        refreshTokenMapper.deleteRefreshToken(memail);
+        redisTemplate.delete(memail);
         oAuth2TokenMapper.deleteOAuth2Token(memail);
     }
 }
