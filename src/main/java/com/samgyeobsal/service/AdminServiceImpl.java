@@ -8,6 +8,7 @@ import com.samgyeobsal.domain.order.OrderVO;
 import com.samgyeobsal.mapper.AdminMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -24,6 +25,9 @@ public class AdminServiceImpl implements AdminService {
     private final OrderService orderService;
     private final KaKaoMessageService kaKaoMessageService;
     private final FundingService fundingService;
+
+    @Value("${user.email}")
+    private String userEmail;
 
     @Override
     public List<FundingDocumentDTO> getDocumentList() {
@@ -76,7 +80,7 @@ public class AdminServiceImpl implements AdminService {
                 qrCodeService.generateQrCode(oId);
 
                  // 주문자가 user@gmail.com 일 경우에만 메시지 보내기
-                if(order.getMemail().equals("user@gmail.com")){
+                if(order.getMemail().equals(userEmail)){
                     kaKaoMessageService.sendOrderInfoByKakaoMessage(memail, order, store);
                 }
 

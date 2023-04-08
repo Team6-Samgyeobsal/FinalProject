@@ -31,6 +31,9 @@ public class CommonApi {
 
     @Value("${upload.path}")
     private String uploadPath;
+    @Value("${admin.email}")
+    private String adminEmail;
+
     private final ImageUploadService imageUploadService;
 
     private final KaKaoMessageService kaKaoMessageService;
@@ -83,7 +86,7 @@ public class CommonApi {
     public ResponseEntity<String> sendMessage(@RequestBody Map<String, String> map){
         String oid = map.get("oid");
         String msg = map.get("msg");
-        String email = "asdvg154@naver.com";
+        String email = adminEmail;
         kaKaoMessageService.sendWaitingInfoByKakaoMessage(email, msg, oid);
 
         return new ResponseEntity<>("success", HttpStatus.OK);
