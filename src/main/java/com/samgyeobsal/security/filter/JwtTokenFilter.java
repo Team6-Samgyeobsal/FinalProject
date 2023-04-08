@@ -1,7 +1,6 @@
 package com.samgyeobsal.security.filter;
 
 import com.samgyeobsal.domain.member.RefreshTokenVO;
-import com.samgyeobsal.mapper.RefreshTokenMapper;
 import com.samgyeobsal.security.provider.JwtTokenProvider;
 import com.samgyeobsal.service.RefreshTokenService;
 import com.samgyeobsal.type.JwtStatus;
@@ -32,43 +31,55 @@ public class JwtTokenFilter extends OncePerRequestFilter {
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
-//        String jwt = resolveToken(request, ACCESS_COOKIE_NAME);
+        log.info("JwtTokenFilter doFilterInternal url= {}", request.getRequestURL());
+
+        // 헤더에 accessToken이 없으면, 쿠키에서 꺼냄
         String token = getTokenFromRequest(request);
+
         if(token == null){
-//            log.info("get accessToken from cookie");
+            log.info("no accessToken header");
             token = resolveToken(request, ACCESS_COOKIE_NAME);
+
+            if(token == null)log.info("no accessToken cookie");
+            else log.info("get accessToken from cookie");
         }
+
 
         // 정상적인 accessToken일 때
         if(token != null && tokenProvider.validateToken(token) == JwtStatus.ACCESS){
-//            log.info("get accessToken from header");
+            log.info("accessToken valid");
             Authentication authentication = tokenProvider.getAuthentication(token);
             SecurityContextHolder.getContext().setAuthentication(authentication);
 
         // accessToken이 없거나 만료 되었을 때 -> refreshToken 확인해야 됨
         }else if(token == null || tokenProvider.validateToken(token) == JwtStatus.EXPIRED){
+            log.info("no accessToken or expired");
             String refreshToken = resolveToken(request, REFRESH_COOKIE_NAME);
 
-            // cookie 에 refreshToken이 없을 떄
             if(refreshToken == null) {
-//                log.info("not found refreshToken from cookie");
+                log.info("no refreshToken cookie");
                 filterChain.doFilter(request,response);
                 return;
-            }
+            }else
+                log.info("get accessToken from cookie");
 
-            RefreshTokenVO refreshTokenVO = refreshTokenService.findRefTokenByToken(refreshToken);
+
+            String email = tokenProvider.getUserEmail(refreshToken);
+
+            RefreshTokenVO refreshTokenVO = refreshTokenService.findRefTokenByEmail(email);
 
             // DB에 refreshToken이 없을 경우
             if(refreshTokenVO == null) {
-//                log.info("not found refreshToken from DB");
+                log.info("not exist refreshToken from DB");
                 filterChain.doFilter(request,response);
                 return;
+            }else{
+                log.info("get refreshToken from DB");
             }
 
             // refresh 토큰이 정상일 경우
             if(tokenProvider.validateToken(refreshToken) == JwtStatus.ACCESS){
-                log.info("usable refresh token, issue new accessToken to header");
-                String email = tokenProvider.getUserEmail(refreshToken);
+                log.info("acceptable refresh token, issue new accessToken to header and cookie");
 
                 String newAccessToken = tokenProvider.createAccessToken(email);
                 SecurityContextHolder.getContext().setAuthentication(tokenProvider.getAuthentication(newAccessToken));
@@ -109,11 +120,5 @@ public class JwtTokenFilter extends OncePerRequestFilter {
             return bearerToken.substring(7);
         }
         return null;
-    }
-
-    private boolean isAjax(HttpServletRequest req){
-        String header = req.getHeader("x-requested-with");
-        return "XMLHttpRequest".equals(header);
-
     }
 }

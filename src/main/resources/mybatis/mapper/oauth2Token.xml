@@ -1,27 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.samgyeobsal.mapper.RefreshTokenMapper">
-
-
-    <select id="findRefTokenByEmail" resultType="refToken">
-        select memail, ref_token
-        from jwt_refresh
-        where memail = #{email}
-    </select>
-
-    <insert id="insertRefToken">
-        MERGE INTO jwt_refresh
-        USING DUAL
-        ON (memail = #{ref_token.memail})
-        WHEN NOT MATCHED THEN
-            INSERT (memail, ref_token)
-            VALUES (#{ref_token.memail}, #{ref_token.ref_token})
-        WHEN MATCHED THEN
-            UPDATE
-            SET ref_token = #{ref_token.ref_token}
-            WHERE memail = #{ref_token.memail}
-    </insert>
+<mapper namespace="com.samgyeobsal.mapper.OAuth2TokenMapper">
 
     <insert id="insertOAuth2Token">
         MERGE INTO oauth2_token
@@ -41,11 +21,6 @@
         from oauth2_token
         where memail = #{memail}
     </select>
-
-    <delete id="deleteRefreshToken">
-        delete jwt_refresh
-        where memail = #{memail}
-    </delete>
 
     <delete id="deleteOAuth2Token">
         delete oauth2_token

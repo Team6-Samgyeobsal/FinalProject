@@ -23,6 +23,15 @@ public class AccountController {
     @GetMapping("/login")
     public String loginPage(HttpServletRequest request, Model model){
         String redirectUrl = request.getHeader("Referer");
+        log.info("redirectUrl = {}", redirectUrl);
+
+        if(redirectUrl == null){
+            redirectUrl = request.getContextPath() + "/web/funding";
+        }
+
+        if(redirectUrl.contains("/account/login")){
+            redirectUrl = redirectUrl.replace("/account/login", "/funding");
+        }
 
         request.getSession().setAttribute("prevPage", redirectUrl);
         return "account/login";

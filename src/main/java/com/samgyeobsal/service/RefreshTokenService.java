@@ -7,7 +7,7 @@ public interface RefreshTokenService {
 
     void insertRefreshToken(RefreshTokenVO refreshToken);
 
-    RefreshTokenVO findRefTokenByToken(String email);
+    RefreshTokenVO findRefTokenByEmail(String email);
 
     void insertOAuth2Token(OAuth2TokenVO token);
 
