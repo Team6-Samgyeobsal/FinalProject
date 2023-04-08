@@ -1,4 +1,4 @@
-<html lang="ko" class="scroll-top scroll-apex">
+<html lang="ko" class="scroll-top scroll-apex" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
   <head>
 
     <meta charset="utf-8" />
@@ -76,7 +76,7 @@
     <div id="page-container">
       <div class="black-bg-wrap" style="display: none"></div>
 
-      <div id="wz-header">
+      <div id="wz-header" sec:authorize="isAuthenticated()">
         <div th:replace="fragment/header__1TR2D.html :: header"></div>
       </div>
 

@@ -191,7 +191,7 @@ public class KaKaoMessageService {
                         "  \"object_type\": \"text\"," +
                         "  \"text\" : \""+msg +"\","+
                         "  \"link\" : {\n"+
-                        "              \"web_url\" : \"https://thechef.site/web/mypage/order"+oid+"?memail="+userEmail+"\", \n" +
+                        "              \"web_url\" : \"https://thechef.site/web/mypage/order/"+oid+"?memail="+userEmail+"\", \n" +
                         "              \"mobile_web_url\": \"https://thechef.site/web/mypage/order/"+oid+"?memail="+userEmail+"\"" +
                         "  },\n"+
                         "  \"button_title\": \"주문 확인\"" +

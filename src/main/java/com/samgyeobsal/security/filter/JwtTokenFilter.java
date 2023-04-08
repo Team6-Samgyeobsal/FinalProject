@@ -61,10 +61,16 @@ public class JwtTokenFilter extends OncePerRequestFilter {
                 filterChain.doFilter(request,response);
                 return;
             }else
-                log.info("get accessToken from cookie");
+                log.info("get refreshToken from cookie");
 
-
-            String email = tokenProvider.getUserEmail(refreshToken);
+            String email = null;
+            try{
+                email = tokenProvider.getUserEmail(refreshToken);
+            }catch (Exception e){
+                log.error("error occur while get user email from refreshToken");
+                filterChain.doFilter(request,response);
+                return;
+            }
 
             RefreshTokenVO refreshTokenVO = refreshTokenService.findRefTokenByEmail(email);
 
