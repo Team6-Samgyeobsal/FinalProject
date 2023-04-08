@@ -1,0 +1,249 @@
+<html lang="ko" class="">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="x-ua-compatible" content="ie=edge" />
+  <meta
+          name="viewport"
+          content="width=device-width,initial-scale=1,shrink-to-fit=no,user-scalable=no,viewport-fit=cover"
+  />
+  <title>와디즈</title>
+
+  <script src="https://code.jquery.com/jquery-3.6.3.js"
+          integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
+
+
+  <link
+          rel="stylesheet"
+          href="/import/css/wui.css"
+  />
+  <link
+          rel="stylesheet"
+          href="/import/css/common.css"
+  />
+  <link
+          rel="stylesheet"
+          href="/import/css/layout.css"
+  />
+    <link
+            rel="stylesheet"
+            href="/import/css/main.fe1960ef.css"
+    />
+
+
+</head>
+<body>
+<div id="page-container">
+  <main id="main-app">
+    <div th:replace="fragment/header__3X3Cg.html :: header"></div>
+    <div class="MainWrapper_content__GZkTa">
+      <div class="DesktopSearchResult_headContainer__1hnOM">
+        <div class="DesktopSearchResult_keyword__13uuG" th:text="${keyword}">안녕</div>
+        <h2 th:text="#{searchResult}">검색결과</h2>
+        <div class="DesktopSearchResult_number__kryRO">0</div>
+        <div class="DesktopSearchResult_unit__24BC1" th:text="#{count}">개</div>
+      </div>
+      <div class="DesktopSearchResult_tabContainer__18T4j">
+        <ul class="SearchResultTabs_tabContainer__3rQre">
+          <li
+                  class="SearchResultTabs_activeTab__1jn0j"
+                  tabindex="-1"
+                  data-status=""
+                  th:text="#{whole}"
+          >
+            전체
+          </li>
+          <li
+                  class="SearchResultTabs_normalTab__2u9oM"
+                  tabindex="-1"
+                  data-status="FUNDING"
+                  th:text="#{funding}"
+          >
+            펀딩
+          </li>
+          <li
+                  class="SearchResultTabs_normalTab__2u9oM"
+                  tabindex="-1"
+                  data-status="STORE"
+                  th:text="#{store}"
+          >
+            스토어
+          </li>
+          <li
+                  class="SearchResultTabs_normalTab__2u9oM"
+                  tabindex="-1"
+                  data-status="END"
+                  th:text="#{fame}"
+          >
+            명예의 전당
+          </li>
+        </ul>
+      </div>
+      <div class="SearchResult_container__2t-zd">
+        <div class="SearchResult_cardContainer__1hDo0">
+          <!-- 가게들 -->
+
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+<script>
+  $(document).ready(function (){
+    let isDone = false;
+    let fstatus ="";
+    let keyword = "";
+    let page=0;
+    keyword='[[${keyword}]]';
+    getSearch(fstatus,keyword,page);
+    $(document).on('click', '.SearchResultTabs_normalTab__2u9oM', function() {
+      console.log('클릭');
+      $('.SearchResultTabs_activeTab__1jn0j').removeClass().addClass('SearchResultTabs_normalTab__2u9oM');
+      $(this).removeClass().addClass('SearchResultTabs_activeTab__1jn0j');
+      fstatus=$(this).data('status');
+      $('.SearchResult_cardContainer__1hDo0').html('');
+      let page=0;
+      getSearch(fstatus,keyword,page);
+    })
+
+
+    $(window).scroll(function() {
+      if ($(window).scrollTop() + $(window).height() >= $(document).height()-100) {
+        console.log('다음 페이지');
+        page++
+        getSearch(fstatus,keyword,page);
+      }
+    });
+
+    function getSearch(fstatus,keyword,page){
+      if(isDone)return;
+      $.ajax({
+        url: "/api/search",
+        type: "get",
+        contentType: "application/json; charset=utf-8",
+        data:{
+          fstatus:fstatus,
+          keyword:keyword,
+          page:page
+        },
+        success: function (data, status) {
+          console.info(data.search.length);
+          if(data.search.length ==0)
+            isDone = true;
+          let k="";
+          $('.DesktopSearchResult_number__kryRO').text(data.count);
+
+
+
+          if (data.count == 0) {
+            k=`<section class="EmptyResult_container__3omiy" style="width: 300%">
+                <h2>검색결과가 없어요</h2>
+                    <h4>새로운 프로젝트를 발견해보세요</h4>
+  <div class="EmptyResult_tagContainer__ceRsP">
+    <div class="PopularTag_container__Lxt5N">
+      <div class="PopularTag_keyword__2-ryF" tabindex="-1">캠핑</div>
+    </div>
+    <div class="PopularTag_container__Lxt5N">
+      <div class="PopularTag_keyword__2-ryF" tabindex="-1">가방</div>
+    </div>
+    <div class="PopularTag_container__Lxt5N">
+      <div class="PopularTag_keyword__2-ryF" tabindex="-1">모범택시</div>
+    </div>
+    <div class="PopularTag_container__Lxt5N">
+      <div class="PopularTag_keyword__2-ryF" tabindex="-1">스즈메</div>
+    </div>
+    <div class="PopularTag_container__Lxt5N">
+      <div class="PopularTag_keyword__2-ryF" tabindex="-1">백팩</div>
+    </div>
+    <div class="PopularTag_container__Lxt5N">
+      <div class="PopularTag_keyword__2-ryF" tabindex="-1">키보드</div>
+    </div>
+    <div class="PopularTag_container__Lxt5N">
+      <div class="PopularTag_keyword__2-ryF" tabindex="-1">모범</div>
+    </div>
+    <div class="PopularTag_container__Lxt5N">
+      <div class="PopularTag_keyword__2-ryF" tabindex="-1">텐트</div>
+    </div>
+    <div class="PopularTag_container__Lxt5N">
+      <div class="PopularTag_keyword__2-ryF" tabindex="-1">캐리어</div>
+    </div>
+    <div class="PopularTag_container__Lxt5N">
+      <div class="PopularTag_keyword__2-ryF" tabindex="-1">new</div>
+    </div>
+  </div>
+</section>
+`;
+
+          }else {
+            data.search.forEach(function (store) {
+              let url ='/web/'+store.fstatus.toLowerCase()+'/'+store.fid;
+              k += ` <div>
+                <div
+                  class="FundingCard_root__2b-6p FundingCard_search_result_projectCard__11yH5 search_result_list"
+                >
+                  <a
+                    href="${url}"
+                    class="FundingCard_eventContainer__7SI8r"
+                    ><div class="FundingCard_projectCard_badge__39GE4"></div>
+                    <div class="FundingCard_imgContainer__2npRG">
+                      <img
+                        class="FundingCard_img__3-3M6"
+                        alt="프로젝트 이미지"
+                        src="${store.fthumb}"
+                      />
+                    </div>
+                    <p class="FundingCard_projectCard_title__1luRA" style="margin-bottom: 0%;">
+                      <strong
+                        >${store.ftitle}
+                        세트</strong
+                      ><small class="FundingCard_projectCard_subInfo__3-yIB"
+                        ><span>${store.ctname}</span><span> ${store.fstore_name}</span>
+                        </small
+                      >
+                      <div class="StoreCardSearchFooter_container__mrmr1">
+                        <div class="StoreCardSearchFooter_upperFooter__2vxSN">
+                          <div class="StoreCardSearchFooter_priceContainer__2qAqu">
+                            <span class="StoreCardSearchFooter_price__16gun">${store.min_price.toLocaleString('ko-KR')}</span><span>원</span>
+                          </div>
+                          <div class="RatingScore_container__AeQ_I RatingScore_smCard02__3cJAW">
+                            <div class="RatingScore_icon__rIS_k"></div>
+                            <span class="RatingScore_score__2a-SN">${store.fscore}</span>
+                          </div>
+                        </div>
+                        <div class="StoreCardSearchFooter_bottomFooter__1NQ9S">
+                          <div class="DeliveryBadge_container__3XB44">
+                            <div class="DeliveryBadge_badge__14MYK">${store.fstatusKo}</div>
+                          </div>
+                        </div>
+                      </div>
+
+                    </p></a
+                  >
+
+                </div>
+              </div>`;
+
+            });
+          }
+
+          $.ajax({
+            url: '/api/translate',
+            type: 'post',
+            data: k,
+            contentType: "text/html",
+            success: function (data) {
+              $('.SearchResult_cardContainer__1hDo0').append(data);
+            }, error: function (status, error) {
+              console.log(error);
+            }
+          })
+
+        },
+        error: function (status, error) {
+          alert("실패");
+        }
+      })
+    }
+  })
+</script>
+</body>
+</html>

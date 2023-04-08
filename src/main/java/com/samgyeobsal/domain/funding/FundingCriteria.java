@@ -28,6 +28,7 @@ public class FundingCriteria {
     @Parameter(name = "페이지 수")
     private int page;
 
+
     private String getTid(){
         if(this.place == null) return null;
         switch (this.place) {
