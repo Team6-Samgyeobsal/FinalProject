@@ -38,6 +38,8 @@ public class QueueApi {
     }
 
     // 판매내역 조회
+    @Operation(summary = "판매내역 목록 리턴", description = "해당 매장의 판매내역을 리턴합니다.")
+    @Parameter(name = "fid", description = "펀딩아이디")
     @GetMapping("/saleslist")
     public ResponseEntity<List<QueueVO>> getSalesList(String fid){
         List<QueueVO> queue = queueService.getSalesList(fid);

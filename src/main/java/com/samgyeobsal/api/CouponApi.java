@@ -24,7 +24,7 @@ import java.util.Map;
 @RestController
 @RequestMapping("/api/coupon")
 @RequiredArgsConstructor
-@Tag(name = "쿠톤 API")
+@Tag(name = "쿠폰 API")
 public class CouponApi {
 
     private final CouponService couponService;
