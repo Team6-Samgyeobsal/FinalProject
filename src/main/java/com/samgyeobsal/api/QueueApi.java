@@ -30,6 +30,13 @@ public class QueueApi {
         return new ResponseEntity<>(queue, HttpStatus.OK);
     }
 
+    // 판매내역 조회
+    @GetMapping("/saleslist")
+    public ResponseEntity<List<QueueVO>> getSalesList(String fid){
+        List<QueueVO> queue = queueService.getSalesList(fid);
+        return new ResponseEntity<>(queue, HttpStatus.OK);
+    }
+
     // 리스트에서 대기열 삭제 -> QRUSEDDATE 값을 넣는다
     @PostMapping("/useQrCode")
     public ResponseEntity<String> useQrCode(@RequestBody Map<String, String> map) {

@@ -193,29 +193,6 @@
             <artifactId>spring-test</artifactId>
         </dependency>
 
-		<!--<dependency>
-			<groupId>io.springfox</groupId>
-			<artifactId>springfox-swagger2</artifactId>
-			&lt;!&ndash;<version>2.9.2</version>&ndash;&gt;
-			<version>3.0.0</version>
-		</dependency>-->
-
-
-		<!--<dependency>
-			<groupId>io.springfox</groupId>
-			<artifactId>springfox-swagger-ui</artifactId>
-			&lt;!&ndash;<version>2.9.2</version>&ndash;&gt;
-			<version>3.0.0</version>
-		</dependency>-->
-
-		<!-- https://mvnrepository.com/artifact/io.springfox/springfox-boot-starter -->
-		<!--<dependency>
-			<groupId>io.springfox</groupId>
-			<artifactId>springfox-boot-starter</artifactId>
-			<version>3.0.0</version>
-		</dependency>-->
-
-
 			<!-- Springdoc OpenAPI UI 라이브러리 추가 -->
 			<dependency>
 				<groupId>org.springdoc</groupId>

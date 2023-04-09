@@ -20,6 +20,9 @@ public class QueueServiceImpl implements QueueService{
     }
 
     @Override
+    public List<QueueVO> getSalesList(String fid) { return queueMapper.getSalesList(fid); }
+
+    @Override
     public void useQrCode(String qid) {
         queueMapper.useQrCode(qid);
     }
