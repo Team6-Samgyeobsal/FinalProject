@@ -132,7 +132,24 @@ public class AdminApi {
         return new ResponseEntity<>(categorySaleList, HttpStatus.OK);
     }
 
+    @Operation(summary = "장소 별 입정 중인 스토어 리턴", description = "장소 별로 입점해 영업 중인 매장 목록을 리턴합니다.")
+    @Parameter(name = "tid", description = "장소 아이디")
+    @GetMapping("/store")
+    public ResponseEntity<List<FundingDocumentDTO>> getStoreListByTid(@RequestParam("tid") String tid) {
+        List<FundingDocumentDTO> stores = adminService.getStoreByTid(tid);
+        return new ResponseEntity<>(stores, HttpStatus.OK);
+    }
 
-
+    @Operation(summary = "입점 매장 취소", description = "입점 중인 매장을 취소합니다.")
+    @Parameter(name = "fid", description = "스토어 아이디")
+    @PostMapping("/funding/{fid}/cancel")
+    public ResponseEntity<String> cancelStore(
+            @PathVariable("fid") String fid){
+        UpdateDocumentDTO updateDTO = new UpdateDocumentDTO();
+        updateDTO.setFid(fid);
+        updateDTO.setAdditionalStatus("END");
+        adminService.updateDocumentStatus(updateDTO);
+        return new ResponseEntity<>("success", HttpStatus.OK);
+    }
 
 }

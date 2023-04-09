@@ -43,6 +43,7 @@
                  left join order_item oi on (oi.poid = po.poid)
                  left join orders o on (oi.oid = o.oid and o.ostatus = 'COMPLETE')
         where sysdate between cfunding_start_date and cfunding_end_date
+        and f.fstatus='FUNDING'
         GROUP BY GROUPING SETS((t.tid, t.tname), ())
         order by totalPrice desc, tid NULLS FIRST
     </select>
@@ -60,6 +61,7 @@
             inner join the_hyundai t on (t.tid = c.tid)
             where
                 o.odate between TRUNC(sysdate) - 7 and TRUNC(sysdate) - 1
+            and f.fstatus='FUNDING'
             <if test="tid != null and !tid.equals('')">
                 and f.tid = #{tid}
             </if>
@@ -85,10 +87,10 @@
                          inner join the_hyundai t on (t.tid = c.tid)
                          inner join category ct on (ct.ctid = f.ctid)
                 where o.odate between TRUNC(sysdate) - 7 and TRUNC(sysdate) - 1
+                    and f.fstatus='FUNDING'
                 <if test="tid != null and !tid.equals('')">
                     and t.tid = #{tid}
                 </if>
-
                 group by o.oid, o.oprice, f.ctid, ct.ctname
             ) a
                 right join (
@@ -104,9 +106,32 @@
             fdate = sysdate
         where fid = #{fid}
     </update>
+    <update id="updateFundingCompetition">
+        update funding
+        set cid = #{cid}
+        where fid = #{fid}
+    </update>
 
     <select id="getReviewCount" resultType="int">
         select count(*)
         from review
+    </select>
+
+    <select id="getStoreListByTid" resultType="fundingDocument">
+        select f.fid, f.fstore_name, f.ftitle, f.fdate, tmp.tid,
+               tmp.tname,f.memail, ct.ctname
+        from funding f
+            inner join (
+                select c.cid, c.tid , t.tname
+                from competition c
+                         inner join the_hyundai t on (c.tid = t.tid)
+                where sysdate between c.cstore_start_date and c.cstore_end_date
+        ) tmp on (tmp.cid = f.cid and tmp.tid = f.tid)
+                 inner join category ct on (f.ctid = ct.ctid)
+        where f.fstatus='STORE'
+        <if test="tid!=null and !tid.equals('')">
+            and f.tid = #{tid}
+        </if>
+        order by f.fdate desc
     </select>
 </mapper>
