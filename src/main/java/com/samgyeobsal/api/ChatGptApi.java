@@ -1,6 +1,9 @@
 package com.samgyeobsal.api;
 
 import com.lilittlecat.chatgpt.offical.ChatGPT;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import okhttp3.OkHttpClient;
@@ -16,6 +19,7 @@ import java.util.concurrent.TimeUnit;
 
 @RestController
 @RequestMapping("/api/chatGpt")
+@Tag(name = "ChatGPT API")
 @RequiredArgsConstructor
 @Log4j2
 public class ChatGptApi {
@@ -23,6 +27,8 @@ public class ChatGptApi {
     @Value("${chatgpt.client.key}")
     private String chatGPTKey;
 
+    @Operation(summary = "chatGPT에게 질문", description = "chatGPT에게 넘어온 질문을 전달합니다.")
+    @Parameter(name = "question", description = "질문")
     @GetMapping
     public ResponseEntity<?> chapGpt(String question) throws IOException {
 

@@ -1,4 +1,4 @@
-package com.samgyeobsal.xss;
+package com.samgyeobsal.security.xss;
 import org.apache.commons.text.StringEscapeUtils;
 
 import com.fasterxml.jackson.core.SerializableString;

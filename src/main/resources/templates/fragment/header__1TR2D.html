@@ -38,15 +38,16 @@
         </ul>
         <div class="web-header-utils">`
           <div class="DesktopSearchApp_container__VEGeP">
-            <form>
+            <form action="/web/search" method="get">
               <div
                       class="SearchController_container__3KkCv"
                       tabindex="-1">
                 <div class="SearchTag_emptyTag__3OE1B"></div>
                 <div class="SearchController_keyword__2Q-9Q">
                   <input
+                          name="keyword"
                           type="search"
-                          placeholder="새로운 것을 찾으시나요?"
+                          placeholder=""
                           aria-label="검색"
                           value="" />
                 </div>
@@ -131,12 +132,33 @@
   </div>
   <script src="/js/confirm.js"></script>
   <script>
-    $(document).ready(function (){
+    function getLocaleFromCookie() {
+      const cookies = document.cookie.split(';');
+      for (let i = 0; i < cookies.length; i++) {
+        const cookie = cookies[i].trim();
+        if (cookie.startsWith('locale=')) {
+          return cookie.substring(7);
+        }
+      }
+      return null;
+    }
 
+    const locale = getLocaleFromCookie();
+    console.log('locale:', locale);
+
+    $(document).ready(function() {
+      // 쿠키에서 언어 선택 로드
+
+      let lang = locale==null?'ko':locale;
+
+
+      // 선택된 언어로 select 박스 변경
+      $('.TranslateSelect').val(lang);
       $('.TranslateSelect').on('change', function() {
-        var lang = $('.TranslateSelect').val();
-        var url = window.location.href;
-        var regex = /(\?|&)lang=[^&]+(&|$)/g;
+        console.log('변경')
+        let lang = $('.TranslateSelect').val();
+        let url = window.location.href;
+        let regex = /(\?|&)lang=[^&]+(&|$)/g;
         url = url.replace(regex, '$1').replace(/(\?|&)$/, '');
         if (url.indexOf('?') === -1) {
           url += '?';
@@ -147,6 +169,7 @@
         window.location.href = url;
       });
 
+      console.log('ready');
       let makeFunding = () => $.ajax({
         url: '/api/funding/',
         type: 'POST',

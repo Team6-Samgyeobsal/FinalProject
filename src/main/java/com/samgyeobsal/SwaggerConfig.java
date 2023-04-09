@@ -1,11 +1,10 @@
-package com.samgyeobsal.swagger;import io.swagger.v3.oas.models.OpenAPI;
+package com.samgyeobsal;import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Info;
 import io.swagger.v3.oas.models.info.License;
 import io.swagger.v3.oas.models.servers.Server;
 import io.swagger.v3.oas.models.ExternalDocumentation;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import java.util.Arrays;
 /**
@@ -22,33 +21,31 @@ import java.util.Arrays;
  * </pre>
  */
 @Configuration
-@EnableWebMvc
 public class SwaggerConfig {
 
     @Bean
     public OpenAPI springShopOpenAPI() {
 
-
         Server dev = new Server();
         dev.setUrl("devDomain");
-
-        Server local = new Server();
-        local.setUrl("localDomain");
-
-        Server prd = new Server();
-        prd.setUrl("prdDomain");
+//
+//        Server local = new Server();
+//        local.setUrl("localDomain");
+//
+//        Server prd = new Server();
+//        prd.setUrl("prdDomain");
 
         OpenAPI openAPI = new OpenAPI()
-                .info(new Info().title("Integration Production API")
+                .info(new Info().title("TheChef Api Document")
                         .description("Integration Production application")
-                        .version("v1.0")
+                        .version("1.0.0")
                         .license(new License().name("Apache 2.0").url("http://springdoc.org")))
                 .externalDocs(new ExternalDocumentation()
                         .description("Progressive Production Processing Documentation")
                         .url("https://springshop.wiki.github.org/docs"));
 
-        openAPI.setServers(Arrays.asList(dev, local, prd));
-
+//        openAPI.setServers(Arrays.asList(dev, local, prd));
+        openAPI.setServers(Arrays.asList(dev));
         return openAPI;
     }
 }

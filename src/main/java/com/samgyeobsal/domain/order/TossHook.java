@@ -1,4 +1,4 @@
-package com.samgyeobsal.dto.request;
+package com.samgyeobsal.domain.order;
 
 import lombok.Data;
 

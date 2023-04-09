@@ -6,6 +6,7 @@ import com.samgyeobsal.domain.funding.FundingDetailVO;
 import com.samgyeobsal.domain.member.OAuth2TokenVO;
 import com.samgyeobsal.domain.order.OrderItemVO;
 import com.samgyeobsal.domain.order.OrderVO;
+import com.samgyeobsal.mapper.OAuth2TokenMapper;
 import com.samgyeobsal.mapper.QrCodeMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -40,7 +41,13 @@ public class KaKaoMessageService {
     @Value("${kakao.api.url.message}")
     private String messageApiUrl;
 
+    @Value("${user.email}")
+    private String userEmail;
 
+
+    /**
+     * @param memail adminEmail : admin의 kakao accessToken을 사용해야되기 때문에
+     */
     public void sendOrderInfoByKakaoMessage(String memail, OrderVO orderVO, FundingDetailVO store) {
         OAuth2TokenVO oAuth2Token = refreshTokenService.getOAuth2TokenByEmail(memail);
         String uuidStr = sendKakaoFriendsApi(oAuth2Token.getOauth2_token());
@@ -49,6 +56,9 @@ public class KaKaoMessageService {
                 oAuth2Token.getOauth2_token(), orderVO, store);
     }
 
+    /**
+     * @param memail adminEmail : admin의 kakao accessToken을 사용해야되기 때문에
+     */
     public void sendWaitingInfoByKakaoMessage(String memail, String msg, String oid){
         OAuth2TokenVO oAuth2Token = refreshTokenService.getOAuth2TokenByEmail(memail);
         String uuidStr = sendKakaoFriendsApi(oAuth2Token.getOauth2_token());
@@ -59,6 +69,7 @@ public class KaKaoMessageService {
 
 
     private String sendKakaoFriendsApi(String accessToken) {
+        log.info("accessToken = {}",accessToken);
         RestTemplate restTemplate = new RestTemplate();
         HttpHeaders headers = new HttpHeaders();
         headers.setBearerAuth(accessToken);
@@ -119,7 +130,8 @@ public class KaKaoMessageService {
                         "      \"image_width\": 640," +
                         "      \"image_height\": 640," +
                         "      \"link\": {" +
-                        "          \"web_url\": \"https://thechef.site/web/mypage/order/"+orderVO.getOid()+"?memail="+orderVO.getMemail()+"\"" +
+                        "          \"web_url\": \"https://thechef.site/web/mypage/order/"+orderVO.getOid()+"?memail="+userEmail+"\"," +
+                        "          \"mobile_web_url\": \"https://thechef.site/web/mypage/order/"+orderVO.getOid()+"?memail="+userEmail+"\"" +
                         "      }" +
                         "  }," +
                         "  \"item_content\" : {" +
@@ -138,7 +150,8 @@ public class KaKaoMessageService {
                         "      {\n" +
                         "          \"title\": \"QR 확인\",\n" +
                         "          \"link\": {\n" +
-                        "              \"web_url\": \"https://thechef.site/web/mypage/order/"+orderVO.getOid()+"?memail="+orderVO.getMemail()+"\"\n" +
+                        "              \"web_url\": \"https://thechef.site/web/mypage/order/"+orderVO.getOid()+"?memail="+userEmail+"\",  \n" +
+                        "              \"mobile_web_url\": \"https://thechef.site/web/mypage/order/"+orderVO.getOid()+"?memail="+userEmail+"\"" +
                         "          }\n" +
                         "      }\n" +
                         "  ]\n" +
@@ -178,7 +191,8 @@ public class KaKaoMessageService {
                         "  \"object_type\": \"text\"," +
                         "  \"text\" : \""+msg +"\","+
                         "  \"link\" : {\n"+
-                        "              \"web_url\" : \"https://thechef.site/web/mypage/order"+oid+"\" \n" +
+                        "              \"web_url\" : \"https://thechef.site/web/mypage/order/"+oid+"?memail="+userEmail+"\", \n" +
+                        "              \"mobile_web_url\": \"https://thechef.site/web/mypage/order/"+oid+"?memail="+userEmail+"\"" +
                         "  },\n"+
                         "  \"button_title\": \"주문 확인\"" +
                         "}");

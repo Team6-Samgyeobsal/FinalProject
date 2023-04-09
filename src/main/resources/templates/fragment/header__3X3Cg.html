@@ -4,6 +4,9 @@
   <div class="web-header" th:fragment="header">
 
     <style>
+      .web-header-utils{
+        align-items: center;
+      }
       @media (max-width: 1095px) {
         /* 1095px 이하일 때 적용될 스타일 */
         .GNBDesktop_container__3X3Cg{
@@ -55,15 +58,19 @@
           </ul>
           <div class="web-header-utils">
             <div class="DesktopSearchApp_container__2VF9O">
-              <form>
+              <form action="/web/search" method="get">
                 <div class="SearchController_container__35K5i" tabindex="-1">
                   <div class="SearchTag_emptyTag__1Iu7r"></div>
                   <div class="SearchController_keyword__3FcFo">
+
                     <input
+                      name="keyword"
                       type="search"
                       placeholder=""
                       aria-label="검색"
-                      value="" />
+                      value=""
+                      />
+
                   </div>
                   <button
                     type="submit"
@@ -154,17 +161,17 @@
 
       $(document).ready(function() {
         // 쿠키에서 언어 선택 로드
-        var lang = locale;
 
+        let lang = locale==null?'ko':locale;
 
 
         // 선택된 언어로 select 박스 변경
         $('.TranslateSelect').val(lang);
         $('.TranslateSelect').on('change', function() {
           console.log('변경')
-          var lang = $('.TranslateSelect').val();
-          var url = window.location.href;
-          var regex = /(\?|&)lang=[^&]+(&|$)/g;
+          let lang = $('.TranslateSelect').val();
+          let url = window.location.href;
+          let regex = /(\?|&)lang=[^&]+(&|$)/g;
           url = url.replace(regex, '$1').replace(/(\?|&)$/, '');
           if (url.indexOf('?') === -1) {
             url += '?';

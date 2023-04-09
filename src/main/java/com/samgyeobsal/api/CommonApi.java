@@ -3,6 +3,9 @@ package com.samgyeobsal.api;
 import com.samgyeobsal.domain.common.UploadImgDTO;
 import com.samgyeobsal.service.ImageUploadService;
 import com.samgyeobsal.service.KaKaoMessageService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -21,17 +24,24 @@ import java.util.*;
 
 @Slf4j
 @RequestMapping("/api/common")
+@Tag(name = "공통 API")
 @RequiredArgsConstructor
 @RestController
 public class CommonApi {
 
     @Value("${upload.path}")
     private String uploadPath;
+    @Value("${admin.email}")
+    private String adminEmail;
+
     private final ImageUploadService imageUploadService;
 
     private final KaKaoMessageService kaKaoMessageService;
 
 
+    @Operation(summary = "로컬 환경의 이미지를 리턴", deprecated = true,
+            description = "로컬환경의 properties에 지정된 경로에 저장된 이미지를 리턴합니다.")
+    @Parameter(name = "imgName", description = "저장된 이미지 이름")
     @GetMapping("/displayImg")
     public ResponseEntity<byte[]> displayImg(@RequestParam("imgName") String imgName) {
 
@@ -51,6 +61,7 @@ public class CommonApi {
         return result;
     }
 
+    @Operation(summary = "이미지 업로드", description = "이미지를 지정된 곳에 업로드 합니다. (S3 bucket)")
     @PostMapping("/uploadImg")
     public ResponseEntity<List<UploadImgDTO>> uploadImg(MultipartFile[] uploadFiles) {
         List<UploadImgDTO> result = new ArrayList<>();
@@ -71,10 +82,11 @@ public class CommonApi {
     }
 
     @PostMapping("/message")
+    @Operation(summary = "주문 정보를 담아 카카오톡 메시지 전송", description = "주문자에게 카카오 메시지를 전송합니다.")
     public ResponseEntity<String> sendMessage(@RequestBody Map<String, String> map){
         String oid = map.get("oid");
         String msg = map.get("msg");
-        String email = "asdvg154@naver.com";
+        String email = adminEmail;
         kaKaoMessageService.sendWaitingInfoByKakaoMessage(email, msg, oid);
 
         return new ResponseEntity<>("success", HttpStatus.OK);

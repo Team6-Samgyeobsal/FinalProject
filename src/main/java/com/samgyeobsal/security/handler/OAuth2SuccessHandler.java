@@ -9,6 +9,8 @@ import com.samgyeobsal.service.RefreshTokenService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.web.DefaultRedirectStrategy;
+import org.springframework.security.web.RedirectStrategy;
 import org.springframework.security.web.WebAttributes;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
 import org.springframework.security.web.savedrequest.HttpSessionRequestCache;
@@ -32,6 +34,9 @@ public class OAuth2SuccessHandler extends SimpleUrlAuthenticationSuccessHandler 
     // 새로운 accessToken과 refreshToken을 발급하고 db에 refreshToken을 저장
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
+
+        String prevPage = (String) request.getSession().getAttribute("prevPage");
+
         Account account = (Account) authentication.getPrincipal();
         String accessToken = jwtTokenProvider.createAccessToken(account.getMember().getMemail());
         String refreshToken = jwtTokenProvider.createRefreshToken(account.getMember().getMemail());
@@ -54,6 +59,6 @@ public class OAuth2SuccessHandler extends SimpleUrlAuthenticationSuccessHandler 
         refreshTokenVO.setMemail(account.getMember().getMemail());
         refreshTokenService.insertRefreshToken(refreshTokenVO);
 
-        getRedirectStrategy().sendRedirect(request, response, "/web/funding");
+        getRedirectStrategy().sendRedirect(request, response, prevPage);
     }
 }

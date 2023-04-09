@@ -15,6 +15,8 @@ public class RefreshTokenMapperTest {
 
     @Autowired
     private RefreshTokenMapper refreshTokenMapper;
+    @Autowired
+    private OAuth2TokenMapper oAuth2TokenMapper;
 
     @Test
     @Transactional
@@ -35,21 +37,7 @@ public class RefreshTokenMapperTest {
         tokenVO.setRef_token("testRefToken");
         refreshTokenMapper.insertRefToken(tokenVO);
 
-        RefreshTokenVO findToken = refreshTokenMapper.findRefTokenByToken(token);
-        Assertions.assertEquals(findToken.getMemail(), email);
-    }
-
-    @Test
-    @Transactional
-    void findRefTokenByEmail(){
-        String token = "testRefToken";
-        String email = "testEmail";
-        RefreshTokenVO tokenVO = new RefreshTokenVO();
-        tokenVO.setMemail(email);
-        tokenVO.setRef_token("testRefToken");
-        refreshTokenMapper.insertRefToken(tokenVO);
-
-        RefreshTokenVO findToken = refreshTokenMapper.findRefTokenByEmail(email);
+        RefreshTokenVO findToken = refreshTokenMapper.findRefTokenByEmail(token);
         Assertions.assertEquals(findToken.getMemail(), email);
     }
 
@@ -58,14 +46,14 @@ public class RefreshTokenMapperTest {
         OAuth2TokenVO token = new OAuth2TokenVO();
         token.setOauth2_token("123123");
         token.setMemail("user@gmail.com");
-        refreshTokenMapper.insertOAuth2Token(token);
+        oAuth2TokenMapper.insertOAuth2Token(token);
 
         OAuth2TokenVO token2 = new OAuth2TokenVO();
         token2.setOauth2_token("234234");
         token2.setMemail("user@gmail.com");
-        refreshTokenMapper.insertOAuth2Token(token2);
+        oAuth2TokenMapper.insertOAuth2Token(token2);
 
-        OAuth2TokenVO tokenVO = refreshTokenMapper.getOAuth2TokenByEmail("user@gmail.com");
+        OAuth2TokenVO tokenVO = oAuth2TokenMapper.getOAuth2TokenByEmail("user@gmail.com");
         log.info("tokenVO = {}", tokenVO);
 
     }

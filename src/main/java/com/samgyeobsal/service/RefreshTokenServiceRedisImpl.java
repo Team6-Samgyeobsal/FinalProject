@@ -1,0 +1,59 @@
+package com.samgyeobsal.service;
+
+import com.samgyeobsal.domain.member.OAuth2TokenVO;
+import com.samgyeobsal.domain.member.RefreshTokenVO;
+import com.samgyeobsal.mapper.OAuth2TokenMapper;
+import com.samgyeobsal.mapper.RefreshTokenMapper;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Profile;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+@Profile("prod")
+@Service
+@Slf4j
+@RequiredArgsConstructor
+public class RefreshTokenServiceRedisImpl implements RefreshTokenService {
+
+    private final RedisTemplate<String, String> redisTemplate;
+    private final OAuth2TokenMapper oAuth2TokenMapper;
+
+    @Value("${jwt.refresh-token-validity-in-sec}")
+    private Long REFRESH_DURATION;
+
+    @Override
+    public void insertRefreshToken(RefreshTokenVO refreshToken) {
+        redisTemplate.opsForValue().set(refreshToken.getMemail(), refreshToken.getRef_token(),REFRESH_DURATION);
+    }
+
+    @Override
+    public RefreshTokenVO findRefTokenByEmail(String email) {
+        String token = redisTemplate.opsForValue().get(email);
+        RefreshTokenVO tokenVO = new RefreshTokenVO();
+        tokenVO.setRef_token(token);
+        tokenVO.setMemail(email);
+
+        return tokenVO;
+    }
+
+    @Override
+    public void insertOAuth2Token(OAuth2TokenVO token) {
+        oAuth2TokenMapper.insertOAuth2Token(token);
+    }
+
+    @Override
+    public OAuth2TokenVO getOAuth2TokenByEmail(String memail) {
+        return oAuth2TokenMapper.getOAuth2TokenByEmail(memail);
+    }
+
+    @Override
+    @Transactional
+    public void deleteTokens(String memail) {
+        // refreshToken 과 oauth2Token 삭제
+        redisTemplate.delete(memail);
+        oAuth2TokenMapper.deleteOAuth2Token(memail);
+    }
+}

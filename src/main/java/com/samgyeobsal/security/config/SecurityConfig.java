@@ -52,6 +52,7 @@ public class SecurityConfig {
                                 .antMatchers("/web/mypage/order").hasRole("USER")
                                 .antMatchers("/web/mypage/maker/**").hasRole("USER")
                                 .antMatchers("/web/order/**").hasRole("USER")
+
                                 .anyRequest().permitAll()
                 )
                 .addFilterBefore(new JwtTokenFilter(jwtTokenProvider, refreshTokenService), UsernamePasswordAuthenticationFilter.class)
@@ -67,6 +68,6 @@ public class SecurityConfig {
 
     @Bean
     public WebSecurityCustomizer webSecurityCustomizer(){
-        return (web) -> web.ignoring().antMatchers("/resources/**");
+        return (web) -> web.ignoring().antMatchers("/images/**", "/js/**", "/admin/**", "/import/**", "/css/**","/favicon.ico");
     }
 }

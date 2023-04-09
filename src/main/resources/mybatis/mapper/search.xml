@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.samgyeobsal.mapper.SearchMapper">
+
+    <select id="getSearchList" resultType="search">
+        select f.fid,
+               fstore_name,
+               ftitle,
+               fthumb,
+               c.cid,
+               fstatus,
+               ct.ctid,
+               ct.ctname,
+               t.tid,
+               t.tname,
+               f.memail,
+               case when fstatus='FUNDING' then nvl(ffunding_score,0)
+                    else nvl(fstore_score,0) end fscore,
+               min_price
+        from funding f
+                 inner join category ct on (f.ctid = ct.ctid)
+                 inner join competition c on c.cid=f.cid and c.tid=f.tid
+                 inner join the_hyundai t  on(f.tid = t.tid)
+                 inner join ( select fid, min(fporigin_price) min_price from funding_product
+                              group by fid) m on f.fid=m.fid
+
+        where fstatus in ('FUNDING','STORE','END')
+        <if test="criteria.fstatus !=null and !criteria.fstatus.equals('')">
+            and fstatus = #{criteria.fstatus}
+        </if>
+
+          and (fstore_name like '%'||#{criteria.keyword}||'%' or ftitle like '%'||#{criteria.keyword}||'%')
+        order by f.fid
+        OFFSET #{criteria.page}*12 ROWS FETCH NEXT 12 ROWS ONLY
+
+    </select>
+    <select id="countSearch" resultType="int">
+        select count(*)
+        from funding f
+        inner join category ct on (f.ctid = ct.ctid)
+        inner join competition c on c.cid=f.cid and c.tid=f.tid
+        inner join the_hyundai t  on(f.tid = t.tid)
+        inner join ( select fid, min(fporigin_price) min_price from funding_product
+        group by fid) m on f.fid=m.fid
+
+        where fstatus in ('FUNDING','STORE','END')
+        <if test="criteria.fstatus !=null and !criteria.fstatus.equals('')">
+            and fstatus = #{criteria.fstatus}
+        </if>
+
+        and (fstore_name like '%'||#{criteria.keyword}||'%' or ftitle like '%'||#{criteria.keyword}||'%')
+    </select>
+</mapper>

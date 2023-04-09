@@ -3,6 +3,7 @@ package com.samgyeobsal.security.service;
 import com.samgyeobsal.domain.member.MemberVO;
 import com.samgyeobsal.domain.member.OAuth2TokenVO;
 import com.samgyeobsal.mapper.MemberMapper;
+import com.samgyeobsal.mapper.OAuth2TokenMapper;
 import com.samgyeobsal.security.domain.Account;
 import com.samgyeobsal.security.domain.GoogleUserInfo;
 import com.samgyeobsal.security.domain.KakaoUserInfo;
@@ -37,6 +38,9 @@ public class OAuth2DetailsService extends DefaultOAuth2UserService {
 
     @Autowired
     private RefreshTokenService refreshTokenService;
+
+    @Autowired
+    private OAuth2TokenMapper oAuth2TokenMapper;
 
     @Override
     @Transactional
@@ -89,7 +93,7 @@ public class OAuth2DetailsService extends DefaultOAuth2UserService {
         OAuth2TokenVO token = new OAuth2TokenVO();
         token.setMemail(email);
         token.setOauth2_token(accessToken.getTokenValue());
-        refreshTokenService.insertOAuth2Token(token);
+        oAuth2TokenMapper.insertOAuth2Token(token);
 
         log.info("oauth2 accessToken = {}", accessToken.getTokenValue());
 

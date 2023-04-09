@@ -11,6 +11,8 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.http.HttpServletRequest;
+
 @Controller
 @RequestMapping("/web/account")
 @RequiredArgsConstructor
@@ -19,7 +21,19 @@ public class AccountController {
     private final MemberService memberService;
 
     @GetMapping("/login")
-    public String loginPage(){
+    public String loginPage(HttpServletRequest request, Model model){
+        String redirectUrl = request.getHeader("Referer");
+        log.info("redirectUrl = {}", redirectUrl);
+
+        if(redirectUrl == null){
+            redirectUrl = request.getContextPath() + "/web/funding";
+        }
+
+        if(redirectUrl.contains("/account/login")){
+            redirectUrl = redirectUrl.replace("/account/login", "/funding");
+        }
+
+        request.getSession().setAttribute("prevPage", redirectUrl);
         return "account/login";
     }
 

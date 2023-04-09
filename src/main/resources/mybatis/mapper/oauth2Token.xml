@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.samgyeobsal.mapper.OAuth2TokenMapper">
+
+    <insert id="insertOAuth2Token">
+        MERGE INTO oauth2_token
+        USING DUAL
+        ON (memail = #{memail})
+        WHEN NOT MATCHED THEN
+            INSERT (memail, oauth2_token)
+            VALUES (#{memail}, #{oauth2_token})
+        WHEN MATCHED THEN
+            UPDATE
+            SET oauth2_token = #{oauth2_token}
+            WHERE memail = #{memail}
+    </insert>
+
+    <select id="getOAuth2TokenByEmail" resultType="oauth2Token">
+        select memail, oauth2_token
+        from oauth2_token
+        where memail = #{memail}
+    </select>
+
+    <delete id="deleteOAuth2Token">
+        delete oauth2_token
+        where memail = #{memail}
+    </delete>
+</mapper>

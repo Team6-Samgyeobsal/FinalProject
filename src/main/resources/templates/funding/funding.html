@@ -262,6 +262,7 @@
                         let place=0;
                         let sort=0;
                         let page=0;
+                        let isDone = false;
                         $('.TableLayout_container__1_Ap4').html('');
                         getList(type,place,sort,page);
 
@@ -305,13 +306,14 @@
                         })
 
                         $(window).scroll(function() {
-                            if ($(window).scrollTop() + $(window).height() >= $(document).height()-1) {
+                            if ($(window).scrollTop() + $(window).height() >= $(document).height()-100) {
                                 console.log('다음 페이지');
                                 page++
                                 getList(type,place,sort,page);
                             }
                         });
                         function getList(type,place,sort,page){
+                            if(isDone)return;
                             if(type === 0) type = null;
 
                                     let url = '/api/funding/list';
@@ -325,11 +327,14 @@
                                             sort:sort,
                                             page:page
                                         },
-
                                         success: function (data, status) {
+                                            if(data.length ==0)
+                                                isDone = true;
                                             let k="";
-                                    data.forEach(function (funding) {
-                                        k += ` <div
+                                                console.log(data);
+                                                data.forEach(function (funding) {
+
+                                                    k += ` <div
                             class="PreorderMainCard_root__1-vcs"
                             style="height: 100%; position: relative"
                     >
@@ -351,7 +356,7 @@
                                 <div class="PreorderMainCard_header__R39X1">
                                     <div class="PreorderMainCard_headerLeft__2nwa1">
                                         <p class="PreorderMainCard_participants__JDp58">
-                                            ${Math.floor(funding.totalprice/10000).toLocaleString('ko-KR')}% 달성
+                                            ${Math.floor(funding.totalprice / 10000).toLocaleString('ko-KR')}% 달성
                                         </p>
                                         <p class="PreorderMainCard_amount__3UOXm">
                                             ${funding.totalprice.toLocaleString('ko-KR')}원
@@ -399,18 +404,20 @@
                         </a>
                     </div>`;
 
-                                    });
-                                            $.ajax({
-                                                url : '/api/translate',
-                                                type : 'post',
-                                                data : k,
-                                                contentType: "text/html",
-                                                success : function(data){
-                                                    $('.TableLayout_container__1_Ap4').append(data);
-                                                },error: function (status, error) {
-                                                    console.log(error);
-                                                }
-                                            })
+                                                });
+
+                                                $.ajax({
+                                                    url: '/api/translate',
+                                                    type: 'post',
+                                                    data: k,
+                                                    contentType: "text/html",
+                                                    success: function (data) {
+                                                        $('.TableLayout_container__1_Ap4').append(data);
+                                                    }, error: function (status, error) {
+                                                        console.log(error);
+                                                    }
+                                                })
+
                                 },
                                 error: function (status, error) {
                                     alert("실패");

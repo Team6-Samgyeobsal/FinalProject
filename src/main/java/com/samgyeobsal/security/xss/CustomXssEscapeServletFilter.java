@@ -1,4 +1,4 @@
-package com.samgyeobsal.xss;
+package com.samgyeobsal.security.xss;
 
 import com.navercorp.lucy.security.xss.servletfilter.XssEscapeServletFilter;
 import lombok.extern.slf4j.Slf4j;

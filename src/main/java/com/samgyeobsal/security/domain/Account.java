@@ -1,6 +1,7 @@
 package com.samgyeobsal.security.domain;
 
 import com.samgyeobsal.domain.member.MemberVO;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -14,10 +15,13 @@ import java.util.Map;
 @Getter
 @Setter
 @ToString
+@Schema(description = "SpringSecurityContext에 저장된 회원 객체")
 public class Account extends User implements OAuth2User {
 
+    @Schema(description = "등록된 회원 정보")
     private MemberVO member;
 
+    @Schema(title = "OAuth2User 한정 properties")
     private Map<String, Object> OA2_attr;
 
 

@@ -1,11 +1,10 @@
 package com.samgyeobsal.mapper;
 
 import com.samgyeobsal.domain.event.Event;
-import com.samgyeobsal.dto.response.UserCouponList;
-import com.samgyeobsal.dto.response.UserMileage;
+import com.samgyeobsal.domain.event.UserCouponList;
+import com.samgyeobsal.domain.event.UserMileage;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
-import org.springframework.security.core.parameters.P;
 
 import java.time.LocalDateTime;
 import java.util.List;

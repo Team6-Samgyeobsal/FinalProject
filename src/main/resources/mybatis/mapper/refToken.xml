@@ -3,11 +3,6 @@
 
 <mapper namespace="com.samgyeobsal.mapper.RefreshTokenMapper">
 
-    <select id="findRefTokenByToken" resultType="refToken">
-        select memail, ref_token
-        from jwt_refresh
-        where ref_token = #{token}
-    </select>
 
     <select id="findRefTokenByEmail" resultType="refToken">
         select memail, ref_token

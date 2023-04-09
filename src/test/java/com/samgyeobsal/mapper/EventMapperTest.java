@@ -4,14 +4,12 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import com.samgyeobsal.domain.event.Event;
-import com.samgyeobsal.dto.response.UserCouponList;
+import com.samgyeobsal.domain.event.UserCouponList;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 
 import lombok.extern.log4j.Log4j2;
-import org.springframework.transaction.annotation.Transactional;
 
 @Log4j2
 @SpringBootTest
