@@ -26,4 +26,8 @@ public interface AdminMapper {
     void updateFundingStatus(String fid, String fstatus);
 
     int getReviewCount();
+
+    int updateFundingCompetition(String fid, String cid);
+
+    List<FundingDocumentDTO> getStoreListByTid(String tid);
 }

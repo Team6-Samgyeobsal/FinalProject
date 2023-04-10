@@ -16,8 +16,8 @@ public class OrderVO {
     private String oid;
     private String ophone;
     private String omemo;
-    private String oused_mileage;
-    private String oorigin_price;
+    private Integer oused_mileage;
+    private Integer oorigin_price;
     private Integer oprice;
     private String ostatus;
     private Date odate;

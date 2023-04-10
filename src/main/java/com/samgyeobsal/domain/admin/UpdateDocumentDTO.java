@@ -12,7 +12,12 @@ public class UpdateDocumentDTO {
     @Schema(title = "펀딩서류 합격 여부", required = true)
     private Boolean isPass;
 
+    private String additionalStatus;
+
     public String getStatus() {
+        if(this.additionalStatus != null){
+            return this.additionalStatus;
+        }
         return isPass ? "FUNDING" : "FAIL";
     }
 }

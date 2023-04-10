@@ -24,4 +24,6 @@ public interface AdminService {
     void promoteFundingToStore(String fid, String memail);
 
     int getReviewCount();
+
+    List<FundingDocumentDTO> getStoreByTid(String tid);
 }

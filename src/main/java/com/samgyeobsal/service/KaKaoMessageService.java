@@ -111,7 +111,8 @@ public class KaKaoMessageService {
             tmp += "}";
             orderItems.add(tmp);
         }
-        int discount = Integer.parseInt(orderVO.getOorigin_price()) - orderVO.getOprice();
+        // Integer 형변환
+        int discount = orderVO.getOorigin_price() - orderVO.getOprice();
         orderItems.add("{\"item\" : \"할인\", \"item_op\" : \""+discount+"원\"}");
 
         HttpHeaders headers = new HttpHeaders();

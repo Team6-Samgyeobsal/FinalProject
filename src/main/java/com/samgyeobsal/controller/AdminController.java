@@ -49,4 +49,10 @@ public class AdminController {
     public String reviewManagement(){
         return "admin/review_manage";
     }
+
+    @GetMapping("/store")
+    public String storeList(){
+        return "admin/store_list";
+    }
+
 }

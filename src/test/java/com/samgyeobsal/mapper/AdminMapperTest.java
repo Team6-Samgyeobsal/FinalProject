@@ -69,4 +69,12 @@ public class AdminMapperTest {
             log.info("categorySale = {}", categorySale);
         }
     }
+
+    @Test
+    void getStoreListByTid(){
+        List<FundingDocumentDTO> storeListByTid = adminMapper.getStoreListByTid("1");
+        for (FundingDocumentDTO fundingDocumentDTO : storeListByTid) {
+            log.info("store = {}", fundingDocumentDTO);
+        }
+    }
 }

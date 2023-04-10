@@ -8,7 +8,7 @@ import java.util.Date;
 public class FundingDocumentDTO {
 
     private String fid;
-    private String store_name;
+    private String fstore_name;
     private String ftitle;
     private Date fdate;
     private String tname;

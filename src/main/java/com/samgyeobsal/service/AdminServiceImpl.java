@@ -72,6 +72,8 @@ public class AdminServiceImpl implements AdminService {
         List<String> orderIdList = orderService.getOrderIdListByFundingId(fid);
         FundingDetailVO store = fundingService.getFundingDetail(fid, "FUNDING");
         adminMapper.updateFundingStatus(fid,"STORE");
+        // 시연을 위함
+        adminMapper.updateFundingCompetition(fid, "season3");
         log.info("store = {}", store);
         for (String oId : orderIdList) {
             try {
@@ -96,5 +98,10 @@ public class AdminServiceImpl implements AdminService {
     @Override
     public int getReviewCount() {
         return adminMapper.getReviewCount();
+    }
+
+    @Override
+    public List<FundingDocumentDTO> getStoreByTid(String tid) {
+        return adminMapper.getStoreListByTid(tid);
     }
 }
