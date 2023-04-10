@@ -71,7 +71,7 @@
       <main class="account-intro-login">
         <div class="user-sign-container">
           <div class="wz container form-container form-login">
-            <h2 class="wz text display2">로그인</h2>
+            <h2 class="wz text display2" th:text="#{login}">로그인</h2>
             <form name="frm_login" id="frm_login"  class="wz form" method="post">
               <div class="field">
                 <div class="wz input">
@@ -107,7 +107,7 @@
                 type="button"
                 id="btnLogin"
                 class="wz button primary block submit-button"
-                >
+                 th:text="#{login}">
                 로그인
               </button>
             </form>
@@ -128,7 +128,7 @@
                           aria-hidden="true">
                           <path
                             d="M16 4.64c-6.96 0-12.64 4.48-12.64 10.08 0 3.52 2.32 6.64 5.76 8.48l-.96 4.96 5.44-3.6 2.4.16c6.96 0 12.64-4.48 12.64-10.08S22.96 4.56 16 4.64z"></path></svg
-                        >구글로 시작하기</span
+                    ><span th:text="#{google}">구글로 시작하기</span></span
                       ></span
                     ></button>
                   <button
@@ -145,7 +145,7 @@
                             aria-hidden="true">
                           <path
                                   d="M16 4.64c-6.96 0-12.64 4.48-12.64 10.08 0 3.52 2.32 6.64 5.76 8.48l-.96 4.96 5.44-3.6 2.4.16c6.96 0 12.64-4.48 12.64-10.08S22.96 4.56 16 4.64z"></path></svg
-                    >카카오로 시작하기</span
+                    ><span th:text="#{kakao}">카카오로 시작하기</span></span
                     ></span
                     ></button>
                 </div>
@@ -153,11 +153,11 @@
             </div>
             <div class="bottom-message">
               <p>
-                아직 와디즈 계정이 없나요?<a
+                [[#{loginQuestion}]]<a
                   href="/web/account/registIntro"
                   data-return-url=""
                   data-event="iam.signin.goto.signup"
-                  >회원가입</a>
+                  th:text="#{signUp}">회원가입</a>
               </p>
             </div>
           </div>
@@ -222,6 +222,40 @@
         })
         // $('#frm_login').submit();
       })
+      function getLocaleFromCookie() {
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+          const cookie = cookies[i].trim();
+          if (cookie.startsWith('locale=')) {
+            return cookie.substring(7);
+          }
+        }
+        return null;
+      }
+
+      const locale = getLocaleFromCookie();
+      console.log('locale:', locale);
+      // 쿠키에서 언어 선택 로드
+
+      let lang = locale == null ? 'ko' : locale;
+
+
+      // 선택된 언어로 select 박스 변경
+      $('.TranslateSelect').val(lang);
+      $('.TranslateSelect').on('change', function () {
+        console.log('변경')
+        let lang = $('.TranslateSelect').val();
+        let url = window.location.href;
+        let regex = /(\?|&)lang=[^&]+(&|$)/g;
+        url = url.replace(regex, '$1').replace(/(\?|&)$/, '');
+        if (url.indexOf('?') === -1) {
+          url += '?';
+        } else {
+          url += '&';
+        }
+        url += 'lang=' + lang;
+        window.location.href = url;
+      });
     })
 
   </script>

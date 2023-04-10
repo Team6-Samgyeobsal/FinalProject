@@ -9,7 +9,8 @@
         nvl(totalprice,0) as totalprice,
         nvl(totalemail,0) as totalemail,
         fthumb,
-        nvl(fstore_score,0) as fstore_score
+        nvl(fstore_score,0) as fstore_score,
+        faddress
         from funding f
         left join (select f.fid,
                           sum(oitotalprice) as totalprice

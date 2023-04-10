@@ -19,6 +19,7 @@ public class SearchVO {
     private String tname;
     private double fscore;
     private int min_price;
+    private String faddress;
 
     public String getFstatusKo(){
         switch (this.fstatus) {
