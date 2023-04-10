@@ -306,7 +306,7 @@
                         })
 
                         $(window).scroll(function() {
-                            if ($(window).scrollTop() + $(window).height() >= $(document).height()-100) {
+                            if ($(window).scrollTop() + $(window).height() >= $(document).height()-10) {
                                 console.log('다음 페이지');
                                 page++
                                 getList(type,place,sort,page);

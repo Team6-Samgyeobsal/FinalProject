@@ -337,8 +337,6 @@
         tabindex="0"
         style="position: absolute; opacity: 0"></div>
 
-<div class="ReactModalPortal"></div>
-
 <script th:inline="javascript">
 
     var urlParams = new URLSearchParams(window.location.search);
@@ -453,11 +451,16 @@
     }
 </script>
 
-<div class="ReactModalPortal" style="display:none;">
-    <div class="ReactModal__Overlay ReactModal__Overlay--after-open ConfirmModal_overlay__2vouq waffle__modal__overlay CommunityCommentWriteForm_overlay__2KrJn waffle__modal__overlay"
-         style="background-color: rgba(0, 0, 0, 0.2);">
+<div class="ReactModalPortal" style="display:none; ">
         <div class="ReactModal__Content ReactModal__Content--after-open ConfirmModal_confirmModal__2-l3c ConfirmModal_sizeLg__1CEh6 CommunityCommentWriteForm_container__3q80P"
-             tabindex="-1" role="dialog" aria-modal="true">
+             tabindex="-1" role="dialog" aria-modal="true" style="    display: inline-flex;
+    position: fixed;
+    top: 70px;
+    right: 0;
+    bottom: 0;
+    justify-content: right;
+    z-index: 9998;
+    overflow: hidden;">
             <div class="ConfirmModal_header__2yOEU">
                 <div class="ConfirmModal_closeIconRoot__2whkj">
                     <button class="ConfirmModal_closeIconWrapper__2-lWO">
@@ -533,7 +536,7 @@
                 </div>
             </div>
         </div>
-    </div>
+
 </div>
 
 <script>
@@ -546,7 +549,7 @@
 
         $('.Button_button__mRXZC.Button_secondary__20rLg.Button_contained__k9pMW').click(function () {
             console.log($('.Input_input__2kAAL').val());
-            $('.ReactModalPortal').show();
+            $('.ReactModalPortal').toggle();
         })
         $('.ConfirmModal_closeIconWrapper__2-lWO,  #cancelReview').click(function () {
             $('.ReactModalPortal').hide();

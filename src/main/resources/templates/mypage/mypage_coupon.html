@@ -167,11 +167,11 @@
         expandI.removeClass('expand-less').addClass('expand-more');
       }
     })
-
+    $('.ListContainer_container__360Ty').html('');
     getCouponList(used,page);
 
     function getCouponList(used,page) {
-      $('.ListContainer_container__360Ty').html('');
+
       $.ajax({
         url: '/api/coupon/mypage',
         type: "get",
@@ -275,6 +275,7 @@
       $('.CouponHeader_link__1-ZCz ').removeClass('CouponHeader_active__343sL');
       $(this).addClass('CouponHeader_active__343sL');
       used=$(this).data('used');
+      $('.ListContainer_container__360Ty').html('');
       getCouponList(used,page);
     })
     function couponDate(d){
