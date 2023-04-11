@@ -20,7 +20,7 @@
 </select>
 
     <select id="getSalesList" resultMap="util.queueMap">
-        select mname,q.qid,qdate,f.fid,fstore_name,o.oid,fptitle,fp.fpid
+        select mname,q.qid,qdate,f.fid,fstore_name,o.oid,fptitle,fp.fpid,oprice
         from queue qu
                  join qr_code q on qu.qid=q.qid
                  join orders o on q.oid=o.oid

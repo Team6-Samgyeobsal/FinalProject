@@ -17,5 +17,6 @@ public class QueueVO {
     private Date qdate;
     private String fstore_name;
     private String oid;
+    private Integer oprice;
     private List<QueueDetailVO> list;
 }
