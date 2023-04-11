@@ -46,6 +46,7 @@
         <typeAlias type="com.samgyeobsal.domain.coupon.IssueCouponVO" alias="issueCoupon"/>
         <typeAlias type="com.samgyeobsal.domain.queue.QueueVO" alias="queue"/>
         <typeAlias type="com.samgyeobsal.domain.search.SearchVO" alias="search"/>
+        <typeAlias type="com.samgyeobsal.domain.queue.QueueDetailVO" alias="queueDetail"/>
     </typeAliases>
 
 </configuration>

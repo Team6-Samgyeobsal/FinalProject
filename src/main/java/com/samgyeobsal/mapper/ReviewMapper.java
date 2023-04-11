@@ -13,9 +13,8 @@ public interface ReviewMapper {
 
     boolean isAlreadyExistReview(String rtype, String memail ,String fid);
 
-    int updateFundingScore();
 
-    int updateStoreScore();
+    int updateScore();
 
     int deleteReview(String memail);
 
