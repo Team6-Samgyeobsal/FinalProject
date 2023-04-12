@@ -6,24 +6,12 @@
     <meta
       name="viewport"
       content="width=device-width,initial-scale=1,shrink-to-fit=no,user-scalable=no,viewport-fit=cover" />
-    <meta
-      name="description"
-      content="테크, 패션, 푸드, 뷰티, 홈리빙까지. 와디즈 펀딩으로 매일 새로운 일상을 발견하고, 와디즈 스토어에서 새로운 쇼핑을 만나보세요." />
-    <title>와디즈 - 나의 펀딩현황</title>
+
+    <title>더쉐프 주문정보</title>
 
     <link
-      rel="shortcut icon"
-      href="https://static.wadiz.kr/assets/icon/favicon.ico" />
-    <link
-      rel="icon"
-      href="https://static.wadiz.kr/assets/icon/favicon-16x16.png"
-      sizes="16x16"
-      type="image/png" />
-    <link
-      rel="icon"
-      href="https://static.wadiz.kr/assets/icon/favicon-32x32.png"
-      sizes="32x32"
-      type="image/png" />
+            rel="shortcut icon"
+            href="/images/favicon.ico" />
 
     <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
 
@@ -32,7 +20,6 @@
             rel="stylesheet"
             href="/import/css/main.ab4e33bf.css"
     />
-
 
 
     <link
@@ -92,14 +79,7 @@
               <div
                 class="project-detail form-wrap"
                 id="landing-myreward-purchase">
-                <div
-                  id="myreward-purchase-detail"
-                  data-campaign-id="190459"
-                  data-backing-payment-id="9851346"
-                  data-maker-name="제이앤와이푸드"
-                  data-maker-id="4145999207"
-                  data-referer="https://www.wadiz.kr/web/mywadiz/participation"
-                  data-param-referer="">
+                <div>
                   <div>
                     <div class="PurchaseInfoContainer_container__1uMSh">
                       <p class="PurchaseInfoContainer_cate__1QTet" th:text="${order.ctname}">
@@ -107,8 +87,8 @@
                       </p>
                       <p class="PurchaseInfoContainer_status__205il">
                         <i class="PurchaseInfoContainer_icon__3cTu1"></i>
-                        <span th:if="${#strings.equals(order.fstatus,'FUNDING')}">진행중</span>
-                        <span th:unless="${#strings.equals(order.fstatus,'FUNDING')}">입점중</span>
+                        <span th:if="${#strings.equals(order.fstatus,'FUNDING')}">FUNDING</span>
+                        <span th:unless="${#strings.equals(order.fstatus,'FUNDING')}">STORE</span>
                       </p>
                       <a th:href="|/web/${#strings.equals(order.fstatus,'FUNDING')?'funding':'store'}/${order.getOrders().get(0).getFid()}|"
                         target="_blank"
@@ -164,7 +144,7 @@
                           </div>
                           <div th:if="${#strings.equals(order.getFstatus(),'FUNDING')}" class="FundingRewardInfo_info__ja3-c">
                             결제 예약 취소는 프로젝트 종료일까지
-                            가능합니다.<br />리워드 종류 및 수량 변경은
+                            가능합니다.<br />상품 종류 및 수량 변경은
                             불가하며, 취소 후 재 펀딩해야 합니다.
                           </div>
                         </div>
@@ -172,7 +152,7 @@
                     </div>
                     <div class="PurchaseStatus_container__ux-k0">
                       <h2 class="PurchaseStatus_rewardInfo__2N7jO">
-                        리워드 정보
+                        상품 정보
                       </h2>
                       <div class="PurchaseStatusItemContainer_container__3Zv4D"
                         th:each="o : ${order.getOrders()}">
@@ -190,7 +170,7 @@
                             class="Divider_divider__1CIPR Divider_horizontal__29Gjw Divider_lightBG__1vKyf Divider_caption2__3jCC2" />
                         </div>
                         <div class="PurchaseStatusItemContainer_detail__2q2l_">
-                          <p><span th:text="${o.fpprice * o.amount}">amount</span>원 / <span th:text="${o.amount}">count</span>개</p>
+                          <p><span th:text="${#numbers.formatInteger(o.fpprice * o.amount,3,'COMMA')}">amount</span>원 / <span th:text="${o.amount}">count</span>개</p>
                         </div>
                       </div>
                     </div>
@@ -199,23 +179,23 @@
                         <div class="FundingPayment_title__2qp8l">결제 내역</div>
                         <ul>
                           <li class="FundingPayment_list__1ayI4">
-                            <p>리워드 금액</p>
-                            <p><span th:text="${order.oprice}"></span>원</p>
+                            <p>상품 금액</p>
+                            <p th:text="${#numbers.formatInteger(order.oorigin_price,3,'COMMA')+'원'}"></p>
                           </li>
                           <li class="FundingPayment_list__1ayI4">
                             <p>쿠폰 차감금액</p>
-                            <p>- 0원</p>
+                            <p th:text="${'-'+ #numbers.formatInteger((order.oorigin_price - order.oprice - order.oused_mileage),3,'COMMA')+'원'}"></p>
                           </li>
                           <li class="FundingPayment_list__1ayI4">
-                            <p>포인트 차감금액</p>
-                            <p>- 0원</p>
+                            <p>마일리지 차감금액</p>
+                            <p th:text="${'-'+ #numbers.formatInteger(order.oused_mileage,3,'COMMA')+'원'}"></p>
                           </li>
                           <hr
                             class="Divider_divider__1CIPR Divider_horizontal__29Gjw Divider_lightBG__1vKyf Divider_spacing5__37PiC Divider_caption2__3jCC2" />
                           <li
                             class="FundingPayment_list__1ayI4 FundingPayment_bold__BfCej">
                             <p>최종 결제 금액</p>
-                            <p><span th:text="${order.oprice}"></span>원</p>
+                            <p th:text="${#numbers.formatInteger(order.oprice,3,'COMMA')+'원'}"></p>
                           </li>
                         </ul>
                       </div>
@@ -238,26 +218,11 @@
                       <div>
                             <dl>
                               <dt>결제방법</dt>
-                              <dd>신용(체크)카드</dd>
-                            </dl>
-                            <dl>
-                              <dt>카드번호</dt>
-                              <dd>************7081</dd>
-                            </dl>
-                            <dl>
-                              <dt>할부기간</dt>
-                              <dd>일시불</dd>
+                              <dd>무통장 입금</dd>
                             </dl>
                           </div>
                         </div>
                       </div>
-                    </div>
-
-                    <div class="box-info">
-                      <p>
-                        결제 정보 및 할부 변경은 펀딩 결제 예정일
-                        <strong>2023.03.20 16시 30분</strong> 까지 가능합니다.
-                      </p>
                     </div>
                   </div>
                   <!--// 결제 정보 -->

@@ -7,51 +7,19 @@
           name="viewport"
           content="width=device-width,initial-scale=1,shrink-to-fit=no,user-scalable=no,viewport-fit=cover" />
 
-  <title>결제 예약</title>
   <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
   <script src="/js/alert.js"></script>
   <script src="https://js.tosspayments.com/v1/payment"></script>
+  <title>더쉐프 예약</title>
   <link
           rel="shortcut icon"
-          href="https://static.wadiz.kr/assets/icon/favicon.ico" />
-  <link
-          rel="icon"
-          href="https://static.wadiz.kr/assets/icon/favicon-16x16.png"
-          sizes="16x16"
-          type="image/png" />
-  <link
-          rel="icon"
-          href="https://static.wadiz.kr/assets/icon/favicon-32x32.png"
-          sizes="32x32"
-          type="image/png" />
-  <meta charset="utf-8" />
-  <meta http-equiv="x-ua-compatible" content="ie=edge" />
-  <meta
-          name="viewport"
-          content="width=device-width,initial-scale=1,shrink-to-fit=no,user-scalable=no,viewport-fit=cover" />
-  <meta
-          name="description"
-          content="테크, 패션, 푸드, 뷰티, 홈리빙까지. 와디즈 펀딩으로 매일 새로운 일상을 발견하고, 와디즈 스토어에서 새로운 쇼핑을 만나보세요." />
-  <title>결제 예약</title>
+          href="/images/favicon.ico" />
   <link
           rel="stylesheet"
           href="/import/css/main.42cef079.css"
   />
- <script src="https://js.tosspayments.com/v1/payment"></script>
   <script src="/js/alert.js"></script>
-  <link
-          rel="shortcut icon"
-          href="https://static.wadiz.kr/assets/icon/favicon.ico" />
-  <link
-          rel="icon"
-          href="https://static.wadiz.kr/assets/icon/favicon-16x16.png"
-          sizes="16x16"
-          type="image/png" />
-  <link
-          rel="icon"
-          href="https://static.wadiz.kr/assets/icon/favicon-32x32.png"
-          sizes="32x32"
-          type="image/png" />
+
 
   <link
           rel="stylesheet"
@@ -72,11 +40,6 @@
   <script
           type="text/javascript"
           src="/import/js/wCommon.js"></script>
-
-  <script
-          type="text/javascript"
-          src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-
 
   <link
           rel="stylesheet"
@@ -343,39 +306,10 @@
                             class="Radio_icon__gDAhN"></span
                     ><span class="Radio_label__3LIYq"
                     >토스 간편결제</span
-                    ></label
-                    ><span
-                          class="Badge_container__16KN_ Badge_visible__2jFR_ SimplePayPurchase_badge__3NIVz"
-                  ><span
-                          class="Badge_badge__23sNq Badge_label__1ER2E Badge_md__1aw8X Badge_secondary__4v3LL Badge_circular__2WqPQ Badge_tertiary__34CN6"
-                  >할부 가능</span
-                  ></span
-                  >
-                  </div>
-                </div>
-                <div class="SimplePayPurchase_payType__277Y0">
-                  <div class="SimplePayPurchase_radioContainer__3LKI_">
-                    <label
-                            class="Radio_radio__1S1J3 Radio_md__36Y-U Radio_labeled__1V1EY SimplePayPurchase_radio__3vJtq"
-                    ><input type="radio" name="radio" value="npay" /><span
-                            class="Radio_icon__gDAhN"></span
-                    ><span class="Radio_label__3LIYq"
-                    >네이버페이</span
-                    ></label
-                    ><span
-                          class="Badge_container__16KN_ Badge_visible__2jFR_ SimplePayPurchase_badge__3NIVz"
-                  ><span
-                          class="Badge_badge__23sNq Badge_label__1ER2E Badge_md__1aw8X Badge_primary__2cRAc Badge_circular__2WqPQ Badge_tertiary__34CN6"
-                  >1% 적립</span
-                  ></span
-                  >
+                    ></label>
                   </div>
                 </div>
               </div>
-              <input
-                      type="hidden"
-                      name="has-simplepay-info"
-                      value="false" />
             </div>
           </div>
 
@@ -1282,7 +1216,7 @@
           let phone = user['mphone'];
           let email = user['memail'];
           let amount = [[${order.totalOriginPrice}]]
-          let orderId = self.crypto.randomUUID();
+          let orderId = window.crypto.randomUUID();
           let orderName = orderList[0]['fptitle'];
           if(orderList.length > 1) orderName +=` 외 ${orderList.length-1}건`
 

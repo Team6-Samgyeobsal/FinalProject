@@ -1,8 +1,9 @@
 <html lang="ko" class="scroll-half-screen scroll-top">
 <head>
-  <title>
-    [[${notice.ntitle}]]
-  </title>
+  <title>더쉐프 공지사항</title>
+  <link
+          rel="shortcut icon"
+          href="/images/favicon.ico" />
 
   <script src="https://code.jquery.com/jquery-3.6.3.js"
           integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
@@ -67,7 +68,7 @@
               <em
                       class="user-img"
                       style="
-                      background-image: url(https://static.wadiz.kr/assets/icon/apple-touch-icon.png);
+                      background-image: url(/images/icon_location.png);
                     "
               ></em>
               <span class="user-info">더쉐프 <br /><span th:text="${#dates.format(notice.ndate, 'yyyy.MM.dd')}"></span></span>
@@ -119,7 +120,6 @@
               eid:eid
             }),
             success: function (data, status) {
-              alert("발급되었습니다");
               showConfirm("쿠폰이 발급되었습니다","마이페이지 - 쿠폰함으로 가시겠습니까?")
 
 

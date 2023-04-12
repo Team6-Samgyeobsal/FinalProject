@@ -9,10 +9,7 @@
     <meta
       name="viewport"
       content="width=device-width,initial-scale=1,shrink-to-fit=no,user-scalable=no,viewport-fit=cover" />
-    <meta
-      name="description"
-      content="테크, 패션, 푸드, 뷰티, 홈리빙까지. 와디즈 펀딩으로 매일 새로운 일상을 발견하고, 와디즈 스토어에서 새로운 쇼핑을 만나보세요." />
-    <title>와디즈 로그인</title>
+    <title>더쉐프 로그인</title>
     <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
      <script src="/js/toast.js"></script>
@@ -23,18 +20,7 @@
     <link href="/css/account/login.css" />
     <link
       rel="shortcut icon"
-      href="https://static.wadiz.kr/assets/icon/favicon.ico" />
-    <link
-      rel="icon"
-      href="https://static.wadiz.kr/assets/icon/favicon-16x16.png"
-      sizes="16x16"
-      type="image/png" />
-    <link
-      rel="icon"
-      href="https://static.wadiz.kr/assets/icon/favicon-32x32.png"
-      sizes="32x32"
-      type="image/png" />
-
+      href="/images/favicon.ico" />
 
     <link
       rel="stylesheet"
@@ -114,23 +100,18 @@
             <div id="iam-account-app">
               <div>
                 <div>
-                  <button
+                  <button style="background-color: white; border-color: gray"
                     id="googleBtn"
                     class="Button_button__2_6-I Button_lg__2Kv4b Button_block__39TGk SNSButtonList_kakaoButton__2lTDs SNSButtonList_spacer__38ac5"
                     type="button">
-                    <span
-                      ><span class="Button_children__weH0H"
-                        ><svg
-                          viewBox="0 0 32 32"
-                          focusable="false"
-                          role="presentation"
-                          class="withIcon_icon__1YH1P SNSButtonList_kakaoIcon__1s6gw"
-                          aria-hidden="true">
-                          <path
-                            d="M16 4.64c-6.96 0-12.64 4.48-12.64 10.08 0 3.52 2.32 6.64 5.76 8.48l-.96 4.96 5.44-3.6 2.4.16c6.96 0 12.64-4.48 12.64-10.08S22.96 4.56 16 4.64z"></path></svg
-                    ><span th:text="#{google}">구글로 시작하기</span></span
-                      ></span
-                    ></button>
+                    <span class="Button_children__weH0H" style="width: 100%">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
+                        <defs><path id="a" d="M0 0h348v46H0z"></path></defs>
+                        <g fill="none" fill-rule="evenodd"><g transform="translate(-16 -13)"><use></use><path stroke="#DADCE0" d="M-.5-.5h349v47H-.5z"></path></g><path fill="#4285F4" d="M18.64 10.205c0-.639-.057-1.252-.164-1.841H10v3.481h4.844a4.14 4.14 0 0 1-1.796 2.716v2.259h2.908c1.702-1.567 2.684-3.875 2.684-6.615z"></path><path fill="#34A853" d="M10 19c2.43 0 4.467-.806 5.956-2.18l-2.908-2.259c-.806.54-1.837.86-3.048.86-2.344 0-4.328-1.584-5.036-3.711H1.957v2.332A8.997 8.997 0 0 0 10 19z"></path><path fill="#FBBC05" d="M4.964 11.71A5.41 5.41 0 0 1 4.682 10c0-.593.102-1.17.282-1.71V5.958H1.957A8.996 8.996 0 0 0 1 10c0 1.452.348 2.827.957 4.042l3.007-2.332z"></path><path fill="#EA4335" d="M10 4.58c1.321 0 2.508.454 3.44 1.345l2.582-2.58C14.463 1.891 12.426 1 10 1a8.997 8.997 0 0 0-8.043 4.958L4.964 8.29C5.672 6.163 7.656 4.58 10 4.58z"></path><path d="M0 0h20v20H0z"></path></g>
+                      </svg>
+                      <div style="width: 100%" th:text="#{google}">구글로 시작하기</div>
+                    </span>
+                  </button>
                   <button
                           id="kakaoBtn"
                           class="Button_button__2_6-I Button_lg__2Kv4b Button_block__39TGk SNSButtonList_kakaoButton__2lTDs SNSButtonList_spacer__38ac5"
@@ -144,16 +125,16 @@
                             class="withIcon_icon__1YH1P SNSButtonList_kakaoIcon__1s6gw"
                             aria-hidden="true">
                           <path
-                                  d="M16 4.64c-6.96 0-12.64 4.48-12.64 10.08 0 3.52 2.32 6.64 5.76 8.48l-.96 4.96 5.44-3.6 2.4.16c6.96 0 12.64-4.48 12.64-10.08S22.96 4.56 16 4.64z"></path></svg
-                    ><span th:text="#{kakao}">카카오로 시작하기</span></span
-                    ></span
-                    ></button>
+                                  d="M16 4.64c-6.96 0-12.64 4.48-12.64 10.08 0 3.52 2.32 6.64 5.76 8.48l-.96 4.96 5.44-3.6 2.4.16c6.96 0 12.64-4.48 12.64-10.08S22.96 4.56 16 4.64z"></path></svg>
+                        <span th:text="#{kakao}">카카오로 시작하기</span></span>
+                    </span>
+                  </button>
                 </div>
               </div>
             </div>
             <div class="bottom-message">
               <p>
-                [[#{loginQuestion}]]<a
+                  [[#{loginQuestion}]]<a
                   href="/web/account/registIntro"
                   data-return-url=""
                   data-event="iam.signin.goto.signup"
