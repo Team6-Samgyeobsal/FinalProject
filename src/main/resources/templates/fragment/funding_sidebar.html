@@ -4,15 +4,14 @@
   <div class="AppSidebarRewardProjectInfo_container__2Ykhp AppSidebarRewardProjectInfo_defaultBackgroundImage__1rWVS">
 
     <a class="AppSidebarRewardProjectInfo_projectName__1Hf5o" href="/web/campaign/detail/194455?preview=Y" target="_blank" rel="nofollow noopener noreferrer"><span th:text="${#authentication.principal.member.mname}">woowang789</span>의<br>멋진 프로젝트</a><button class="Button_button__1e2A2 Button_info__Nu98q Button_text__3KyLl Button_md__1FRMG Button_endIcon__3ZOY3 AppSidebarRewardProjectInfo_projectNumberButton__1izF_" type="button">
-                <span><span class="Button_children__q9VCZ">프로젝트 번호 <span th:text="${fundingId}">FID</span></span><svg viewBox="0 0 32 32" focusable="false" role="presentation" class="withIcon_icon__3lrgp Button_icon__1qsE3 AppSidebarRewardProjectInfo_expandIcon__2oHiN" aria-hidden="true" style="width: 20px; height: 20px">
-                    <path d="M16 22.4L5.6 12l1.12-1.12L16 20.16l9.28-9.28L26.4 12 16 22.4z"></path></svg></span>
+                <span><span class="Button_children__q9VCZ">프로젝트 번호 <span th:text="${fundingId}">FID</span></span></span>
   </button>
   </div>
   <nav class="AppSidebarMenuList_container__199gJ">
     <div class="AppSidebarMenuList_margin__3qjoc"></div>
     <ul>
       <li>
-        <a aria-current="page" class="AppSidebarMenuList_navLink__1FytL AppSidebarMenuList_active__tbFuL" href="/web/mypage/funding/1" th:href="|/web/mypage/maker/funding/${fundingId}|">프로젝트 관리<i class="icon-chevron-left AppSidebarMenuList_chevronIcon__2YV-z AppSidebarMenuList_open__bjhTR" aria-hidden="true"></i></a>
+        <a aria-current="page" class="AppSidebarMenuList_navLink__1FytL AppSidebarMenuList_active__tbFuL" href="/web/mypage/funding/1" th:href="|/web/mypage/maker/funding/${fundingId}|">프로젝트 관리</a>
         <ul class="AppSidebarRewardSubList_container__2zCmr">
           <a class="AppSidebarMenuList_navLink__1FytL AppSidebarRewardSubList_subMenu__iqWsa" href="/web/mypage/funding/1/baseinfo" th:href="|/web/mypage/maker/funding/${fundingId}/baseInfo|">기본 정보</a>
           <li>
@@ -24,18 +23,6 @@
             <a class="AppSidebarMenuList_navLink__1FytL AppSidebarRewardSubList_subMenu__iqWsa" href="/web/mypage/funding/1/reward" th:href="|/web/mypage/maker/funding/${fundingId}/reward|">상품 설계</a>
           </li>
         </ul>
-      </li>
-      <li>
-        <a class="AppSidebarMenuList_navLink__1FytL AppSidebarMenuList_disabled__3yitR" href="/studio/reward/194455/dashboard/funding-report">프로젝트 현황<i class="icon-lock-o AppSidebarMenuList_lockIcon__3H-rC" aria-hidden="true"></i>
-          <div class="AppSidebarMenuList_helpFloating__3uu8D">
-            프로젝트 공개 후 확인할 수 있어요.
-          </div></a>
-      </li>
-      <li>
-        <a class="AppSidebarMenuList_navLink__1FytL AppSidebarMenuList_disabled__3yitR" href="/studio/reward/194455/dashboard/payment-report">결제 현황<i class="icon-lock-o AppSidebarMenuList_lockIcon__3H-rC" aria-hidden="true"></i>
-          <div class="AppSidebarMenuList_helpFloating__3uu8D">
-            프로젝트 종료 후 확인할 수 있어요.
-          </div></a>
       </li>
     </ul>
   </nav>

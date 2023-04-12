@@ -2,9 +2,7 @@
 <meta charset="utf-8">
 <head>
 
-    <title>리워드 선택</title>
-
-
+    <title>더쉐프 상품선택</title>
     <link
             rel="stylesheet"
             href="/import/css/main.42cef079.css"
@@ -19,18 +17,7 @@
 
     <link
             rel="shortcut icon"
-            href="https://static.wadiz.kr/assets/icon/favicon.ico"/>
-    <link
-            rel="icon"
-            href="https://static.wadiz.kr/assets/icon/favicon-16x16.png"
-            sizes="16x16"
-            type="image/png"/>
-    <link
-            rel="icon"
-            href="https://static.wadiz.kr/assets/icon/favicon-32x32.png"
-            sizes="32x32"
-            type="image/png"/>
-
+            href="/images/favicon.ico" />
 
     <link
             rel="stylesheet"
@@ -39,16 +26,6 @@
     <link
             rel="stylesheet"
             href="/import/css/layout.css"/>
-<!--    <script-->
-<!--            type="text/javascript"-->
-<!--            src="/import/js/vendor.js"></script>-->
-<!--    <script-->
-<!--            type="text/javascript"-->
-<!--            src="/import/js/layout.js"></script>-->
-<!--    <script-->
-<!--            type="text/javascript"-->
-<!--            src="/js/alert.js"></script>-->
-
 
     <meta name="wadiz-app-hidden-header" content="yes"/>
     <!-- E: Common Meta -->
@@ -289,11 +266,6 @@
 
 </div>
 
-<!--<div class="ToastContainer_container__3oKp3" style="display: none">-->
-<!--    <div class="Toast_container__2HAXg Toast_show__3Bg04 Toast_warning__3vj31">-->
-<!--        <div class="Toast_content__4BPXL Toast_warning__3vj31">이미 같은 옵션을 선택했습니다<br>옵션 수량을 추가해 주세요</div>-->
-<!--    </div>-->
-<!--</div>-->
 <style>
     .ab-iam-root.v3 {
         z-index: 9999;
@@ -310,7 +282,7 @@
         $('.RewardProductItem_container__1wZBW').each(function () {
             if ($(this).attr('id') === fpid) {
                 $(this).find('input[type="checkbox"]').prop('checked', true);
-                // $(this).find('.RewardProductItem_option__3BtOP').show();
+                $(this).find('.RewardProductItem_option__3BtOP').show();
             } else {
                 $(this).find('input[type="checkbox"]').prop('checked', false);
             }
