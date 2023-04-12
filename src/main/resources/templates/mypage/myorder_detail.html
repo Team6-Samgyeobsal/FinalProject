@@ -119,18 +119,18 @@
                               결제 상태
                             </p>
                             <p class="FundingRewardInfo_status__1lR2q">
-                              <span th:if="${order.ostatus == 'WAITING'}">결제 대기</span>
-                              <span th:if="${order.ostatus != 'WAITING'}">결제 완료</span>
+                              <span th:if="${#strings.equals(order.ostatus,'WAITING')}">결제 대기</span>
+                              <span th:if="${#strings.equals(order.ostatus,'COMPLETE')}">결제 완료</span>
+                              <span th:if="${#strings.equals(order.ostatus,'CANCEL')}">결제 취소</span>
                             </p>
                           </div>
-                          <div th:if="${#strings.equals(order.getFstatus(),'FUNDING')}" class="FundingRewardInfo_cancelBtn__1y1oz">
-                            <button class="wz button" color="gray">
+                          <div th:if="${#strings.equals(order.getFstatus(),'FUNDING') && !#strings.equals(order.getOstatus(),'CANCEL')}" class="FundingRewardInfo_cancelBtn__1y1oz">
+                            <button class="wz button order_cancel" color="gray">
                               결제 취소
                             </button>
                           </div>
                           <div th:if="${#strings.equals(order.getFstatus(),'STORE') && order.qrused_date == null}"
                                class="FundingRewardInfo_cancelBtn__1y1oz qr_area" style="display: flex; justify-content: center" >
-
                           </div>
                           <div th:if="${#strings.equals(order.getFstatus(),'STORE') && order.qrused_date != null && !isAlreadyExistReview}" class="FundingRewardInfo_cancelBtn__1y1oz">
                             <button class="wz button writeStoreReview" color="gray">
@@ -142,7 +142,7 @@
                               후기 작성 완료
                             </button>
                           </div>
-                          <div th:if="${#strings.equals(order.getFstatus(),'FUNDING')}" class="FundingRewardInfo_info__ja3-c">
+                          <div th:if="${#strings.equals(order.getFstatus(),'FUNDING') && !#strings.equals(order.getOstatus(),'CANCEL')}" class="FundingRewardInfo_info__ja3-c">
                             결제 예약 취소는 프로젝트 종료일까지
                             가능합니다.<br />상품 종류 및 수량 변경은
                             불가하며, 취소 후 재 펀딩해야 합니다.
@@ -180,22 +180,22 @@
                         <ul>
                           <li class="FundingPayment_list__1ayI4">
                             <p>상품 금액</p>
-                            <p th:text="${#numbers.formatInteger(order.oorigin_price,3,'COMMA')+'원'}"></p>
+                            <p th:text="${#numbers.formatInteger(order.oorigin_price,1,'COMMA')+'원'}"></p>
                           </li>
                           <li class="FundingPayment_list__1ayI4">
                             <p>쿠폰 차감금액</p>
-                            <p th:text="${'-'+ #numbers.formatInteger((order.oorigin_price - order.oprice - order.oused_mileage),3,'COMMA')+'원'}"></p>
+                            <p th:text="${'-'+ #numbers.formatInteger((order.oorigin_price - order.oprice - order.oused_mileage),1,'COMMA')+'원'}"></p>
                           </li>
                           <li class="FundingPayment_list__1ayI4">
                             <p>마일리지 차감금액</p>
-                            <p th:text="${'-'+ #numbers.formatInteger(order.oused_mileage,3,'COMMA')+'원'}"></p>
+                            <p th:text="${'-'+ #numbers.formatInteger(order.oused_mileage,1,'COMMA')+'원'}"></p>
                           </li>
                           <hr
                             class="Divider_divider__1CIPR Divider_horizontal__29Gjw Divider_lightBG__1vKyf Divider_spacing5__37PiC Divider_caption2__3jCC2" />
                           <li
                             class="FundingPayment_list__1ayI4 FundingPayment_bold__BfCej">
                             <p>최종 결제 금액</p>
-                            <p th:text="${#numbers.formatInteger(order.oprice,3,'COMMA')+'원'}"></p>
+                            <p th:text="${#numbers.formatInteger(order.oprice,1,'COMMA')+'원'}"></p>
                           </li>
                         </ul>
                       </div>
@@ -363,6 +363,19 @@
           }
         })
       }
+
+      $(document).on('click', '.order_cancel', function (e) {
+        e.preventDefault();
+        console.log('ttt');
+        $.ajax({
+          url:`/api/order/${orderId}/cancel`,
+          type: 'post',
+          success: function(data){
+            console.log(data);
+            location.reload();
+          }
+        })
+      });
 
       $(document).ready(function () {
           getQrCode();

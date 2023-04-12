@@ -77,7 +77,7 @@
     </select>
 
     <select id="findOrderByOrderId" resultMap="util.orderListResultMap">
-        select o.oid, o.ophone, o.omemo, o.oused_mileage, o.oorigin_price,
+        select o.oid, o.ophone, o.omemo, NVL(o.oused_mileage,'0') oused_mileage, o.oorigin_price,
                o.ostatus, o.odate, o.oprice,o.memail, o.pmcode, o.qrused_date, o.cpid,
                oi.poid, oi.oicount, oi.oitotalprice,
                po.pooption,po.fpid,

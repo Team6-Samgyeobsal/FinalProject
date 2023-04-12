@@ -118,7 +118,9 @@
             <div sec:authorize="isAuthenticated()" class="web-header-funding-open funding-open">
               <div>
                 <div th:if="${#strings.equals(#authentication.principal.member.mrole,'ROLE_USER')}">
-                  <button aria-label="프로젝트 만들기" class="fundingMakeBtn Button_button__3J1Nv Button_primary__1EZQV Button_md__2iTxL funding-open-button" type="button">
+                  <button
+                          style="margin-top: 0px"
+                          aria-label="프로젝트 만들기" class="fundingMakeBtn Button_button__3J1Nv Button_primary__1EZQV Button_md__2iTxL funding-open-button" type="button">
                     <span>
                       <span class="Button_children__1ZhTo" th:text="#{makeProject}">프로젝트 만들기</span>
                     </span>

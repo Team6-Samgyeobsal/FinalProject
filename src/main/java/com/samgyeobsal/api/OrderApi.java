@@ -48,6 +48,14 @@ public class OrderApi {
         return new ResponseEntity<>(order, HttpStatus.OK);
     }
 
+    @Operation(summary = "특정 주문 취소", description = "주문 아이디에 따라 해당 주문을 취소합니다.")
+    @Parameter(name = "orderId", description = "주문아이디")
+    @PostMapping("/{orderId}/cancel")
+    public ResponseEntity<String> cancelOrder(@PathVariable("orderId") String orderId){
+        orderService.updateOrder("CANCEL", orderId);
+        return new ResponseEntity<>("success", HttpStatus.OK);
+    }
+
     @Operation(summary = "특정 주문의 QR코드 리턴")
     @Parameter(name = "orderId", description = "주문아이디")
     @GetMapping("/{orderId}/qrcode")

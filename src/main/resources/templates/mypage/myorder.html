@@ -89,6 +89,19 @@
       $('.flist').html('');
 
       $(data).each(function (idx, d) {
+        let status = '';
+        switch (d.ostatus){
+          case 'WAITING' :
+            status = '결제 대기';
+            break;
+          case 'COMPLETE' :
+            status = '결제 완료';
+            break;
+          case 'CANCEL':
+            status = '결제 취소';
+            break;
+        }
+
         let template = `
                 <li class="MyFundingList_listItem__2C_bx">
                     <a href="/web/mypage/order/${d.oid}?memail=${memail}"
@@ -112,7 +125,7 @@
                           </p>
                           <p class="MyFundingListItem_fundingInfo__2_DFC">
                             <em class="MyFundingListItem_fundStatus__1t2dq"
-                              >${d.ostatus === 'WAITING'? "결제 대기" : "결제 완료"}</em
+                              >${status}</em
                             >
                           </p>
                           <span class="MyFundingListItem_detail__WKhV2"
