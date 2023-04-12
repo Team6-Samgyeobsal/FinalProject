@@ -105,6 +105,7 @@
       $(this).removeClass().addClass('SearchResultTabs_activeTab__1jn0j');
       fstatus=$(this).data('status');
       $('.SearchResult_cardContainer__1hDo0').html('');
+      isDone = false;
       let page=0;
       getSearch(fstatus,keyword,page);
     })
@@ -180,8 +181,10 @@
           }else {
             data.search.forEach(function (store) {
               let url="";
+              let target=""
               if(fstatus=='END'){
                 url=`https://map.naver.com/v5/search/${store.faddress}`;
+                target=`target="_blank"`;
               }else {
                 url = '/web/' + store.fstatus.toLowerCase() + '/' + store.fid;
               }
@@ -190,7 +193,7 @@
                   class="FundingCard_root__2b-6p FundingCard_search_result_projectCard__11yH5 search_result_list"
                 >
                   <a
-                    href="${url}"
+                    href="${url}" ${target}
                     class="FundingCard_eventContainer__7SI8r"
                     ><div class="FundingCard_projectCard_badge__39GE4"></div>
                     <div class="FundingCard_imgContainer__2npRG">

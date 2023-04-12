@@ -212,4 +212,19 @@
           </if>
     </select>
 
+    <!-- p_funding 프로시저 매핑 -->
+    <select id="p_funding" statementType="CALLABLE">
+        <![CDATA[{CALL p_funding(
+                #{vsort, mode=IN, jdbcType=VARCHAR},
+                #{vtype, mode=IN, jdbcType=VARCHAR},
+                #{vpage, mode=IN, jdbcType=INTEGER},
+                #{vtid, mode=IN, jdbcType=VARCHAR},
+                #{POUT, mode=OUT, jdbcType=CURSOR, javaType=java.sql.ResultSet, resultMap=util.fundingResultMap}
+            )}]]>
+    </select>
+
+
+
+
 </mapper>
+

@@ -10,7 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 @SpringBootTest
@@ -27,6 +29,18 @@ public class FundingMapperTest {
         criteria.setPage(0);
         criteria.setSort("응원댓글순");
         List<FundingVO> list = fundingMapper.getFundingList(criteria);
+        list.forEach(funding -> log.info("funding = {}", funding));
+    }
+    @Test
+    public void getFundingListTest1() {
+        Map<String,Object> map = new HashMap<>();
+        map.put("vsort","0");
+        map.put("vtype","");
+        map.put("vpage","0");
+        map.put("vtid","0");
+         fundingMapper.p_funding(map);
+        log.info(map.toString());
+        List<FundingVO> list = (List<FundingVO>) map.get("POUT");
         list.forEach(funding -> log.info("funding = {}", funding));
     }
     @Test

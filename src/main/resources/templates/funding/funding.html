@@ -278,6 +278,7 @@
                                 console.log(type);
                                 $('.TableLayout_container__1_Ap4').html('');
                                 page=0;
+                                isDone = false;
                                 getList(type,place,sort,page);
                                 $('.ImageTab_tab__3siCY').removeClass('ImageTab_active__BGdXu');
                                 $(this).addClass('ImageTab_active__BGdXu');
@@ -292,6 +293,7 @@
                                 console.log(sort);
                                 $('.TableLayout_container__1_Ap4').html('');
                                 page=0;
+                                isDone = false;
                                 getList(type,place,sort,page);
                             }
 
@@ -306,6 +308,7 @@
                             $('.Main_categoryName__3YilF').text(tPlace);
                             $('.TableLayout_container__1_Ap4').html('');
                             page=0;
+                            isDone = false;
                             getList(type,place,sort,page);
                         })
 

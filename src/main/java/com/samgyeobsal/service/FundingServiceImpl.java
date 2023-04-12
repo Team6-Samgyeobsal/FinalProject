@@ -3,12 +3,16 @@ package com.samgyeobsal.service;
 import com.samgyeobsal.domain.funding.*;
 import com.samgyeobsal.domain.maker.UpdateFundingProductDTO;
 import com.samgyeobsal.mapper.FundingMapper;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
+@Log4j2
 public class FundingServiceImpl implements FundingService{
 
     @Autowired
@@ -47,6 +51,21 @@ public class FundingServiceImpl implements FundingService{
     @Override
     public int getFundingTotalCount(FundingCriteria fundingCriteria) {
         return fundingMapper.getFundingTotalCount(fundingCriteria);
+    }
+
+    @Override
+    public List<FundingVO> p_funding(FundingCriteria fundingCriteria) {
+
+        Map<String, Object> map = new HashMap<>();
+        map.put("vsort",fundingCriteria.getSort());
+        map.put("vtype",fundingCriteria.getType());
+        map.put("vpage",fundingCriteria.getPage());
+        map.put("vtid",fundingCriteria.getTid());
+        fundingMapper.p_funding(map);
+        log.info(map.toString());
+        List<FundingVO> list = (List<FundingVO>) map.get("POUT");
+        log.info("ffcc"+list);
+        return list;
     }
 
 }

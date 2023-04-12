@@ -2,7 +2,9 @@
 <meta charset="utf-8">
 <head>
 
+
     <title>더쉐프 상품선택</title>
+
     <link
             rel="stylesheet"
             href="/import/css/main.42cef079.css"
@@ -12,6 +14,7 @@
         href="/import/css/payments.562cdee9.css"
     />
     <script src="/js/toast.js"></script>
+    <script src="/js/alert.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.3.js"
             integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
 
@@ -36,7 +39,7 @@
     <link
             rel="stylesheet"
             href="/import/css/wpurchase_reward.css"/>
-    <!-- 리워드결제페이지 -->
+    <!-- 상품결제페이지 -->
 
     <link
             rel="stylesheet"
@@ -78,7 +81,7 @@
                 <div class="wpurchase-step">
                     <ol>
                         <li class="active">
-                            <em>리워드<br/>선택</em>
+                            <em>상품<br/>선택</em>
                         </li>
                         <li><em>결제 예약</em></li>
                         <li><em>주문 확인</em></li>
@@ -94,7 +97,7 @@
 
                     <div class="wpurchase-reward">
                         <div class="top-area">
-                            <h3><em>리워드 선택</em></h3>
+                            <h3><em>상품 선택</em></h3>
                         </div>
                         <div
                                 id="reward-product-app"
@@ -278,7 +281,7 @@
 
         const params = new URLSearchParams(window.location.search);
         const fpid = "fpid" + params.get('fpid');
-        //리워드 클릭시 체크박스 체크
+        //상품 클릭시 체크박스 체크
         $('.RewardProductItem_container__1wZBW').each(function () {
             if ($(this).attr('id') === fpid) {
                 $(this).find('input[type="checkbox"]').prop('checked', true);
@@ -444,7 +447,7 @@
             }
             if (plus > 99) {
                 plus = 99;
-                alert('최대 99개까지만 구매할 수 있습니다.');
+                showToast('최대 99개까지만 구매할 수 있습니다.');
             }
             ;
             $(this).prev().val(plus);
@@ -474,11 +477,11 @@
 
         $(document).on('propertychange input', '.amount', function () {
             if ($(this).val() >= 100) {
-                alert('100개 이상 X');
+                showToast('최대 99개까지만 구매할 수 있습니다.');
                 $(this).val(99);
             }
             if (!$.isNumeric($(this).val())){
-                alert('숫자만');
+                showToast('숫자만 가능합니다.');
                 $(this).val(1);
             }
             console.log('변경');
@@ -509,7 +512,7 @@
             if ($('#order-step1').html().length > 1) {
                 $('#order-step1').submit();
             }else {
-                $('.DialogModal_dialogPortal__1rRI2').show();
+                showAlert('최소 1개 이상의 상품을 선택해주세요.');
             }
         })
         $('.Dialog_dialogButtonReverse__1hgC5').click(function (){
@@ -527,7 +530,7 @@
 <!--            <div class="Dialog_dialogWrap__2x9kS">-->
 <!--                <div class="Dialog_dialogBox__yCpT4">-->
 <!--                    <div class="Dialog_dialogTextBox__Cxk45">-->
-<!--                        <div class="Dialog_dialogMessage__TLIV9"><p>최소 1개 이상의 리워드를 선택해주세요.</p></div>-->
+<!--                        <div class="Dialog_dialogMessage__TLIV9"><p>최소 1개 이상의 상품를 선택해주세요.</p></div>-->
 <!--                    </div>-->
 <!--                    <div class="Dialog_dialogButtonArea__3x6Ry">-->
 <!--                        <button type="button"-->
