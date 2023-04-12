@@ -10,13 +10,6 @@
   <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
   <script src="/js/alert.js"></script>
   <script src="https://js.tosspayments.com/v1/payment"></script>
-
-  <meta charset="utf-8" />
-  <meta http-equiv="x-ua-compatible" content="ie=edge" />
-  <meta
-          name="viewport"
-          content="width=device-width,initial-scale=1,shrink-to-fit=no,user-scalable=no,viewport-fit=cover" />
-
   <title>더쉐프 예약</title>
   <link
           rel="shortcut icon"
@@ -25,7 +18,6 @@
           rel="stylesheet"
           href="/import/css/main.42cef079.css"
   />
- <script src="https://js.tosspayments.com/v1/payment"></script>
 
   <link
           rel="stylesheet"
@@ -1202,7 +1194,7 @@
           let phone = user['mphone'];
           let email = user['memail'];
           let amount = [[${order.totalOriginPrice}]]
-          let orderId = self.crypto.randomUUID();
+          let orderId = window.crypto.randomUUID();
           let orderName = orderList[0]['fptitle'];
           if(orderList.length > 1) orderName +=` 외 ${orderList.length-1}건`
 
