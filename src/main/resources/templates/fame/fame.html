@@ -150,7 +150,7 @@
   $(document).ready(function(){
     let page=0;
     let type=0;
-    // let isDone = false;
+    let isDone = false;
 
     getList(type,page);
     $('.ImageTab_tab__3siCY').click(function () {
@@ -160,6 +160,8 @@
         console.log(type);
         $('.CardTable_container__XsdEp').html('');
         page=0;
+        isDone = false;
+
         getList(type,page);
         $('.ImageTab_tab__3siCY').removeClass('ImageTab_active__BGdXu');
         $(this).addClass('ImageTab_active__BGdXu');
@@ -174,7 +176,7 @@
     });
     function getList(type,page){
       console.log("get list");
-      // if(isDone)return;
+      if(isDone)return;
 
       let url = '/api/fame/list';
       $.ajax({
@@ -186,8 +188,8 @@
           page:page
         },
         success: function (data, status) {
-          // if(data.length ==0)
-          //   isDone = true;
+          if(data.length ==0)
+            isDone = true;
           let k="";
           data.forEach(function (fame,index) {
             console.log(fame);

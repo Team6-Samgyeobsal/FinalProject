@@ -29,7 +29,7 @@ public class FundingCriteria {
     private int page;
 
 
-    private String getTid(){
+    public String getTid(){
         if(this.place == null) return null;
         switch (this.place) {
             case "더현대 서울" :

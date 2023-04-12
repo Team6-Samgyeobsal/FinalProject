@@ -80,6 +80,7 @@ public class OrderController {
         model.addAttribute("mileage", eventMapper.findUserMileage(account.getMember().getMemail())); // 마일리지
         model.addAttribute("order", orderService.getOrderList(orderStep1DTO,fundingId));
         model.addAttribute("tossKey", tossKey);
+        model.addAttribute("products",orderService.getProductList(fundingId));
         return "order/order_step2";
     }
 

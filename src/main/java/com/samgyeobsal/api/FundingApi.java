@@ -45,8 +45,8 @@ public class FundingApi {
     @Operation(summary = "조건에 따른 펀딩 리턴", description = "카테고리, 장소, 정렬에 따른 펀딩을 리턴합니다.")
     @GetMapping("/list")
     public ResponseEntity<List<FundingVO>> getFundingList(@ModelAttribute FundingCriteria criteria) {
-        log.info(criteria);
-        List<FundingVO> list= fundingService.getFundingList(criteria);
+        log.info("fundingC"+criteria);
+        List<FundingVO> list= fundingService.p_funding(criteria);
         return new ResponseEntity<>(list, HttpStatus.OK);
     }
 

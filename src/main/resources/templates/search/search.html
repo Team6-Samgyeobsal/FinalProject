@@ -101,6 +101,7 @@
       $(this).removeClass().addClass('SearchResultTabs_activeTab__1jn0j');
       fstatus=$(this).data('status');
       $('.SearchResult_cardContainer__1hDo0').html('');
+      isDone = false;
       let page=0;
       getSearch(fstatus,keyword,page);
     })

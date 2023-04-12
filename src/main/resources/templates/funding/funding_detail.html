@@ -720,6 +720,7 @@
             console.log(sort);
             $('#reviewList').html('');
             page = 0;
+            isDone = false;
             getReview(fid, sort, type, page);
         })
         //무한 스크롤
@@ -1024,6 +1025,7 @@
                 }),
                 success: function (data, status) {
                     $('#reviewList').html('');
+                    isDone = false;
                     getReview(fid, sort, type, page);
                     $('#reviewList').html('');
                     $('.ReactModalPortal').hide();
@@ -1068,6 +1070,7 @@
                     console.log("답글 성공");
                     $('#reviewList').html('');
                     page = 0;
+                    isDone = false;
                     getReview(fid, sort, type, page);
 
 

@@ -38,6 +38,7 @@
           href="/import/css/main.42cef079.css"
   />
  <script src="https://js.tosspayments.com/v1/payment"></script>
+  <script src="/js/alert.js"></script>
   <link
           rel="shortcut icon"
           href="https://static.wadiz.kr/assets/icon/favicon.ico" />
@@ -143,10 +144,8 @@
         <h2>
           [[${order.orderFtitle.ftitle}]]<span class="name"
         ><em
-                style="
-                    background-image: url(https://cdn.wadiz.kr/wwwwadiz/green001/2023/0208/20230208171549898_158604.png/wadiz/resize/600/format/jpg/quality/80/optimize);
-                  "></em
-        >현대리바트</span
+                th:style="'background-image: url(' + ${products.orderFtitle.fthumb} + ')'"></em
+        >[[${order.orderFtitle.fstore_name}]]</span
         >
         </h2>
       </div>
@@ -160,9 +159,6 @@
             <li><em>소문내기</em></li>
           </ol>
         </div>
-        <form name="purchaseForm" id="purchaseForm" method="post">
-
-
           <div class="wpurchase-order">
             <div class="order-list" data-choiced-legnth="1">
               <ul th:each="o:${order.orderList}">
@@ -301,7 +297,26 @@
               </div>
             </div>
           </div>
+        <div class="wpurchase-delivery-wrap">
 
+
+          <div class="wpurchase-delivery" style="width: 100%">
+            <h3><em>요청 사항</em></h3>
+            <button type="button" class="show-list"><i class="wadizicon wa-expand-more" aria-hidden="true"></i>최근
+              배송지 보기
+            </button>
+
+
+            <div class="delivery-shippingMemo">
+
+              <div class="input-area">
+                <p class="title">주문 시 요청사항 (선택)</p>
+                <input type="text" id="orderMemo" name="orderMemo" maxlength="50" placeholder="ex) 땅콩 알레르기가 있어요.">
+                <p class="subtext">해당 요청사항은 주문에 관련된 내용만 적어주세요.</p>
+              </div>
+            </div>
+          </div>
+        </div>
           <div class="payment-info-container">
             <!-- 결제 정보 (간편결제 / 직접입력) 앱 -->
             <div
@@ -363,7 +378,7 @@
                       value="false" />
             </div>
           </div>
-        </form>
+
 
         <div class="wpurchase-terms wpurchase-terms-section">
           <h3><em>약관 동의</em></h3>
@@ -1233,12 +1248,18 @@
 
 
 
-            if(Boolean(couponList[0]))  document.getElementById("nullCoupon").setAttribute("hidden", "true");
+            if(Boolean(couponList[0]))  {
+              console.log("쿠폰없으면");
+              document.getElementById("nullCoupon").setAttribute("hidden", "true");
+            }else {
+              $('#couponSelect').hide();
+            }
             $('#couponCharge').text("0");
             // $('.finalTotalPrice').text(finalPrice);
             //규석 - 동의 체크시 결제
             $('#tossPay').click(function (){
               if($("#acceptAllCheckBox").is(":checked")){
+                order['omemo']=$('#orderMemo').val();
                 paymentToss();
               }else {
                 showAlert('개인정보 제3자 제공 동의를 하셔야 결제가 가능합니다.');
@@ -1279,9 +1300,9 @@
           order['oused_mileage'] = ""// 나중에 마일리지 한다면
           // 쿠폰, 마일리지 적용된 가격
           order['totalPrice'] = order['totalOriginPrice'];
-          console.log(order)
+          // console.log(order)
 
-          console.log("order ",(JSON.stringify(order)))
+          // console.log("order ",(JSON.stringify(order)))
 
           let paymentToss = () => {
             // Tosspayments API 호출
@@ -1314,6 +1335,15 @@
               let selectObject = couponList.find(item => item.eid === Number(selectValue));
               let totalVal = selectObject.etype === "PERCENTAGE" ? (finalPrice - finalPrice*(selectObject.ediscount)/100-mileage) : (finalPrice - selectObject.ediscount-mileage);
               let discountValue = selectObject.etype === "PERCENTAGE" ? (finalPrice*(selectObject.ediscount)/100) : ( selectObject.ediscount);
+              if(totalVal<0){
+                showAlert("최종 결제 금액은 항상 0원 이상이어야 합니다. ");
+                $('#pointInput').val('0');
+                $('#ckptAll').prop('checked', false);
+                $('#mileageCharge').text(0);
+                totalVal = selectObject.etype === "PERCENTAGE" ? (finalPrice - finalPrice*(selectObject.ediscount)/100) : (finalPrice - selectObject.ediscount);
+                $('#finalTotalPrice').text(totalVal.toLocaleString('ko-KR'));
+                return;
+              }
               console.log(totalVal);
               // orderForm의 cpId 설정
               order['cpid'] = selectObject.cpId;
@@ -1338,14 +1368,26 @@
               $('#finalTotalPrice').text(totalVal.toLocaleString('ko-KR'));
               console.log($('#finalTotalPrice').text());
             } else {
+              let totalVal=finalPrice-mileage;
+              if(totalVal<0){
+                showAlert("최종 결제 금액은 항상 0원 이상이어야 합니다. ");
+                $('#pointInput').val('0');
+                $('#ckptAll').prop('checked', false);
+                $('#mileageCharge').text(0);
+                totalVal = selectObject.etype === "PERCENTAGE" ? (finalPrice - finalPrice*(selectObject.ediscount)/100) : (finalPrice - selectObject.ediscount);
+                $('#finalTotalPrice').text(totalVal.toLocaleString('ko-KR'));
+                return;
+              }
               order['cpid'] = ""
               order['oused_mileage'] = mileage;
-              let totalVal=finalPrice-mileage;
               order['totalPrice'] = totalVal;
               amount=totalVal;
               $('#couponCharge').text("0");
               $('#finalTotalPrice').text((totalVal).toLocaleString('ko-KR'));
             }
+
+
+
           }
         </script>
         <!-- 간편결제 예약 앱 -->

@@ -7,10 +7,12 @@ import org.apache.ibatis.annotations.Param;
 
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Map;
 
 @Mapper
 public interface FundingMapper {
 
+    @Deprecated
     List<FundingVO> getFundingList(@Param("criteria") FundingCriteria criteria);
 
     FundingDetailVO getFundingDetail(@Param("fid") String fid,@Param("fstatus") String fstatus);
@@ -24,4 +26,6 @@ public interface FundingMapper {
     ReviewCountVO reviewCount (String fid);
 
     int getFundingTotalCount(@Param("criteria") FundingCriteria fundingCriteria);
+
+    void p_funding(Map<String,Object> map);
 }

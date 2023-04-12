@@ -148,4 +148,9 @@
         <result property="oprice" column="oprice"/>
         <collection property="list" resultMap="queueDetailMap"/>
     </resultMap>
+
+    <!-- fundingResultMap 매핑 -->
+    <resultMap id="fundingResultMap" type="funding">
+    </resultMap>
+
 </mapper>
