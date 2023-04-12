@@ -46,7 +46,8 @@ public class KaKaoMessageService {
 
 
     /**
-     * @param memail adminEmail : admin의 kakao accessToken을 사용해야되기 때문에
+     * 카카오 메시지로 주문 정보 전송
+     * @param memail adminEmail : admin 이메일
      */
     public void sendOrderInfoByKakaoMessage(String memail, OrderVO orderVO, FundingDetailVO store) {
         OAuth2TokenVO oAuth2Token = refreshTokenService.getOAuth2TokenByEmail(memail);
@@ -57,7 +58,8 @@ public class KaKaoMessageService {
     }
 
     /**
-     * @param memail adminEmail : admin의 kakao accessToken을 사용해야되기 때문에
+     * 카카오 메시지로 대기열 정보 전송 (admin의 accessToken 사용)
+     * @param memail adminEmail : admin 이메일
      */
     public void sendWaitingInfoByKakaoMessage(String memail, String msg, String oid){
         OAuth2TokenVO oAuth2Token = refreshTokenService.getOAuth2TokenByEmail(memail);
@@ -67,7 +69,10 @@ public class KaKaoMessageService {
     }
 
 
-
+    /**
+     * 카카오 친구 API 로 메시지를 전송할 uuid 리턴
+     * @param accessToken : api 호출을 위한 토큰
+     */
     private String sendKakaoFriendsApi(String accessToken) {
         log.info("accessToken = {}",accessToken);
         RestTemplate restTemplate = new RestTemplate();
@@ -93,6 +98,9 @@ public class KaKaoMessageService {
         }
     }
 
+    /**
+     * Feed 형식의 카카오 메시지 전송
+     */
     private Map<String, Object> sendKakaoQrMessageApi(String friendsUuids, String accessToken, OrderVO orderVO, FundingDetailVO store){
 
 
@@ -175,7 +183,9 @@ public class KaKaoMessageService {
         }
     }
 
-
+    /**
+     * Text 형식의 카카오 메시지 전송
+     */
     private Map<String, Object> sendKakaoTextMessageApi(String friendsUuids, String accessToken, String msg,String oid){
 
         RestTemplate restTemplate = new RestTemplate();

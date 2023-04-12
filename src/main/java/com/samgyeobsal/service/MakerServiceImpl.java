@@ -28,6 +28,11 @@ public class MakerServiceImpl implements MakerService {
     private final MakerMapper makerMapper;
     private final FundingService fundingService;
     private final AdminMapper adminMapper;
+
+    /**
+     * 펀딩을 만든 후 펀딩아이디 리턴
+     * @param email : 메이커 이메일
+     */
     @Override
     public String createFunding(String email) {
         String fid = UUID.randomUUID().toString();
@@ -36,11 +41,19 @@ public class MakerServiceImpl implements MakerService {
         return fid;
     }
 
+    /**
+     * 해당 펀딩 만들기 위한 객체 (FundingMaker) 리턴
+     * @param fundingId : 펀딩 아이디
+     */
     @Override
     public FundingMakerVO getFundingMakerByFundingId(String fundingId) {
         return makerMapper.findFundingMakerByFundingId(fundingId);
     }
 
+    /**
+     * 펀딩 기본정보 수정
+     * @param baseInfo : 펀딩 기본정보 객체
+     */
     @Override
     public void updateFundingBaseInfo(FundingBaseInfoDTO baseInfo) {
         int row = makerMapper.updateFundingBaseInfo(baseInfo);
@@ -48,12 +61,20 @@ public class MakerServiceImpl implements MakerService {
         if(row == 0) throw new RuntimeException("에러 발생");
     }
 
+    /**
+     * 해당 펀딩 이미지 리스트 반환
+     * @param fundingId : 펀딩 아이디
+     */
     @Override
     public List<FundingImgVO> getFundingImgsByFundingId(String fundingId) {
         List<FundingImgVO> fundingImgs = makerMapper.findFundingImgListByFundingId(fundingId);
         return fundingImgs == null ? new ArrayList<>() : fundingImgs;
     }
 
+    /**
+     * 펀딩 스토리 수정
+     * @param story : 펀딩 스토리 객체
+     */
     @Override
     public void updateFundingStory(FundingStoryDTO story) {
         int row = makerMapper.updateFundingStory(story);
@@ -70,6 +91,11 @@ public class MakerServiceImpl implements MakerService {
         if(row == 0) throw new RuntimeException("에러 발생");
     }
 
+    /**
+     * 펀딩 상품 수정
+     * 삭제 시 : postatus = 0
+     * @param product : 펀딩 상품 객체
+     */
     @Override
     public void updateFundingProduct(UpdateFundingProductDTO product) {
         int row = 0;
@@ -92,12 +118,20 @@ public class MakerServiceImpl implements MakerService {
 
     }
 
+    /**
+     * 해당 펀딩 상품 삭제
+     * @param fpid : 펀딩 상품 아이디
+     */
     @Override
     public void deleteFundingProduct(String fpid) {
         int row = makerMapper.deleteFundingProduct(fpid);
         if(row == 0) throw new RuntimeException("deleteFundingProduct 에러발생");
     }
 
+    /**
+     * 펀딩 상태 변경 (PREPARING -> PARTICIPANT)
+     * @param fid : 펀딩 아이디
+     */
     @Override
     public void submitDocument(String fid) {
         FundingDetailVO prepare = fundingService.getFundingDetail(fid, "PREPARING");

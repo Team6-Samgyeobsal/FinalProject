@@ -29,6 +29,11 @@ public class JwtTokenFilter extends OncePerRequestFilter {
     private final RefreshTokenService refreshTokenService;
 
 
+    /**
+     * JWT 인증
+     * 헤더 or 쿠키에서 accessToken 으로 SecurityContext 셋팅
+     * 만료 시, 헤더 or 쿠키에서 refreshToken 획득 후 DB or Redis 에서 비교 후 새로운 accessToken 발급
+     */
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         log.info("JwtTokenFilter doFilterInternal url= {}", request.getRequestURL());

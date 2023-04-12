@@ -37,11 +37,13 @@ public class OAuth2DetailsService extends DefaultOAuth2UserService {
     private MemberMapper memberMapper;
 
     @Autowired
-    private RefreshTokenService refreshTokenService;
-
-    @Autowired
     private OAuth2TokenMapper oAuth2TokenMapper;
 
+    /**
+     * 소셜 로그인 (Google, Kakao)
+     * OAuth Resource Server에서 보내온 응답에서 회원 이메일을 가져와 DB와 비교해 로그인 시도
+     * 만약, 데이터가 없다면 응답 내의 회원 정보로 회원가입 시도
+     */
     @Override
     @Transactional
     public OAuth2User loadUser(OAuth2UserRequest userRequest) throws OAuth2AuthenticationException {

@@ -23,6 +23,9 @@ public class FormUserDetailService implements UserDetailsService {
 
     private final MemberMapper memberMapper;
 
+    /**
+     * 회원 이메일로 DB에서 회원 정보를 조회 후, 암호화된 패스워드 비교
+     */
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         MemberVO member = memberMapper.findMemberByEmail(username,null);

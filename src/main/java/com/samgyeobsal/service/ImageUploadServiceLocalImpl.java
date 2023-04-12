@@ -1,6 +1,5 @@
 package com.samgyeobsal.service;
 
-import com.amazonaws.services.s3.AmazonS3Client;
 import com.samgyeobsal.domain.common.UploadImgDTO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -17,6 +16,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.UUID;
 
 @Slf4j
+@Deprecated
 @Service
 @RequiredArgsConstructor
 public class ImageUploadServiceLocalImpl implements ImageUploadService {
@@ -25,6 +25,10 @@ public class ImageUploadServiceLocalImpl implements ImageUploadService {
     private String uploadPath;
 
 
+    /**
+     * 로컬 환경에 이미지 저장 후, 파일 정보 리턴
+     * @param uploadFile : 업로드할 파일
+     */
     @Override
     public UploadImgDTO uploadImg(MultipartFile uploadFile) {
         String originalName = uploadFile.getOriginalFilename();

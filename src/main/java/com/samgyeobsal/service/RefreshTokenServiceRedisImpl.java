@@ -24,11 +24,18 @@ public class RefreshTokenServiceRedisImpl implements RefreshTokenService {
     @Value("${jwt.refresh-token-validity-in-sec}")
     private Long REFRESH_DURATION;
 
+    /**
+     * 해당 이메일의 refreshToken Redis 저장
+     */
     @Override
     public void insertRefreshToken(RefreshTokenVO refreshToken) {
         redisTemplate.opsForValue().set(refreshToken.getMemail(), refreshToken.getRef_token(),REFRESH_DURATION);
     }
 
+    /**
+     * 해당 이메일의 refreshToken 리턴
+     * @param email : 회원 이메일
+     */
     @Override
     public RefreshTokenVO findRefTokenByEmail(String email) {
         String token = redisTemplate.opsForValue().get(email);
@@ -39,6 +46,10 @@ public class RefreshTokenServiceRedisImpl implements RefreshTokenService {
         return tokenVO;
     }
 
+    /**
+     * 해당 이메일의 oAuth2Token DB 저장
+     * @param token
+     */
     @Override
     public void insertOAuth2Token(OAuth2TokenVO token) {
         oAuth2TokenMapper.insertOAuth2Token(token);
@@ -49,6 +60,10 @@ public class RefreshTokenServiceRedisImpl implements RefreshTokenService {
         return oAuth2TokenMapper.getOAuth2TokenByEmail(memail);
     }
 
+    /**
+     * 해당 이메일의 refreshToken, oAuth2Token 삭제
+     * @param memail : 회원 이메일
+     */
     @Override
     @Transactional
     public void deleteTokens(String memail) {

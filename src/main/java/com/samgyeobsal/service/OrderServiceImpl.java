@@ -81,6 +81,11 @@ public class OrderServiceImpl implements OrderService {
         return new ProductDetailFormDTO(productDetail,orderFtitleVO);
     }
 
+    /**
+     * 해당 펀딩의 주문 정보 리스트 반환
+     * @param orderStep1DTO : 주문 정보
+     * @param fid : 펀딩 아이디
+     */
     @Override
     public OrderFormDTO getOrderList(OrderStep1DTO orderStep1DTO,String fid) {
         Map<String, Integer> map = new HashMap<>();
@@ -95,11 +100,10 @@ public class OrderServiceImpl implements OrderService {
             }
         }
 
-
         OrderFtitleVO orderFtitleVO=orderMapper.getFtitle(fid);
 
         for (OrderListVO orderListVO : orderList) {
-            log.info("sumamount = {}",orderListVO.getSumamount());
+            log.info("sumamount = {}",orderListVO.getTotalAmount());
             log.info("sumprice = {}", orderListVO.getSumprice());
         }
         return new OrderFormDTO(orderList, orderFtitleVO);
@@ -110,16 +114,28 @@ public class OrderServiceImpl implements OrderService {
         orderMapper.updateOrder(oStatus,oId);
     }
 
+    /**
+     * 해당 이메일의 주문 리스트 반환
+     * @param memberId : 회원 이메일
+     */
     @Override
     public List<OrderVO> getMyOrderList(String memberId) {
         return orderMapper.findOrderListByMemberId(memberId);
     }
 
+    /**
+     * 해당 주문 정보 반환
+     * @param orderId : 주문 아이디
+     */
     @Override
     public OrderVO getOrderByOrderId(String orderId) {
         return orderMapper.findOrderByOrderId(orderId);
     }
 
+    /**
+     * 해당 펀딩의 주문 리스트 반환
+     * @param fid : 펀딩 아이디
+     */
     @Override
     public List<String> getOrderIdListByFundingId(String fid) {
         return orderMapper.findOrderIdListByFundingId(fid);

@@ -32,6 +32,12 @@ public class OAuth2SuccessHandler extends SimpleUrlAuthenticationSuccessHandler 
     private final RefreshTokenService refreshTokenService;
 
     // 새로운 accessToken과 refreshToken을 발급하고 db에 refreshToken을 저장
+
+    /**
+     * 소셜 로그인 성공 핸들러
+     * accessToken과 refreshToken을 만들어 DB or Redis에 저장 후, 쿠키 셋팅
+     * redirect 되기 전 페이지로 이동
+     */
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
 

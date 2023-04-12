@@ -33,11 +33,20 @@ public class FundingServiceImpl implements FundingService{
         return fundingMapper.getReviewList(criteria);
     }
 
+    /**
+     * 해당 펀딩에서 판매중인 상품 리스트 리턴
+     * @param fundingId : 펀딩 아이디
+     */
     @Override
     public List<ProductVO> getProductListByFundingId(String fundingId) {
         return fundingMapper.findProductListByFundingId(fundingId);
     }
 
+    /**
+     * 해당 펀딩 상품 상세 정보 리턴
+     * @param fundingId : 펀딩 아이디
+     * @param productId : 상품 아이디
+     */
     @Override
     public ProductVO getProductByFundingIdAndProductId(String fundingId, String productId) {
         return fundingMapper.findProductByFundingIdAndProductId(fundingId,productId);
@@ -48,6 +57,10 @@ public class FundingServiceImpl implements FundingService{
         return fundingMapper.reviewCount(fid);
     }
 
+    /**
+     * 조건에 맞는 펀딩의 총 개수
+     * @param fundingCriteria : 펀딩 페이징 객체
+     */
     @Override
     public int getFundingTotalCount(FundingCriteria fundingCriteria) {
         return fundingMapper.getFundingTotalCount(fundingCriteria);

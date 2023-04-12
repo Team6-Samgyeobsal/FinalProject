@@ -27,6 +27,10 @@ public class ImageUploadServiceS3Impl implements ImageUploadService{
 
     private final AmazonS3Client amazonS3Client;
 
+    /**
+     * AWS S3에 파일 업로드 후, 객체 정보 리턴
+     * @param file : 업로드할 파일
+     */
     @Override
     public UploadImgDTO uploadImg(MultipartFile file) {
         String originalName = file.getOriginalFilename();

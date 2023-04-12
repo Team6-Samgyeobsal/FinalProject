@@ -1,6 +1,5 @@
 package com.samgyeobsal.domain.order;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -19,7 +18,7 @@ public class OrderListVO {
     private List<OrderListDetailVO> orderListDetail;
 
 
-    public int getSumamount(){
+    public int getTotalAmount(){
         int sumAmount = 0;
         for (OrderListDetailVO orderListDetailVO : orderListDetail) {
             sumAmount += orderListDetailVO.getAmount();
@@ -28,7 +27,7 @@ public class OrderListVO {
     }
 
     public int getSumprice(){
-        return getSumamount() * this.fpprice;
+        return getTotalAmount() * this.fpprice;
     }
 }
 

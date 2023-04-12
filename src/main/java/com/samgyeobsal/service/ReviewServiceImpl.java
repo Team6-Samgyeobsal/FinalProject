@@ -17,6 +17,11 @@ public class ReviewServiceImpl implements ReviewService{
     private final CommonService commonService;
 
 
+    /**
+     * 리뷰 정보 삽입
+     * 회원당 펀딩 별 리뷰 작성 1회 제한
+     * @param insertReviewDTO
+     */
     @Override
     @Transactional
     public void insertReview(InsertReviewDTO insertReviewDTO) {
@@ -36,6 +41,9 @@ public class ReviewServiceImpl implements ReviewService{
         if(row == 0) throw new RuntimeException("replyReview Mapper Error");
     }
 
+    /**
+     * 해당 회원의 해당 펀딩 리뷰 작성유무 리턴
+     */
     @Override
     public boolean isAlreadyExistReview(String rtype, String memail,String fid) {
         return reviewMapper.isAlreadyExistReview(rtype, memail,fid);

@@ -27,6 +27,9 @@ public class SecurityConfig {
     @Autowired
     private OAuth2DetailsService oAuth2DetailsService;
 
+    /**
+     * 권한 계층 메서드
+     */
     @Bean
     public RoleHierarchyImpl roleHierarchyImpl() {
         RoleHierarchyImpl roleHierarchyImpl = new RoleHierarchyImpl();
@@ -66,6 +69,9 @@ public class SecurityConfig {
         return http.build();
     }
 
+    /**
+     * 정적 리소스는 시큐리티 필터 안 거치게끔
+     */
     @Bean
     public WebSecurityCustomizer webSecurityCustomizer(){
         return (web) -> web.ignoring().antMatchers("/images/**", "/js/**", "/admin/**", "/import/**", "/css/**","/favicon.ico");

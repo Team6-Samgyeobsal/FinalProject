@@ -17,13 +17,15 @@ public class CustomXssEscapeServletFilter extends XssEscapeServletFilter {
         super.init(filterConfig);
     }
 
-
+    /**
+     * 의도적으로 특정 요청을 XSS 필터 로직에서 제외시킴
+     */
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
         HttpServletRequest httpRequest = (HttpServletRequest) request;
         String requestURI = httpRequest.getRequestURI();
 
-        String contextPath = httpRequest.getContextPath();
+//        String contextPath = httpRequest.getContextPath();
 
         // 제외할 URL 패턴을 정규식으로 지정
         String excludePattern = "/web/mypage/maker/funding/[a-zA-Z0-9\\-]+/story";

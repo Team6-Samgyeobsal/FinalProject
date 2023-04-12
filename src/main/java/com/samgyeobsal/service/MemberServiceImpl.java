@@ -29,6 +29,10 @@ public class MemberServiceImpl implements MemberService {
     @Autowired
     private UserDetailsService userDetailsService;
 
+    /**
+     * 회원 정보 삽입
+     * @param member : 회원 정보 객체
+     */
     @Override
     public void insertMember(InsertFormMemberDTO member) {
         String password = member.getPassword();
@@ -37,6 +41,10 @@ public class MemberServiceImpl implements MemberService {
         memberMapper.insertMember(member.toMember());
     }
 
+    /**
+     * 회원 이메일 존재 유무 리턴
+     * @param email : 회원 이메일
+     */
     @Override
     public boolean isExist(String email) {
         MemberVO memberVO = null;
@@ -50,6 +58,10 @@ public class MemberServiceImpl implements MemberService {
         return memberVO != null;
     }
 
+    /**
+     * 이메일 방식 로그인 수행
+     * @param loginDTO : 이메일, 패스워드
+     */
     @Override
     public MemberVO login(LoginDTO loginDTO) {
         Account account = (Account) userDetailsService.loadUserByUsername(loginDTO.getEmail());
@@ -65,17 +77,30 @@ public class MemberServiceImpl implements MemberService {
         return memberVO;
     }
 
+    /**
+     * 해당 이메일의 펀딩 리스트 반환
+     * @param email
+     */
     @Override
     public List<FundingVO> findFindingListByEmail(String email) {
         List<FundingVO> fundingList = memberMapper.findFundingListByEmail(email);
         return fundingList;
     }
 
+    /**
+     * 해당 이메일의 입점 중인 매장 정보(스토어) 반환
+     * @param email
+     */
     @Override
     public FundingVO findActiveStoreByEmail(String email) {
         return memberMapper.findActiveStoreByEmail(email);
     }
 
+    /**
+     * 해당 이메일의 이미지 수정
+     * @param memail : 회원 이메일
+     * @param imageUrl : 이미지 url
+     */
     @Override
     public void updateMemberProfile(String memail, String imageUrl) {
         memberMapper.updateMemberProfile(memail, imageUrl);

@@ -42,21 +42,36 @@ public class CommonServiceImpl implements CommonService{
     @Value("${kakao.api.url.message}")
     private String messageApiUrl;
 
+    /**
+     * 진행 중인 경연 리스트 리턴
+     */
     @Override
     public List<CompetitionHyundaiVO> getActiveCompetitionList() {
         return commonMapper.getActiveCompetitionList();
     }
 
+    /**
+     * 경연 정보 리턴
+     * @param cid : 경연 아이디
+     * @param tid : 장소 아이디
+     */
     @Override
     public CompetitionHyundaiVO getCompetitionByCidAndTid(String cid, String tid) {
         return commonMapper.getCompetitionByCidAndTid(cid, tid);
     }
 
+    /**
+     * 카테고리 리스트 리턴
+     */
     @Override
     public List<CategoryVO> getCategoryList() {
         return commonMapper.getCategoryList();
     }
 
+    /**
+     * 리뷰 평점 자동화 : 감성분석 모델 요청
+     * @param review : 리뷰 내용
+     */
     @Override
     public int getReviewScore(String review) {
         return sendReviewScoreRequest(review);
