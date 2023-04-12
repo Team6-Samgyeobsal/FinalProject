@@ -15,6 +15,13 @@ import java.util.Map;
 @Service
 public class NaverTransService {
 
+    /**
+     * 번역할 문장, 번역할 언어, 번역 결과로 얻고 싶은 언어를 인자로 받아
+     * 네이버 번역 API를 호출하여 번역 결과를 반환
+     * @param s : 번역할 문장
+     * @param source : 번역할 문장의 언어 코드
+     * @param target : 번역 결과로 얻고자 하는 언어 코드
+     */
     public String getTransSentence(String s, String source, String target) throws IOException {
 
         String clientId = "CLwUBRvek8oAJwcnwtly";//애플리케이션 클라이언트 아이디값";
@@ -39,6 +46,15 @@ public class NaverTransService {
     }
 
 
+    /**
+     * 함수에서는 URL과 HTTP 요청 헤더, POST 파라미터 등을 설정하고,
+     * HTTP 연결을 수행하여 응답 결과를 반환
+     * @param apiUrl: API 호출 url
+     * @param requestHeaders : HTTP 요청 헤더 정보를 담고 있는 Map 객체
+     * @param text : 번역할 문장
+     * @param source : 번역할 문장의 언어 코드
+     * @param target : 번역 결과로 얻고자 하는 언어 코드
+     */
     private String post(String apiUrl, Map<String, String> requestHeaders, String text, String source, String target){
         HttpURLConnection con = connect(apiUrl);
         String postParams = "source=" + source + "&target=" + target + "&text=" + text;
@@ -67,7 +83,10 @@ public class NaverTransService {
         }
     }
 
-
+    /**
+     * 함수는 주어진 URL로부터 HttpURLConnection 객체를 생성하여 리턴
+     * @param apiUrl: API 호출 url
+     */
     private HttpURLConnection connect(String apiUrl){
         try {
             URL url = new URL(apiUrl);
@@ -79,6 +98,10 @@ public class NaverTransService {
         }
     }
 
+    /**
+     * 함수는 HTTP 응답 본문을 읽어들이는 기능을 수행
+     * @param body: HTTP 응답 본문을 나타내는 InputStream 객체
+     */
     private String readBody(InputStream body){
         InputStreamReader streamReader = new InputStreamReader(body);
 
@@ -95,6 +118,11 @@ public class NaverTransService {
             throw new RuntimeException("API 응답을 읽는데 실패했습니다.", e);
         }
     }
+
+    /**
+     * 함수에서는 JSON 문자열에서 번역 결과 문자열을 추출하여 리턴
+     * @param responseBody : HTTP 응답 결과를 나타내는 JSON 형식의 문자열
+     */
     public String convertToData(String responseBody) throws IOException {
         ObjectMapper mapper = new ObjectMapper();
         JsonNode node = mapper.readTree(responseBody);

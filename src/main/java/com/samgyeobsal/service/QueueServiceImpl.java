@@ -15,6 +15,11 @@ import java.util.List;
 public class QueueServiceImpl implements QueueService{
 
     private final QueueMapper queueMapper;
+
+    /**
+     * qrused_date가 null이고 대기열에 들어가 있는 주문 정보 리스트 리턴
+     * @param fid : 펀딩 아이디
+     */
     @Override
     public List<QueueVO> getQueueList(String fid) {
         return queueMapper.getQueueList(fid);
@@ -22,12 +27,18 @@ public class QueueServiceImpl implements QueueService{
 
     @Override
     public List<QueueVO> getSalesList(String fid) { return queueMapper.getSalesList(fid); }
-
+    /**
+     * qid에 해당하는 qrused_date에 사용 날짜 입력
+     * @param qid : QR_CODE 아이디
+     */
     @Override
     public void useQrCode(String qid) {
         queueMapper.useQrCode(qid);
     }
-
+    /**
+     * qid를 대기열에 입력
+     * @param qid : QR_CODE 아이디
+     */
     @Override
     public void insertQueue(String qid) {
         log.info(qid);

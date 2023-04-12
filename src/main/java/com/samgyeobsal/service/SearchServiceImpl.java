@@ -12,12 +12,22 @@ import java.util.List;
 @Service
 public class SearchServiceImpl implements SearchService{
 
+
     private final SearchMapper searchMapper;
+
+    /**
+     * 키워드로 검색한 펀딩 리스트 리턴
+     * @param criteria
+     */
     @Override
     public List<SearchVO> getSearchList(SearchCriteria criteria) {
         return searchMapper.getSearchList(criteria);
     }
 
+    /**
+     * 키워드로 검색한 펀딩 리스트의 수 리턴
+     * @param criteria
+     */
     @Override
     public int countSearch(SearchCriteria criteria) {
         return searchMapper.countSearch(criteria);

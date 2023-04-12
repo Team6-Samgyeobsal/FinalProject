@@ -73,6 +73,10 @@ public class OrderServiceImpl implements OrderService {
         return orderForm.getOid();
     }
 
+    /**
+     * 해당 펀딩의 상품 상세 리스트와 가게정보를 반환
+     * @param fid : 펀딩 아이디
+     */
     @Override
     public ProductDetailFormDTO getProductList(String fid) {
         List<ProductDetailVO> productDetail = orderMapper.getProductList(fid);
@@ -83,6 +87,7 @@ public class OrderServiceImpl implements OrderService {
 
     /**
      * 해당 펀딩의 주문 정보 리스트 반환
+     * 상품마다의 수량과 가격계산
      * @param orderStep1DTO : 주문 정보
      * @param fid : 펀딩 아이디
      */
