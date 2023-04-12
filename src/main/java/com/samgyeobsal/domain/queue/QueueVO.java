@@ -5,6 +5,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 import java.util.Date;
+import java.util.List;
 
 @Getter
 @ToString
@@ -16,4 +17,6 @@ public class QueueVO {
     private Date qdate;
     private String fstore_name;
     private String oid;
+    private Integer oprice;
+    private List<QueueDetailVO> list;
 }

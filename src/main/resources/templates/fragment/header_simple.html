@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+<script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
 
 <div class="web-header" th:fragment="header_simple">
   <div class="web-header-large">
@@ -21,10 +22,17 @@
             ><span th:text="#{signUp}">회원가입</span></a
             >
           </li>
+          <select class="TranslateSelect" style="margin-left: 10px;margin-top: 20px;">
+            <option value="ko">KOREAN</option>
+            <option value="en">ENGLISH</option>
+            <option value="zh">CHINESE</option>
+            <option value="ja">JAPANESE</option>
+          </select>
         </ul>
       </div>
     </header>
   </div>
 </div>
+
 
 </html>

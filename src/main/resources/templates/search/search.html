@@ -179,7 +179,12 @@
 
           }else {
             data.search.forEach(function (store) {
-              let url ='/web/'+store.fstatus.toLowerCase()+'/'+store.fid;
+              let url="";
+              if(fstatus=='END'){
+                url=`https://map.naver.com/v5/search/${store.faddress}`;
+              }else {
+                url = '/web/' + store.fstatus.toLowerCase() + '/' + store.fid;
+              }
               k += ` <div>
                 <div
                   class="FundingCard_root__2b-6p FundingCard_search_result_projectCard__11yH5 search_result_list"

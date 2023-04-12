@@ -17,7 +17,8 @@
                f.memail,
                case when fstatus='FUNDING' then nvl(ffunding_score,0)
                     else nvl(fstore_score,0) end fscore,
-               min_price
+               min_price,
+               faddress
         from funding f
                  inner join category ct on (f.ctid = ct.ctid)
                  inner join competition c on c.cid=f.cid and c.tid=f.tid

@@ -16,4 +16,5 @@ public class FameVO {
     private long totalemail;
     private String fthumb;
     private double fstore_score;
+    private String faddress;
 }

@@ -131,8 +131,21 @@
         <result property="mname" column="mname"/>
         <result property="qid" column="qid"/>
         <collection property="orders" resultMap="orderItemMap"/>
+    </resultMap>
 
+    <resultMap id="queueDetailMap" type="queueDetail">
+        <result property="fptitle" column="fptitle"/>
+        <result property="fpid" column="fpid"/>
+    </resultMap>
 
-
+    <resultMap id="queueMap" type="queue">
+        <result property="mname" column="mname"/>
+        <result property="qid" column="qid"/>
+        <result property="fid" column="fid"/>
+        <result property="qdate" column="qdate"/>
+        <result property="fstore_name" column="fstore_name"/>
+        <result property="oid" column="oid"/>
+        <result property="oprice" column="oprice"/>
+        <collection property="list" resultMap="queueDetailMap"/>
     </resultMap>
 </mapper>
