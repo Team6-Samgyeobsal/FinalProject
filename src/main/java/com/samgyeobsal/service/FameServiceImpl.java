@@ -14,6 +14,10 @@ public class FameServiceImpl implements FameService{
     @Autowired
     FameMapper fameMapper;
 
+    /**
+     * 명예의 전당 리스트를 리턴
+     * @param criteria : 명예의 전당 객체
+     */
     @Override
     public List<FameVO> getFameList(FameCriteria criteria) {
         return fameMapper.getFameList(criteria);

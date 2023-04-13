@@ -18,16 +18,26 @@ public class FundingServiceImpl implements FundingService{
     @Autowired
     private FundingMapper fundingMapper;
 
+    @Deprecated
     @Override
     public List<FundingVO> getFundingList(FundingCriteria criteria){
         return fundingMapper.getFundingList(criteria);
     }
 
+    /**
+     * 펀딩 상세 정보 리턴
+     * @param fid : 펀딩 아이디
+     * @param fstatus : 펀딩 상태
+     */
     @Override
     public FundingDetailVO getFundingDetail(String fid,String fstatus) {
         return fundingMapper.getFundingDetail(fid,fstatus);
     }
 
+    /**
+     * 리뷰 리스트 리턴
+     * @param criteria : 리뷰 필터링 객체 - 펀딩 아이디, 정렬 기준, 리뷰 타입, 페이지 수
+     */
     @Override
     public List<ReviewVO> getReviewList(ReviewCriteria criteria) {
         return fundingMapper.getReviewList(criteria);
@@ -52,6 +62,10 @@ public class FundingServiceImpl implements FundingService{
         return fundingMapper.findProductByFundingIdAndProductId(fundingId,productId);
     }
 
+    /**
+     * 리뷰 수 리턴
+     * @param fid : 펀딩 아이디
+     */
     @Override
     public ReviewCountVO reviewCount (String fid){
         return fundingMapper.reviewCount(fid);
@@ -66,6 +80,10 @@ public class FundingServiceImpl implements FundingService{
         return fundingMapper.getFundingTotalCount(fundingCriteria);
     }
 
+    /**
+     * 프로시저를 호출하여 FundingCriteria에 해당하는 펀딩 리스트 출력
+     * @param fundingCriteria : 펀딩 필터 객체 - 정렬 순, 음식 카테고리, 페이지, 장소
+     */
     @Override
     public List<FundingVO> p_funding(FundingCriteria fundingCriteria) {
 

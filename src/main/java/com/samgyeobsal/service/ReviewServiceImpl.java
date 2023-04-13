@@ -34,7 +34,10 @@ public class ReviewServiceImpl implements ReviewService{
         int row = reviewMapper.insertReview(insertReviewDTO);
         if(row == 0) throw new RuntimeException("review Mapper Error");
     }
-
+    /**
+     * 리뷰 답글 정보 입력
+     * @param replyReviewVO
+     */
     @Override
     public void replyReview(ReplyReviewVO replyReviewVO) {
         int row=reviewMapper.replyReview(replyReviewVO);
@@ -43,12 +46,19 @@ public class ReviewServiceImpl implements ReviewService{
 
     /**
      * 해당 회원의 해당 펀딩 리뷰 작성유무 리턴
+     * @param rtype : 리뷰 종류 (응원 댓글/ 스토어)
+     * @param memail : 이메일
+     * @param fid : 펀딩 아이디
      */
     @Override
     public boolean isAlreadyExistReview(String rtype, String memail,String fid) {
         return reviewMapper.isAlreadyExistReview(rtype, memail,fid);
     }
 
+    /**
+     * 해당 회원의 해당 펀딩 리뷰 삭제
+     * @param memail : 이메일
+     */
     @Override
     public void deleteReview(String memail) {
         reviewMapper.deleteReview(memail);
