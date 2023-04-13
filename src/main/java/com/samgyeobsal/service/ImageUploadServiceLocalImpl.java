@@ -1,6 +1,7 @@
 package com.samgyeobsal.service;
 
 import com.samgyeobsal.domain.common.UploadImgDTO;
+import com.samgyeobsal.exception.UploadFileException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -47,7 +48,7 @@ public class ImageUploadServiceLocalImpl implements ImageUploadService {
             return new UploadImgDTO(originalName, uuid, folderPath, true);
         } catch (IOException e) {
             e.printStackTrace();
-            throw new RuntimeException("local file uplaod error");
+            throw new UploadFileException("local file uplaod error",e);
         }
     }
 

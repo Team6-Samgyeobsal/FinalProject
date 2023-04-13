@@ -3,6 +3,7 @@ package com.samgyeobsal.service;
 import com.amazonaws.services.s3.AmazonS3Client;
 import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.samgyeobsal.domain.common.UploadImgDTO;
+import com.samgyeobsal.exception.UploadFileException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -50,7 +51,7 @@ public class ImageUploadServiceS3Impl implements ImageUploadService{
             String url = amazonS3Client.getUrl(savePath, saveName).toString();
             return new UploadImgDTO(url, uuid, null, false);
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new UploadFileException("upload file error occur",e);
         }
     }
 

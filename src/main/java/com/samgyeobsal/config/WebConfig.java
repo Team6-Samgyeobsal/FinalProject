@@ -1,4 +1,4 @@
-package com.samgyeobsal;
+package com.samgyeobsal.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

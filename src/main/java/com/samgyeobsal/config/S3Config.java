@@ -1,4 +1,4 @@
-package com.samgyeobsal;
+package com.samgyeobsal.config;
 
 import com.amazonaws.auth.AWSStaticCredentialsProvider;
 import com.amazonaws.auth.BasicAWSCredentials;

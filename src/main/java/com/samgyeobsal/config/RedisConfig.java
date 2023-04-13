@@ -1,4 +1,4 @@
-package com.samgyeobsal;
+package com.samgyeobsal.config;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;

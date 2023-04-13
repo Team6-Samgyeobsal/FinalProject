@@ -6,6 +6,7 @@ import com.samgyeobsal.domain.funding.FundingDetailVO;
 import com.samgyeobsal.domain.member.OAuth2TokenVO;
 import com.samgyeobsal.domain.order.OrderItemVO;
 import com.samgyeobsal.domain.order.OrderVO;
+import com.samgyeobsal.exception.KakaoMeessageException;
 import com.samgyeobsal.mapper.OAuth2TokenMapper;
 import com.samgyeobsal.mapper.QrCodeMapper;
 import lombok.RequiredArgsConstructor;
@@ -220,8 +221,7 @@ public class KaKaoMessageService {
             log.info("res = {}", map);
             return map;
         } catch (JsonProcessingException e) {
-            log.info("JsonProcessingException occur", e);
-            return null;
+            throw new KakaoMeessageException("kakao message error occur",e);
         }
     }
 }

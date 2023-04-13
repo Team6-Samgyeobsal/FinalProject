@@ -8,6 +8,9 @@ import com.samgyeobsal.domain.maker.FundingMakerVO;
 import com.samgyeobsal.domain.maker.FundingStoryDTO;
 import com.samgyeobsal.domain.maker.UpdateFundingProductDTO;
 import com.samgyeobsal.domain.order.OrderVO;
+import com.samgyeobsal.exception.DbException;
+import com.samgyeobsal.exception.FundingInvalidException;
+import com.samgyeobsal.exception.UploadFileException;
 import com.samgyeobsal.mapper.AdminMapper;
 import com.samgyeobsal.mapper.MakerMapper;
 import lombok.RequiredArgsConstructor;
@@ -58,7 +61,8 @@ public class MakerServiceImpl implements MakerService {
     public void updateFundingBaseInfo(FundingBaseInfoDTO baseInfo) {
         int row = makerMapper.updateFundingBaseInfo(baseInfo);
 
-        if(row == 0) throw new RuntimeException("에러 발생");
+        if(row == 0) throw new DbException("updateFundingBaseInfo service error");
+
     }
 
     /**
@@ -85,10 +89,10 @@ public class MakerServiceImpl implements MakerService {
                 .stream().filter(i -> i.getFid() != null && i.getFiid() != null && i.getFiurl() != null).collect(Collectors.toList());
         log.info("filteredImgs = {}", filteredImgs);
 
-        if(filteredImgs.size() == 0) throw new RuntimeException("이미지 없음");
+        if(filteredImgs.size() == 0) throw new UploadFileException("no image uploaded");
         makerMapper.insertFundingImgs(filteredImgs);
 
-        if(row == 0) throw new RuntimeException("에러 발생");
+        if(row == 0) throw new DbException("updateFundingStory error occur");
     }
 
     /**
@@ -114,7 +118,7 @@ public class MakerServiceImpl implements MakerService {
             makerMapper.updateProductOption(opt);
         }
 
-        if(row == 0) throw new RuntimeException("updateFundingProduct 에러 발생");
+        if(row == 0) throw new DbException("updateFundingProduct error occur");
 
     }
 
@@ -125,7 +129,7 @@ public class MakerServiceImpl implements MakerService {
     @Override
     public void deleteFundingProduct(String fpid) {
         int row = makerMapper.deleteFundingProduct(fpid);
-        if(row == 0) throw new RuntimeException("deleteFundingProduct 에러발생");
+        if(row == 0) throw new DbException("deleteFundingProduct error occur");
     }
 
     /**
@@ -138,7 +142,7 @@ public class MakerServiceImpl implements MakerService {
         log.info("prepare = {}", prepare);
 
         if(!validateDocument(prepare))
-            throw new RuntimeException("submitDocument error");
+            throw new FundingInvalidException("funding document not valid");
 
         adminMapper.updateFundingStatus(fid, "PARTICIPATE");
     }

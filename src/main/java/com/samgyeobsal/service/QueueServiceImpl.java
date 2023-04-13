@@ -30,7 +30,8 @@ public class QueueServiceImpl implements QueueService{
 
     @Override
     public void insertQueue(String qid) {
+        int row = queueMapper.insertQueue(qid);
         log.info(qid);
-        log.info(queueMapper.insertQueue(qid));
+        log.info(row);
     }
 }

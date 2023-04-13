@@ -12,6 +12,9 @@ import java.util.Map;
 @Mapper
 public interface FundingMapper {
 
+    /**
+     * @deprecated 프로시저 사용
+     */
     @Deprecated
     List<FundingVO> getFundingList(@Param("criteria") FundingCriteria criteria);
 
