@@ -5,6 +5,7 @@ import com.samgyeobsal.domain.admin.*;
 import com.samgyeobsal.domain.funding.FundingDetailVO;
 import com.samgyeobsal.domain.funding.ReviewVO;
 import com.samgyeobsal.domain.order.OrderVO;
+import com.samgyeobsal.exception.KakaoMeessageException;
 import com.samgyeobsal.mapper.AdminMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -119,11 +120,8 @@ public class AdminServiceImpl implements AdminService {
                     kaKaoMessageService.sendOrderInfoByKakaoMessage(memail, order, store);
                 }
 
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            } catch (WriterException e) {
-                log.info("promoteFundingToStore Erorr occur");
-                throw new RuntimeException(e);
+            } catch (IOException | WriterException e) {
+                throw new KakaoMeessageException("kakao message error occur", e);
             }
         }
     }

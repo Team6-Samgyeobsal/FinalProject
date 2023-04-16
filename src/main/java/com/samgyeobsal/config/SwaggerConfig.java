@@ -1,4 +1,4 @@
-package com.samgyeobsal;import io.swagger.v3.oas.models.OpenAPI;
+package com.samgyeobsal.config;import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Info;
 import io.swagger.v3.oas.models.info.License;
 import io.swagger.v3.oas.models.servers.Server;

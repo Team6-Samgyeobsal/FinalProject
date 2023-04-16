@@ -4,6 +4,8 @@ import com.samgyeobsal.domain.funding.FundingVO;
 import com.samgyeobsal.domain.member.InsertFormMemberDTO;
 import com.samgyeobsal.domain.member.LoginDTO;
 import com.samgyeobsal.domain.member.MemberVO;
+import com.samgyeobsal.exception.LoginException;
+import com.samgyeobsal.exception.NotFoundMemberException;
 import com.samgyeobsal.mapper.MemberMapper;
 import com.samgyeobsal.security.domain.Account;
 import com.samgyeobsal.type.LoginType;
@@ -66,13 +68,13 @@ public class MemberServiceImpl implements MemberService {
     public MemberVO login(LoginDTO loginDTO) {
         Account account = (Account) userDetailsService.loadUserByUsername(loginDTO.getEmail());
         if(account == null){
-            throw new RuntimeException("회원 존재 X");
+            throw new NotFoundMemberException("no member exists having this email");
         }
         log.info("account = {}", account);
         MemberVO memberVO = account.getMember();
         log.info("member = {}", memberVO);
         if (!passwordEncoder.matches(loginDTO.getPassword(), memberVO.getMpassword())) {
-            throw new RuntimeException("비밀번호 다름");
+            throw new LoginException("passoward invalid");
         }
         return memberVO;
     }
