@@ -19,7 +19,7 @@ public class ReviewScheduler {
     @Scheduled(cron = "0 0 * * * *") // 매 시간 정각마다 실행
     public void updateScores() {
         log.info("스코어 업데이트");
-        reviewMapper.updateScore();
+        int score = reviewMapper.updateScore();
     }
 }
 
