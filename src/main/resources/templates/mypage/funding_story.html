@@ -531,13 +531,13 @@
 
 <script>
     $(document).ready(function () {
-        let store=$('.Input_input__2kAAL').val()
-        let content=$('#fsummary').val()
-        $('#feedback-store').val(store);
-        $('#feedback-contents').val(content);
 
 
         $('.Button_button__mRXZC.Button_secondary__20rLg.Button_contained__k9pMW').click(function () {
+            let store=$('.Input_input__2kAAL').val()
+            let content=$('#fsummary').val()
+            $('#feedback-store').val(store);
+            $('#feedback-contents').val(content);
             console.log($('.Input_input__2kAAL').val());
             $('.ReactModalPortal').toggle();
         })
