@@ -58,7 +58,7 @@
                 totalemail desc
             </when>
             <when test="criteria.sort =='최신순'.toString()">
-                fdate
+                fdate desc
             </when>
             <when test="criteria.sort =='응원댓글순'.toString()">
                 totalreview desc
