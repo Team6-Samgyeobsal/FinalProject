@@ -17,7 +17,7 @@
         from funding f
         inner join category ct on (f.ctid = ct.ctid)
         left join (select fid,sum(sumprice) totalprice
-                   from (select distinct f.fid,o.oid, sum(oprice) sumprice
+                   from (select f.fid,o.oid, sum(distinct oprice) sumprice
                          from order_item oi
                          join product_option po on oi.poid=po.poid
                          join funding_product fp on po.fpid=fp.fpid
@@ -102,7 +102,7 @@
                faddress
         from funding f
                  left join (select fid,sum(sumprice) totalprice
-                            from (select distinct f.fid,o.oid, sum(oprice) sumprice
+                            from (select f.fid,o.oid, sum(distinct oprice) sumprice
                                   from order_item oi
                                   join product_option po on oi.poid=po.poid
                                   join funding_product fp on po.fpid=fp.fpid
