@@ -31,6 +31,7 @@ public class OAuth2SuccessHandler extends SimpleUrlAuthenticationSuccessHandler 
     private final JwtTokenProvider jwtTokenProvider;
     private final RefreshTokenService refreshTokenService;
 
+
     // 새로운 accessToken과 refreshToken을 발급하고 db에 refreshToken을 저장
 
     /**
