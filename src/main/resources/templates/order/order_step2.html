@@ -1097,7 +1097,7 @@
         <script th:inline="javascript">
           // 클라이언트 키 설정
           /*<![CDATA[*/
-          const clientKey = /*[[${tossKey}]]*/
+          const clientKey = [[${tossKey}]];
           /*]]>*/
           // TossPayments 객체 생성
           const tossPayments = TossPayments(clientKey)
@@ -1322,16 +1322,6 @@
 
 
 
-          }
-
-          function generateUUID() {
-            var d = new Date().getTime();
-            var uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
-              var r = (d + Math.random() * 16) % 16 | 0;
-              d = Math.floor(d / 16);
-              return (c == 'x' ? r : (r & 0x3 | 0x8)).toString(16);
-            });
-            return uuid;
           }
         </script>
         <!-- 간편결제 예약 앱 -->
