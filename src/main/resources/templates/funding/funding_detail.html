@@ -115,6 +115,19 @@
 <div id="page-container">
     <main id="main-app">
         <div th:replace="fragment/header__3X3Cg.html :: header"></div>
+        <style>
+            .web-header .web-header-funding-open .funding-open-button{
+                margin-top: 0px;
+            }
+            @media (max-width: 1095px) {
+                /* 1095px 이하일 때 적용될 스타일 */
+                .web-header .web-header-funding-open .funding-open-button{
+                    margin-top: 9px;
+                }
+            }
+
+
+        </style>
         <div class="MainWrapper_content__GZkTa">
             <div class="RewardDetailDesktop_container__2Yzds">
                 <div class="RewardDetailDesktop_contentWrapper__1Gcox">
