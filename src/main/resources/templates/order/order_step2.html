@@ -1216,7 +1216,7 @@
           let phone = user['mphone'];
           let email = user['memail'];
           let amount = [[${order.totalOriginPrice}]]
-          let orderId = generateUUID();
+          let orderId = window.crypto.randomUUID();
           let orderName = orderList[0]['fptitle'];
           if(orderList.length > 1) orderName +=` 외 ${orderList.length-1}건`
 
