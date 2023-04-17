@@ -131,14 +131,14 @@
                                                      aria-hidden="true"
                                                      style="outline: none; width: 750px"
                                                 >
-                                                    <div>
+                                                    <div style="width: 750px;">
                                                         <div
                                                                 tabindex="-1"
                                                                 style="width: 100%; display: inline-block"
                                                         >
                                                             <div
                                                                     class="RewardImageSlider_slickBackgroundImage__gyIH3"
-                                                                    th:style=" 'background-image: url('+${img.fiurl}+');'"
+                                                                    th:style=" 'background-image: url('+${img.fiurl}+');background-repeat: no-repeat;background-size: cover;background-position: center center;background-attachment: fixed;' "
                                                             ></div>
                                                         </div>
                                                     </div>
@@ -229,8 +229,8 @@
                                     <p class="BaseInfo_title__3qvLN">
                                         [[${funding.ftitle}]]
                                     </p>
-                                    <p class="BaseInfo_description__1M3_1">
-                                        [[${funding.fsummary}]]
+                                    <p class="BaseInfo_description__1M3_1"th:text="${funding.fsummary}">
+                                        펀딩 부설명
                                     </p>
                                     <div class="BaseInfo_rateWrapper__1C69h">
                                         <div class="BaseInfo_rate__vZ7aw">
