@@ -181,6 +181,7 @@
       });
 
       $('.fundingMakeBtn').click(function (e){
+        e.preventDefault();
         showConfirm("펀딩 만들기", "프로젝트를 만드시겠습니까?", makeFunding);
       })
     })
