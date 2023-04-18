@@ -1249,8 +1249,8 @@
               customerName: name, // user 이름
               customerEmail : email,
               customerMobilePhone : phone,
-              successUrl: 'https://thechef.site/web/order/success?order=' + encodeURIComponent(JSON.stringify(order)), //성공 url 성공 url에서는 승인 api 한번 호출하고 마이페이지로 넘어가도록 해야함
-              failUrl: 'https://thechef.site/fail',
+              successUrl: window.location.protocol + "//" + window.location.host +'/web/order/success?order=' + encodeURIComponent(JSON.stringify(order)), //성공 url 성공 url에서는 승인 api 한번 호출하고 마이페이지로 넘어가도록 해야함
+              failUrl: window.location.protocol + "//" + window.location.host +'/fail',
               validHours: 24
             })
           }
