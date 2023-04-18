@@ -14,6 +14,7 @@
     <title>더쉐프 메이커 | 스토리</title>
     <script src="https://code.jquery.com/jquery-3.6.4.js"
             integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
+    <script src="/js/toast.js"></script>
 
     <link
             href="/import/css/6.41bf0148.chunk.css"
@@ -548,7 +549,7 @@
             $('#chatOut').hide();
             let store1=$('#feedback-store').val();
             let content1=$('#feedback-contents').val();
-            let question="음식점 소개를 하려고 하는데 이름은 "+store1+", '"+content1+"' 라는 내용이고 무조건 한글로 적어줘 ";
+            let question="음식점 소개를 하려고 하는데 이름은 "+store1+", '"+content1+"' 라는 내용이고 풍부하게 무조건 한글로 적어줘 ";
             console.log("-------"+question);
             chatGpt(question);
 
@@ -558,7 +559,7 @@
             let copy=$('#feedback-out').val();
             if(copy) {
                 navigator.clipboard.writeText(copy);
-                alert("복사되었습니다.");
+                showToast("복사되었습니다.");
             } else {
                 alert("복사할 내용이 없습니다.");
             }
