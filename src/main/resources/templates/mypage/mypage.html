@@ -43,18 +43,28 @@
       href="/import/css/my-wadiz.635555ef.chunk.css" />
   </head>
 
-  <style>
-    .HeaderDesktop_user__3zGmM{
-      margin-top: 10px;
-    }
-    .MyWadizSupporterProjectInfo_project__3Vaun{
-      justify-content: center;
-    }
-  </style>
   <body class="" cz-shortcut-listen="true">
     <div id="page-container">
       <main id="main-app">
         <div th:replace="fragment/header__3X3Cg.html :: header"></div>
+        <style>
+          .MyWadizSupporterProjectInfo_project__3Vaun{
+            justify-content: center;
+          }
+          .web-header .web-header-funding-open .funding-open-button{
+            margin-top: 0px;
+          }
+
+          @media (max-width: 1095px) {
+            /* 1095px 이하일 때 적용될 스타일 */
+            .web-header .web-header-funding-open .funding-open-button{
+              margin-top: 9px;
+            }
+            .HeaderDesktop_user__3zGmM{
+              margin-top: 9px;
+            }
+          }
+        </style>
         <div class="MainWrapper_content__GZkTa">
           <div class="MyWadizPage_myWadizPage__wOTdS">
             <div class="MyWadizPage_profileBackground__T_LTr"></div>

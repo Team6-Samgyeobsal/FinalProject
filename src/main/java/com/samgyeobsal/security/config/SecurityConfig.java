@@ -51,11 +51,10 @@ public class SecurityConfig {
                 .and()
                 .authorizeHttpRequests((authz) ->
                         authz
-                                .antMatchers("/web/mypage").hasRole("USER")
+                                .antMatchers("/web/mypage").hasAnyRole("USER","ADMIN")
                                 .antMatchers("/web/mypage/order").hasRole("USER")
                                 .antMatchers("/web/mypage/maker/**").hasRole("USER")
                                 .antMatchers("/web/order/**").hasRole("USER")
-
                                 .anyRequest().permitAll()
                 )
                 .addFilterBefore(new JwtTokenFilter(jwtTokenProvider, refreshTokenService), UsernamePasswordAuthenticationFilter.class)
