@@ -91,17 +91,19 @@
       </div>
     </div>
   </div>
-  <input
-          type="hidden"
-          id="articleUrl"
-          value="https://www.wadiz.kr/web/wboard/newsBoardDetail/8422"
-  />
   <div id="fb-root"></div>
 
   <div id="footer">
     <div th:replace="fragment/footer__15kue.html :: footer"></div>
   </div>
     <script th:inline="javascript">
+
+      $(document).on('click','img[src="/images/notice1.jpg"]',function(e){
+        showConfirm("프로젝트 만들기","프로젝트를 시작하시곘습니까?",function(){
+          location.href='/web/mypage/maker';
+        })
+      })
+
       $(document).ready(function (){
         console.log([[${notice}]]);
         let eid=[[${notice.nid}]];
@@ -120,19 +122,23 @@
               eid:eid
             }),
             success: function (data, status) {
-              showConfirm("쿠폰이 발급되었습니다","마이페이지 - 쿠폰함으로 가시겠습니까?")
+              showConfirm("쿠폰이 발급되었습니다","마이페이지 - 쿠폰함으로 가시겠습니까?",function(){
+                location.href='/web/mypage/coupon';
+              })
 
 
             },
             error: function (status, error) {
-              showConfirm("쿠폰이 이미 발급되었습니다.","마이페이지 - 쿠폰함으로 가시겠습니까?")
+              showConfirm("쿠폰이 이미 발급되었습니다.","마이페이지 - 쿠폰함으로 가시겠습니까?",function(){
+                location.href='/web/mypage/coupon';
+              })
             }
           })
 
         }
-        $(document).on('click','.checkConfirm',function (){
-          location.href='/web/mypage/coupon';
-        })
+        // $(document).on('click','.checkConfirm',function (){
+        //   location.href='/web/mypage/coupon';
+        // })
       })
     </script>
 </body>

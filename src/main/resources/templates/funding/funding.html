@@ -94,6 +94,10 @@
     .fundingMakeBtn{
         margin-top: 0px;
     }
+    .VisualSlide_wrap__32Lj4 .VisualSlide_badge__3nqfs{
+        font-size: 20px;
+        line-height: 24px;
+    }
 </style>
 <div id="page-container">
     <main id="main-app">
@@ -152,6 +156,7 @@
                                                 </p>
                                                 <p class="VisualSlide_badge__3nqfs" th:utext="#{fundingSentence}">
                                                     펀딩자님!<br>무료로 더현대에 입점 해보실래요?
+
                                                 </p>
                                             </div>
                                         </div></a>
@@ -330,88 +335,89 @@
                 </div>
             </div>
         </div>
-                <script>
-                    $(document).ready(function () {
-                        let type=0;
-                        let place=0;
-                        let sort=0;
-                        let page=0;
-                        let isDone = false;
+
+        <script>
+            $(document).ready(function () {
+                let type=0;
+                let place=0;
+                let sort=0;
+                let page=0;
+                let isDone = false;
+                $('.TableLayout_container__1_Ap4').html('');
+                getList(type,place,sort,page);
+
+                //음식 종류 클릭 시 이벤트
+                $('.ImageTab_tab__3siCY').click(function () {
+                    console.log('음식 종류');
+                    if (!$(this).hasClass('ImageTab_active__BGdXu')) {
+                        type = $(this).closest('li').data('index');
+                        console.log(type);
                         $('.TableLayout_container__1_Ap4').html('');
+                        page=0;
+                        isDone = false;
                         getList(type,place,sort,page);
+                        $('.ImageTab_tab__3siCY').removeClass('ImageTab_active__BGdXu');
+                        $(this).addClass('ImageTab_active__BGdXu');
+                    }
+                })
+                //정렬 클릭 시 이벤트
+                $('.OrderSelectDesktop_sortItem__12TKi').click(function () {
+                    if (!$(this).hasClass('OrderSelectDesktop_active__YTP2K')) {
+                        $('.OrderSelectDesktop_sortItem__12TKi').removeClass('OrderSelectDesktop_active__YTP2K');
+                        $(this).addClass('OrderSelectDesktop_active__YTP2K');
+                        sort=$(this).data('sort');
+                        console.log(sort);
+                        $('.TableLayout_container__1_Ap4').html('');
+                        page=0;
+                        isDone = false;
+                        getList(type,place,sort,page);
+                    }
 
-                            //음식 종류 클릭 시 이벤트
-                            $('.ImageTab_tab__3siCY').click(function () {
-                            console.log('음식 종류');
-                            if (!$(this).hasClass('ImageTab_active__BGdXu')) {
-                                type = $(this).closest('li').data('index');
-                                console.log(type);
-                                $('.TableLayout_container__1_Ap4').html('');
-                                page=0;
-                                isDone = false;
-                                getList(type,place,sort,page);
-                                $('.ImageTab_tab__3siCY').removeClass('ImageTab_active__BGdXu');
-                                $(this).addClass('ImageTab_active__BGdXu');
-                            }
-                        })
-                        //정렬 클릭 시 이벤트
-                        $('.OrderSelectDesktop_sortItem__12TKi').click(function () {
-                            if (!$(this).hasClass('OrderSelectDesktop_active__YTP2K')) {
-                                $('.OrderSelectDesktop_sortItem__12TKi').removeClass('OrderSelectDesktop_active__YTP2K');
-                                $(this).addClass('OrderSelectDesktop_active__YTP2K');
-                                sort=$(this).data('sort');
-                                console.log(sort);
-                                $('.TableLayout_container__1_Ap4').html('');
-                                page=0;
-                                isDone = false;
-                                getList(type,place,sort,page);
-                            }
+                })
+                //더 현대 장소 변경 시 이벤트
+                $('.OrderSelect_sortContainer__3F7LQ .OrderSelect_selectBox__2hBjk').change(function (){
+                    let tPlace=$('option:selected', this).text();
+                    place=$('option:selected', this).data('place');
+                    console.log(tPlace);
+                    console.log(place);
+                    $('.OrderSelect_content__1RjYa').find('span').text(tPlace);
+                    $('.Main_categoryName__3YilF').text(tPlace);
+                    $('.TableLayout_container__1_Ap4').html('');
+                    page=0;
+                    isDone = false;
+                    getList(type,place,sort,page);
+                })
 
-                        })
-                        //더 현대 장소 변경 시 이벤트
-                        $('.OrderSelect_sortContainer__3F7LQ .OrderSelect_selectBox__2hBjk').change(function (){
-                            let tPlace=$('option:selected', this).text();
-                            place=$('option:selected', this).data('place');
-                            console.log(tPlace);
-                            console.log(place);
-                            $('.OrderSelect_content__1RjYa').find('span').text(tPlace);
-                            $('.Main_categoryName__3YilF').text(tPlace);
-                            $('.TableLayout_container__1_Ap4').html('');
-                            page=0;
-                            isDone = false;
-                            getList(type,place,sort,page);
-                        })
+                $(window).scroll(function() {
+                    if ($(window).scrollTop() + $(window).height() >= $(document).height()-10) {
+                        console.log('다음 페이지');
+                        page++
+                        getList(type,place,sort,page);
+                    }
+                });
+                function getList(type,place,sort,page){
+                    if(isDone)return;
+                    if(type === 0) type = null;
 
-                        $(window).scroll(function() {
-                            if ($(window).scrollTop() + $(window).height() >= $(document).height()-10) {
-                                console.log('다음 페이지');
-                                page++
-                                getList(type,place,sort,page);
-                            }
-                        });
-                        function getList(type,place,sort,page){
-                            if(isDone)return;
-                            if(type === 0) type = null;
+                    let url = '/api/funding/list';
+                    $.ajax({
+                        url: url,
+                        type: "get",
+                        contentType: "application/json; charset=utf-8",
+                        data:{
+                            type:type,
+                            place:place,
+                            sort:sort,
+                            page:page
+                        },
+                        success: function (data, status) {
+                            if(data.length ==0)
+                                isDone = true;
+                            let k="";
+                            console.log(data);
+                            data.forEach(function (funding) {
 
-                                    let url = '/api/funding/list';
-                                    $.ajax({
-                                        url: url,
-                                        type: "get",
-                                        contentType: "application/json; charset=utf-8",
-                                        data:{
-                                            type:type,
-                                            place:place,
-                                            sort:sort,
-                                            page:page
-                                        },
-                                        success: function (data, status) {
-                                            if(data.length ==0)
-                                                isDone = true;
-                                            let k="";
-                                                console.log(data);
-                                                data.forEach(function (funding) {
-
-                                                    k += ` <div
+                                k += ` <div
                             class="PreorderMainCard_root__1-vcs"
                             style="height: 100%; position: relative"
                     >
@@ -481,30 +487,31 @@
                         </a>
                     </div>`;
 
-                                                });
+                            });
 
-                                                $.ajax({
-                                                    url: '/api/translate',
-                                                    type: 'post',
-                                                    data: k,
-                                                    contentType: "text/html",
-                                                    success: function (data) {
-                                                        $('.TableLayout_container__1_Ap4').append(data);
-                                                    }, error: function (status, error) {
-                                                        console.log(error);
-                                                    }
-                                                })
-
-                                },
-                                error: function (status, error) {
-                                    alert("실패");
+                            $.ajax({
+                                url: '/api/translate',
+                                type: 'post',
+                                data: k,
+                                contentType: "text/html",
+                                success: function (data) {
+                                    $('.TableLayout_container__1_Ap4').append(data);
+                                }, error: function (status, error) {
+                                    console.log(error);
                                 }
                             })
+
+                        },
+                        error: function (status, error) {
+                            alert("실패");
                         }
-
-
                     })
-                </script>
+                }
+
+
+            })
+        </script>
+
 
 
 
