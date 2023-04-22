@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.*;
  * @author 최태승
  * @since 2023.02.24
  * Order Restful API
- * KaKapPay API
+ * Tosspayments API
  *
  * <pre>
  * 수정일        	수정자       			수정내용
