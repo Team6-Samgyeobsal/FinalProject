@@ -334,13 +334,23 @@
                 </div>
             </div>
         </div>
-                <script>
-                    $(document).ready(function () {
-                        let type=0;
-                        let place=0;
-                        let sort=0;
-                        let page=0;
-                        let isDone = false;
+
+        <script>
+            $(document).ready(function () {
+                let type=0;
+                let place=0;
+                let sort=0;
+                let page=0;
+                let isDone = false;
+                $('.TableLayout_container__1_Ap4').html('');
+                getList(type,place,sort,page);
+
+                //음식 종류 클릭 시 이벤트
+                $('.ImageTab_tab__3siCY').click(function () {
+                    console.log('음식 종류');
+                    if (!$(this).hasClass('ImageTab_active__BGdXu')) {
+                        type = $(this).closest('li').data('index');
+                        console.log(type);
                         $('.TableLayout_container__1_Ap4').html('');
                         page=0;
                         isDone = false;
@@ -494,8 +504,6 @@
                         error: function (status, error) {
                             alert("실패");
                         }
-
-
                     })
                 }
 
