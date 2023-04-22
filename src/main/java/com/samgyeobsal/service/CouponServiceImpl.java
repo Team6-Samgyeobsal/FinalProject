@@ -26,7 +26,7 @@ public class CouponServiceImpl implements CouponService{
     }
 
     /**
-     * 로그인한 계정의 용안한 쿠폰 수를 리턴
+     * 로그인한 계정의 사용 안한 쿠폰 수를 리턴
      * @param memail 회원 이메일
      */
     @Override
