@@ -337,6 +337,8 @@
         </div>
 
         <script>
+            let money='';
+            let exchange=1;
             $(document).ready(function () {
                 let type=0;
                 let place=0;
@@ -387,7 +389,7 @@
                     isDone = false;
                     getList(type,place,sort,page);
                 })
-
+                //무한 스크롤 이벤트
                 $(window).scroll(function() {
                     if ($(window).scrollTop() + $(window).height() >= $(document).height()-10) {
                         console.log('다음 페이지');
@@ -395,7 +397,38 @@
                         getList(type,place,sort,page);
                     }
                 });
+
+                if(locale=='ko'){
+                    money='KRW';
+                }else if(locale=='en'){
+                    money='USD';
+                }else if(locale=='ja'){
+                    money='JPY'
+                }else if(locale=='zh'){
+                    money='CNY'
+                }else {
+                    money='KRW';
+                }
+
+                exchangeRate(money,getList);
+                console.log(exchange);
+                function  exchangeRate(money, callback){
+                    $.ajax({
+                        url: 'https://quotation-api-cdn.dunamu.com/v1/forex/recent?codes=FRX.KRW'+money,
+                        type: 'get',
+                        success: function (data) {
+                            console.log(1/data[0].basePrice);
+                            exchange=1/data[0].basePrice;
+                            if(callback) callback(type,place, sort,page);
+                        },
+                        error: function (status, error) {
+                            console.log(error);
+                        }
+                    });
+                }
+
                 function getList(type,place,sort,page){
+                    console.log(exchange);
                     if(isDone)return;
                     if(type === 0) type = null;
 
@@ -439,10 +472,10 @@
                                 <div class="PreorderMainCard_header__R39X1">
                                     <div class="PreorderMainCard_headerLeft__2nwa1">
                                         <p class="PreorderMainCard_participants__JDp58">
-                                            ${Math.floor(funding.totalprice / 10000).toLocaleString('ko-KR')}% 달성
+                                            ${Math.floor(funding.totalprice ).toLocaleString('ko-KR')} 원 판매
                                         </p>
                                         <p class="PreorderMainCard_amount__3UOXm">
-                                            ${funding.totalprice.toLocaleString('ko-KR')}원
+                                            ${Math.floor(funding.totalprice*exchange).toLocaleString('ko-KR')} ${money}
                                         </p>
                                     </div>
                                     <div class="PreorderMainCard_headerRight__3rRNi">

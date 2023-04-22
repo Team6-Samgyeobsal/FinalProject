@@ -285,7 +285,8 @@ ALTER TABLE jwt_refresh
 
 ALTER TABLE order_item
     ADD CONSTRAINT order_item_orders_fk FOREIGN KEY ( oid )
-        REFERENCES orders ( oid );
+        REFERENCES orders ( oid )
+        ON DELETE CASCADE;
 
 ALTER TABLE order_item
     ADD CONSTRAINT order_item_product_option_fk FOREIGN KEY ( poid )
@@ -309,7 +310,8 @@ ALTER TABLE product_option
 
 ALTER TABLE qr_code
     ADD CONSTRAINT qr_code_orders_fk FOREIGN KEY ( oid )
-        REFERENCES orders ( oid );
+        REFERENCES orders ( oid )
+        ON DELETE CASCADE;
 
 ALTER TABLE review
     ADD CONSTRAINT review_funding_fk FOREIGN KEY ( fid )
@@ -333,9 +335,11 @@ ALTER TABLE queue
 ALTER TABLE queue
     ADD CONSTRAINT queue_member_fk FOREIGN KEY ( memail )
         REFERENCES member ( memail );
+
 ALTER TABLE queue
     ADD CONSTRAINT queue_qr_code_fk FOREIGN KEY ( qid )
-        REFERENCES qr_code ( qid );
+        REFERENCES qr_code ( qid )
+        ON DELETE CASCADE;
 
 
 
