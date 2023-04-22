@@ -17,6 +17,7 @@ public class XssConfig implements WebMvcConfigurer {
 
     private final ObjectMapper objectMapper;
 
+
     @Bean
     public CustomXssEscapeServletFilter customXssEscapeServletFilter(){
         return new CustomXssEscapeServletFilter();

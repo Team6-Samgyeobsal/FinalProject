@@ -119,7 +119,6 @@
               <div>
                 <div th:if="${#strings.equals(#authentication.principal.member.mrole,'ROLE_USER')}">
                   <button
-                          style="margin-top: 0px"
                           aria-label="프로젝트 만들기" class="fundingMakeBtn Button_button__3J1Nv Button_primary__1EZQV Button_md__2iTxL funding-open-button" type="button">
                     <span>
                       <span class="Button_children__1ZhTo" th:text="#{makeProject}">프로젝트 만들기</span>
@@ -186,7 +185,8 @@
 
         console.log('ready');
 
-        let makeFunding = () => $.ajax({
+        let makeFunding = () =>
+         $.ajax({
           url: '/api/funding/',
           type: 'POST',
           dataType: 'text',
@@ -197,6 +197,7 @@
         });
 
         $('.fundingMakeBtn').click(function (e){
+          e.preventDefault();
           showConfirm("펀딩 만들기", "프로젝트를 만드시겠습니까?", makeFunding);
         })
 

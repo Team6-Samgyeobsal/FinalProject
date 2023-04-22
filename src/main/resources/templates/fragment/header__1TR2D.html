@@ -95,7 +95,7 @@
           <div class="web-header-funding-open funding-open">
             <div>
               <div th:if="${#strings.equals(#authentication.principal.member.mrole,'ROLE_USER')}">
-                <button style="margin-top: 0px"
+                <button
                         aria-label="프로젝트 만들기"
                         class="fundingMakeBtn Button_button__5oeoO Button_primary__3lu_z Button_md__3GjME funding-open-button"
                         type="button">
@@ -181,6 +181,7 @@
       });
 
       $('.fundingMakeBtn').click(function (e){
+        e.preventDefault();
         showConfirm("펀딩 만들기", "프로젝트를 만드시겠습니까?", makeFunding);
       })
     })

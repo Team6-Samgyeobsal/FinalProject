@@ -119,7 +119,7 @@
               <em>리워드<br />선택</em>
             </li>
             <li class="active"><em>결제 예약</em></li>
-            <li><em>소문내기</em></li>
+            <li><em>주문 확인</em></li>
           </ol>
         </div>
           <div class="wpurchase-order">
@@ -141,7 +141,7 @@
                           </span>
                     </div>
 
-                    <p class="sum"><em>수량 : [[${o.sumamount}]]개</em>[[${#numbers.formatInteger(o.sumprice, 3, 'COMMA')}]]원</p>
+                    <p class="sum"><em>수량 : [[${o.totalAmount}]]개</em>[[${#numbers.formatInteger(o.sumprice, 3, 'COMMA')}]]원</p>
                   </div>
                 </li>
 
@@ -1097,7 +1097,7 @@
         <script th:inline="javascript">
           // 클라이언트 키 설정
           /*<![CDATA[*/
-          const clientKey = /*[[${tossKey}]]*/
+          const clientKey = [[${tossKey}]];
           /*]]>*/
           // TossPayments 객체 생성
           const tossPayments = TossPayments(clientKey)
@@ -1216,7 +1216,8 @@
           let phone = user['mphone'];
           let email = user['memail'];
           let amount = [[${order.totalOriginPrice}]]
-          let orderId = window.crypto.randomUUID();
+          let orderId = new Date().getTime();
+          console.log(orderId);
           let orderName = orderList[0]['fptitle'];
           if(orderList.length > 1) orderName +=` 외 ${orderList.length-1}건`
 
@@ -1248,8 +1249,8 @@
               customerName: name, // user 이름
               customerEmail : email,
               customerMobilePhone : phone,
-              successUrl: 'http://localhost/web/order/success?order=' + encodeURIComponent(JSON.stringify(order)), //성공 url 성공 url에서는 승인 api 한번 호출하고 마이페이지로 넘어가도록 해야함
-              failUrl: 'http://localhost:80/fail',
+              successUrl: window.location.protocol + "//" + window.location.host +'/web/order/success?order=' + encodeURIComponent(JSON.stringify(order)), //성공 url 성공 url에서는 승인 api 한번 호출하고 마이페이지로 넘어가도록 해야함
+              failUrl: window.location.protocol + "//" + window.location.host +'/fail',
               validHours: 24
             })
           }

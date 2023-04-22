@@ -111,7 +111,7 @@ public class MyPageController {
             return "redirect:/web/mypage/maker/funding/{fundingId}/baseInfo?error=" + URLEncoder.encode(msg, "UTF-8");
         }
 
-        makerService.updateFundingBaseInfo(baseInfoDTO);
+//        makerService.updateFundingBaseInfo(baseInfoDTO);
         redirectAttributes.addAttribute("fundingId", fundingId);
 
         return "redirect:/web/mypage/maker/funding/{fundingId}";
