@@ -345,7 +345,8 @@
                                             ><span
                                                     class="Badge_badge__2h6cT Badge_label__VC3QR Badge_md__nBr2- Badge_primary__2x__i Badge_tertiary__1ERKE"
                                                     th:text="${funding.expire == 0 ? '오늘 마감' : funding.expire}+' '+#{daysLeft}"> 100일 남음
-                                            </span></span
+                                            </span>
+                                            </span
                                             >
                                         </div>
                                         <div class="BaseInfo_rate__vZ7aw">
@@ -354,8 +355,9 @@
                                             <span
                                                     class="Badge_container__3ioDw Badge_visible__n2Hg1 BaseInfo_remainingDay__3wD-k"
                                             ><span
-                                                    class="Badge_badge__2h6cT Badge_label__VC3QR Badge_md__nBr2- Badge_secondary__1o9ka Badge_tertiary__1ERKE"
-                                                    th:text="${funding.totalprice/10000}+'% '+ #{achieved}">10% 달성</span
+                                                    class="Badge_badge__2h6cT Badge_label__VC3QR Badge_md__nBr2- Badge_secondary__1o9ka Badge_tertiary__1ERKE exchange_rate"
+                                                    th:data-price="${funding.totalprice}"
+                                                    th:text="${funding.totalprice}+' '+#{money}">10% 달성</span
                                             ></span
                                             >
                                         </div>
@@ -405,7 +407,9 @@
                                                         ><span
                                                                 class="Badge_badge__2h6cT Badge_label__VC3QR Badge_md__nBr2- Badge_primary__2x__i Badge_tertiary__1ERKE"
                                                         >[[${#numbers.formatInteger(product.fporigin_price-product.fpprice, 3, 'COMMA')}]]원 할인</span
-                                                        ></span
+                                                        >
+                                                        <span class="Badge_badge__2h6cT Badge_label__VC3QR Badge_md__nBr2- Badge_secondary__1o9ka Badge_tertiary__1ERKE exchange_rate"
+                                                              th:data-price="${product.fpprice}"></span></span
                                                         >
                                                         </div>
                                                         <p class="Reward_name__21dvW">
@@ -620,6 +624,8 @@
 
 </div>
 <script th:inline="javascript">
+    let money='';
+    let exchange=1;
     $(document).ready(function () {
         //상품 리스트에 마우스 올리면 색 변하는 이벤트
         $('.Reward_container__qyq1y').hover(function () {
@@ -661,6 +667,46 @@
                 $('.ProductSelectMenu_content__39QFr').show();
             }
         })
+        if(locale=='ko'){
+            money='KRW';
+        }else if(locale=='en'){
+            money='USD';
+        }else if(locale=='ja'){
+            money='JPY'
+        }else if(locale=='zh'){
+            money='CNY'
+        }else {
+            money='KRW';
+        }
+
+
+        if(money=='KRW'){
+            $('.exchange_rate').each(function () {
+                let tprice = $(this).data('price');
+                $(this).text(Math.floor(tprice ).toLocaleString('ko-kr') + ' ' + money);
+            });
+        }else {
+            $.ajax({
+                url: 'https://quotation-api-cdn.dunamu.com/v1/forex/recent?codes=FRX.KRW' + money,
+                type: 'get',
+                success: function (data) {
+                    console.log(1 / data[0].basePrice);
+                    let exchange = 1 / data[0].basePrice;
+                    $('.exchange_rate').each(function () {
+                        let tprice = $(this).data('price');
+                        console.log(tprice);
+                        console.log(this);
+                        $(this).text(Math.floor(tprice * exchange).toLocaleString('ko-kr') + ' ' + money);
+                    });
+                    console.log('성공');
+                },
+                error: function (status, error) {
+                    console.log(error);
+
+                }
+            });
+        }
+
 
 
     })
@@ -673,6 +719,7 @@
     var totalSlides = [[${#lists.size(funding.imgs)}]];
     var transitionDuration = 300;
     console.log(totalSlides);
+
 
     $('.RewardImageSlider_slickNext__3fjhE').click(function () {
         console.log('next');
