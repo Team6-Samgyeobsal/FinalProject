@@ -406,11 +406,12 @@
                                                                 class="Badge_container__3ioDw Badge_visible__n2Hg1 Reward_remainQty__3sU0Z"
                                                         ><span
                                                                 class="Badge_badge__2h6cT Badge_label__VC3QR Badge_md__nBr2- Badge_primary__2x__i Badge_tertiary__1ERKE"
-                                                        >[[${#numbers.formatInteger(product.fporigin_price-product.fpprice, 3, 'COMMA')}]]원 할인</span
                                                         >
-                                                        <span class="Badge_badge__2h6cT Badge_label__VC3QR Badge_md__nBr2- Badge_secondary__1o9ka Badge_tertiary__1ERKE exchange_rate"
-                                                              th:data-price="${product.fpprice}"></span></span
+                                                            [[${#numbers.formatInteger(product.fporigin_price-product.fpprice, 3, 'COMMA')}]]원 </span
                                                         >
+                                                                                                                    <span class="Badge_badge__2h6cT Badge_label__VC3QR Badge_md__nBr2- Badge_secondary__1o9ka Badge_tertiary__1ERKE exchange_rate"
+                                                                                                                          th:data-price="${product.fpprice}">1000KRW</span></span
+                                                                                                                    >
                                                         </div>
                                                         <p class="Reward_name__21dvW">
                                                             [[${product.fptitle}]]
@@ -686,6 +687,10 @@
                 $(this).text(Math.floor(tprice ).toLocaleString('ko-kr') + ' ' + money);
             });
         }else {
+            exchangeRate(money);
+        }
+
+        function exchangeRate(money){
             $.ajax({
                 url: 'https://quotation-api-cdn.dunamu.com/v1/forex/recent?codes=FRX.KRW' + money,
                 type: 'get',
@@ -699,6 +704,46 @@
                         $(this).text(Math.floor(tprice * exchange).toLocaleString('ko-kr') + ' ' + money);
                     });
                     console.log('성공');
+                    let summary=$('#summary').html();
+
+                    $.ajax({
+                        url : '/api/translate',
+                        type : 'post',
+                        data : summary,
+                        contentType: "text/html",
+                        success : function(data){
+                            $('#summary').html('');
+                            $('#summary').append(data);
+                        },error: function (status, error) {
+                            console.log(error);
+                        }
+                    })
+                    let productList=$('.Rewards_list__X7K46').html();
+                    $.ajax({
+                        url : '/api/translate',
+                        type : 'post',
+                        data : productList,
+                        contentType: "text/html",
+                        success : function(data){
+                            $('.Rewards_list__X7K46').html('');
+                            $('.Rewards_list__X7K46').append(data);
+                        },error: function (status, error) {
+                            console.log(error);
+                        }
+                    })
+                    let productList2=$('.ProductSelectMenu_content__39QFr').html();
+                    $.ajax({
+                        url : '/api/translate',
+                        type : 'post',
+                        data : productList2,
+                        contentType: "text/html",
+                        success : function(data){
+                            $('.ProductSelectMenu_content__39QFr').html('');
+                            $('.ProductSelectMenu_content__39QFr').append(data);
+                        },error: function (status, error) {
+                            console.log(error);
+                        }
+                    })
                 },
                 error: function (status, error) {
                     console.log(error);
@@ -707,9 +752,9 @@
             });
         }
 
-
-
     })
+
+
 </script>
 <script th:inline="javascript">
 
@@ -1141,46 +1186,7 @@
                 }
             })
         }
-        let summary=$('#summary').html();
 
-        $.ajax({
-            url : '/api/translate',
-            type : 'post',
-            data : summary,
-            contentType: "text/html",
-            success : function(data){
-                $('#summary').html('');
-                $('#summary').append(data);
-            },error: function (status, error) {
-                console.log(error);
-            }
-        })
-        let productList=$('.Rewards_list__X7K46').html();
-        $.ajax({
-            url : '/api/translate',
-            type : 'post',
-            data : productList,
-            contentType: "text/html",
-            success : function(data){
-                $('.Rewards_list__X7K46').html('');
-                $('.Rewards_list__X7K46').append(data);
-            },error: function (status, error) {
-                console.log(error);
-            }
-        })
-        let productList2=$('.ProductSelectMenu_content__39QFr').html();
-        $.ajax({
-            url : '/api/translate',
-            type : 'post',
-            data : productList2,
-            contentType: "text/html",
-            success : function(data){
-                $('.ProductSelectMenu_content__39QFr').html('');
-                $('.ProductSelectMenu_content__39QFr').append(data);
-            },error: function (status, error) {
-                console.log(error);
-            }
-        })
     })
 
 </script>
