@@ -14,21 +14,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 
-
-/**
- * @filename OrderApi
- * @author 최태승
- * @since 2023.02.24
- * Order Restful API
- * KaKapPay API
- *
- * <pre>
- * 수정일        	수정자       			수정내용
- * ----------  --------    ---------------------------
- * 2023.02.23	최태승		최초 생성
- * </pre>
- */
-
 @Tag(name = "주문 API")
 @RestController
 @RequiredArgsConstructor

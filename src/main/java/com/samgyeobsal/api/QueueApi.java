@@ -16,9 +16,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Queue;
 
-/*@Api(value="QueueApi")
-@SwaggerDefinition(tags = {@Tag(name = "QueueApi",
-description = "모바일 대기열 기능")})*/
 @Tag(name = "대기열 API")
 @Log4j2
 @RestController

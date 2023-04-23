@@ -151,11 +151,12 @@
                             background-image: url('https://cdn.wadiz.kr/ft/images/green001/2023/0217/20230217140652410_6556.jpg/wadiz/resize/2100/format/jpg/quality/85/');
                             width: 160%" data-gtm-vis-first-on-screen-11319722_2115="10181307" data-gtm-vis-first-on-screen-11319722_2184="10181308" data-gtm-vis-first-on-screen-11319722_2047="10211877" data-gtm-vis-recent-on-screen-11319722_2047="1681623489780" data-gtm-vis-total-visible-time-11319722_2047="2000" data-gtm-vis-recent-on-screen-11319722_2115="1681623489780" data-gtm-vis-total-visible-time-11319722_2115="2000" data-gtm-vis-recent-on-screen-11319722_2184="1681623489781" data-gtm-vis-total-visible-time-11319722_2184="2000" data-gtm-vis-has-fired-11319722_2047="1" data-gtm-vis-has-fired-11319722_2115="1" data-gtm-vis-has-fired-11319722_2184="1"><div class="VisualSlide_wrap__32Lj4">
                                             <div class="VisualSlide_text__2SIqN">
-                                                <p class="VisualSlide_title__3USGy">
-                                                    더 쉐프 오픈!
+                                                <p class="VisualSlide_title__3USGy" th:text="#{open}">
+                                                    더쉐프 오픈!
                                                 </p>
-                                                <p class="VisualSlide_badge__3nqfs">
-                                                    판매자님!<br>무료로 더 현대에 입점 해보실래요?
+                                                <p class="VisualSlide_badge__3nqfs" th:utext="#{fundingSentence}">
+                                                    펀딩자님!<br>무료로 더현대에 입점 해보실래요?
+
                                                 </p>
                                             </div>
                                         </div></a>
@@ -334,88 +335,122 @@
                 </div>
             </div>
         </div>
-                <script>
-                    $(document).ready(function () {
-                        let type=0;
-                        let place=0;
-                        let sort=0;
-                        let page=0;
-                        let isDone = false;
+
+        <script>
+            let money='';
+            let exchange=1;
+            $(document).ready(function () {
+                let type=0;
+                let place=0;
+                let sort=0;
+                let page=0;
+                let isDone = false;
+                $('.TableLayout_container__1_Ap4').html('');
+                getList(type,place,sort,page);
+
+                //음식 종류 클릭 시 이벤트
+                $('.ImageTab_tab__3siCY').click(function () {
+                    console.log('음식 종류');
+                    if (!$(this).hasClass('ImageTab_active__BGdXu')) {
+                        type = $(this).closest('li').data('index');
+                        console.log(type);
                         $('.TableLayout_container__1_Ap4').html('');
+                        page=0;
+                        isDone = false;
                         getList(type,place,sort,page);
+                        $('.ImageTab_tab__3siCY').removeClass('ImageTab_active__BGdXu');
+                        $(this).addClass('ImageTab_active__BGdXu');
+                    }
+                })
+                //정렬 클릭 시 이벤트
+                $('.OrderSelectDesktop_sortItem__12TKi').click(function () {
+                    if (!$(this).hasClass('OrderSelectDesktop_active__YTP2K')) {
+                        $('.OrderSelectDesktop_sortItem__12TKi').removeClass('OrderSelectDesktop_active__YTP2K');
+                        $(this).addClass('OrderSelectDesktop_active__YTP2K');
+                        sort=$(this).data('sort');
+                        console.log(sort);
+                        $('.TableLayout_container__1_Ap4').html('');
+                        page=0;
+                        isDone = false;
+                        getList(type,place,sort,page);
+                    }
 
-                            //음식 종류 클릭 시 이벤트
-                            $('.ImageTab_tab__3siCY').click(function () {
-                            console.log('음식 종류');
-                            if (!$(this).hasClass('ImageTab_active__BGdXu')) {
-                                type = $(this).closest('li').data('index');
-                                console.log(type);
-                                $('.TableLayout_container__1_Ap4').html('');
-                                page=0;
-                                isDone = false;
-                                getList(type,place,sort,page);
-                                $('.ImageTab_tab__3siCY').removeClass('ImageTab_active__BGdXu');
-                                $(this).addClass('ImageTab_active__BGdXu');
-                            }
-                        })
-                        //정렬 클릭 시 이벤트
-                        $('.OrderSelectDesktop_sortItem__12TKi').click(function () {
-                            if (!$(this).hasClass('OrderSelectDesktop_active__YTP2K')) {
-                                $('.OrderSelectDesktop_sortItem__12TKi').removeClass('OrderSelectDesktop_active__YTP2K');
-                                $(this).addClass('OrderSelectDesktop_active__YTP2K');
-                                sort=$(this).data('sort');
-                                console.log(sort);
-                                $('.TableLayout_container__1_Ap4').html('');
-                                page=0;
-                                isDone = false;
-                                getList(type,place,sort,page);
-                            }
+                })
+                //더 현대 장소 변경 시 이벤트
+                $('.OrderSelect_sortContainer__3F7LQ .OrderSelect_selectBox__2hBjk').change(function (){
+                    let tPlace=$('option:selected', this).text();
+                    place=$('option:selected', this).data('place');
+                    console.log(tPlace);
+                    console.log(place);
+                    $('.OrderSelect_content__1RjYa').find('span').text(tPlace);
+                    $('.Main_categoryName__3YilF').text(tPlace);
+                    $('.TableLayout_container__1_Ap4').html('');
+                    page=0;
+                    isDone = false;
+                    getList(type,place,sort,page);
+                })
+                //무한 스크롤 이벤트
+                $(window).scroll(function() {
+                    if ($(window).scrollTop() + $(window).height() >= $(document).height()-10) {
+                        console.log('다음 페이지');
+                        page++
+                        getList(type,place,sort,page);
+                    }
+                });
 
-                        })
-                        //더 현대 장소 변경 시 이벤트
-                        $('.OrderSelect_sortContainer__3F7LQ .OrderSelect_selectBox__2hBjk').change(function (){
-                            let tPlace=$('option:selected', this).text();
-                            place=$('option:selected', this).data('place');
-                            console.log(tPlace);
-                            console.log(place);
-                            $('.OrderSelect_content__1RjYa').find('span').text(tPlace);
-                            $('.Main_categoryName__3YilF').text(tPlace);
-                            $('.TableLayout_container__1_Ap4').html('');
-                            page=0;
-                            isDone = false;
-                            getList(type,place,sort,page);
-                        })
+                if(locale=='ko'){
+                    money='KRW';
+                }else if(locale=='en'){
+                    money='USD';
+                }else if(locale=='ja'){
+                    money='JPY'
+                }else if(locale=='zh'){
+                    money='CNY'
+                }else {
+                    money='KRW';
+                }
 
-                        $(window).scroll(function() {
-                            if ($(window).scrollTop() + $(window).height() >= $(document).height()-10) {
-                                console.log('다음 페이지');
-                                page++
-                                getList(type,place,sort,page);
-                            }
-                        });
-                        function getList(type,place,sort,page){
-                            if(isDone)return;
-                            if(type === 0) type = null;
+                exchangeRate(money,getList);
+                console.log(exchange);
+                function  exchangeRate(money, callback){
+                    $.ajax({
+                        url: 'https://quotation-api-cdn.dunamu.com/v1/forex/recent?codes=FRX.KRW'+money,
+                        type: 'get',
+                        success: function (data) {
+                            console.log(1/data[0].basePrice);
+                            exchange=1/data[0].basePrice;
+                            if(callback) callback(type,place, sort,page);
+                        },
+                        error: function (status, error) {
+                            console.log(error);
+                        }
+                    });
+                }
 
-                                    let url = '/api/funding/list';
-                                    $.ajax({
-                                        url: url,
-                                        type: "get",
-                                        contentType: "application/json; charset=utf-8",
-                                        data:{
-                                            type:type,
-                                            place:place,
-                                            sort:sort,
-                                            page:page
-                                        },
-                                        success: function (data, status) {
-                                            if(data.length ==0)
-                                                isDone = true;
-                                            let k="";
-                                                console.log(data);
-                                                data.forEach(function (funding) {
+                function getList(type,place,sort,page){
+                    console.log(exchange);
+                    if(isDone)return;
+                    if(type === 0) type = null;
 
-                                                    k += ` <div
+                    let url = '/api/funding/list';
+                    $.ajax({
+                        url: url,
+                        type: "get",
+                        contentType: "application/json; charset=utf-8",
+                        data:{
+                            type:type,
+                            place:place,
+                            sort:sort,
+                            page:page
+                        },
+                        success: function (data, status) {
+                            if(data.length ==0)
+                                isDone = true;
+                            let k="";
+                            console.log(data);
+                            data.forEach(function (funding) {
+
+                                k += ` <div
                             class="PreorderMainCard_root__1-vcs"
                             style="height: 100%; position: relative"
                     >
@@ -437,10 +472,10 @@
                                 <div class="PreorderMainCard_header__R39X1">
                                     <div class="PreorderMainCard_headerLeft__2nwa1">
                                         <p class="PreorderMainCard_participants__JDp58">
-                                            ${Math.floor(funding.totalprice / 10000).toLocaleString('ko-KR')}% 달성
+                                            ${Math.floor(funding.totalprice ).toLocaleString('ko-KR')} 원 판매
                                         </p>
                                         <p class="PreorderMainCard_amount__3UOXm">
-                                            ${funding.totalprice.toLocaleString('ko-KR')}원
+                                            ${Math.floor(funding.totalprice*exchange).toLocaleString('ko-KR')} ${money}
                                         </p>
                                     </div>
                                     <div class="PreorderMainCard_headerRight__3rRNi">
@@ -485,30 +520,31 @@
                         </a>
                     </div>`;
 
-                                                });
+                            });
 
-                                                $.ajax({
-                                                    url: '/api/translate',
-                                                    type: 'post',
-                                                    data: k,
-                                                    contentType: "text/html",
-                                                    success: function (data) {
-                                                        $('.TableLayout_container__1_Ap4').append(data);
-                                                    }, error: function (status, error) {
-                                                        console.log(error);
-                                                    }
-                                                })
-
-                                },
-                                error: function (status, error) {
-                                    alert("실패");
+                            $.ajax({
+                                url: '/api/translate',
+                                type: 'post',
+                                data: k,
+                                contentType: "text/html",
+                                success: function (data) {
+                                    $('.TableLayout_container__1_Ap4').append(data);
+                                }, error: function (status, error) {
+                                    console.log(error);
                                 }
                             })
+
+                        },
+                        error: function (status, error) {
+                            alert("실패");
                         }
-
-
                     })
-                </script>
+                }
+
+
+            })
+        </script>
+
 
 
 
