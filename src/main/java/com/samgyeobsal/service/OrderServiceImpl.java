@@ -15,21 +15,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-/**
- * @filename OrderServiceImpl
- * @author 최태승
- * @since 2023.02.24
- * 인터페이스와 구현체를 분리
- *
- * <pre>
- * 수정일        	수정자       			수정내용
- * ----------  --------    ---------------------------
- * 2023.02.24	최태승        최초 생성
- * 2023.03.26   최태승        쿠폰 적용
- * 2023.03.30   최태승        마일리지 적용
- * </pre>
- */
-
 @Service
 @RequiredArgsConstructor
 @Slf4j

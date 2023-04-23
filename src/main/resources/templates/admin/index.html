@@ -203,7 +203,8 @@
                 data : {tid},
                 type : 'get',
                 success : function(data){
-                    console.log(data)
+                    console.log("getCategorySale");
+                    console.log(data);
                     printPieChart(data);
                 }
             })
@@ -215,6 +216,8 @@
                 type: 'get',
                 data:{tid},
                 success : function(data){
+                    console.log("getDailySales");
+                    console.log(data);
                     printLineChart(data)
                 }
             })

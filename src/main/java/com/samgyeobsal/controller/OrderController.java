@@ -23,20 +23,6 @@ import javax.servlet.http.HttpSession;
 import java.util.Base64;
 
 
-/**
- * @filename OrderController
- * @author 최태승
- * @since 2023.02.24
- * Order 페이지 띄우기
- *
- * <pre>
- * 수정일        	수정자       			수정내용
- * ----------  --------    ---------------------------
- * 2023.02.24	최태승		최초 생성
- * 2023.03.26   최태승        쿠폰 적용
- * </pre>
- */
-
 @Controller
 @RequiredArgsConstructor
 @RequestMapping("/web/order")

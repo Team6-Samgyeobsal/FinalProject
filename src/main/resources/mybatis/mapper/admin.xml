@@ -49,27 +49,30 @@
     </select>
 
     <select id="getRecentDailySaleListByHyundai" resultType="dailySale">
+
         select c.odate, nvl(sum(oprice),0) dailySale
         from (
-            select distinct TRUNC(o.odate) odate, o.oprice, o.oid, t.tid
-            from orders o
-            inner join order_item oi on (o.oid = oi.oid)
-            inner join product_option po on (oi.poid = po.poid)
-            inner join funding_product fp on (fp.fpid = po.fpid)
-            inner join funding f on (f.fid = fp.fid)
-            inner join competition c on (c.cid = f.cid and c.tid = f.tid)
-            inner join the_hyundai t on (t.tid = c.tid)
-            where
-                o.odate between TRUNC(sysdate) - 7 and TRUNC(sysdate) - 1
-            and f.fstatus='FUNDING'
-            <if test="tid != null and !tid.equals('')">
-                and f.tid = #{tid}
-            </if>
-            ) s
+        select distinct TRUNC(o.odate) odate, o.oprice, o.oid, t.tid
+        from orders o
+        inner join order_item oi on (o.oid = oi.oid)
+        inner join product_option po on (oi.poid = po.poid)
+        inner join funding_product fp on (fp.fpid = po.fpid)
+        inner join funding f on (f.fid = fp.fid)
+        inner join competition c on (c.cid = f.cid and c.tid = f.tid)
+        inner join the_hyundai t on (t.tid = c.tid)
+        where
+        to_char(o.odate,'yyyymmdd') between to_char(sysdate-7,'yyyymmdd')
+        and to_char(sysdate-1,'yyyymmdd')
+        and f.fstatus='FUNDING'
+        and o.ostatus = 'COMPLETE'
+        <if test="tid != null and !tid.equals('')">
+            and f.tid = #{tid}
+        </if>
+        ) s
         right join (
-            SELECT TRUNC(sysdate) - level odate
-            FROM DUAL
-            CONNECT BY LEVEL <![CDATA[<]]>= 7) c on (s.odate = c.odate)
+        SELECT TRUNC(sysdate) - level odate
+        FROM DUAL
+        CONNECT BY LEVEL <![CDATA[<]]>= 7) c on (to_char(s.odate,'yyyymmdd') = to_char(c.odate,'yyyymmdd'))
         group by c.odate
         order by c.odate
     </select>

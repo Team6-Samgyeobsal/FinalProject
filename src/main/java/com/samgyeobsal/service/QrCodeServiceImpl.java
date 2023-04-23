@@ -12,18 +12,6 @@ import java.io.IOException;
 import java.util.Base64;
 import java.util.UUID;
 
-/**
- * @filename QrCodeServiceImpl
- * @author 최태승
- * @since 2023.03.06
- * 인터페이스와 구현체를 분리
- *
- * <pre>
- * 수정일        	수정자       			수정내용
- * ----------  --------    ---------------------------
- * 2023.03.06	최태승		최초 생성
- * </pre>
- */
 @Service
 @RequiredArgsConstructor
 public class QrCodeServiceImpl implements QrCodeService {
