@@ -385,7 +385,7 @@
                                 <div class="RewardVerticalInfo_rewardsWrap__3tfnX">
                                     <div class="Rewards_container__163tP">
                                         <div class="Rewards_title__2ZZf3">
-                                            <p th:text="#{selectProduct}">리워드 선택</p>
+                                            <p th:text="#{selectProduct}">상품 선택</p>
                                             <div class="Rewards_period__3XgCS">
                                                 <p th:text="#{duration}">진행기간</p>
                                                 <p>[[${#dates.format(funding.fdate, 'yyyy.MM.dd')}]] ~ [[${#dates.format(funding.end_date, 'yyyy.MM.dd')}]]</p>
@@ -407,7 +407,7 @@
                                                         ><span
                                                                 class="Badge_badge__2h6cT Badge_label__VC3QR Badge_md__nBr2- Badge_primary__2x__i Badge_tertiary__1ERKE"
                                                         >
-                                                            [[${#numbers.formatInteger(product.fporigin_price-product.fpprice, 3, 'COMMA')}]]원 </span
+                                                            - [[${#numbers.formatInteger(product.fporigin_price-product.fpprice, 3, 'COMMA')}]]원 </span
                                                         >
                                                                                                                     <span class="Badge_badge__2h6cT Badge_label__VC3QR Badge_md__nBr2- Badge_secondary__1o9ka Badge_tertiary__1ERKE exchange_rate"
                                                                                                                           th:data-price="${product.fpprice}">1000KRW</span></span
