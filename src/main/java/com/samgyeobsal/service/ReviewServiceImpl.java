@@ -31,6 +31,7 @@ public class ReviewServiceImpl implements ReviewService{
 
         int score = commonService.getReviewScore(insertReviewDTO.getRcontent());
         insertReviewDTO.setRscore(score);
+        if(score < 0) throw new RuntimeException("Review 욕설 포함");
         int row = reviewMapper.insertReview(insertReviewDTO);
         if(row == 0) throw new RuntimeException("review Mapper Error");
     }

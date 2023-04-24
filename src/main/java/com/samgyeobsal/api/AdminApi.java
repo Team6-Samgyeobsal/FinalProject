@@ -106,6 +106,7 @@ public class AdminApi {
         return new ResponseEntity<>("success", HttpStatus.OK);
     }
 
+
     @Operation(summary = "한달 총 매출", description = "더 현대 장소별 한달 총 매출을 리턴합니다.")
     @GetMapping("/totalSale")
     public ResponseEntity<List<TotalSaleDTO>> getHyundaiTotalSale() {
