@@ -1,5 +1,5 @@
 # TEAM6 - 삼겹살
-
+![로고_민트](https://user-images.githubusercontent.com/96964263/236413655-9c1a39f8-fc69-4d4d-b15e-b761fc5792b2.jpeg)
 
 ## 1. 프로젝트 소개
 현대IT&E 채용확정형 6기 최종 프로젝트 ('23.02.23 ~ 04.25)<br>
@@ -8,8 +8,6 @@
 크라우드 펀딩 기반 시민 참여형 백화점 기획
 
 
-로고
-![로고_민트](https://user-images.githubusercontent.com/96964263/236413655-9c1a39f8-fc69-4d4d-b15e-b761fc5792b2.jpeg)
 
 
 
