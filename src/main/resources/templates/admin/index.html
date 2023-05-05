@@ -362,6 +362,7 @@
             let ctx = document.getElementById("myPieChart");
             let labelArr = [];
             let dataArr = [];
+            let labelName = ['한식','일식','중식','양식','카페','야식']
             $(data).each(function(idx, d){
                 labelArr.push(d['ctid']);
                 dataArr.push(d['totalSale']);
@@ -369,12 +370,12 @@
             let myPieChart = new Chart(ctx, {
                 type: 'doughnut',
                 data: {
-                    labels: labelArr,
+                    labels: labelName,
                     datasets: [{
                         data: dataArr,
-                        backgroundColor: ['#4e73df', '#1cc88a', '#36b9cc','#36b9cc'],
-                        hoverBackgroundColor: ['#2e59d9', '#17a673', '#2c9faf'],
-                        hoverBorderColor: "rgba(234, 236, 244, 1)",
+                        backgroundColor: ['#4E73DF', '#1BC88A', '#37B8CC','#E74A3A','#F6C23D','#848796'],
+                        // hoverBackgroundColor: ['#2e59d9', '#17a673', '#2c9faf'],
+                        // hoverBorderColor: "rgba(234, 236, 244, 1)",
                     }],
                 },
                 options: {
