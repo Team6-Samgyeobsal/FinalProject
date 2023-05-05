@@ -2,7 +2,14 @@
 
 
 ## 1. 프로젝트 소개
-현대IT&E 채용확정형 6기 최종 프로젝트
+현대IT&E 채용확정형 6기 최종 프로젝트 ('23.02.23 ~ 04.25)<br>
+
+더현대 광주의 성공적인 지역 상생과 이윤 추구를 위한<br>
+크라우드 펀딩 기반 시민 참여형 백화점 기획
+
+
+로고
+![로고_민트](https://user-images.githubusercontent.com/96964263/236413655-9c1a39f8-fc69-4d4d-b15e-b761fc5792b2.jpeg)
 
 
 
@@ -11,7 +18,6 @@
 Back-End<br>
 <img src="https://img.shields.io/badge/springboot-6DB33F?style=for-the-badge&logo=springboot&logoColor=white">
 <img src="https://img.shields.io/badge/springsecurity-6DB33F?style=for-the-badge&logo=springsecurity&logoColor=white">
-
 <img src="https://img.shields.io/badge/JAVA-007396?style=for-the-badge&logo=java&logoColor=white">
 <img src="https://img.shields.io/badge/thymeleaf-005F0F?style=for-the-badge&logo=thymeleaf&logoColor=white"><br>
 
